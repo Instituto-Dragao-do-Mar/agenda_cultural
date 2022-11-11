@@ -41,7 +41,6 @@ class _widgetHomeCategoriasState extends State<widgetHomeCategorias> {
         }
 
         return Column(
-          mainAxisSize: MainAxisSize.max,
           children: [
             
             const SizedBox(

@@ -7,6 +7,11 @@ import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetemconstrucao.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
+import '../../shared/constantes.dart';
+
+import '../home/widgetnotificacoes.dart';
+import '../home/widgetperfil.dart';
+import '../home/widgets/widgettopoperfil.dart';
 
 class pagePrincipal extends StatefulWidget {
   const pagePrincipal({super.key});
@@ -23,7 +28,7 @@ class _pagePrincipalState extends State<pagePrincipal> {
     widgetEmConstrucao(),
     widgetEmConstrucao(),
     widgetEmConstrucao(),
-    widgetEmConstrucao(),
+    widgetnotificacoes(),
   ];
 
   @override
@@ -87,7 +92,7 @@ class _pagePrincipalState extends State<pagePrincipal> {
             BottomNavigationBarItem(
               icon: widgetImagem(
                   imagem: Imagem(
-                url: './imagens/bottomperfil.png,',
+                url: './imagens/bottomperfil.png',
               )),
               label: "Perfil",
             ),
