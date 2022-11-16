@@ -45,6 +45,8 @@ dependencies:
   introduction_screen: ^3.0.2
   awesome_dialog: ^3.0.2
   readmore: ^2.2.0
+  step_progress_indicator: ^1.0.2
+  flutter_switch: ^0.3.2
 
 
 dev_dependencies:

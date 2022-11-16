@@ -9,6 +9,7 @@ import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
 import '../../shared/constantes.dart';
 
+import '../home/widgetdadoscadastrais.dart';
 import '../home/widgetnotificacoes.dart';
 import '../home/widgetperfil.dart';
 import '../home/widgets/widgettopoperfil.dart';
@@ -23,12 +24,12 @@ class pagePrincipal extends StatefulWidget {
 class _pagePrincipalState extends State<pagePrincipal> {
   int opcaoSelecionada = 0;
 
-  List<Widget> subPaginas = const [
+  List<Widget> subPaginas = [
     widgetHome(),
     widgetEmConstrucao(),
     widgetEmConstrucao(),
     widgetEmConstrucao(),
-    widgetnotificacoes(),
+    widgetPerfil(),
   ];
 
   @override
@@ -43,7 +44,7 @@ class _pagePrincipalState extends State<pagePrincipal> {
           backgroundColor: corBackgroundNegative,
           elevation: 0,
           leadingWidth: 0,
-          title: const widgetTopo(),
+          title: subPaginas[opcaoSelecionada] == subPaginas[0] ? widgetTopo() : widgetTopoPerfil(),
         ),
         bottomNavigationBar: BottomNavigationBar(
           onTap: (i) {

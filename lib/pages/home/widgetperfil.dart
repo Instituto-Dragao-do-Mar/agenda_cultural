@@ -1,3 +1,6 @@
+
+import 'package:agendacultural/pages/home/widgetdadoscadastrais.dart';
+import 'package:agendacultural/pages/home/widgetnotificacoes.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:flutter/material.dart';
 
@@ -5,7 +8,26 @@ import '../../shared/constantes.dart';
 import 'widgets/widgetopcaoperfil.dart';
 
 class widgetPerfil extends StatelessWidget {
-  const widgetPerfil({super.key});
+  widgetPerfil({super.key});
+  // final GoRouter _router = GoRouter(routes: <GoRoute>[
+  //   GoRoute(
+  //     path: '/',
+  //     builder: (context, state) => HomeWidgetperfil(),
+  //   ),
+  //   GoRoute(
+  //     path: '/widgetperfil',
+  //     builder: (context, state) => HomeWidgetperfil(),
+  //   ),
+  //   GoRoute(
+  //     path: '/widgetnotificacoes',
+  //     builder: (context, state) => widgetNotificacoes(),
+  //   ),
+  //   GoRoute(
+  //     path: '/widgetdadoscadastrais',
+  //     builder: (context, state) => widgetdadoscadastrais(),
+  //   ),
+  //   // ...
+  // ]);
 
   @override
   Widget build(BuildContext context) {
@@ -19,14 +41,14 @@ class widgetPerfil extends StatelessWidget {
             style: poppins18W500Black,
           ),
           const widgetEspacoH(altura: 12),
-          widgetopacaoperfil(
+          const widgetopacaoperfil(
             subtitulo: "Notificações e alertas",
-            funcao: () {},
+            paginaDestino: widgetNotificacoes(),
           ),
           const widgetEspacoH(altura: 16),
-          widgetopacaoperfil(
+          const widgetopacaoperfil(
             subtitulo: "Dados cadastrais",
-            funcao: () {},
+            paginaDestino: widgetDadosCadastrais(),
           ),
           const widgetEspacoH(altura: 24),
           Text(
@@ -34,19 +56,19 @@ class widgetPerfil extends StatelessWidget {
             style: poppins18W500Black,
           ),
           const widgetEspacoH(altura: 12),
-          widgetopacaoperfil(
+          const widgetopacaoperfil(
             subtitulo: "Termos e Serviços",
-            funcao: () {},
+            paginaDestino: widgetDadosCadastrais(),
           ),
           const widgetEspacoH(altura: 16),
-          widgetopacaoperfil(
+          const widgetopacaoperfil(
             subtitulo: "Ajuda",
-            funcao: () {},
+            paginaDestino: widgetDadosCadastrais(),
           ),
           const widgetEspacoH(altura: 16),
-          widgetopacaoperfil(
+          const widgetopacaoperfil(
             subtitulo: "Sobre o app",
-            funcao: () {},
+            paginaDestino: widgetDadosCadastrais(),
           ),
           const widgetEspacoH(altura: 24),
           Text(
@@ -54,17 +76,18 @@ class widgetPerfil extends StatelessWidget {
             style: poppins18W500Black,
           ),
           const widgetEspacoH(altura: 12),
-          widgetopacaoperfil(
+          const widgetopacaoperfil(
             subtitulo: "Recursos",
-            funcao: () {},
+            paginaDestino: widgetDadosCadastrais(),
           ),
           const widgetEspacoH(altura: 16),
-          widgetopacaoperfil(
+          const widgetopacaoperfil(
             subtitulo: "Idioma",
-            funcao: () {},
+            paginaDestino: widgetDadosCadastrais(),
           ),
         ],
       ),
     );
   }
 }
+

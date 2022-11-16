@@ -8,16 +8,23 @@ class widgetopacaoperfil extends StatelessWidget {
   const widgetopacaoperfil({
     Key? key,
     required this.subtitulo,
-    required this.funcao,
+    required this.paginaDestino,
   }) : super(key: key);
 
   final String subtitulo;
-  final VoidCallback funcao;
+  final Widget paginaDestino;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => funcao,
+      onTap: () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => paginaDestino,
+          ),
+        );
+      },
       child: Text(
         subtitulo,
         style: roboto16W400Grey,

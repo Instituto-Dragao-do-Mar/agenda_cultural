@@ -1,11 +1,12 @@
 // ignore_for_file: camel_case_types
 
+
+import 'package:agendacultural/model/imagem_model.dart';
+import 'package:agendacultural/pages/home/widgethome.dart';
 import 'package:agendacultural/shared/constantes.dart';
 import 'package:agendacultural/shared/widgetespacov.dart';
+import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
-
-import '../../../model/imagem_model.dart';
-import '../../../shared/widgetimagem.dart';
 
 class widgetTopoPerfil extends StatelessWidget {
   const widgetTopoPerfil({
@@ -21,7 +22,9 @@ class widgetTopoPerfil extends StatelessWidget {
         Row(
           children: [
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                
+              },
               child: widgetImagem(
                 imagem: Imagem(
                   url: './imagens/seta.png',
@@ -38,12 +41,18 @@ class widgetTopoPerfil extends StatelessWidget {
             )
           ],
         ),
-      const Expanded(child: SizedBox.shrink()),
-
+        const Expanded(child: SizedBox.shrink()),
         Row(
           children: [
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                 Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => widgetHome(),
+          ),
+        );
+              },
               child: widgetImagem(
                 imagem: Imagem(
                   url: './imagens/Logout.png',
