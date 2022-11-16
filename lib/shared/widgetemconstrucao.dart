@@ -5,12 +5,14 @@ class widgetEmConstrucao extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: const [
-        SizedBox(width: double.infinity),
-        Text("Página em construção")
-      ],
+    return Scaffold(
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: const [
+          SizedBox(width: double.infinity),
+          Text("Página em construção")
+        ],
+      ),
     );
   }
 }

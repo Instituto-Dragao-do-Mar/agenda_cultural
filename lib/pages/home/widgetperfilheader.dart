@@ -1,24 +1,29 @@
 import 'package:agendacultural/model/imagem_model.dart';
+import 'package:agendacultural/pages/home/widgetacessibilidade.dart';
+import 'package:agendacultural/pages/home/widgetdadoscadastrais.dart';
 import 'package:agendacultural/pages/home/widgethome.dart';
+import 'package:agendacultural/pages/home/widgetindiomas.dart';
+import 'package:agendacultural/pages/home/widgetnotificacoes.dart';
 import 'package:agendacultural/pages/home/widgetperfil.dart';
 import 'package:agendacultural/pages/home/widgets/widgettopoperfil.dart';
-import 'package:agendacultural/shared/constantes.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetemconstrucao.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
 
-class widgetIndiomas extends StatefulWidget {
-  const widgetIndiomas({Key? key}) : super(key: key);
+import '../../shared/constantes.dart';
+import 'widgets/widgetopcaoperfil.dart';
+
+class widgetPerfilHeader extends StatefulWidget {
+  const widgetPerfilHeader({super.key});
 
   @override
-  _widgetIndiomasState createState() => _widgetIndiomasState();
+  State<widgetPerfilHeader> createState() => _widgetPerfilHeaderState();
 }
 
-class _widgetIndiomasState extends State<widgetIndiomas> {
-  int? valor = 0;
-  int opcaoSelecionada = 0;
+class _widgetPerfilHeaderState extends State<widgetPerfilHeader> {
+   int opcaoSelecionada = 0;
 
   List<Widget> subPaginas = [
     const widgetHome(),
@@ -94,76 +99,59 @@ class _widgetIndiomasState extends State<widgetIndiomas> {
           ],
         ),
         body: Container(
-          padding: const EdgeInsets.all(16),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Idioma",
+                "Conta",
                 style: poppins18W500Black,
               ),
-              const widgetEspacoH(altura: 25),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Português",
-                    style: roboto16W400Black,
-                  ),
-                  IconButton(
-                    iconSize: 32,
-                    hoverColor: Colors.transparent,
-                    icon: valor == 0 ? radioOn : radioOff,
-                    onPressed: () {
-                      setState(() {
-                        valor = 0;
-                      });
-                    },
-                  ),
-                  // Radio(
-                  //   value: 0,
-                  //   groupValue: groupValue,
-                  //   onChanged: (value) {
-                  //     setState(() {
-                  //       groupValue = value;
-                  //       print(groupValue);
-                  //     });
-                  //   },
-                  // )
-                ],
+              const widgetEspacoH(altura: 12),
+              const widgetopacaoperfil(
+                subtitulo: "Notificações e alertas",
+                paginaDestino: widgetNotificacoes(),
               ),
-              const widgetEspacoH(
-                altura: 16,
+              const widgetEspacoH(altura: 16),
+              const widgetopacaoperfil(
+                subtitulo: "Dados cadastrais",
+                paginaDestino: widgetDadosCadastrais(),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "Inglês",
-                    style: roboto16W400Black,
-                  ),
-                  IconButton(
-                    iconSize: 32,
-                    hoverColor: Colors.transparent,
-                    icon: valor == 1 ? radioOn : radioOff,
-                    onPressed: () {
-                      setState(() {
-                        valor = 1;
-                      });
-                    },
-                  )
-                  // Radio(
-                  //   value: 1,
-                  //   groupValue: groupValue,
-                  //   onChanged: (value) {
-                  //     setState(() {
-                  //       groupValue = value;
-                  //       print(groupValue);
-                  //     });
-                  //   },
-                  // )
-                ],
-              )
+              const widgetEspacoH(altura: 24),
+              Text(
+                'Geral',
+                style: poppins18W500Black,
+              ),
+              const widgetEspacoH(altura: 12),
+              const widgetopacaoperfil(
+                subtitulo: "Termos e Serviços",
+                paginaDestino: widgetEmConstrucao(),
+              ),
+              const widgetEspacoH(altura: 16),
+              const widgetopacaoperfil(
+                subtitulo: "Ajuda",
+                paginaDestino: widgetEmConstrucao(),
+              ),
+              const widgetEspacoH(altura: 16),
+              const widgetopacaoperfil(
+                subtitulo: "Sobre o app",
+                paginaDestino: widgetEmConstrucao(),
+              ),
+              const widgetEspacoH(altura: 24),
+              Text(
+                'Acessibilidade',
+                style: poppins18W500Black,
+              ),
+              const widgetEspacoH(altura: 12),
+              const widgetopacaoperfil(
+                subtitulo: "Recursos",
+                paginaDestino: widgetAcessibilidade(),
+              ),
+              const widgetEspacoH(altura: 16),
+              const widgetopacaoperfil(
+                subtitulo: "Idioma",
+                paginaDestino: widgetIndiomas(),
+              ),
             ],
           ),
         ),

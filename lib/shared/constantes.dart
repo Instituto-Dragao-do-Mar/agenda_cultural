@@ -92,8 +92,8 @@ final Image radioOff = Image.network(
 );
 final Image radioOn = Image.network(
   "./imagens/radioon.png",
-  width: 32,
-  height: 32,
+  width: 38,
+  height: 38,
 );
 bool isPerfil = false;
 const InputDecoration textfieldPerfil = InputDecoration(

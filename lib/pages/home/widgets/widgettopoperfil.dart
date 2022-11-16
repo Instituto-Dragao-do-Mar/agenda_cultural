@@ -1,8 +1,10 @@
 // ignore_for_file: camel_case_types
 
-
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/home/widgethome.dart';
+import 'package:agendacultural/pages/home/widgetperfil.dart';
+import 'package:agendacultural/pages/home/widgetperfilheader.dart';
+import 'package:agendacultural/pages/principal/home.dart';
 import 'package:agendacultural/shared/constantes.dart';
 import 'package:agendacultural/shared/widgetespacov.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
@@ -23,7 +25,12 @@ class widgetTopoPerfil extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => widgetPerfilHeader(),
+                  ),
+                );
               },
               child: widgetImagem(
                 imagem: Imagem(
@@ -46,12 +53,12 @@ class widgetTopoPerfil extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                 Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => widgetHome(),
-          ),
-        );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => pagePrincipal(),
+                  ),
+                );
               },
               child: widgetImagem(
                 imagem: Imagem(
