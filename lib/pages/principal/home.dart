@@ -25,10 +25,10 @@ class _pagePrincipalState extends State<pagePrincipal> {
   int opcaoSelecionada = 0;
 
   List<Widget> subPaginas = [
-    widgetHome(),
-    widgetEmConstrucao(),
-    widgetEmConstrucao(),
-    widgetEmConstrucao(),
+    const widgetHome(),
+    const widgetEmConstrucao(),
+    const widgetEmConstrucao(),
+    const widgetEmConstrucao(),
     widgetPerfil(),
   ];
 
@@ -44,7 +44,9 @@ class _pagePrincipalState extends State<pagePrincipal> {
           backgroundColor: corBackgroundNegative,
           elevation: 0,
           leadingWidth: 0,
-          title: subPaginas[opcaoSelecionada] == subPaginas[0] ? widgetTopo() : widgetTopoPerfil(),
+          title: subPaginas[opcaoSelecionada] == subPaginas[0]
+              ? widgetTopo()
+              : widgetTopoPerfil(),
         ),
         bottomNavigationBar: BottomNavigationBar(
           onTap: (i) {
