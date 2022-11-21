@@ -85,6 +85,20 @@ final TextStyle inter16W400Grey = GoogleFonts.roboto(
     color: Color(0XFF666666),
   ),
 );
+final TextStyle inter24W500With = GoogleFonts.roboto(
+  textStyle: const TextStyle(
+    fontSize: 24,
+    fontWeight: FontWeight.w500,
+    color: Color(0XFFF9E8D8),
+  ),
+);
+final TextStyle inter16W700With = GoogleFonts.roboto(
+  textStyle: const TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w700,
+    color: Color(0XFFF9E8D8),
+  ),
+);
 final Image radioOff = Image.network(
   "./imagens/radiooff.png",
   width: 32,

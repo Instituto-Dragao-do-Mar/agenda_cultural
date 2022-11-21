@@ -76,7 +76,7 @@ class _pageIntroducaoState extends State<pageIntroducao> {
             ),
           ),
           done: const Text(
-            'Começar',
+            'Próximo',
             style: TextStyle(
               //  fontWeight: FontWeight.w600,
               color: Colors.white,

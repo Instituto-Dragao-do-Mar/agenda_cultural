@@ -1,6 +1,7 @@
 import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
 import 'package:agendacultural/pages/introducao/introducao.dart';
+import 'package:agendacultural/pages/introducao/introducaoinfo.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
@@ -10,6 +11,7 @@ import 'package:provider/provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
+  
   initializeDateFormatting("pt_BR", null).then(
     (_) => runApp(MultiProvider(
       providers: [
@@ -22,6 +24,10 @@ void main() async {
   );
 }
 
+Future initialization(BuildContext? context) async {
+  await Future.delayed(Duration(seconds: 3));
+}
+
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -31,9 +37,10 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Agenda Cultural',
       theme: themeDefault,
-      home: const pageIntroducao(
-        destino:  pageLogin(), 
-
+     home: const pageIntroducao(
+        destino: Introducaoinfo(
+          destino: pageLogin(),
+        ),
       ),
     );
   }
