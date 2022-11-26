@@ -2,6 +2,7 @@ import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
 import 'package:agendacultural/pages/introducao/introducao.dart';
 import 'package:agendacultural/pages/introducao/introducaoinfo.dart';
+import 'package:agendacultural/pages/introducao/pagesplash.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
@@ -37,11 +38,12 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Agenda Cultural',
       theme: themeDefault,
-     home: const pageIntroducao(
-        destino: Introducaoinfo(
-          destino: pageLogin(),
-        ),
-      ),
+      home: pageSplash(),
+    //  home: const pageIntroducao(
+    //     destino: Introducaoinfo(
+    //       destino: pageLogin(),
+    //     ),
+    //   ),
     );
   }
 }

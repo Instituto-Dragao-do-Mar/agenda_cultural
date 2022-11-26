@@ -48,7 +48,7 @@ class _IntroducaoinfoState extends State<Introducaoinfo> {
                   children: [
                     TextButton(
                       onPressed: () {
-                        Navigator.of(context).push(
+                        Navigator.of(context).pushReplacement(
                           MaterialPageRoute(builder: (_) => widget.destino),
                         );
                       },

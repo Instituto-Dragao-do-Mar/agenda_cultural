@@ -1,5 +1,6 @@
 // ignore_for_file: camel_case_types
 
+// ignore_for_file: camel_case_types
 import 'package:agendacultural/controller/introducao_controller.dart';
 import 'package:agendacultural/model/introducao_model.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
@@ -53,15 +54,20 @@ class _pageIntroducaoState extends State<pageIntroducao> {
           onSkip: () => _onIntroEnd(context),
           showBackButton: _showBackButton,
           showSkipButton: _showSkipButton,
-          
-          back: const Text(
+          skipSemantic: "Botão Pular",
+          nextSemantic: "Botão Próximo",
+          backSemantic: "Botão Voltar",
+          doneSemantic: "Botão Próximo",
+          back: Text(
+            semanticsLabel: "Página Anterior",
             'Anterior',
             style: TextStyle(
               //   fontWeight: FontWeight.w600,
               color: Colors.white,
             ),
           ),
-          skip: const Text(
+          skip: Text(
+            semanticsLabel: "Pular para Introdução",
             'Pular',
             style: TextStyle(
               //   fontWeight: FontWeight.w600,
@@ -69,6 +75,7 @@ class _pageIntroducaoState extends State<pageIntroducao> {
             ),
           ),
           next: const Text(
+            semanticsLabel: "Proxima Página",
             "Próximo",
             style: TextStyle(
               //  fontWeight: FontWeight.w600,
@@ -76,6 +83,7 @@ class _pageIntroducaoState extends State<pageIntroducao> {
             ),
           ),
           done: const Text(
+            semanticsLabel: "Proxima Página",
             'Próximo',
             style: TextStyle(
               //  fontWeight: FontWeight.w600,
@@ -100,15 +108,19 @@ class _pageIntroducaoState extends State<pageIntroducao> {
           globalFooter: SizedBox(
             width: double.infinity,
             height: 60,
-            child: ElevatedButton(
-              child: const Text(
-                'Ir para recursos de acessibilidade',
-                style: TextStyle(
-                  fontSize: 16.0,
-                  fontWeight: FontWeight.bold,
+            child: Semantics(
+              container: true,
+              label: "Botão, ir para recursos de acessibilidade",
+              child: ElevatedButton(
+                child: const Text(
+                  'Ir para recursos de acessibilidade',
+                  style: TextStyle(
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
+                onPressed: () => _onIntroEnd(context),
               ),
-              onPressed: () => _onIntroEnd(context),
             ),
           ),
           pages: listaIntroducao!.introducoes!.map(

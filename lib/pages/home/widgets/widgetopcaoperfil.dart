@@ -28,6 +28,7 @@ class widgetopacaoperfil extends StatelessWidget {
       child: Text(
         subtitulo,
         style: roboto16W400Grey,
+        semanticsLabel: subtitulo,
       ),
     );
   }

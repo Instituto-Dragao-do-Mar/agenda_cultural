@@ -37,25 +37,28 @@ class _pageLoginState extends State<pageLogin> {
                   Text(
                     "Realização",
                     style: roboto16W400Black,
+                    semanticsLabel: "Realização"
                   ),
                   Image.network(
                     "./imagens/logosecult.png",
                     width: 237,
                     height: 72,
+                    semanticLabel: "Secult",
                   ),
                 ],
               ),
-              widgetEspacoH(altura: 78),
+              widgetEspacoH(altura: 50),
               SizedBox(
                 width: double.infinity,
                 child: Align(
                   alignment: Alignment.bottomCenter,
                   child: widgetImagem(
+                    width: 247,
+                    height: 184,
                     imagem: Imagem(
                       url: './imagens/logotelalogin.png',
                     ),
                     fit: BoxFit.fill,
-                    width: size.width * 0.6,
                   ),
                 ),
               ),
@@ -106,6 +109,7 @@ class _pageLoginState extends State<pageLogin> {
                           height: 65,
                           child: Center(
                             child: Text(
+                              semanticsLabel: "Entrar como vivitante",
                               "Entrar como visitante",
                               style: GoogleFonts.roboto(
                                   fontSize: 16, color: corBackground),
@@ -117,11 +121,12 @@ class _pageLoginState extends State<pageLogin> {
                   ),
                 ),
               ),
-              widgetEspacoH(altura: 75),
+              widgetEspacoH(altura: 40),
               Column(
                 children: [
                   Text(
                     "Gestão",
+                    semanticsLabel: "Gestão",
                     style: roboto16W400Black,
                   ),
                   const widgetEspacoH(altura: 11),
@@ -129,6 +134,7 @@ class _pageLoginState extends State<pageLogin> {
                     "./imagens/dragaodomar.png",
                     width: 121,
                     height: 42,
+                    semanticLabel: "Centro Cultural Dragao do Mar",
                   ),
                 ],
               ),

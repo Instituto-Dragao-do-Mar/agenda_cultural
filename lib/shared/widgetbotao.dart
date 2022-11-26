@@ -52,6 +52,7 @@ class widgetBotao extends StatelessWidget {
         ),
         child: Center(
           child: Text(
+            semanticsLabel: "Botão $text",
             text ?? "?",
             style: GoogleFonts.roboto(
               fontSize: 24,

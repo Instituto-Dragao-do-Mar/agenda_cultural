@@ -246,68 +246,81 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
                 const widgetEspacoH(
                   altura: 16,
                 ),
-                Text(
-                  "Sua senha deve conter:",
-                  style: roboto12W400Grey,
-                ),
-                const widgetEspacoH(
-                  altura: 4,
-                ),
-                Text(
-                  "No mínimo 6 dígitos",
-                  style: roboto12W300Grey,
-                ),
-                const widgetEspacoH(
-                  altura: 4,
-                ),
-                Text(
-                  "Pelo menos 1 letra maiúscula",
-                  style: roboto12W300Grey,
-                ),
-                const widgetEspacoH(
-                  altura: 4,
-                ),
-                Text(
-                  "Pelo menos 1 letra minúscula",
-                  style: roboto12W300Grey,
-                ),
-                const widgetEspacoH(
-                  altura: 4,
-                ),
-                Text(
-                  "Pelo menos 1 número",
-                  style: roboto12W300Grey,
-                ),
-                const widgetEspacoH(
-                  altura: 8,
-                ),
-                Text(
-                  "Força da senha:",
-                  style: roboto12W300Grey,
-                ),
-                const widgetEspacoH(
-                  altura: 8,
-                ),
-                Row(
-                  children: [
-                    const Expanded(
-                      flex: 1,
-                      child: StepProgressIndicator(
-                        totalSteps: 4,
-                        currentStep: 0,
-                        selectedColor: Colors.red,
-                        unselectedColor: Colors.grey,
-                      ),
-                    ),
-                    Expanded(
-                      flex: 1,
-                      child: Row(),
-                    )
-                  ],
-                ),
-                const widgetEspacoH(
-                  altura: 16,
-                ),
+                senhaInput != "" || novaSenhaInput != ""
+                    ? Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Sua senha deve conter:",
+                            style: roboto12W400Grey,
+                            semanticsLabel: "Sua senha deve conter:",
+                          ),
+                          const widgetEspacoH(
+                            altura: 4,
+                          ),
+                          Text(
+                            "No mínimo 6 dígitos",
+                            style: roboto12W300Grey,
+                            semanticsLabel: "No mínimo 6 dígitos",
+                          ),
+                          const widgetEspacoH(
+                            altura: 4,
+                          ),
+                          Text(
+                            "Pelo menos 1 letra maiúscula",
+                            style: roboto12W300Grey,
+                            semanticsLabel: "Pelo menos 1 letra maiúscula",
+                          ),
+                          const widgetEspacoH(
+                            altura: 4,
+                          ),
+                          Text(
+                            "Pelo menos 1 letra minúscula",
+                            style: roboto12W300Grey,
+                            semanticsLabel: "Pelo menos 1 letra minúscula",
+                          ),
+                          const widgetEspacoH(
+                            altura: 4,
+                          ),
+                          Text(
+                            "Pelo menos 1 número",
+                            style: roboto12W300Grey,
+                            semanticsLabel: "Pelo menos 1 número",
+                          ),
+                          const widgetEspacoH(
+                            altura: 8,
+                          ),
+                          Text(
+                            "Força da senha:",
+                            style: roboto12W300Grey,
+                            semanticsLabel: "Força da senha:",
+                          ),
+                          const widgetEspacoH(
+                            altura: 8,
+                          ),
+                          Row(
+                            children: [
+                              const Expanded(
+                                flex: 1,
+                                child: StepProgressIndicator(
+                                  totalSteps: 4,
+                                  currentStep: 0,
+                                  selectedColor: Colors.red,
+                                  unselectedColor: Colors.grey,
+                                ),
+                              ),
+                              Expanded(
+                                flex: 1,
+                                child: Row(),
+                              )
+                            ],
+                          ),
+                          const widgetEspacoH(
+                            altura: 16,
+                          )
+                        ],
+                      )
+                    : Column(),
                 const widgetBotao(text: "Salvar")
               ],
             ),

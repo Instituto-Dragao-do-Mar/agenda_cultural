@@ -23,20 +23,19 @@ class widgetHeaderCards extends StatelessWidget {
         Text(
           titulo,
           style: const TextStyle(
-            fontSize: 16,
-            color: Colors.black,
-            fontWeight: FontWeight.w600
-          ),
+              fontSize: 16, color: Colors.black, fontWeight: FontWeight.w600),
+          semanticsLabel: titulo,
         ),
         GestureDetector(
           onTap: () => funcao,
           child: Text(
             subtitulo,
             style: const TextStyle(
-            fontSize: 14,
-            color: corBackground,
-             fontWeight: FontWeight.w600
-          ),
+              fontSize: 14,
+              color: corBackground,
+              fontWeight: FontWeight.w600,
+            ),
+            semanticsLabel: subtitulo,
           ),
         )
       ],

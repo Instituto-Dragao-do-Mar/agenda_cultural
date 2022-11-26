@@ -17,6 +17,7 @@ class widgetTopoPerfil extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String? text;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [

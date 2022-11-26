@@ -7,7 +7,7 @@ import 'constantes.dart';
 
 class widgetBotaoSwitch extends StatefulWidget {
   widgetBotaoSwitch({Key? key, required this.value}) : super(key: key);
-  bool value;
+  bool value = false;
 
   @override
   _widgetBotaoSwitchState createState() => _widgetBotaoSwitchState();
