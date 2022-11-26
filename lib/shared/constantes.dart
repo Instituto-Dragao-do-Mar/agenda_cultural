@@ -109,6 +109,14 @@ final Image radioOn = Image.network(
   width: 38,
   height: 38,
 );
+
+final LinearGradient gradientPrincipal = LinearGradient(
+  colors: [
+    Color(0xffEA5B0C),
+    Color(0xffE83C3B),
+  ],
+);
+
 bool isPerfil = false;
 const InputDecoration textfieldPerfil = InputDecoration(
   filled: true,

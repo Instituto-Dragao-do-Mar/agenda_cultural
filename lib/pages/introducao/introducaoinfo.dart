@@ -26,13 +26,8 @@ class _IntroducaoinfoState extends State<Introducaoinfo> {
             ),
             width: double.infinity,
             height: double.infinity,
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xffEA5B0C),
-                  Color(0xffE83C3B),
-                ],
-              ),
+            decoration: BoxDecoration(
+              gradient: gradientPrincipal,
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,

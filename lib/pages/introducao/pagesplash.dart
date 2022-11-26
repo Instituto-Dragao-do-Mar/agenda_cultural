@@ -3,6 +3,7 @@
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
 import 'package:agendacultural/pages/introducao/introducao.dart';
 import 'package:agendacultural/pages/introducao/introducaoinfo.dart';
+import 'package:agendacultural/shared/constantes.dart';
 import 'package:flutter/material.dart';
 
 class pageSplash extends StatefulWidget {
@@ -37,13 +38,8 @@ class _pageSplashState extends State<pageSplash> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color(0xffEA5B0C),
-              Color(0xffE83C3B),
-            ],
-          ),
+        decoration: BoxDecoration(
+          gradient: gradientPrincipal,
         ),
         child: Center(
             child: Image.network(
