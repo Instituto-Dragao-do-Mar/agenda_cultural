@@ -1,4 +1,3 @@
-
 import 'package:agendacultural/shared/constantes.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:flutter/material.dart';
@@ -15,21 +14,25 @@ class Introducaoinfo extends StatefulWidget {
 }
 
 class _IntroducaoinfoState extends State<Introducaoinfo> {
-  
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         body: Container(
-            padding: EdgeInsets.only(left: 23,  right: 23, bottom: size.height * .1,),
+            padding: EdgeInsets.only(
+              left: 23,
+              right: 23,
+              bottom: size.height * .1,
+            ),
             width: double.infinity,
             height: double.infinity,
             decoration: const BoxDecoration(
-              image: DecorationImage(
-                  image: NetworkImage(
-                    "./imagens/background.png",
-                  ),
-                  fit: BoxFit.cover),
+              gradient: LinearGradient(
+                colors: [
+                  Color(0xffEA5B0C),
+                  Color(0xffE83C3B),
+                ],
+              ),
             ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -42,7 +45,7 @@ class _IntroducaoinfoState extends State<Introducaoinfo> {
                   style: inter24W500With,
                   textAlign: TextAlign.center,
                 ),
-                widgetEspacoH(altura: 207),
+                const widgetEspacoH(altura: 207),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
