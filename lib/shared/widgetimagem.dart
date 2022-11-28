@@ -3,6 +3,7 @@
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/shared/constrants.dart';
 import 'package:flutter/material.dart';
+import 'dart:io' show Platform;
 
 Image widgetImagem({
   required Imagem imagem,
@@ -10,6 +11,10 @@ Image widgetImagem({
   double? height,
   double? width,
 }) {
+  if (Platform.isAndroid ||Platform.isMacOS || Platform.isWindows) {
+    return Image.asset(imagem.url!.replaceAll('./imagens/', ''));
+  }
+
   if (WEB) {
     return Image.network(
       imagem.url!,
