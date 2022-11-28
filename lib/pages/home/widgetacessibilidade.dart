@@ -64,35 +64,35 @@ class _widgetAcessibilidadeState extends State<widgetAcessibilidade> {
               backgroundColor: corBackgroundNegative,
               icon: widgetImagem(
                   imagem: Imagem(
-                url: './imagens/bottomhome.png',
+                url: 'bottomhome.png',
               )),
               label: "Home",
             ),
             BottomNavigationBarItem(
               icon: widgetImagem(
                   imagem: Imagem(
-                url: './imagens/bottomcalendario.png',
+                url: 'bottomcalendario.png',
               )),
               label: "Agenda",
             ),
             BottomNavigationBarItem(
               icon: widgetImagem(
                   imagem: Imagem(
-                url: './imagens/bottommapa.png',
+                url: 'bottommapa.png',
               )),
               label: "Mapa",
             ),
             BottomNavigationBarItem(
               icon: widgetImagem(
                   imagem: Imagem(
-                url: './imagens/bottomfavoritos.png',
+                url: 'bottomfavoritos.png',
               )),
               label: "Favoritos",
             ),
             BottomNavigationBarItem(
               icon: widgetImagem(
                   imagem: Imagem(
-                url: './imagens/bottomperfil.png',
+                url: 'bottomperfil.png',
               )),
               label: "Perfil",
             ),
@@ -153,7 +153,7 @@ class _widgetAcessibilidadeState extends State<widgetAcessibilidade> {
                   IconButton(
                     iconSize: 40,
                     icon: Image.network(
-                      "./imagens/small.png",
+                      "small.png",
                     ),
                     onPressed: () {
                       setState(() {
@@ -183,7 +183,7 @@ class _widgetAcessibilidadeState extends State<widgetAcessibilidade> {
                   IconButton(
                     iconSize: 40,
                     icon: Image.network(
-                      "./imagens/larger.png",
+                      "larger.png",
                     ),
                     onPressed: () {
                       setState(() {

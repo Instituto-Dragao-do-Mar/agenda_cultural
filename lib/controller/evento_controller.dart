@@ -48,7 +48,7 @@ class EventoController extends BaseController {
           listaImagem: ListaImagem(imagens: [
             Imagem(
               tipoimagem: TipoImagem.url,
-              url: './imagens/evento2.png',
+              url: 'evento2.png',
             ),
           ]),
         ),
@@ -88,7 +88,7 @@ class EventoController extends BaseController {
           listaImagem: ListaImagem(imagens: [
             Imagem(
               tipoimagem: TipoImagem.url,
-              url: './imagens/evento1.png',
+              url: 'evento1.png',
             ),
           ]),
         ),
@@ -127,7 +127,7 @@ class EventoController extends BaseController {
           listaImagem: ListaImagem(imagens: [
             Imagem(
               tipoimagem: TipoImagem.url,
-              url: './imagens/evento2.png',
+              url: 'evento2.png',
             ),
           ]),
         ),

@@ -33,7 +33,7 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
             Navigator.pop(context);
           },
           child: widgetImagem(
-            imagem: Imagem(url: './imagens/setavoltando.png'),
+            imagem: Imagem(url: 'setavoltando.png'),
           ),
         ),
         centerTitle: false,
@@ -141,7 +141,7 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
                     ),
                     const widgetEspacoH(),
                     widgetImagem(
-                        imagem: Imagem(url: './imagens/mapa.jpeg'),
+                        imagem: Imagem(url: 'mapa.jpeg'),
                         width: p1.maxWidth,
                         height: p1.maxWidth * .5,
                         fit: BoxFit.cover),
@@ -169,7 +169,7 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
         return Row(
           children: [
             widgetImagem(
-              imagem: Imagem(url: './imagens/bottomcalendario.png'),
+              imagem: Imagem(url: 'bottomcalendario.png'),
             ),
             const widgetEspacoV(largura: 4),
             Text(
@@ -181,7 +181,7 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
             ),
             const widgetEspacoV(largura: 20),
             widgetImagem(
-              imagem: Imagem(url: './imagens/hora.png'),
+              imagem: Imagem(url: 'hora.png'),
             ),
             const widgetEspacoV(largura: 4),
             Text(

@@ -5,7 +5,7 @@ import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
 
 class widgetTopo extends StatelessWidget {
-  const  widgetTopo({
+  const widgetTopo({
     Key? key,
   }) : super(key: key);
 
@@ -16,14 +16,14 @@ class widgetTopo extends StatelessWidget {
       children: [
         const SizedBox(width: 10),
         widgetImagem(
-          imagem: Imagem(url: './imagens/iconelaranha.png'),
+          imagem: Imagem(url: 'iconelaranha.png'),
           width: 24,
           height: 24,
           fit: BoxFit.contain,
         ),
         const SizedBox(width: 10),
         widgetImagem(
-          imagem: Imagem(url: './imagens/iconculturace.png'),
+          imagem: Imagem(url: 'iconculturace.png'),
           //width: 160,
           height: 18,
           fit: BoxFit.contain,

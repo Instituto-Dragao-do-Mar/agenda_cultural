@@ -1,4 +1,3 @@
-
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/home/widgethome.dart';
 import 'package:agendacultural/pages/home/widgets/widgettopoperfil.dart';
@@ -28,7 +27,7 @@ class _widgetNotificacoesState extends State<widgetNotificacoes> {
   // bool status5 = false;
   // bool status6 = false;
   // bool status7 = false;
-   int opcaoSelecionada = 0;
+  int opcaoSelecionada = 0;
 
   List<Widget> subPaginas = [
     const widgetHome(),
@@ -44,65 +43,65 @@ class _widgetNotificacoesState extends State<widgetNotificacoes> {
       top: true,
       minimum: const EdgeInsets.symmetric(vertical: 16),
       child: Scaffold(
-         appBar: AppBar(
-            backgroundColor: corBackgroundNegative,
-            elevation: 0,
-            leadingWidth: 0,
-            title:  widgetTopoPerfil(),
-          ),
-          bottomNavigationBar: BottomNavigationBar(
-            onTap: (i) {
-              setState(() {
-                opcaoSelecionada = i;
-              });
-            },
-            backgroundColor: corBackgroundNegative,
-            elevation: 0,
-            showUnselectedLabels: true,
-            unselectedFontSize: 12,
-            selectedFontSize: 12,
-            unselectedItemColor: Colors.black,
-            selectedItemColor: Colors.grey,
-            currentIndex: opcaoSelecionada,
-            items: [
-              BottomNavigationBarItem(
-                backgroundColor: corBackgroundNegative,
-                icon: widgetImagem(
-                    imagem: Imagem(
-                  url: './imagens/bottomhome.png',
-                )),
-                label: "Home",
-              ),
-              BottomNavigationBarItem(
-                icon: widgetImagem(
-                    imagem: Imagem(
-                  url: './imagens/bottomcalendario.png',
-                )),
-                label: "Agenda",
-              ),
-              BottomNavigationBarItem(
-                icon: widgetImagem(
-                    imagem: Imagem(
-                  url: './imagens/bottommapa.png',
-                )),
-                label: "Mapa",
-              ),
-              BottomNavigationBarItem(
-                icon: widgetImagem(
-                    imagem: Imagem(
-                  url: './imagens/bottomfavoritos.png',
-                )),
-                label: "Favoritos",
-              ),
-              BottomNavigationBarItem(
-                icon: widgetImagem(
-                    imagem: Imagem(
-                  url: './imagens/bottomperfil.png',
-                )),
-                label: "Perfil",
-              ),
-            ],
-          ),
+        appBar: AppBar(
+          backgroundColor: corBackgroundNegative,
+          elevation: 0,
+          leadingWidth: 0,
+          title: widgetTopoPerfil(),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          onTap: (i) {
+            setState(() {
+              opcaoSelecionada = i;
+            });
+          },
+          backgroundColor: corBackgroundNegative,
+          elevation: 0,
+          showUnselectedLabels: true,
+          unselectedFontSize: 12,
+          selectedFontSize: 12,
+          unselectedItemColor: Colors.black,
+          selectedItemColor: Colors.grey,
+          currentIndex: opcaoSelecionada,
+          items: [
+            BottomNavigationBarItem(
+              backgroundColor: corBackgroundNegative,
+              icon: widgetImagem(
+                  imagem: Imagem(
+                url: 'bottomhome.png',
+              )),
+              label: "Home",
+            ),
+            BottomNavigationBarItem(
+              icon: widgetImagem(
+                  imagem: Imagem(
+                url: 'bottomcalendario.png',
+              )),
+              label: "Agenda",
+            ),
+            BottomNavigationBarItem(
+              icon: widgetImagem(
+                  imagem: Imagem(
+                url: 'bottommapa.png',
+              )),
+              label: "Mapa",
+            ),
+            BottomNavigationBarItem(
+              icon: widgetImagem(
+                  imagem: Imagem(
+                url: 'bottomfavoritos.png',
+              )),
+              label: "Favoritos",
+            ),
+            BottomNavigationBarItem(
+              icon: widgetImagem(
+                  imagem: Imagem(
+                url: 'bottomperfil.png',
+              )),
+              label: "Perfil",
+            ),
+          ],
+        ),
         body: Container(
           padding: const EdgeInsets.all(16.0),
           child: SingleChildScrollView(
@@ -121,13 +120,14 @@ class _widgetNotificacoesState extends State<widgetNotificacoes> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
-      
                   children: [
                     Text(
                       "Escolha se deseja receber notificações",
                       style: poppins12W400Grey,
                     ),
-                    widgetBotaoSwitch(value: status1,),
+                    widgetBotaoSwitch(
+                      value: status1,
+                    ),
                   ],
                 ),
                 const widgetEspacoH(altura: 20),
@@ -143,26 +143,28 @@ class _widgetNotificacoesState extends State<widgetNotificacoes> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
-      
                   children: [
                     Text(
                       "Lembretes de alertas",
                       style: poppins14W400Grey,
                     ),
-                   widgetBotaoSwitch(value: status1,),
+                    widgetBotaoSwitch(
+                      value: status1,
+                    ),
                   ],
                 ),
                 const widgetEspacoH(altura: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
-      
                   children: [
                     Text(
                       "Atualização da programação",
                       style: poppins14W400Grey,
                     ),
-                  widgetBotaoSwitch(value: status1,),
+                    widgetBotaoSwitch(
+                      value: status1,
+                    ),
                   ],
                 ),
                 const widgetEspacoH(altura: 25),
@@ -178,30 +180,32 @@ class _widgetNotificacoesState extends State<widgetNotificacoes> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
-      
                   children: [
                     Text(
                       "Lembretes de alertas",
                       style: poppins14W400Grey,
                     ),
-                    widgetBotaoSwitch(value: status1,),
+                    widgetBotaoSwitch(
+                      value: status1,
+                    ),
                   ],
                 ),
                 const widgetEspacoH(altura: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
-      
                   children: [
                     Text(
                       "Atualização da programação",
                       style: poppins14W400Grey,
                     ),
-                    widgetBotaoSwitch(value: status1,),
+                    widgetBotaoSwitch(
+                      value: status1,
+                    ),
                   ],
                 ),
                 const widgetEspacoH(altura: 25),
-                 Text(
+                Text(
                   "Receber alertas",
                   style: roboto16W400Black,
                 ),
@@ -213,29 +217,30 @@ class _widgetNotificacoesState extends State<widgetNotificacoes> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
-      
                   children: [
                     Text(
                       "1 dia antes do evento",
                       style: poppins14W400Grey,
                     ),
-                  widgetBotaoSwitch(value: status1,),
+                    widgetBotaoSwitch(
+                      value: status1,
+                    ),
                   ],
                 ),
                 const widgetEspacoH(altura: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.start,
-      
                   children: [
                     Text(
                       "1 semana antes do evento",
                       style: poppins14W400Grey,
                     ),
-                    widgetBotaoSwitch(value: status1,),
+                    widgetBotaoSwitch(
+                      value: status1,
+                    ),
                   ],
                 ),
-                
               ],
             ),
           ),

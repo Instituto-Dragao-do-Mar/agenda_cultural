@@ -46,7 +46,7 @@ class _pageSplashState extends State<pageSplash> {
           width: 178,
           height: 178,
           semanticLabel: "Iniciando Agenda Cultural",
-          "./imagens/splash.png",
+          "splash.png",
         )));
   }
 }

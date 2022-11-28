@@ -34,13 +34,10 @@ class _pageLoginState extends State<pageLogin> {
             children: [
               Column(
                 children: [
-                  Text(
-                    "Realização",
-                    style: roboto16W400Black,
-                    semanticsLabel: "Realização"
-                  ),
+                  Text("Realização",
+                      style: roboto16W400Black, semanticsLabel: "Realização"),
                   Image.network(
-                    "./imagens/logosecult.png",
+                    "logosecult.png",
                     width: 237,
                     height: 72,
                     semanticLabel: "Secult",
@@ -56,7 +53,7 @@ class _pageLoginState extends State<pageLogin> {
                     width: 247,
                     height: 184,
                     imagem: Imagem(
-                      url: './imagens/logotelalogin.png',
+                      url: 'logotelalogin.png',
                     ),
                     fit: BoxFit.fill,
                   ),
@@ -131,7 +128,7 @@ class _pageLoginState extends State<pageLogin> {
                   ),
                   const widgetEspacoH(altura: 11),
                   Image.network(
-                    "./imagens/dragaodomar.png",
+                    "dragaodomar.png",
                     width: 121,
                     height: 42,
                     semanticLabel: "Centro Cultural Dragao do Mar",

@@ -100,12 +100,12 @@ final TextStyle inter16W700With = GoogleFonts.roboto(
   ),
 );
 final Image radioOff = Image.network(
-  "./imagens/radiooff.png",
+  "radiooff.png",
   width: 32,
   height: 32,
 );
 final Image radioOn = Image.network(
-  "./imagens/radioon.png",
+  "radioon.png",
   width: 38,
   height: 38,
 );

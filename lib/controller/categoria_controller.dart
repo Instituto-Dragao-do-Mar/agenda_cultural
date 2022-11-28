@@ -15,63 +15,63 @@ class CategoriaController extends BaseController {
           titulo: "Cinema",
           imagem: Imagem(
             tipoimagem: TipoImagem.url,
-            url: './imagens/categoriacinema.png',
+            url: 'categoriacinema.png',
           ),
         ),
         Categoria(
           titulo: "Música",
           imagem: Imagem(
             tipoimagem: TipoImagem.url,
-            url: './imagens/categoriamusica.png',
+            url: 'categoriamusica.png',
           ),
         ),
         Categoria(
           titulo: "Dançca",
           imagem: Imagem(
             tipoimagem: TipoImagem.url,
-            url: './imagens/categoriadanca.png',
+            url: 'categoriadanca.png',
           ),
         ),
         Categoria(
           titulo: "Teatro",
           imagem: Imagem(
             tipoimagem: TipoImagem.url,
-            url: './imagens/categoriateatro.png',
+            url: 'categoriateatro.png',
           ),
         ),
         Categoria(
           titulo: "Circo",
           imagem: Imagem(
             tipoimagem: TipoImagem.url,
-            url: './imagens/categoriacirco.png',
+            url: 'categoriacirco.png',
           ),
         ),
         Categoria(
           titulo: "Teatro",
           imagem: Imagem(
             tipoimagem: TipoImagem.url,
-            url: './imagens/categoriateatro.png',
+            url: 'categoriateatro.png',
           ),
         ),
         Categoria(
           titulo: "Circo",
           imagem: Imagem(
             tipoimagem: TipoImagem.url,
-            url: './imagens/categoriacirco.png',
+            url: 'categoriacirco.png',
           ),
         ),
         Categoria(
           titulo: "Teatro",
           imagem: Imagem(
             tipoimagem: TipoImagem.url,
-            url: './imagens/categoriateatro.png',
+            url: 'categoriateatro.png',
           ),
         ),
         Categoria(
           titulo: "Circo",
           imagem: Imagem(
             tipoimagem: TipoImagem.url,
-            url: './imagens/categoriacirco.png',
+            url: 'categoriacirco.png',
           ),
         ),
       },

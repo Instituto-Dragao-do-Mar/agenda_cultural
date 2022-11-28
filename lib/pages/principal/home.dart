@@ -67,35 +67,35 @@ class _pagePrincipalState extends State<pagePrincipal> {
               backgroundColor: corBackgroundNegative,
               icon: widgetImagem(
                   imagem: Imagem(
-                url: './imagens/bottomhome.png',
+                url: 'bottomhome.png',
               )),
               label: "Home",
             ),
             BottomNavigationBarItem(
               icon: widgetImagem(
                   imagem: Imagem(
-                url: './imagens/bottomcalendario.png',
+                url: 'bottomcalendario.png',
               )),
               label: "Agenda",
             ),
             BottomNavigationBarItem(
               icon: widgetImagem(
                   imagem: Imagem(
-                url: './imagens/bottommapa.png',
+                url: 'bottommapa.png',
               )),
               label: "Mapa",
             ),
             BottomNavigationBarItem(
               icon: widgetImagem(
                   imagem: Imagem(
-                url: './imagens/bottomfavoritos.png',
+                url: 'bottomfavoritos.png',
               )),
               label: "Favoritos",
             ),
             BottomNavigationBarItem(
               icon: widgetImagem(
                   imagem: Imagem(
-                url: './imagens/bottomperfil.png',
+                url: 'bottomperfil.png',
               )),
               label: "Perfil",
             ),

@@ -35,7 +35,7 @@ class widgetTopoPerfil extends StatelessWidget {
               },
               child: widgetImagem(
                 imagem: Imagem(
-                  url: './imagens/seta.png',
+                  url: 'seta.png',
                 ),
                 width: 24,
                 height: 24,
@@ -63,7 +63,7 @@ class widgetTopoPerfil extends StatelessWidget {
               },
               child: widgetImagem(
                 imagem: Imagem(
-                  url: './imagens/Logout.png',
+                  url: 'Logout.png',
                 ),
                 width: 24,
                 height: 24,
