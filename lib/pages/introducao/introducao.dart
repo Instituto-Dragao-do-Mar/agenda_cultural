@@ -42,7 +42,7 @@ class _pageIntroducaoState extends State<pageIntroducao> {
     );
   }
 
-  final bool _showSkipButton = true;
+  final bool _showSkipButton = false;
   final bool _showBackButton = false;
 
   @override
@@ -61,14 +61,15 @@ class _pageIntroducaoState extends State<pageIntroducao> {
               container: true,
               sortKey: OrdinalSortKey(2),
               child: IntroductionScreen(
+                isProgress: false,
                 key: introKey,
                 onDone: () => _onIntroEnd(context),
                 onSkip: () => _onIntroEnd(context),
                 showBackButton: _showBackButton,
                 showSkipButton: _showSkipButton,
-                doneSemantic: "Próximo",
+                doneSemantic: "Avançar",
                 skipSemantic: "Pular",
-                nextSemantic: "Próximo",
+                nextSemantic: "Avançar",
                 backSemantic: "Voltar",
                 back: const Text(
                   semanticsLabel: "Página Anterior",
@@ -87,7 +88,7 @@ class _pageIntroducaoState extends State<pageIntroducao> {
                   ),
                 ),
                 next: const Text(
-                  "Próximo",
+                  "Avançar",
                   semanticsLabel: "Proxima Página",
                   style: TextStyle(
                     //  fontWeight: FontWeight.w600,
@@ -197,7 +198,7 @@ class _pageIntroducaoState extends State<pageIntroducao> {
                           ),
                         ),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () => _onIntroEnd(context),
                           child: Text(
                             "Pular introdução",
                             style: inter14W500Grey,
