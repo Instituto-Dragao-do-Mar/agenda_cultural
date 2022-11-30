@@ -110,6 +110,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
               children: [
                 Text(
                   "Dados cadastrais",
+                  semanticsLabel: "Dados cadastrais",
                   style: poppins18W500Black,
                 ),
                 const widgetEspacoH(
@@ -117,6 +118,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
                 ),
                 Text(
                   "Nome",
+                  semanticsLabel: "Digite seu Nome",
                   style: poppins16W400Black,
                 ),
                 const widgetEspacoH(
@@ -137,6 +139,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
                 Text(
                   "E-mail",
                   style: poppins16W400Black,
+                  semanticsLabel: "Digite seu E-mail",
                 ),
                 const widgetEspacoH(
                   altura: 4,
@@ -156,6 +159,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
                 Text(
                   "Senha atual",
                   style: poppins16W400Black,
+                  semanticsLabel: "Digite sua Senha atual"
                 ),
                 const widgetEspacoH(
                   altura: 4,
@@ -200,6 +204,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
                 ),
                 Text(
                   "Nova senha",
+                  semanticsLabel: "Digite sua nova senha",
                   style: poppins16W400Black,
                 ),
                 const widgetEspacoH(
@@ -321,7 +326,10 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
                         ],
                       )
                     : Column(),
-                const widgetBotao(text: "Salvar")
+                Semantics(
+                  container: true,
+                  label:"Botão Salvar",
+                  child: const widgetBotao(text: "Salvar"))
               ],
             ),
           ),

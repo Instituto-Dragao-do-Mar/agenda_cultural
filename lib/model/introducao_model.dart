@@ -1,3 +1,4 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:agendacultural/model/imagem_model.dart';
 
 class ListaIntroducao {
@@ -14,8 +15,9 @@ class Introducao {
   Imagem? imagem;
 
   Introducao({
-    this.ordem,
     this.texto,
+    this.ordem,
     this.imagem,
   });
+  
 }

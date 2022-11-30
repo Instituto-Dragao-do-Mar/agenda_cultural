@@ -12,9 +12,8 @@ class IntroducaoController extends BaseController {
     retorno.introducoes!.addAll(
       {
         Introducao(
-          texto: "Com o aplicativo Cultura no Bolsl você "
-              "tem acesso a programação cultural do estado "
-              "do Ceará.",
+          texto: "Com o aplicativo cultura.ce você tem acesso"
+              " a programação cultural do estado do Ceará",
           ordem: 1,
           imagem: Imagem(
             tipoimagem: TipoImagem.url,
@@ -31,8 +30,8 @@ class IntroducaoController extends BaseController {
           ),
         ),
         Introducao(
-          texto: "E ainda gerar alertas, avaliar espaços e "
-              "eventos, além de favoritar o que te interessa.",
+          texto: "Você pode ainda gerar alertas, avaliar espaços e"
+              " eventos, além de favoritar o que te interessa",
           ordem: 3,
           imagem: Imagem(
             tipoimagem: TipoImagem.url,

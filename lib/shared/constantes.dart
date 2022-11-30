@@ -78,25 +78,46 @@ final TextStyle inter16W400Black = GoogleFonts.inter(
     color: Color(0XFF000000),
   ),
 );
-final TextStyle inter16W400Grey = GoogleFonts.roboto(
+final TextStyle inter16W400Grey = GoogleFonts.inter(
   textStyle: const TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w500,
     color: Color(0XFF666666),
   ),
 );
-final TextStyle inter24W500With = GoogleFonts.roboto(
+final TextStyle inter24W500Withe = GoogleFonts.inter(
   textStyle: const TextStyle(
     fontSize: 24,
     fontWeight: FontWeight.w500,
     color: Color(0XFFF9E8D8),
   ),
 );
-final TextStyle inter16W700With = GoogleFonts.roboto(
+final TextStyle inter16W700Withe = GoogleFonts.inter(
   textStyle: const TextStyle(
     fontSize: 16,
     fontWeight: FontWeight.w700,
     color: Color(0XFFF9E8D8),
+  ),
+);
+final TextStyle inter16W500Black = GoogleFonts.inter(
+  textStyle: const TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+    color: Color(0XFF000000),
+  ),
+);
+final TextStyle inter14W500Grey = GoogleFonts.inter(
+  textStyle: const TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+    color: Color(0XFF999999),
+  ),
+);
+final TextStyle inter14W500EA5B0C = GoogleFonts.inter(
+  textStyle: const TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+    color: Color(0XFFEA5B0C),
   ),
 );
 final Image radioOff = Image.network(

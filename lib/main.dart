@@ -4,6 +4,7 @@ import 'package:agendacultural/pages/introducao/introducao.dart';
 import 'package:agendacultural/pages/introducao/introducaoinfo.dart';
 import 'package:agendacultural/pages/introducao/pagesplash.dart';
 import 'package:agendacultural/shared/themes.dart';
+import 'package:agendacultural/shared/widgetalertdialog.dart';
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:intl/date_symbol_data_local.dart';
@@ -25,9 +26,9 @@ void main() async {
   );
 }
 
-Future initialization(BuildContext? context) async {
-  await Future.delayed(Duration(seconds: 3));
-}
+// Future initialization(BuildContext? context) async {
+//   await Future.delayed(Duration(seconds: 3));
+// }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
       title: 'Agenda Cultural',
       theme: themeDefault,
       home: pageSplash(),
+      // home: Widgetalertdialog(),
     //  home: const pageIntroducao(
     //     destino: Introducaoinfo(
     //       destino: pageLogin(),

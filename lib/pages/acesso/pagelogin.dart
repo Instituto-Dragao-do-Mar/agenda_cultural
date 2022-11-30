@@ -34,32 +34,40 @@ class _pageLoginState extends State<pageLogin> {
             children: [
               Column(
                 children: [
-                  Text("Realização",
-                      style: roboto16W400Black, semanticsLabel: "Realização"),
-                  Image.network(
-                    "logosecult.png",
+                  Text(
+                    "Realização",
+                    style: roboto16W400Black,
+                    semanticsLabel: "Realização Governo do Estado do Ceará.",
+                  ),
+                  widgetImagem(
+                    imagem: Imagem(
+                      url: "logosecult.png",
+                    ),
                     width: 237,
                     height: 72,
-                    semanticLabel: "Secult",
                   ),
                 ],
               ),
-              widgetEspacoH(altura: 50),
+              const widgetEspacoH(altura: 50),
               SizedBox(
                 width: double.infinity,
                 child: Align(
                   alignment: Alignment.bottomCenter,
-                  child: widgetImagem(
-                    width: 247,
-                    height: 184,
-                    imagem: Imagem(
-                      url: 'logotelalogin.png',
+                  child: Semantics(
+                    container: true,
+                    label: "Cultura c e, Agenda Cultural do Ceará",
+                    child: widgetImagem(
+                      width: 247,
+                      height: 184,
+                      imagem: Imagem(
+                        url: 'logotelalogin.png',
+                      ),
+                      fit: BoxFit.fill,
                     ),
-                    fit: BoxFit.fill,
                   ),
                 ),
               ),
-              widgetEspacoH(altura: 44),
+              const widgetEspacoH(altura: 44),
               SizedBox(
                 width: double.infinity,
                 child: Align(
@@ -106,8 +114,8 @@ class _pageLoginState extends State<pageLogin> {
                           height: 65,
                           child: Center(
                             child: Text(
-                              semanticsLabel: "Entrar como vivitante",
                               "Entrar como visitante",
+                              semanticsLabel: "Entrar como vivitante",
                               style: GoogleFonts.roboto(
                                   fontSize: 16, color: corBackground),
                             ),
@@ -118,20 +126,21 @@ class _pageLoginState extends State<pageLogin> {
                   ),
                 ),
               ),
-              widgetEspacoH(altura: 40),
+              const widgetEspacoH(altura: 40),
               Column(
                 children: [
                   Text(
                     "Gestão",
-                    semanticsLabel: "Gestão",
+                    semanticsLabel: "Gestão Instituto Dragão do Mar",
                     style: roboto16W400Black,
                   ),
                   const widgetEspacoH(altura: 11),
-                  Image.network(
-                    "dragaodomar.png",
+                  widgetImagem(
+                    imagem: Imagem(
+                      url: "dragaodomar.png",
+                    ),
                     width: 121,
-                    height: 42,
-                    semanticLabel: "Centro Cultural Dragao do Mar",
+                    height: 72,
                   ),
                 ],
               ),

@@ -1,9 +1,11 @@
 // ignore_for_file: camel_case_types
 
+import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
 import 'package:agendacultural/pages/introducao/introducao.dart';
 import 'package:agendacultural/pages/introducao/introducaoinfo.dart';
 import 'package:agendacultural/shared/constantes.dart';
+import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
 
 class pageSplash extends StatefulWidget {
@@ -25,7 +27,7 @@ class _pageSplashState extends State<pageSplash> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: ((context) => pageIntroducao(
+          builder: ((context) => const pageIntroducao(
                 destino: Introducaoinfo(
                   destino: pageLogin(),
                 ),
@@ -37,16 +39,22 @@ class _pageSplashState extends State<pageSplash> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Semantics(
+      label: "Iniciando agenda Cultural",
+      child: Container(
         decoration: BoxDecoration(
           gradient: gradientPrincipal,
         ),
         child: Center(
-            child: Image.network(
-          width: 178,
-          height: 178,
-          semanticLabel: "Iniciando Agenda Cultural",
-          "splash.png",
-        )));
+          child: widgetImagem(
+            width: 178,
+            height: 178,
+            imagem: Imagem(
+              url: 'logobranco.png',
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
