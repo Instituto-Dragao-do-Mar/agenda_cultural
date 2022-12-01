@@ -41,26 +41,29 @@ class widgetBotao extends StatelessWidget {
           function!();
         }
       },
-      child: Container(
-        width: width ?? double.infinity,
-        height: height ?? 65,
-        margin: margin ?? const EdgeInsets.all(0),
-        padding: padding ?? const EdgeInsets.all(0),
-        decoration: BoxDecoration(
-          gradient: !_negative ? gradientPrincipal: null,
-          borderRadius: BorderRadius.all(
-            Radius.circular(border ?? 5),
+      child: Semantics(
+        container: true,
+        child: Container(
+          width: width ?? double.infinity,
+          height: height ?? 65,
+          margin: margin ?? const EdgeInsets.all(0),
+          padding: padding ?? const EdgeInsets.all(0),
+          decoration: BoxDecoration(
+            gradient: !_negative ? gradientPrincipal: null,
+            borderRadius: BorderRadius.all(
+              Radius.circular(border ?? 5),
+            ),
+            border: _negative ? Border.all(color: corBackground, width: 3) : null,
           ),
-          border: _negative ? Border.all(color: corBackground, width: 3) : null,
-        ),
-        child: Center(
-          child: Text(
-            semanticsLabel: "Botão $text",
-            text ?? "?",
-            style: GoogleFonts.roboto(
-              fontSize: 24,
-              color: textColor ??
-                  (_negative ? corBackground : corBackgroundNegative),
+          child: Center(
+            child: Text(
+              semanticsLabel: "Botão $text",
+              text ?? "?",
+              style: GoogleFonts.roboto(
+                fontSize: 24,
+                color: textColor ??
+                    (_negative ? corBackground : corBackgroundNegative),
+              ),
             ),
           ),
         ),

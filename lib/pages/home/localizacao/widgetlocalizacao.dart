@@ -1,13 +1,16 @@
 import 'package:agendacultural/model/imagem_model.dart';
+import 'package:agendacultural/pages/acesso/pagelogin.dart';
+import 'package:agendacultural/pages/home/localizacao/widgetinserirlocalizacao.dart';
 import 'package:agendacultural/pages/home/widgets/widgettopo.dart';
+import 'package:agendacultural/pages/principal/home.dart';
 import 'package:agendacultural/shared/constantes.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetbotao.dart';
+import 'package:agendacultural/shared/widgetemdesenvolvimento.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetespacov.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class Widgetlocalizacao extends StatelessWidget {
   const Widgetlocalizacao({Key? key}) : super(key: key);
@@ -65,15 +68,31 @@ class Widgetlocalizacao extends StatelessWidget {
               const widgetEspacoH(
                 altura: 16,
               ),
-              const widgetBotao(
-                text: "Ativar agora",
+              Semantics(
+                container: true,
+                label: "Clique para ativar sua localização",
+                child: widgetBotao(
+                  text: "Ativar agora",
+                  function: () {
+                    widgetErro(
+                      context: context,
+                      text:
+                          "Funcionalidade em desenvolvimento, entre como visitante.",
+                    );
+                  },
+                ),
               ),
               const widgetEspacoH(
                 altura: 32,
               ),
               GestureDetector(
                 onTap: () {
-                  print("ok");
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const WidgetInserirLocalizacao(),
+                    ),
+                  );
                 },
                 child: Container(
                   margin: const EdgeInsets.fromLTRB(32, 10, 32, 10),
@@ -82,12 +101,34 @@ class Widgetlocalizacao extends StatelessWidget {
                   child: Center(
                     child: Text(
                       "Inserir localização manualmente",
-                      semanticsLabel: "Inserir localização manualmente",
+                      semanticsLabel: "Clique Inserir localização manualmente",
                       style: roboto16W400EA5,
                     ),
                   ),
                 ),
               ),
+              GestureDetector(
+                        onTap: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const pageLogin(),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.fromLTRB(32, 10, 32, 10),
+                          width: double.infinity,
+                          height: 65,
+                          child: Center(
+                            child: Text(
+                              "Ir para login",
+                              semanticsLabel: "Entrar",
+                              style: roboto16W400EA5,
+                            ),
+                          ),
+                        ),
+                      ),
             ],
           ),
         ),

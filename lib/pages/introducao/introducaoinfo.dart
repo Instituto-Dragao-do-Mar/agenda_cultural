@@ -47,12 +47,12 @@ class _IntroducaoinfoState extends State<Introducaoinfo> {
             Expanded(child: Container()),
             GestureDetector(
               onTap: () {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (_) => widget.destino,),
-                );
                 // Navigator.of(context).pushReplacement(
-                //   MaterialPageRoute(builder: (_) => Widgetlocalizacao(),),
+                //   MaterialPageRoute(builder: (_) => widget.destino,),
                 // );
+                Navigator.of(context).pushReplacement(
+                  MaterialPageRoute(builder: (_) => Widgetlocalizacao(),),
+                );
               },
               child: Container(
                 width: double.infinity,
