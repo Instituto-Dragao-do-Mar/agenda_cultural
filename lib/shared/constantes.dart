@@ -43,6 +43,13 @@ final TextStyle poppins14W400Grey = GoogleFonts.poppins(
     color: Color(0xff999999),
   ),
 );
+final TextStyle poppins14W400222 = GoogleFonts.poppins(
+  textStyle: const TextStyle(
+    fontSize: 14,
+    fontWeight: FontWeight.w400,
+    color: Color(0XFF222222),
+  ),
+);
 final TextStyle roboto16W400Grey = GoogleFonts.roboto(
   textStyle: const TextStyle(
     fontSize: 16,

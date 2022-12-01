@@ -14,7 +14,7 @@ class widgetTopo extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(width: 10),
+        const SizedBox(width: 0),
         widgetImagem(
           imagem: Imagem(url: 'iconelaranha.png'),
           width: 24,

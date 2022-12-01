@@ -18,10 +18,10 @@ var themeDefault = ThemeData(
 
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      backgroundColor: const Color(0xFFE83C3B),
+      backgroundColor: const Color(0xFFEA5B0C),
     ),
   ),
 );
 
-const corBackground =  Color(0xFFE83C3B);
+const corBackground =  Color(0xFFEA5B0C);
 const corBackgroundNegative = Colors.white;

@@ -1,5 +1,8 @@
 // ignore_for_file: camel_case_types
 
+// ignore_for_file: camel_case_types
+
+import 'package:agendacultural/shared/constantes.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -44,7 +47,7 @@ class widgetBotao extends StatelessWidget {
         margin: margin ?? const EdgeInsets.all(0),
         padding: padding ?? const EdgeInsets.all(0),
         decoration: BoxDecoration(
-          color: _negative ? corBackgroundNegative : corBackground,
+          gradient: !_negative ? gradientPrincipal: null,
           borderRadius: BorderRadius.all(
             Radius.circular(border ?? 5),
           ),

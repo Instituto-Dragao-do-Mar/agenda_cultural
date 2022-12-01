@@ -5,6 +5,8 @@ import 'package:agendacultural/controller/introducao_controller.dart';
 import 'package:agendacultural/model/introducao_model.dart';
 import 'package:agendacultural/shared/constantes.dart';
 import 'package:agendacultural/shared/widgetalertdialog.dart';
+import 'package:agendacultural/shared/widgetbottombotao.dart';
+import 'package:agendacultural/shared/widgetemdesenvolvimento.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 
@@ -122,17 +124,17 @@ class _pageIntroducaoState extends State<pageIntroducao> {
                   height: 60,
                   child: Semantics(
                     container: true,
-                    label: "Botão, ir para recursos de acessibilidade",
-                    child: ElevatedButton(
-                      child: const Text(
-                        'Ir para recursos de acessibilidade',
-                        style: TextStyle(
-                          fontSize: 16.0,
-                          fontWeight: FontWeight.bold,
+                    label: "Ir para recursos de acessibilidade",
+                    child: widgetBottomBotao(
+                          text: "Ir para recursos de acessibilidade",
+                          function: () {
+                            widgetErro(
+                              context: context,
+                              text:
+                                  "Funcionalidade em desenvolvimento, entre como visitante.",
+                            );
+                          },
                         ),
-                      ),
-                      onPressed: () => _onIntroEnd(context),
-                    ),
                   ),
                 ),
                 pages: listaIntroducao!.introducoes!.map(

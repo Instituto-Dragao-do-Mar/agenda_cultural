@@ -15,6 +15,6 @@ void widgetErro({
     desc: text,
     btnOkOnPress: () {},
    // btnOkIcon: Icons.cancel,
-    btnOkColor: Colors.red,
+    btnOkColor: Color(0XFFEA5B0C),
   ).show();
 }
