@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
       title: 'Agenda Cultural',
       theme: themeDefault,
       home: pageSplash(),
-      // home: Widgetlocalizacao(),
+      
 
     );
   }

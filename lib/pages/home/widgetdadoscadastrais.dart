@@ -156,11 +156,9 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
                 const widgetEspacoH(
                   altura: 15,
                 ),
-                Text(
-                  "Senha atual",
-                  style: poppins16W400Black,
-                  semanticsLabel: "Digite sua Senha atual"
-                ),
+                Text("Senha atual",
+                    style: poppins16W400Black,
+                    semanticsLabel: "Digite sua Senha atual"),
                 const widgetEspacoH(
                   altura: 4,
                 ),
@@ -328,8 +326,11 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
                     : Column(),
                 Semantics(
                   container: true,
-                  label:"Botão Salvar",
-                  child: const widgetBotao(text: "Salvar"))
+                  label: "Botão Salvar",
+                  child: const widgetBotao(
+                    text: "Salvar",
+                  ),
+                )
               ],
             ),
           ),

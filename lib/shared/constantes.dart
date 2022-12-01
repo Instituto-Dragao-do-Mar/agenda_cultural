@@ -78,6 +78,13 @@ final TextStyle roboto16W400Black = GoogleFonts.roboto(
     color: Color(0XFF000000),
   ),
 );
+final TextStyle roboto16W400EA5 = GoogleFonts.roboto(
+  textStyle: const TextStyle(
+    fontSize: 16,
+    fontWeight: FontWeight.w500,
+    color: Color(0XFFEA5B0C),
+  ),
+);
 final TextStyle inter16W400Black = GoogleFonts.inter(
   textStyle: const TextStyle(
     fontSize: 16,

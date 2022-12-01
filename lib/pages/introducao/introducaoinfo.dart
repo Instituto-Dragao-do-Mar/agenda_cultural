@@ -1,3 +1,4 @@
+import 'package:agendacultural/pages/home/localizacao/widgetlocalizacao.dart';
 import 'package:agendacultural/shared/constantes.dart';
 import 'package:flutter/material.dart';
 
@@ -47,8 +48,11 @@ class _IntroducaoinfoState extends State<Introducaoinfo> {
             GestureDetector(
               onTap: () {
                 Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (_) => widget.destino),
+                  MaterialPageRoute(builder: (_) => widget.destino,),
                 );
+                // Navigator.of(context).pushReplacement(
+                //   MaterialPageRoute(builder: (_) => Widgetlocalizacao(),),
+                // );
               },
               child: Container(
                 width: double.infinity,
