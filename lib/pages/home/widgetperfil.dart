@@ -1,5 +1,5 @@
 
-import 'package:agendacultural/pages/home/widgetacessibilidade.dart';
+import 'package:agendacultural/pages/home/widgetperfilacessibilidade.dart';
 import 'package:agendacultural/pages/home/widgetdadoscadastrais.dart';
 import 'package:agendacultural/pages/home/widgetindiomas.dart';
 import 'package:agendacultural/pages/home/widgetnotificacoes.dart';
@@ -64,7 +64,7 @@ class widgetPerfil extends StatelessWidget {
             const widgetEspacoH(altura: 12),
             const widgetopacaoperfil(
               subtitulo: "Recursos",
-              paginaDestino: widgetAcessibilidade(),
+              paginaDestino: widgetPerfilAcessibilidade(),
             ),
             const widgetEspacoH(altura: 16),
             const widgetopacaoperfil(

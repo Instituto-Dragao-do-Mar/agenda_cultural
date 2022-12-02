@@ -1,5 +1,5 @@
 import 'package:agendacultural/model/imagem_model.dart';
-import 'package:agendacultural/pages/home/widgetacessibilidade.dart';
+import 'package:agendacultural/pages/home/widgetperfilacessibilidade.dart';
 import 'package:agendacultural/pages/home/widgetdadoscadastrais.dart';
 import 'package:agendacultural/pages/home/widgethome.dart';
 import 'package:agendacultural/pages/home/widgetindiomas.dart';
@@ -145,7 +145,7 @@ class _widgetPerfilHeaderState extends State<widgetPerfilHeader> {
               const widgetEspacoH(altura: 12),
               const widgetopacaoperfil(
                 subtitulo: "Recursos",
-                paginaDestino: widgetAcessibilidade(),
+                paginaDestino: widgetPerfilAcessibilidade(),
               ),
               const widgetEspacoH(altura: 16),
               const widgetopacaoperfil(

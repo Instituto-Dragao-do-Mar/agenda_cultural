@@ -11,17 +11,17 @@ import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class widgetAcessibilidade extends StatefulWidget {
-  const widgetAcessibilidade({Key? key}) : super(key: key);
+class widgetPerfilAcessibilidade extends StatefulWidget {
+  const widgetPerfilAcessibilidade({Key? key}) : super(key: key);
 
   @override
-  State<widgetAcessibilidade> createState() => _widgetAcessibilidadeState();
+  State<widgetPerfilAcessibilidade> createState() => _widgetPerfilAcessibilidadeState();
 }
 
 bool status = false;
 double fontSize = 16;
 
-class _widgetAcessibilidadeState extends State<widgetAcessibilidade> {
+class _widgetPerfilAcessibilidadeState extends State<widgetPerfilAcessibilidade> {
   int opcaoSelecionada = 0;
 
   List<Widget> subPaginas = [
