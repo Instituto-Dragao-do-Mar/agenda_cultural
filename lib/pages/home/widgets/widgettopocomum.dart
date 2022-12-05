@@ -51,7 +51,7 @@ widgetTopoComum(
                 },
                 child: urlImagem1 == null
                     ? const SizedBox.shrink()
-                    : widgetImagem(
+                    : widgetImagemInterna(
                         imagem: Imagem(
                           url: urlImagem1,
                         ),
@@ -80,7 +80,7 @@ widgetTopoComum(
                           funcao!();
                         }
                       },
-                      child: widgetImagem(
+                      child: widgetImagemInterna(
                         imagem: Imagem(
                           url: urlImagem2,
                         ),

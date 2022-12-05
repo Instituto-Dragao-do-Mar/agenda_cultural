@@ -40,7 +40,7 @@ class Widgetlocalizacao extends StatelessWidget {
                     style: poppins14W400222,
                   ),
                   const widgetEspacoV(largura: 10),
-                  widgetImagem(
+                  widgetImagemInterna(
                     imagem: Imagem(
                       url: "local.png",
                     ),
@@ -48,7 +48,7 @@ class Widgetlocalizacao extends StatelessWidget {
                   Expanded(child: Row()),
                   IconButton(
                     onPressed: () {},
-                    icon: widgetImagem(
+                    icon: widgetImagemInterna(
                       imagem: Imagem(
                         url: "fechar.png",
                       ),
@@ -108,27 +108,27 @@ class Widgetlocalizacao extends StatelessWidget {
                 ),
               ),
               GestureDetector(
-                        onTap: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const pageLogin(),
-                            ),
-                          );
-                        },
-                        child: Container(
-                          margin: const EdgeInsets.fromLTRB(32, 10, 32, 10),
-                          width: double.infinity,
-                          height: 65,
-                          child: Center(
-                            child: Text(
-                              "Ir para login",
-                              semanticsLabel: "Entrar",
-                              style: roboto16W400EA5,
-                            ),
-                          ),
-                        ),
-                      ),
+                onTap: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const pageLogin(),
+                    ),
+                  );
+                },
+                child: Container(
+                  margin: const EdgeInsets.fromLTRB(32, 10, 32, 10),
+                  width: double.infinity,
+                  height: 65,
+                  child: Center(
+                    child: Text(
+                      "Ir para login",
+                      semanticsLabel: "Entrar",
+                      style: roboto16W400EA5,
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),

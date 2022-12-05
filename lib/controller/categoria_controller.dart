@@ -1,81 +1,36 @@
+import 'dart:convert';
+
 import 'package:agendacultural/controller/base_controller.dart';
 import 'package:agendacultural/model/categoria_model.dart';
-import 'package:agendacultural/model/imagem_model.dart';
+import 'package:agendacultural/shared/constantes.dart';
+import 'package:http/http.dart' as http;
 
 class CategoriaController extends BaseController {
-  Future<ListaCategoria> categoriaGet({
+  Future<ListaCategorias> categoriaGet({
     required String userguidid,
   }) async {
-    ListaCategoria retorno = ListaCategoria();
+    ListaCategorias lista = ListaCategorias();
+    lista.categorias = [];
 
-    retorno.categorias = [];
-    retorno.categorias!.addAll(
-      {
-        Categoria(
-          titulo: "Cinema",
-          imagem: Imagem(
-            tipoimagem: TipoImagem.url,
-            url: 'categoriacinema.png',
-          ),
-        ),
-        Categoria(
-          titulo: "Música",
-          imagem: Imagem(
-            tipoimagem: TipoImagem.url,
-            url: 'categoriamusica.png',
-          ),
-        ),
-        Categoria(
-          titulo: "Dançca",
-          imagem: Imagem(
-            tipoimagem: TipoImagem.url,
-            url: 'categoriadanca.png',
-          ),
-        ),
-        Categoria(
-          titulo: "Teatro",
-          imagem: Imagem(
-            tipoimagem: TipoImagem.url,
-            url: 'categoriateatro.png',
-          ),
-        ),
-        Categoria(
-          titulo: "Circo",
-          imagem: Imagem(
-            tipoimagem: TipoImagem.url,
-            url: 'categoriacirco.png',
-          ),
-        ),
-        Categoria(
-          titulo: "Teatro",
-          imagem: Imagem(
-            tipoimagem: TipoImagem.url,
-            url: 'categoriateatro.png',
-          ),
-        ),
-        Categoria(
-          titulo: "Circo",
-          imagem: Imagem(
-            tipoimagem: TipoImagem.url,
-            url: 'categoriacirco.png',
-          ),
-        ),
-        Categoria(
-          titulo: "Teatro",
-          imagem: Imagem(
-            tipoimagem: TipoImagem.url,
-            url: 'categoriateatro.png',
-          ),
-        ),
-        Categoria(
-          titulo: "Circo",
-          imagem: Imagem(
-            tipoimagem: TipoImagem.url,
-            url: 'categoriacirco.png',
-          ),
-        ),
-      },
-    );
-    return retorno;
+    String url = "${urlApiIDM}categorias";
+
+    try {
+      var response = await http.get(
+        Uri.parse(url),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      );
+      if (response.statusCode == 200) {
+        var ret = jsonDecode(response.body);
+        lista = ListaCategorias.fromJson(ret);
+      } else {
+        setError(response.body);
+      }
+    } catch (_) {
+      setError(_.toString());
+    }
+
+    return lista;
   }
 }

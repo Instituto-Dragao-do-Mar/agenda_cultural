@@ -26,7 +26,7 @@ class widgetHomeEventos extends StatefulWidget {
 }
 
 class _widgetHomeEventosState extends State<widgetHomeEventos> {
-  ListaEvento? listaEventos;
+  ListaEventos? listaEventos;
 
   List<String> titulos = [
     'Destaques',

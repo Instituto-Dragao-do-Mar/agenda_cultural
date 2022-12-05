@@ -6,7 +6,7 @@ import 'package:agendacultural/pages/home/evento/pageeventodetalhe.dart';
 import 'package:agendacultural/shared/extensions/capitalize.dart';
 import 'package:agendacultural/shared/extensions/dates.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
-import 'package:agendacultural/shared/widgetimagem.dart';
+import 'package:agendacultural/shared/widgetimagemexterna.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -53,9 +53,18 @@ class widgetHomeCategoriasEventosContainer extends StatelessWidget {
                       top: Radius.circular(10),
                     ),
                     image: DecorationImage(
-                      image: widgetImagem(
-                        imagem: evento.listaImagem!.imagens!.first,
-                      ).image,
+                      image: widgetImagemExterna(
+                        imagem: Imagem(
+                          base64: evento
+                              .eventosimagens!.first.imagens!.first.base64,
+                          url: evento.eventosimagens!.first.imagens!.first.url,
+                          tipoimagem: evento.eventosimagens!.first.imagens!
+                                      .first.tipo ==
+                                  'U'
+                              ? TipoImagem.url
+                              : TipoImagem.base64,
+                        ),
+                      ),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -78,16 +87,19 @@ class widgetHomeCategoriasEventosContainer extends StatelessWidget {
                           ),
                           const widgetEspacoH(altura: 6),
                           Text(
-                            evento.endereco!.getEnderecoShort(),
+                            evento.endereco(),
                             style: GoogleFonts.roboto(
                               fontSize: 12,
                             ),
                             maxLines: 2,
                           ),
                           const widgetEspacoH(altura: 6),
-                          mostraDatas(evento.datas!),
+                          mostraDatas(
+                            evento.eventosdatas!
+                                .map((e) => e.datahora!)
+                                .toList(),
+                          ),
                           //
-                          
                         ],
                       );
                     },

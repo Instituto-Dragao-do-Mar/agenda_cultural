@@ -39,7 +39,7 @@ class _pageLoginState extends State<pageLogin> {
                     style: roboto16W400Black,
                     semanticsLabel: "Realização Governo do Estado do Ceará.",
                   ),
-                  widgetImagem(
+                  widgetImagemInterna(
                     imagem: Imagem(
                       url: "logosecult.png",
                     ),
@@ -56,7 +56,7 @@ class _pageLoginState extends State<pageLogin> {
                   child: Semantics(
                     container: true,
                     label: "Cultura c e, Agenda Cultural do Ceará",
-                    child: widgetImagem(
+                    child: widgetImagemInterna(
                       width: 247,
                       height: 184,
                       imagem: Imagem(
@@ -135,7 +135,7 @@ class _pageLoginState extends State<pageLogin> {
                     style: roboto16W400Black,
                   ),
                   const widgetEspacoH(altura: 11),
-                  widgetImagem(
+                  widgetImagemInterna(
                     imagem: Imagem(
                       url: "dragaodomar.png",
                     ),

@@ -4,5 +4,5 @@ import 'package:flutter/cupertino.dart';
 class AppModel extends ChangeNotifier {
   bool categoriasVerTudo = false;
 
-  ListaCategoria listaCategoria = ListaCategoria();
+  ListaCategorias listaCategoria = ListaCategorias();
 }

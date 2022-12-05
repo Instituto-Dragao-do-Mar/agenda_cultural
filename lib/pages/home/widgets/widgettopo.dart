@@ -15,14 +15,14 @@ class widgetTopo extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         const SizedBox(width: 0),
-        widgetImagem(
+        widgetImagemInterna(
           imagem: Imagem(url: 'iconelaranha.png'),
           width: 24,
           height: 24,
           fit: BoxFit.contain,
         ),
         const SizedBox(width: 10),
-        widgetImagem(
+        widgetImagemInterna(
           imagem: Imagem(url: 'iconculturace.png'),
           //width: 160,
           height: 18,

@@ -48,7 +48,8 @@ dependencies:
   step_progress_indicator: ^1.0.2
   flutter_switch: ^0.3.2
   platform_info: ^3.2.0
-  
+  cached_network_image: ^3.2.3
+  geolocator: ^9.0.2
 
 
 

@@ -62,35 +62,35 @@ class _widgetPerfilHeaderState extends State<widgetPerfilHeader> {
           items: [
             BottomNavigationBarItem(
               backgroundColor: corBackgroundNegative,
-              icon: widgetImagem(
+              icon: widgetImagemInterna(
                   imagem: Imagem(
                 url: 'bottomhome.png',
               )),
               label: "Home",
             ),
             BottomNavigationBarItem(
-              icon: widgetImagem(
+              icon: widgetImagemInterna(
                   imagem: Imagem(
                 url: 'bottomcalendario.png',
               )),
               label: "Agenda",
             ),
             BottomNavigationBarItem(
-              icon: widgetImagem(
+              icon: widgetImagemInterna(
                   imagem: Imagem(
                 url: 'bottommapa.png',
               )),
               label: "Mapa",
             ),
             BottomNavigationBarItem(
-              icon: widgetImagem(
+              icon: widgetImagemInterna(
                   imagem: Imagem(
                 url: 'bottomfavoritos.png',
               )),
               label: "Favoritos",
             ),
             BottomNavigationBarItem(
-              icon: widgetImagem(
+              icon: widgetImagemInterna(
                   imagem: Imagem(
                 url: 'bottomperfil.png',
               )),

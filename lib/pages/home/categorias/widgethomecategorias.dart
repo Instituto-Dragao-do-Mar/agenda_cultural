@@ -17,7 +17,7 @@ class widgetHomeCategorias extends StatefulWidget {
 }
 
 class _widgetHomeCategoriasState extends State<widgetHomeCategorias> {
-  ListaCategoria? listaCategoria;
+  ListaCategorias? listaCategoria;
 
   ScrollController scrollController = ScrollController();
 
@@ -38,11 +38,10 @@ class _widgetHomeCategoriasState extends State<widgetHomeCategorias> {
               color: corBackground,
             ),
           );
-        }
+        }       
 
         return Column(
           children: [
-            
             const SizedBox(
               height: 20,
               width: double.infinity,
@@ -62,6 +61,13 @@ class _widgetHomeCategoriasState extends State<widgetHomeCategorias> {
                 child: Wrap(
                   children: listaCategoria!.categorias!.map(
                     (e) {
+                      if (e == null ||
+                          e.imagens == null ||
+                          e.imagens!.isEmpty) {
+                        return const SizedBox.shrink();
+                      }
+                      //return Container();
+
                       return widgetHomeCategoriasContainer(
                         categoria: e,
                       );

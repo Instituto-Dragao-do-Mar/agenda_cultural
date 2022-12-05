@@ -15,13 +15,15 @@ class widgetPerfilAcessibilidade extends StatefulWidget {
   const widgetPerfilAcessibilidade({Key? key}) : super(key: key);
 
   @override
-  State<widgetPerfilAcessibilidade> createState() => _widgetPerfilAcessibilidadeState();
+  State<widgetPerfilAcessibilidade> createState() =>
+      _widgetPerfilAcessibilidadeState();
 }
 
 bool status = false;
 double fontSize = 16;
 
-class _widgetPerfilAcessibilidadeState extends State<widgetPerfilAcessibilidade> {
+class _widgetPerfilAcessibilidadeState
+    extends State<widgetPerfilAcessibilidade> {
   int opcaoSelecionada = 0;
 
   List<Widget> subPaginas = [
@@ -62,35 +64,35 @@ class _widgetPerfilAcessibilidadeState extends State<widgetPerfilAcessibilidade>
           items: [
             BottomNavigationBarItem(
               backgroundColor: corBackgroundNegative,
-              icon: widgetImagem(
+              icon: widgetImagemInterna(
                   imagem: Imagem(
                 url: 'bottomhome.png',
               )),
               label: "Home",
             ),
             BottomNavigationBarItem(
-              icon: widgetImagem(
+              icon: widgetImagemInterna(
                   imagem: Imagem(
                 url: 'bottomcalendario.png',
               )),
               label: "Agenda",
             ),
             BottomNavigationBarItem(
-              icon: widgetImagem(
+              icon: widgetImagemInterna(
                   imagem: Imagem(
                 url: 'bottommapa.png',
               )),
               label: "Mapa",
             ),
             BottomNavigationBarItem(
-              icon: widgetImagem(
+              icon: widgetImagemInterna(
                   imagem: Imagem(
                 url: 'bottomfavoritos.png',
               )),
               label: "Favoritos",
             ),
             BottomNavigationBarItem(
-              icon: widgetImagem(
+              icon: widgetImagemInterna(
                   imagem: Imagem(
                 url: 'bottomperfil.png',
               )),

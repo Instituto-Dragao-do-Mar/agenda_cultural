@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/home/widgethome.dart';
 import 'package:agendacultural/pages/home/widgetperfil.dart';
@@ -109,7 +107,7 @@ class _widgetAcessibilidadeState extends State<widgetAcessibilidade> {
                 children: [
                   IconButton(
                     iconSize: 40,
-                    icon: widgetImagem(
+                    icon: widgetImagemInterna(
                       imagem: Imagem(
                         url: "small.png",
                       ),
@@ -141,7 +139,7 @@ class _widgetAcessibilidadeState extends State<widgetAcessibilidade> {
                   ),
                   IconButton(
                     iconSize: 40,
-                    icon: widgetImagem(
+                    icon: widgetImagemInterna(
                       imagem: Imagem(
                         url: "larger.png",
                       ),

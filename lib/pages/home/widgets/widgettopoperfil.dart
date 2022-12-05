@@ -33,7 +33,7 @@ class widgetTopoPerfil extends StatelessWidget {
                   ),
                 );
               },
-              child: widgetImagem(
+              child: widgetImagemInterna(
                 imagem: Imagem(
                   url: 'seta.png',
                 ),
@@ -61,7 +61,7 @@ class widgetTopoPerfil extends StatelessWidget {
                   ),
                 );
               },
-              child: widgetImagem(
+              child: widgetImagemInterna(
                 imagem: Imagem(
                   url: 'Logout.png',
                 ),

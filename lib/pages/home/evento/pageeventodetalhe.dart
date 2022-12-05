@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:agendacultural/model/evento_model.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/shared/extensions/capitalize.dart';
@@ -6,6 +8,7 @@ import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetespacov.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
+import 'package:agendacultural/shared/widgetimagemexterna.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -32,7 +35,7 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
           onTap: () {
             Navigator.pop(context);
           },
-          child: widgetImagem(
+          child: widgetImagemInterna(
             imagem: Imagem(url: 'setavoltando.png'),
           ),
         ),
@@ -58,11 +61,22 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
           const SizedBox(
             width: double.infinity,
           ),
-          widgetImagem(
-            imagem: widget.evento.listaImagem!.imagens!.first,
-            width: double.infinity,
-            height: 200,
-            fit: BoxFit.cover,
+          Image(
+            image: widgetImagemExterna(
+              imagem: Imagem(
+                base64:
+                    widget.evento.eventosimagens!.first.imagens!.first.base64,
+                url: widget.evento.eventosimagens!.first.imagens!.first.url,
+                tipoimagem:
+                    widget.evento.eventosimagens!.first.imagens!.first.tipo ==
+                            'U'
+                        ? TipoImagem.url
+                        : TipoImagem.base64,
+              ),
+              width: double.infinity,
+              height: 200,
+              fit: BoxFit.cover,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(16),
@@ -73,7 +87,7 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.evento.categoria!.titulo!,
+                      widget.evento.eventoscategorias.toString(),
                       style: GoogleFonts.inter(
                         fontSize: 14,
                         color: corBackground,
@@ -101,7 +115,7 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
                     ),
                     const widgetEspacoH(),
                     ReadMoreText(
-                      widget.evento.descricao!,
+                      widget.evento.detalhe!,
                       style: GoogleFonts.inter(
                         fontSize: 14,
                         color: Colors.black,
@@ -133,14 +147,14 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
                     ),
                     const widgetEspacoH(),
                     Text(
-                      widget.evento.endereco.toString(),
+                      widget.evento.endereco(),
                       style: GoogleFonts.inter(
                         fontSize: 14,
                         color: Colors.black,
                       ),
                     ),
                     const widgetEspacoH(),
-                    widgetImagem(
+                    widgetImagemInterna(
                         imagem: Imagem(url: 'mapa.jpeg'),
                         width: p1.maxWidth,
                         height: p1.maxWidth * .5,
@@ -159,16 +173,16 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
-      children: widget.evento.datas!.map((e) {
-        String diaabr = e.formatDate(format: "E").capitalize();
-        String dia = e.formatDate(format: "dd");
-        String mes = e.formatDate(format: "MM").capitalize();
-        String hora = e.formatDate(format: "HH:mm").capitalize();
-        String ano = e.formatDate(format: "MM/yyyy");
+      children: widget.evento.eventosdatas!.map((e) {
+        String diaabr = e.datahora!.formatDate(format: "E").capitalize();
+        String dia = e.datahora!.formatDate(format: "dd");
+        String mes = e.datahora!.formatDate(format: "MM").capitalize();
+        String hora = e.datahora!.formatDate(format: "HH:mm").capitalize();
+        String ano = e.datahora!.formatDate(format: "MM/yyyy");
 
         return Row(
           children: [
-            widgetImagem(
+            widgetImagemInterna(
               imagem: Imagem(url: 'bottomcalendario.png'),
             ),
             const widgetEspacoV(largura: 4),
@@ -180,7 +194,7 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
               ),
             ),
             const widgetEspacoV(largura: 20),
-            widgetImagem(
+            widgetImagemInterna(
               imagem: Imagem(url: 'hora.png'),
             ),
             const widgetEspacoV(largura: 4),

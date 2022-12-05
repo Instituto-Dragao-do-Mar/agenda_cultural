@@ -36,10 +36,9 @@ class _WidgetalertdialogState extends State<Widgetalertdialog> {
                           Text(
                             "Huum.. utilizamos cookies",
                             style: poppins16W400Black,
-                            
                           ),
                           const widgetEspacoV(largura: 10),
-                          widgetImagem(
+                          widgetImagemInterna(
                             imagem: Imagem(
                               url: "cookies.png",
                             ),

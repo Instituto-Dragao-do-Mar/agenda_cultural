@@ -143,7 +143,7 @@ class _pageIntroducaoState extends State<pageIntroducao> {
                     return PageViewModel(
                       titleWidget: const SizedBox.shrink(),
                       body: e.texto!,
-                      image: widgetImagem(
+                      image: widgetImagemInterna(
                         imagem: e.imagem!,
                         width: double.infinity,
                         height: double.infinity,
@@ -214,13 +214,14 @@ class _pageIntroducaoState extends State<pageIntroducao> {
                 ),
               ),
             ),
-            Semantics(
+
+            /*Semantics(
               container: true,
               sortKey: const OrdinalSortKey(1),
               child: const Positioned(
                 child: Widgetalertdialog(),
               ),
-            )
+            )*/
           ],
         );
       },

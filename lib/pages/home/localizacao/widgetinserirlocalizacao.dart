@@ -56,7 +56,7 @@ class _WidgetInserirLocalizacaoState extends State<WidgetInserirLocalizacao> {
                 altura: 26,
               ),
               ListTile(
-                leading: widgetImagem(
+                leading: widgetImagemInterna(
                   imagem: Imagem(
                     url: "local.png",
                   ),
@@ -76,30 +76,9 @@ class _WidgetInserirLocalizacaoState extends State<WidgetInserirLocalizacao> {
               SingleChildScrollView(
                 child: ListView.builder(
                   shrinkWrap: true,
-                  itemCount: 3,
+                  itemCount: 1,
                   itemBuilder: (context, index) {
-                    return ListTile(
-                      leading: widgetImagem(
-                        imagem: Imagem(
-                          url: "Discovery.png",
-                        ),
-                      ),
-                      title: Text(
-                        "Rua Osvaldo Cruz, 1",
-                        style: roboto14W400Black,
-                      ),
-                      subtitle: Text(
-                        "Meireles, Fortaleza, 60125-150, Brazil",
-                        style: roboto12W400Grey,
-                      ),
-                      onTap: () {
-                        widgetErro(
-                          context: context,
-                          text:
-                              "Funcionalidade em desenvolvimento, entre como visitante.",
-                        );
-                      },
-                    );
+                    return const SizedBox.shrink();
                   },
                 ),
               ),
@@ -109,12 +88,7 @@ class _WidgetInserirLocalizacaoState extends State<WidgetInserirLocalizacao> {
               widgetBotao(
                 text: "Voltar",
                 function: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const Widgetlocalizacao(),
-                    ),
-                  );
+                  Navigator.pop(context);
                 },
               ),
               GestureDetector(
@@ -132,7 +106,7 @@ class _WidgetInserirLocalizacaoState extends State<WidgetInserirLocalizacao> {
                   height: 65,
                   child: Center(
                     child: Text(
-                     "Ir para login",
+                      "Ir para login",
                       semanticsLabel: "Entrar como vivitante",
                       style: roboto16W400EA5,
                     ),

@@ -46,7 +46,7 @@ class _pageSplashState extends State<pageSplash> {
           gradient: gradientPrincipal,
         ),
         child: Center(
-          child: widgetImagem(
+          child: widgetImagemInterna(
             width: 178,
             height: 178,
             imagem: Imagem(
