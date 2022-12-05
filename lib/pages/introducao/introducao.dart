@@ -3,6 +3,7 @@
 // ignore_for_file: camel_case_types
 import 'package:agendacultural/controller/introducao_controller.dart';
 import 'package:agendacultural/model/introducao_model.dart';
+import 'package:agendacultural/pages/home/acessibilidade/widgetacessibilidade.dart';
 import 'package:agendacultural/shared/constantes.dart';
 import 'package:agendacultural/shared/widgetalertdialog.dart';
 import 'package:agendacultural/shared/widgetbottombotao.dart';
@@ -61,7 +62,7 @@ class _pageIntroducaoState extends State<pageIntroducao> {
           children: [
             Semantics(
               container: true,
-              sortKey: OrdinalSortKey(2),
+              sortKey: const OrdinalSortKey(2),
               child: IntroductionScreen(
                 isProgress: false,
                 key: introKey,
@@ -126,15 +127,15 @@ class _pageIntroducaoState extends State<pageIntroducao> {
                     container: true,
                     label: "Ir para recursos de acessibilidade",
                     child: widgetBottomBotao(
-                          text: "Ir para recursos de acessibilidade",
-                          function: () {
-                            widgetErro(
-                              context: context,
-                              text:
-                                  "Funcionalidade em desenvolvimento, entre como visitante.",
-                            );
-                          },
-                        ),
+                      text: "Ir para recursos de acessibilidade",
+                      function: () {
+                        Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(
+                            builder: (_) => const widgetAcessibilidade(),
+                          ),
+                        );
+                      },
+                    ),
                   ),
                 ),
                 pages: listaIntroducao!.introducoes!.map(
@@ -215,9 +216,9 @@ class _pageIntroducaoState extends State<pageIntroducao> {
             ),
             Semantics(
               container: true,
-              sortKey: OrdinalSortKey(1),
-              child: Positioned(
-                child: const Widgetalertdialog(),
+              sortKey: const OrdinalSortKey(1),
+              child: const Positioned(
+                child: Widgetalertdialog(),
               ),
             )
           ],

@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/home/widgethome.dart';
 import 'package:agendacultural/pages/home/widgetperfil.dart';
@@ -47,9 +49,12 @@ class _widgetAcessibilidadeState extends State<widgetAcessibilidade> {
           backgroundColor: corBackgroundNegative,
           elevation: 0,
           leadingWidth: 0,
-          title: widgetTopoComum(),
+          title: widgetTopoComum(
+              urlImagem1: "seta.png",
+              funcao: () {
+                Navigator.pop(context);
+              }),
         ),
-        
         body: Container(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -104,11 +109,11 @@ class _widgetAcessibilidadeState extends State<widgetAcessibilidade> {
                 children: [
                   IconButton(
                     iconSize: 40,
-                    icon:    widgetImagem(
-                    imagem: Imagem(
-                      url: "small.png",
+                    icon: widgetImagem(
+                      imagem: Imagem(
+                        url: "small.png",
+                      ),
                     ),
-                  ),
                     onPressed: () {
                       setState(() {
                         if (fontSize > 16) {
@@ -136,11 +141,11 @@ class _widgetAcessibilidadeState extends State<widgetAcessibilidade> {
                   ),
                   IconButton(
                     iconSize: 40,
-                    icon:    widgetImagem(
-                    imagem: Imagem(
-                      url: "larger.png",
+                    icon: widgetImagem(
+                      imagem: Imagem(
+                        url: "larger.png",
+                      ),
                     ),
-                  ),
                     onPressed: () {
                       setState(() {
                         if (fontSize < 24) {
@@ -152,7 +157,7 @@ class _widgetAcessibilidadeState extends State<widgetAcessibilidade> {
                 ],
               ),
               widgetEspacoH(altura: 55),
-               widgetBotao(
+              widgetBotao(
                 text: "Voltar",
                 function: () {
                   Navigator.pushReplacement(
