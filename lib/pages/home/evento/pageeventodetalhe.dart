@@ -9,6 +9,7 @@ import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetespacov.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:agendacultural/shared/widgetimagemexterna.dart';
+import 'package:agendacultural/shared/widgetimagemhtml.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -61,21 +62,11 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
           const SizedBox(
             width: double.infinity,
           ),
-          Image(
-            image: widgetImagemExterna(
-              imagem: Imagem(
-                base64:
-                    widget.evento.eventosimagens!.first.imagens!.first.base64,
-                url: widget.evento.eventosimagens!.first.imagens!.first.url,
-                tipoimagem:
-                    widget.evento.eventosimagens!.first.imagens!.first.tipo ==
-                            'U'
-                        ? TipoImagem.url
-                        : TipoImagem.base64,
-              ),
-              width: double.infinity,
-              height: 200,
-              fit: BoxFit.cover,
+          SizedBox(
+            width: MediaQuery.of(context).size.width,
+            height: MediaQuery.of(context).size.width * .7,
+            child: widgetImagemHtml(
+              url: widget.evento.eventosimagens!.first.imagens!.first.url!,
             ),
           ),
           Padding(

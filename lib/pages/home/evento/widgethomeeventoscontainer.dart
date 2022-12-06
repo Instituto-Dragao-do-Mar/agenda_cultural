@@ -7,6 +7,7 @@ import 'package:agendacultural/shared/extensions/capitalize.dart';
 import 'package:agendacultural/shared/extensions/dates.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetimagemexterna.dart';
+import 'package:agendacultural/shared/widgetimagemhtml.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -47,12 +48,12 @@ class widgetHomeCategoriasEventosContainer extends StatelessWidget {
                 Container(
                   height: 150,
                   width: 180,
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.vertical(
+                  decoration: const BoxDecoration(
+                    borderRadius: BorderRadius.vertical(
                       bottom: Radius.circular(0),
                       top: Radius.circular(10),
                     ),
-                    image: DecorationImage(
+                    /* image: DecorationImage(
                       image: widgetImagemExterna(
                         imagem: Imagem(
                           base64: evento
@@ -66,7 +67,10 @@ class widgetHomeCategoriasEventosContainer extends StatelessWidget {
                         ),
                       ),
                       fit: BoxFit.cover,
-                    ),
+                    ) */
+                  ),
+                  child: widgetImagemHtml(
+                    url: evento.eventosimagens!.first.imagens!.first.url!,
                   ),
                 ),
                 Padding(
