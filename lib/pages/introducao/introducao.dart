@@ -1,16 +1,12 @@
-// ignore_for_file: camel_case_types
 
 // ignore_for_file: camel_case_types
 import 'package:agendacultural/controller/introducao_controller.dart';
 import 'package:agendacultural/model/introducao_model.dart';
 import 'package:agendacultural/pages/home/acessibilidade/widgetacessibilidade.dart';
 import 'package:agendacultural/shared/constantes.dart';
-import 'package:agendacultural/shared/widgetalertdialog.dart';
 import 'package:agendacultural/shared/widgetbottombotao.dart';
-import 'package:agendacultural/shared/widgetemdesenvolvimento.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:introduction_screen/introduction_screen.dart';

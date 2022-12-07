@@ -117,7 +117,7 @@ class _pageLoginState extends State<pageLogin> {
                               "Entrar como visitante",
                               semanticsLabel: "Entrar como vivitante",
                               style: GoogleFonts.roboto(
-                                  fontSize: 16, color: corBackground),
+                                  fontSize: 16, color: corBackground,),
                             ),
                           ),
                         ),

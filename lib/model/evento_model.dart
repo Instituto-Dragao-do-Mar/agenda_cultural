@@ -13,7 +13,7 @@ class ListaEventos {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (eventos != null) {
       data['eventos'] = eventos!.map((v) => v.toJson()).toList();
     }
@@ -99,25 +99,25 @@ class Evento {
     if (json['eventosdatas'] != null) {
       eventosdatas = <Eventodatas>[];
       json['eventosdatas'].forEach((v) {
-        eventosdatas!.add(new Eventodatas.fromJson(v));
+        eventosdatas!.add(Eventodatas.fromJson(v));
       });
     }
     if (json['eventosimagens'] != null) {
       eventosimagens = <Eventoimagens>[];
       json['eventosimagens'].forEach((v) {
-        eventosimagens!.add(new Eventoimagens.fromJson(v));
+        eventosimagens!.add(Eventoimagens.fromJson(v));
       });
     }
     if (json['eventoscategorias'] != null) {
       eventoscategorias = <Eventocategorias>[];
       json['eventoscategorias'].forEach((v) {
-        eventoscategorias!.add(new Eventocategorias.fromJson(v));
+        eventoscategorias!.add(Eventocategorias.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['guidid'] = guidid;
     data['nome'] = nome;
@@ -202,7 +202,7 @@ class Eventodatas {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['idevento'] = idevento;
     data['datahora'] = datahora;
@@ -236,13 +236,13 @@ class Eventoimagens {
     if (json['imagens'] != null) {
       imagens = <ImagemEvento>[];
       json['imagens'].forEach((v) {
-        imagens!.add(new ImagemEvento.fromJson(v));
+        imagens!.add(ImagemEvento.fromJson(v));
       });
     }
-  }
+  }  
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['idevento'] = idevento;
     data['idimagem'] = idimagem;
@@ -269,7 +269,7 @@ class ImagemEvento {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['base64'] = base64;
     data['url'] = url;
@@ -290,8 +290,6 @@ class Eventocategorias {
     idcategoria = json['idcategoria'];
     idevento = json['idevento'];
   }
-
-  
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};

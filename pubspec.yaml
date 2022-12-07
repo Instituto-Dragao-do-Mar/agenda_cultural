@@ -29,6 +29,8 @@ environment:
 # the latest version available on pub.dev. To see which dependencies have newer
 # versions available, run `flutter pub outdated`.
 dependencies:
+  flutter_localizations: # Add this line
+    sdk: flutter   
   flutter:
     sdk: flutter
 
@@ -50,6 +52,7 @@ dependencies:
   platform_info: ^3.2.0
   cached_network_image: ^3.2.3
   geolocator: ^9.0.2
+  intl: ^0.17.0
 
 
 

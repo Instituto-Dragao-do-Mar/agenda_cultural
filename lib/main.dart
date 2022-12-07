@@ -8,6 +8,7 @@ import 'package:agendacultural/pages/introducao/pagesplash.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetalertdialog.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 // ignore: depend_on_referenced_packages
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +16,6 @@ import 'package:provider/provider.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  
   initializeDateFormatting("pt_BR", null).then(
     (_) => runApp(MultiProvider(
       providers: [
@@ -38,10 +38,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      /* localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: const [
+        Locale('pt', 'pt_BR'), // English, no country code
+        //Locale('en'),
+      ], */
       debugShowCheckedModeBanner: false,
       title: 'Agenda Cultural',
       theme: themeDefault,
-      home: const pageSplash(),
+      //home: const pageSplash(),
+      home: const pageLogin(),
     );
   }
 }

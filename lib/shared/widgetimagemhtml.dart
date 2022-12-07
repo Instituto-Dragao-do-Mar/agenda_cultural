@@ -12,19 +12,29 @@ class widgetImagemHtml extends StatelessWidget {
   Widget build(BuildContext context) {
     String imageUrl = url;
 
+    /*final IFrameElement _iframeElement = IFrameElement()
+      ..height = '100%'
+      ..width = '100%'
+      ..src = imageUrl
+      ..style.border = 'none'
+      ..style.aspectRatio = '`'
+      ..style.overflow = "hidden";*/
+
 // ignore: undefined_prefixed_name
     ui.platformViewRegistry.registerViewFactory(
       imageUrl,
-      (int _) => ImageElement()..src = imageUrl,
+      (int _) => ImageElement()
+      
+      ..style.width = '100%'  
+      ..style.height = '100%'  
+      //..style.aspectRatio = '0.5'
+      ..src = imageUrl,
     );
-    
+
     return IgnorePointer(
       ignoring: true,
-      child: AspectRatio(
-        aspectRatio: 1,
-        child: HtmlElementView(
-          viewType: imageUrl,      
-        ),
+      child: HtmlElementView(
+        viewType: imageUrl,
       ),
     );
   }

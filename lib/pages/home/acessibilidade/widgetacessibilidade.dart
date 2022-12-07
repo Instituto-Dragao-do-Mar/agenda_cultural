@@ -49,7 +49,7 @@ class _widgetAcessibilidadeState extends State<widgetAcessibilidade> {
           leadingWidth: 0,
           title: widgetTopoComum(
               urlImagem1: "seta.png",
-              funcao: () {
+              funcaoImagem1: () {
                 Navigator.pop(context);
               }),
         ),
