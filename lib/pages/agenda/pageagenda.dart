@@ -105,7 +105,7 @@ class _pageAgendaState extends State<pageAgenda> {
                       DateTime.parse(tedTermino.text.substring(0, 10)),
                     );
 
-                    print("Datas intervalos: ");
+                    /* print("Datas intervalos: ");
                     print(listDatas.toList());
                     print("============================================");
                     print(" ");
@@ -113,7 +113,7 @@ class _pageAgendaState extends State<pageAgenda> {
                     print(" ");
                     print("Datas evento ${e.nome} ");
                     print(datasEventos.toList());
-                    print("============================================");
+                    print("============================================"); */
 
                     bool dentro = false;
                     for (DateTime dia in datasEventos) {

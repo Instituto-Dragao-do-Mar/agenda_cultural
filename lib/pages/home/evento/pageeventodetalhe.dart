@@ -78,7 +78,7 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      widget.evento.eventoscategorias.toString(),
+                      'Lista de Categorias',
                       style: GoogleFonts.inter(
                         fontSize: 14,
                         color: corBackground,
@@ -169,8 +169,8 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
         String dia = e.datahora!.formatDate(format: "dd");
         String mes = e.datahora!.formatDate(format: "MM").capitalize();
         String hora = e.datahora!.formatDate(format: "HH:mm").capitalize();
-        String ano = e.datahora!.formatDate(format: "MM/yyyy");
-
+        String ano = e.datahora!.formatDate(format: "yyyy");
+       
         return Row(
           children: [
             widgetImagemInterna(
