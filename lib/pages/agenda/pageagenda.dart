@@ -1,6 +1,5 @@
 // ignore_for_file: camel_case_types
 
-import 'dart:html';
 
 import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/pages/agenda/widgetpageagendavisualizarpordia.dart';
@@ -47,94 +46,92 @@ class _pageAgendaState extends State<pageAgenda> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(24),
-      child: Expanded(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                'Escolha uma data',
-                style: poppins16W400Black,
-              ),
-              const SizedBox(height: 10),
-              Row(
-                children: [
-                  Expanded(
-                    flex: 1,
-                    child: getDate(
-                      ted: tedInicio,
-                      titulo: "De:",
-                      primeiro: true,
-                    ),
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              'Escolha uma data',
+              style: poppins16W400Black,
+            ),
+            const SizedBox(height: 10),
+            Row(
+              children: [
+                Expanded(
+                  flex: 1,
+                  child: getDate(
+                    ted: tedInicio,
+                    titulo: "De:",
+                    primeiro: true,
                   ),
-                  Expanded(
-                    flex: 1,
-                    child: getDate(
-                      ted: tedTermino,
-                      titulo: "Até:",
-                      primeiro: false,
-                    ),
+                ),
+                Expanded(
+                  flex: 1,
+                  child: getDate(
+                    ted: tedTermino,
+                    titulo: "Até:",
+                    primeiro: false,
                   ),
-                ],
-              ),
-              const SizedBox(height: 10),
-              Text(
-                'Visualizar por dia',
-                style: poppins16W400Black,
-              ),
-              const SizedBox(height: 10),
-              widgetMostraDias(),
-              const SizedBox(height: 10),
-              Text(
-                'Resultados',
-                style: poppins16W400Black,
-              ),
-              const SizedBox(height: 10),
-              Wrap(
-                children: app.listaEventos.eventos!.map(
-                  (e) {
-                    List<DateTime> datasEventos = app.getEventoDatas(e);
+                ),
+              ],
+            ),
+            const SizedBox(height: 10),
+            Text(
+              'Visualizar por dia',
+              style: poppins16W400Black,
+            ),
+            const SizedBox(height: 10),
+            widgetMostraDias(),
+            const SizedBox(height: 10),
+            Text(
+              'Resultados',
+              style: poppins16W400Black,
+            ),
+            const SizedBox(height: 10),
+            Wrap(
+              children: app.listaEventos.eventos!.map(
+                (e) {
+                  List<DateTime> datasEventos = app.getEventoDatas(e);
 
-                    /*  print(datasEventos.toList());
-                    print("--------------------------------------------");*/
+                  /*  print(datasEventos.toList());
+                  print("--------------------------------------------");*/
 
-                    List<DateTime> ldatasIntervalo =
-                        listDatas = calculateDaysInterval(
-                      DateTime.parse(tedInicio.text.substring(0, 10)),
-                      DateTime.parse(tedTermino.text.substring(0, 10)),
-                    );
+                  List<DateTime> ldatasIntervalo =
+                      listDatas = calculateDaysInterval(
+                    DateTime.parse(tedInicio.text.substring(0, 10)),
+                    DateTime.parse(tedTermino.text.substring(0, 10)),
+                  );
 
-                    /* print("Datas intervalos: ");
-                    print(listDatas.toList());
-                    print("============================================");
-                    print(" ");
-                    print(" ");
-                    print(" ");
-                    print("Datas evento ${e.nome} ");
-                    print(datasEventos.toList());
-                    print("============================================"); */
+                  /* print("Datas intervalos: ");
+                  print(listDatas.toList());
+                  print("============================================");
+                  print(" ");
+                  print(" ");
+                  print(" ");
+                  print("Datas evento ${e.nome} ");
+                  print(datasEventos.toList());
+                  print("============================================"); */
 
-                    bool dentro = false;
-                    for (DateTime dia in datasEventos) {
-                      if (ldatasIntervalo
-                          .any((element) => element.compareTo(dia) == 0)) {
-                        dentro = true;
-                      }
+                  bool dentro = false;
+                  for (DateTime dia in datasEventos) {
+                    if (ldatasIntervalo
+                        .any((element) => element.compareTo(dia) == 0)) {
+                      dentro = true;
                     }
+                  }
 
-                    if (!dentro) {
-                      return const SizedBox.shrink();
-                    }
+                  if (!dentro) {
+                    return const SizedBox.shrink();
+                  }
 
-                    return widgetHomeCategoriasEventosContainer(
-                      evento: e,
-                    );
-                  },
-                ).toList(),
-              )
-            ],
-          ),
+                  return widgetHomeCategoriasEventosContainer(
+                    evento: e,
+                  );
+                },
+              ).toList(),
+            )
+          ],
         ),
       ),
     );
@@ -240,7 +237,7 @@ class pageAgendaTopo extends StatelessWidget {
     return widgetTopoComum(
       text: "Agenda",
       funcaoImagem2: () async {},
-      urlImagem2: 'seta.png',
+      urlImagem2: 'favoritos.png',
     );
   }
 }

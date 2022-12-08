@@ -6,6 +6,7 @@ import 'package:agendacultural/pages/agenda/pageagenda.dart';
 import 'package:agendacultural/pages/home/widgethome.dart';
 import 'package:agendacultural/pages/home/widgets/widgettopo.dart';
 import 'package:agendacultural/pages/home/widgets/widgettopocomum.dart';
+import 'package:agendacultural/pages/mapa/pagemapa.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetemconstrucao.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
@@ -27,7 +28,7 @@ class _pagePrincipalState extends State<pagePrincipal> {
   List<Widget> subPaginas = [
     const widgetHome(),
     const pageAgenda(),
-    const widgetEmConstrucao(),
+    const pageMapa(),
     const widgetEmConstrucao(),
     widgetPerfil(),
   ];
@@ -35,7 +36,7 @@ class _pagePrincipalState extends State<pagePrincipal> {
   List<Widget> subPaginasTopo = [
     const widgetTopo(),
     const pageAgendaTopo(),
-    const widgetTopo(),
+    const pageMapaTopo(),
     const widgetTopo(),
     const widgetTopoPerfil(),
   ];
