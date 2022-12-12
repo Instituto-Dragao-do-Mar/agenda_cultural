@@ -1,6 +1,5 @@
 // ignore_for_file: camel_case_types
 
-
 import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/pages/agenda/widgetpageagendavisualizarpordia.dart';
 import 'package:agendacultural/pages/home/evento/widgethomeeventoscontainer.dart';
@@ -21,10 +20,10 @@ class pageAgenda extends StatefulWidget {
 
 class _pageAgendaState extends State<pageAgenda> {
   TextEditingController tedInicio = TextEditingController(
-    text: DateTime.now().add(Duration(days: -60)).toIso8601String(),
+    text: DateTime.now().toIso8601String(),
   );
   TextEditingController tedTermino = TextEditingController(
-    text: DateTime.now().add(const Duration(days: 15)).toIso8601String(),
+    text: DateTime.now().add(const Duration(days: 30)).toIso8601String(),
   );
 
   late AppModel app;
@@ -185,9 +184,9 @@ class _pageAgendaState extends State<pageAgenda> {
         DateTime? pickedDate = await showDatePicker(
           context: context,
           //locale: const Locale("pt_BR"),
-          initialDate: DateTime.tryParse(ted.text)!, //get today's date
+          initialDate: DateTime.tryParse(ted.text)!, 
           firstDate: DateTime
-              .now().add(Duration(days: -360)), //DateTime.now() - not to allow to choose before today.
+              .now(), 
           lastDate: DateTime.now().add(const Duration(days: 180)),
         );
         if (pickedDate != null) {

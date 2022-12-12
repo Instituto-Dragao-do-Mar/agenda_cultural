@@ -22,9 +22,8 @@ class widgetPageAgendaVisualizarPorDia extends StatelessWidget {
       height: 80,
       width: 70,
       decoration: BoxDecoration(
-        color: corBackground.withOpacity(.1),
-        borderRadius: const BorderRadius.all(Radius.circular(5))
-      ),
+          color: corBackground.withOpacity(.1),
+          borderRadius: const BorderRadius.all(Radius.circular(5))),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -32,16 +31,18 @@ class widgetPageAgendaVisualizarPorDia extends StatelessWidget {
           Text(
             data.toIso8601String().formatDate(format: "dd"),
             style: TextStyle(
-              fontSize: 22,
+              fontSize: selecionada ? 26 : 22,
               color: Colors.black,
               fontWeight: selecionada ? FontWeight.bold : FontWeight.normal,
             ),
           ),
           const SizedBox(height: 5),
           Text(
-            data.toIso8601String().formatDate(format: "E").capitalize(),
+            selecionada
+                ? data.toIso8601String().formatDate(format: "E").toUpperCase()
+                : data.toIso8601String().formatDate(format: "E").capitalize(),
             style: TextStyle(
-              fontSize: 14,
+              fontSize: selecionada ? 20 : 16,
               color: Colors.black,
               fontWeight: selecionada ? FontWeight.bold : FontWeight.normal,
             ),

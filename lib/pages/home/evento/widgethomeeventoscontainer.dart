@@ -1,5 +1,6 @@
 // ignore_for_file: camel_case_types
 
+import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/model/evento_model.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/home/evento/pageeventodetalhe.dart';
@@ -10,6 +11,7 @@ import 'package:agendacultural/shared/widgetimagemexterna.dart';
 import 'package:agendacultural/shared/widgetimagemhtml.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
 class widgetHomeCategoriasEventosContainer extends StatelessWidget {
   const widgetHomeCategoriasEventosContainer({
@@ -21,6 +23,9 @@ class widgetHomeCategoriasEventosContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    AppModel app = Provider.of<AppModel>(context, listen: false);
+
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -91,7 +96,7 @@ class widgetHomeCategoriasEventosContainer extends StatelessWidget {
                           ),
                           const widgetEspacoH(altura: 6),
                           Text(
-                            evento.endereco(),
+                            app.GetEnderecoEvento(evento),
                             style: GoogleFonts.roboto(
                               fontSize: 12,
                             ),

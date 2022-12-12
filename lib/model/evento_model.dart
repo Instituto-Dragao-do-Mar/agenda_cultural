@@ -46,34 +46,31 @@ class Evento {
   List<Eventoimagens>? eventosimagens;
   List<Eventocategorias>? eventoscategorias;
 
-  Evento(
-      {this.id,
-      this.guidid,
-      this.nome,
-      this.detalhe,
-      this.destaque,
-      this.importado,
-      this.aprovado,
-      this.entradagratuita,
-      this.urlentrada,
-      this.ativo,
-      this.idclassificacao,
-      this.datahora,
-      this.telefone,
-      this.linguagem,
-      this.datacriacao,
-      this.dataatualizacao,
-      this.classificacaoetaria,
-      this.idexterno,
-      this.detalhelongo,
-      this.urlavatar,
-      this.eventosdatas,
-      this.eventosimagens,
-      this.eventoscategorias});
-
-  String endereco() {
-    return "colocar endereço";
-  }
+  Evento({
+    this.id,
+    this.guidid,
+    this.nome,
+    this.detalhe,
+    this.destaque,
+    this.importado,
+    this.aprovado,
+    this.entradagratuita,
+    this.urlentrada,
+    this.ativo,
+    this.idclassificacao,
+    this.datahora,
+    this.telefone,
+    this.linguagem,
+    this.datacriacao,
+    this.dataatualizacao,
+    this.classificacaoetaria,
+    this.idexterno,
+    this.detalhelongo,
+    this.urlavatar,
+    this.eventosdatas,
+    this.eventosimagens,
+    this.eventoscategorias,
+  });  
 
   Evento.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -239,7 +236,7 @@ class Eventoimagens {
         imagens!.add(ImagemEvento.fromJson(v));
       });
     }
-  }  
+  }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};

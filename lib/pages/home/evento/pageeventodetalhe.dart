@@ -1,7 +1,12 @@
 // ignore_for_file: camel_case_types
 
+import 'dart:async';
+
+import 'package:agendacultural/model/app_model.dart';
+import 'package:agendacultural/model/espaco_model.dart';
 import 'package:agendacultural/model/evento_model.dart';
 import 'package:agendacultural/model/imagem_model.dart';
+import 'package:agendacultural/shared/constantes.dart';
 import 'package:agendacultural/shared/extensions/capitalize.dart';
 import 'package:agendacultural/shared/extensions/dates.dart';
 import 'package:agendacultural/shared/themes.dart';
@@ -13,6 +18,8 @@ import 'package:agendacultural/shared/widgetimagemhtml.dart';
 import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
 
 class pageEventoDetalhe extends StatefulWidget {
@@ -28,6 +35,53 @@ class pageEventoDetalhe extends StatefulWidget {
 }
 
 class _pageEventoDetalheState extends State<pageEventoDetalhe> {
+  late AppModel app;
+  final Completer<GoogleMapController> _controller = Completer();
+  late CameraPosition inicioCamera;
+  Set<Marker> markers = {};
+
+  Espaco? espaco;
+
+  @override
+  void initState() {
+    super.initState();
+    app = Provider.of<AppModel>(context, listen: false);
+
+    int idEspaco = widget.evento.eventosdatas!.first.idespaco!;
+    if (app.listaEspacos.espacos!.any((element) => element.id == idEspaco)) {
+      espaco = app.listaEspacos.espacos!
+          .firstWhere((element) => element.id == idEspaco);
+    }
+
+    if (espaco != null) {
+      inicioCamera = CameraPosition(
+        target: LatLng(espaco!.latitude!, espaco!.longitude!),
+        zoom: 16,
+      );
+
+      Marker marker = Marker(
+        markerId: MarkerId(widget.evento.id.toString()),
+        position: LatLng(espaco!.latitude!, espaco!.longitude!),
+        // icon: BitmapDescriptor.,
+        infoWindow: InfoWindow(
+          title: widget.evento.nome!,
+          snippet: widget.evento.detalhe ?? "",
+        ),
+      );
+      markers.add(marker);
+    } else {
+      inicioCamera = const CameraPosition(
+        target: LatLng(-3.7608777226578134, -38.521393491712224),
+        zoom: 16,
+      );
+    }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +91,7 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
             Navigator.pop(context);
           },
           child: widgetImagemInterna(
-            imagem: Imagem(url: 'setavoltando.png'),
+            imagem: Imagem(url: 'seta.png'),
           ),
         ),
         centerTitle: false,
@@ -78,7 +132,7 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Lista de Categorias',
+                      app.GetCategoriasEvento(widget.evento),
                       style: GoogleFonts.inter(
                         fontSize: 14,
                         color: corBackground,
@@ -96,60 +150,21 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
                     const widgetEspacoH(),
                     widgetDatasEventos(),
                     const widgetEspacoH(altura: 20),
-                    Text(
-                      "Descrição",
-                      style: GoogleFonts.inter(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black,
-                      ),
-                    ),
+                    widgetEvDescicao(),
                     const widgetEspacoH(),
-                    ReadMoreText(
-                      widget.evento.detalhe!,
-                      style: GoogleFonts.inter(
-                        fontSize: 14,
-                        color: Colors.black,
-                      ),
-                      colorClickableText: corBackground,
-                      trimLength: 300,
-                      trimMode: TrimMode.Length,
-                      trimCollapsedText: 'Ler mais',
-                      trimExpandedText: 'Ler menos',
-                      moreStyle: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: corBackground,
-                      ),
-                      lessStyle: const TextStyle(
-                        fontSize: 14,
-                        fontWeight: FontWeight.bold,
-                        color: corBackground,
-                      ),
-                    ),
+                    widgetEVLocalizacao(),
                     const widgetEspacoH(),
-                    Text(
-                      "Localização",
-                      style: GoogleFonts.inter(
-                        fontSize: 14,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black,
-                      ),
-                    ),
+                    widgetEVMapa(),
                     const widgetEspacoH(),
-                    Text(
-                      widget.evento.endereco(),
-                      style: GoogleFonts.inter(
-                        fontSize: 14,
-                        color: Colors.black,
-                      ),
-                    ),
+                    widgetEvAcessibilidade(),
                     const widgetEspacoH(),
-                    widgetImagemInterna(
-                        imagem: Imagem(url: 'mapa.jpeg'),
-                        width: p1.maxWidth,
-                        height: p1.maxWidth * .5,
-                        fit: BoxFit.cover),
+                    widgetEvMaisInformacoes(),
+                    const widgetEspacoH(),
+                    widgetEvAvaliarEvento(),
+                    const widgetEspacoH(),
+                    const widgetEspacoH(),
+                    const widgetEspacoH(),
+                    const widgetEspacoH(),
                   ],
                 );
               },
@@ -157,6 +172,97 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
           ),
         ],
       ),
+    );
+  }
+
+  Column widgetEvDescicao() {
+    return Column(
+      children: [
+        Text(
+          "Descrição",
+          style: GoogleFonts.inter(
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+            color: Colors.black,
+          ),
+        ),
+        const widgetEspacoH(),
+        ReadMoreText(
+          widget.evento.detalhe!,
+          style: GoogleFonts.inter(
+            fontSize: 14,
+            color: Colors.black,
+          ),
+          colorClickableText: corBackground,
+          trimLength: 300,
+          trimMode: TrimMode.Length,
+          trimCollapsedText: 'Ler mais',
+          trimExpandedText: 'Ler menos',
+          moreStyle: const TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+            color: corBackground,
+          ),
+          lessStyle: const TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+            color: corBackground,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Column widgetEVLocalizacao() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "Localização",
+          style: GoogleFonts.inter(
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+            color: Colors.black,
+          ),
+        ),
+        const widgetEspacoH(),
+        Text(
+          app.GetEnderecoEvento(widget.evento),
+          style: GoogleFonts.inter(
+            fontSize: 14,
+            color: Colors.black,
+          ),
+        ),
+      ],
+    );
+  }
+
+  LayoutBuilder widgetEVMapa() {
+    return LayoutBuilder(
+      builder: (p0, p1) {
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              width: p1.maxWidth,
+              height: p1.maxWidth * .5,
+              child: GoogleMap(
+                mapType: MapType.normal,
+                markers: markers,
+                initialCameraPosition: inicioCamera,
+                onMapCreated: (GoogleMapController controller) {
+                  _controller.complete(controller);
+                },
+                onCameraIdle: () {},
+              ),
+            ),
+            const SizedBox(height: 10),
+            const SizedBox(height: 10),
+          ],
+        );
+      },
     );
   }
 
@@ -170,7 +276,7 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
         String mes = e.datahora!.formatDate(format: "MM").capitalize();
         String hora = e.datahora!.formatDate(format: "HH:mm").capitalize();
         String ano = e.datahora!.formatDate(format: "yyyy");
-       
+
         return Row(
           children: [
             widgetImagemInterna(
@@ -200,5 +306,57 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
         );
       }).toList(),
     );
+  }
+
+  Widget widgetEvAcessibilidade() {
+    String texto = espaco!.acessibilidadeFisica ?? "";
+    if (texto.isEmpty) {
+      texto = 'Informações indisponíveis no momento.';
+    }
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "Acessibilidade",
+          style: GoogleFonts.inter(
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+            color: Colors.black,
+          ),
+        ),
+        const widgetEspacoH(),
+        Text(
+          texto,
+          style: GoogleFonts.inter(
+            fontSize: 14,
+            color: Colors.black,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget widgetEvMaisInformacoes() {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "Mais informações",
+          style: GoogleFonts.inter(
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+            color: Colors.black,
+          ),
+        ),
+        const widgetEspacoH(),
+      ],
+    );
+  }
+
+  Widget widgetEvAvaliarEvento() {
+    return Container();
   }
 }

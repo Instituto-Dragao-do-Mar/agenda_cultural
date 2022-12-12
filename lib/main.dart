@@ -12,9 +12,11 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 // ignore: depend_on_referenced_packages
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
+import 'package:url_strategy/url_strategy.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  setPathUrlStrategy();
 
   initializeDateFormatting("pt_BR", null).then(
     (_) => runApp(MultiProvider(
@@ -50,8 +52,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Agenda Cultural',
       theme: themeDefault,
-      home: const pageSplash(),
-      //home: const pageLogin(),
+      //home: const pageSplash(),
+      home: const pageLogin(),
     );
   }
 }

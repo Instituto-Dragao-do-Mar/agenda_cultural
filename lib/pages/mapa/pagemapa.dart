@@ -22,7 +22,7 @@ class _pageMapaState extends State<pageMapa> {
   @override
   void initState() {
     super.initState();
-    //processaMarkers();
+    
     _inicioCameraPosition = const CameraPosition(
       target: LatLng(
        -3.7608777226578134, -38.521393491712224

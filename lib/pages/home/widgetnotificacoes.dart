@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types
+
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/home/widgethome.dart';
 import 'package:agendacultural/pages/home/widgets/widgettopoperfil.dart';
@@ -5,7 +7,6 @@ import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetemconstrucao.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../shared/constantes.dart';

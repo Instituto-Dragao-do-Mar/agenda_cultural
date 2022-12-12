@@ -1,10 +1,6 @@
 import 'dart:convert';
-
 import 'package:agendacultural/controller/base_controller.dart';
-import 'package:agendacultural/model/categoria_model.dart';
-import 'package:agendacultural/model/endereco_model.dart';
 import 'package:agendacultural/model/evento_model.dart';
-import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/shared/constantes.dart';
 import 'package:http/http.dart' as http;
 
