@@ -10,6 +10,7 @@ import 'package:agendacultural/shared/constantes.dart';
 import 'package:agendacultural/shared/extensions/capitalize.dart';
 import 'package:agendacultural/shared/extensions/dates.dart';
 import 'package:agendacultural/shared/themes.dart';
+import 'package:agendacultural/shared/widgetConfirma.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetespacov.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
@@ -339,6 +340,12 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
   }
 
   Widget widgetEvMaisInformacoes() {
+    String entrada = 'Entraga Gratuita';
+    if (widget.evento.urlentrada != null &&
+        widget.evento.urlentrada!.isNotEmpty) {
+      entrada = 'Entraga Paga';
+    }
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -352,11 +359,159 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
           ),
         ),
         const widgetEspacoH(),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Row(
+              children: [
+                widgetImagemInterna(
+                  imagem: Imagem(
+                    url: 'classificacao.png',
+                  ),
+                  width: 24,
+                  height: 24,
+                  fit: BoxFit.contain,
+                ),
+                const SizedBox(width: 10),
+                Text(
+                  'Classificação ${widget.evento.classificacaoetaria ?? "Livre"}',
+                  style: GoogleFonts.inter(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                widgetImagemInterna(
+                  imagem: Imagem(
+                    url: 'ticket.png',
+                  ),
+                  width: 24,
+                  height: 24,
+                  fit: BoxFit.contain,
+                ),
+                const SizedBox(width: 10),
+                Text(
+                  entrada,
+                  style: GoogleFonts.inter(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ],
     );
   }
 
   Widget widgetEvAvaliarEvento() {
-    return Container();
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          "Avaliar Evento",
+          style: GoogleFonts.inter(
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+            color: Colors.black,
+          ),
+        ),
+        const widgetEspacoH(),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            GestureDetector(
+              onTap: () {
+                confirmaparaAvaliar();
+              },
+              child: Column(
+                children: [
+                  widgetImagemInterna(
+                    imagem: Imagem(
+                      url: 'gostei_off.png',
+                    ),
+                    width: 60,
+                    height: 60,
+                    fit: BoxFit.contain,
+                  ),
+                  Text(
+                    'Gostei',
+                    style: GoogleFonts.inter(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                confirmaparaAvaliar();
+              },
+              child: Column(
+                children: [
+                  widgetImagemInterna(
+                    imagem: Imagem(
+                      url: 'nao_gostei_off.png',
+                    ),
+                    width: 60,
+                    height: 60,
+                    fit: BoxFit.contain,
+                  ),
+                  Text(
+                    'Não Gostei',
+                    style: GoogleFonts.inter(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                confirmaparaAvaliar();
+              },
+              child: Column(
+                children: [
+                  widgetImagemInterna(
+                    imagem: Imagem(
+                      url: 'nao_aconteceu_off.png',
+                    ),
+                    width: 60,
+                    height: 60,
+                    fit: BoxFit.contain,
+                  ),
+                  Text(
+                    'Não Aconteceu',
+                    style: GoogleFonts.inter(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  void confirmaparaAvaliar() {
+    if (!app.isLog()) {
+      widgetConfirma(
+        context: context,
+        cancelar: true,
+        descricao: 'Para avaliar um evento você precisa '
+            'se logar, gostaria de ir para a página de login?',
+        funcaoSim: () {},
+      );
+    }
   }
 }

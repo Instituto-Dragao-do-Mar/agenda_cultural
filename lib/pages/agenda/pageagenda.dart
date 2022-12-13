@@ -28,7 +28,7 @@ class _pageAgendaState extends State<pageAgenda> {
 
   late AppModel app;
   List<DateTime> listDatas = [];
-  DateTime? dataSelecionada = DateTime.now().add(const Duration(days: -400));
+  DateTime dataSelecionada = DateTime.now().add(const Duration(days: -400));
 
   @override
   void initState() {
@@ -112,7 +112,26 @@ class _pageAgendaState extends State<pageAgenda> {
                   print(datasEventos.toList());
                   print("============================================"); */
 
+                  if (!dataSelecionada
+                      .compareTo(DateTime.now().add(const Duration(days: -1)))
+                      .isNegative) {
+                    //
+                    // Cai aqui se uma data for selecionada.
+                    //
+                    //
+                    
+                    for (DateTime dia in datasEventos) {
+                      if (dia.compareTo(dataSelecionada) == 0) {
+                        return widgetHomeCategoriasEventosContainer(
+                          evento: e,
+                        );
+                      }
+                    }
+                    return const SizedBox.shrink();
+                  }
+
                   bool dentro = false;
+
                   for (DateTime dia in datasEventos) {
                     if (ldatasIntervalo
                         .any((element) => element.compareTo(dia) == 0)) {
@@ -122,7 +141,7 @@ class _pageAgendaState extends State<pageAgenda> {
 
                   if (!dentro) {
                     return const SizedBox.shrink();
-                  }
+                  }                
 
                   return widgetHomeCategoriasEventosContainer(
                     evento: e,
@@ -184,9 +203,8 @@ class _pageAgendaState extends State<pageAgenda> {
         DateTime? pickedDate = await showDatePicker(
           context: context,
           //locale: const Locale("pt_BR"),
-          initialDate: DateTime.tryParse(ted.text)!, 
-          firstDate: DateTime
-              .now(), 
+          initialDate: DateTime.tryParse(ted.text)!,
+          firstDate: DateTime.now(),
           lastDate: DateTime.now().add(const Duration(days: 180)),
         );
         if (pickedDate != null) {

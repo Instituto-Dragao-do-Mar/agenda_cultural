@@ -1,6 +1,6 @@
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
-import 'package:agendacultural/pages/home/localizacao/widgetinserirlocalizacao.dart';
+import 'package:agendacultural/pages/localizacao/widgetinserirlocalizacao.dart';
 import 'package:agendacultural/pages/home/widgets/widgettopo.dart';
 import 'package:agendacultural/pages/principal/home.dart';
 import 'package:agendacultural/shared/constantes.dart';

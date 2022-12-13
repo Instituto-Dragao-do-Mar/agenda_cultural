@@ -1,4 +1,4 @@
-import 'package:agendacultural/pages/home/localizacao/widgetlocalizacao.dart';
+import 'package:agendacultural/pages/localizacao/widgetlocalizacao.dart';
 import 'package:agendacultural/shared/constantes.dart';
 import 'package:flutter/material.dart';
 
