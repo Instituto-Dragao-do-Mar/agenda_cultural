@@ -2,7 +2,7 @@
 
 import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/pages/agenda/widgetpageagendavisualizarpordia.dart';
-import 'package:agendacultural/pages/home/evento/widgethomeeventoscontainer.dart';
+import 'package:agendacultural/pages/evento/widgethomeeventoscontainer.dart';
 import 'package:agendacultural/pages/home/widgets/widgettopocomum.dart';
 import 'package:agendacultural/shared/constantes.dart';
 import 'package:agendacultural/shared/extensions/dates.dart';
@@ -83,9 +83,19 @@ class _pageAgendaState extends State<pageAgenda> {
             const SizedBox(height: 10),
             widgetMostraDias(),
             const SizedBox(height: 10),
-            Text(
-              'Resultados',
-              style: poppins16W400Black,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'Resultados',
+                  style: poppins16W400Black,
+                ),
+                Row(
+                  children: const [
+                    Text('Filtrar'),
+                  ],
+                ),
+              ],
             ),
             const SizedBox(height: 10),
             Wrap(
@@ -119,7 +129,7 @@ class _pageAgendaState extends State<pageAgenda> {
                     // Cai aqui se uma data for selecionada.
                     //
                     //
-                    
+
                     for (DateTime dia in datasEventos) {
                       if (dia.compareTo(dataSelecionada) == 0) {
                         return widgetHomeCategoriasEventosContainer(
@@ -141,7 +151,7 @@ class _pageAgendaState extends State<pageAgenda> {
 
                   if (!dentro) {
                     return const SizedBox.shrink();
-                  }                
+                  }
 
                   return widgetHomeCategoriasEventosContainer(
                     evento: e,
@@ -235,7 +245,13 @@ class _pageAgendaState extends State<pageAgenda> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(titulo),
+            Text(
+              titulo,
+              style: const TextStyle(
+                color: corBackground,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             const SizedBox(width: 5),
             Text(ted.text.formatDate(format: "E, dd MMM"))
           ],

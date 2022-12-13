@@ -3,7 +3,7 @@
 import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/model/evento_model.dart';
 import 'package:agendacultural/model/imagem_model.dart';
-import 'package:agendacultural/pages/home/evento/pageeventodetalhe.dart';
+import 'package:agendacultural/pages/evento/pageeventodetalhe.dart';
 import 'package:agendacultural/shared/extensions/capitalize.dart';
 import 'package:agendacultural/shared/extensions/dates.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';

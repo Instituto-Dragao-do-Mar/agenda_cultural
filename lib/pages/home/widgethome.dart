@@ -1,7 +1,7 @@
 // ignore_for_file: camel_case_types
 
 import 'package:agendacultural/pages/home/categorias/widgethomecategorias.dart';
-import 'package:agendacultural/pages/home/evento/widgethomeeventos.dart';
+import 'package:agendacultural/pages/evento/widgethomeeventos.dart';
 import 'package:agendacultural/pages/home/widgethomeminhalocalizacao.dart';
 import 'package:flutter/material.dart';
 

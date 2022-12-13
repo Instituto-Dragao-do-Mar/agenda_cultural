@@ -3,7 +3,7 @@
 import 'package:agendacultural/controller/evento_controller.dart';
 import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/model/evento_model.dart';
-import 'package:agendacultural/pages/home/evento/widgethomeeventoscontainer.dart';
+import 'package:agendacultural/pages/evento/widgethomeeventoscontainer.dart';
 import 'package:agendacultural/pages/home/widgets/widgetheadercards.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:flutter/material.dart';

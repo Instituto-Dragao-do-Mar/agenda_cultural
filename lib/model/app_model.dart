@@ -7,6 +7,7 @@ import 'package:agendacultural/model/acessibilidade_model.dart';
 import 'package:agendacultural/model/categoria_model.dart';
 import 'package:agendacultural/model/espaco_model.dart';
 import 'package:agendacultural/model/evento_model.dart';
+import 'package:agendacultural/model/filtro_model.dart';
 import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/shared/extensions/capitalize.dart';
 import 'package:agendacultural/shared/extensions/clearMask.dart';
@@ -19,6 +20,7 @@ class AppModel extends ChangeNotifier {
   late ListaEventos listaEventos;
   late ListaAcessibilidade listaAcessibilidade;
   late ListaEspacos listaEspacos;
+  late Filtro filtro;
 
   Usuario? usuario;
 
@@ -34,6 +36,41 @@ class AppModel extends ChangeNotifier {
     listaEspacos = await EspacoController().espacoGet(
       userguidid: "",
     );
+
+    // Populo o filtro
+    filtro = Filtro(
+      acessibilidadeSelecionadas: [],
+      categoriasSelecionadas: [],
+      classificacoesSelecionadas: [],
+      dataInicial: DateTime.now(),
+      dataFinal: DateTime.now().add(const Duration(days: 30)),
+      espacosSelecionados: [],
+      ingressoSelecionados: [],
+    );
+
+    if (listaEventos.eventos != null && listaEventos.eventos!.isNotEmpty) {
+      filtro.opcoesClassificacoes = [];
+      listaEventos.eventos!.map(
+        (e) {
+          if (!filtro.opcoesClassificacoes!
+              .any((element) => element == (e.classificacaoetaria ?? ''))) {
+            filtro.opcoesClassificacoes!.add(e.classificacaoetaria ?? '');
+          }
+        },
+      );
+    }
+    if (listaEspacos.espacos != null && listaEspacos.espacos!.isNotEmpty) {
+      filtro.opcoesAcessibilidade = [];
+      listaEspacos.espacos!.map(
+        (e) {
+
+          /*if (!filtro.opcoesClassificacoes!
+              .any((element) => element == (e.classificacaoetaria ?? ''))) {
+            filtro.opcoesClassificacoes!.add(e.classificacaoetaria ?? '');
+          }*/
+        },
+      );
+    }
   }
 
   List<DateTime> getEventoDatas(Evento e) {

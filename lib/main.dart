@@ -52,8 +52,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Agenda Cultural',
       theme: themeDefault,
-      home: const pageSplash(),
-      //home: const pageLogin(),
+      //home: const pageSplash(),
+      home: const pageLogin(),
     );
   }
 }
