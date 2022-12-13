@@ -9,7 +9,7 @@ class widgetHomeMinhaLocalizacao extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: const [
+      children: [
         Text(
           "Minha Localização",
           style: TextStyle(color: corBackground, fontSize: 14),

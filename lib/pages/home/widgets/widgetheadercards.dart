@@ -30,7 +30,7 @@ class widgetHeaderCards extends StatelessWidget {
           onTap: () => funcao,
           child: Text(
             subtitulo,
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 14,
               color: corBackground,
               fontWeight: FontWeight.w600,

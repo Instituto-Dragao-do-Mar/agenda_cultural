@@ -199,12 +199,12 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
           trimMode: TrimMode.Length,
           trimCollapsedText: 'Ler mais',
           trimExpandedText: 'Ler menos',
-          moreStyle: const TextStyle(
+          moreStyle: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.bold,
             color: corBackground,
           ),
-          lessStyle: const TextStyle(
+          lessStyle: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.bold,
             color: corBackground,

@@ -7,6 +7,8 @@ import 'package:agendacultural/shared/constantes.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
+import '../../model/fontes.dart';
+
 class pageMapa extends StatefulWidget {
   const pageMapa({super.key});
 
@@ -71,7 +73,7 @@ class _pageMapaState extends State<pageMapa> {
                  const SizedBox(height: 10),
             Text(
               'Sugestões',
-              style: poppins16W400Black,
+              style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
             ),
             const SizedBox(height: 10),
               ],

@@ -7,6 +7,7 @@ import 'package:agendacultural/shared/widgetemconstrucao.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:flutter/material.dart';
 
+import '../../model/fontes.dart';
 import '../../shared/constantes.dart';
 import 'widgets/widgetopcaoperfil.dart';
 
@@ -24,7 +25,7 @@ class widgetPerfil extends StatelessWidget {
           children: [
             Text(
               "Conta",
-              style: poppins18W500Black,
+              style: Fontes.poppins18W500Black(Fontes.tamanhoBase),
             ),
             const widgetEspacoH(altura: 12),
             const widgetopacaoperfil(
@@ -39,7 +40,7 @@ class widgetPerfil extends StatelessWidget {
             const widgetEspacoH(altura: 24),
             Text(
               'Geral',
-              style: poppins18W500Black,
+              style: Fontes.poppins18W500Black(Fontes.tamanhoBase),
             ),
             const widgetEspacoH(altura: 12),
             const widgetopacaoperfil(
@@ -59,7 +60,7 @@ class widgetPerfil extends StatelessWidget {
             const widgetEspacoH(altura: 24),
             Text(
               'Acessibilidade',
-              style: poppins18W500Black,
+              style: Fontes.poppins18W500Black(Fontes.tamanhoBase),
             ),
             const widgetEspacoH(altura: 12),
             const widgetopacaoperfil(

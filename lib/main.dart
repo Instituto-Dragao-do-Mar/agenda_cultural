@@ -1,6 +1,6 @@
 import 'package:agendacultural/dados/dados.dart';
 import 'package:agendacultural/model/app_model.dart';
-import 'package:agendacultural/model/cores.dart';
+import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
 import 'package:agendacultural/pages/home/acessibilidade/widgetacessibilidade.dart';
 import 'package:agendacultural/pages/localizacao/widgetlocalizacao.dart';
@@ -16,16 +16,21 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 import 'package:url_strategy/url_strategy.dart';
 
+import 'model/cores.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setPathUrlStrategy();
-
   
   int fonte = await Dados.getInt('tamanhofontebase');
   if (fonte == 0) {
     await Dados.setInt('tamanhofontebase', 16);
+    fonte = 16;
   }
-  Fontes.tamanhoBase = fonte;
+  Fontes.setTamanhoBase(fonte);
+
+  bool altoContraste = await Dados.getBool('altocontraste');
+  Cores.setAltoContraste(altoContraste);
 
   initializeDateFormatting("pt_BR", null).then(
     (_) => runApp(MultiProvider(

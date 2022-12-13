@@ -1,11 +1,8 @@
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/home/widgethome.dart';
 import 'package:agendacultural/pages/home/widgetperfil.dart';
-import 'package:agendacultural/pages/home/widgets/widgettopo.dart';
 import 'package:agendacultural/pages/home/widgets/widgettopocomum.dart';
-import 'package:agendacultural/pages/home/widgets/widgettopoperfil.dart';
 import 'package:agendacultural/pages/principal/home.dart';
-import 'package:agendacultural/shared/constantes.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetbotao.dart';
 import 'package:agendacultural/shared/widgetbotaoswitch.dart';
@@ -15,6 +12,10 @@ import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../dados/dados.dart';
+import '../../../model/cores.dart';
+import '../../../model/fontes.dart';
+
 class widgetAcessibilidade extends StatefulWidget {
   const widgetAcessibilidade({Key? key}) : super(key: key);
 
@@ -22,11 +23,13 @@ class widgetAcessibilidade extends StatefulWidget {
   State<widgetAcessibilidade> createState() => _widgetAcessibilidadeState();
 }
 
-bool status = false;
-double fontSize = 16;
+bool statusAltoContraste = Cores.contraste;
+double fontSize = Fontes.tamanhoBase.toDouble();
 
 class _widgetAcessibilidadeState extends State<widgetAcessibilidade> {
   int opcaoSelecionada = 0;
+
+  var fontes = Fontes();
 
   List<Widget> subPaginas = [
     const widgetHome(),
@@ -38,13 +41,17 @@ class _widgetAcessibilidadeState extends State<widgetAcessibilidade> {
 
   @override
   Widget build(BuildContext context) {
+    var corBackground = statusAltoContraste ? corBgAltoContraste : corBg;
+    var corAppBarLocal = statusAltoContraste ? corAppBarAltoContraste : corAppBar;
+    var corTextLocal = statusAltoContraste ? corTextAltoContraste : corText;
+
     return SafeArea(
       bottom: true,
       top: true,
       minimum: const EdgeInsets.symmetric(vertical: 16),
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: corBackgroundNegative,
+          backgroundColor: corAppBarLocal,
           elevation: 0,
           leadingWidth: 0,
           title: widgetTopoComum(
@@ -54,13 +61,14 @@ class _widgetAcessibilidadeState extends State<widgetAcessibilidade> {
               }),
         ),
         body: Container(
+          color: corBackground,
           padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 "Acessibilidade",
-                style: poppins18W500Black,
+                style: Fontes.poppins18W500Black(fontSize.toInt()),
               ),
               const widgetEspacoH(
                 altura: 23,
@@ -71,33 +79,41 @@ class _widgetAcessibilidadeState extends State<widgetAcessibilidade> {
                 children: [
                   Text(
                     "Alto contraste",
-                    style: roboto16W400Black,
+                    style: Fontes.roboto16W400Black(fontSize.toInt()),
                   ),
-                  widgetBotaoSwitch(value: status)
+                  widgetBotaoSwitch(
+                    value: statusAltoContraste,
+                    function: (value) {
+                      setState(() {
+                        statusAltoContraste = value;
+                        setAltoContraste(statusAltoContraste);
+                      });
+                    },
+                  )
                 ],
               ),
               const widgetEspacoH(
                 altura: 20,
               ),
               Text(
-                "O modo de alto contraste permite ao usuário inverter as cores"
+                "O modo de alto contraste permite ao usuário inverter as cores "
                 "do primeiro plano e do plano de fundo, o que geralmente ajuda o "
                 "texto a se destacar melhor.",
-                style: poppins12W300Grey,
+                style: Fontes.poppins12W300Grey(fontSize.toInt()),
               ),
               const widgetEspacoH(
                 altura: 23,
               ),
               Text(
                 "Aumento da fonte",
-                style: roboto16W400Black,
+                style: Fontes.roboto16W400Black(fontSize.toInt()),
               ),
               const widgetEspacoH(
                 altura: 20,
               ),
               Text(
                 "Aumenta o tamanho da fonte do texto para 24px facilitando a leitura.",
-                style: poppins12W300Grey,
+                style: Fontes.poppins12W300Grey(fontSize.toInt()),
               ),
               const widgetEspacoH(
                 altura: 31,
@@ -117,6 +133,7 @@ class _widgetAcessibilidadeState extends State<widgetAcessibilidade> {
                         if (fontSize > 16) {
                           fontSize--;
                         }
+                        setFontSize(fontSize);
                       });
                     },
                   ),
@@ -128,12 +145,12 @@ class _widgetAcessibilidadeState extends State<widgetAcessibilidade> {
                             textStyle: TextStyle(
                               fontSize: fontSize,
                               fontWeight: FontWeight.w400,
-                              color: const Color(0XFF000000),
+                              color: !Cores.contraste ? Color(0XFF000000) : Colors.white,
                             ),
                           )),
                       Text(
                         "$fontSize px",
-                        style: inter16W400Grey,
+                        style: Fontes.inter16W400Grey(fontSize.toInt()),
                       )
                     ],
                   ),
@@ -149,6 +166,7 @@ class _widgetAcessibilidadeState extends State<widgetAcessibilidade> {
                         if (fontSize < 24) {
                           fontSize++;
                         }
+                        setFontSize(fontSize);
                       });
                     },
                   ),
@@ -171,5 +189,15 @@ class _widgetAcessibilidadeState extends State<widgetAcessibilidade> {
         ),
       ),
     );
+  }
+
+  Future setFontSize(double fontSize) async {
+    Fontes.setTamanhoBase(fontSize.toInt());
+    await Dados.setInt('tamanhofontebase', fontSize.toInt());
+  }
+
+  Future setAltoContraste(bool val) async {
+    Cores.setAltoContraste(val);
+    await Dados.setBool('altocontraste', val);
   }
 }

@@ -9,6 +9,8 @@ import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
 
+import '../../model/fontes.dart';
+
 class widgetIndiomas extends StatefulWidget {
   const widgetIndiomas({Key? key}) : super(key: key);
 
@@ -100,7 +102,7 @@ class _widgetIndiomasState extends State<widgetIndiomas> {
             children: [
               Text(
                 "Idioma",
-                style: poppins18W500Black,
+                style: Fontes.poppins18W500Black(Fontes.tamanhoBase),
               ),
               const widgetEspacoH(altura: 25),
               Row(
@@ -108,7 +110,7 @@ class _widgetIndiomasState extends State<widgetIndiomas> {
                 children: [
                   Text(
                     "Português",
-                    style: roboto16W400Black,
+                    style: Fontes.roboto16W400Black(Fontes.tamanhoBase),
                   ),
                   IconButton(
                     iconSize: 32,
@@ -140,7 +142,7 @@ class _widgetIndiomasState extends State<widgetIndiomas> {
                 children: [
                   Text(
                     "Inglês",
-                    style: roboto16W400Black,
+                    style: Fontes.roboto16W400Black(Fontes.tamanhoBase),
                   ),
                   IconButton(
                     iconSize: 32,

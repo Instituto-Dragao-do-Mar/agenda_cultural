@@ -14,6 +14,8 @@ import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../model/fontes.dart';
+
 class pageAgenda extends StatefulWidget {
   const pageAgenda({super.key});
 
@@ -55,7 +57,7 @@ class _pageAgendaState extends State<pageAgenda> {
           children: [
             Text(
               'Escolha uma data',
-              style: poppins16W400Black,
+              style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
             ),
             const SizedBox(height: 10),
             Row(
@@ -81,7 +83,7 @@ class _pageAgendaState extends State<pageAgenda> {
             const SizedBox(height: 10),
             Text(
               'Visualizar por dia',
-              style: poppins16W400Black,
+              style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
             ),
             const SizedBox(height: 10),
             widgetMostraDias(),
@@ -91,7 +93,7 @@ class _pageAgendaState extends State<pageAgenda> {
               children: [
                 Text(
                   'Resultados',
-                  style: poppins16W400Black,
+                  style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
                 ),
                 GestureDetector(
                   onTap: () {
@@ -269,7 +271,7 @@ class _pageAgendaState extends State<pageAgenda> {
           children: [
             Text(
               titulo,
-              style: const TextStyle(
+              style: TextStyle(
                 color: corBackground,
                 fontWeight: FontWeight.bold,
               ),

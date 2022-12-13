@@ -1,4 +1,4 @@
-import 'package:agendacultural/model/cores.dart';
+import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/home/widgetperfil.dart';
 import 'package:agendacultural/shared/themes.dart';
@@ -112,7 +112,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
                 Text(
                   "Dados cadastrais",
                   semanticsLabel: "Dados cadastrais",
-                  style: Fontes.poppins18W500Black,
+                  style: Fontes.poppins18W500Black((Fontes.tamanhoBase)),
                 ),
                 const widgetEspacoH(
                   altura: 15,
@@ -120,13 +120,13 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
                 Text(
                   "Nome",
                   semanticsLabel: "Digite seu Nome",
-                  style: poppins16W400Black,
+                  style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
                 ),
                 const widgetEspacoH(
                   altura: 4,
                 ),
                 TextField(
-                  style: poppins16W400Grey,
+                  style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
                   onChanged: (value) {
                     setState(() {
                       nomeInput = value;
@@ -139,14 +139,14 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
                 ),
                 Text(
                   "E-mail",
-                  style: poppins16W400Black,
+                  style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
                   semanticsLabel: "Digite seu E-mail",
                 ),
                 const widgetEspacoH(
                   altura: 4,
                 ),
                 TextField(
-                  style: poppins16W400Grey,
+                  style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
                   onChanged: (value) {
                     setState(() {
                       emailInput = value;
@@ -158,14 +158,14 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
                   altura: 15,
                 ),
                 Text("Senha atual",
-                    style: poppins16W400Black,
+                    style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
                     semanticsLabel: "Digite sua Senha atual"),
                 const widgetEspacoH(
                   altura: 4,
                 ),
                 TextField(
                   obscureText: obscureTextSenha,
-                  style: poppins16W400Grey,
+                  style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
                   onChanged: (value) {
                     setState(() {
                       senhaInput = value;
@@ -204,7 +204,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
                 Text(
                   "Nova senha",
                   semanticsLabel: "Digite sua nova senha",
-                  style: poppins16W400Black,
+                  style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
                 ),
                 const widgetEspacoH(
                   altura: 4,
@@ -212,7 +212,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
                 TextField(
                   autofocus: false,
                   obscureText: obscureTextNovaSenha,
-                  style: poppins16W400Grey,
+                  style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
                   onChanged: (value) {
                     setState(() {
                       novaSenhaInput = value;
@@ -256,7 +256,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
                         children: [
                           Text(
                             "Sua senha deve conter:",
-                            style: roboto12W400Grey,
+                            style: Fontes.roboto12W400Grey(Fontes.tamanhoBase),
                             semanticsLabel: "Sua senha deve conter:",
                           ),
                           const widgetEspacoH(
@@ -264,7 +264,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
                           ),
                           Text(
                             "No mínimo 6 dígitos",
-                            style: roboto12W300Grey,
+                            style: Fontes.roboto12W300Grey(Fontes.tamanhoBase),
                             semanticsLabel: "No mínimo 6 dígitos",
                           ),
                           const widgetEspacoH(
@@ -272,7 +272,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
                           ),
                           Text(
                             "Pelo menos 1 letra maiúscula",
-                            style: roboto12W300Grey,
+                            style: Fontes.roboto12W300Grey(Fontes.tamanhoBase),
                             semanticsLabel: "Pelo menos 1 letra maiúscula",
                           ),
                           const widgetEspacoH(
@@ -280,7 +280,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
                           ),
                           Text(
                             "Pelo menos 1 letra minúscula",
-                            style: roboto12W300Grey,
+                            style: Fontes.roboto12W300Grey(Fontes.tamanhoBase),
                             semanticsLabel: "Pelo menos 1 letra minúscula",
                           ),
                           const widgetEspacoH(
@@ -288,7 +288,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
                           ),
                           Text(
                             "Pelo menos 1 número",
-                            style: roboto12W300Grey,
+                            style: Fontes.roboto12W300Grey(Fontes.tamanhoBase),
                             semanticsLabel: "Pelo menos 1 número",
                           ),
                           const widgetEspacoH(
@@ -296,7 +296,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
                           ),
                           Text(
                             "Força da senha:",
-                            style: roboto12W300Grey,
+                            style: Fontes.roboto12W300Grey(Fontes.tamanhoBase),
                             semanticsLabel: "Força da senha:",
                           ),
                           const widgetEspacoH(
