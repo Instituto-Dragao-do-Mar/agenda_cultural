@@ -1,3 +1,4 @@
+import 'package:agendacultural/dados/dados.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/shared/constantes.dart';
 import 'package:agendacultural/shared/widgetbotao.dart';
@@ -20,15 +21,15 @@ class _WidgetalertdialogState extends State<Widgetalertdialog> {
   Widget build(BuildContext context) {
     return isAlert
         ? Scaffold(
-            backgroundColor: Color.fromRGBO(217, 217, 217, 0.4),
+            backgroundColor: const Color.fromRGBO(217, 217, 217, 0.4),
             body: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Container(
                   color: Colors.white,
                   width: double.infinity,
-                  padding:
-                      EdgeInsets.only(left: 16, top: 38, right: 16, bottom: 38),
+                  padding: const EdgeInsets.only(
+                      left: 16, top: 38, right: 16, bottom: 38),
                   child: Column(
                     children: [
                       Row(
@@ -45,7 +46,7 @@ class _WidgetalertdialogState extends State<Widgetalertdialog> {
                           ),
                         ],
                       ),
-                      widgetEspacoH(altura: 8),
+                      const widgetEspacoH(altura: 8),
                       Text(
                         "Nós armazenamos dados temporariamente para melhorar"
                         " a sua experiência de navegação e recomendar conteúdo de seu interesse."
@@ -56,7 +57,7 @@ class _WidgetalertdialogState extends State<Widgetalertdialog> {
                             " Ao utilizar nossos serviços, você concorda com tal monitoramento.",
                         style: poppins12W400Grey,
                       ),
-                      widgetEspacoH(altura: 16),
+                      const widgetEspacoH(altura: 16),
                       Row(
                         children: [
                           Expanded(
@@ -84,11 +85,10 @@ class _WidgetalertdialogState extends State<Widgetalertdialog> {
                               height: 48,
                               text: "Aceitar",
                               function: () {
-                                widgetErro(
-                                  context: context,
-                                  text:
-                                      "Funcionalidade em desenvolvimento, entre como visitante.",
-                                );
+                                Dados.setBool('cookies', true);
+                                setState(() {
+                                  isAlert = !isAlert;
+                                });
                               },
                             ),
                           ),

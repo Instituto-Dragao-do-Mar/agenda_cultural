@@ -5,6 +5,8 @@ const urlApiIDM = "https://apiagendacultural.redeinova.com.br/api/";
 
 const kGoogleApiKey = "AIzaSyBHnw0ov66Rh1UCjnK3pfuh5Y-yoG44FTg";
 
+
+
 final TextStyle poppins18W500Black = GoogleFonts.poppins(
   textStyle: const TextStyle(
     fontSize: 18,

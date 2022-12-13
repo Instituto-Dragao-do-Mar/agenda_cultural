@@ -1,12 +1,15 @@
 // ignore_for_file: camel_case_types
 
 import 'package:agendacultural/model/app_model.dart';
+import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/agenda/widgetpageagendavisualizarpordia.dart';
 import 'package:agendacultural/pages/evento/widgethomeeventoscontainer.dart';
+import 'package:agendacultural/pages/filtro/pagefiltro.dart';
 import 'package:agendacultural/pages/home/widgets/widgettopocomum.dart';
 import 'package:agendacultural/shared/constantes.dart';
 import 'package:agendacultural/shared/extensions/dates.dart';
 import 'package:agendacultural/shared/themes.dart';
+import 'package:agendacultural/shared/widgetimagem.dart';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -90,10 +93,29 @@ class _pageAgendaState extends State<pageAgenda> {
                   'Resultados',
                   style: poppins16W400Black,
                 ),
-                Row(
-                  children: const [
-                    Text('Filtrar'),
-                  ],
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const pageFiltro(),
+                      ),
+                    );
+                  },
+                  child: Row(
+                    children: [
+                      const Text('Filtrar'),
+                      const SizedBox(width: 5),
+                      widgetImagemInterna(
+                        imagem: Imagem(
+                          url: 'filtro.png',
+                        ),
+                        width: 16,
+                        height: 16,
+                        fit: BoxFit.contain,
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),

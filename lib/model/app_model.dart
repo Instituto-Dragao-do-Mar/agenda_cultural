@@ -8,10 +8,12 @@ import 'package:agendacultural/model/categoria_model.dart';
 import 'package:agendacultural/model/espaco_model.dart';
 import 'package:agendacultural/model/evento_model.dart';
 import 'package:agendacultural/model/filtro_model.dart';
+import 'package:agendacultural/model/localizacao_model.dart';
 import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/shared/extensions/capitalize.dart';
 import 'package:agendacultural/shared/extensions/clearMask.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AppModel extends ChangeNotifier {
   bool categoriasVerTudo = false;
@@ -21,10 +23,13 @@ class AppModel extends ChangeNotifier {
   late ListaAcessibilidade listaAcessibilidade;
   late ListaEspacos listaEspacos;
   late Filtro filtro;
+  late Localizacao localizacao;
 
   Usuario? usuario;
 
   bool isLog() => (usuario != null);
+
+  AppModel();
 
   Future<void> getdados() async {
     listaCategoria = await CategoriaController().categoriaGet(
@@ -36,6 +41,9 @@ class AppModel extends ChangeNotifier {
     listaEspacos = await EspacoController().espacoGet(
       userguidid: "",
     );
+
+    /*final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
+    final SharedPreferences prefs = await _prefs;*/
 
     // Populo o filtro
     filtro = Filtro(
@@ -63,7 +71,6 @@ class AppModel extends ChangeNotifier {
       filtro.opcoesAcessibilidade = [];
       listaEspacos.espacos!.map(
         (e) {
-
           /*if (!filtro.opcoesClassificacoes!
               .any((element) => element == (e.classificacaoetaria ?? ''))) {
             filtro.opcoesClassificacoes!.add(e.classificacaoetaria ?? '');

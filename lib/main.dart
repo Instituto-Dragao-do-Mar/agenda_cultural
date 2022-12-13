@@ -1,4 +1,6 @@
+import 'package:agendacultural/dados/dados.dart';
 import 'package:agendacultural/model/app_model.dart';
+import 'package:agendacultural/model/cores.dart';
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
 import 'package:agendacultural/pages/home/acessibilidade/widgetacessibilidade.dart';
 import 'package:agendacultural/pages/localizacao/widgetlocalizacao.dart';
@@ -17,6 +19,13 @@ import 'package:url_strategy/url_strategy.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setPathUrlStrategy();
+
+  
+  int fonte = await Dados.getInt('tamanhofontebase');
+  if (fonte == 0) {
+    await Dados.setInt('tamanhofontebase', 16);
+  }
+  Fontes.tamanhoBase = fonte;
 
   initializeDateFormatting("pt_BR", null).then(
     (_) => runApp(MultiProvider(
@@ -52,8 +61,8 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Agenda Cultural',
       theme: themeDefault,
-      //home: const pageSplash(),
-      home: const pageLogin(),
+      home: const pageSplash(),
+      //home: const pageLogin(),
     );
   }
 }

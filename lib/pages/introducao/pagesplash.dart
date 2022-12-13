@@ -23,18 +23,21 @@ class _pageSplashState extends State<pageSplash> {
   }
 
   _navigatorPageIntroducao() async {
-    await Future.delayed(const Duration(seconds: 3), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: ((context) => const pageIntroducao(
-                destino: Introducaoinfo(
-                  destino: pageLogin(),
-                ),
-              )),
-        ),
-      );
-    });
+    await Future.delayed(
+      const Duration(seconds: 3),
+      () {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: ((context) => const pageIntroducao(
+                  destino: Introducaoinfo(
+                    destino: pageLogin(),
+                  ),
+                )),
+          ),
+        );
+      },
+    );
   }
 
   @override

@@ -1,9 +1,10 @@
-
 // ignore_for_file: camel_case_types
 import 'package:agendacultural/controller/introducao_controller.dart';
+import 'package:agendacultural/dados/dados.dart';
 import 'package:agendacultural/model/introducao_model.dart';
 import 'package:agendacultural/pages/home/acessibilidade/widgetacessibilidade.dart';
 import 'package:agendacultural/shared/constantes.dart';
+import 'package:agendacultural/shared/widgetalertdialog.dart';
 import 'package:agendacultural/shared/widgetbottombotao.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
@@ -47,6 +48,9 @@ class _pageIntroducaoState extends State<pageIntroducao> {
   @override
   Widget build(BuildContext context) {
     int currentStep = 1;
+/*
+    print("DADOS J: ${Dados.x}");
+    print("DADOS: ${Dados.prefs}");*/
 
     return FutureBuilder(
       future: getdados(),
@@ -210,14 +214,26 @@ class _pageIntroducaoState extends State<pageIntroducao> {
                 ),
               ),
             ),
+            FutureBuilder(
+              future: Dados.getBool('cookies'),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return const SizedBox.shrink();
+                }
+                bool permiteCookies = snapshot.data as bool;
 
-            /*Semantics(
-              container: true,
-              sortKey: const OrdinalSortKey(1),
-              child: const Positioned(
-                child: Widgetalertdialog(),
-              ),
-            )*/
+                if (permiteCookies) {
+                  return const SizedBox.shrink();
+                }
+                return Semantics(
+                  container: true,
+                  sortKey: const OrdinalSortKey(1),
+                  child: const Positioned(
+                    child: Widgetalertdialog(),
+                  ),
+                );
+              },
+            ),
           ],
         );
       },

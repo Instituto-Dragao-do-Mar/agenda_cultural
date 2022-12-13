@@ -1,3 +1,4 @@
+import 'package:agendacultural/model/cores.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/home/widgetperfil.dart';
 import 'package:agendacultural/shared/themes.dart';
@@ -111,7 +112,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
                 Text(
                   "Dados cadastrais",
                   semanticsLabel: "Dados cadastrais",
-                  style: poppins18W500Black,
+                  style: Fontes.poppins18W500Black,
                 ),
                 const widgetEspacoH(
                   altura: 15,

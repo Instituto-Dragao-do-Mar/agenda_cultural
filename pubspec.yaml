@@ -50,15 +50,13 @@ dependencies:
   step_progress_indicator: ^1.0.2
   flutter_switch: ^0.3.2
   platform_info: ^3.2.0
-  cached_network_image: ^3.2.3
-  geolocator: ^9.0.2
+  cached_network_image: ^3.2.3  
   intl: ^0.17.0
   google_maps_flutter: ^2.0.6
   google_maps_flutter_web: ^0.3.0+3
   url_strategy: ^0.2.0
-  adaptive_action_sheet: ^2.0.2
-
-
+  adaptive_action_sheet: ^2.0.2  
+  location: ^4.4.0
 
 dev_dependencies:
   flutter_test:
