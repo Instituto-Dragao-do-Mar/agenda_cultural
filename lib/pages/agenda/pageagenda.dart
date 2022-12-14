@@ -14,6 +14,10 @@ import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../model/cores.dart';
+import '../../model/fontes.dart';
+import '../../shared/widgetTextFonteContraste.dart';
+
 class pageAgenda extends StatefulWidget {
   const pageAgenda({super.key});
 
@@ -55,7 +59,7 @@ class _pageAgendaState extends State<pageAgenda> {
           children: [
             Text(
               'Escolha uma data',
-              style: poppins16W400Black,
+              style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
             ),
             const SizedBox(height: 10),
             Row(
@@ -81,7 +85,7 @@ class _pageAgendaState extends State<pageAgenda> {
             const SizedBox(height: 10),
             Text(
               'Visualizar por dia',
-              style: poppins16W400Black,
+              style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
             ),
             const SizedBox(height: 10),
             widgetMostraDias(),
@@ -89,9 +93,9 @@ class _pageAgendaState extends State<pageAgenda> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'Resultados',
-                  style: poppins16W400Black,
+                TextContrasteFonte(
+                  text: 'Resultados',
+                  style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
                 ),
                 GestureDetector(
                   onTap: () {
@@ -258,7 +262,7 @@ class _pageAgendaState extends State<pageAgenda> {
             bottomRight: Radius.circular(!primeiro ? 10 : 0),
           ),
           border: Border.all(
-            color: corBackground.withOpacity(.2),
+            color: Cores.contraste ? Colors.white : corBackgroundLaranja.withOpacity(.2),
           ),
         ),
         height: 70,
@@ -267,15 +271,18 @@ class _pageAgendaState extends State<pageAgenda> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              titulo,
-              style: const TextStyle(
-                color: corBackground,
-                fontWeight: FontWeight.bold,
-              ),
+            TextContrasteFonte(
+              text: titulo,
+              color: corBackgroundLaranja,
+              weight: FontWeight.bold,
+              fontsize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
             ),
             const SizedBox(width: 5),
-            Text(ted.text.formatDate(format: "E, dd MMM"))
+            TextContrasteFonte(
+              text: ted.text.formatDate(format: "E, dd MMM"),
+              color: corTextAtual,
+              fontsize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
+            ),
           ],
         ),
         //child: Text("xxxx"),

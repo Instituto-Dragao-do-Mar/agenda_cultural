@@ -7,6 +7,10 @@ import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:agendacultural/shared/widgetimagemexterna.dart';
 import 'package:flutter/material.dart';
 
+import '../../../model/cores.dart';
+import '../../../model/fontes.dart';
+import '../../../shared/widgetTextFonteContraste.dart';
+
 class widgetHomeCategoriasContainer extends StatefulWidget {
   const widgetHomeCategoriasContainer({
     super.key,
@@ -22,13 +26,17 @@ class widgetHomeCategoriasContainer extends StatefulWidget {
 
 class _widgetHomeCategoriasContainerState
     extends State<widgetHomeCategoriasContainer> {
+  bool statusAltoContraste = Cores.contraste;
+  double fontSize = Fontes.tamanhoBase.toDouble();
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8),
-      child: SizedBox(
-        width: 70,
-        height: 120,
+      child: Container(
+        color: corBgAtual,
+        width: 70 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+        height: 120 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
         child: Column(
           children: [
             GestureDetector(
@@ -39,7 +47,7 @@ class _widgetHomeCategoriasContainerState
               },
               child: CircleAvatar(
                 radius: 30,
-                backgroundColor: corBackground,
+                backgroundColor: corBackgroundLaranja,
                 child: CircleAvatar(
                   radius: widget.categoria.selecionada! ? 26 : 30,
                   backgroundImage: widgetImagemExterna(
@@ -55,12 +63,10 @@ class _widgetHomeCategoriasContainerState
               ),
             ),
             const SizedBox(height: 5),
-            Text(
-              widget.categoria.nome!,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 10,
-              ),
+            TextContrasteFonte(
+              text: widget.categoria.nome!,
+              align: TextAlign.center,
+              fontsize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 10),
             ),
           ],
         ),

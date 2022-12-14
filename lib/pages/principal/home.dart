@@ -73,9 +73,9 @@ class _pagePrincipalState extends State<pagePrincipal> {
           top: true,
           minimum: const EdgeInsets.symmetric(vertical: 16),
           child: Scaffold(
-            backgroundColor: corBackgroundNegative,
+            backgroundColor: corBgAtual,
             appBar: AppBar(
-                backgroundColor: corBackgroundNegative,
+                backgroundColor: corBgAtual,
                 elevation: 0,
                 leadingWidth: 0,
                 title: subPaginasTopo[opcaoSelecionada]),
@@ -96,17 +96,17 @@ class _pagePrincipalState extends State<pagePrincipal> {
           },
         );
       },
-      backgroundColor: corBackgroundNegative,
+      backgroundColor: corBgAtual,
       elevation: 0,
       showUnselectedLabels: true,
       unselectedFontSize: 12,
       selectedFontSize: 12,
-      unselectedItemColor: Colors.black,
-      selectedItemColor: Colors.grey,
+      unselectedItemColor: corTextAtual,
+      selectedItemColor: corBackgroundLaranja,
       currentIndex: opcaoSelecionada,
       items: [
         BottomNavigationBarItem(
-          backgroundColor: corBackgroundNegative,
+          backgroundColor: corBgAtual,
           icon: widgetImagemInterna(
               imagem: Imagem(
             url: 'bottomhome.png',
@@ -114,6 +114,7 @@ class _pagePrincipalState extends State<pagePrincipal> {
           label: "Home",
         ),
         BottomNavigationBarItem(
+          backgroundColor: corBgAtual,
           icon: widgetImagemInterna(
               imagem: Imagem(
             url: 'bottomcalendario.png',
@@ -121,6 +122,7 @@ class _pagePrincipalState extends State<pagePrincipal> {
           label: "Agenda",
         ),
         BottomNavigationBarItem(
+          backgroundColor: corBgAtual,
           icon: widgetImagemInterna(
               imagem: Imagem(
             url: 'bottommapa.png',
@@ -128,6 +130,7 @@ class _pagePrincipalState extends State<pagePrincipal> {
           label: "Mapa",
         ),
         BottomNavigationBarItem(
+          backgroundColor: corBgAtual,
           icon: widgetImagemInterna(
               imagem: Imagem(
             url: 'bottomfavoritos.png',
@@ -135,6 +138,7 @@ class _pagePrincipalState extends State<pagePrincipal> {
           label: "Favoritos",
         ),
         BottomNavigationBarItem(
+          backgroundColor: corBgAtual,
           icon: widgetImagemInterna(
               imagem: Imagem(
             url: 'bottomperfil.png',

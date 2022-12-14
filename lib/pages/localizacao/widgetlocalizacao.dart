@@ -12,6 +12,8 @@ import 'package:agendacultural/shared/widgetespacov.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
 
+import '../../model/fontes.dart';
+
 class Widgetlocalizacao extends StatelessWidget {
   const Widgetlocalizacao({Key? key}) : super(key: key);
 
@@ -22,9 +24,9 @@ class Widgetlocalizacao extends StatelessWidget {
       top: true,
       minimum: const EdgeInsets.symmetric(vertical: 16),
       child: Scaffold(
-        backgroundColor: corBackgroundNegative,
+        backgroundColor: corBgAtual,
         appBar: AppBar(
-          backgroundColor: corBackgroundNegative,
+          backgroundColor: corBgAtual,
           elevation: 0,
           leadingWidth: 0,
           title: const widgetTopo(),
@@ -37,7 +39,7 @@ class Widgetlocalizacao extends StatelessWidget {
                 children: [
                   Text(
                     "Onde você está?",
-                    style: poppins14W400222,
+                    style: Fontes.poppins14W400222(Fontes.tamanhoBase),
                   ),
                   const widgetEspacoV(largura: 10),
                   widgetImagemInterna(
@@ -63,7 +65,7 @@ class Widgetlocalizacao extends StatelessWidget {
                 "Ao definir sua localização facilitará a busca por"
                 " informações relacionadas aos eventos que estão acontecendo"
                 " ao seu redor e espaços culturais da cidade!",
-                style: poppins14W400Grey,
+                style: Fontes.poppins14W400Grey(Fontes.tamanhoBase),
               ),
               const widgetEspacoH(
                 altura: 16,
@@ -102,7 +104,7 @@ class Widgetlocalizacao extends StatelessWidget {
                     child: Text(
                       "Inserir localização manualmente",
                       semanticsLabel: "Clique Inserir localização manualmente",
-                      style: roboto16W400EA5,
+                      style: Fontes.roboto16W400EA5(Fontes.tamanhoBase),
                     ),
                   ),
                 ),
@@ -124,7 +126,7 @@ class Widgetlocalizacao extends StatelessWidget {
                     child: Text(
                       "Ir para login",
                       semanticsLabel: "Entrar",
-                      style: roboto16W400EA5,
+                      style: Fontes.roboto16W400EA5(Fontes.tamanhoBase),
                     ),
                   ),
                 ),

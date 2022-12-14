@@ -64,8 +64,10 @@ class _widgetHomeCategoriasState extends State<widgetHomeCategorias> {
                   }
                   //return Container();
 
-                  return widgetHomeCategoriasContainer(
-                    categoria: e,
+                  return Expanded(
+                    child: widgetHomeCategoriasContainer(
+                      categoria: e,
+                    ),
                   );
                 },
               ).toList(),

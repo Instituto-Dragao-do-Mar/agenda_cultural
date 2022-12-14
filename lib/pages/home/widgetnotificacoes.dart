@@ -9,6 +9,7 @@ import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
 
+import '../../model/fontes.dart';
 import '../../shared/constantes.dart';
 import '../../shared/widgetbotaoswitch.dart';
 import 'widgetperfil.dart';
@@ -44,8 +45,9 @@ class _widgetNotificacoesState extends State<widgetNotificacoes> {
       top: true,
       minimum: const EdgeInsets.symmetric(vertical: 16),
       child: Scaffold(
+        backgroundColor: corBgAtual,
         appBar: AppBar(
-          backgroundColor: corBackgroundNegative,
+          backgroundColor: corBgAtual,
           elevation: 0,
           leadingWidth: 0,
           title: widgetTopoPerfil(),
@@ -56,7 +58,7 @@ class _widgetNotificacoesState extends State<widgetNotificacoes> {
               opcaoSelecionada = i;
             });
           },
-          backgroundColor: corBackgroundNegative,
+          backgroundColor: corBgAtual,
           elevation: 0,
           showUnselectedLabels: true,
           unselectedFontSize: 12,
@@ -66,38 +68,42 @@ class _widgetNotificacoesState extends State<widgetNotificacoes> {
           currentIndex: opcaoSelecionada,
           items: [
             BottomNavigationBarItem(
-              backgroundColor: corBackgroundNegative,
+              backgroundColor: corBgAtual,
               icon: widgetImagemInterna(
                   imagem: Imagem(
-                url: 'bottomhome.png',
+                url: 'fhome.png',
               )),
               label: "Home",
             ),
             BottomNavigationBarItem(
+              backgroundColor: corBgAtual,
               icon: widgetImagemInterna(
                   imagem: Imagem(
-                url: 'bottomcalendario.png',
+                url: 'fagenda.png',
               )),
               label: "Agenda",
             ),
             BottomNavigationBarItem(
+              backgroundColor: corBgAtual,
               icon: widgetImagemInterna(
                   imagem: Imagem(
-                url: 'bottommapa.png',
+                url: 'fmapa.png',
               )),
               label: "Mapa",
             ),
             BottomNavigationBarItem(
+              backgroundColor: corBgAtual,
               icon: widgetImagemInterna(
                   imagem: Imagem(
-                url: 'bottomfavoritos.png',
+                url: 'ffavorito.png',
               )),
               label: "Favoritos",
             ),
             BottomNavigationBarItem(
+              backgroundColor: corBgAtual,
               icon: widgetImagemInterna(
                   imagem: Imagem(
-                url: 'bottomperfil.png',
+                url: 'fperfil.png',
               )),
               label: "Perfil",
             ),
@@ -111,12 +117,12 @@ class _widgetNotificacoesState extends State<widgetNotificacoes> {
               children: [
                 Text(
                   "Notificações e alertas",
-                  style: poppins18W500Black,
+                  style: Fontes.poppins18W500Black(Fontes.tamanhoBase),
                 ),
                 const widgetEspacoH(altura: 16),
                 Text(
                   "Habilitar notificações",
-                  style: roboto16W400Black,
+                  style: Fontes.roboto16W400Black(Fontes.tamanhoBase),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -124,7 +130,7 @@ class _widgetNotificacoesState extends State<widgetNotificacoes> {
                   children: [
                     Text(
                       "Escolha se deseja receber notificações",
-                      style: poppins12W400Grey,
+                      style: Fontes.poppins12W400Grey(Fontes.tamanhoBase),
                     ),
                     widgetBotaoSwitch(
                       value: status1,
@@ -134,11 +140,11 @@ class _widgetNotificacoesState extends State<widgetNotificacoes> {
                 const widgetEspacoH(altura: 20),
                 Text(
                   "Notificação push",
-                  style: roboto16W400Black,
+                  style: Fontes.roboto16W400Black(Fontes.tamanhoBase),
                 ),
                 Text(
                   "Escolha quais notificações deseja receber no seu celular",
-                  style: poppins12W400Grey,
+                  style: Fontes.poppins12W400Grey(Fontes.tamanhoBase),
                 ),
                 const widgetEspacoH(altura: 12),
                 Row(
@@ -147,7 +153,7 @@ class _widgetNotificacoesState extends State<widgetNotificacoes> {
                   children: [
                     Text(
                       "Lembretes de alertas",
-                      style: poppins14W400Grey,
+                      style: Fontes.poppins14W400Grey(Fontes.tamanhoBase),
                     ),
                     widgetBotaoSwitch(
                       value: status1,
@@ -161,7 +167,7 @@ class _widgetNotificacoesState extends State<widgetNotificacoes> {
                   children: [
                     Text(
                       "Atualização da programação",
-                      style: poppins14W400Grey,
+                      style: Fontes.poppins14W400Grey(Fontes.tamanhoBase),
                     ),
                     widgetBotaoSwitch(
                       value: status1,
@@ -171,11 +177,11 @@ class _widgetNotificacoesState extends State<widgetNotificacoes> {
                 const widgetEspacoH(altura: 25),
                 Text(
                   "Notificação por e-mail",
-                  style: roboto16W400Black,
+                  style: Fontes.roboto16W400Black(Fontes.tamanhoBase),
                 ),
                 Text(
                   "Escolha quais notificações deseja receber por e-mail",
-                  style: poppins12W400Grey,
+                  style: Fontes.poppins12W400Grey(Fontes.tamanhoBase),
                 ),
                 const widgetEspacoH(altura: 20),
                 Row(
@@ -184,7 +190,7 @@ class _widgetNotificacoesState extends State<widgetNotificacoes> {
                   children: [
                     Text(
                       "Lembretes de alertas",
-                      style: poppins14W400Grey,
+                      style: Fontes.poppins14W400Grey(Fontes.tamanhoBase),
                     ),
                     widgetBotaoSwitch(
                       value: status1,
@@ -198,7 +204,7 @@ class _widgetNotificacoesState extends State<widgetNotificacoes> {
                   children: [
                     Text(
                       "Atualização da programação",
-                      style: poppins14W400Grey,
+                      style: Fontes.poppins14W400Grey(Fontes.tamanhoBase),
                     ),
                     widgetBotaoSwitch(
                       value: status1,
@@ -208,11 +214,11 @@ class _widgetNotificacoesState extends State<widgetNotificacoes> {
                 const widgetEspacoH(altura: 25),
                 Text(
                   "Receber alertas",
-                  style: roboto16W400Black,
+                  style: Fontes.roboto16W400Black(Fontes.tamanhoBase),
                 ),
                 Text(
                   "Defina quando deseja receber alertas de eventos",
-                  style: poppins12W400Grey,
+                  style: Fontes.poppins12W400Grey(Fontes.tamanhoBase),
                 ),
                 const widgetEspacoH(altura: 20),
                 Row(
@@ -221,7 +227,7 @@ class _widgetNotificacoesState extends State<widgetNotificacoes> {
                   children: [
                     Text(
                       "1 dia antes do evento",
-                      style: poppins14W400Grey,
+                      style: Fontes.poppins14W400Grey(Fontes.tamanhoBase),
                     ),
                     widgetBotaoSwitch(
                       value: status1,
@@ -235,7 +241,7 @@ class _widgetNotificacoesState extends State<widgetNotificacoes> {
                   children: [
                     Text(
                       "1 semana antes do evento",
-                      style: poppins14W400Grey,
+                      style: Fontes.poppins14W400Grey(Fontes.tamanhoBase),
                     ),
                     widgetBotaoSwitch(
                       value: status1,

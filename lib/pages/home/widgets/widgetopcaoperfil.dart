@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 
+import '../../../model/fontes.dart';
 import '../../../shared/constantes.dart';
+import '../../../shared/widgetTextFonteContraste.dart';
 
 class widgetopacaoperfil extends StatelessWidget {
   const widgetopacaoperfil({
@@ -25,10 +27,10 @@ class widgetopacaoperfil extends StatelessWidget {
           ),
         );
       },
-      child: Text(
-        subtitulo,
-        style: roboto16W400Grey,
-        semanticsLabel: subtitulo,
+      child: TextContrasteFonte(
+        text: subtitulo,
+        style: Fontes.roboto16W400Grey(Fontes.tamanhoBase),
+        semantics: subtitulo,
       ),
     );
   }

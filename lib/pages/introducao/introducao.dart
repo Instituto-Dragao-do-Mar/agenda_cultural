@@ -13,6 +13,8 @@ import 'package:flutter/rendering.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
+import '../../model/fontes.dart';
+
 class pageIntroducao extends StatefulWidget {
   const pageIntroducao({
     super.key,
@@ -27,6 +29,7 @@ class pageIntroducao extends StatefulWidget {
 
 class _pageIntroducaoState extends State<pageIntroducao> {
   final introKey = GlobalKey<IntroductionScreenState>();
+  int currentStep = 1;
 
   ListaIntroducao? listaIntroducao;
 
@@ -47,7 +50,6 @@ class _pageIntroducaoState extends State<pageIntroducao> {
 
   @override
   Widget build(BuildContext context) {
-    int currentStep = 1;
 /*
     print("DADOS J: ${Dados.x}");
     print("DADOS: ${Dados.prefs}");*/
@@ -66,7 +68,16 @@ class _pageIntroducaoState extends State<pageIntroducao> {
               child: IntroductionScreen(
                 isProgress: false,
                 key: introKey,
-                onDone: () => _onIntroEnd(context),
+                onChange: (value) {
+                  currentStep < 3
+                      ? setState(() {
+                          currentStep += 1;
+                        })
+                      : _onIntroEnd(context);
+                },
+                onDone: () => {
+                  _onIntroEnd(context),
+                },
                 onSkip: () => _onIntroEnd(context),
                 showBackButton: _showBackButton,
                 showSkipButton: _showSkipButton,
@@ -193,10 +204,13 @@ class _pageIntroducaoState extends State<pageIntroducao> {
                           child: RichText(
                             text: TextSpan(
                                 text: currentStep.toString(),
-                                style: inter14W500EA5B0C,
+                                style: Fontes.inter14W500EA5B0C(
+                                    Fontes.tamanhoBase),
                                 children: [
                                   TextSpan(
-                                      text: " de 3", style: inter14W500Grey)
+                                      text: " de 3",
+                                      style: Fontes.inter14W500Grey(
+                                          Fontes.tamanhoBase))
                                 ]),
                           ),
                         ),
@@ -204,7 +218,7 @@ class _pageIntroducaoState extends State<pageIntroducao> {
                           onPressed: () => _onIntroEnd(context),
                           child: Text(
                             "Pular introdução",
-                            style: inter14W500Grey,
+                            style: Fontes.inter14W500Grey(Fontes.tamanhoBase),
                             semanticsLabel: "Pular Introdução",
                           ),
                         )
