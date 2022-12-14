@@ -11,14 +11,14 @@ import 'package:flutter/material.dart';
 
 import '../../model/fontes.dart';
 
-class widgetIndiomas extends StatefulWidget {
-  const widgetIndiomas({Key? key}) : super(key: key);
+class widgetIdiomas extends StatefulWidget {
+  const widgetIdiomas({Key? key}) : super(key: key);
 
   @override
-  _widgetIndiomasState createState() => _widgetIndiomasState();
+  _widgetIdiomasState createState() => _widgetIdiomasState();
 }
 
-class _widgetIndiomasState extends State<widgetIndiomas> {
+class _widgetIdiomasState extends State<widgetIdiomas> {
   int? valor = 0;
   int opcaoSelecionada = 0;
 
@@ -37,7 +37,7 @@ class _widgetIndiomasState extends State<widgetIndiomas> {
       minimum: const EdgeInsets.symmetric(vertical: 16),
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: corBackgroundNegative,
+          backgroundColor: corBgAtual,
           elevation: 0,
           leadingWidth: 0,
           title: const widgetTopoPerfil(),
@@ -48,7 +48,7 @@ class _widgetIndiomasState extends State<widgetIndiomas> {
               opcaoSelecionada = i;
             });
           },
-          backgroundColor: corBackgroundNegative,
+          backgroundColor: corBgAtual,
           elevation: 0,
           showUnselectedLabels: true,
           unselectedFontSize: 12,
@@ -58,38 +58,42 @@ class _widgetIndiomasState extends State<widgetIndiomas> {
           currentIndex: opcaoSelecionada,
           items: [
             BottomNavigationBarItem(
-              backgroundColor: corBackgroundNegative,
+              backgroundColor: corBgAtual,
               icon: widgetImagemInterna(
                   imagem: Imagem(
-                url: 'bottomhome.png',
+                url: 'fhome.png',
               )),
               label: "Home",
             ),
             BottomNavigationBarItem(
+              backgroundColor: corBgAtual,
               icon: widgetImagemInterna(
                   imagem: Imagem(
-                url: 'bottomcalendario.png',
+                url: 'fagenda.png',
               )),
               label: "Agenda",
             ),
             BottomNavigationBarItem(
+              backgroundColor: corBgAtual,
               icon: widgetImagemInterna(
                   imagem: Imagem(
-                url: 'bottommapa.png',
+                url: 'fmapa.png',
               )),
               label: "Mapa",
             ),
             BottomNavigationBarItem(
+              backgroundColor: corBgAtual,
               icon: widgetImagemInterna(
                   imagem: Imagem(
-                url: 'bottomfavoritos.png',
+                url: 'ffavorito.png',
               )),
               label: "Favoritos",
             ),
             BottomNavigationBarItem(
+              backgroundColor: corBgAtual,
               icon: widgetImagemInterna(
                   imagem: Imagem(
-                url: 'bottomperfil.png',
+                url: 'fperfil.png',
               )),
               label: "Perfil",
             ),

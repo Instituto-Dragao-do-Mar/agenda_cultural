@@ -23,6 +23,9 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
 
+import '../../model/fontes.dart';
+import '../../shared/widgetTextFonteContraste.dart';
+
 class pageEventoDetalhe extends StatefulWidget {
   const pageEventoDetalhe({
     super.key,
@@ -86,7 +89,9 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: corBgAtual,
       appBar: AppBar(
+        backgroundColor: corBgAtual,
         leading: GestureDetector(
           onTap: () {
             Navigator.pop(context);
@@ -96,11 +101,11 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
           ),
         ),
         centerTitle: false,
-        title: const Text(
-          "Evento",
+        title: TextContrasteFonte(
+          text: "Evento",
           style: TextStyle(
-            color: Colors.black,
-            fontSize: 16,
+            color: corTextAtual,
+            fontSize: Fontes.tamanhoBase.toDouble(),
           ),
         ),
       ),
@@ -132,20 +137,20 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      app.GetCategoriasEvento(widget.evento),
+                    TextContrasteFonte(
+                      text: app.GetCategoriasEvento(widget.evento),
                       style: GoogleFonts.inter(
-                        fontSize: 14,
+                        fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
                         color: corBackgroundLaranja,
                       ),
                     ),
                     const widgetEspacoH(),
-                    Text(
-                      widget.evento.nome!,
+                    TextContrasteFonte(
+                      text: widget.evento.nome!,
                       style: GoogleFonts.inter(
-                        fontSize: 16,
+                        fontSize: Fontes.tamanhoBase.toDouble(),
                         fontWeight: FontWeight.w600,
-                        color: Colors.black,
+                        color: corTextAtual,
                       ),
                     ),
                     const widgetEspacoH(),
@@ -179,20 +184,20 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
   Column widgetEvDescicao() {
     return Column(
       children: [
-        Text(
-          "Descrição",
+        TextContrasteFonte(
+          text: "Descrição",
           style: GoogleFonts.inter(
-            fontSize: 14,
+            fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
             fontWeight: FontWeight.w500,
-            color: Colors.black,
+            color: corTextAtual,
           ),
         ),
         const widgetEspacoH(),
         ReadMoreText(
           widget.evento.detalhe!,
           style: GoogleFonts.inter(
-            fontSize: 14,
-            color: Colors.black,
+            fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
+            color: corTextAtual,
           ),
           colorClickableText: corBackgroundLaranja,
           trimLength: 300,
@@ -200,12 +205,12 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
           trimCollapsedText: 'Ler mais',
           trimExpandedText: 'Ler menos',
           moreStyle: TextStyle(
-            fontSize: 14,
+            fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
             fontWeight: FontWeight.bold,
             color: corBackgroundLaranja,
           ),
           lessStyle: TextStyle(
-            fontSize: 14,
+            fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
             fontWeight: FontWeight.bold,
             color: corBackgroundLaranja,
           ),
@@ -222,17 +227,17 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
         Text(
           "Localização",
           style: GoogleFonts.inter(
-            fontSize: 14,
+            fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
             fontWeight: FontWeight.w500,
-            color: Colors.black,
+            color: corTextAtual,
           ),
         ),
         const widgetEspacoH(),
         Text(
           app.GetEnderecoEvento(widget.evento),
           style: GoogleFonts.inter(
-            fontSize: 14,
-            color: Colors.black,
+            fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
+            color: corTextAtual,
           ),
         ),
       ],
@@ -284,11 +289,12 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
               imagem: Imagem(url: 'bottomcalendario.png'),
             ),
             const widgetEspacoV(largura: 4),
-            Text(
-              "$diaabr, $dia/$mes/$ano",
+            TextContrasteFonte(
+              text: "$diaabr, $dia/$mes/$ano",
               style: GoogleFonts.inter(
-                fontSize: 14,
+                fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
                 fontWeight: FontWeight.w500,
+                color: corTextAtual,
               ),
             ),
             const widgetEspacoV(largura: 20),
@@ -296,11 +302,12 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
               imagem: Imagem(url: 'hora.png'),
             ),
             const widgetEspacoV(largura: 4),
-            Text(
-              hora,
+            TextContrasteFonte(
+              text: hora,
               style: GoogleFonts.inter(
-                fontSize: 14,
+                fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
                 fontWeight: FontWeight.w500,
+                color: corTextAtual,
               ),
             ),
           ],
@@ -322,17 +329,17 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
         Text(
           "Acessibilidade",
           style: GoogleFonts.inter(
-            fontSize: 14,
+            fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
             fontWeight: FontWeight.w500,
-            color: Colors.black,
+            color: corTextAtual,
           ),
         ),
         const widgetEspacoH(),
         Text(
           texto,
           style: GoogleFonts.inter(
-            fontSize: 14,
-            color: Colors.black,
+            fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
+            color: corTextAtual,
           ),
         ),
       ],
@@ -350,12 +357,12 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          "Mais informações",
+        TextContrasteFonte(
+          text: "Mais informações",
           style: GoogleFonts.inter(
-            fontSize: 14,
+            fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
             fontWeight: FontWeight.w500,
-            color: Colors.black,
+            color: corTextAtual,
           ),
         ),
         const widgetEspacoH(),
@@ -373,11 +380,12 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
                   fit: BoxFit.contain,
                 ),
                 const SizedBox(width: 10),
-                Text(
-                  'Classificação ${widget.evento.classificacaoetaria ?? "Livre"}',
+                TextContrasteFonte(
+                  text: 'Classificação ${widget.evento.classificacaoetaria ?? "Livre"}',
                   style: GoogleFonts.inter(
-                    fontSize: 14,
+                    fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
                     fontWeight: FontWeight.w500,
+                    color: corTextAtual,
                   ),
                 ),
               ],
@@ -393,11 +401,12 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
                   fit: BoxFit.contain,
                 ),
                 const SizedBox(width: 10),
-                Text(
-                  entrada,
+                TextContrasteFonte(
+                  text: entrada,
                   style: GoogleFonts.inter(
-                    fontSize: 14,
+                    fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
                     fontWeight: FontWeight.w500,
+                    color: corTextAtual,
                   ),
                 ),
               ],
@@ -413,12 +422,12 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          "Avaliar Evento",
+        TextContrasteFonte(
+          text: "Avaliar Evento",
           style: GoogleFonts.inter(
-            fontSize: 14,
+            fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
             fontWeight: FontWeight.w500,
-            color: Colors.black,
+            color: corTextAtual,
           ),
         ),
         const widgetEspacoH(),
@@ -431,19 +440,25 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
               },
               child: Column(
                 children: [
-                  widgetImagemInterna(
-                    imagem: Imagem(
-                      url: 'gostei_off.png',
-                    ),
-                    width: 60,
-                    height: 60,
-                    fit: BoxFit.contain,
+                  Icon(
+                    Icons.sentiment_satisfied_alt_outlined,
+                    color: corBackgroundLaranja,
+                    size: 50 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
                   ),
-                  Text(
-                    'Gostei',
+                  // widgetImagemInterna(
+                  //   imagem: Imagem(
+                  //     url: 'gostei_off.png',
+                  //   ),
+                  //   width: 60,
+                  //   height: 60,
+                  //   fit: BoxFit.contain,
+                  // ),
+                  TextContrasteFonte(
+                    text: 'Gostei',
                     style: GoogleFonts.inter(
-                      fontSize: 14,
+                      fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
                       fontWeight: FontWeight.w500,
+                      color: corTextAtual,
                     ),
                   ),
                 ],
@@ -455,19 +470,25 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
               },
               child: Column(
                 children: [
-                  widgetImagemInterna(
-                    imagem: Imagem(
-                      url: 'nao_gostei_off.png',
-                    ),
-                    width: 60,
-                    height: 60,
-                    fit: BoxFit.contain,
+                  Icon(
+                    Icons.sentiment_dissatisfied_outlined,
+                    color: corBackgroundLaranja,
+                    size: 50 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
                   ),
-                  Text(
-                    'Não Gostei',
+                  // widgetImagemInterna(
+                  //   imagem: Imagem(
+                  //     url: 'nao_gostei_off.png',
+                  //   ),
+                  //   width: 60,
+                  //   height: 60,
+                  //   fit: BoxFit.contain,
+                  // ),
+                  TextContrasteFonte(
+                    text: 'Não Gostei',
                     style: GoogleFonts.inter(
-                      fontSize: 14,
+                      fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
                       fontWeight: FontWeight.w500,
+                      color: corTextAtual,
                     ),
                   ),
                 ],
@@ -479,19 +500,28 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
               },
               child: Column(
                 children: [
-                  widgetImagemInterna(
-                    imagem: Imagem(
-                      url: 'nao_aconteceu_off.png',
-                    ),
-                    width: 60,
-                    height: 60,
-                    fit: BoxFit.contain,
+                  Icon(
+                    Icons.sentiment_neutral_outlined,
+                    color: corBackgroundLaranja,
+                    size: 50 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
                   ),
-                  Text(
-                    'Não Aconteceu',
+                  // Container(
+                  //   width: 60,
+                  //   height: 60,
+                  //   color: corBg,
+                  //   child: widgetImagemInterna(
+                  //     imagem: Imagem(
+                  //       url: 'nao_aconteceu_off.png',
+                  //     ),
+                  //     fit: BoxFit.contain,
+                  //   ),
+                  // ),
+                  TextContrasteFonte(
+                    text: 'Não Aconteceu',
                     style: GoogleFonts.inter(
-                      fontSize: 14,
+                      fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
                       fontWeight: FontWeight.w500,
+                      color: corTextAtual,
                     ),
                   ),
                 ],

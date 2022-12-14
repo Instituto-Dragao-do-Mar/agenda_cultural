@@ -48,24 +48,21 @@ class widgetHomeCategoriasEventosContainer extends StatelessWidget {
         padding: const EdgeInsets.all(4),
         child: Card(
           child: Container(
-            height: 240 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
-            width: 180,
+            height: 250 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+            width: 180 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: (!Cores.contraste
                   ? Color(0xFFEDEDED).withOpacity(.2)
                   : corBgAltoContraste.withOpacity(.8)),
-              border: Border.all(
-                width: 2,
-                color: Color(0xFFEDEDED).withOpacity(.2),
-              ),
+              border: Border.all(width: 1, color: corBg),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  height: 150,
-                  width: 180,
+                  height: 150 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+                  width: 180 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
                   decoration: const BoxDecoration(
                     borderRadius: BorderRadius.vertical(
                       bottom: Radius.circular(0),
@@ -92,7 +89,7 @@ class widgetHomeCategoriasEventosContainer extends StatelessWidget {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.only(right: 8.0, left: 8.0, bottom: 8),
                   child: LayoutBuilder(
                     builder: (p0, p1) {
                       return Column(
@@ -110,14 +107,17 @@ class widgetHomeCategoriasEventosContainer extends StatelessWidget {
                             ),
                           ),
                           const widgetEspacoH(altura: 6),
-                          TextContrasteFonte(
-                            text: app.GetEnderecoEvento(evento),
-                            style: GoogleFonts.roboto(
-                              fontSize: Fontes.tamanhoBase -
-                                  (Fontes.tamanhoFonteBase16 - 12),
-                              color: corTextAtual,
-                            ),
-                            maxlines: 2,
+                          Flex(
+                            direction: Axis.vertical,
+                            children: [TextContrasteFonte(
+                              text: app.GetEnderecoEvento(evento),
+                              style: GoogleFonts.roboto(
+                                fontSize: Fontes.tamanhoBase -
+                                    (Fontes.tamanhoFonteBase16 - 12),
+                                color: corTextAtual,
+                              ),
+                              maxlines: 2,
+                            ),]
                           ),
                           const widgetEspacoH(altura: 6),
                           mostraDatas(
@@ -149,7 +149,7 @@ class widgetHomeCategoriasEventosContainer extends StatelessWidget {
       ret = TextContrasteFonte(
         text: "$diaabr. $dia/$mes - $hora hs.",
         style: GoogleFonts.roboto(
-            fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16) - 12,
+            fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 12),
             fontWeight: FontWeight.w500,
             color: corTextAtual),
       );
@@ -157,7 +157,7 @@ class widgetHomeCategoriasEventosContainer extends StatelessWidget {
       ret = TextContrasteFonte(
         text: "Veja em detalhes os horários",
         style: GoogleFonts.roboto(
-            fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16) - 12,
+            fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 12),
             fontWeight: FontWeight.w500,
             color: corTextAtual),
       );

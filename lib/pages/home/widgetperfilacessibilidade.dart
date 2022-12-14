@@ -45,7 +45,7 @@ class _widgetPerfilAcessibilidadeState
       minimum: const EdgeInsets.symmetric(vertical: 16),
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: corBackgroundNegative,
+          backgroundColor: corBgAtual,
           elevation: 0,
           leadingWidth: 0,
           title: const widgetTopoPerfil(),
@@ -56,7 +56,7 @@ class _widgetPerfilAcessibilidadeState
               opcaoSelecionada = i;
             });
           },
-          backgroundColor: corBackgroundNegative,
+          backgroundColor: corBgAtual,
           elevation: 0,
           showUnselectedLabels: true,
           unselectedFontSize: 12,
@@ -66,7 +66,7 @@ class _widgetPerfilAcessibilidadeState
           currentIndex: opcaoSelecionada,
           items: [
             BottomNavigationBarItem(
-              backgroundColor: corBackgroundNegative,
+              backgroundColor: corBgAtual,
               icon: widgetImagemInterna(
                   imagem: Imagem(
                 url: 'bottomhome.png',

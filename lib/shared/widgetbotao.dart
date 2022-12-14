@@ -62,7 +62,7 @@ class widgetBotao extends StatelessWidget {
               style: GoogleFonts.roboto(
                 fontSize: 24,
                 color: textColor ??
-                    (_negative ? corBackgroundLaranja : corBackgroundNegative),
+                    (_negative ? corBackgroundLaranja : corBg),
               ),
             ),
           ),

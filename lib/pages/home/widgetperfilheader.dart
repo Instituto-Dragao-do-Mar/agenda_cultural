@@ -2,7 +2,7 @@ import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/home/widgetperfilacessibilidade.dart';
 import 'package:agendacultural/pages/home/widgetdadoscadastrais.dart';
 import 'package:agendacultural/pages/home/widgethome.dart';
-import 'package:agendacultural/pages/home/widgetindiomas.dart';
+import 'package:agendacultural/pages/home/widgetidiomas.dart';
 import 'package:agendacultural/pages/home/widgetnotificacoes.dart';
 import 'package:agendacultural/pages/home/widgetperfil.dart';
 import 'package:agendacultural/pages/home/widgets/widgettopoperfil.dart';
@@ -41,7 +41,7 @@ class _widgetPerfilHeaderState extends State<widgetPerfilHeader> {
       minimum: const EdgeInsets.symmetric(vertical: 16),
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: corBackgroundNegative,
+          backgroundColor: corBgAtual,
           elevation: 0,
           leadingWidth: 0,
           title: const widgetTopoPerfil(),
@@ -52,7 +52,7 @@ class _widgetPerfilHeaderState extends State<widgetPerfilHeader> {
               opcaoSelecionada = i;
             });
           },
-          backgroundColor: corBackgroundNegative,
+          backgroundColor: corBgAtual,
           elevation: 0,
           showUnselectedLabels: true,
           unselectedFontSize: 12,
@@ -62,7 +62,7 @@ class _widgetPerfilHeaderState extends State<widgetPerfilHeader> {
           currentIndex: opcaoSelecionada,
           items: [
             BottomNavigationBarItem(
-              backgroundColor: corBackgroundNegative,
+              backgroundColor: corBgAtual,
               icon: widgetImagemInterna(
                   imagem: Imagem(
                 url: 'bottomhome.png',
@@ -151,7 +151,7 @@ class _widgetPerfilHeaderState extends State<widgetPerfilHeader> {
               const widgetEspacoH(altura: 16),
               const widgetopacaoperfil(
                 subtitulo: "Idioma",
-                paginaDestino: widgetIndiomas(),
+                paginaDestino: widgetIdiomas(),
               ),
             ],
           ),

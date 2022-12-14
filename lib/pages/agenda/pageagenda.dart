@@ -14,7 +14,9 @@ import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../model/cores.dart';
 import '../../model/fontes.dart';
+import '../../shared/widgetTextFonteContraste.dart';
 
 class pageAgenda extends StatefulWidget {
   const pageAgenda({super.key});
@@ -91,8 +93,8 @@ class _pageAgendaState extends State<pageAgenda> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'Resultados',
+                TextContrasteFonte(
+                  text: 'Resultados',
                   style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
                 ),
                 GestureDetector(
@@ -260,7 +262,7 @@ class _pageAgendaState extends State<pageAgenda> {
             bottomRight: Radius.circular(!primeiro ? 10 : 0),
           ),
           border: Border.all(
-            color: corBackgroundLaranja.withOpacity(.2),
+            color: Cores.contraste ? Colors.white : corBackgroundLaranja.withOpacity(.2),
           ),
         ),
         height: 70,
@@ -269,15 +271,18 @@ class _pageAgendaState extends State<pageAgenda> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Text(
-              titulo,
-              style: TextStyle(
-                color: corBackgroundLaranja,
-                fontWeight: FontWeight.bold,
-              ),
+            TextContrasteFonte(
+              text: titulo,
+              color: corBackgroundLaranja,
+              weight: FontWeight.bold,
+              fontsize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
             ),
             const SizedBox(width: 5),
-            Text(ted.text.formatDate(format: "E, dd MMM"))
+            TextContrasteFonte(
+              text: ted.text.formatDate(format: "E, dd MMM"),
+              color: corTextAtual,
+              fontsize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
+            ),
           ],
         ),
         //child: Text("xxxx"),

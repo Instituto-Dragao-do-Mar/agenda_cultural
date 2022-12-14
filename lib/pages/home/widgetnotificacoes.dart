@@ -45,8 +45,9 @@ class _widgetNotificacoesState extends State<widgetNotificacoes> {
       top: true,
       minimum: const EdgeInsets.symmetric(vertical: 16),
       child: Scaffold(
+        backgroundColor: corBgAtual,
         appBar: AppBar(
-          backgroundColor: corBackgroundNegative,
+          backgroundColor: corBgAtual,
           elevation: 0,
           leadingWidth: 0,
           title: widgetTopoPerfil(),
@@ -57,7 +58,7 @@ class _widgetNotificacoesState extends State<widgetNotificacoes> {
               opcaoSelecionada = i;
             });
           },
-          backgroundColor: corBackgroundNegative,
+          backgroundColor: corBgAtual,
           elevation: 0,
           showUnselectedLabels: true,
           unselectedFontSize: 12,
@@ -67,38 +68,42 @@ class _widgetNotificacoesState extends State<widgetNotificacoes> {
           currentIndex: opcaoSelecionada,
           items: [
             BottomNavigationBarItem(
-              backgroundColor: corBackgroundNegative,
+              backgroundColor: corBgAtual,
               icon: widgetImagemInterna(
                   imagem: Imagem(
-                url: 'bottomhome.png',
+                url: 'fhome.png',
               )),
               label: "Home",
             ),
             BottomNavigationBarItem(
+              backgroundColor: corBgAtual,
               icon: widgetImagemInterna(
                   imagem: Imagem(
-                url: 'bottomcalendario.png',
+                url: 'fagenda.png',
               )),
               label: "Agenda",
             ),
             BottomNavigationBarItem(
+              backgroundColor: corBgAtual,
               icon: widgetImagemInterna(
                   imagem: Imagem(
-                url: 'bottommapa.png',
+                url: 'fmapa.png',
               )),
               label: "Mapa",
             ),
             BottomNavigationBarItem(
+              backgroundColor: corBgAtual,
               icon: widgetImagemInterna(
                   imagem: Imagem(
-                url: 'bottomfavoritos.png',
+                url: 'ffavorito.png',
               )),
               label: "Favoritos",
             ),
             BottomNavigationBarItem(
+              backgroundColor: corBgAtual,
               icon: widgetImagemInterna(
                   imagem: Imagem(
-                url: 'bottomperfil.png',
+                url: 'fperfil.png',
               )),
               label: "Perfil",
             ),

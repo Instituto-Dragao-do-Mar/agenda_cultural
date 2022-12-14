@@ -24,9 +24,9 @@ class Widgetlocalizacao extends StatelessWidget {
       top: true,
       minimum: const EdgeInsets.symmetric(vertical: 16),
       child: Scaffold(
-        backgroundColor: corBackgroundNegative,
+        backgroundColor: corBgAtual,
         appBar: AppBar(
-          backgroundColor: corBackgroundNegative,
+          backgroundColor: corBgAtual,
           elevation: 0,
           leadingWidth: 0,
           title: const widgetTopo(),

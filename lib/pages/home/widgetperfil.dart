@@ -1,7 +1,7 @@
 
 import 'package:agendacultural/pages/home/widgetperfilacessibilidade.dart';
 import 'package:agendacultural/pages/home/widgetdadoscadastrais.dart';
-import 'package:agendacultural/pages/home/widgetindiomas.dart';
+import 'package:agendacultural/pages/home/widgetidiomas.dart';
 import 'package:agendacultural/pages/home/widgetnotificacoes.dart';
 import 'package:agendacultural/shared/widgetemconstrucao.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 
 import '../../model/fontes.dart';
 import '../../shared/constantes.dart';
+import '../../shared/themes.dart';
 import 'widgets/widgetopcaoperfil.dart';
 
 class widgetPerfil extends StatelessWidget {
@@ -18,7 +19,9 @@ class widgetPerfil extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: corBgAtual,
       body: Container(
+        color: corBgAtual,
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -70,7 +73,7 @@ class widgetPerfil extends StatelessWidget {
             const widgetEspacoH(altura: 16),
             const widgetopacaoperfil(
               subtitulo: "Idioma",
-              paginaDestino: widgetIndiomas(),
+              paginaDestino: widgetIdiomas(),
             ),
           ],
         ),

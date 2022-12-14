@@ -12,7 +12,7 @@ var themeDefault = ThemeData(
 
   // ignore: prefer_const_constructors
   appBarTheme: AppBarTheme(
-    backgroundColor: corBackgroundNegative
+    backgroundColor: corBgAtual
     
   ),
 
