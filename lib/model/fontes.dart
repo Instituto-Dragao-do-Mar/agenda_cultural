@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'cores.dart';
 
 class Fontes {
+  static const int tamanhoFonteBase16 = 16;
   static int tamanhoBase = 16;
 
   static void setTamanhoBase(int tamanho){

@@ -73,7 +73,7 @@ class _pageIntroducaoState extends State<pageIntroducao> {
                       ? setState(() {
                           currentStep += 1;
                         })
-                      :   _onIntroEnd(context);
+                      : _onIntroEnd(context);
                 },
                 onDone: () => {
                   _onIntroEnd(context),
@@ -204,11 +204,13 @@ class _pageIntroducaoState extends State<pageIntroducao> {
                           child: RichText(
                             text: TextSpan(
                                 text: currentStep.toString(),
-                                style: Fontes.inter14W500EA5B0C(Fontes.tamanhoBase),
+                                style: Fontes.inter14W500EA5B0C(
+                                    Fontes.tamanhoBase),
                                 children: [
                                   TextSpan(
                                       text: " de 3",
-                                      style: Fontes.inter14W500Grey(Fontes.tamanhoBase))
+                                      style: Fontes.inter14W500Grey(
+                                          Fontes.tamanhoBase))
                                 ]),
                           ),
                         ),

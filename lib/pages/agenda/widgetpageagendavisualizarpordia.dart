@@ -22,7 +22,7 @@ class widgetPageAgendaVisualizarPorDia extends StatelessWidget {
       height: 80,
       width: 70,
       decoration: BoxDecoration(
-          color: corBackground.withOpacity(.1),
+          color: corBackgroundLaranja.withOpacity(.1),
           borderRadius: const BorderRadius.all(Radius.circular(5))),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,

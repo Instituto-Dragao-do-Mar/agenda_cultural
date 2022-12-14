@@ -46,7 +46,7 @@ class widgetBottomBotao extends StatelessWidget {
         padding: padding ?? const EdgeInsets.all(0),
         decoration: BoxDecoration(
           gradient: !_negative ? gradientPrincipal: null,
-          border: _negative ? Border.all(color: corBackground, width: 3) : null,
+          border: _negative ? Border.all(color: corBackgroundLaranja, width: 3) : null,
         ),
         child: Center(
           child: Text(
@@ -55,7 +55,7 @@ class widgetBottomBotao extends StatelessWidget {
             style: GoogleFonts.roboto(
               fontSize: 24,
               color: textColor ??
-                  (_negative ? corBackground : corBackgroundNegative),
+                  (_negative ? corBackgroundLaranja : corBackgroundNegative),
             ),
           ),
         ),

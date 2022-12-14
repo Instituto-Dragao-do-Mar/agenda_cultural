@@ -53,7 +53,7 @@ class widgetBotao extends StatelessWidget {
             borderRadius: BorderRadius.all(
               Radius.circular(border ?? 5),
             ),
-            border: _negative ? Border.all(color: corBackground, width: 3) : null,
+            border: _negative ? Border.all(color: corBackgroundLaranja, width: 3) : null,
           ),
           child: Center(
             child: Text(
@@ -62,7 +62,7 @@ class widgetBotao extends StatelessWidget {
               style: GoogleFonts.roboto(
                 fontSize: 24,
                 color: textColor ??
-                    (_negative ? corBackground : corBackgroundNegative),
+                    (_negative ? corBackgroundLaranja : corBackgroundNegative),
               ),
             ),
           ),

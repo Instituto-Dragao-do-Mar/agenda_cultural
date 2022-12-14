@@ -260,7 +260,7 @@ class _pageAgendaState extends State<pageAgenda> {
             bottomRight: Radius.circular(!primeiro ? 10 : 0),
           ),
           border: Border.all(
-            color: corBackground.withOpacity(.2),
+            color: corBackgroundLaranja.withOpacity(.2),
           ),
         ),
         height: 70,
@@ -272,7 +272,7 @@ class _pageAgendaState extends State<pageAgenda> {
             Text(
               titulo,
               style: TextStyle(
-                color: corBackground,
+                color: corBackgroundLaranja,
                 fontWeight: FontWeight.bold,
               ),
             ),

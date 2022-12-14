@@ -6,6 +6,7 @@ import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/evento/pageeventodetalhe.dart';
 import 'package:agendacultural/shared/extensions/capitalize.dart';
 import 'package:agendacultural/shared/extensions/dates.dart';
+import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetimagemexterna.dart';
 import 'package:agendacultural/shared/widgetimagemhtml.dart';
@@ -13,17 +14,23 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
+import '../../model/cores.dart';
+import '../../model/fontes.dart';
+import '../../shared/widgetTextFonteContraste.dart';
+
 class widgetHomeCategoriasEventosContainer extends StatelessWidget {
-  const widgetHomeCategoriasEventosContainer({
+  widgetHomeCategoriasEventosContainer({
     super.key,
     required this.evento,
   });
 
   final Evento evento;
 
+  bool statusAltoContraste = Cores.contraste;
+  double fontSize = Fontes.tamanhoBase.toDouble();
+
   @override
   Widget build(BuildContext context) {
-
     AppModel app = Provider.of<AppModel>(context, listen: false);
 
     return GestureDetector(
@@ -41,11 +48,17 @@ class widgetHomeCategoriasEventosContainer extends StatelessWidget {
         padding: const EdgeInsets.all(4),
         child: Card(
           child: Container(
-            height: 240,
+            height: 240 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
             width: 180,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: const Color(0xFFEDEDED).withOpacity(.2),
+              color: (!Cores.contraste
+                  ? Color(0xFFEDEDED).withOpacity(.2)
+                  : corBgAltoContraste.withOpacity(.8)),
+              border: Border.all(
+                width: 2,
+                color: Color(0xFFEDEDED).withOpacity(.2),
+              ),
             ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -86,21 +99,25 @@ class widgetHomeCategoriasEventosContainer extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           const widgetEspacoH(altura: 6),
-                          Text(
-                            evento.nome!,
-                            maxLines: 1,
+                          TextContrasteFonte(
+                            text: evento.nome!,
+                            maxlines: 1,
                             style: GoogleFonts.roboto(
-                              fontSize: 12,
+                              fontSize: Fontes.tamanhoBase -
+                                  (Fontes.tamanhoFonteBase16 - 12),
                               fontWeight: FontWeight.w500,
+                              color: corTextAtual,
                             ),
                           ),
                           const widgetEspacoH(altura: 6),
-                          Text(
-                            app.GetEnderecoEvento(evento),
+                          TextContrasteFonte(
+                            text: app.GetEnderecoEvento(evento),
                             style: GoogleFonts.roboto(
-                              fontSize: 12,
+                              fontSize: Fontes.tamanhoBase -
+                                  (Fontes.tamanhoFonteBase16 - 12),
+                              color: corTextAtual,
                             ),
-                            maxLines: 2,
+                            maxlines: 2,
                           ),
                           const widgetEspacoH(altura: 6),
                           mostraDatas(
@@ -129,20 +146,20 @@ class widgetHomeCategoriasEventosContainer extends StatelessWidget {
     String mes = datas.first.formatDate(format: "MMM").capitalize();
     String hora = datas.first.formatDate(format: "HH:mm").capitalize();
     if (datas.length == 1) {
-      ret = Text(
-        "$diaabr. $dia/$mes - $hora hs.",
+      ret = TextContrasteFonte(
+        text: "$diaabr. $dia/$mes - $hora hs.",
         style: GoogleFonts.roboto(
-          fontSize: 12,
-          fontWeight: FontWeight.w500,
-        ),
+            fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16) - 12,
+            fontWeight: FontWeight.w500,
+            color: corTextAtual),
       );
     } else {
-      ret = Text(
-        "Veja em detalhes os horários",
+      ret = TextContrasteFonte(
+        text: "Veja em detalhes os horários",
         style: GoogleFonts.roboto(
-          fontSize: 12,
-          fontWeight: FontWeight.w500,
-        ),
+            fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16) - 12,
+            fontWeight: FontWeight.w500,
+            color: corTextAtual),
       );
     }
     return ret;

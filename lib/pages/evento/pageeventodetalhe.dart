@@ -136,7 +136,7 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
                       app.GetCategoriasEvento(widget.evento),
                       style: GoogleFonts.inter(
                         fontSize: 14,
-                        color: corBackground,
+                        color: corBackgroundLaranja,
                       ),
                     ),
                     const widgetEspacoH(),
@@ -194,7 +194,7 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
             fontSize: 14,
             color: Colors.black,
           ),
-          colorClickableText: corBackground,
+          colorClickableText: corBackgroundLaranja,
           trimLength: 300,
           trimMode: TrimMode.Length,
           trimCollapsedText: 'Ler mais',
@@ -202,12 +202,12 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
           moreStyle: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.bold,
-            color: corBackground,
+            color: corBackgroundLaranja,
           ),
           lessStyle: TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.bold,
-            color: corBackground,
+            color: corBackgroundLaranja,
           ),
         ),
       ],
