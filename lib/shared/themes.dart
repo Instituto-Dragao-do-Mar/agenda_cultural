@@ -6,7 +6,7 @@ import '../model/cores.dart';
 var themeDefault = ThemeData(
   // Define the default brightness and colors.
   brightness: Brightness.light,
-  primaryColor: const Color(0xFFE83C3B),
+  primaryColor:  const Color(0xFFE83C3B),
   backgroundColor: corBackgroundLaranja,
   textTheme: GoogleFonts.poppinsTextTheme(),
 
@@ -14,9 +14,7 @@ var themeDefault = ThemeData(
   appBarTheme: AppBarTheme(
     backgroundColor: corBgAtual
     
-  ),
-
-  
+  ),  
 
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(

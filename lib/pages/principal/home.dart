@@ -68,20 +68,15 @@ class _pagePrincipalState extends State<pagePrincipal> {
         /*  print("Eventos: ${app.listaEventos.eventos!.length}");
           print("Categorias: ${app.listaCategoria.categorias!.length}");*/
 
-        return SafeArea(
-          bottom: true,
-          top: true,
-          minimum: const EdgeInsets.symmetric(vertical: 16),
-          child: Scaffold(
-            backgroundColor: corBgAtual,
-            appBar: AppBar(
-                backgroundColor: corBgAtual,
-                elevation: 0,
-                leadingWidth: 0,
-                title: subPaginasTopo[opcaoSelecionada]),
-            bottomNavigationBar: bottomNavi(),
-            body: subPaginas[opcaoSelecionada],
-          ),
+        return Scaffold(
+          backgroundColor: corBgAtual,
+          appBar: AppBar(
+              backgroundColor: corBgAtual,
+              elevation: 0,
+              leadingWidth: 0,
+              title: subPaginasTopo[opcaoSelecionada]),
+          bottomNavigationBar: bottomNavi(),
+          body: subPaginas[opcaoSelecionada],
         );
       },
     );
