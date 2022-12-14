@@ -216,7 +216,7 @@ class _pageAgendaState extends State<pageAgenda> {
                 },
                 child: widgetPageAgendaVisualizarPorDia(
                   data: e,
-                  selecionada: e == dataSelecionada!,
+                  selecionada: e == dataSelecionada,
                 ),
               ),
             )
