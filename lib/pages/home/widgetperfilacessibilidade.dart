@@ -11,6 +11,8 @@ import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../model/fontes.dart';
+
 class widgetPerfilAcessibilidade extends StatefulWidget {
   const widgetPerfilAcessibilidade({Key? key}) : super(key: key);
 
@@ -36,13 +38,14 @@ class _widgetPerfilAcessibilidadeState
 
   @override
   Widget build(BuildContext context) {
+
     return SafeArea(
       bottom: true,
       top: true,
       minimum: const EdgeInsets.symmetric(vertical: 16),
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: corBackgroundNegative,
+          backgroundColor: corBgAtual,
           elevation: 0,
           leadingWidth: 0,
           title: const widgetTopoPerfil(),
@@ -53,7 +56,7 @@ class _widgetPerfilAcessibilidadeState
               opcaoSelecionada = i;
             });
           },
-          backgroundColor: corBackgroundNegative,
+          backgroundColor: corBgAtual,
           elevation: 0,
           showUnselectedLabels: true,
           unselectedFontSize: 12,
@@ -63,7 +66,7 @@ class _widgetPerfilAcessibilidadeState
           currentIndex: opcaoSelecionada,
           items: [
             BottomNavigationBarItem(
-              backgroundColor: corBackgroundNegative,
+              backgroundColor: corBgAtual,
               icon: widgetImagemInterna(
                   imagem: Imagem(
                 url: 'bottomhome.png',
@@ -107,7 +110,7 @@ class _widgetPerfilAcessibilidadeState
             children: [
               Text(
                 "Acessibilidade",
-                style: poppins18W500Black,
+                style: Fontes.poppins18W500Black(Fontes.tamanhoBase),
               ),
               const widgetEspacoH(
                 altura: 23,
@@ -118,7 +121,7 @@ class _widgetPerfilAcessibilidadeState
                 children: [
                   Text(
                     "Alto contraste",
-                    style: roboto16W400Black,
+                    style: Fontes.roboto16W400Black(Fontes.tamanhoBase),
                   ),
                   widgetBotaoSwitch(value: status)
                 ],
@@ -127,24 +130,24 @@ class _widgetPerfilAcessibilidadeState
                 altura: 20,
               ),
               Text(
-                "O modo de alto contraste permite ao usuário inverter as cores"
+                "O modo de alto contraste permite ao usuário inverter as cores "
                 "do primeiro plano e do plano de fundo, o que geralmente ajuda o "
                 "texto a se destacar melhor.",
-                style: poppins12W300Grey,
+                style: Fontes.poppins12W300Grey(Fontes.tamanhoBase),
               ),
               const widgetEspacoH(
                 altura: 23,
               ),
               Text(
                 "Aumento da fonte",
-                style: roboto16W400Black,
+                style: Fontes.roboto16W400Black(Fontes.tamanhoBase),
               ),
               const widgetEspacoH(
                 altura: 20,
               ),
               Text(
                 "Aumenta o tamanho da fonte do texto para 24px facilitando a leitura.",
-                style: poppins12W300Grey,
+                style: Fontes.poppins12W300Grey(Fontes.tamanhoBase),
               ),
               const widgetEspacoH(
                 altura: 31,
@@ -178,7 +181,7 @@ class _widgetPerfilAcessibilidadeState
                           )),
                       Text(
                         "$fontSize px",
-                        style: inter16W400Grey,
+                        style: Fontes.inter16W400Grey(Fontes.tamanhoBase),
                       )
                     ],
                   ),

@@ -10,6 +10,8 @@ import 'package:agendacultural/shared/widgetespacov.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
 
+import '../../../model/fontes.dart';
+
 class widgetTopoPerfil extends StatelessWidget {
   const widgetTopoPerfil({
     Key? key,
@@ -45,7 +47,7 @@ class widgetTopoPerfil extends StatelessWidget {
             const widgetEspacoV(largura: 18),
             Text(
               "Perfil",
-              style: poppins16W400Black,
+              style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
             )
           ],
         ),

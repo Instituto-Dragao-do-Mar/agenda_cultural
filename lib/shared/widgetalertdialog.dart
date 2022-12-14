@@ -8,6 +8,8 @@ import 'package:agendacultural/shared/widgetespacov.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
 
+import '../model/fontes.dart';
+
 class Widgetalertdialog extends StatefulWidget {
   const Widgetalertdialog({Key? key}) : super(key: key);
 
@@ -36,7 +38,7 @@ class _WidgetalertdialogState extends State<Widgetalertdialog> {
                         children: [
                           Text(
                             "Huum.. utilizamos cookies",
-                            style: poppins16W400Black,
+                            style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
                           ),
                           const widgetEspacoV(largura: 10),
                           widgetImagemInterna(
@@ -55,7 +57,7 @@ class _WidgetalertdialogState extends State<Widgetalertdialog> {
                             "Nós armazenamos dados temporariamente para melhorar"
                             " a sua experiência de navegação e recomendar conteúdo de seu interesse."
                             " Ao utilizar nossos serviços, você concorda com tal monitoramento.",
-                        style: poppins12W400Grey,
+                        style: Fontes.poppins12W400Grey(Fontes.tamanhoBase),
                       ),
                       const widgetEspacoH(altura: 16),
                       Row(

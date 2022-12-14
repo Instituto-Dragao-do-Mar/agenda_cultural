@@ -4,6 +4,8 @@ import 'package:agendacultural/shared/constantes.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
 
+import '../../../model/fontes.dart';
+
 class widgetTopoComum extends StatelessWidget {
   const widgetTopoComum({
     Key? key,
@@ -72,7 +74,7 @@ class widgetTopoComum extends StatelessWidget {
           Expanded(
             child: Text(
               text ?? "",
-              style: poppins16W400Black,
+              style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
             ),
           ),
           widget2,

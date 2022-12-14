@@ -2,6 +2,8 @@ import 'package:agendacultural/pages/localizacao/widgetlocalizacao.dart';
 import 'package:agendacultural/shared/constantes.dart';
 import 'package:flutter/material.dart';
 
+import '../../model/fontes.dart';
+
 class Introducaoinfo extends StatefulWidget {
   const Introducaoinfo({
     Key? key,
@@ -35,7 +37,7 @@ class _IntroducaoinfoState extends State<Introducaoinfo> {
                 " do Ceará para ampliar o acesso às programações da Rede Pública de"
                 " Equipamentos Culturais da Secult Ceará (Rece), em parceria com o "
                 "Instituto Dragão do Mar.",
-                style: inter24W500Withe,
+                style: Fontes.inter24W500Withe(Fontes.tamanhoBase),
                 semanticsLabel:
                     "Este aplicativo é uma realização da Secretaria da Cultura"
                     " do Ceará para ampliar o acesso às programações da Rede Pública de"
@@ -61,7 +63,7 @@ class _IntroducaoinfoState extends State<Introducaoinfo> {
                 alignment: Alignment.center,
                 child: Text(
                   "Acessar",
-                  style: inter16W500Black,
+                  style: Fontes.inter16W500Black(Fontes.tamanhoBase),
                   semanticsLabel: "Botão Acessar",
                 ),
               ),

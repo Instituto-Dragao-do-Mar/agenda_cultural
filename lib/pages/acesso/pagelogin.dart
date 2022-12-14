@@ -11,6 +11,8 @@ import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../model/fontes.dart';
+
 class pageLogin extends StatefulWidget {
   const pageLogin({super.key});
 
@@ -36,7 +38,7 @@ class _pageLoginState extends State<pageLogin> {
                 children: [
                   Text(
                     "Realização",
-                    style: roboto16W400Black,
+                    style: Fontes.roboto16W400Black(Fontes.tamanhoBase),
                     semanticsLabel: "Realização Governo do Estado do Ceará.",
                   ),
                   widgetImagemInterna(
@@ -117,7 +119,7 @@ class _pageLoginState extends State<pageLogin> {
                               "Entrar como visitante",
                               semanticsLabel: "Entrar como vivitante",
                               style: GoogleFonts.roboto(
-                                  fontSize: 16, color: corBackground,),
+                                  fontSize: 16, color: corBackgroundLaranja,),
                             ),
                           ),
                         ),
@@ -132,7 +134,7 @@ class _pageLoginState extends State<pageLogin> {
                   Text(
                     "Gestão",
                     semanticsLabel: "Gestão Instituto Dragão do Mar",
-                    style: roboto16W400Black,
+                    style: Fontes.roboto16W400Black(Fontes.tamanhoBase),
                   ),
                   const widgetEspacoH(altura: 11),
                   widgetImagemInterna(

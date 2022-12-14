@@ -11,6 +11,8 @@ import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
 
+import '../../model/fontes.dart';
+
 class WidgetInserirLocalizacao extends StatefulWidget {
   const WidgetInserirLocalizacao({Key? key}) : super(key: key);
 
@@ -29,9 +31,9 @@ class _WidgetInserirLocalizacaoState extends State<WidgetInserirLocalizacao> {
       top: true,
       minimum: const EdgeInsets.symmetric(vertical: 16),
       child: Scaffold(
-        backgroundColor: corBackgroundNegative,
+        backgroundColor: corBgAtual,
         appBar: AppBar(
-          backgroundColor: corBackgroundNegative,
+          backgroundColor: corBgAtual,
           elevation: 0,
           leadingWidth: 0,
           title: const widgetTopo(),
@@ -44,7 +46,7 @@ class _WidgetInserirLocalizacaoState extends State<WidgetInserirLocalizacao> {
                 altura: 31,
               ),
               TextField(
-                style: poppins16W400Grey,
+                style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
                 onChanged: (value) {
                   setState(() {
                     nomeLocalizacao = value;
@@ -63,7 +65,7 @@ class _WidgetInserirLocalizacaoState extends State<WidgetInserirLocalizacao> {
                 ),
                 title: Text(
                   "Usar minha localização atual",
-                  style: poppins14W400E83C3B,
+                  style: Fontes.poppins14W400E83C3B(Fontes.tamanhoBase),
                 ),
                 onTap: () {
                   widgetErro(
@@ -108,7 +110,7 @@ class _WidgetInserirLocalizacaoState extends State<WidgetInserirLocalizacao> {
                     child: Text(
                       "Ir para login",
                       semanticsLabel: "Entrar como vivitante",
-                      style: roboto16W400EA5,
+                      style: Fontes.roboto16W400EA5(Fontes.tamanhoBase),
                     ),
                   ),
                 ),

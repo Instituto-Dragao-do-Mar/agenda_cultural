@@ -21,6 +21,6 @@ void widgetConfirma({
         },
       ),
     ],
-    cancelAction: cancelar == true ? CancelAction(title: Text('Cancela')) : null,
+    cancelAction: cancelar == true ? CancelAction(title: Text('Cancelar')) : null,
   );
 }

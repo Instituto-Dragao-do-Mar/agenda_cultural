@@ -6,8 +6,9 @@ import 'package:flutter_switch/flutter_switch.dart';
 import 'constantes.dart';
 
 class widgetBotaoSwitch extends StatefulWidget {
-  widgetBotaoSwitch({Key? key, required this.value}) : super(key: key);
+  widgetBotaoSwitch({Key? key, required this.value, this.function}) : super(key: key);
   bool value = false;
+  Function(bool)? function;
 
   @override
   _widgetBotaoSwitchState createState() => _widgetBotaoSwitchState();
@@ -21,7 +22,7 @@ class _widgetBotaoSwitchState extends State<widgetBotaoSwitch> {
       height: 28,
       activeColor: Color(0xFFE83C3B),
       value: widget.value,
-      onToggle: (val) {
+      onToggle: widget.function ?? (val) {
         setState(() {
           widget.value = val;
         });
