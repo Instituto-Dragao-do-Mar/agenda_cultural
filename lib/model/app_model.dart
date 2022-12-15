@@ -31,6 +31,10 @@ class AppModel extends ChangeNotifier {
 
   AppModel();
 
+  void notify() {
+    notifyListeners();
+  }
+
   Future<void> getdados() async {
     listaCategoria = await CategoriaController().categoriaGet(
       userguidid: "",
@@ -94,12 +98,8 @@ class AppModel extends ChangeNotifier {
     return ret;
   }
 
-
   String GetEnderecoEspaco(Espaco espaco) {
-
-
-    return espaco.endereco ??
-        "Endereço não informado no espaço.";
+    return espaco.endereco ?? "Endereço não informado no espaço.";
   }
 
   String GetEnderecoEvento(Evento evento) {

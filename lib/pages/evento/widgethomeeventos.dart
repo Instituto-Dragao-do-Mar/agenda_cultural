@@ -75,9 +75,25 @@ class _widgetHomeEventosState extends State<widgetHomeEventos> {
     }
 
     if (widget.exibicaoEvento == ExibicaoEvento.Data) {
-      subtitulo = Dados.verTodosDestaques
-          ? "Ver outro periodo"
-          : "Ver outro periodo";
+      subtitulo =
+          Dados.verTodosDestaques ? "Ver outro periodo" : "Ver outro periodo";
+    }
+
+    List<int> listSelecionadas =
+        app.filtro.categoriasSelecionadas!.map((e) => e.id!).toList();
+
+    List<int> listCategoriasEvento = [];
+    for (Evento e in app.listaEventos.eventos!) {
+      listCategoriasEvento
+          .addAll(e.eventoscategorias!.map((c) => c.idcategoria!).toList());
+    }
+
+    listSelecionadas
+        .removeWhere((element) => !listCategoriasEvento.contains(element));
+
+    if (app.filtro.categoriasSelecionadas!.isNotEmpty &&
+        listSelecionadas.isEmpty) {
+      return const SizedBox.shrink();
     }
 
     return Column(
@@ -110,9 +126,32 @@ class _widgetHomeEventosState extends State<widgetHomeEventos> {
             child: Wrap(
               children: app.listaEventos.eventos!.map(
                 (e) {
-                  return widgetHomeCategoriasEventosContainer(
-                    evento: e,
-                  );
+                  if (app.filtro.categoriasSelecionadas!.isEmpty) {
+                    return widgetHomeCategoriasEventosContainer(
+                      evento: e,
+                    );
+                  } else {
+                    //
+                    // VERIFICAR SE TEM ELEMENTOS EM COMUM NA LISTA
+                    //
+                    List<int> listSel = app.filtro.categoriasSelecionadas!
+                        .map((e) => e.id!)
+                        .toList();
+                    List<int> listCategoriasEvento = e.eventoscategorias!
+                        .map((e) => e.idcategoria!)
+                        .toList();
+
+                    listSel.removeWhere(
+                        (element) => !listCategoriasEvento.contains(element));
+
+                    if (listSel.isNotEmpty) {
+                      return widgetHomeCategoriasEventosContainer(
+                        evento: e,
+                      );
+                    } else {
+                      return const SizedBox.shrink();
+                    }
+                  }
                 },
               ).toList(),
             ),

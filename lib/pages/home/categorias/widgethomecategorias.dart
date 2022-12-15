@@ -1,13 +1,9 @@
 // ignore_for_file: camel_case_types
 
-import 'package:agendacultural/controller/categoria_controller.dart';
 import 'package:agendacultural/dados/dados.dart';
 import 'package:agendacultural/model/app_model.dart';
-import 'package:agendacultural/model/categoria_model.dart';
 import 'package:agendacultural/pages/home/categorias/widgethomecategoriascontainer.dart';
-
 import 'package:agendacultural/pages/home/widgets/widgetheadercards.dart';
-import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
