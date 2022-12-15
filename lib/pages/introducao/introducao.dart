@@ -6,6 +6,7 @@ import 'package:agendacultural/pages/home/acessibilidade/widgetacessibilidade.da
 import 'package:agendacultural/shared/constantes.dart';
 import 'package:agendacultural/shared/widgetalertdialog.dart';
 import 'package:agendacultural/shared/widgetbottombotao.dart';
+import 'package:agendacultural/shared/widgetemdesenvolvimento.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
@@ -138,6 +139,14 @@ class _pageIntroducaoState extends State<pageIntroducao> {
                     child: widgetBottomBotao(
                       text: "Ir para recursos de acessibilidade",
                       function: () {
+                        if (!Dados.jaVisualizouCookies) {
+                          widgetErro(
+                            context: context,
+                            text:
+                                "A acessibilidade só pode ser acessada se você permitir o uso de cookies.",
+                          );
+                          return;
+                        }
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (_) => const widgetAcessibilidade(),

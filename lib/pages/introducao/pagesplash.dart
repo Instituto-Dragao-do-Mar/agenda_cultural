@@ -73,6 +73,8 @@ class _pageSplashState extends State<pageSplash> {
     Dados.jaVisualizouIntroducao = await Dados.getBool('introducao');
     Dados.jaPermitiuLocalizacao = await Dados.getBool('localizacao');
     Dados.verTodasCategorias = await Dados.getBool('categorias');
+    Dados.verTodosDestaques = await Dados.getBool('destaques');
+    Dados.verTodosEspacos = await Dados.getBool('espacos');
   }
 
   @override

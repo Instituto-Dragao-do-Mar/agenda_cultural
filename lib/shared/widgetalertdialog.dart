@@ -63,21 +63,18 @@ class _WidgetalertdialogState extends State<Widgetalertdialog> {
                       Row(
                         children: [
                           Expanded(
-                            child: SizedBox
-                                .shrink() /* widgetBotao(
-                        width: 164,
-                        height: 48,
-                        text: "Recusar",
-                        negative: true,
-                        function: () {
-                          // widgetErro(
-                          //   context: context,
-                          //   text:
-                          //       "Funcionalidade em desenvolvimento, entre como visitante.",
-                          // );
-                        },
-                      ) */
-                            ,
+                            child: widgetBotao(
+                              width: 164,
+                              height: 48,
+                              text: "Recusar",
+                              negative: true,
+                              function: () {
+                                aceitei = true;
+                                Dados.setBool('cookies', false);
+                                Dados.jaVisualizouCookies = false;
+                                setState(() {});
+                              },
+                            ),
                           ),
                           const widgetEspacoV(largura: 16),
                           Expanded(

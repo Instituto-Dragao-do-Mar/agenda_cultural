@@ -1,8 +1,10 @@
 // ignore_for_file: constant_identifier_names, camel_case_types
 
 import 'package:agendacultural/controller/evento_controller.dart';
+import 'package:agendacultural/dados/dados.dart';
 import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/model/evento_model.dart';
+import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/pages/evento/widgethomeeventoscontainer.dart';
 import 'package:agendacultural/pages/home/widgets/widgetheadercards.dart';
 import 'package:agendacultural/shared/themes.dart';
@@ -28,7 +30,6 @@ class widgetHomeEventos extends StatefulWidget {
 }
 
 class _widgetHomeEventosState extends State<widgetHomeEventos> {
-
   List<String> titulos = [
     'Destaques',
     'Data',
@@ -52,6 +53,33 @@ class _widgetHomeEventosState extends State<widgetHomeEventos> {
 
   @override
   Widget build(BuildContext context) {
+    //
+    double? tamanho;
+    bool wrap = false;
+
+    if (widget.exibicaoEvento == ExibicaoEvento.Destaque) {
+      if (!Dados.verTodosDestaques) {
+        wrap = false;
+        tamanho = 255 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase;
+      } else {
+        wrap = true;
+      }
+    }
+
+    String subtitulo = '';
+
+    if (widget.exibicaoEvento == ExibicaoEvento.Destaque) {
+      subtitulo = Dados.verTodosDestaques
+          ? "Ver menos destaques"
+          : "Ver todos os destados ";
+    }
+
+    if (widget.exibicaoEvento == ExibicaoEvento.Data) {
+      subtitulo = Dados.verTodosDestaques
+          ? "Ver outro periodo"
+          : "Ver outro periodo";
+    }
+
     return Column(
       mainAxisSize: MainAxisSize.max,
       children: [
@@ -61,15 +89,24 @@ class _widgetHomeEventosState extends State<widgetHomeEventos> {
         ),
         widgetHeaderCards(
           titulo: titulos[widget.exibicaoEvento.index],
-          subtitulo: "Ver todos",
-          funcao: () {},
+          subtitulo: subtitulo,
+          funcao: () async {
+            //
+            if (widget.exibicaoEvento == ExibicaoEvento.Destaque) {
+              Dados.verTodosDestaques = !Dados.verTodosDestaques;
+              await Dados.setBool('categorias', Dados.verTodosDestaques);
+              setState(() {});
+            }
+            //
+          },
         ),
         SizedBox(
           width: double.infinity,
+          height: tamanho,
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             controller: scrollController,
-            scrollDirection: Axis.horizontal,
+            scrollDirection: wrap ? Axis.vertical : Axis.horizontal,
             child: Wrap(
               children: app.listaEventos.eventos!.map(
                 (e) {

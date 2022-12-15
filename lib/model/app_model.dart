@@ -94,6 +94,14 @@ class AppModel extends ChangeNotifier {
     return ret;
   }
 
+
+  String GetEnderecoEspaco(Espaco espaco) {
+
+
+    return espaco.endereco ??
+        "Endereço não informado no espaço.";
+  }
+
   String GetEnderecoEvento(Evento evento) {
     if (evento.eventosdatas == null || evento.eventosdatas!.isEmpty) {
       return 'Nenhum endereço localizado.';

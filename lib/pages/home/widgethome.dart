@@ -1,5 +1,6 @@
 // ignore_for_file: camel_case_types
 
+import 'package:agendacultural/pages/espacos/widgethomeespacos.dart';
 import 'package:agendacultural/pages/home/categorias/widgethomecategorias.dart';
 import 'package:agendacultural/pages/evento/widgethomeeventos.dart';
 import 'package:agendacultural/pages/home/widgethomeminhalocalizacao.dart';
@@ -33,6 +34,7 @@ class _widgetHomeState extends State<widgetHome> {
               widgetHomeEventos(
                 exibicaoEvento: ExibicaoEvento.Data,
               ),
+              widgetHomeEspacos(),
             ],
           ),
         ),
