@@ -77,6 +77,9 @@ class _widgetHomeEspacosState extends State<widgetHomeEspacos> {
             child: Wrap(
               children: app.listaEspacos.espacos!.map(
                 (e) {
+                  if (e.espacosimagens == null || e.espacosimagens!.isEmpty) {
+                    return const SizedBox.shrink();
+                  }
                   return widgetHomeEspacosContainer(
                     espaco: e,
                   );

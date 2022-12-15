@@ -42,12 +42,14 @@ class _widgetHomeCategoriasContainerState
             GestureDetector(
               onTap: () {
                 setState(() {
-                  //widget.categoria.selecionada = !widget.categoria.selecionada!;
+                  widget.categoria.selecionada = !widget.categoria.selecionada!;
                 });
               },
               child: CircleAvatar(
                 radius: 30,
-                backgroundColor: corBackgroundLaranja,
+                backgroundColor: widget.categoria.selecionada!
+                    ? corBackgroundLaranja
+                    : corBackgroundLaranja,
                 child: CircleAvatar(
                   radius: widget.categoria.selecionada! ? 26 : 30,
                   backgroundImage:

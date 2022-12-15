@@ -2,6 +2,7 @@
 
 import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/model/espaco_model.dart';
+import 'package:agendacultural/pages/espacos/pageespacodetalhe.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetimagemhtml.dart';
@@ -30,14 +31,17 @@ class widgetHomeEspacosContainer extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        /* Navigator.push(
+        if (espaco == null) {
+          print("ESPACO NULL NA BASE");
+        }
+        Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => pageEventoDetalhe(
-              evento: evento,
+            builder: (context) => pageEspacoDetalhe(
+              espaco: espaco,
             ),
           ),
-        );*/
+        );
       },
       child: Padding(
         padding: const EdgeInsets.all(4),
