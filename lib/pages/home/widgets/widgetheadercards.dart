@@ -27,8 +27,10 @@ class widgetHeaderCards extends StatelessWidget {
           weight: FontWeight.w600,
           semantics: titulo,
         ),
-        GestureDetector(
-          onTap: () => funcao,
+        InkWell(
+          onTap: () {           
+            funcao();
+          },
           child: TextContrasteFonte(
             text: subtitulo,
             color: corBackgroundLaranja,

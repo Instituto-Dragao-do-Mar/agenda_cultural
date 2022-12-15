@@ -6,9 +6,6 @@ import 'package:agendacultural/pages/home/widgethomeminhalocalizacao.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:flutter/material.dart';
 
-import '../../model/cores.dart';
-import '../../model/fontes.dart';
-
 class widgetHome extends StatefulWidget {
   const widgetHome({super.key});
 

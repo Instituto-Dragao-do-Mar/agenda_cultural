@@ -28,6 +28,7 @@ class _pageLoginState extends State<pageLogin> {
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
+      backgroundColor: corBgAtual,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.only(top: 45.0, bottom: 45.0),
@@ -103,7 +104,7 @@ class _pageLoginState extends State<pageLogin> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.pushReplacement(
+                          Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => const pagePrincipal(),
@@ -119,7 +120,9 @@ class _pageLoginState extends State<pageLogin> {
                               "Entrar como visitante",
                               semanticsLabel: "Entrar como vivitante",
                               style: GoogleFonts.roboto(
-                                  fontSize: 16, color: corBackgroundLaranja,),
+                                fontSize: 16,
+                                color: corBackgroundLaranja,
+                              ),
                             ),
                           ),
                         ),

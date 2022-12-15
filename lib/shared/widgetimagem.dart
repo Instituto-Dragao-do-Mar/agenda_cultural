@@ -21,3 +21,19 @@ Image widgetImagemInterna({
 }
 
 
+widgetImagemInternaProvider({
+  required Imagem imagem,
+  BoxFit? fit,
+  double? height,
+  double? width,
+}) {
+  //print("//////////// ${imagem.url} //////////}");
+  return Image.asset(
+    'imagens/' + imagem.url!,
+    width: width,
+    height: height,
+    fit: fit,
+  ).image;
+}
+
+

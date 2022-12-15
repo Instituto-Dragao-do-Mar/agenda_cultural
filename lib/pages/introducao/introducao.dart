@@ -40,6 +40,8 @@ class _pageIntroducaoState extends State<pageIntroducao> {
   }
 
   void _onIntroEnd(context) {
+    Dados.setBool('introducao', true);
+    Dados.jaVisualizouIntroducao = true;
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(builder: (_) => widget.destino),
     );
@@ -50,10 +52,6 @@ class _pageIntroducaoState extends State<pageIntroducao> {
 
   @override
   Widget build(BuildContext context) {
-/*
-    print("DADOS J: ${Dados.x}");
-    print("DADOS: ${Dados.prefs}");*/
-
     return FutureBuilder(
       future: getdados(),
       builder: (context, snapshot) {
@@ -140,7 +138,7 @@ class _pageIntroducaoState extends State<pageIntroducao> {
                     child: widgetBottomBotao(
                       text: "Ir para recursos de acessibilidade",
                       function: () {
-                        Navigator.of(context).pushReplacement(
+                        Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (_) => const widgetAcessibilidade(),
                           ),
@@ -215,7 +213,11 @@ class _pageIntroducaoState extends State<pageIntroducao> {
                           ),
                         ),
                         TextButton(
-                          onPressed: () => _onIntroEnd(context),
+                          onPressed: () {
+                            Dados.setBool('introducao', true);
+                            Dados.jaVisualizouIntroducao = true;
+                            _onIntroEnd(context);
+                          },
                           child: Text(
                             "Pular introdução",
                             style: Fontes.inter14W500Grey(Fontes.tamanhoBase),
@@ -228,26 +230,10 @@ class _pageIntroducaoState extends State<pageIntroducao> {
                 ),
               ),
             ),
-            FutureBuilder(
-              future: Dados.getBool('cookies'),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const SizedBox.shrink();
-                }
-                bool permiteCookies = snapshot.data as bool;
-
-                if (permiteCookies) {
-                  return const SizedBox.shrink();
-                }
-                return Semantics(
-                  container: true,
-                  sortKey: const OrdinalSortKey(1),
-                  child: const Positioned(
-                    child: Widgetalertdialog(),
-                  ),
-                );
-              },
-            ),
+            if (!Dados.jaVisualizouCookies)
+              const Positioned(
+                child: Widgetalertdialog(),
+              ),
           ],
         );
       },

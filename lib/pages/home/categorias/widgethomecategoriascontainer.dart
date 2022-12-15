@@ -50,15 +50,28 @@ class _widgetHomeCategoriasContainerState
                 backgroundColor: corBackgroundLaranja,
                 child: CircleAvatar(
                   radius: widget.categoria.selecionada! ? 26 : 30,
-                  backgroundImage: widgetImagemExterna(
-                    imagem: Imagem(
-                      base64: widget.categoria.imagens!.first.base64,
-                      tipoimagem: widget.categoria.imagens!.first.tipo! == 'U'
-                          ? TipoImagem.url
-                          : TipoImagem.base64,
-                      url: widget.categoria.imagens!.first.url,
-                    ),
-                  ),
+                  backgroundImage:
+                      widget.categoria.imagens!.first.url!.contains('http')
+                          ? widgetImagemExterna(
+                              imagem: Imagem(
+                                base64: widget.categoria.imagens!.first.base64,
+                                tipoimagem:
+                                    widget.categoria.imagens!.first.tipo! == 'U'
+                                        ? TipoImagem.url
+                                        : TipoImagem.base64,
+                                url: widget.categoria.imagens!.first.url,
+                              ),
+                            )
+                          : widgetImagemInternaProvider(
+                              imagem: Imagem(
+                                base64: widget.categoria.imagens!.first.base64,
+                                tipoimagem:
+                                    widget.categoria.imagens!.first.tipo! == 'U'
+                                        ? TipoImagem.url
+                                        : TipoImagem.base64,
+                                url: widget.categoria.imagens!.first.url,
+                              ),
+                            ),
                 ),
               ),
             ),

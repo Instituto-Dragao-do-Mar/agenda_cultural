@@ -3,6 +3,12 @@ import 'package:shared_preferences/shared_preferences.dart';
 class Dados {
   static SharedPreferences? prefs;
 
+  static bool jaVisualizouIntroducao = false;
+  static bool jaVisualizouCookies = false;
+  static bool jaVisualizouGoverno = false;
+  static bool jaPermitiuLocalizacao = false;
+  static bool verTodasCategorias = false;
+
   static Future<SharedPreferences> getprefs() async {
     return await SharedPreferences.getInstance();
   }

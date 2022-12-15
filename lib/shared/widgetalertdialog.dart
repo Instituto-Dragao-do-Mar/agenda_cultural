@@ -1,8 +1,6 @@
 import 'package:agendacultural/dados/dados.dart';
 import 'package:agendacultural/model/imagem_model.dart';
-import 'package:agendacultural/shared/constantes.dart';
 import 'package:agendacultural/shared/widgetbotao.dart';
-import 'package:agendacultural/shared/widgetemdesenvolvimento.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetespacov.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
@@ -18,11 +16,12 @@ class Widgetalertdialog extends StatefulWidget {
 }
 
 class _WidgetalertdialogState extends State<Widgetalertdialog> {
-  bool isAlert = true;
+  bool aceitei = false;
   @override
   Widget build(BuildContext context) {
-    return isAlert
-        ? Scaffold(
+    return aceitei
+        ? const SizedBox.shrink()
+        : Scaffold(
             backgroundColor: const Color.fromRGBO(217, 217, 217, 0.4),
             body: Column(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -38,7 +37,8 @@ class _WidgetalertdialogState extends State<Widgetalertdialog> {
                         children: [
                           Text(
                             "Huum.. utilizamos cookies",
-                            style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
+                            style:
+                                Fontes.poppins16W400Black(Fontes.tamanhoBase),
                           ),
                           const widgetEspacoV(largura: 10),
                           widgetImagemInterna(
@@ -63,22 +63,21 @@ class _WidgetalertdialogState extends State<Widgetalertdialog> {
                       Row(
                         children: [
                           Expanded(
-                            child: widgetBotao(
-                              width: 164,
-                              height: 48,
-                              text: "Recusar",
-                              negative: true,
-                              function: () {
-                                setState(() {
-                                  isAlert = !isAlert;
-                                });
-                                // widgetErro(
-                                //   context: context,
-                                //   text:
-                                //       "Funcionalidade em desenvolvimento, entre como visitante.",
-                                // );
-                              },
-                            ),
+                            child: SizedBox
+                                .shrink() /* widgetBotao(
+                        width: 164,
+                        height: 48,
+                        text: "Recusar",
+                        negative: true,
+                        function: () {
+                          // widgetErro(
+                          //   context: context,
+                          //   text:
+                          //       "Funcionalidade em desenvolvimento, entre como visitante.",
+                          // );
+                        },
+                      ) */
+                            ,
                           ),
                           const widgetEspacoV(largura: 16),
                           Expanded(
@@ -87,10 +86,10 @@ class _WidgetalertdialogState extends State<Widgetalertdialog> {
                               height: 48,
                               text: "Aceitar",
                               function: () {
+                                aceitei = true;
                                 Dados.setBool('cookies', true);
-                                setState(() {
-                                  isAlert = !isAlert;
-                                });
+                                Dados.jaVisualizouCookies = true;
+                                setState(() {});
                               },
                             ),
                           ),
@@ -100,7 +99,7 @@ class _WidgetalertdialogState extends State<Widgetalertdialog> {
                   ),
                 ),
               ],
-            ))
-        : Container();
+            ),
+          );
   }
 }

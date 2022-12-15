@@ -71,6 +71,7 @@ class widgetTopoComum extends StatelessWidget {
       child: Row(
         children: [
           widget1,
+          const SizedBox(width: 8),
           Expanded(
             child: Text(
               text ?? "",
