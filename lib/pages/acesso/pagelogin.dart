@@ -12,7 +12,9 @@ import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
+import '../../model/app_model.dart';
 import '../../model/fontes.dart';
 import '../../shared/widgetTextFonteContraste.dart';
 
@@ -25,10 +27,19 @@ class pageLogin extends StatefulWidget {
 
 class _pageLoginState extends State<pageLogin> {
   final ScrollController scrollController = ScrollController();
+  AppModel? app;
+
+  @override
+  void initState() {
+    app = context.read<AppModel>();
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    app?.resetUser();
 
     return Scaffold(
       backgroundColor: corBgAtual,
@@ -125,7 +136,7 @@ class _pageLoginState extends State<pageLogin> {
                               text: "Entrar como visitante",
                               semantics: "Entrar como vivitante",
                               style: GoogleFonts.roboto(
-                                  color: corBackgroundLaranja,
+                                color: corBackgroundLaranja,
                               ),
                             ),
                           ),

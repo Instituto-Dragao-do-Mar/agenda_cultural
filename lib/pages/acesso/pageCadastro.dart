@@ -16,6 +16,7 @@ import '../../controller/usuario_controller.dart';
 import '../../model/app_model.dart';
 import '../../shared/constantes.dart';
 import '../../shared/widgetTextFonteContraste.dart';
+import '../../shared/widgetemdesenvolvimento.dart';
 import '../home/widgets/widgettopocomum.dart';
 import '../home/widgets/widgettopoperfil.dart';
 
@@ -63,7 +64,7 @@ class _PageCadastroState extends State<PageCadastro> {
             children: [
               TextContrasteFonte(
                 text:
-                    "Ao se cadastrar você terá acesso aos recursos de gerar alertas e avaliar espaços e eventos",
+                "Ao se cadastrar você terá acesso aos recursos de gerar alertas e avaliar espaços e eventos",
                 semantics: "Cadastro",
                 style: Fontes.poppins12W400Grey((Fontes.tamanhoBase)),
               ),
@@ -165,14 +166,14 @@ class _PageCadastroState extends State<PageCadastro> {
                   contentPadding: const EdgeInsets.all(16),
                   suffixIcon: senhaInput != ''
                       ? IconButton(
-                          onPressed: () {
-                            setState(() {
-                              obscureTextSenha = !obscureTextSenha;
-                            });
-                          },
-                          icon: Icon(obscureTextSenha
-                              ? Icons.visibility
-                              : Icons.visibility_off))
+                      onPressed: () {
+                        setState(() {
+                          obscureTextSenha = !obscureTextSenha;
+                        });
+                      },
+                      icon: Icon(obscureTextSenha
+                          ? Icons.visibility
+                          : Icons.visibility_off))
                       : null,
                   focusColor: Colors.black,
                   border: const OutlineInputBorder(
@@ -233,17 +234,17 @@ class _PageCadastroState extends State<PageCadastro> {
                   contentPadding: const EdgeInsets.all(16),
                   suffixIcon: confirmarSenhaInput != ''
                       ? IconButton(
-                          onPressed: () {
-                            setState(() {
-                              obscureTextNovaSenha = !obscureTextNovaSenha;
-                            });
-                          },
-                          icon: Icon(
-                            obscureTextNovaSenha
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                          ),
-                        )
+                    onPressed: () {
+                      setState(() {
+                        obscureTextNovaSenha = !obscureTextNovaSenha;
+                      });
+                    },
+                    icon: Icon(
+                      obscureTextNovaSenha
+                          ? Icons.visibility
+                          : Icons.visibility_off,
+                    ),
+                  )
                       : null,
                   border: const OutlineInputBorder(
                     borderSide: BorderSide(
@@ -271,78 +272,78 @@ class _PageCadastroState extends State<PageCadastro> {
               ),
               senhaInput != "" || confirmarSenhaInput != ""
                   ? Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        TextContrasteFonte(
-                          text: "Sua senha deve conter:",
-                          style: Fontes.roboto12W400Grey(Fontes.tamanhoBase),
-                          semantics: "Sua senha deve conter:",
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TextContrasteFonte(
+                    text: "Sua senha deve conter:",
+                    style: Fontes.roboto12W400Grey(Fontes.tamanhoBase),
+                    semantics: "Sua senha deve conter:",
+                  ),
+                  const widgetEspacoH(
+                    altura: 4,
+                  ),
+                  TextContrasteFonte(
+                    text: "No mínimo 6 dígitos",
+                    style: Fontes.roboto12W300Grey(Fontes.tamanhoBase),
+                    semantics: "No mínimo 6 dígitos",
+                  ),
+                  const widgetEspacoH(
+                    altura: 4,
+                  ),
+                  TextContrasteFonte(
+                    text: "Pelo menos 1 letra maiúscula",
+                    style: Fontes.roboto12W300Grey(Fontes.tamanhoBase),
+                    semantics: "Pelo menos 1 letra maiúscula",
+                  ),
+                  const widgetEspacoH(
+                    altura: 4,
+                  ),
+                  TextContrasteFonte(
+                    text: "Pelo menos 1 letra minúscula",
+                    style: Fontes.roboto12W300Grey(Fontes.tamanhoBase),
+                    semantics: "Pelo menos 1 letra minúscula",
+                  ),
+                  const widgetEspacoH(
+                    altura: 4,
+                  ),
+                  TextContrasteFonte(
+                    text: "Pelo menos 1 número",
+                    style: Fontes.roboto12W300Grey(Fontes.tamanhoBase),
+                    semantics: "Pelo menos 1 número",
+                  ),
+                  const widgetEspacoH(
+                    altura: 8,
+                  ),
+                  TextContrasteFonte(
+                    text: "Força da senha:",
+                    style: Fontes.roboto12W300Grey(Fontes.tamanhoBase),
+                    semantics: "Força da senha:",
+                  ),
+                  const widgetEspacoH(
+                    altura: 8,
+                  ),
+                  Row(
+                    children: [
+                      const Expanded(
+                        flex: 1,
+                        child: StepProgressIndicator(
+                          totalSteps: 4,
+                          currentStep: 0,
+                          selectedColor: Colors.red,
+                          unselectedColor: Colors.grey,
                         ),
-                        const widgetEspacoH(
-                          altura: 4,
-                        ),
-                        TextContrasteFonte(
-                          text: "No mínimo 6 dígitos",
-                          style: Fontes.roboto12W300Grey(Fontes.tamanhoBase),
-                          semantics: "No mínimo 6 dígitos",
-                        ),
-                        const widgetEspacoH(
-                          altura: 4,
-                        ),
-                        TextContrasteFonte(
-                          text: "Pelo menos 1 letra maiúscula",
-                          style: Fontes.roboto12W300Grey(Fontes.tamanhoBase),
-                          semantics: "Pelo menos 1 letra maiúscula",
-                        ),
-                        const widgetEspacoH(
-                          altura: 4,
-                        ),
-                        TextContrasteFonte(
-                          text: "Pelo menos 1 letra minúscula",
-                          style: Fontes.roboto12W300Grey(Fontes.tamanhoBase),
-                          semantics: "Pelo menos 1 letra minúscula",
-                        ),
-                        const widgetEspacoH(
-                          altura: 4,
-                        ),
-                        TextContrasteFonte(
-                          text: "Pelo menos 1 número",
-                          style: Fontes.roboto12W300Grey(Fontes.tamanhoBase),
-                          semantics: "Pelo menos 1 número",
-                        ),
-                        const widgetEspacoH(
-                          altura: 8,
-                        ),
-                        TextContrasteFonte(
-                          text: "Força da senha:",
-                          style: Fontes.roboto12W300Grey(Fontes.tamanhoBase),
-                          semantics: "Força da senha:",
-                        ),
-                        const widgetEspacoH(
-                          altura: 8,
-                        ),
-                        Row(
-                          children: [
-                            const Expanded(
-                              flex: 1,
-                              child: StepProgressIndicator(
-                                totalSteps: 4,
-                                currentStep: 0,
-                                selectedColor: Colors.red,
-                                unselectedColor: Colors.grey,
-                              ),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Row(),
-                            )
-                          ],
-                        ),
-                        const widgetEspacoH(
-                          altura: 16,
-                        )
-                      ],
-                    )
+                      ),
+                      Expanded(
+                        flex: 1,
+                        child: Row(),
+                      )
+                    ],
+                  ),
+                  const widgetEspacoH(
+                    altura: 16,
+                  )
+                ],
+              )
                   : Column(),
               Semantics(
                 container: true,
@@ -360,18 +361,35 @@ class _PageCadastroState extends State<PageCadastro> {
   }
 
   Future<void> saveCadastro() async {
-    var usuario = await UsuarioController().usuariosPost(
-      nome: nomeInput,
-      email: emailInput,
-      senha: senhaInput,
-    );
-    if (app!.isLog()) {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const pageLogin(),
-        ),
+    if (emailInput.characters.length == 0 || nomeInput.characters.length == 0 ||
+        senhaInput.characters.length == 0) {
+      widgetErro(
+        context: context,
+        text:
+        "Os campos precisam ser preenchidos.",
       );
     }
-  }
+    else if(senhaInput != confirmarSenhaInput){
+      widgetErro(
+        context: context,
+        text:
+        "Senhas não conferem.",
+      );
+    }
+    else {
+    var usuario = await UsuarioController().usuariosPost(
+    nome: nomeInput,
+    email: emailInput,
+    senha: senhaInput,
+    );
+    if (app!.isLog()) {
+    Navigator.pushReplacement(
+    context,
+    MaterialPageRoute(
+    builder: (context) => const pageLogin(),
+    ),
+    );
+    }
+    }
+    }
 }

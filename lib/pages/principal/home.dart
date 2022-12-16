@@ -106,7 +106,7 @@ class _pagePrincipalState extends State<pagePrincipal> {
               imagem: Imagem(
             url: 'bottomhome.png',
           )),
-          label: "${app.usuarioLogado?.nome}",
+          label: "Home",
         ),
         BottomNavigationBarItem(
           backgroundColor: corBgAtual,

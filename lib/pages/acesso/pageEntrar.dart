@@ -14,6 +14,7 @@ import 'package:provider/provider.dart';
 import '../../model/app_model.dart';
 import '../../shared/constantes.dart';
 import '../../shared/widgetTextFonteContraste.dart';
+import '../../shared/widgetemdesenvolvimento.dart';
 import '../home/widgethome.dart';
 import '../home/widgets/widgettopocomum.dart';
 import '../home/widgets/widgettopoperfil.dart';
@@ -196,13 +197,17 @@ class _PageEntrarState extends State<PageEntrar> {
   Future<void> sendLogin() async {
     var usuario = await UsuarioController()
         .login(app: app, email: emailInput, senha: senhaInput);
-    if (usuario.signature != null) {
+    if (app.isLog()) {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
           builder: (context) => const pagePrincipal(),
         ),
       );
-    }
+    } else widgetErro(
+      context: context,
+      text:
+      "Dados incorretos, verifique o email e senha e tente novamente.",
+    );
   }
 }

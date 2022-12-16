@@ -1,6 +1,7 @@
 // ignore_for_file: camel_case_types
 
 import 'package:agendacultural/model/imagem_model.dart';
+import 'package:agendacultural/pages/acesso/pagelogin.dart';
 import 'package:agendacultural/pages/home/widgethome.dart';
 import 'package:agendacultural/pages/home/widgetperfil.dart';
 import 'package:agendacultural/pages/home/widgetperfilheader.dart';
@@ -10,6 +11,7 @@ import 'package:agendacultural/shared/widgetespacov.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
 
+import '../../../model/app_model.dart';
 import '../../../model/fontes.dart';
 
 class widgetTopoPerfil extends StatelessWidget {
@@ -19,6 +21,7 @@ class widgetTopoPerfil extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     String? text;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -59,7 +62,7 @@ class widgetTopoPerfil extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => pagePrincipal(),
+                    builder: (context) => pageLogin(),
                   ),
                 );
               },
