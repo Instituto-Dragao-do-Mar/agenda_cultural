@@ -40,6 +40,7 @@ class _widgetPerfilHeaderState extends State<widgetPerfilHeader> {
       top: true,
       minimum: const EdgeInsets.symmetric(vertical: 16),
       child: Scaffold(
+        backgroundColor: corBgAtual,
         appBar: AppBar(
           backgroundColor: corBgAtual,
           elevation: 0,
@@ -70,6 +71,7 @@ class _widgetPerfilHeaderState extends State<widgetPerfilHeader> {
               label: "Home",
             ),
             BottomNavigationBarItem(
+              backgroundColor: corBgAtual,
               icon: widgetImagemInterna(
                   imagem: Imagem(
                 url: 'bottomcalendario.png',
@@ -77,6 +79,7 @@ class _widgetPerfilHeaderState extends State<widgetPerfilHeader> {
               label: "Agenda",
             ),
             BottomNavigationBarItem(
+              backgroundColor: corBgAtual,
               icon: widgetImagemInterna(
                   imagem: Imagem(
                 url: 'bottommapa.png',
@@ -84,6 +87,7 @@ class _widgetPerfilHeaderState extends State<widgetPerfilHeader> {
               label: "Mapa",
             ),
             BottomNavigationBarItem(
+              backgroundColor: corBgAtual,
               icon: widgetImagemInterna(
                   imagem: Imagem(
                 url: 'bottomfavoritos.png',
@@ -91,6 +95,7 @@ class _widgetPerfilHeaderState extends State<widgetPerfilHeader> {
               label: "Favoritos",
             ),
             BottomNavigationBarItem(
+              backgroundColor: corBgAtual,
               icon: widgetImagemInterna(
                   imagem: Imagem(
                 url: 'bottomperfil.png',

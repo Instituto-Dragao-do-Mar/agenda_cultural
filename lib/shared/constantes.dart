@@ -1,3 +1,4 @@
+import 'package:agendacultural/shared/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -16,7 +17,7 @@ final Image radioOn = Image.network(
   height: 38,
 );
 
-final LinearGradient gradientPrincipal = LinearGradient(
+const LinearGradient gradientPrincipal = LinearGradient(
   colors: [
     Color(0xffEA5B0C),
     Color(0xffE83C3B),
@@ -24,14 +25,23 @@ final LinearGradient gradientPrincipal = LinearGradient(
 );
 
 bool isPerfil = false;
-const InputDecoration textfieldPerfil = InputDecoration(
+InputDecoration textfieldDadosCadastro = InputDecoration(
   filled: true,
-  fillColor: Color.fromRGBO(217, 217, 217, 8.2),
-  contentPadding: EdgeInsets.all(16),
+  fillColor: const Color.fromRGBO(217, 217, 217, 8.2),
+  contentPadding: const EdgeInsets.all(16),
   focusColor: Colors.black,
-  border: OutlineInputBorder(
+  focusedBorder: OutlineInputBorder(
     borderSide: BorderSide(
-      width: .5,
+      width: 3,
+      color: corBackgroundLaranja,
+    ),
+    borderRadius: const BorderRadius.all(
+      Radius.circular(5),
+    ),
+  ),
+  border: const OutlineInputBorder(
+    borderSide: BorderSide(
+      width: 3,
       color: Color(0XFFD9D9D9),
     ),
     borderRadius: BorderRadius.all(
@@ -39,3 +49,12 @@ const InputDecoration textfieldPerfil = InputDecoration(
     ),
   ),
 );
+
+enum ControllerStates {
+  idle,
+  loading,
+  success,
+  error,
+  created,
+  unauthorized
+}

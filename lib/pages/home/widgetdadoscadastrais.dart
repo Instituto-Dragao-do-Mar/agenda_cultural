@@ -75,6 +75,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
               label: "Home",
             ),
             BottomNavigationBarItem(
+              backgroundColor: corBgAtual,
               icon: widgetImagemInterna(
                   imagem: Imagem(
                 url: 'bottomcalendario.png',
@@ -82,6 +83,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
               label: "Agenda",
             ),
             BottomNavigationBarItem(
+              backgroundColor: corBgAtual,
               icon: widgetImagemInterna(
                   imagem: Imagem(
                 url: 'bottommapa.png',
@@ -89,6 +91,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
               label: "Mapa",
             ),
             BottomNavigationBarItem(
+              backgroundColor: corBgAtual,
               icon: widgetImagemInterna(
                   imagem: Imagem(
                 url: 'bottomfavoritos.png',
@@ -96,6 +99,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
               label: "Favoritos",
             ),
             BottomNavigationBarItem(
+              backgroundColor: corBgAtual,
               icon: widgetImagemInterna(
                   imagem: Imagem(
                 url: 'bottomperfil.png',
@@ -133,7 +137,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
                       nomeInput = value;
                     });
                   },
-                  decoration: textfieldPerfil,
+                  decoration: textfieldDadosCadastro,
                 ),
                 const widgetEspacoH(
                   altura: 15,
@@ -153,7 +157,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
                       emailInput = value;
                     });
                   },
-                  decoration: textfieldPerfil,
+                  decoration: textfieldDadosCadastro,
                 ),
                 const widgetEspacoH(
                   altura: 15,

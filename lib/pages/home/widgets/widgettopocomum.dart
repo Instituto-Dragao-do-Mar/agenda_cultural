@@ -71,10 +71,13 @@ class widgetTopoComum extends StatelessWidget {
       child: Row(
         children: [
           widget1,
-          Expanded(
-            child: Text(
-              text ?? "",
-              style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
+          Padding(
+            padding: const EdgeInsets.only(left: 20),
+            child: Expanded(
+              child: Text(
+                text ?? "",
+                style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
+              ),
             ),
           ),
           widget2,

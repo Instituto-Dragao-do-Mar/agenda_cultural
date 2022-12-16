@@ -25,11 +25,23 @@ class AppModel extends ChangeNotifier {
   late Filtro filtro;
   late Localizacao localizacao;
 
-  Usuario? usuario;
+  Usuario? usuarioLogado;
 
-  bool isLog() => (usuario != null);
+  bool isLog() => (usuarioLogado != null);
 
-  AppModel();
+  AppModel({Usuario? usr}) {
+    usuarioLogado = usr == null ? Usuario() : usr;
+  }
+
+  setUser(Usuario usr) {
+    usuarioLogado = usr;
+    notifyListeners();
+  }
+
+  resetUser() {
+    usuarioLogado = null;
+    notifyListeners();
+  }
 
   Future<void> getdados() async {
     listaCategoria = await CategoriaController().categoriaGet(
@@ -79,6 +91,11 @@ class AppModel extends ChangeNotifier {
       );
     }
   }
+
+
+  String GetGuidId() => usuarioLogado!.guidid!;
+
+  String GetToken() => usuarioLogado!.signature!;
 
   List<DateTime> getEventoDatas(Evento e) {
     List<DateTime> ret = [];

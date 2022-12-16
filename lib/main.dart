@@ -67,7 +67,7 @@ class MyApp extends StatelessWidget {
       title: 'Agenda Cultural',
       theme: themeDefault,
       home: const pageSplash(),
-      //home: const pageLogin(),
+      // home: const pageLogin(),
     );
   }
 }
