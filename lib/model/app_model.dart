@@ -7,6 +7,7 @@ import 'package:agendacultural/model/acessibilidade_model.dart';
 import 'package:agendacultural/model/categoria_model.dart';
 import 'package:agendacultural/model/espaco_model.dart';
 import 'package:agendacultural/model/evento_model.dart';
+import 'package:agendacultural/model/favorito_model.dart';
 import 'package:agendacultural/model/filtro_model.dart';
 import 'package:agendacultural/model/localizacao_model.dart';
 import 'package:agendacultural/model/usuario_model.dart';
@@ -24,12 +25,25 @@ class AppModel extends ChangeNotifier {
   late ListaEspacos listaEspacos;
   late Filtro filtro;
   late Localizacao localizacao;
+  late ListaFavoritos listaFavoritos;
 
-  Usuario? usuario;
+  Usuario? usuarioLogado;
 
-  bool isLog() => (usuario != null);
+  bool isLog() => (usuarioLogado != null);
 
-  AppModel();
+  AppModel({Usuario? usr}) {
+    usuarioLogado = usr == null ? Usuario() : usr;
+  }
+
+  setUser(Usuario usr) {
+    usuarioLogado = usr;
+    notifyListeners();
+  }
+
+  resetUser() {
+    usuarioLogado = null;
+    notifyListeners();
+  }
 
   void notify() {
     notifyListeners();
@@ -83,6 +97,11 @@ class AppModel extends ChangeNotifier {
       );
     }
   }
+
+
+  String GetGuidId() => usuarioLogado!.guidid!;
+
+  String GetToken() => usuarioLogado!.signature!;
 
   List<DateTime> getEventoDatas(Evento e) {
     List<DateTime> ret = [];

@@ -35,126 +35,126 @@ class _widgetPerfilHeaderState extends State<widgetPerfilHeader> {
   ];
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      bottom: true,
-      top: true,
-      minimum: const EdgeInsets.symmetric(vertical: 16),
-      child: Scaffold(
-        appBar: AppBar(
-          backgroundColor: corBgAtual,
-          elevation: 0,
-          leadingWidth: 0,
-          title: const widgetTopoPerfil(),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          onTap: (i) {
-            setState(() {
-              opcaoSelecionada = i;
-            });
-          },
-          backgroundColor: corBgAtual,
-          elevation: 0,
-          showUnselectedLabels: true,
-          unselectedFontSize: 12,
-          selectedFontSize: 12,
-          unselectedItemColor: Colors.black,
-          selectedItemColor: Colors.grey,
-          currentIndex: opcaoSelecionada,
-          items: [
-            BottomNavigationBarItem(
-              backgroundColor: corBgAtual,
-              icon: widgetImagemInterna(
-                  imagem: Imagem(
-                url: 'bottomhome.png',
-              )),
-              label: "Home",
+    return Scaffold(
+      backgroundColor: corBgAtual,
+      appBar: AppBar(
+        backgroundColor: corBgAtual,
+        elevation: 0,
+        leadingWidth: 0,
+        title: const widgetTopoPerfil(),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: (i) {
+          setState(() {
+            opcaoSelecionada = i;
+          });
+        },
+        backgroundColor: corBgAtual,
+        elevation: 0,
+        showUnselectedLabels: true,
+        unselectedFontSize: 12,
+        selectedFontSize: 12,
+        unselectedItemColor: Colors.black,
+        selectedItemColor: Colors.grey,
+        currentIndex: opcaoSelecionada,
+        items: [
+          BottomNavigationBarItem(
+            backgroundColor: corBgAtual,
+            icon: widgetImagemInterna(
+                imagem: Imagem(
+              url: 'bottomhome.png',
+            )),
+            label: "Home",
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: corBgAtual,
+            icon: widgetImagemInterna(
+                imagem: Imagem(
+              url: 'bottomcalendario.png',
+            )),
+            label: "Agenda",
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: corBgAtual,
+            icon: widgetImagemInterna(
+                imagem: Imagem(
+              url: 'bottommapa.png',
+            )),
+            label: "Mapa",
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: corBgAtual,
+            icon: widgetImagemInterna(
+                imagem: Imagem(
+              url: 'bottomfavoritos.png',
+            )),
+            label: "Favoritos",
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: corBgAtual,
+            icon: widgetImagemInterna(
+                imagem: Imagem(
+              url: 'bottomperfil.png',
+            )),
+            label: "Perfil",
+          ),
+        ],
+      ),
+      body: Container(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Conta",
+              style: Fontes.poppins18W500Black(Fontes.tamanhoBase),
             ),
-            BottomNavigationBarItem(
-              icon: widgetImagemInterna(
-                  imagem: Imagem(
-                url: 'bottomcalendario.png',
-              )),
-              label: "Agenda",
+            const widgetEspacoH(altura: 12),
+            const widgetopacaoperfil(
+              subtitulo: "Notificações e alertas",
+              paginaDestino: widgetNotificacoes(),
             ),
-            BottomNavigationBarItem(
-              icon: widgetImagemInterna(
-                  imagem: Imagem(
-                url: 'bottommapa.png',
-              )),
-              label: "Mapa",
+            const widgetEspacoH(altura: 16),
+            const widgetopacaoperfil(
+              subtitulo: "Dados cadastrais",
+              paginaDestino: widgetDadosCadastrais(),
             ),
-            BottomNavigationBarItem(
-              icon: widgetImagemInterna(
-                  imagem: Imagem(
-                url: 'bottomfavoritos.png',
-              )),
-              label: "Favoritos",
+            const widgetEspacoH(altura: 24),
+            Text(
+              'Geral',
+              style: Fontes.poppins18W500Black(Fontes.tamanhoBase),
             ),
-            BottomNavigationBarItem(
-              icon: widgetImagemInterna(
-                  imagem: Imagem(
-                url: 'bottomperfil.png',
-              )),
-              label: "Perfil",
+            const widgetEspacoH(altura: 12),
+            const widgetopacaoperfil(
+              subtitulo: "Termos e Serviços",
+              paginaDestino: widgetEmConstrucao(),
+            ),
+            const widgetEspacoH(altura: 16),
+            const widgetopacaoperfil(
+              subtitulo: "Ajuda",
+              paginaDestino: widgetEmConstrucao(),
+            ),
+            const widgetEspacoH(altura: 16),
+            const widgetopacaoperfil(
+              subtitulo: "Sobre o app",
+              paginaDestino: widgetEmConstrucao(),
+            ),
+            const widgetEspacoH(altura: 24),
+            Text(
+              'Acessibilidade',
+              style: Fontes.poppins18W500Black(Fontes.tamanhoBase),
+            ),
+            const widgetEspacoH(altura: 12),
+            const widgetopacaoperfil(
+              subtitulo: "Recursos",
+              paginaDestino: widgetPerfilAcessibilidade(),
+            ),
+            const widgetEspacoH(altura: 16),
+            const widgetopacaoperfil(
+              subtitulo: "Idioma",
+              paginaDestino: widgetIdiomas(),
             ),
           ],
-        ),
-        body: Container(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Conta",
-                style: Fontes.poppins18W500Black(Fontes.tamanhoBase),
-              ),
-              const widgetEspacoH(altura: 12),
-              const widgetopacaoperfil(
-                subtitulo: "Notificações e alertas",
-                paginaDestino: widgetNotificacoes(),
-              ),
-              const widgetEspacoH(altura: 16),
-              const widgetopacaoperfil(
-                subtitulo: "Dados cadastrais",
-                paginaDestino: widgetDadosCadastrais(),
-              ),
-              const widgetEspacoH(altura: 24),
-              Text(
-                'Geral',
-                style: Fontes.poppins18W500Black(Fontes.tamanhoBase),
-              ),
-              const widgetEspacoH(altura: 12),
-              const widgetopacaoperfil(
-                subtitulo: "Termos e Serviços",
-                paginaDestino: widgetEmConstrucao(),
-              ),
-              const widgetEspacoH(altura: 16),
-              const widgetopacaoperfil(
-                subtitulo: "Ajuda",
-                paginaDestino: widgetEmConstrucao(),
-              ),
-              const widgetEspacoH(altura: 16),
-              const widgetopacaoperfil(
-                subtitulo: "Sobre o app",
-                paginaDestino: widgetEmConstrucao(),
-              ),
-              const widgetEspacoH(altura: 24),
-              Text(
-                'Acessibilidade',
-                style: Fontes.poppins18W500Black(Fontes.tamanhoBase),
-              ),
-              const widgetEspacoH(altura: 12),
-              const widgetopacaoperfil(
-                subtitulo: "Recursos",
-                paginaDestino: widgetPerfilAcessibilidade(),
-              ),
-              const widgetEspacoH(altura: 16),
-              const widgetopacaoperfil(
-                subtitulo: "Idioma",
-                paginaDestino: widgetIdiomas(),
-              ),
-            ],
-          ),
         ),
       ),
     );

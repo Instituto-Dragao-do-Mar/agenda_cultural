@@ -65,7 +65,7 @@ class Fontes {
     textStyle:  TextStyle(
       fontSize: tamanho - 2,
       fontWeight: FontWeight.w400,
-      color: !Cores.contraste ? Colors.black : Colors.white,
+      color: !Cores.contraste ? Color(0XFF222222) : Colors.white,
     ),
   );
   static TextStyle roboto16W400Grey(int tamanho) => GoogleFonts.roboto(

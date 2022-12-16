@@ -7,6 +7,7 @@ import 'package:agendacultural/shared/widgetemconstrucao.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:flutter/material.dart';
 
+import '../../model/app_model.dart';
 import '../../model/fontes.dart';
 import '../../shared/constantes.dart';
 import '../../shared/themes.dart';

@@ -1,6 +1,8 @@
 // ignore_for_file: camel_case_types
 
 import 'package:agendacultural/model/imagem_model.dart';
+import 'package:agendacultural/pages/acesso/pageCadastro.dart';
+import 'package:agendacultural/pages/acesso/pageEntrar.dart';
 import 'package:agendacultural/pages/principal/home.dart';
 import 'package:agendacultural/shared/constantes.dart';
 import 'package:agendacultural/shared/themes.dart';
@@ -10,8 +12,11 @@ import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
 
+import '../../model/app_model.dart';
 import '../../model/fontes.dart';
+import '../../shared/widgetTextFonteContraste.dart';
 
 class pageLogin extends StatefulWidget {
   const pageLogin({super.key});
@@ -22,10 +27,19 @@ class pageLogin extends StatefulWidget {
 
 class _pageLoginState extends State<pageLogin> {
   final ScrollController scrollController = ScrollController();
+  AppModel? app;
+
+  @override
+  void initState() {
+    app = context.read<AppModel>();
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    app?.resetUser();
 
     return Scaffold(
       backgroundColor: corBgAtual,
@@ -37,10 +51,10 @@ class _pageLoginState extends State<pageLogin> {
             children: [
               Column(
                 children: [
-                  Text(
-                    "Realização",
+                  TextContrasteFonte(
+                    text: "Realização",
                     style: Fontes.roboto16W400Black(Fontes.tamanhoBase),
-                    semanticsLabel: "Realização Governo do Estado do Ceará.",
+                    semantics: "Realização Governo do Estado do Ceará.",
                   ),
                   widgetImagemInterna(
                     imagem: Imagem(
@@ -83,10 +97,11 @@ class _pageLoginState extends State<pageLogin> {
                         margin: const EdgeInsets.fromLTRB(32, 10, 32, 10),
                         text: "Entrar",
                         function: () {
-                          widgetErro(
-                            context: context,
-                            text:
-                                "Funcionalidade em desenvolvimento, entre como visitante.",
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const PageEntrar(),
+                            ),
                           );
                         },
                       ),
@@ -95,10 +110,11 @@ class _pageLoginState extends State<pageLogin> {
                         text: "Cadastre-se",
                         negative: true,
                         function: () {
-                          widgetErro(
-                            context: context,
-                            text:
-                                "Funcionalidade em desenvolvimento, entre como visitante.",
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const PageCadastro(),
+                            ),
                           );
                         },
                       ),
@@ -116,11 +132,14 @@ class _pageLoginState extends State<pageLogin> {
                           width: double.infinity,
                           height: 65,
                           child: Center(
-                            child: Text(
-                              "Entrar como visitante",
-                              semanticsLabel: "Entrar como vivitante",
+                            child: TextContrasteFonte(
+                              text: "Entrar como visitante",
+                              semantics: "Entrar como vivitante",
                               style: GoogleFonts.roboto(
+<<<<<<< lib/pages/acesso/pagelogin.dart
+=======
                                 fontSize: 16,
+>>>>>>> lib/pages/acesso/pagelogin.dart
                                 color: corBackgroundLaranja,
                               ),
                             ),
@@ -134,18 +153,26 @@ class _pageLoginState extends State<pageLogin> {
               const widgetEspacoH(altura: 40),
               Column(
                 children: [
-                  Text(
-                    "Gestão",
-                    semanticsLabel: "Gestão Instituto Dragão do Mar",
+                  TextContrasteFonte(
+                    text: "Gestão",
+                    semantics: "Gestão Instituto Dragão do Mar",
                     style: Fontes.roboto16W400Black(Fontes.tamanhoBase),
                   ),
                   const widgetEspacoH(altura: 11),
-                  widgetImagemInterna(
-                    imagem: Imagem(
-                      url: "dragaodomar.png",
+                  Container(
+                    width: 150,
+                    height: 100,
+                    decoration: const BoxDecoration(
+                      color: corBg,
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
                     ),
-                    width: 121,
-                    height: 72,
+                    child: widgetImagemInterna(
+                      imagem: Imagem(
+                        url: "dragaodomar.png",
+                      ),
+                      width: 121,
+                      height: 72,
+                    ),
                   ),
                 ],
               ),

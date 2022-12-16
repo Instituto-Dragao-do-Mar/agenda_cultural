@@ -40,216 +40,211 @@ class _widgetNotificacoesState extends State<widgetNotificacoes> {
   ];
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      bottom: true,
-      top: true,
-      minimum: const EdgeInsets.symmetric(vertical: 16),
-      child: Scaffold(
+    return Scaffold(
+      backgroundColor: corBgAtual,
+      appBar: AppBar(
         backgroundColor: corBgAtual,
-        appBar: AppBar(
-          backgroundColor: corBgAtual,
-          elevation: 0,
-          leadingWidth: 0,
-          title: widgetTopoPerfil(),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          onTap: (i) {
-            setState(() {
-              opcaoSelecionada = i;
-            });
-          },
-          backgroundColor: corBgAtual,
-          elevation: 0,
-          showUnselectedLabels: true,
-          unselectedFontSize: 12,
-          selectedFontSize: 12,
-          unselectedItemColor: Colors.black,
-          selectedItemColor: Colors.grey,
-          currentIndex: opcaoSelecionada,
-          items: [
-            BottomNavigationBarItem(
-              backgroundColor: corBgAtual,
-              icon: widgetImagemInterna(
-                  imagem: Imagem(
-                url: 'fhome.png',
-              )),
-              label: "Home",
-            ),
-            BottomNavigationBarItem(
-              backgroundColor: corBgAtual,
-              icon: widgetImagemInterna(
-                  imagem: Imagem(
-                url: 'fagenda.png',
-              )),
-              label: "Agenda",
-            ),
-            BottomNavigationBarItem(
-              backgroundColor: corBgAtual,
-              icon: widgetImagemInterna(
-                  imagem: Imagem(
-                url: 'fmapa.png',
-              )),
-              label: "Mapa",
-            ),
-            BottomNavigationBarItem(
-              backgroundColor: corBgAtual,
-              icon: widgetImagemInterna(
-                  imagem: Imagem(
-                url: 'ffavorito.png',
-              )),
-              label: "Favoritos",
-            ),
-            BottomNavigationBarItem(
-              backgroundColor: corBgAtual,
-              icon: widgetImagemInterna(
-                  imagem: Imagem(
-                url: 'fperfil.png',
-              )),
-              label: "Perfil",
-            ),
-          ],
-        ),
-        body: Container(
-          padding: const EdgeInsets.all(16.0),
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Notificações e alertas",
-                  style: Fontes.poppins18W500Black(Fontes.tamanhoBase),
-                ),
-                const widgetEspacoH(altura: 16),
-                Text(
-                  "Habilitar notificações",
-                  style: Fontes.roboto16W400Black(Fontes.tamanhoBase),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Escolha se deseja receber notificações",
-                      style: Fontes.poppins12W400Grey(Fontes.tamanhoBase),
-                    ),
-                    widgetBotaoSwitch(
-                      value: status1,
-                    ),
-                  ],
-                ),
-                const widgetEspacoH(altura: 20),
-                Text(
-                  "Notificação push",
-                  style: Fontes.roboto16W400Black(Fontes.tamanhoBase),
-                ),
-                Text(
-                  "Escolha quais notificações deseja receber no seu celular",
-                  style: Fontes.poppins12W400Grey(Fontes.tamanhoBase),
-                ),
-                const widgetEspacoH(altura: 12),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Lembretes de alertas",
-                      style: Fontes.poppins14W400Grey(Fontes.tamanhoBase),
-                    ),
-                    widgetBotaoSwitch(
-                      value: status1,
-                    ),
-                  ],
-                ),
-                const widgetEspacoH(altura: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Atualização da programação",
-                      style: Fontes.poppins14W400Grey(Fontes.tamanhoBase),
-                    ),
-                    widgetBotaoSwitch(
-                      value: status1,
-                    ),
-                  ],
-                ),
-                const widgetEspacoH(altura: 25),
-                Text(
-                  "Notificação por e-mail",
-                  style: Fontes.roboto16W400Black(Fontes.tamanhoBase),
-                ),
-                Text(
-                  "Escolha quais notificações deseja receber por e-mail",
-                  style: Fontes.poppins12W400Grey(Fontes.tamanhoBase),
-                ),
-                const widgetEspacoH(altura: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Lembretes de alertas",
-                      style: Fontes.poppins14W400Grey(Fontes.tamanhoBase),
-                    ),
-                    widgetBotaoSwitch(
-                      value: status1,
-                    ),
-                  ],
-                ),
-                const widgetEspacoH(altura: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "Atualização da programação",
-                      style: Fontes.poppins14W400Grey(Fontes.tamanhoBase),
-                    ),
-                    widgetBotaoSwitch(
-                      value: status1,
-                    ),
-                  ],
-                ),
-                const widgetEspacoH(altura: 25),
-                Text(
-                  "Receber alertas",
-                  style: Fontes.roboto16W400Black(Fontes.tamanhoBase),
-                ),
-                Text(
-                  "Defina quando deseja receber alertas de eventos",
-                  style: Fontes.poppins12W400Grey(Fontes.tamanhoBase),
-                ),
-                const widgetEspacoH(altura: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "1 dia antes do evento",
-                      style: Fontes.poppins14W400Grey(Fontes.tamanhoBase),
-                    ),
-                    widgetBotaoSwitch(
-                      value: status1,
-                    ),
-                  ],
-                ),
-                const widgetEspacoH(altura: 20),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      "1 semana antes do evento",
-                      style: Fontes.poppins14W400Grey(Fontes.tamanhoBase),
-                    ),
-                    widgetBotaoSwitch(
-                      value: status1,
-                    ),
-                  ],
-                ),
-              ],
-            ),
+        elevation: 0,
+        leadingWidth: 0,
+        title: widgetTopoPerfil(),
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: (i) {
+          setState(() {
+            opcaoSelecionada = i;
+          });
+        },
+        backgroundColor: corBgAtual,
+        elevation: 0,
+        showUnselectedLabels: true,
+        unselectedFontSize: 12,
+        selectedFontSize: 12,
+        unselectedItemColor: Colors.black,
+        selectedItemColor: Colors.grey,
+        currentIndex: opcaoSelecionada,
+        items: [
+          BottomNavigationBarItem(
+            backgroundColor: corBgAtual,
+            icon: widgetImagemInterna(
+                imagem: Imagem(
+              url: 'fhome.png',
+            )),
+            label: "Home",
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: corBgAtual,
+            icon: widgetImagemInterna(
+                imagem: Imagem(
+              url: 'fagenda.png',
+            )),
+            label: "Agenda",
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: corBgAtual,
+            icon: widgetImagemInterna(
+                imagem: Imagem(
+              url: 'fmapa.png',
+            )),
+            label: "Mapa",
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: corBgAtual,
+            icon: widgetImagemInterna(
+                imagem: Imagem(
+              url: 'ffavorito.png',
+            )),
+            label: "Favoritos",
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: corBgAtual,
+            icon: widgetImagemInterna(
+                imagem: Imagem(
+              url: 'fperfil.png',
+            )),
+            label: "Perfil",
+          ),
+        ],
+      ),
+      body: Container(
+        padding: const EdgeInsets.all(16.0),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Notificações e alertas",
+                style: Fontes.poppins18W500Black(Fontes.tamanhoBase),
+              ),
+              const widgetEspacoH(altura: 16),
+              Text(
+                "Habilitar notificações",
+                style: Fontes.roboto16W400Black(Fontes.tamanhoBase),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Escolha se deseja receber notificações",
+                    style: Fontes.poppins12W400Grey(Fontes.tamanhoBase),
+                  ),
+                  widgetBotaoSwitch(
+                    value: status1,
+                  ),
+                ],
+              ),
+              const widgetEspacoH(altura: 20),
+              Text(
+                "Notificação push",
+                style: Fontes.roboto16W400Black(Fontes.tamanhoBase),
+              ),
+              Text(
+                "Escolha quais notificações deseja receber no seu celular",
+                style: Fontes.poppins12W400Grey(Fontes.tamanhoBase),
+              ),
+              const widgetEspacoH(altura: 12),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Lembretes de alertas",
+                    style: Fontes.poppins14W400Grey(Fontes.tamanhoBase),
+                  ),
+                  widgetBotaoSwitch(
+                    value: status1,
+                  ),
+                ],
+              ),
+              const widgetEspacoH(altura: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Atualização da programação",
+                    style: Fontes.poppins14W400Grey(Fontes.tamanhoBase),
+                  ),
+                  widgetBotaoSwitch(
+                    value: status1,
+                  ),
+                ],
+              ),
+              const widgetEspacoH(altura: 25),
+              Text(
+                "Notificação por e-mail",
+                style: Fontes.roboto16W400Black(Fontes.tamanhoBase),
+              ),
+              Text(
+                "Escolha quais notificações deseja receber por e-mail",
+                style: Fontes.poppins12W400Grey(Fontes.tamanhoBase),
+              ),
+              const widgetEspacoH(altura: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Lembretes de alertas",
+                    style: Fontes.poppins14W400Grey(Fontes.tamanhoBase),
+                  ),
+                  widgetBotaoSwitch(
+                    value: status1,
+                  ),
+                ],
+              ),
+              const widgetEspacoH(altura: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Atualização da programação",
+                    style: Fontes.poppins14W400Grey(Fontes.tamanhoBase),
+                  ),
+                  widgetBotaoSwitch(
+                    value: status1,
+                  ),
+                ],
+              ),
+              const widgetEspacoH(altura: 25),
+              Text(
+                "Receber alertas",
+                style: Fontes.roboto16W400Black(Fontes.tamanhoBase),
+              ),
+              Text(
+                "Defina quando deseja receber alertas de eventos",
+                style: Fontes.poppins12W400Grey(Fontes.tamanhoBase),
+              ),
+              const widgetEspacoH(altura: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "1 dia antes do evento",
+                    style: Fontes.poppins14W400Grey(Fontes.tamanhoBase),
+                  ),
+                  widgetBotaoSwitch(
+                    value: status1,
+                  ),
+                ],
+              ),
+              const widgetEspacoH(altura: 20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "1 semana antes do evento",
+                    style: Fontes.poppins14W400Grey(Fontes.tamanhoBase),
+                  ),
+                  widgetBotaoSwitch(
+                    value: status1,
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),

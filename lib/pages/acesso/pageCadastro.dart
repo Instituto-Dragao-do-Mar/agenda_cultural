@@ -1,5 +1,7 @@
 import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/model/imagem_model.dart';
+import 'package:agendacultural/model/usuario_model.dart';
+import 'package:agendacultural/pages/acesso/pagelogin.dart';
 import 'package:agendacultural/pages/home/widgetperfil.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetbotao.dart';
@@ -7,35 +9,38 @@ import 'package:agendacultural/shared/widgetemconstrucao.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
+import '../../controller/usuario_controller.dart';
+import '../../model/app_model.dart';
 import '../../shared/constantes.dart';
-import 'widgethome.dart';
-import 'widgets/widgettopoperfil.dart';
+import '../../shared/widgetTextFonteContraste.dart';
+import '../../shared/widgetemdesenvolvimento.dart';
+import '../home/widgets/widgettopocomum.dart';
+import '../home/widgets/widgettopoperfil.dart';
 
-class widgetDadosCadastrais extends StatefulWidget {
-  const widgetDadosCadastrais({Key? key}) : super(key: key);
+class PageCadastro extends StatefulWidget {
+  const PageCadastro({Key? key}) : super(key: key);
 
   @override
-  _widgetDadosCadastraisState createState() => _widgetDadosCadastraisState();
+  State<PageCadastro> createState() => _PageCadastroState();
 }
 
-class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
+class _PageCadastroState extends State<PageCadastro> {
   String nomeInput = "";
   String emailInput = "";
   String senhaInput = "";
-  String novaSenhaInput = "";
+  String confirmarSenhaInput = "";
   bool obscureTextSenha = true;
   bool obscureTextNovaSenha = true;
-  int opcaoSelecionada = 0;
+  AppModel? app;
 
-  List<Widget> subPaginas = [
-    const widgetHome(),
-    const widgetEmConstrucao(),
-    const widgetEmConstrucao(),
-    const widgetEmConstrucao(),
-    widgetPerfil(),
-  ];
+  @override
+  void initState() {
+    super.initState();
+    app = context.read<AppModel>();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -45,64 +50,11 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
         backgroundColor: corBgAtual,
         elevation: 0,
         leadingWidth: 0,
-        title: const widgetTopoPerfil(),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: (i) {
-          setState(() {
-            opcaoSelecionada = i;
-          });
-        },
-        backgroundColor: corBgAtual,
-        elevation: 0,
-        showUnselectedLabels: true,
-        unselectedFontSize: 12,
-        selectedFontSize: 12,
-        unselectedItemColor: Colors.black,
-        selectedItemColor: Colors.grey,
-        currentIndex: opcaoSelecionada,
-        items: [
-          BottomNavigationBarItem(
-            backgroundColor: corBgAtual,
-            icon: widgetImagemInterna(
-                imagem: Imagem(
-              url: 'bottomhome.png',
-            )),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-            backgroundColor: corBgAtual,
-            icon: widgetImagemInterna(
-                imagem: Imagem(
-              url: 'bottomcalendario.png',
-            )),
-            label: "Agenda",
-          ),
-          BottomNavigationBarItem(
-            backgroundColor: corBgAtual,
-            icon: widgetImagemInterna(
-                imagem: Imagem(
-              url: 'bottommapa.png',
-            )),
-            label: "Mapa",
-          ),
-          BottomNavigationBarItem(
-            backgroundColor: corBgAtual,
-            icon: widgetImagemInterna(
-                imagem: Imagem(
-              url: 'bottomfavoritos.png',
-            )),
-            label: "Favoritos",
-          ),
-          BottomNavigationBarItem(
-            backgroundColor: corBgAtual,
-            icon: widgetImagemInterna(
-                imagem: Imagem(
-              url: 'bottomperfil.png',
-            )),
-            label: "Perfil",
-          ),
-        ],
+        title: widgetTopoComum(
+          text: "Cadastro",
+          funcaoImagem1: () async {},
+          urlImagem1: 'seta.png',
+        ),
       ),
       body: Container(
         padding: const EdgeInsets.all(16),
@@ -110,18 +62,30 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                "Dados cadastrais",
-                semanticsLabel: "Dados cadastrais",
-                style: Fontes.poppins18W500Black((Fontes.tamanhoBase)),
+              TextContrasteFonte(
+                text:
+                    "Ao se cadastrar você terá acesso aos recursos de gerar alertas e avaliar espaços e eventos",
+                semantics: "Cadastro",
+                style: Fontes.poppins12W400Grey((Fontes.tamanhoBase)),
               ),
               const widgetEspacoH(
                 altura: 15,
               ),
-              Text(
-                "Nome",
-                semanticsLabel: "Digite seu Nome",
-                style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
+              Row(
+                children: [
+                  TextContrasteFonte(
+                    text: "Nome",
+                    semantics: "Digite seu Nome",
+                    style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
+                  ),
+                  TextContrasteFonte(
+                    text: " *",
+                    style: TextStyle(
+                      color: corBackgroundLaranja,
+                      fontSize: Fontes.tamanhoBase.toDouble(),
+                    ),
+                  ),
+                ],
               ),
               const widgetEspacoH(
                 altura: 4,
@@ -138,10 +102,21 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
               const widgetEspacoH(
                 altura: 15,
               ),
-              Text(
-                "E-mail",
-                style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
-                semanticsLabel: "Digite seu E-mail",
+              Row(
+                children: [
+                  TextContrasteFonte(
+                    text: "E-mail",
+                    style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
+                    semantics: "Digite seu E-mail",
+                  ),
+                  TextContrasteFonte(
+                    text: " *",
+                    style: TextStyle(
+                      color: corBackgroundLaranja,
+                      fontSize: Fontes.tamanhoBase.toDouble(),
+                    ),
+                  ),
+                ],
               ),
               const widgetEspacoH(
                 altura: 4,
@@ -158,9 +133,22 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
               const widgetEspacoH(
                 altura: 15,
               ),
-              Text("Senha atual",
-                  style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
-                  semanticsLabel: "Digite sua Senha atual"),
+              Row(
+                children: [
+                  TextContrasteFonte(
+                    text: "Senha",
+                    style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
+                    semantics: "Digite sua Senha",
+                  ),
+                  TextContrasteFonte(
+                    text: " *",
+                    style: TextStyle(
+                      color: corBackgroundLaranja,
+                      fontSize: Fontes.tamanhoBase.toDouble(),
+                    ),
+                  ),
+                ],
+              ),
               const widgetEspacoH(
                 altura: 4,
               ),
@@ -202,7 +190,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
                       width: 3,
                       color: corBackgroundLaranja,
                     ),
-                    borderRadius: const BorderRadius.all(
+                    borderRadius: BorderRadius.all(
                       Radius.circular(5),
                     ),
                   ),
@@ -211,10 +199,21 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
               const widgetEspacoH(
                 altura: 15,
               ),
-              Text(
-                "Nova senha",
-                semanticsLabel: "Digite sua nova senha",
-                style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
+              Row(
+                children: [
+                  TextContrasteFonte(
+                    text: "Confirmar Senha",
+                    semantics: "Digite sua senha novamente",
+                    style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
+                  ),
+                  TextContrasteFonte(
+                    text: " *",
+                    style: TextStyle(
+                      color: corBackgroundLaranja,
+                      fontSize: Fontes.tamanhoBase.toDouble(),
+                    ),
+                  ),
+                ],
               ),
               const widgetEspacoH(
                 altura: 4,
@@ -225,14 +224,14 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
                 style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
                 onChanged: (value) {
                   setState(() {
-                    novaSenhaInput = value;
+                    confirmarSenhaInput = value;
                   });
                 },
                 decoration: InputDecoration(
                   filled: true,
                   fillColor: const Color.fromRGBO(217, 217, 217, 8.2),
                   contentPadding: const EdgeInsets.all(16),
-                  suffixIcon: novaSenhaInput != ''
+                  suffixIcon: confirmarSenhaInput != ''
                       ? IconButton(
                           onPressed: () {
                             setState(() {
@@ -255,59 +254,68 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
                       Radius.circular(5),
                     ),
                   ),
+                  focusedBorder: OutlineInputBorder(
+                    borderSide: BorderSide(
+                      width: 3,
+                      color: corBackgroundLaranja,
+                    ),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(5),
+                    ),
+                  ),
                 ),
               ),
               const widgetEspacoH(
                 altura: 16,
               ),
-              senhaInput != "" || novaSenhaInput != ""
+              senhaInput != "" || confirmarSenhaInput != ""
                   ? Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          "Sua senha deve conter:",
+                        TextContrasteFonte(
+                          text: "Sua senha deve conter:",
                           style: Fontes.roboto12W400Grey(Fontes.tamanhoBase),
-                          semanticsLabel: "Sua senha deve conter:",
+                          semantics: "Sua senha deve conter:",
                         ),
                         const widgetEspacoH(
                           altura: 4,
                         ),
-                        Text(
-                          "No mínimo 6 dígitos",
+                        TextContrasteFonte(
+                          text: "No mínimo 6 dígitos",
                           style: Fontes.roboto12W300Grey(Fontes.tamanhoBase),
-                          semanticsLabel: "No mínimo 6 dígitos",
+                          semantics: "No mínimo 6 dígitos",
                         ),
                         const widgetEspacoH(
                           altura: 4,
                         ),
-                        Text(
-                          "Pelo menos 1 letra maiúscula",
+                        TextContrasteFonte(
+                          text: "Pelo menos 1 letra maiúscula",
                           style: Fontes.roboto12W300Grey(Fontes.tamanhoBase),
-                          semanticsLabel: "Pelo menos 1 letra maiúscula",
+                          semantics: "Pelo menos 1 letra maiúscula",
                         ),
                         const widgetEspacoH(
                           altura: 4,
                         ),
-                        Text(
-                          "Pelo menos 1 letra minúscula",
+                        TextContrasteFonte(
+                          text: "Pelo menos 1 letra minúscula",
                           style: Fontes.roboto12W300Grey(Fontes.tamanhoBase),
-                          semanticsLabel: "Pelo menos 1 letra minúscula",
+                          semantics: "Pelo menos 1 letra minúscula",
                         ),
                         const widgetEspacoH(
                           altura: 4,
                         ),
-                        Text(
-                          "Pelo menos 1 número",
+                        TextContrasteFonte(
+                          text: "Pelo menos 1 número",
                           style: Fontes.roboto12W300Grey(Fontes.tamanhoBase),
-                          semanticsLabel: "Pelo menos 1 número",
+                          semantics: "Pelo menos 1 número",
                         ),
                         const widgetEspacoH(
                           altura: 8,
                         ),
-                        Text(
-                          "Força da senha:",
+                        TextContrasteFonte(
+                          text: "Força da senha:",
                           style: Fontes.roboto12W300Grey(Fontes.tamanhoBase),
-                          semanticsLabel: "Força da senha:",
+                          semantics: "Força da senha:",
                         ),
                         const widgetEspacoH(
                           altura: 8,
@@ -338,8 +346,9 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
               Semantics(
                 container: true,
                 label: "Botão Salvar",
-                child: const widgetBotao(
+                child: widgetBotao(
                   text: "Salvar",
+                  function: () async => await saveCadastro(),
                 ),
               )
             ],
@@ -347,5 +356,33 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
         ),
       ),
     );
+  }
+
+  Future<void> saveCadastro() async {
+    if (emailInput.characters.length == 0 ||
+        nomeInput.characters.length == 0 ||
+        senhaInput.characters.length == 0) {
+      widgetErro(
+        context: context,
+        text: "Os campos precisam ser preenchidos.",
+      );
+    } else if (senhaInput != confirmarSenhaInput) {
+      widgetErro(
+        context: context,
+        text: "Senhas não conferem.",
+      );
+    } else {
+      var usuario = await UsuarioController().usuariosPost(
+        nome: nomeInput,
+        email: emailInput,
+        senha: senhaInput,
+      );
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const pageLogin(),
+        ),
+      );
+    }
   }
 }
