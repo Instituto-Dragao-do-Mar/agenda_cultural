@@ -33,4 +33,33 @@ class EventoController extends BaseController {
    
     return lista;
   }
+
+  Future<ListaEventos> favoritosGet({
+    required String userguidid,
+  }) async {
+    ListaEventos lista = ListaEventos();
+
+    lista.eventos = [];
+
+    String url = "${urlApiIDM}eventos";
+
+    try {
+      var response = await http.get(
+        Uri.parse(url),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      );
+      if (response.statusCode == 200) {
+        var ret = jsonDecode(response.body);
+        lista = ListaEventos.fromJson(ret);
+      } else {
+        setError(response.body);
+      }
+    } catch (_) {
+      setError(_.toString());
+    }
+
+    return lista;
+  }
 }

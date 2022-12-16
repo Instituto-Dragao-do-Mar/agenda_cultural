@@ -7,6 +7,7 @@ import 'package:agendacultural/model/acessibilidade_model.dart';
 import 'package:agendacultural/model/categoria_model.dart';
 import 'package:agendacultural/model/espaco_model.dart';
 import 'package:agendacultural/model/evento_model.dart';
+import 'package:agendacultural/model/favorito_model.dart';
 import 'package:agendacultural/model/filtro_model.dart';
 import 'package:agendacultural/model/localizacao_model.dart';
 import 'package:agendacultural/model/usuario_model.dart';
@@ -24,6 +25,7 @@ class AppModel extends ChangeNotifier {
   late ListaEspacos listaEspacos;
   late Filtro filtro;
   late Localizacao localizacao;
+  late ListaFavoritos listaFavoritos;
 
   Usuario? usuarioLogado;
 

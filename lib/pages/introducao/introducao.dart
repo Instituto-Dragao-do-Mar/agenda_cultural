@@ -242,9 +242,7 @@ class _pageIntroducaoState extends State<pageIntroducao> {
                 return Semantics(
                   container: true,
                   sortKey: const OrdinalSortKey(1),
-                  child: const Positioned(
-                    child: Widgetalertdialog(),
-                  ),
+                  child: const Widgetalertdialog(),
                 );
               },
             ),
