@@ -201,6 +201,15 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
                         Radius.circular(5),
                       ),
                     ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 3,
+                        color: corBackgroundLaranja,
+                      ),
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(5),
+                      ),
+                    ),
                   ),
                 ),
                 const widgetEspacoH(

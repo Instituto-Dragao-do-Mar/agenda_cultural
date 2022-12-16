@@ -78,7 +78,7 @@ class UsuarioController extends BaseController {
           login: email?.trim(),
         );
 
-        debugPrint("usuario retorno ${_usuarioRetorno}");
+        debugPrint("usuario retorno $_usuarioRetorno");
 
         if (_usuarioRetorno.ativo != 1) {
           _usuarioRetorno.nome = null;
@@ -101,12 +101,14 @@ class UsuarioController extends BaseController {
         }
       } else {
         app?.resetUser();
+        _usuarioRetorno == null;
         errorMessage = response.body;
         state = ControllerStates.error;
         notifyListeners();
       }
     } catch (e) {
       app?.resetUser();
+      _usuarioRetorno == null;
       errorMessage = "Acesso inválido (${e.toString()})";
       print(errorMessage);
       state = ControllerStates.error;
@@ -124,7 +126,7 @@ class UsuarioController extends BaseController {
 
     try {
       var response = await http.get(
-        Uri.parse('${urlApiIDM}usuario?l=${login}'),
+        Uri.parse('${urlApiIDM}usuario?l=$login'),
         headers: {
           "Content-Type": "application/json",
           'Authorization': 'Bearer $token',
@@ -186,31 +188,21 @@ class UsuarioController extends BaseController {
 
     var _body = jsonEncode(
       <String, dynamic>{
-        "guididoperador": "BFBC1C49-CD9A-4E04-A747-4C1817962D87",
+        // "guididoperador": "BFBC1C49-CD9A-4E04-A747-4C1817962D87",
         "login": email,
         "nome": nome,
         "email": email,
         "senha": senhaEncrypt,
         "tipoacesso": "App",
-        "telefone": "",
-        "idimagem": "",
-        "cpf": "",
-        "cep": "",
-        "logradouro": "",
-        "numero": "",
-        "bairro": "",
-        "cidade": "",
-        "uf": "",
-        "complemento": ""
       },
     );
 
     try {
       var response = await http.post(
-        Uri.parse('${urlApiIDM}usuarios?u=BFBC1C49-CD9A-4E04-A747-4C1817962D87'),
+        Uri.parse('${urlApiIDM}usuarios'),
         headers: {
           "Content-Type": "application/json",
-          'Authorization': 'Bearer ${acesso?.signature}}',
+          // 'Authorization': 'Bearer ${acesso?.signature}}',
         },
         body: _body,
       );

@@ -196,7 +196,7 @@ class _PageEntrarState extends State<PageEntrar> {
   Future<void> sendLogin() async {
     var usuario = await UsuarioController()
         .login(app: app, email: emailInput, senha: senhaInput);
-    if (app.isLog()) {
+    if (usuario.signature != null) {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
