@@ -239,31 +239,10 @@ class _pageIntroducaoState extends State<pageIntroducao> {
                 ),
               ),
             ),
-<<<<<<< lib/pages/introducao/introducao.dart
-            FutureBuilder(
-              future: Dados.getBool('cookies'),
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const SizedBox.shrink();
-                }
-                bool permiteCookies = snapshot.data as bool;
-
-                if (permiteCookies) {
-                  return const SizedBox.shrink();
-                }
-                return Semantics(
-                  container: true,
-                  sortKey: const OrdinalSortKey(1),
-                  child: const Widgetalertdialog(),
-                );
-              },
-            ),
-=======
             if (!Dados.jaVisualizouCookies)
               const Positioned(
                 child: Widgetalertdialog(),
               ),
->>>>>>> lib/pages/introducao/introducao.dart
           ],
         );
       },
