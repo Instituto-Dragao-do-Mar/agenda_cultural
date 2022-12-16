@@ -1,5 +1,7 @@
+import 'package:agendacultural/dados/dados.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
+import 'package:agendacultural/pages/home/widgets/widgettopocomum.dart';
 import 'package:agendacultural/pages/localizacao/widgetlocalizacao.dart';
 import 'package:agendacultural/pages/home/widgets/widgettopo.dart';
 import 'package:agendacultural/pages/principal/home.dart';
@@ -29,10 +31,17 @@ class _WidgetInserirLocalizacaoState extends State<WidgetInserirLocalizacao> {
     return Scaffold(
       backgroundColor: corBgAtual,
       appBar: AppBar(
+        leading: const SizedBox.shrink(),
         backgroundColor: corBgAtual,
         elevation: 0,
         leadingWidth: 0,
-        title: const widgetTopo(),
+        title: widgetTopoComum(
+          urlImagem1: "seta.png",
+          funcaoImagem1: () {
+            Navigator.pop(context);
+          },
+          text: 'Inserir Localização manualmente',
+        ),
       ),
       body: Container(
         padding: const EdgeInsets.only(left: 16, right: 16, top: 29),
@@ -41,6 +50,10 @@ class _WidgetInserirLocalizacaoState extends State<WidgetInserirLocalizacao> {
             const widgetEspacoH(
               altura: 31,
             ),
+            Text(
+              'Informe onde você esta no momento.',
+              style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
+            ),
             TextField(
               style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
               onChanged: (value) {
@@ -48,12 +61,12 @@ class _WidgetInserirLocalizacaoState extends State<WidgetInserirLocalizacao> {
                   nomeLocalizacao = value;
                 });
               },
-              decoration: textfieldDadosCadastro,
+              decoration: textfieldPerfil,
             ),
             const widgetEspacoH(
               altura: 26,
             ),
-            ListTile(
+            /* ListTile(
               leading: widgetImagemInterna(
                 imagem: Imagem(
                   url: "local.png",
@@ -70,8 +83,8 @@ class _WidgetInserirLocalizacaoState extends State<WidgetInserirLocalizacao> {
                       "Funcionalidade em desenvolvimento, entre como visitante.",
                 );
               },
-            ),
-            SingleChildScrollView(
+            ), */
+            /* SingleChildScrollView(
               child: ListView.builder(
                 shrinkWrap: true,
                 itemCount: 1,
@@ -79,17 +92,23 @@ class _WidgetInserirLocalizacaoState extends State<WidgetInserirLocalizacao> {
                   return const SizedBox.shrink();
                 },
               ),
-            ),
-            Expanded(
-              child: Column(),
+            ), */
+            const Expanded(
+              child: SizedBox.shrink(),
             ),
             widgetBotao(
-              text: "Voltar",
+              text: "Confirmar",
               function: () {
-                Navigator.pop(context);
+                Dados.setBool('localizacao', true);
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const pageLogin(),
+                  ),
+                );
               },
             ),
-            GestureDetector(
+            /*GestureDetector(
               onTap: () {
                 Navigator.pushReplacement(
                   context,
@@ -113,7 +132,7 @@ class _WidgetInserirLocalizacaoState extends State<WidgetInserirLocalizacao> {
             ),
             const widgetEspacoH(
               altura: 32,
-            ),
+            ),*/
           ],
         ),
       ),

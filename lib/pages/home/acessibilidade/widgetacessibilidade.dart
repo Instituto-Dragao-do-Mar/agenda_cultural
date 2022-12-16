@@ -43,11 +43,13 @@ class _widgetAcessibilidadeState extends State<widgetAcessibilidade> {
   @override
   Widget build(BuildContext context) {
     var corBackground = statusAltoContraste ? corBgAltoContraste : corBg;
-    var corAppBarLocal = statusAltoContraste ? corAppBarAltoContraste : corAppBar;
+    var corAppBarLocal =
+        statusAltoContraste ? corAppBarAltoContraste : corAppBar;
     var corTextLocal = statusAltoContraste ? corTextAltoContraste : corText;
 
     return Scaffold(
       appBar: AppBar(
+        leading: const SizedBox.shrink(),
         backgroundColor: corAppBarLocal,
         elevation: 0,
         leadingWidth: 0,
@@ -142,7 +144,9 @@ class _widgetAcessibilidadeState extends State<widgetAcessibilidade> {
                           textStyle: TextStyle(
                             fontSize: fontSize,
                             fontWeight: FontWeight.w400,
-                            color: !Cores.contraste ? Color(0XFF000000) : Colors.white,
+                            color: !Cores.contraste
+                                ? Color(0XFF000000)
+                                : Colors.white,
                           ),
                         )),
                     Text(
@@ -169,16 +173,17 @@ class _widgetAcessibilidadeState extends State<widgetAcessibilidade> {
                 ),
               ],
             ),
-            widgetEspacoH(altura: 55),
+            const widgetEspacoH(altura: 55),
             widgetBotao(
               text: "Voltar",
               function: () {
-                Navigator.pushReplacement(
+                Navigator.pop(context);
+                /* Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const pageLogin(),
+                    builder: (context) => const pagePrincipal(),
                   ),
-                );
+                ); */
               },
             ),
           ],

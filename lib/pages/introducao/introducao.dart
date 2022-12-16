@@ -6,6 +6,7 @@ import 'package:agendacultural/pages/home/acessibilidade/widgetacessibilidade.da
 import 'package:agendacultural/shared/constantes.dart';
 import 'package:agendacultural/shared/widgetalertdialog.dart';
 import 'package:agendacultural/shared/widgetbottombotao.dart';
+import 'package:agendacultural/shared/widgetemdesenvolvimento.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
@@ -40,6 +41,8 @@ class _pageIntroducaoState extends State<pageIntroducao> {
   }
 
   void _onIntroEnd(context) {
+    Dados.setBool('introducao', true);
+    Dados.jaVisualizouIntroducao = true;
     Navigator.of(context).pushReplacement(
       MaterialPageRoute(builder: (_) => widget.destino),
     );
@@ -50,10 +53,6 @@ class _pageIntroducaoState extends State<pageIntroducao> {
 
   @override
   Widget build(BuildContext context) {
-/*
-    print("DADOS J: ${Dados.x}");
-    print("DADOS: ${Dados.prefs}");*/
-
     return FutureBuilder(
       future: getdados(),
       builder: (context, snapshot) {
@@ -140,7 +139,15 @@ class _pageIntroducaoState extends State<pageIntroducao> {
                     child: widgetBottomBotao(
                       text: "Ir para recursos de acessibilidade",
                       function: () {
-                        Navigator.of(context).pushReplacement(
+                        if (!Dados.jaVisualizouCookies) {
+                          widgetErro(
+                            context: context,
+                            text:
+                                "A acessibilidade só pode ser acessada se você permitir o uso de cookies.",
+                          );
+                          return;
+                        }
+                        Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (_) => const widgetAcessibilidade(),
                           ),
@@ -215,7 +222,11 @@ class _pageIntroducaoState extends State<pageIntroducao> {
                           ),
                         ),
                         TextButton(
-                          onPressed: () => _onIntroEnd(context),
+                          onPressed: () {
+                            Dados.setBool('introducao', true);
+                            Dados.jaVisualizouIntroducao = true;
+                            _onIntroEnd(context);
+                          },
                           child: Text(
                             "Pular introdução",
                             style: Fontes.inter14W500Grey(Fontes.tamanhoBase),
@@ -228,6 +239,7 @@ class _pageIntroducaoState extends State<pageIntroducao> {
                 ),
               ),
             ),
+<<<<<<< lib/pages/introducao/introducao.dart
             FutureBuilder(
               future: Dados.getBool('cookies'),
               builder: (context, snapshot) {
@@ -246,6 +258,12 @@ class _pageIntroducaoState extends State<pageIntroducao> {
                 );
               },
             ),
+=======
+            if (!Dados.jaVisualizouCookies)
+              const Positioned(
+                child: Widgetalertdialog(),
+              ),
+>>>>>>> lib/pages/introducao/introducao.dart
           ],
         );
       },

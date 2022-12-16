@@ -56,6 +56,22 @@ class _pagePrincipalState extends State<pagePrincipal> {
 
   @override
   Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: corBgAtual,
+      appBar: AppBar(
+        leading: const SizedBox.shrink(),
+        backgroundColor: corBgAtual,
+        elevation: 0,
+        leadingWidth: 0,
+        title: subPaginasTopo[opcaoSelecionada],
+      ),
+      bottomNavigationBar: bottomNavi(),
+      body: body(),
+    );
+  }
+
+  Widget body() {
+    //
     return FutureBuilder(
       future: app.getdados(),
       builder: (context, snapshot) {
@@ -64,20 +80,8 @@ class _pagePrincipalState extends State<pagePrincipal> {
             child: CircularProgressIndicator(),
           );
         }
-
-        /*  print("Eventos: ${app.listaEventos.eventos!.length}");
-          print("Categorias: ${app.listaCategoria.categorias!.length}");*/
-
-        return Scaffold(
-          backgroundColor: corBgAtual,
-          appBar: AppBar(
-              backgroundColor: corBgAtual,
-              elevation: 0,
-              leadingWidth: 0,
-              title: subPaginasTopo[opcaoSelecionada]),
-          bottomNavigationBar: bottomNavi(),
-          body: subPaginas[opcaoSelecionada],
-        );
+        
+        return subPaginas[opcaoSelecionada];
       },
     );
   }

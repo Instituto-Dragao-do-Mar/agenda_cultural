@@ -3,6 +3,14 @@ import 'package:shared_preferences/shared_preferences.dart';
 class Dados {
   static SharedPreferences? prefs;
 
+  static bool jaVisualizouIntroducao = false;
+  static bool jaVisualizouCookies = false;
+  static bool jaVisualizouGoverno = false;
+  static bool jaPermitiuLocalizacao = false;
+  static bool verTodasCategorias = false;
+  static bool verTodosDestaques = false;
+  static bool verTodosEspacos = false;
+
   static Future<SharedPreferences> getprefs() async {
     return await SharedPreferences.getInstance();
   }
@@ -23,17 +31,23 @@ class Dados {
   }
 
   static Future<void> setBool(String key, bool value) async {
-    prefs ??= await getprefs();
-    prefs!.setBool(key, value);
+    if (key == 'cookies' || jaVisualizouCookies) {
+      prefs ??= await getprefs();
+      prefs!.setBool(key, value);
+    }
   }
 
   static Future<void> setString(String key, String value) async {
-    prefs ??= await getprefs();
-    prefs!.setString(key, value);
+    if (key == 'cookies' || jaVisualizouCookies) {
+      prefs ??= await getprefs();
+      prefs!.setString(key, value);
+    }
   }
 
   static Future<void> setInt(String key, int value) async {
-    prefs ??= await getprefs();
-    prefs!.setInt(key, value);
+    if (key == 'cookies' || jaVisualizouCookies) {
+      prefs ??= await getprefs();
+      prefs!.setInt(key, value);
+    }
   }
 }

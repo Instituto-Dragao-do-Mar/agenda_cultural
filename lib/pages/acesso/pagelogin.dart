@@ -120,7 +120,7 @@ class _pageLoginState extends State<pageLogin> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.pushReplacement(
+                          Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => const pagePrincipal(),
@@ -136,6 +136,10 @@ class _pageLoginState extends State<pageLogin> {
                               text: "Entrar como visitante",
                               semantics: "Entrar como vivitante",
                               style: GoogleFonts.roboto(
+<<<<<<< lib/pages/acesso/pagelogin.dart
+=======
+                                fontSize: 16,
+>>>>>>> lib/pages/acesso/pagelogin.dart
                                 color: corBackgroundLaranja,
                               ),
                             ),

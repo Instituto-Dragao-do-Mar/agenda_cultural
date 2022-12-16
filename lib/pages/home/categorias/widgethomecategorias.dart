@@ -1,12 +1,9 @@
 // ignore_for_file: camel_case_types
 
-import 'package:agendacultural/controller/categoria_controller.dart';
+import 'package:agendacultural/dados/dados.dart';
 import 'package:agendacultural/model/app_model.dart';
-import 'package:agendacultural/model/categoria_model.dart';
 import 'package:agendacultural/pages/home/categorias/widgethomecategoriascontainer.dart';
-
 import 'package:agendacultural/pages/home/widgets/widgetheadercards.dart';
-import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,7 +16,6 @@ class widgetHomeCategorias extends StatefulWidget {
 }
 
 class _widgetHomeCategoriasState extends State<widgetHomeCategorias> {
-
   ScrollController scrollController = ScrollController();
 
   late AppModel app;
@@ -27,14 +23,13 @@ class _widgetHomeCategoriasState extends State<widgetHomeCategorias> {
   @override
   void initState() {
     super.initState();
-    app = Provider.of<AppModel>(context, listen: false);    
+    app = Provider.of<AppModel>(context, listen: false);
   }
 
   @override
-  void dispose() {    
+  void dispose() {
     super.dispose();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -46,22 +41,30 @@ class _widgetHomeCategoriasState extends State<widgetHomeCategorias> {
         ),
         widgetHeaderCards(
           titulo: "Categorias",
-          subtitulo: "Ver todas",
-          funcao: () {},
+          subtitulo: Dados.verTodasCategorias
+              ? "Ver menos categorias"
+              : "Ver todas as categorias",
+          funcao: () async {            
+            Dados.verTodasCategorias = !Dados.verTodasCategorias;
+            await Dados.setBool('categorias', Dados.verTodasCategorias);
+            setState(() {});
+          },
         ),
         const widgetEspacoH(),
         SizedBox(
           width: double.infinity,
+          height: (Dados.verTodasCategorias) ? null : 130,
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             controller: scrollController,
-            scrollDirection: Axis.horizontal,
+            scrollDirection: Dados.verTodasCategorias ? Axis.vertical : Axis.horizontal,
             child: Wrap(
               children: app.listaCategoria.categorias!.map(
                 (e) {
                   if (e.imagens == null || e.imagens!.isEmpty) {
                     return const SizedBox.shrink();
                   }
+                  //print(e.imagens!.first.toJson());
                   //return Container();
 
                   return widgetHomeCategoriasContainer(

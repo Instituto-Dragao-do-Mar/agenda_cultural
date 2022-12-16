@@ -100,7 +100,7 @@ class Fontes {
     textStyle:  TextStyle(
       fontSize: tamanho - 2,
       fontWeight: FontWeight.w500,
-      color: Color(0XFF000000),
+      color: !Cores.contraste ? Colors.black : Colors.white,
     ),
   );
   static TextStyle roboto16W400EA5(int tamanho) => GoogleFonts.roboto(
@@ -128,21 +128,21 @@ class Fontes {
     textStyle:  TextStyle(
       fontSize: tamanho + 8,
       fontWeight: FontWeight.w500,
-      color: Color(0XFFF9E8D8),
+      color: Cores.contraste ? Colors.black : Colors.white,
     ),
   );
   static TextStyle inter16W700Withe(int tamanho) => GoogleFonts.inter(
     textStyle:  TextStyle(
       fontSize: tamanho.toDouble(),
       fontWeight: FontWeight.w700,
-      color: Color(0XFFF9E8D8),
+      color: Cores.contraste ? Colors.black : Colors.white,
     ),
   );
   static TextStyle inter16W500Black(int tamanho) => GoogleFonts.inter(
     textStyle:  TextStyle(
       fontSize: tamanho.toDouble(),
       fontWeight: FontWeight.w500,
-      color: !Cores.contraste ? Color(0XFF000000) : Colors.white,
+      color: !Cores.contraste ? Colors.black : Colors.white,
     ),
   );
   static TextStyle inter14W500Grey(int tamanho) => GoogleFonts.inter(

@@ -1,11 +1,13 @@
 // ignore_for_file: camel_case_types
 
+import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/model/categoria_model.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:agendacultural/shared/widgetimagemexterna.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../../../model/cores.dart';
 import '../../../model/fontes.dart';
@@ -29,6 +31,19 @@ class _widgetHomeCategoriasContainerState
   bool statusAltoContraste = Cores.contraste;
   double fontSize = Fontes.tamanhoBase.toDouble();
 
+  late AppModel app;
+
+  @override
+  void initState() {
+    super.initState();
+    app = Provider.of<AppModel>(context, listen: false);
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -42,23 +57,54 @@ class _widgetHomeCategoriasContainerState
             GestureDetector(
               onTap: () {
                 setState(() {
-                  //widget.categoria.selecionada = !widget.categoria.selecionada!;
+                  widget.categoria.selecionada = !widget.categoria.selecionada!;
+
+                  if (!widget.categoria.selecionada!) {
+                    if (app.filtro.categoriasSelecionadas!
+                        .any((e) => e.id! == widget.categoria.id!)) {
+                      app.filtro.categoriasSelecionadas!
+                          .removeWhere((e) => e.id! == widget.categoria.id!);
+                    }
+                  } else {
+                    if (!app.filtro.categoriasSelecionadas!
+                        .any((e) => e.id! == widget.categoria.id!)) {
+                      app.filtro.categoriasSelecionadas!.add(widget.categoria);
+                    }
+                  }
+                 /*  print(
+                      'Lista Categorias: ${app.filtro.categoriasSelecionadas!.length}'); */
+                  app.notify();
                 });
               },
               child: CircleAvatar(
                 radius: 30,
-                backgroundColor: corBackgroundLaranja,
+                backgroundColor: widget.categoria.selecionada!
+                    ? Colors.black
+                    : corBackgroundLaranja,
                 child: CircleAvatar(
                   radius: widget.categoria.selecionada! ? 26 : 30,
-                  backgroundImage: widgetImagemExterna(
-                    imagem: Imagem(
-                      base64: widget.categoria.imagens!.first.base64,
-                      tipoimagem: widget.categoria.imagens!.first.tipo! == 'U'
-                          ? TipoImagem.url
-                          : TipoImagem.base64,
-                      url: widget.categoria.imagens!.first.url,
-                    ),
-                  ),
+                  backgroundImage:
+                      widget.categoria.imagens!.first.url!.contains('http')
+                          ? widgetImagemExterna(
+                              imagem: Imagem(
+                                base64: widget.categoria.imagens!.first.base64,
+                                tipoimagem:
+                                    widget.categoria.imagens!.first.tipo! == 'U'
+                                        ? TipoImagem.url
+                                        : TipoImagem.base64,
+                                url: widget.categoria.imagens!.first.url,
+                              ),
+                            )
+                          : widgetImagemInternaProvider(
+                              imagem: Imagem(
+                                base64: widget.categoria.imagens!.first.base64,
+                                tipoimagem:
+                                    widget.categoria.imagens!.first.tipo! == 'U'
+                                        ? TipoImagem.url
+                                        : TipoImagem.base64,
+                                url: widget.categoria.imagens!.first.url,
+                              ),
+                            ),
                 ),
               ),
             ),

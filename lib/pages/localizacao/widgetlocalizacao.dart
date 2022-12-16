@@ -1,3 +1,4 @@
+import 'package:agendacultural/dados/dados.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
 import 'package:agendacultural/pages/localizacao/widgetinserirlocalizacao.dart';
@@ -72,10 +73,12 @@ class Widgetlocalizacao extends StatelessWidget {
               child: widgetBotao(
                 text: "Ativar agora",
                 function: () {
-                  widgetErro(
-                    context: context,
-                    text:
-                        "Funcionalidade em desenvolvimento, entre como visitante.",
+                  Dados.setBool('localizacao', true);
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const pageLogin(),
+                    ),
                   );
                 },
               ),
@@ -85,7 +88,7 @@ class Widgetlocalizacao extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.pushReplacement(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => const WidgetInserirLocalizacao(),
@@ -105,7 +108,7 @@ class Widgetlocalizacao extends StatelessWidget {
                 ),
               ),
             ),
-            GestureDetector(
+            /*GestureDetector(
               onTap: () {
                 Navigator.pushReplacement(
                   context,
@@ -126,7 +129,7 @@ class Widgetlocalizacao extends StatelessWidget {
                   ),
                 ),
               ),
-            ),
+            ),*/
           ],
         ),
       ),

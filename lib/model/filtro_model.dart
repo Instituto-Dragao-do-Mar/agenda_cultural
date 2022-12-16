@@ -1,6 +1,7 @@
-import 'package:agendacultural/model/acessibilidade_model.dart';
+
 import 'package:agendacultural/model/categoria_model.dart';
 import 'package:agendacultural/model/espaco_model.dart';
+import 'package:flutter/material.dart';
 
 class Filtro {
   DateTime? dataInicial;

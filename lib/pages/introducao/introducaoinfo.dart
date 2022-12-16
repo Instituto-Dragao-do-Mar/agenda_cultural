@@ -1,3 +1,4 @@
+import 'package:agendacultural/dados/dados.dart';
 import 'package:agendacultural/pages/localizacao/widgetlocalizacao.dart';
 import 'package:agendacultural/shared/constantes.dart';
 import 'package:flutter/material.dart';
@@ -49,11 +50,11 @@ class _IntroducaoinfoState extends State<Introducaoinfo> {
             Expanded(child: Container()),
             GestureDetector(
               onTap: () {
-                // Navigator.of(context).pushReplacement(
-                //   MaterialPageRoute(builder: (_) => widget.destino,),
-                // );
+                Dados.setBool('governo', true);
                 Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (_) => Widgetlocalizacao(),),
+                  MaterialPageRoute(
+                    builder: (_) => const Widgetlocalizacao(),
+                  ),
                 );
               },
               child: Container(
