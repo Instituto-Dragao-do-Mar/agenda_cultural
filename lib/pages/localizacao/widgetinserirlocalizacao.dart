@@ -61,7 +61,7 @@ class _WidgetInserirLocalizacaoState extends State<WidgetInserirLocalizacao> {
                   nomeLocalizacao = value;
                 });
               },
-              decoration: textfieldPerfil,
+              decoration: textfieldDadosCadastro,
             ),
             const widgetEspacoH(
               altura: 26,

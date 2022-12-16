@@ -239,7 +239,6 @@ class _pageIntroducaoState extends State<pageIntroducao> {
                 ),
               ),
             ),
-<<<<<<< lib/pages/introducao/introducao.dart
             FutureBuilder(
               future: Dados.getBool('cookies'),
               builder: (context, snapshot) {
@@ -254,16 +253,14 @@ class _pageIntroducaoState extends State<pageIntroducao> {
                 return Semantics(
                   container: true,
                   sortKey: const OrdinalSortKey(1),
-                  child: const Widgetalertdialog(),
+                  // child: const Widgetalertdialog(),
                 );
               },
             ),
-=======
             if (!Dados.jaVisualizouCookies)
               const Positioned(
                 child: Widgetalertdialog(),
               ),
->>>>>>> lib/pages/introducao/introducao.dart
           ],
         );
       },

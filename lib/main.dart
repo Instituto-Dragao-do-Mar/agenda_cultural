@@ -1,3 +1,4 @@
+import 'package:agendacultural/controller/usuario_controller.dart';
 import 'package:agendacultural/dados/dados.dart';
 import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/model/fontes.dart';
@@ -37,6 +38,9 @@ void main() async {
       providers: [
         ChangeNotifierProvider<AppModel>.value(
           value: AppModel(),
+        ),
+        ChangeNotifierProvider<UsuarioController>.value(
+          value: UsuarioController(),
         )
       ],
       child: const MyApp(),

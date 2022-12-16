@@ -9,6 +9,7 @@ import 'package:agendacultural/shared/widgetemconstrucao.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
@@ -35,11 +36,18 @@ class _PageCadastroState extends State<PageCadastro> {
   bool obscureTextSenha = true;
   bool obscureTextNovaSenha = true;
   AppModel? app;
+  UsuarioController? usuarioController;
+  int haveUpperCase = 0;
+  int haveLowerCase = 0;
+  int haveNumber = 0;
+  int haveMinDigits = 0;
+  int rulesMatch = 0;
 
   @override
   void initState() {
     super.initState();
     app = context.read<AppModel>();
+    usuarioController = context.read<UsuarioController>();
   }
 
   @override
@@ -50,9 +58,19 @@ class _PageCadastroState extends State<PageCadastro> {
         backgroundColor: corBgAtual,
         elevation: 0,
         leadingWidth: 0,
+        // leading: GestureDetector(
+        //   onTap: () {
+        //     Navigator.pop(context);
+        //   },
+        //   child: widgetImagemInterna(
+        //     imagem: Imagem(url: 'seta.png'),
+        //   ),
+        // ),
         title: widgetTopoComum(
           text: "Cadastro",
-          funcaoImagem1: () async {},
+          funcaoImagem1: () async {
+            Navigator.pop(context);
+          },
           urlImagem1: 'seta.png',
         ),
       ),
@@ -157,6 +175,29 @@ class _PageCadastroState extends State<PageCadastro> {
                 style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
                 onChanged: (value) {
                   setState(() {
+                    value.characters.length >= 6
+                        ? haveMinDigits = 1
+                        : haveMinDigits = 0;
+                    value.contains(
+                      RegExp(r'[0-9]'),
+                    )
+                        ? haveNumber = 1
+                        : haveNumber = 0;
+                    value.contains(
+                      RegExp(r'[a-z]'),
+                    )
+                        ? haveLowerCase = 1
+                        : haveLowerCase = 0;
+                    value.contains(
+                      RegExp(r'[A-Z]'),
+                    )
+                        ? haveUpperCase = 1
+                        : haveUpperCase = 0;
+
+                    rulesMatch = haveUpperCase +
+                        haveLowerCase +
+                        haveNumber +
+                        haveMinDigits;
                     senhaInput = value;
                   });
                 },
@@ -282,7 +323,9 @@ class _PageCadastroState extends State<PageCadastro> {
                         ),
                         TextContrasteFonte(
                           text: "No mínimo 6 dígitos",
-                          style: Fontes.roboto12W300Grey(Fontes.tamanhoBase),
+                          style: haveMinDigits == 1
+                              ? Fontes.roboto12W300Green(Fontes.tamanhoBase)
+                              : Fontes.roboto12W300Grey(Fontes.tamanhoBase),
                           semantics: "No mínimo 6 dígitos",
                         ),
                         const widgetEspacoH(
@@ -290,7 +333,9 @@ class _PageCadastroState extends State<PageCadastro> {
                         ),
                         TextContrasteFonte(
                           text: "Pelo menos 1 letra maiúscula",
-                          style: Fontes.roboto12W300Grey(Fontes.tamanhoBase),
+                          style: haveUpperCase == 1
+                              ? Fontes.roboto12W300Green(Fontes.tamanhoBase)
+                              : Fontes.roboto12W300Grey(Fontes.tamanhoBase),
                           semantics: "Pelo menos 1 letra maiúscula",
                         ),
                         const widgetEspacoH(
@@ -298,7 +343,9 @@ class _PageCadastroState extends State<PageCadastro> {
                         ),
                         TextContrasteFonte(
                           text: "Pelo menos 1 letra minúscula",
-                          style: Fontes.roboto12W300Grey(Fontes.tamanhoBase),
+                          style: haveLowerCase == 1
+                              ? Fontes.roboto12W300Green(Fontes.tamanhoBase)
+                              : Fontes.roboto12W300Grey(Fontes.tamanhoBase),
                           semantics: "Pelo menos 1 letra minúscula",
                         ),
                         const widgetEspacoH(
@@ -306,7 +353,9 @@ class _PageCadastroState extends State<PageCadastro> {
                         ),
                         TextContrasteFonte(
                           text: "Pelo menos 1 número",
-                          style: Fontes.roboto12W300Grey(Fontes.tamanhoBase),
+                          style: haveNumber == 1
+                              ? Fontes.roboto12W300Green(Fontes.tamanhoBase)
+                              : Fontes.roboto12W300Grey(Fontes.tamanhoBase),
                           semantics: "Pelo menos 1 número",
                         ),
                         const widgetEspacoH(
@@ -322,12 +371,12 @@ class _PageCadastroState extends State<PageCadastro> {
                         ),
                         Row(
                           children: [
-                            const Expanded(
+                            Expanded(
                               flex: 1,
                               child: StepProgressIndicator(
                                 totalSteps: 4,
-                                currentStep: 0,
-                                selectedColor: Colors.red,
+                                currentStep: rulesMatch,
+                                selectedColor: Colors.deepOrange,
                                 unselectedColor: Colors.grey,
                               ),
                             ),
@@ -347,7 +396,7 @@ class _PageCadastroState extends State<PageCadastro> {
                 container: true,
                 label: "Botão Salvar",
                 child: widgetBotao(
-                  text: "Salvar",
+                  text: "Cadastrar-se",
                   function: () async => await saveCadastro(),
                 ),
               )
@@ -359,30 +408,65 @@ class _PageCadastroState extends State<PageCadastro> {
   }
 
   Future<void> saveCadastro() async {
-    if (emailInput.characters.length == 0 ||
-        nomeInput.characters.length == 0 ||
-        senhaInput.characters.length == 0) {
-      widgetErro(
+    if (emailInput.characters.length == 0 || nomeInput.characters.length == 0) {
+      return widgetErro(
         context: context,
         text: "Os campos precisam ser preenchidos.",
       );
-    } else if (senhaInput != confirmarSenhaInput) {
-      widgetErro(
+    }
+    if (rulesMatch != 4) {
+      return widgetErro(
+        context: context,
+        text: "Senha fraca.",
+      );
+    }
+    if (!RegExp(
+            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+        .hasMatch(emailInput)) {
+      return widgetErro(
+        context: context,
+        text: "Email inválido.",
+      );
+    }
+    if (senhaInput != confirmarSenhaInput) {
+      return widgetErro(
         context: context,
         text: "Senhas não conferem.",
       );
-    } else {
-      var usuario = await UsuarioController().usuariosPost(
-        nome: nomeInput,
-        email: emailInput,
-        senha: senhaInput,
+    }
+    var errorMessage = await usuarioController?.usuariosPost(
+      nome: nomeInput,
+      email: emailInput,
+      senha: senhaInput,
+    );
+
+    if (usuarioController != null && errorMessage != "") {
+      return widgetErro(
+        context: context,
+        text: errorMessage ?? "",
       );
+    }
+
+    Fluttertoast.showToast(
+      webPosition: "top",
+      msg: "Cadastro realizado com sucesso!",
+      toastLength: Toast.LENGTH_LONG,
+      gravity: ToastGravity.CENTER,
+      timeInSecForIosWeb: 3,
+      backgroundColor: Colors.white,
+      textColor: Colors.green,
+      fontSize: 16.0,
+      webBgColor: Colors.white,
+      webShowClose: true
+    );
+
+    await Future.delayed(const Duration(seconds: 1), () {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
           builder: (context) => const pageLogin(),
         ),
       );
-    }
+    });
   }
 }
