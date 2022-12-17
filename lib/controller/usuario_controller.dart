@@ -13,7 +13,7 @@ import '../shared/userSharedPreferences.dart';
 
 class UsuarioController extends BaseController {
   var state = ControllerStates.idle;
-  String? errorMessage;
+  String errorMessage = "";
 
   Future<ListaUsuarios> usuarioGet({
     required String userguidid,
@@ -147,11 +147,13 @@ class UsuarioController extends BaseController {
     return _return;
   }
 
-  Future<ListaUsuarios> usuariosPost({
+  Future<String?> usuariosPost({
     String? nome,
     String? email,
     String? senha,
   }) async {
+
+    String? errorMessage;
 
     var parametros = jsonEncode(
       <String, dynamic>{"login": "69567689334", 'senha': "jader.aquino"},
@@ -169,6 +171,7 @@ class UsuarioController extends BaseController {
       var ret = jsonDecode(responseGetToken.body);
       acesso = Acesso.fromJson(ret);
     }
+
 
     String url = "https://coretools.redeinova.com.br/api/hash?senha=$senha";
 
@@ -189,9 +192,9 @@ class UsuarioController extends BaseController {
     var _body = jsonEncode(
       <String, dynamic>{
         // "guididoperador": "BFBC1C49-CD9A-4E04-A747-4C1817962D87",
-        "login": email,
-        "nome": nome,
-        "email": email,
+        "login": email?.trim(),
+        "nome": nome?.trim(),
+        "email": email?.trim(),
         "senha": senhaEncrypt,
         "tipoacesso": "App",
       },
@@ -208,10 +211,12 @@ class UsuarioController extends BaseController {
       );
 
       if (response.statusCode == 200) {
+        errorMessage = "";
         var ret = jsonDecode(response.body);
         lista = ListaUsuarios.fromJson(ret);
         state = ControllerStates.success;
       } else {
+        errorMessage = response.body;
         setError(response.body);
         state = ControllerStates.error;
       }
@@ -220,7 +225,7 @@ class UsuarioController extends BaseController {
       setError(e.toString());
     }
 
-    return lista;
+    return errorMessage;
   }
 
   Future<ListaUsuarios> usuariosPut({
@@ -250,9 +255,9 @@ class UsuarioController extends BaseController {
       <String, dynamic>{
         "guididoperador": guidid,
         "idusuario": app?.usuarioLogado?.id,
-        "nome": nome,
-        "login": email,
-        "email": email,
+        "nome": nome?.trim(),
+        "login": email?.trim(),
+        "email": email?.trim(),
         "senha": senhaEncrypt,
       },
     );

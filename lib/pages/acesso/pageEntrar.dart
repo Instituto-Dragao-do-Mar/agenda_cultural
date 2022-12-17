@@ -1,6 +1,7 @@
 import 'package:agendacultural/controller/usuario_controller.dart';
 import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/model/imagem_model.dart';
+import 'package:agendacultural/pages/acesso/pageCadastro.dart';
 import 'package:agendacultural/pages/home/widgetperfil.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetbotao.dart';
@@ -32,10 +33,12 @@ class _PageEntrarState extends State<PageEntrar> {
   String senhaInput = "";
   bool obscureTextSenha = true;
   late final AppModel app;
+  late final UsuarioController usuarioController;
 
   void initState() {
     super.initState();
     app = context.read<AppModel>();
+    usuarioController = context.read<UsuarioController>();
   }
 
   @override
@@ -46,8 +49,17 @@ class _PageEntrarState extends State<PageEntrar> {
         backgroundColor: corBgAtual,
         elevation: 0,
         leadingWidth: 0,
+        // leading: GestureDetector(
+        //   onTap: () {
+        //   },
+        //   child: widgetImagemInterna(
+        //     imagem: Imagem(url: 'seta.png'),
+        //   ),
+        // ),
         title: widgetTopoComum(
-          funcaoImagem1: () async {},
+          funcaoImagem1: () async {
+            Navigator.pop(context);
+          },
           urlImagem1: 'seta.png',
         ),
       ),
@@ -69,12 +81,22 @@ class _PageEntrarState extends State<PageEntrar> {
                         "Para entrar é necessário que você tenha se cadastrado no nosso aplicativo.",
                     style: Fontes.poppins12W400Grey((Fontes.tamanhoBase)),
                   ),
-                  TextContrasteFonte(
-                    text: "Cadastre-se!",
-                    semantics: "Cadastre-se!",
-                    style: TextStyle(
-                      color: corBackgroundLaranja,
-                      fontSize: Fontes.tamanhoBase.toDouble(),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const PageCadastro(),
+                        ),
+                      );
+                    },
+                    child: TextContrasteFonte(
+                      text: "Cadastre-se!",
+                      semantics: "Cadastre-se!",
+                      style: TextStyle(
+                        color: corBackgroundLaranja,
+                        fontSize: Fontes.tamanhoBase.toDouble(),
+                      ),
                     ),
                   ),
                 ],
@@ -195,8 +217,15 @@ class _PageEntrarState extends State<PageEntrar> {
   }
 
   Future<void> sendLogin() async {
-    var usuario = await UsuarioController()
-        .login(app: app, email: emailInput, senha: senhaInput);
+    var usuario = await usuarioController.login(app: app, email: emailInput, senha: senhaInput);
+    if (!RegExp(
+        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+        .hasMatch(emailInput)) {
+      return widgetErro(
+        context: context,
+        text: "Email inválido.",
+      );
+    }
     if (app.isLog()) {
       Navigator.pushReplacement(
         context,
@@ -204,10 +233,10 @@ class _PageEntrarState extends State<PageEntrar> {
           builder: (context) => const pagePrincipal(),
         ),
       );
-    } else widgetErro(
-      context: context,
-      text:
-      "Dados incorretos, verifique o email e senha e tente novamente.",
-    );
+    } else
+      widgetErro(
+        context: context,
+        text: "Dados incorretos, verifique o email e senha e tente novamente.",
+      );
   }
 }

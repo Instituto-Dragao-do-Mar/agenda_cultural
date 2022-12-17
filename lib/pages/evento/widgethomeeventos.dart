@@ -71,7 +71,7 @@ class _widgetHomeEventosState extends State<widgetHomeEventos> {
     if (widget.exibicaoEvento == ExibicaoEvento.Destaque) {
       subtitulo = Dados.verTodosDestaques
           ? "Ver menos destaques"
-          : "Ver todos os destados ";
+          : "Ver todos os destacados ";
     }
 
     if (widget.exibicaoEvento == ExibicaoEvento.Data) {
