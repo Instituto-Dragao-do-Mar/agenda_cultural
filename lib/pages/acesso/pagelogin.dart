@@ -32,8 +32,8 @@ class _pageLoginState extends State<pageLogin> {
   @override
   void initState() {
     app = context.read<AppModel>();
-
     super.initState();
+   
   }
 
   @override

@@ -36,26 +36,23 @@ class _pageSplashState extends State<pageSplash> {
       const Duration(seconds: 3),
       () {
         if (!Dados.jaVisualizouIntroducao) {
-          Navigator.pushReplacement(
+          Navigator.push(
             context,
             MaterialPageRoute(
               builder: ((context) => const pageIntroducao(
-                    destino: Introducaoinfo(
-                      destino: pageLogin(),
-                    ),
-                  )),
+                  destino: Introducaoinfo(destino: pageLogin()))),
             ),
           );
         } else {
           if (!Dados.jaPermitiuLocalizacao) {
-            Navigator.pushReplacement(
+            Navigator.push(
               context,
               MaterialPageRoute(
                 builder: ((context) => const Widgetlocalizacao()),
               ),
             );
           } else {
-            Navigator.pushReplacement(
+            Navigator.push(
               context,
               MaterialPageRoute(
                 builder: ((context) => const pageLogin()),
@@ -80,19 +77,16 @@ class _pageSplashState extends State<pageSplash> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Semantics(
-        label: "Iniciando agenda Cultural",
-        child: Container(
-          decoration: BoxDecoration(
-            gradient: gradientPrincipal,
-          ),
-          child: Center(
-            child: widgetImagemInterna(
-              width: 178,
-              height: 178,
-              imagem: Imagem(
-                url: 'logobranco.png',
-              ),
+      body: Container(
+        decoration: const BoxDecoration(
+          gradient: gradientPrincipal,
+        ),
+        child: Center(
+          child: widgetImagemInterna(
+            width: 178,
+            height: 178,
+            imagem: Imagem(
+              url: 'logobranco.png',
             ),
           ),
         ),

@@ -1,6 +1,7 @@
 // ignore_for_file: camel_case_types
 import 'package:agendacultural/controller/introducao_controller.dart';
 import 'package:agendacultural/dados/dados.dart';
+import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/model/introducao_model.dart';
 import 'package:agendacultural/pages/home/acessibilidade/widgetacessibilidade.dart';
 import 'package:agendacultural/shared/constantes.dart';
@@ -12,6 +13,7 @@ import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:introduction_screen/introduction_screen.dart';
+import 'package:provider/provider.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 import '../../model/fontes.dart';
@@ -31,6 +33,7 @@ class pageIntroducao extends StatefulWidget {
 class _pageIntroducaoState extends State<pageIntroducao> {
   final introKey = GlobalKey<IntroductionScreenState>();
   int currentStep = 1;
+  TextEditingController ted = TextEditingController(text: '1');
 
   ListaIntroducao? listaIntroducao;
 
@@ -51,6 +54,14 @@ class _pageIntroducaoState extends State<pageIntroducao> {
   final bool _showSkipButton = false;
   final bool _showBackButton = false;
 
+  late AppModel app;
+
+  @override
+  void initState() {
+    super.initState();
+    app = context.read<AppModel>();
+  }
+
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -68,11 +79,8 @@ class _pageIntroducaoState extends State<pageIntroducao> {
                 isProgress: false,
                 key: introKey,
                 onChange: (value) {
-                  currentStep < 3
-                      ? setState(() {
-                          currentStep += 1;
-                        })
-                      : _onIntroEnd(context);
+                  currentStep = value+1;
+                  app.notify();                 
                 },
                 onDone: () => {
                   _onIntroEnd(context),
@@ -191,51 +199,17 @@ class _pageIntroducaoState extends State<pageIntroducao> {
             ),
             Positioned(
               child: Container(
-                padding: const EdgeInsets.only(left: 16, right: 16, top: 32),
-                child: Column(
-                  children: [
-                    StepProgressIndicator(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      totalSteps: listaIntroducao!.introducoes!.length,
-                      currentStep: currentStep,
-                      selectedGradientColor: gradientPrincipal,
-                      unselectedColor: Colors.grey,
-                    ),
-                    const widgetEspacoH(altura: 24),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Semantics(
-                          container: true,
-                          label: "Página $currentStep de 3",
-                          child: RichText(
-                            text: TextSpan(
-                                text: currentStep.toString(),
-                                style: Fontes.inter14W500EA5B0C(
-                                    Fontes.tamanhoBase),
-                                children: [
-                                  TextSpan(
-                                      text: " de 3",
-                                      style: Fontes.inter14W500Grey(
-                                          Fontes.tamanhoBase))
-                                ]),
-                          ),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Dados.setBool('introducao', true);
-                            Dados.jaVisualizouIntroducao = true;
-                            _onIntroEnd(context);
-                          },
-                          child: Text(
-                            "Pular introdução",
-                            style: Fontes.inter14W500Grey(Fontes.tamanhoBase),
-                            semanticsLabel: "Pular Introdução",
-                          ),
-                        )
-                      ],
-                    )
-                  ],
+                padding: const EdgeInsets.only(
+                  left: 16,
+                  right: 16,
+                  top: 32,
+                ),
+                child: Consumer<AppModel>(
+                  builder: (context, value, child) => widgetStep(
+                    totalSteps: 3,
+                    currentStep: currentStep,
+                    funcao: _onIntroEnd,
+                  ),
                 ),
               ),
             ),
@@ -246,6 +220,66 @@ class _pageIntroducaoState extends State<pageIntroducao> {
           ],
         );
       },
+    );
+  }
+}
+
+class widgetStep extends StatelessWidget {
+  const widgetStep({
+    super.key,
+    required this.totalSteps,
+    required this.currentStep,
+    required this.funcao,
+  });
+
+  final int totalSteps;
+  final int currentStep;
+  final Function(BuildContext) funcao;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        StepProgressIndicator(
+          mainAxisAlignment: MainAxisAlignment.center,
+          totalSteps: totalSteps,
+          currentStep: currentStep,
+          selectedGradientColor: gradientPrincipal,
+          unselectedColor: Colors.grey,
+        ),
+        const widgetEspacoH(altura: 24),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Semantics(
+              container: true,
+              label: "Página $currentStep de 3",
+              child: RichText(
+                text: TextSpan(
+                    text: currentStep.toString(),
+                    style: Fontes.inter14W500EA5B0C(Fontes.tamanhoBase),
+                    children: [
+                      TextSpan(
+                          text: " de 3",
+                          style: Fontes.inter14W500Grey(Fontes.tamanhoBase))
+                    ]),
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                Dados.setBool('introducao', true);
+                Dados.jaVisualizouIntroducao = true;
+                funcao(context);
+              },
+              child: Text(
+                "Pular introdução",
+                style: Fontes.inter14W500Grey(Fontes.tamanhoBase),
+                semanticsLabel: "Pular Introdução",
+              ),
+            )
+          ],
+        )
+      ],
     );
   }
 }

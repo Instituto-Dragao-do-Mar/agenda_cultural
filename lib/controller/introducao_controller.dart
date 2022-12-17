@@ -12,8 +12,7 @@ class IntroducaoController extends BaseController {
     retorno.introducoes!.addAll(
       {
         Introducao(
-          texto: "Com o aplicativo cultura.ce você tem acesso"
-              " a programação cultural do estado do Ceará",
+          texto: "Com o aplicativo cultura.ce você tem acesso à toda a programação da Rede Pública de Equipamentos Culturais da Secult Ceará num só lugar!",
           ordem: 1,
           imagem: Imagem(
             tipoimagem: TipoImagem.url,
@@ -21,8 +20,7 @@ class IntroducaoController extends BaseController {
           ),
         ),
         Introducao(
-          texto: "Está por dentro dos espaços e eventos "
-              "que estão acontecendo baseado na sua localização.",
+          texto: "Conheça os espaços e eventos por data, categoria e com base na sua localização.",
           ordem: 2,
           imagem: Imagem(
             tipoimagem: TipoImagem.url,
@@ -30,8 +28,7 @@ class IntroducaoController extends BaseController {
           ),
         ),
         Introducao(
-          texto: "Você pode ainda gerar alertas, avaliar espaços e"
-              " eventos, além de favoritar o que te interessa",
+          texto: "Você pode ainda gerar alertas, avaliar espaços e eventos, além de favoritar o que te interessa para não perder nenhuma atualização.",
           ordem: 3,
           imagem: Imagem(
             tipoimagem: TipoImagem.url,

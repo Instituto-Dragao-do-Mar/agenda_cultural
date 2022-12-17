@@ -24,7 +24,7 @@ class _IntroducaoinfoState extends State<Introducaoinfo> {
       body: Container(
         width: double.infinity,
         height: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: gradientPrincipal,
         ),
         child: Column(
