@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:agendacultural/controller/base_controller.dart';
 import 'package:agendacultural/model/evento_model.dart';
+import 'package:agendacultural/model/favorito_model.dart';
 import 'package:agendacultural/shared/constantes.dart';
 import 'package:http/http.dart' as http;
 
@@ -30,29 +31,31 @@ class EventoController extends BaseController {
     } catch (_) {
       setError(_.toString());
     }
-   
+
     return lista;
   }
 
-  Future<ListaEventos> favoritosGet({
+  Future<ListaFavoritos> favoritosGet({
     required String userguidid,
+    required String token,
   }) async {
-    ListaEventos lista = ListaEventos();
+    ListaFavoritos lista = ListaFavoritos();
 
-    lista.eventos = [];
+    lista.favoritos = [];
 
-    String url = "${urlApiIDM}eventos";
+    String url = "${urlApiIDM}favoritos?g=$userguidid";
 
     try {
       var response = await http.get(
         Uri.parse(url),
         headers: {
           "Content-Type": "application/json",
+          'Authorization': 'Bearer $token',
         },
       );
       if (response.statusCode == 200) {
         var ret = jsonDecode(response.body);
-        lista = ListaEventos.fromJson(ret);
+        lista = ListaFavoritos.fromJson(ret);
       } else {
         setError(response.body);
       }
@@ -61,5 +64,50 @@ class EventoController extends BaseController {
     }
 
     return lista;
+  }
+
+  Future<bool> favoritosPost({
+    required String userguidid,
+    required String token,
+    required int idevento,
+    required int ativo,
+  }) async {
+    ListaFavoritos lista = ListaFavoritos();
+
+    lista.favoritos = [];
+
+    String url = "${urlApiIDM}favoritos";
+
+    var operationSucceed = false;
+
+    var _body = jsonEncode(
+      <String, dynamic>{
+        "guididoperador": userguidid,
+        "idevento": idevento,
+        "ativo": ativo,
+      },
+    );
+
+    try {
+      var response = await http.post(
+        Uri.parse(url),
+        headers: {
+          "Content-Type": "application/json",
+          'Authorization': 'Bearer $token',
+        },
+        body: _body,
+      );
+      if (response.statusCode == 200) {
+        operationSucceed = true;
+        var ret = jsonDecode(response.body);
+        lista = ListaFavoritos.fromJson(ret);
+      } else {
+        setError(response.body);
+      }
+    } catch (_) {
+      setError(_.toString());
+    }
+
+    return operationSucceed;
   }
 }

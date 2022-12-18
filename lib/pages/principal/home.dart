@@ -12,6 +12,7 @@ import 'package:agendacultural/shared/widgetemconstrucao.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../favorito/widgetFavoritos.dart';
 import '../home/widgetperfil.dart';
 import '../home/widgets/widgettopoperfil.dart';
 
@@ -29,7 +30,7 @@ class _pagePrincipalState extends State<pagePrincipal> {
     const widgetHome(),
     const pageAgenda(),
     const pageMapa(),
-    const widgetEmConstrucao(),
+    const WidgetFavoritos(),
     widgetPerfil(),
   ];
 
