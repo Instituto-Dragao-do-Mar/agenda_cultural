@@ -25,7 +25,7 @@ class AppModel extends ChangeNotifier {
   late ListaEspacos listaEspacos;
   late Filtro filtro;
   late Localizacao localizacao;
-  late ListaFavoritos listaFavoritos;
+  ListaFavoritos listaFavoritos = ListaFavoritos();
 
   Usuario? usuarioLogado;
 
@@ -49,7 +49,15 @@ class AppModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  Future<void> getFavoritos() async {
+    listaFavoritos = await EventoController().favoritosGet(
+      userguidid: GetGuidId(),
+      token: GetToken()
+    );
+  }
+
   Future<void> getdados() async {
+
     listaCategoria = await CategoriaController().categoriaGet(
       userguidid: "",
     );
@@ -96,6 +104,8 @@ class AppModel extends ChangeNotifier {
         },
       );
     }
+
+    await getFavoritos();
   }
 
 
