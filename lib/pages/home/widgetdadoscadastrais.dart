@@ -66,7 +66,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
             backgroundColor: corBgAtual,
             icon: widgetImagemInterna(
                 imagem: Imagem(
-              url: 'bottomhome.png',
+              url: 'fhome.png',
             )),
             label: "Home",
           ),
@@ -74,7 +74,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
             backgroundColor: corBgAtual,
             icon: widgetImagemInterna(
                 imagem: Imagem(
-              url: 'bottomcalendario.png',
+              url: 'fagenda.png',
             )),
             label: "Agenda",
           ),
@@ -82,7 +82,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
             backgroundColor: corBgAtual,
             icon: widgetImagemInterna(
                 imagem: Imagem(
-              url: 'bottommapa.png',
+              url: 'fmapa.png',
             )),
             label: "Mapa",
           ),
@@ -90,7 +90,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
             backgroundColor: corBgAtual,
             icon: widgetImagemInterna(
                 imagem: Imagem(
-              url: 'bottomfavoritos.png',
+              url: 'ffavorito.png',
             )),
             label: "Favoritos",
           ),
@@ -98,7 +98,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
             backgroundColor: corBgAtual,
             icon: widgetImagemInterna(
                 imagem: Imagem(
-              url: 'bottomperfil.png',
+              url: 'fperfil.png',
             )),
             label: "Perfil",
           ),

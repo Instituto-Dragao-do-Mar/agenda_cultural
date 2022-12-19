@@ -18,6 +18,8 @@ import 'package:provider/provider.dart';
 
 import '../../model/cores.dart';
 import '../../model/fontes.dart';
+import '../../shared/widgetBotaoFavorito.dart';
+import '../../shared/widgetConfirma.dart';
 import '../../shared/widgetTextFonteContraste.dart';
 
 class widgetHomeCategoriasEventosContainer extends StatefulWidget {
@@ -42,6 +44,7 @@ class _widgetHomeCategoriasEventosContainerState
 
   @override
   void initState() {
+    super.initState();
     app = context.read<AppModel>();
     favoritos = app?.listaFavoritos.favoritos ?? <Favorito>[];
     favoritos.map((e) => e.idevento).contains(widget.evento.id)
@@ -68,19 +71,19 @@ class _widgetHomeCategoriasEventosContainerState
       child: Padding(
         padding: const EdgeInsets.all(4),
         child: Card(
-          child: Stack(
-            children: [
-              Container(
-                height: 250 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
-                width: 180 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: (!Cores.contraste
-                      ? Color(0xFFEDEDED).withOpacity(.2)
-                      : corBgAltoContraste.withOpacity(.8)),
-                  border: Border.all(width: 1, color: corBg),
-                ),
-                child: Column(
+          child: Container(
+            height: 250 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+            width: 180 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: (!Cores.contraste
+                  ? Color(0xFFEDEDED).withOpacity(.2)
+                  : corBgAltoContraste.withOpacity(.8)),
+              border: Border.all(width: 1, color: corBg),
+            ),
+            child: Stack(
+              children: [
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
@@ -94,20 +97,20 @@ class _widgetHomeCategoriasEventosContainerState
                           top: Radius.circular(10),
                         ),
                         /* image: DecorationImage(
-                      image: widgetImagemExterna(
-                        imagem: Imagem(
-                          base64: evento
-                              .eventosimagens!.first.imagens!.first.base64,
-                          url: evento.eventosimagens!.first.imagens!.first.url,
-                          tipoimagem: evento.eventosimagens!.first.imagens!
-                                      .first.tipo ==
-                                  'U'
-                              ? TipoImagem.url
-                              : TipoImagem.base64,
-                        ),
+                    image: widgetImagemExterna(
+                      imagem: Imagem(
+                        base64: evento
+                            .eventosimagens!.first.imagens!.first.base64,
+                        url: evento.eventosimagens!.first.imagens!.first.url,
+                        tipoimagem: evento.eventosimagens!.first.imagens!
+                                    .first.tipo ==
+                                'U'
+                            ? TipoImagem.url
+                            : TipoImagem.base64,
                       ),
-                      fit: BoxFit.cover,
-                    ) */
+                    ),
+                    fit: BoxFit.cover,
+                  ) */
                       ),
                       child: widgetImagemHtml(
                         url: widget
@@ -159,41 +162,22 @@ class _widgetHomeCategoriasEventosContainerState
                     ),
                   ],
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 140, top: 115),
-                child: Ink(
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.white, width: 4.0),
-                    color: Colors.white,
-                    shape: BoxShape.circle,
-                  ),
-                  child: IconButton(
-
-                    iconSize: 26,
-                    onPressed: () async {
-                      var isFavorited = await EventoController().favoritosPost(
-                        userguidid: app?.GetGuidId() ?? "",
-                        token: app?.GetToken() ?? "",
-                        idevento: widget.evento.id ?? 0,
-                        ativo: favorito,
-                      );
-                      if (isFavorited) {
-                        setState(() {
-                          favorito == 0 ? favorito = 1 : favorito = 0;
-                        });
-                      }
-                    },
-                    icon: favorito == 1
-                        ? const Icon(Icons.favorite, color: Colors.red)
-                        : const Icon(
-                            Icons.favorite,
-                            color: Colors.grey,
-                          ),
-                  ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(top: 5),
+                          child: WidgetBotaoFavorito(evento: widget.evento),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

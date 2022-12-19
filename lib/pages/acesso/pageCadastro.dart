@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../controller/usuario_controller.dart';
 import '../../model/app_model.dart';
@@ -42,6 +43,7 @@ class _PageCadastroState extends State<PageCadastro> {
   int haveNumber = 0;
   int haveMinDigits = 0;
   int rulesMatch = 0;
+  bool isChecked = false;
 
   @override
   void initState() {
@@ -387,11 +389,89 @@ class _PageCadastroState extends State<PageCadastro> {
                           ],
                         ),
                         const widgetEspacoH(
-                          altura: 16,
-                        )
+                          altura: 8,
+                        ),
                       ],
                     )
                   : Column(),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Checkbox(
+                        checkColor: Colors.white,
+                        fillColor:
+                            MaterialStateProperty.resolveWith((states) {
+                          const Set<MaterialState> interactiveStates =
+                              <MaterialState>{
+                            MaterialState.pressed,
+                            MaterialState.hovered,
+                            MaterialState.focused,
+                          };
+                          if (states.any(interactiveStates.contains)) {
+                            return Colors.grey;
+                          }
+                          return corBackgroundLaranja;
+                        }),
+                        value: isChecked,
+                        onChanged: (bool? value) {
+                          setState(() {
+                            isChecked = value!;
+                          });
+                        },
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 10),
+                        child: Row(
+                          children: [
+                            TextContrasteFonte(
+                              text:
+                                  "Ao se cadastrar, você concorda com os ",
+                              fontsize: Fontes.tamanhoBase.toDouble(),
+                              color: Color(0xff999999),
+                            ),
+                            InkWell(
+                              onTap: () async {
+                                var uri = Uri.parse(
+                                    "https://grupo-manual.gitbook.io/app-cultura.ce/termos-e-servicos");
+                                if (await canLaunchUrl(uri)) {
+                                  await launchUrl(uri,
+                                      mode: LaunchMode.externalApplication);
+                                } else {
+                                  throw 'Could not launch $uri';
+                                }
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                  left: 2,
+                                  right: 2,
+                                ),
+                                child: TextContrasteFonte(
+                                  text: "Termos de Serviço",
+                                  color: corBackgroundLaranja,
+                                  fontsize: Fontes.tamanhoBase.toDouble(),
+                                ),
+                              ),
+                            ),
+                            TextContrasteFonte(
+                              text:
+                                  " e a Política de Privacidade do cultura.ce.",
+                              fontsize: Fontes.tamanhoBase.toDouble(),
+                              color: Color(0xff999999),
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ],
+              ),
+              const widgetEspacoH(
+                altura: 16,
+              ),
               Semantics(
                 container: true,
                 label: "Botão Salvar",
@@ -399,7 +479,7 @@ class _PageCadastroState extends State<PageCadastro> {
                   text: "Cadastrar-se",
                   function: () async => await saveCadastro(),
                 ),
-              )
+              ),
             ],
           ),
         ),
@@ -408,7 +488,19 @@ class _PageCadastroState extends State<PageCadastro> {
   }
 
   Future<void> saveCadastro() async {
-    if (emailInput.characters.length == 0 || nomeInput.characters.length == 0) {
+    Fluttertoast.showToast(
+      msg: "Cadastro realizado com sucesso!",
+      toastLength: Toast.LENGTH_LONG,
+      gravity: ToastGravity.CENTER,
+      timeInSecForIosWeb: 3,
+      backgroundColor: Colors.black,
+      textColor: Colors.green,
+      fontSize: 16.0,
+      webBgColor: Colors.black,
+    );
+    if (emailInput.characters.length == 0 ||
+        nomeInput.characters.length == 0 ||
+        senhaInput.characters.length == 0) {
       return widgetErro(
         context: context,
         text: "Os campos precisam ser preenchidos.",
@@ -434,6 +526,14 @@ class _PageCadastroState extends State<PageCadastro> {
         text: "Senhas não conferem.",
       );
     }
+
+    if (!isChecked) {
+      return widgetErro(
+        context: context,
+        text: "Por favor, aceite os Termos de Serviço.",
+      );
+    }
+
     var errorMessage = await usuarioController?.usuariosPost(
       nome: nomeInput,
       email: emailInput,
@@ -457,7 +557,6 @@ class _PageCadastroState extends State<PageCadastro> {
       textColor: Colors.green,
       fontSize: 16.0,
       webBgColor: Colors.white,
-      webShowClose: true
     );
 
     await Future.delayed(const Duration(seconds: 1), () {

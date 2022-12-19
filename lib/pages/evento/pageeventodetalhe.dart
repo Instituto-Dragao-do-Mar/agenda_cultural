@@ -24,7 +24,13 @@ import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
 
 import '../../model/fontes.dart';
+import '../../shared/widgetBotaoFavorito.dart';
 import '../../shared/widgetTextFonteContraste.dart';
+import '../agenda/pageagenda.dart';
+import '../favorito/widgetFavoritos.dart';
+import '../home/widgethome.dart';
+import '../home/widgetperfil.dart';
+import '../mapa/pagemapa.dart';
 
 class pageEventoDetalhe extends StatefulWidget {
   const pageEventoDetalhe({
@@ -43,8 +49,17 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
   final Completer<GoogleMapController> _controller = Completer();
   late CameraPosition inicioCamera;
   Set<Marker> markers = {};
+  var selecionado = 0;
+  int opcaoSelecionadaNavBar = 0;
 
   Espaco? espaco;
+  List<Widget> subPaginas = [
+    const widgetHome(),
+    const pageAgenda(),
+    const pageMapa(),
+    const WidgetFavoritos(),
+    widgetPerfil(),
+  ];
 
   @override
   void initState() {
@@ -90,6 +105,7 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: corBgAtual,
+      // bottomNavigationBar: bottomNavi(),
       appBar: AppBar(
         backgroundColor: corBgAtual,
         leading: GestureDetector(
@@ -140,7 +156,8 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
                     TextContrasteFonte(
                       text: app.GetCategoriasEvento(widget.evento),
                       style: GoogleFonts.inter(
-                        fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
+                        fontSize: Fontes.tamanhoBase -
+                            (Fontes.tamanhoFonteBase16 - 14),
                         color: corBackgroundLaranja,
                       ),
                     ),
@@ -183,6 +200,7 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
 
   Column widgetEvDescicao() {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         TextContrasteFonte(
           text: "Descrição",
@@ -273,46 +291,54 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
   }
 
   Widget widgetDatasEventos() {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: widget.evento.eventosdatas!.map((e) {
-        String diaabr = e.datahora!.formatDate(format: "E").capitalize();
-        String dia = e.datahora!.formatDate(format: "dd");
-        String mes = e.datahora!.formatDate(format: "MM").capitalize();
-        String hora = e.datahora!.formatDate(format: "HH:mm").capitalize();
-        String ano = e.datahora!.formatDate(format: "yyyy");
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: widget.evento.eventosdatas!.map((e) {
+            String diaabr = e.datahora!.formatDate(format: "E").capitalize();
+            String dia = e.datahora!.formatDate(format: "dd");
+            String mes = e.datahora!.formatDate(format: "MM").capitalize();
+            String hora = e.datahora!.formatDate(format: "HH:mm").capitalize();
+            String ano = e.datahora!.formatDate(format: "yyyy");
 
-        return Row(
-          children: [
-            widgetImagemInterna(
-              imagem: Imagem(url: 'bottomcalendario.png'),
-            ),
-            const widgetEspacoV(largura: 4),
-            TextContrasteFonte(
-              text: "$diaabr, $dia/$mes/$ano",
-              style: GoogleFonts.inter(
-                fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
-                fontWeight: FontWeight.w500,
-                color: corTextAtual,
-              ),
-            ),
-            const widgetEspacoV(largura: 20),
-            widgetImagemInterna(
-              imagem: Imagem(url: 'hora.png'),
-            ),
-            const widgetEspacoV(largura: 4),
-            TextContrasteFonte(
-              text: hora,
-              style: GoogleFonts.inter(
-                fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
-                fontWeight: FontWeight.w500,
-                color: corTextAtual,
-              ),
-            ),
-          ],
-        );
-      }).toList(),
+            return Row(
+              children: [
+                widgetImagemInterna(
+                  imagem: Imagem(url: 'fagenda.png'),
+                ),
+                const widgetEspacoV(largura: 4),
+                TextContrasteFonte(
+                  text: "$diaabr, $dia/$mes/$ano",
+                  style: GoogleFonts.inter(
+                    fontSize:
+                        Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
+                    fontWeight: FontWeight.w500,
+                    color: corTextAtual,
+                  ),
+                ),
+                const widgetEspacoV(largura: 20),
+                widgetImagemInterna(
+                  imagem: Imagem(url: 'hora.png'),
+                ),
+                const widgetEspacoV(largura: 4),
+                TextContrasteFonte(
+                  text: hora,
+                  style: GoogleFonts.inter(
+                    fontSize:
+                        Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
+                    fontWeight: FontWeight.w500,
+                    color: corTextAtual,
+                  ),
+                ),
+              ],
+            );
+          }).toList(),
+        ),
+        WidgetBotaoFavorito(evento: widget.evento),
+      ],
     );
   }
 
@@ -381,9 +407,11 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
                 ),
                 const SizedBox(width: 10),
                 TextContrasteFonte(
-                  text: 'Classificação ${widget.evento.classificacaoetaria ?? "Livre"}',
+                  text:
+                      'Classificação ${widget.evento.classificacaoetaria ?? "Livre"}',
                   style: GoogleFonts.inter(
-                    fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
+                    fontSize:
+                        Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
                     fontWeight: FontWeight.w500,
                     color: corTextAtual,
                   ),
@@ -404,7 +432,8 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
                 TextContrasteFonte(
                   text: entrada,
                   style: GoogleFonts.inter(
-                    fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
+                    fontSize:
+                        Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
                     fontWeight: FontWeight.w500,
                     color: corTextAtual,
                   ),
@@ -418,6 +447,8 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
   }
 
   Widget widgetEvAvaliarEvento() {
+    var size = MediaQuery.of(context).size;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -434,97 +465,115 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            GestureDetector(
-              onTap: () {
-                confirmaparaAvaliar();
-              },
-              child: Column(
-                children: [
-                  Icon(
-                    Icons.sentiment_satisfied_alt_outlined,
-                    color: corBackgroundLaranja,
-                    size: 50 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
-                  ),
-                  // widgetImagemInterna(
-                  //   imagem: Imagem(
-                  //     url: 'gostei_off.png',
-                  //   ),
-                  //   width: 60,
-                  //   height: 60,
-                  //   fit: BoxFit.contain,
-                  // ),
-                  TextContrasteFonte(
-                    text: 'Gostei',
-                    style: GoogleFonts.inter(
-                      fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
-                      fontWeight: FontWeight.w500,
-                      color: corTextAtual,
+            Container(
+              width: size.width * 0.3,
+              child: GestureDetector(
+                onTap: () {
+                  confirmaparaAvaliar(1);
+                },
+                child: Column(
+                  children: [
+                    Icon(
+                      Icons.sentiment_satisfied_alt_outlined,
+                      color: selecionado == 1
+                          ? corBackgroundLaranja
+                          : corTextAtual,
+                      size: 50 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
                     ),
-                  ),
-                ],
+                    // widgetImagemInterna(
+                    //   imagem: Imagem(
+                    //     url: 'gostei_off.png',
+                    //   ),
+                    //   width: 60,
+                    //   height: 60,
+                    //   fit: BoxFit.contain,
+                    // ),
+                    TextContrasteFonte(
+                      text: 'Gostei',
+                      style: GoogleFonts.inter(
+                        fontSize: Fontes.tamanhoBase -
+                            (Fontes.tamanhoFonteBase16 - 14),
+                        fontWeight: FontWeight.w500,
+                        color: corTextAtual,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                confirmaparaAvaliar();
-              },
-              child: Column(
-                children: [
-                  Icon(
-                    Icons.sentiment_dissatisfied_outlined,
-                    color: corBackgroundLaranja,
-                    size: 50 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
-                  ),
-                  // widgetImagemInterna(
-                  //   imagem: Imagem(
-                  //     url: 'nao_gostei_off.png',
-                  //   ),
-                  //   width: 60,
-                  //   height: 60,
-                  //   fit: BoxFit.contain,
-                  // ),
-                  TextContrasteFonte(
-                    text: 'Não Gostei',
-                    style: GoogleFonts.inter(
-                      fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
-                      fontWeight: FontWeight.w500,
-                      color: corTextAtual,
+            Container(
+              width: size.width * 0.3,
+              child: GestureDetector(
+                onTap: () {
+                  confirmaparaAvaliar(2);
+                },
+                child: Column(
+                  children: [
+                    Icon(
+                      Icons.sentiment_dissatisfied_outlined,
+                      color: selecionado == 2
+                          ? corBackgroundLaranja
+                          : corTextAtual,
+                      size: 50 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
                     ),
-                  ),
-                ],
+                    // widgetImagemInterna(
+                    //   imagem: Imagem(
+                    //     url: 'nao_gostei_off.png',
+                    //   ),
+                    //   width: 60,
+                    //   height: 60,
+                    //   fit: BoxFit.contain,
+                    // ),
+                    TextContrasteFonte(
+                      text: 'Não Gostei',
+                      style: GoogleFonts.inter(
+                        fontSize: Fontes.tamanhoBase -
+                            (Fontes.tamanhoFonteBase16 - 14),
+                        fontWeight: FontWeight.w500,
+                        color: corTextAtual,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                confirmaparaAvaliar();
-              },
-              child: Column(
-                children: [
-                  Icon(
-                    Icons.sentiment_neutral_outlined,
-                    color: corBackgroundLaranja,
-                    size: 50 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
-                  ),
-                  // Container(
-                  //   width: 60,
-                  //   height: 60,
-                  //   color: corBg,
-                  //   child: widgetImagemInterna(
-                  //     imagem: Imagem(
-                  //       url: 'nao_aconteceu_off.png',
-                  //     ),
-                  //     fit: BoxFit.contain,
-                  //   ),
-                  // ),
-                  TextContrasteFonte(
-                    text: 'Não Aconteceu',
-                    style: GoogleFonts.inter(
-                      fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
-                      fontWeight: FontWeight.w500,
-                      color: corTextAtual,
+            Container(
+              width: size.width * 0.3,
+              child: GestureDetector(
+                onTap: () {
+                  confirmaparaAvaliar(3);
+                },
+                child: Column(
+                  children: [
+                    Icon(
+                      Icons.sentiment_neutral_outlined,
+                      color: selecionado == 3
+                          ? corBackgroundLaranja
+                          : corTextAtual,
+                      size: 50 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
                     ),
-                  ),
-                ],
+                    // Container(
+                    //   width: 60,
+                    //   height: 60,
+                    //   color: corBg,
+                    //   child: widgetImagemInterna(
+                    //     imagem: Imagem(
+                    //       url: 'nao_aconteceu_off.png',
+                    //     ),
+                    //     fit: BoxFit.contain,
+                    //   ),
+                    // ),
+                    TextContrasteFonte(
+                      text: 'Não Aconteceu',
+                      style: GoogleFonts.inter(
+                        fontSize: Fontes.tamanhoBase -
+                            (Fontes.tamanhoFonteBase16 - 14),
+                        fontWeight: FontWeight.w500,
+                        color: corTextAtual,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
@@ -533,9 +582,9 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
     );
   }
 
-  void confirmaparaAvaliar() {
+  void confirmaparaAvaliar(int value) {
     if (!app.isLog()) {
-      widgetConfirma(
+      return widgetConfirma(
         context: context,
         cancelar: true,
         descricao: 'Para avaliar um evento você precisa '
@@ -543,5 +592,72 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
         funcaoSim: () {},
       );
     }
+    setState(() {
+      value != 0 && selecionado != value
+          ? selecionado = value
+          : selecionado = 0;
+    });
+  }
+
+  BottomNavigationBar bottomNavi() {
+    return BottomNavigationBar(
+      onTap: (i) {
+        setState(
+          () {
+            opcaoSelecionadaNavBar = i;
+          },
+        );
+      },
+      backgroundColor: corBgAtual,
+      elevation: 0,
+      showUnselectedLabels: true,
+      unselectedFontSize: 12,
+      selectedFontSize: 12,
+      unselectedItemColor: corTextAtual,
+      selectedItemColor: corBackgroundLaranja,
+      currentIndex: opcaoSelecionadaNavBar,
+      items: [
+        BottomNavigationBarItem(
+          backgroundColor: corBgAtual,
+          icon: widgetImagemInterna(
+              imagem: Imagem(
+            url: 'fhome.png',
+          )),
+          label: "Home",
+        ),
+        BottomNavigationBarItem(
+          backgroundColor: corBgAtual,
+          icon: widgetImagemInterna(
+              imagem: Imagem(
+            url: 'fagenda.png',
+          )),
+          label: "Agenda",
+        ),
+        BottomNavigationBarItem(
+          backgroundColor: corBgAtual,
+          icon: widgetImagemInterna(
+              imagem: Imagem(
+            url: 'fmapa.png',
+          )),
+          label: "Mapa",
+        ),
+        BottomNavigationBarItem(
+          backgroundColor: corBgAtual,
+          icon: widgetImagemInterna(
+              imagem: Imagem(
+            url: 'ffavorito.png',
+          )),
+          label: "Favoritos",
+        ),
+        BottomNavigationBarItem(
+          backgroundColor: corBgAtual,
+          icon: widgetImagemInterna(
+              imagem: Imagem(
+            url: 'fperfil.png',
+          )),
+          label: "Perfil",
+        ),
+      ],
+    );
   }
 }

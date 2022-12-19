@@ -43,6 +43,8 @@ class EventoController extends BaseController {
 
     lista.favoritos = [];
 
+    if(userguidid.isEmpty && token.isEmpty) return lista;
+
     String url = "${urlApiIDM}favoritos?g=$userguidid";
 
     try {

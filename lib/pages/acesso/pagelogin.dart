@@ -134,7 +134,7 @@ class _pageLoginState extends State<pageLogin> {
                           child: Center(
                             child: TextContrasteFonte(
                               text: "Entrar como visitante",
-                              semantics: "Entrar como vivitante",
+                              semantics: "Entrar como visitante",
                               style: GoogleFonts.roboto(
                                 fontSize: 16,
                                 color: corBackgroundLaranja,

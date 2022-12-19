@@ -36,6 +36,7 @@ class _pageEspacoDetalheState extends State<pageEspacoDetalhe> {
   final Completer<GoogleMapController> _controller = Completer();
   late CameraPosition inicioCamera;
   Set<Marker> markers = {};
+  int selecionado = 0;
 
   Espaco? espaco;
 
@@ -437,13 +438,13 @@ class _pageEspacoDetalheState extends State<pageEspacoDetalhe> {
           children: [
             GestureDetector(
               onTap: () {
-                confirmaparaAvaliar();
+                confirmaparaAvaliar(1);
               },
               child: Column(
                 children: [
                   Icon(
                     Icons.sentiment_satisfied_alt_outlined,
-                    color: corBackgroundLaranja,
+                    color: selecionado == 1 ? corBackgroundLaranja : corTextAtual,
                     size: 50 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
                   ),
                   // widgetImagemInterna(
@@ -468,13 +469,13 @@ class _pageEspacoDetalheState extends State<pageEspacoDetalhe> {
             ),
             GestureDetector(
               onTap: () {
-                confirmaparaAvaliar();
+                confirmaparaAvaliar(2);
               },
               child: Column(
                 children: [
                   Icon(
                     Icons.sentiment_dissatisfied_outlined,
-                    color: corBackgroundLaranja,
+                    color: selecionado == 2 ? corBackgroundLaranja : corTextAtual,
                     size: 50 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
                   ),
                   // widgetImagemInterna(
@@ -499,13 +500,13 @@ class _pageEspacoDetalheState extends State<pageEspacoDetalhe> {
             ),
             GestureDetector(
               onTap: () {
-                confirmaparaAvaliar();
+                confirmaparaAvaliar(3);
               },
               child: Column(
                 children: [
                   Icon(
                     Icons.sentiment_neutral_outlined,
-                    color: corBackgroundLaranja,
+                    color: selecionado == 3 ? corBackgroundLaranja : corTextAtual,
                     size: 50 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
                   ),
                   // Container(
@@ -537,9 +538,9 @@ class _pageEspacoDetalheState extends State<pageEspacoDetalhe> {
     );
   }
 
-  void confirmaparaAvaliar() {
+  void confirmaparaAvaliar(int value) {
     if (!app.isLog()) {
-      widgetConfirma(
+      return widgetConfirma(
         context: context,
         cancelar: true,
         descricao: 'Para avaliar um espaço você precisa '
@@ -547,5 +548,8 @@ class _pageEspacoDetalheState extends State<pageEspacoDetalhe> {
         funcaoSim: () {},
       );
     }
+    setState(() {
+      value != 0 && selecionado != value ? selecionado = value : selecionado = 0;
+    });
   }
 }

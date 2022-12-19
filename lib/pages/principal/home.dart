@@ -109,7 +109,8 @@ class _pagePrincipalState extends State<pagePrincipal> {
           backgroundColor: corBgAtual,
           icon: widgetImagemInterna(
               imagem: Imagem(
-            url: 'bottomhome.png',
+            url: 'fhome.png',
+                  // bottomhome
           )),
           label: "Home",
         ),
@@ -117,7 +118,8 @@ class _pagePrincipalState extends State<pagePrincipal> {
           backgroundColor: corBgAtual,
           icon: widgetImagemInterna(
               imagem: Imagem(
-            url: 'bottomcalendario.png',
+            url: 'fagenda.png',
+                  // bottomcalendario
           )),
           label: "Agenda",
         ),
@@ -125,7 +127,8 @@ class _pagePrincipalState extends State<pagePrincipal> {
           backgroundColor: corBgAtual,
           icon: widgetImagemInterna(
               imagem: Imagem(
-            url: 'bottommapa.png',
+            url: 'fmapa.png',
+                  // bottommapa
           )),
           label: "Mapa",
         ),
@@ -133,7 +136,8 @@ class _pagePrincipalState extends State<pagePrincipal> {
           backgroundColor: corBgAtual,
           icon: widgetImagemInterna(
               imagem: Imagem(
-            url: 'bottomfavoritos.png',
+            url: 'ffavorito.png',
+                  // bottomfavoritos
           )),
           label: "Favoritos",
         ),
@@ -141,7 +145,8 @@ class _pagePrincipalState extends State<pagePrincipal> {
           backgroundColor: corBgAtual,
           icon: widgetImagemInterna(
               imagem: Imagem(
-            url: 'bottomperfil.png',
+            url: 'fperfil.png',
+                  // bottomperfil
           )),
           label: "Perfil",
         ),

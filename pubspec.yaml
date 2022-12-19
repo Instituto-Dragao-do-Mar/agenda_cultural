@@ -58,6 +58,7 @@ dependencies:
   adaptive_action_sheet: ^2.0.2  
   location: ^4.4.0
   fluttertoast: ^8.1.2
+  url_launcher: ^6.1.7
 
 dev_dependencies:
   flutter_test:

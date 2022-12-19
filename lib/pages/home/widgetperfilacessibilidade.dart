@@ -73,35 +73,35 @@ class _widgetPerfilAcessibilidadeState
             backgroundColor: corBgAtual,
             icon: widgetImagemInterna(
                 imagem: Imagem(
-              url: 'bottomhome.png',
+              url: 'fhome.png',
             )),
             label: "Home",
           ),
           BottomNavigationBarItem(
             icon: widgetImagemInterna(
                 imagem: Imagem(
-              url: 'bottomcalendario.png',
+              url: 'fagenda.png',
             )),
             label: "Agenda",
           ),
           BottomNavigationBarItem(
             icon: widgetImagemInterna(
                 imagem: Imagem(
-              url: 'bottommapa.png',
+              url: 'fmapa.png',
             )),
             label: "Mapa",
           ),
           BottomNavigationBarItem(
             icon: widgetImagemInterna(
                 imagem: Imagem(
-              url: 'bottomfavoritos.png',
+              url: 'ffavorito.png',
             )),
             label: "Favoritos",
           ),
           BottomNavigationBarItem(
             icon: widgetImagemInterna(
                 imagem: Imagem(
-              url: 'bottomperfil.png',
+              url: 'fperfil.png',
             )),
             label: "Perfil",
           ),
@@ -170,8 +170,10 @@ class _widgetPerfilAcessibilidadeState
               children: [
                 IconButton(
                   iconSize: 40,
-                  icon: Image.network(
-                    "small.png",
+                  icon: widgetImagemInterna(
+                    imagem: Imagem(
+                      url: "small.png",
+                    ),
                   ),
                   onPressed: () {
                     setState(() {
@@ -201,8 +203,10 @@ class _widgetPerfilAcessibilidadeState
                 ),
                 IconButton(
                   iconSize: 40,
-                  icon: Image.network(
-                    "larger.png",
+                  icon: widgetImagemInterna(
+                    imagem: Imagem(
+                      url: "larger.png",
+                    ),
                   ),
                   onPressed: () {
                     setState(() {

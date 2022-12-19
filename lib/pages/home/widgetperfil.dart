@@ -1,4 +1,3 @@
-
 import 'package:agendacultural/pages/home/widgetperfilacessibilidade.dart';
 import 'package:agendacultural/pages/home/widgetdadoscadastrais.dart';
 import 'package:agendacultural/pages/home/widgetidiomas.dart';
@@ -6,6 +5,7 @@ import 'package:agendacultural/pages/home/widgetnotificacoes.dart';
 import 'package:agendacultural/shared/widgetemconstrucao.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../model/app_model.dart';
 import '../../model/fontes.dart';
@@ -15,7 +15,6 @@ import 'widgets/widgetopcaoperfil.dart';
 
 class widgetPerfil extends StatelessWidget {
   widgetPerfil({super.key});
-
 
   @override
   Widget build(BuildContext context) {
@@ -32,12 +31,12 @@ class widgetPerfil extends StatelessWidget {
               style: Fontes.poppins18W500Black(Fontes.tamanhoBase),
             ),
             const widgetEspacoH(altura: 12),
-            const widgetopacaoperfil(
-              subtitulo: "Notificações e alertas",
-              paginaDestino: widgetNotificacoes(),
-            ),
+            // const widgetopacaoperfil(
+            //   subtitulo: "Notificações e alertas",
+            //   paginaDestino: widgetNotificacoes(),
+            // ),
             const widgetEspacoH(altura: 16),
-            const widgetopacaoperfil(
+            widgetopacaoperfil(
               subtitulo: "Dados cadastrais",
               paginaDestino: widgetDadosCadastrais(),
             ),
@@ -47,17 +46,31 @@ class widgetPerfil extends StatelessWidget {
               style: Fontes.poppins18W500Black(Fontes.tamanhoBase),
             ),
             const widgetEspacoH(altura: 12),
-            const widgetopacaoperfil(
+            widgetopacaoperfil(
               subtitulo: "Termos e Serviços",
-              paginaDestino: widgetEmConstrucao(),
+              funcao: () async {
+                var uri = Uri.parse("https://grupo-manual.gitbook.io/app-cultura.ce/termos-e-servicos");
+                if(await canLaunchUrl(uri)){
+                  await launchUrl(uri, mode: LaunchMode.externalApplication);
+                }else {
+                  throw 'Could not launch $uri';
+                }
+              },
             ),
             const widgetEspacoH(altura: 16),
-            const widgetopacaoperfil(
+            widgetopacaoperfil(
               subtitulo: "Ajuda",
-              paginaDestino: widgetEmConstrucao(),
+              funcao: () async {
+              var uri = Uri.parse("https://grupo-manual.gitbook.io/app-cultura.ce/ajuda");
+              if(await canLaunchUrl(uri)){
+                await launchUrl(uri, mode: LaunchMode.externalApplication);
+              }else {
+                throw 'Could not launch $uri';
+              }
+            },
             ),
             const widgetEspacoH(altura: 16),
-            const widgetopacaoperfil(
+            widgetopacaoperfil(
               subtitulo: "Sobre o app",
               paginaDestino: widgetEmConstrucao(),
             ),
@@ -67,19 +80,18 @@ class widgetPerfil extends StatelessWidget {
               style: Fontes.poppins18W500Black(Fontes.tamanhoBase),
             ),
             const widgetEspacoH(altura: 12),
-            const widgetopacaoperfil(
+            widgetopacaoperfil(
               subtitulo: "Recursos",
               paginaDestino: widgetPerfilAcessibilidade(),
             ),
             const widgetEspacoH(altura: 16),
-            const widgetopacaoperfil(
-              subtitulo: "Idioma",
-              paginaDestino: widgetIdiomas(),
-            ),
+            // const widgetopacaoperfil(
+            //   subtitulo: "Idioma",
+            //   paginaDestino: widgetIdiomas(),
+            // ),
           ],
         ),
       ),
     );
   }
 }
-

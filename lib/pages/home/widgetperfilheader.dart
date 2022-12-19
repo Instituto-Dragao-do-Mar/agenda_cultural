@@ -11,6 +11,7 @@ import 'package:agendacultural/shared/widgetemconstrucao.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../model/fontes.dart';
 import '../../shared/constantes.dart';
@@ -62,7 +63,7 @@ class _widgetPerfilHeaderState extends State<widgetPerfilHeader> {
             backgroundColor: corBgAtual,
             icon: widgetImagemInterna(
                 imagem: Imagem(
-              url: 'bottomhome.png',
+              url: 'fhome.png',
             )),
             label: "Home",
           ),
@@ -70,7 +71,7 @@ class _widgetPerfilHeaderState extends State<widgetPerfilHeader> {
             backgroundColor: corBgAtual,
             icon: widgetImagemInterna(
                 imagem: Imagem(
-              url: 'bottomcalendario.png',
+              url: 'fagenda.png',
             )),
             label: "Agenda",
           ),
@@ -78,7 +79,7 @@ class _widgetPerfilHeaderState extends State<widgetPerfilHeader> {
             backgroundColor: corBgAtual,
             icon: widgetImagemInterna(
                 imagem: Imagem(
-              url: 'bottommapa.png',
+              url: 'fmapa.png',
             )),
             label: "Mapa",
           ),
@@ -86,7 +87,7 @@ class _widgetPerfilHeaderState extends State<widgetPerfilHeader> {
             backgroundColor: corBgAtual,
             icon: widgetImagemInterna(
                 imagem: Imagem(
-              url: 'bottomfavoritos.png',
+              url: 'ffavorito.png',
             )),
             label: "Favoritos",
           ),
@@ -94,7 +95,7 @@ class _widgetPerfilHeaderState extends State<widgetPerfilHeader> {
             backgroundColor: corBgAtual,
             icon: widgetImagemInterna(
                 imagem: Imagem(
-              url: 'bottomperfil.png',
+              url: 'fperfil.png',
             )),
             label: "Perfil",
           ),
@@ -110,12 +111,12 @@ class _widgetPerfilHeaderState extends State<widgetPerfilHeader> {
               style: Fontes.poppins18W500Black(Fontes.tamanhoBase),
             ),
             const widgetEspacoH(altura: 12),
-            const widgetopacaoperfil(
+            widgetopacaoperfil(
               subtitulo: "Notificações e alertas",
               paginaDestino: widgetNotificacoes(),
             ),
             const widgetEspacoH(altura: 16),
-            const widgetopacaoperfil(
+            widgetopacaoperfil(
               subtitulo: "Dados cadastrais",
               paginaDestino: widgetDadosCadastrais(),
             ),
@@ -125,17 +126,24 @@ class _widgetPerfilHeaderState extends State<widgetPerfilHeader> {
               style: Fontes.poppins18W500Black(Fontes.tamanhoBase),
             ),
             const widgetEspacoH(altura: 12),
-            const widgetopacaoperfil(
+            widgetopacaoperfil(
               subtitulo: "Termos e Serviços",
-              paginaDestino: widgetEmConstrucao(),
+              funcao: () async {
+                var uri = Uri.parse("https://grupo-manual.gitbook.io/app-cultura.ce/termos-e-servicos");
+                if(await canLaunchUrl(uri)){
+                  await launchUrl(uri, mode: LaunchMode.externalApplication);
+                }else {
+                  throw 'Could not launch $uri';
+                }
+              },
             ),
             const widgetEspacoH(altura: 16),
-            const widgetopacaoperfil(
+            widgetopacaoperfil(
               subtitulo: "Ajuda",
               paginaDestino: widgetEmConstrucao(),
             ),
             const widgetEspacoH(altura: 16),
-            const widgetopacaoperfil(
+            widgetopacaoperfil(
               subtitulo: "Sobre o app",
               paginaDestino: widgetEmConstrucao(),
             ),
@@ -145,12 +153,12 @@ class _widgetPerfilHeaderState extends State<widgetPerfilHeader> {
               style: Fontes.poppins18W500Black(Fontes.tamanhoBase),
             ),
             const widgetEspacoH(altura: 12),
-            const widgetopacaoperfil(
+            widgetopacaoperfil(
               subtitulo: "Recursos",
               paginaDestino: widgetPerfilAcessibilidade(),
             ),
             const widgetEspacoH(altura: 16),
-            const widgetopacaoperfil(
+            widgetopacaoperfil(
               subtitulo: "Idioma",
               paginaDestino: widgetIdiomas(),
             ),

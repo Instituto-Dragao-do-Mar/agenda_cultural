@@ -29,7 +29,7 @@ class AppModel extends ChangeNotifier {
 
   Usuario? usuarioLogado;
 
-  bool isLog() => (usuarioLogado != null);
+  bool isLog() => (usuarioLogado != null && usuarioLogado?.signature != "");
 
   AppModel({Usuario? usr}) {
     usuarioLogado = usr == null ? Usuario() : usr;
@@ -109,9 +109,9 @@ class AppModel extends ChangeNotifier {
   }
 
 
-  String GetGuidId() => usuarioLogado!.guidid!;
+  String GetGuidId() => usuarioLogado?.guidid ?? "";
 
-  String GetToken() => usuarioLogado!.signature!;
+  String GetToken() => usuarioLogado?.signature ?? "";
 
   List<DateTime> getEventoDatas(Evento e) {
     List<DateTime> ret = [];
