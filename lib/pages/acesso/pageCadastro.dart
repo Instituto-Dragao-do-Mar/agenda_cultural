@@ -397,14 +397,12 @@ class _PageCadastroState extends State<PageCadastro> {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                  Wrap(
+                    direction: Axis.horizontal,
                     children: [
                       Checkbox(
                         checkColor: Colors.white,
-                        fillColor:
-                            MaterialStateProperty.resolveWith((states) {
+                        fillColor: MaterialStateProperty.resolveWith((states) {
                           const Set<MaterialState> interactiveStates =
                               <MaterialState>{
                             MaterialState.pressed,
@@ -425,46 +423,68 @@ class _PageCadastroState extends State<PageCadastro> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 10),
-                        child: Row(
-                          children: [
-                            TextContrasteFonte(
-                              text:
-                                  "Ao se cadastrar, você concorda com os ",
-                              fontsize: Fontes.tamanhoBase.toDouble(),
-                              color: Color(0xff999999),
-                            ),
-                            InkWell(
-                              onTap: () async {
-                                var uri = Uri.parse(
-                                    "https://grupo-manual.gitbook.io/app-cultura.ce/termos-e-servicos");
-                                if (await canLaunchUrl(uri)) {
-                                  await launchUrl(uri,
-                                      mode: LaunchMode.externalApplication);
-                                } else {
-                                  throw 'Could not launch $uri';
-                                }
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.only(
-                                  left: 2,
-                                  right: 2,
-                                ),
-                                child: TextContrasteFonte(
-                                  text: "Termos de Serviço",
-                                  color: corBackgroundLaranja,
-                                  fontsize: Fontes.tamanhoBase.toDouble(),
-                                ),
-                              ),
-                            ),
-                            TextContrasteFonte(
-                              text:
-                                  " e a Política de Privacidade do cultura.ce.",
-                              fontsize: Fontes.tamanhoBase.toDouble(),
-                              color: Color(0xff999999),
-                            ),
-                          ],
+                        child: TextContrasteFonte(
+                          text: "Ao se cadastrar, você concorda com os ",
+                          fontsize: Fontes.tamanhoBase.toDouble(),
+                          color: Color(0xff999999),
                         ),
-                      )
+                      ),
+                      InkWell(
+                        onTap: () async {
+                          var uri = Uri.parse(
+                              "https://grupo-manual.gitbook.io/app-cultura.ce/termos-e-servicos");
+                          if (await canLaunchUrl(uri)) {
+                            await launchUrl(uri,
+                                mode: LaunchMode.externalApplication);
+                          } else {
+                            throw 'Could not launch $uri';
+                          }
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            left: 2,
+                            right: 2,
+                          ),
+                          child: TextContrasteFonte(
+                            text: "Termos de Serviço",
+                            color: corBackgroundLaranja,
+                            fontsize: Fontes.tamanhoBase.toDouble(),
+                          ),
+                        ),
+                      ),
+                      TextContrasteFonte(
+                        text: " e a ",
+                        fontsize: Fontes.tamanhoBase.toDouble(),
+                        color: Color(0xff999999),
+                      ),
+                      InkWell(
+                        onTap: () async {
+                          var uri = Uri.parse(
+                              "https://grupo-manual.gitbook.io/app-cultura.ce/termos-e-servicos/politica-de-privacidade");
+                          if (await canLaunchUrl(uri)) {
+                            await launchUrl(uri,
+                                mode: LaunchMode.externalApplication);
+                          } else {
+                            throw 'Could not launch $uri';
+                          }
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.only(
+                            left: 2,
+                            right: 2,
+                          ),
+                          child: TextContrasteFonte(
+                            text: "Política de Privacidade",
+                            color: corBackgroundLaranja,
+                            fontsize: Fontes.tamanhoBase.toDouble(),
+                          ),
+                        ),
+                      ),
+                      TextContrasteFonte(
+                        text: " do cultura.ce.",
+                        fontsize: Fontes.tamanhoBase.toDouble(),
+                        color: Color(0xff999999),
+                      ),
                     ],
                   ),
                 ],
@@ -523,7 +543,7 @@ class _PageCadastroState extends State<PageCadastro> {
     if (senhaInput != confirmarSenhaInput) {
       return widgetErro(
         context: context,
-        text: "Senhas não conferem.",
+        text: "Senhas não coincidem.",
       );
     }
 

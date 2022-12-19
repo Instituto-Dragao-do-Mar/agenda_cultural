@@ -10,6 +10,7 @@ import 'package:agendacultural/shared/constantes.dart';
 import 'package:agendacultural/shared/widgetespacov.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
 import '../../../model/app_model.dart';
 import '../../../model/fontes.dart';
@@ -59,12 +60,17 @@ class widgetTopoPerfil extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                Navigator.push(
+                PersistentNavBarNavigator.pushNewScreen(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) => pageLogin(),
-                  ),
+                  screen: pageLogin(),
+                  withNavBar: false, // OPTIONAL VALUE. True by default.
                 );
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => pageLogin(),
+                //   ),
+                // );
               },
               child: widgetImagemInterna(
                 imagem: Imagem(

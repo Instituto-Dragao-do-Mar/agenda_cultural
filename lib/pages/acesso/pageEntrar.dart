@@ -2,6 +2,7 @@ import 'package:agendacultural/controller/usuario_controller.dart';
 import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/acesso/pageCadastro.dart';
+import 'package:agendacultural/pages/acesso/pageRecuperarSenha.dart';
 import 'package:agendacultural/pages/home/widgetperfil.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetbotao.dart';
@@ -9,10 +10,12 @@ import 'package:agendacultural/shared/widgetemconstrucao.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:provider/provider.dart';
 
 import '../../model/app_model.dart';
+import '../../model/cores.dart';
 import '../../shared/constantes.dart';
 import '../../shared/widgetTextFonteContraste.dart';
 import '../../shared/widgetemdesenvolvimento.dart';
@@ -69,6 +72,17 @@ class _PageEntrarState extends State<PageEntrar> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              TextContrasteFonte(
+                text: "Entrar",
+                style: GoogleFonts.poppins(
+                  textStyle: TextStyle(
+                    fontSize:
+                        Fontes.tamanhoBase + 8,
+                    fontWeight: FontWeight.w500,
+                    color: !Cores.contraste ? Colors.black : Colors.white,
+                  ),
+                ),
+              ),
               Flex(
                 direction: Axis.vertical,
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -199,13 +213,39 @@ class _PageEntrarState extends State<PageEntrar> {
                 ),
               ),
               const widgetEspacoH(
-                altura: 15,
+                altura: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const PageRecuperarSenha(),
+                        ),
+                      );
+                    },
+                    child: TextContrasteFonte(
+                      text: "Esqueci minha senha",
+                      semantics: "Esqueci minha senha",
+                      style: TextStyle(
+                        color: corBackgroundLaranja,
+                        fontSize: Fontes.tamanhoBase.toDouble(),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const widgetEspacoH(
+                altura: 20,
               ),
               Semantics(
                 container: true,
                 label: "Botão Salvar",
                 child: widgetBotao(
-                  text: "Salvar",
+                  text: "Entrar",
                   function: () async => await sendLogin(),
                 ),
               )
@@ -217,9 +257,10 @@ class _PageEntrarState extends State<PageEntrar> {
   }
 
   Future<void> sendLogin() async {
-    var usuario = await usuarioController.login(app: app, email: emailInput, senha: senhaInput);
+    var usuario = await usuarioController.login(
+        app: app, email: emailInput, senha: senhaInput);
     if (!RegExp(
-        r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(emailInput)) {
       return widgetErro(
         context: context,

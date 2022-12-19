@@ -155,7 +155,7 @@ class _pageLoginState extends State<pageLogin> {
                     semantics: "Gestão Instituto Dragão do Mar",
                     style: Fontes.roboto16W400Black(Fontes.tamanhoBase),
                   ),
-                  const widgetEspacoH(altura: 11),
+                  const widgetEspacoH(altura: 5),
                   Container(
                     width: 150,
                     height: 100,

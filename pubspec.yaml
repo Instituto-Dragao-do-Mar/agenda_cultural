@@ -59,6 +59,7 @@ dependencies:
   location: ^4.4.0
   fluttertoast: ^8.1.2
   url_launcher: ^6.1.7
+  persistent_bottom_nav_bar: ^5.0.2
 
 dev_dependencies:
   flutter_test:

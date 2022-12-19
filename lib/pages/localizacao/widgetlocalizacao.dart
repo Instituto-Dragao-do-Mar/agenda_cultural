@@ -36,21 +36,12 @@ class Widgetlocalizacao extends StatelessWidget {
               children: [
                 Text(
                   "Onde você está?",
-                  style: Fontes.poppins14W400222(Fontes.tamanhoBase),
+                  style: Fontes.poppins18W400222(Fontes.tamanhoBase),
                 ),
                 const widgetEspacoV(largura: 10),
                 widgetImagemInterna(
                   imagem: Imagem(
                     url: "local.png",
-                  ),
-                ),
-                Expanded(child: Row()),
-                IconButton(
-                  onPressed: () {},
-                  icon: widgetImagemInterna(
-                    imagem: Imagem(
-                      url: "fechar.png",
-                    ),
                   ),
                 ),
               ],
@@ -108,7 +99,7 @@ class Widgetlocalizacao extends StatelessWidget {
                 ),
               ),
             ),
-            /*GestureDetector(
+            GestureDetector(
               onTap: () {
                 Navigator.pushReplacement(
                   context,
@@ -129,7 +120,7 @@ class Widgetlocalizacao extends StatelessWidget {
                   ),
                 ),
               ),
-            ),*/
+            ),
           ],
         ),
       ),
