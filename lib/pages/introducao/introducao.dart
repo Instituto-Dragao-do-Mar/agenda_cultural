@@ -76,7 +76,7 @@ class _pageIntroducaoState extends State<pageIntroducao> {
               container: true,
               sortKey: const OrdinalSortKey(2),
               child: IntroductionScreen(
-                isProgress: false,
+                isProgress: false,                
                 key: introKey,
                 onChange: (value) {
                   currentStep = value+1;
@@ -151,7 +151,8 @@ class _pageIntroducaoState extends State<pageIntroducao> {
                           widgetErro(
                             context: context,
                             text:
-                                "A acessibilidade só pode ser acessada se você permitir o uso de cookies.",
+                                "A acessibilidade só pode ser acessada se "
+                                "você permitir o uso de cookies.",
                           );
                           return;
                         }
@@ -241,13 +242,16 @@ class widgetStep extends StatelessWidget {
     return Column(
       children: [
         StepProgressIndicator(
-          mainAxisAlignment: MainAxisAlignment.center,
+
+          //mainAxisAlignment: MainAxisAlignment.center,
           totalSteps: totalSteps,
           currentStep: currentStep,
-          selectedGradientColor: gradientPrincipal,
+          //selectedGradientColor: gradientPrincipal,
           unselectedColor: Colors.grey,
+          selectedColor: const Color(0xFFE83C3B),
+         
         ),
-        const widgetEspacoH(altura: 24),
+        widgetEspacoH(altura: 24),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

@@ -1,11 +1,11 @@
 {
-    "name": "Cultura.ce",
-    "short_name": "Cultura.ce",
+    "name": "agendacultural",
+    "short_name": "agendacultural",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#ff3300",
     "theme_color": "#ff3300",
-    "description": "Agenda Cultural.",
+    "description": "Cultura.ce",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
