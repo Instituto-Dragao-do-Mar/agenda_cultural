@@ -34,26 +34,10 @@ class _IntroducaoinfoState extends State<Introducaoinfo> {
             Padding(
               padding: const EdgeInsets.all(23.0),
               child: Text(
-                "Este aplicativo é uma realização da Secretaria da Cultura do "
-                "Ceará para ampliar o acesso às programações da Rede Pública "
-                "de Espaços Equipamentos Culturais do Estado do Ceará (Rece), "
-                "desenvolvido em parceria com o Instituto Dragão do Mar (IDM). "
-                " "
-                "Aqui você encontra a programação cultural do Estado de "
-                "forma fácil, centralizada e interativa. Feito para que "
-                "você tenha a melhor experiência ao consultar a agenda"
-                " cultural.",
+                "Este aplicativo é uma realização da Secretaria da Cultura do Ceará para ampliar o acesso às programações da Rede Pública de Espaços e Equipamentos Culturais do Estado do Ceará (Rece), desenvolvido em parceria com o Instituto Dragão do Mar (IDM).",
                 style: Fontes.inter24W500Withe(Fontes.tamanhoBase),
                 semanticsLabel:
-                    "Este aplicativo é uma realização da Secretaria da Cultura do "
-                "Ceará para ampliar o acesso às programações da Rede Pública "
-                "de Espaços Equipamentos Culturais do Estado do Ceará (Rece), "
-                "desenvolvido em parceria com o Instituto Dragão do Mar (IDM). "
-                " "
-                "Aqui você encontra a programação cultural do Estado de "
-                "forma fácil, centralizada e interativa. Feito para que "
-                "você tenha a melhor experiência ao consultar a agenda"
-                " cultural.",
+                    "Este aplicativo é uma realização da Secretaria da Cultura do Ceará para ampliar o acesso às programações da Rede Pública de Espaços e Equipamentos Culturais do Estado do Ceará (Rece), desenvolvido em parceria com o Instituto Dragão do Mar (IDM).",
                 textAlign: TextAlign.center,
               ),
             ),

@@ -91,7 +91,7 @@ class Widgetlocalizacao extends StatelessWidget {
                   if (_temPermissao == PermissionStatus.denied) {
                       print("22222");
 
-                    widgetErro(
+                    widgetMensagem(
                       context: context,
                       text: "É necessário da a permissão ao app de "
                           " obter a localização via GPS ou informar o local "
