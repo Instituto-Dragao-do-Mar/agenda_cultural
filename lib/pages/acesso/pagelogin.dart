@@ -70,17 +70,13 @@ class _pageLoginState extends State<pageLogin> {
                 width: double.infinity,
                 child: Align(
                   alignment: Alignment.bottomCenter,
-                  child: Semantics(
-                    container: true,
-                    label: "Cultura c e, Agenda Cultural do Ceará",
-                    child: widgetImagemInterna(
-                      width: 247,
-                      height: 184,
-                      imagem: Imagem(
-                        url: 'logotelalogin.png',
-                      ),
-                      fit: BoxFit.fill,
+                  child: widgetImagemInterna(
+                    width: 247,
+                    height: 184,
+                    imagem: Imagem(
+                      url: 'logotelalogin.png',
                     ),
+                    fit: BoxFit.fill,
                   ),
                 ),
               ),

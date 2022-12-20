@@ -24,7 +24,7 @@ class AppModel extends ChangeNotifier {
   late ListaAcessibilidade listaAcessibilidade;
   late ListaEspacos listaEspacos;
   late Filtro filtro;
-  late Localizacao localizacao;
+  Localizacao? localizacao;
   ListaFavoritos listaFavoritos = ListaFavoritos();
 
   Usuario? usuarioLogado;
@@ -32,8 +32,18 @@ class AppModel extends ChangeNotifier {
   bool isLog() => (usuarioLogado != null && usuarioLogado?.signature != "");
 
   AppModel({Usuario? usr}) {
-    usuarioLogado = usr == null ? Usuario() : usr;
+    usuarioLogado = usr ?? Usuario();
   }
+
+  void setLocalizacao(double latitude, double longitude) {
+    localizacao = Localizacao(
+      latitude: latitude,
+      longitude: longitude,
+    );
+  }
+
+  double getLatitude() => (localizacao == null) ? 0.0 : localizacao!.latitude!;
+  double getLongitude() => (localizacao == null) ? 0.0 : localizacao!.longitude!;
 
   setUser(Usuario usr) {
     usuarioLogado = usr;
@@ -50,14 +60,11 @@ class AppModel extends ChangeNotifier {
   }
 
   Future<void> getFavoritos() async {
-    listaFavoritos = await EventoController().favoritosGet(
-      userguidid: GetGuidId(),
-      token: GetToken()
-    );
+    listaFavoritos = await EventoController()
+        .favoritosGet(userguidid: GetGuidId(), token: GetToken());
   }
 
   Future<void> getdados() async {
-
     listaCategoria = await CategoriaController().categoriaGet(
       userguidid: "",
     );
@@ -107,7 +114,6 @@ class AppModel extends ChangeNotifier {
 
     await getFavoritos();
   }
-
 
   String GetGuidId() => usuarioLogado?.guidid ?? "";
 
