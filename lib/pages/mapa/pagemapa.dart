@@ -75,19 +75,19 @@ class _pageMapaState extends State<pageMapa> {
           position: LatLng(ep.latitude ?? 0.0, ep.longitude ?? 0.00),
           icon: BitmapDescriptor.defaultMarkerWithHue(
             BitmapDescriptor.hueOrange,
-          ),          
+          ),
           infoWindow: InfoWindow(
             title: ev.nome ?? '',
             snippet: ev.detalhe ?? '',
             onTap: () {
               Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => pageEventoDetalhe(
-              evento: ev,
-            ),
-          ),
-        );
+                context,
+                MaterialPageRoute(
+                  builder: (context) => pageEventoDetalhe(
+                    evento: ev,
+                  ),
+                ),
+              );
             },
           ),
         ),

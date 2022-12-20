@@ -1,11 +1,11 @@
 {
-    "name": "agendacultural",
-    "short_name": "agendacultural",
+    "name": "Cultura.ce",
+    "short_name": "Cultura.ce",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#ff3300",
+    "theme_color": "#ff3300",
+    "description": "Agenda Cultural.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
