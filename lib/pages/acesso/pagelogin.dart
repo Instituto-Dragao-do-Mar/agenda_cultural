@@ -15,6 +15,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../../model/app_model.dart';
+import '../../model/cores.dart';
 import '../../model/fontes.dart';
 import '../../shared/widgetTextFonteContraste.dart';
 
@@ -33,7 +34,6 @@ class _pageLoginState extends State<pageLogin> {
   void initState() {
     app = context.read<AppModel>();
     super.initState();
-   
   }
 
   @override
@@ -45,23 +45,25 @@ class _pageLoginState extends State<pageLogin> {
       backgroundColor: corBgAtual,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.only(top: 45.0, bottom: 45.0),
+          padding: const EdgeInsets.only(top: 65.0, bottom: 25.0),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Column(
                 children: [
                   TextContrasteFonte(
-                    text: "Realização",
+                    text: "", //Realização
                     style: Fontes.roboto16W400Black(Fontes.tamanhoBase),
                     semantics: "Realização Governo do Estado do Ceará.",
                   ),
                   widgetImagemInterna(
                     imagem: Imagem(
-                      url: "logosecult.png",
+                      url: !Cores.contraste
+                          ? "logosecultnova.png"
+                          : "logosecultcontraste.png",
                     ),
-                    width: 237,
-                    height: 72,
+                    width: 379 * 0.8,//277
+                    height: 56 * 0.8,//277
                   ),
                 ],
               ),
@@ -75,7 +77,7 @@ class _pageLoginState extends State<pageLogin> {
                     label: "Cultura c e, Agenda Cultural do Ceará",
                     child: widgetImagemInterna(
                       width: 247,
-                      height: 184,
+                      height: 224,
                       imagem: Imagem(
                         url: 'logotelalogindemo.png',
                       ),
@@ -130,7 +132,7 @@ class _pageLoginState extends State<pageLogin> {
                         child: Container(
                           margin: const EdgeInsets.fromLTRB(32, 10, 32, 10),
                           width: double.infinity,
-                          height: 65,
+                          height: 35,
                           child: Center(
                             child: TextContrasteFonte(
                               text: "Entrar como visitante",
@@ -147,29 +149,23 @@ class _pageLoginState extends State<pageLogin> {
                   ),
                 ),
               ),
-              const widgetEspacoH(altura: 40),
+              const widgetEspacoH(altura: 10),
               Column(
                 children: [
                   TextContrasteFonte(
-                    text: "Gestão",
+                    text: "", //Gestão
                     semantics: "Gestão Instituto Dragão do Mar",
                     style: Fontes.roboto16W400Black(Fontes.tamanhoBase),
                   ),
                   const widgetEspacoH(altura: 5),
-                  Container(
-                    width: 150,
-                    height: 100,
-                    decoration: const BoxDecoration(
-                      color: corBg,
-                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                  widgetImagemInterna(
+                    imagem: Imagem(
+                      url: !Cores.contraste
+                          ? "dragaodomarnova.png"
+                          : "dragaodomarcontraste.png",
                     ),
-                    child: widgetImagemInterna(
-                      imagem: Imagem(
-                        url: "dragaodomar.png",
-                      ),
-                      width: 121,
-                      height: 72,
-                    ),
+                    width: 213,//201
+                    height: 46,//201
                   ),
                 ],
               ),

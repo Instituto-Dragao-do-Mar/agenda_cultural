@@ -98,7 +98,8 @@ class _widgetPerfilState extends State<widgetPerfil> {
                 var uri = Uri.parse(
                     "https://grupo-manual.gitbook.io/app-cultura.ce/termos-e-servicos");
                 if (await canLaunchUrl(uri)) {
-                  await launchUrl(uri, mode: LaunchMode.externalApplication);
+                  //await launchUrl(uri, mode: LaunchMode.externalApplication);
+                  await launchUrl(uri, mode: LaunchMode.platformDefault);
                 } else {
                   throw 'Could not launch $uri';
                 }
@@ -111,7 +112,8 @@ class _widgetPerfilState extends State<widgetPerfil> {
                 var uri = Uri.parse(
                     "https://grupo-manual.gitbook.io/app-cultura.ce/ajuda");
                 if (await canLaunchUrl(uri)) {
-                  await launchUrl(uri, mode: LaunchMode.externalApplication);
+                  //await launchUrl(uri, mode: LaunchMode.externalApplication);
+                  await launchUrl(uri, mode: LaunchMode.platformDefault);
                 } else {
                   throw 'Could not launch $uri';
                 }
@@ -121,6 +123,20 @@ class _widgetPerfilState extends State<widgetPerfil> {
             widgetopacaoperfil(
               subtitulo: "Sobre o app",
               paginaDestino: WidgetSobre(),
+            ),
+            const widgetEspacoH(altura: 16),
+            widgetopacaoperfil(
+              subtitulo: "Avalie o app",
+              funcao: () async {
+                var uri = Uri.parse(
+                    "https://forms.gle/xzducZWvrhDsWeKt6");
+                if (await canLaunchUrl(uri)) {
+                  //await launchUrl(uri, mode: LaunchMode.externalApplication);
+                  await launchUrl(uri, mode: LaunchMode.platformDefault);
+                } else {
+                  throw 'Could not launch $uri';
+                }
+              },
             ),
             const widgetEspacoH(altura: 24),
             Text(

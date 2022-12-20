@@ -87,7 +87,7 @@ class Fontes {
     textStyle:  TextStyle(
       fontSize: tamanho.toDouble(),
       fontWeight: FontWeight.w500,
-      color: !Cores.contraste ? Color(0xff999999) : Colors.white,
+      color: Color(0xff999999),//!Cores.contraste ? Color(0xff999999) : Colors.white,
     ),
   );
   static TextStyle roboto12W400Grey(int tamanho) => GoogleFonts.roboto(

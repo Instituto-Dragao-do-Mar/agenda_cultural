@@ -139,7 +139,8 @@ class _widgetPerfilHeaderState extends State<widgetPerfilHeader> {
               funcao: () async {
                 var uri = Uri.parse("https://grupo-manual.gitbook.io/app-cultura.ce/termos-e-servicos");
                 if(await canLaunchUrl(uri)){
-                  await launchUrl(uri, mode: LaunchMode.externalApplication);
+                  // await launchUrl(uri, mode: LaunchMode.externalApplication);
+                  await launchUrl(uri, mode: LaunchMode.platformDefault);
                 }else {
                   throw 'Could not launch $uri';
                 }
