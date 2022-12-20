@@ -18,6 +18,7 @@ import 'package:readmore/readmore.dart';
 
 import '../../model/fontes.dart';
 import '../../shared/widgetTextFonteContraste.dart';
+import '../acesso/pagelogin.dart';
 
 class pageEspacoDetalhe extends StatefulWidget {
   const pageEspacoDetalhe({
@@ -545,7 +546,14 @@ class _pageEspacoDetalheState extends State<pageEspacoDetalhe> {
         cancelar: true,
         descricao: 'Para avaliar um espaço você precisa '
             'se logar, gostaria de ir para a página de login?',
-        funcaoSim: () {},
+        funcaoSim: () {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const pageLogin(),
+            ),
+          );
+        },
       );
     }
     setState(() {

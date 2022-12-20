@@ -9,17 +9,27 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../model/app_model.dart';
 import '../../model/fontes.dart';
+import '../../model/imagem_model.dart';
 import '../../shared/constantes.dart';
 import '../../shared/themes.dart';
+import '../../shared/widgetimagem.dart';
 import 'widgets/widgetopcaoperfil.dart';
 
-class widgetPerfil extends StatelessWidget {
-  widgetPerfil({super.key});
+class widgetPerfil extends StatefulWidget {
+  const widgetPerfil({super.key});
+
+  @override
+  State<widgetPerfil> createState() => _widgetPerfilState();
+}
+
+class _widgetPerfilState extends State<widgetPerfil> {
+  var opcaoSelecionada = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: corBgAtual,
+      // bottomNavigationBar: bottomNavi(),
       body: Container(
         color: corBgAtual,
         padding: const EdgeInsets.all(16.0),
@@ -35,7 +45,7 @@ class widgetPerfil extends StatelessWidget {
             //   subtitulo: "Notificações e alertas",
             //   paginaDestino: widgetNotificacoes(),
             // ),
-            const widgetEspacoH(altura: 16),
+            // const widgetEspacoH(altura: 16),
             widgetopacaoperfil(
               subtitulo: "Dados cadastrais",
               paginaDestino: widgetDadosCadastrais(),
@@ -49,10 +59,11 @@ class widgetPerfil extends StatelessWidget {
             widgetopacaoperfil(
               subtitulo: "Termos e Serviços",
               funcao: () async {
-                var uri = Uri.parse("https://grupo-manual.gitbook.io/app-cultura.ce/termos-e-servicos");
-                if(await canLaunchUrl(uri)){
+                var uri = Uri.parse(
+                    "https://grupo-manual.gitbook.io/app-cultura.ce/termos-e-servicos");
+                if (await canLaunchUrl(uri)) {
                   await launchUrl(uri, mode: LaunchMode.externalApplication);
-                }else {
+                } else {
                   throw 'Could not launch $uri';
                 }
               },
@@ -61,13 +72,14 @@ class widgetPerfil extends StatelessWidget {
             widgetopacaoperfil(
               subtitulo: "Ajuda",
               funcao: () async {
-              var uri = Uri.parse("https://grupo-manual.gitbook.io/app-cultura.ce/ajuda");
-              if(await canLaunchUrl(uri)){
-                await launchUrl(uri, mode: LaunchMode.externalApplication);
-              }else {
-                throw 'Could not launch $uri';
-              }
-            },
+                var uri = Uri.parse(
+                    "https://grupo-manual.gitbook.io/app-cultura.ce/ajuda");
+                if (await canLaunchUrl(uri)) {
+                  await launchUrl(uri, mode: LaunchMode.externalApplication);
+                } else {
+                  throw 'Could not launch $uri';
+                }
+              },
             ),
             const widgetEspacoH(altura: 16),
             widgetopacaoperfil(
@@ -92,6 +104,73 @@ class widgetPerfil extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+
+  BottomNavigationBar bottomNavi() {
+    return BottomNavigationBar(
+      onTap: (i) {
+        setState(
+              () {
+            opcaoSelecionada = i;
+          },
+        );
+      },
+      backgroundColor: corBgAtual,
+      elevation: 0,
+      showUnselectedLabels: true,
+      unselectedFontSize: 12,
+      selectedFontSize: 12,
+      unselectedItemColor: corTextAtual,
+      selectedItemColor: corBackgroundLaranja,
+      currentIndex: opcaoSelecionada,
+      items: [
+        BottomNavigationBarItem(
+          backgroundColor: corBgAtual,
+          icon: widgetImagemInterna(
+              imagem: Imagem(
+                url: 'fhome.png',
+                // bottomhome
+              )),
+          label: "Home",
+        ),
+        BottomNavigationBarItem(
+          backgroundColor: corBgAtual,
+          icon: widgetImagemInterna(
+              imagem: Imagem(
+                url: 'fagenda.png',
+                // bottomcalendario
+              )),
+          label: "Agenda",
+        ),
+        BottomNavigationBarItem(
+          backgroundColor: corBgAtual,
+          icon: widgetImagemInterna(
+              imagem: Imagem(
+                url: 'fmapa.png',
+                // bottommapa
+              )),
+          label: "Mapa",
+        ),
+        BottomNavigationBarItem(
+          backgroundColor: corBgAtual,
+          icon: widgetImagemInterna(
+              imagem: Imagem(
+                url: 'ffavorito.png',
+                // bottomfavoritos
+              )),
+          label: "Favoritos",
+        ),
+        BottomNavigationBarItem(
+          backgroundColor: corBgAtual,
+          icon: widgetImagemInterna(
+              imagem: Imagem(
+                url: 'fperfil.png',
+                // bottomperfil
+              )),
+          label: "Perfil",
+        ),
+      ],
     );
   }
 }

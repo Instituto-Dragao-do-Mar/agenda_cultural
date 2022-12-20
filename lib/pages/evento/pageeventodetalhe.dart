@@ -26,6 +26,7 @@ import 'package:readmore/readmore.dart';
 import '../../model/fontes.dart';
 import '../../shared/widgetBotaoFavorito.dart';
 import '../../shared/widgetTextFonteContraste.dart';
+import '../acesso/pagelogin.dart';
 import '../agenda/pageagenda.dart';
 import '../favorito/widgetFavoritos.dart';
 import '../home/widgethome.dart';
@@ -589,7 +590,14 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
         cancelar: true,
         descricao: 'Para avaliar um evento você precisa '
             'se logar, gostaria de ir para a página de login?',
-        funcaoSim: () {},
+        funcaoSim: () {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const pageLogin(),
+            ),
+          );
+        },
       );
     }
     setState(() {

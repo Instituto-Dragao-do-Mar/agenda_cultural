@@ -11,7 +11,9 @@ import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetemconstrucao.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
+import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
+import '../../shared/widgetBottomNavigator.dart';
 import '../favorito/widgetFavoritos.dart';
 import '../home/widgetperfil.dart';
 import '../home/widgets/widgettopoperfil.dart';
@@ -31,7 +33,7 @@ class _pagePrincipalState extends State<pagePrincipal> {
     const pageAgenda(),
     const pageMapa(),
     const WidgetFavoritos(),
-    widgetPerfil(),
+    const widgetPerfil(),
   ];
 
   List<Widget> subPaginasTopo = [
@@ -81,7 +83,7 @@ class _pagePrincipalState extends State<pagePrincipal> {
             child: CircularProgressIndicator(),
           );
         }
-        
+
         return subPaginas[opcaoSelecionada];
       },
     );
@@ -110,7 +112,7 @@ class _pagePrincipalState extends State<pagePrincipal> {
           icon: widgetImagemInterna(
               imagem: Imagem(
             url: 'fhome.png',
-                  // bottomhome
+            // bottomhome
           )),
           label: "Home",
         ),
@@ -119,7 +121,7 @@ class _pagePrincipalState extends State<pagePrincipal> {
           icon: widgetImagemInterna(
               imagem: Imagem(
             url: 'fagenda.png',
-                  // bottomcalendario
+            // bottomcalendario
           )),
           label: "Agenda",
         ),
@@ -128,7 +130,7 @@ class _pagePrincipalState extends State<pagePrincipal> {
           icon: widgetImagemInterna(
               imagem: Imagem(
             url: 'fmapa.png',
-                  // bottommapa
+            // bottommapa
           )),
           label: "Mapa",
         ),
@@ -137,7 +139,7 @@ class _pagePrincipalState extends State<pagePrincipal> {
           icon: widgetImagemInterna(
               imagem: Imagem(
             url: 'ffavorito.png',
-                  // bottomfavoritos
+            // bottomfavoritos
           )),
           label: "Favoritos",
         ),
@@ -146,11 +148,74 @@ class _pagePrincipalState extends State<pagePrincipal> {
           icon: widgetImagemInterna(
               imagem: Imagem(
             url: 'fperfil.png',
-                  // bottomperfil
+            // bottomperfil
           )),
           label: "Perfil",
         ),
       ],
     );
   }
+
+  // PersistentTabView bottomNaviNovo() {
+  //   return PersistentTabView(
+  //     context,
+  //     navBarStyle: NavBarStyle.style6,
+  //     decoration: NavBarDecoration(
+  //       borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
+  //     ),
+  //     screens: subPaginas,
+  //     items: [
+  //       PersistentBottomNavBarItem(
+  //         icon: widgetImagemInterna(
+  //             imagem: Imagem(
+  //           url: 'fhome.png',
+  //           // bottomcalendario
+  //         )),
+  //         title: ("Home"),
+  //         activeColorPrimary: corBackgroundLaranja,
+  //         inactiveColorPrimary: corTextAtual,
+  //       ),
+  //       PersistentBottomNavBarItem(
+  //         icon: widgetImagemInterna(
+  //             imagem: Imagem(
+  //               url: 'fagenda.png',
+  //               // bottomcalendario
+  //             )),
+  //         title: ("Agenda"),
+  //         activeColorPrimary: corBackgroundLaranja,
+  //         inactiveColorPrimary: corTextAtual,
+  //       ),
+  //       PersistentBottomNavBarItem(
+  //         icon: widgetImagemInterna(
+  //             imagem: Imagem(
+  //               url: 'fmapa.png',
+  //               // bottomcalendario
+  //             )),
+  //         title: ("Mapa"),
+  //         activeColorPrimary: corBackgroundLaranja,
+  //         inactiveColorPrimary: corTextAtual,
+  //       ),
+  //       PersistentBottomNavBarItem(
+  //         icon: widgetImagemInterna(
+  //             imagem: Imagem(
+  //               url: 'ffavorito.png',
+  //               // bottomcalendario
+  //             )),
+  //         title: ("Favoritos"),
+  //         activeColorPrimary: corBackgroundLaranja,
+  //         inactiveColorPrimary: corTextAtual,
+  //       ),
+  //       PersistentBottomNavBarItem(
+  //         icon: widgetImagemInterna(
+  //             imagem: Imagem(
+  //               url: 'fperfil.png',
+  //               // bottomcalendario
+  //             )),
+  //         title: ("Perfil"),
+  //         activeColorPrimary: corBackgroundLaranja,
+  //         inactiveColorPrimary: corTextAtual,
+  //       ),
+  //     ],
+  //   );
+  // }
 }

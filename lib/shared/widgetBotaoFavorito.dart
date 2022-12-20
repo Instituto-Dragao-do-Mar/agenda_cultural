@@ -1,3 +1,4 @@
+import 'package:agendacultural/pages/acesso/pagelogin.dart';
 import 'package:agendacultural/shared/widgetConfirma.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -58,7 +59,14 @@ class _WidgetBotaoFavoritoState extends State<WidgetBotaoFavorito> {
                   cancelar: true,
                   descricao: 'Para favoritar é preciso estar logado '
                       'no aplicativo. Gostaria de ir para a página de login?',
-                  funcaoSim: () {},
+                  funcaoSim: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const pageLogin(),
+                      ),
+                    );
+                  },
                 );
               }
               var isFavorited =

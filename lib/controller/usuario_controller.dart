@@ -43,9 +43,14 @@ class UsuarioController extends BaseController {
     return lista;
   }
 
-  Future<Usuario> login({AppModel? app, String? email, String? senha}) async {
+  Future<Usuario> login(
+      {AppModel? app,
+      String? email,
+      String? senha,
+      bool? alterarSenha = false}) async {
     Acesso _acesso = Acesso();
     Usuario _usuarioRetorno = Usuario();
+    // var errorMessage = "";
 
     try {
       var _body = jsonEncode(
@@ -100,15 +105,19 @@ class UsuarioController extends BaseController {
           notifyListeners();
         }
       } else {
-        app?.resetUser();
-        _usuarioRetorno == null;
+        if (!alterarSenha!) {
+          app?.resetUser();
+          _usuarioRetorno == null;
+        }
         errorMessage = response.body;
         state = ControllerStates.error;
         notifyListeners();
       }
     } catch (e) {
-      app?.resetUser();
-      _usuarioRetorno == null;
+      if (!alterarSenha!) {
+        app?.resetUser();
+        _usuarioRetorno == null;
+      }
       errorMessage = "Acesso inválido (${e.toString()})";
       print(errorMessage);
       state = ControllerStates.error;
@@ -152,7 +161,6 @@ class UsuarioController extends BaseController {
     String? email,
     String? senha,
   }) async {
-
     String? errorMessage;
 
     var parametros = jsonEncode(
@@ -171,7 +179,6 @@ class UsuarioController extends BaseController {
       var ret = jsonDecode(responseGetToken.body);
       acesso = Acesso.fromJson(ret);
     }
-
 
     String url = "https://coretools.redeinova.com.br/api/hash?senha=$senha";
 

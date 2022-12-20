@@ -68,6 +68,13 @@ class Fontes {
       color: !Cores.contraste ? Color(0XFF222222) : Colors.white,
     ),
   );
+  static TextStyle poppins18W400222(int tamanho) => GoogleFonts.poppins(
+    textStyle:  TextStyle(
+      fontSize: tamanho + 2,
+      fontWeight: FontWeight.w400,
+      color: !Cores.contraste ? Color(0XFF222222) : Colors.white,
+    ),
+  );
   static TextStyle roboto16W400Grey(int tamanho) => GoogleFonts.roboto(
     textStyle:  TextStyle(
       fontSize: tamanho.toDouble(),

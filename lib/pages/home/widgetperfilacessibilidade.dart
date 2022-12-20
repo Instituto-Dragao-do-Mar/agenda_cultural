@@ -49,7 +49,7 @@ class _widgetPerfilAcessibilidadeState
 
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: corBgAtual,
+        backgroundColor: corAppBarLocal,
         elevation: 0,
         leadingWidth: 0,
         title: const widgetTopoPerfil(),
@@ -192,7 +192,7 @@ class _widgetPerfilAcessibilidadeState
                           textStyle: TextStyle(
                             fontSize: fontSize,
                             fontWeight: FontWeight.w400,
-                            color: const Color(0XFF000000),
+                            color: corTextLocal,
                           ),
                         )),
                     Text(
