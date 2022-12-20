@@ -77,7 +77,7 @@ class _pageLoginState extends State<pageLogin> {
                       width: 247,
                       height: 184,
                       imagem: Imagem(
-                        url: 'logotelalogin.png',
+                        url: 'logotelalogindemo.png',
                       ),
                       fit: BoxFit.fill,
                     ),

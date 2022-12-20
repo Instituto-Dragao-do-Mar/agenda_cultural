@@ -16,13 +16,12 @@ import '../../../model/app_model.dart';
 import '../../../model/fontes.dart';
 
 class widgetTopoPerfil extends StatelessWidget {
-  const widgetTopoPerfil({
-    Key? key,
-  }) : super(key: key);
+  Function? notify;
+
+  widgetTopoPerfil({Key? key, this.notify}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     String? text;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
@@ -32,12 +31,7 @@ class widgetTopoPerfil extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => widgetPerfilHeader(),
-                  ),
-                );
+                notify;
               },
               child: widgetImagemInterna(
                 imagem: Imagem(
@@ -60,17 +54,12 @@ class widgetTopoPerfil extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                PersistentNavBarNavigator.pushNewScreen(
+                Navigator.push(
                   context,
-                  screen: pageLogin(),
-                  withNavBar: false, // OPTIONAL VALUE. True by default.
+                  MaterialPageRoute(
+                    builder: (context) => pageLogin(),
+                  ),
                 );
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => pageLogin(),
-                //   ),
-                // );
               },
               child: widgetImagemInterna(
                 imagem: Imagem(

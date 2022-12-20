@@ -2,9 +2,12 @@ import 'package:agendacultural/pages/home/widgetperfilacessibilidade.dart';
 import 'package:agendacultural/pages/home/widgetdadoscadastrais.dart';
 import 'package:agendacultural/pages/home/widgetidiomas.dart';
 import 'package:agendacultural/pages/home/widgetnotificacoes.dart';
+import 'package:agendacultural/pages/home/widgets/widgetSobre.dart';
+import 'package:agendacultural/pages/home/widgets/widgettopoperfil.dart';
 import 'package:agendacultural/shared/widgetemconstrucao.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../model/app_model.dart';
@@ -12,7 +15,9 @@ import '../../model/fontes.dart';
 import '../../model/imagem_model.dart';
 import '../../shared/constantes.dart';
 import '../../shared/themes.dart';
+import '../../shared/widgetConfirma.dart';
 import '../../shared/widgetimagem.dart';
+import '../acesso/pagelogin.dart';
 import 'widgets/widgetopcaoperfil.dart';
 
 class widgetPerfil extends StatefulWidget {
@@ -24,6 +29,13 @@ class widgetPerfil extends StatefulWidget {
 
 class _widgetPerfilState extends State<widgetPerfil> {
   var opcaoSelecionada = 0;
+  AppModel? app;
+
+  @override
+  void initState() {
+    super.initState();
+    app = context.read<AppModel>();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +60,31 @@ class _widgetPerfilState extends State<widgetPerfil> {
             // const widgetEspacoH(altura: 16),
             widgetopacaoperfil(
               subtitulo: "Dados cadastrais",
-              paginaDestino: widgetDadosCadastrais(),
+              funcao: () async {
+                if (!app!.isLog()) {
+                  widgetConfirma(
+                    context: context,
+                    cancelar: true,
+                    descricao: 'Para exibir seus dados é preciso estar logado '
+                        'no aplicativo. Gostaria de ir para a página de login?',
+                    funcaoSim: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const pageLogin(),
+                        ),
+                      );
+                    },
+                  );
+                } else {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const widgetDadosCadastrais(),
+                    ),
+                  );
+                }
+              },
             ),
             const widgetEspacoH(altura: 24),
             Text(
@@ -84,7 +120,7 @@ class _widgetPerfilState extends State<widgetPerfil> {
             const widgetEspacoH(altura: 16),
             widgetopacaoperfil(
               subtitulo: "Sobre o app",
-              paginaDestino: widgetEmConstrucao(),
+              paginaDestino: WidgetSobre(),
             ),
             const widgetEspacoH(altura: 24),
             Text(
@@ -94,7 +130,14 @@ class _widgetPerfilState extends State<widgetPerfil> {
             const widgetEspacoH(altura: 12),
             widgetopacaoperfil(
               subtitulo: "Recursos",
-              paginaDestino: widgetPerfilAcessibilidade(),
+              funcao: () async {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const widgetPerfilAcessibilidade(),
+                  ),
+                ).then((value) => setState(() {}));
+              },
             ),
             const widgetEspacoH(altura: 16),
             // const widgetopacaoperfil(
@@ -111,7 +154,7 @@ class _widgetPerfilState extends State<widgetPerfil> {
     return BottomNavigationBar(
       onTap: (i) {
         setState(
-              () {
+          () {
             opcaoSelecionada = i;
           },
         );
@@ -129,45 +172,45 @@ class _widgetPerfilState extends State<widgetPerfil> {
           backgroundColor: corBgAtual,
           icon: widgetImagemInterna(
               imagem: Imagem(
-                url: 'fhome.png',
-                // bottomhome
-              )),
+            url: 'fhome.png',
+            // bottomhome
+          )),
           label: "Home",
         ),
         BottomNavigationBarItem(
           backgroundColor: corBgAtual,
           icon: widgetImagemInterna(
               imagem: Imagem(
-                url: 'fagenda.png',
-                // bottomcalendario
-              )),
+            url: 'fagenda.png',
+            // bottomcalendario
+          )),
           label: "Agenda",
         ),
         BottomNavigationBarItem(
           backgroundColor: corBgAtual,
           icon: widgetImagemInterna(
               imagem: Imagem(
-                url: 'fmapa.png',
-                // bottommapa
-              )),
+            url: 'fmapa.png',
+            // bottommapa
+          )),
           label: "Mapa",
         ),
         BottomNavigationBarItem(
           backgroundColor: corBgAtual,
           icon: widgetImagemInterna(
               imagem: Imagem(
-                url: 'ffavorito.png',
-                // bottomfavoritos
-              )),
+            url: 'ffavorito.png',
+            // bottomfavoritos
+          )),
           label: "Favoritos",
         ),
         BottomNavigationBarItem(
           backgroundColor: corBgAtual,
           icon: widgetImagemInterna(
               imagem: Imagem(
-                url: 'fperfil.png',
-                // bottomperfil
-              )),
+            url: 'fperfil.png',
+            // bottomperfil
+          )),
           label: "Perfil",
         ),
       ],

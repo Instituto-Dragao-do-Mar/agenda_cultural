@@ -1,6 +1,7 @@
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/home/widgethome.dart';
 import 'package:agendacultural/pages/home/widgetperfil.dart';
+import 'package:agendacultural/pages/home/widgets/widgettopocomum.dart';
 import 'package:agendacultural/pages/home/widgets/widgettopoperfil.dart';
 import 'package:agendacultural/shared/constantes.dart';
 import 'package:agendacultural/shared/themes.dart';
@@ -52,61 +53,67 @@ class _widgetPerfilAcessibilidadeState
         backgroundColor: corAppBarLocal,
         elevation: 0,
         leadingWidth: 0,
-        title: const widgetTopoPerfil(),
+        title: widgetTopoComum(
+          text: "Acessibilidade",
+          funcaoImagem1: () async {
+            Navigator.pop(context);
+          },
+          urlImagem1: 'seta.png',
+        ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: (i) {
-          setState(() {
-            opcaoSelecionada = i;
-          });
-        },
-        backgroundColor: corBgAtual,
-        elevation: 0,
-        showUnselectedLabels: true,
-        unselectedFontSize: 12,
-        selectedFontSize: 12,
-        unselectedItemColor: Colors.black,
-        selectedItemColor: Colors.grey,
-        currentIndex: opcaoSelecionada,
-        items: [
-          BottomNavigationBarItem(
-            backgroundColor: corBgAtual,
-            icon: widgetImagemInterna(
-                imagem: Imagem(
-              url: 'fhome.png',
-            )),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-            icon: widgetImagemInterna(
-                imagem: Imagem(
-              url: 'fagenda.png',
-            )),
-            label: "Agenda",
-          ),
-          BottomNavigationBarItem(
-            icon: widgetImagemInterna(
-                imagem: Imagem(
-              url: 'fmapa.png',
-            )),
-            label: "Mapa",
-          ),
-          BottomNavigationBarItem(
-            icon: widgetImagemInterna(
-                imagem: Imagem(
-              url: 'ffavorito.png',
-            )),
-            label: "Favoritos",
-          ),
-          BottomNavigationBarItem(
-            icon: widgetImagemInterna(
-                imagem: Imagem(
-              url: 'fperfil.png',
-            )),
-            label: "Perfil",
-          ),
-        ],
-      ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   onTap: (i) {
+      //     setState(() {
+      //       opcaoSelecionada = i;
+      //     });
+      //   },
+      //   backgroundColor: corBgAtual,
+      //   elevation: 0,
+      //   showUnselectedLabels: true,
+      //   unselectedFontSize: 12,
+      //   selectedFontSize: 12,
+      //   unselectedItemColor: Colors.black,
+      //   selectedItemColor: Colors.grey,
+      //   currentIndex: opcaoSelecionada,
+      //   items: [
+      //     BottomNavigationBarItem(
+      //       backgroundColor: corBgAtual,
+      //       icon: widgetImagemInterna(
+      //           imagem: Imagem(
+      //         url: 'fhome.png',
+      //       )),
+      //       label: "Home",
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: widgetImagemInterna(
+      //           imagem: Imagem(
+      //         url: 'fagenda.png',
+      //       )),
+      //       label: "Agenda",
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: widgetImagemInterna(
+      //           imagem: Imagem(
+      //         url: 'fmapa.png',
+      //       )),
+      //       label: "Mapa",
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: widgetImagemInterna(
+      //           imagem: Imagem(
+      //         url: 'ffavorito.png',
+      //       )),
+      //       label: "Favoritos",
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: widgetImagemInterna(
+      //           imagem: Imagem(
+      //         url: 'fperfil.png',
+      //       )),
+      //       label: "Perfil",
+      //     ),
+      //   ],
+      // ),
       body: Container(
         color: corBackground,
         padding: const EdgeInsets.all(16.0),
@@ -233,5 +240,6 @@ class _widgetPerfilAcessibilidadeState
   Future setAltoContraste(bool val) async {
     Cores.setAltoContraste(val);
     await Dados.setBool('altocontraste', val);
+    Cores.reloadColors();
   }
 }

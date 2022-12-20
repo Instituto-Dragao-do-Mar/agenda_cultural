@@ -42,65 +42,73 @@ class _widgetPerfilHeaderState extends State<widgetPerfilHeader> {
         backgroundColor: corBgAtual,
         elevation: 0,
         leadingWidth: 0,
-        title: const widgetTopoPerfil(),
+        title: widgetTopoPerfil(),
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: widgetImagemInterna(
+            imagem: Imagem(url: 'seta.png'),
+          ),
+        ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: (i) {
-          setState(() {
-            opcaoSelecionada = i;
-          });
-        },
-        backgroundColor: corBgAtual,
-        elevation: 0,
-        showUnselectedLabels: true,
-        unselectedFontSize: 12,
-        selectedFontSize: 12,
-        unselectedItemColor: Colors.black,
-        selectedItemColor: Colors.grey,
-        currentIndex: opcaoSelecionada,
-        items: [
-          BottomNavigationBarItem(
-            backgroundColor: corBgAtual,
-            icon: widgetImagemInterna(
-                imagem: Imagem(
-              url: 'fhome.png',
-            )),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-            backgroundColor: corBgAtual,
-            icon: widgetImagemInterna(
-                imagem: Imagem(
-              url: 'fagenda.png',
-            )),
-            label: "Agenda",
-          ),
-          BottomNavigationBarItem(
-            backgroundColor: corBgAtual,
-            icon: widgetImagemInterna(
-                imagem: Imagem(
-              url: 'fmapa.png',
-            )),
-            label: "Mapa",
-          ),
-          BottomNavigationBarItem(
-            backgroundColor: corBgAtual,
-            icon: widgetImagemInterna(
-                imagem: Imagem(
-              url: 'ffavorito.png',
-            )),
-            label: "Favoritos",
-          ),
-          BottomNavigationBarItem(
-            backgroundColor: corBgAtual,
-            icon: widgetImagemInterna(
-                imagem: Imagem(
-              url: 'fperfil.png',
-            )),
-            label: "Perfil",
-          ),
-        ],
-      ),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   onTap: (i) {
+      //     setState(() {
+      //       opcaoSelecionada = i;
+      //     });
+      //   },
+      //   backgroundColor: corBgAtual,
+      //   elevation: 0,
+      //   showUnselectedLabels: true,
+      //   unselectedFontSize: 12,
+      //   selectedFontSize: 12,
+      //   unselectedItemColor: Colors.black,
+      //   selectedItemColor: Colors.grey,
+      //   currentIndex: opcaoSelecionada,
+      //   items: [
+      //     BottomNavigationBarItem(
+      //       backgroundColor: corBgAtual,
+      //       icon: widgetImagemInterna(
+      //           imagem: Imagem(
+      //         url: 'fhome.png',
+      //       )),
+      //       label: "Home",
+      //     ),
+      //     BottomNavigationBarItem(
+      //       backgroundColor: corBgAtual,
+      //       icon: widgetImagemInterna(
+      //           imagem: Imagem(
+      //         url: 'fagenda.png',
+      //       )),
+      //       label: "Agenda",
+      //     ),
+      //     BottomNavigationBarItem(
+      //       backgroundColor: corBgAtual,
+      //       icon: widgetImagemInterna(
+      //           imagem: Imagem(
+      //         url: 'fmapa.png',
+      //       )),
+      //       label: "Mapa",
+      //     ),
+      //     BottomNavigationBarItem(
+      //       backgroundColor: corBgAtual,
+      //       icon: widgetImagemInterna(
+      //           imagem: Imagem(
+      //         url: 'ffavorito.png',
+      //       )),
+      //       label: "Favoritos",
+      //     ),
+      //     BottomNavigationBarItem(
+      //       backgroundColor: corBgAtual,
+      //       icon: widgetImagemInterna(
+      //           imagem: Imagem(
+      //         url: 'fperfil.png',
+      //       )),
+      //       label: "Perfil",
+      //     ),
+      //   ],
+      // ),
       body: Container(
         padding: const EdgeInsets.all(16.0),
         child: Column(

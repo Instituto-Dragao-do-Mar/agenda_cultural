@@ -8,7 +8,8 @@ import '../../shared/widgetimagem.dart';
 import '../acesso/pagelogin.dart';
 
 class WidgetTopoFavoritos extends StatelessWidget {
-  const WidgetTopoFavoritos({Key? key}) : super(key: key);
+  Function? notify;
+  WidgetTopoFavoritos({Key? key, this.notify}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,12 +23,7 @@ class WidgetTopoFavoritos extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => widgetHome(),
-                  ),
-                );
+                  notify;
               },
               child: widgetImagemInterna(
                 imagem: Imagem(

@@ -5,8 +5,10 @@ import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
 
 class widgetTopo extends StatelessWidget {
-  const widgetTopo({
+  Function? notify;
+  widgetTopo({
     Key? key,
+    this.notify
   }) : super(key: key);
 
   @override
@@ -23,7 +25,7 @@ class widgetTopo extends StatelessWidget {
         ),
         const SizedBox(width: 10),
         widgetImagemInterna(
-          imagem: Imagem(url: 'iconculturace.png'),
+          imagem: Imagem(url: 'iconculturacedemo.png'),
           //width: 160,
           height: 18,
           fit: BoxFit.contain,

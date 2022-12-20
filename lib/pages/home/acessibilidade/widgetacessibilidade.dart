@@ -200,5 +200,9 @@ class _widgetAcessibilidadeState extends State<widgetAcessibilidade> {
   Future setAltoContraste(bool val) async {
     Cores.setAltoContraste(val);
     await Dados.setBool('altocontraste', val);
+    Cores.reloadColors();
+    // corBgAtual = !val ? Colors.white : Colors.black;
+    // corAppBarAtual = !val ? Colors.white : Colors.black;
+    // corTextAtual = !val ? Colors.black : Colors.white;
   }
 }

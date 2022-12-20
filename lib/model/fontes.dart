@@ -19,6 +19,14 @@ class Fontes {
     ),
   );
 
+  static TextStyle poppins16W500Black(int tamanho) => GoogleFonts.poppins(
+    textStyle: TextStyle(
+      fontSize: tamanho.toDouble(),
+      fontWeight: FontWeight.w500,
+      color: !Cores.contraste ? Colors.black : Colors.white,
+    ),
+  );
+
   static TextStyle poppins16W400Black(int tamanho) => GoogleFonts.poppins(
     textStyle:  TextStyle(
       fontSize: tamanho.toDouble(),
@@ -143,7 +151,7 @@ class Fontes {
     textStyle:  TextStyle(
       fontSize: tamanho + 8,
       fontWeight: FontWeight.w500,
-      color: Cores.contraste ? Colors.black : Colors.white,
+      color: Colors.white,
     ),
   );
   static TextStyle inter16W700Withe(int tamanho) => GoogleFonts.inter(
@@ -157,7 +165,7 @@ class Fontes {
     textStyle:  TextStyle(
       fontSize: tamanho.toDouble(),
       fontWeight: FontWeight.w500,
-      color: !Cores.contraste ? Colors.black : Colors.white,
+      color: Colors.black,
     ),
   );
   static TextStyle inter14W500Grey(int tamanho) => GoogleFonts.inter(

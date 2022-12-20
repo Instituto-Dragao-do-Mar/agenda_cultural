@@ -292,12 +292,17 @@ class _pageAgendaState extends State<pageAgenda> {
 }
 
 class pageAgendaTopo extends StatelessWidget {
-  const pageAgendaTopo({super.key});
+  Function? notify;
+  pageAgendaTopo({super.key, this.notify});
 
   @override
   Widget build(BuildContext context) {
     return widgetTopoComum(
       text: "Agenda",
+      funcaoImagem1: () async {
+        notify;
+      },
+      urlImagem1: 'seta.png',
       funcaoImagem2: () async {},
       urlImagem2: 'favoritos.png',
     );

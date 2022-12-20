@@ -2,6 +2,7 @@
 
 import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/model/imagem_model.dart';
+import 'package:agendacultural/pages/acesso/pagelogin.dart';
 import 'package:agendacultural/pages/agenda/pageagenda.dart';
 import 'package:agendacultural/pages/home/widgethome.dart';
 import 'package:agendacultural/pages/home/widgets/widgettopo.dart';
@@ -13,8 +14,13 @@ import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 import 'package:provider/provider.dart';
+import '../../dados/dados.dart';
+import '../../model/cores.dart';
+import '../../services/email_service.dart';
 import '../../shared/widgetBottomNavigator.dart';
+import '../../shared/widgetConfirma.dart';
 import '../favorito/widgetFavoritos.dart';
+import '../favorito/widgetTopoFavoritos.dart';
 import '../home/widgetperfil.dart';
 import '../home/widgets/widgettopoperfil.dart';
 
@@ -37,19 +43,46 @@ class _pagePrincipalState extends State<pagePrincipal> {
   ];
 
   List<Widget> subPaginasTopo = [
-    const widgetTopo(),
-    const pageAgendaTopo(),
-    const pageMapaTopo(),
-    const widgetTopo(),
-    const widgetTopoPerfil(),
+    widgetTopo(),
+    pageAgendaTopo(),
+    pageMapaTopo(),
+    WidgetTopoFavoritos(),
+    widgetTopoPerfil(),
   ];
 
+  returnToHome() {
+    setState(() {
+      opcaoSelecionada = 0;
+    });
+  }
+
+  Widget getAppBarWidget() {
+    switch (opcaoSelecionada) {
+      case 0:
+        return widgetTopo(notify: returnToHome,);
+      case 1:
+        return pageAgendaTopo(notify: returnToHome,);
+      case 2:
+        return pageMapaTopo(notify: returnToHome,);
+      case 3:
+        return WidgetTopoFavoritos(notify: returnToHome,);
+      case 4:
+        return widgetTopoPerfil(notify: returnToHome,);
+      default:
+        return widgetTopo(notify: returnToHome,);
+    }
+  }
+
   late AppModel app;
+  int? fonte;
+  bool? contraste = false;
 
   @override
   void initState() {
     super.initState();
     app = Provider.of<AppModel>(context, listen: false);
+    getFonte().then((value) => fonte = value);
+    getContraste().then((value) => contraste = value);
   }
 
   @override
@@ -59,14 +92,18 @@ class _pagePrincipalState extends State<pagePrincipal> {
 
   @override
   Widget build(BuildContext context) {
+    Cores.reloadColors();
+    // corBgAtual = !contraste! ? Colors.white : Colors.black;
+    // corAppBarAtual = !contraste! ? Colors.white : Colors.black;
+    // corTextAtual = !contraste! ? Colors.black : Colors.white;
+
     return Scaffold(
       backgroundColor: corBgAtual,
       appBar: AppBar(
-        leading: const SizedBox.shrink(),
         backgroundColor: corBgAtual,
         elevation: 0,
         leadingWidth: 0,
-        title: subPaginasTopo[opcaoSelecionada],
+        title: getAppBarWidget(),
       ),
       bottomNavigationBar: bottomNavi(),
       body: body(),
@@ -156,66 +193,70 @@ class _pagePrincipalState extends State<pagePrincipal> {
     );
   }
 
-  // PersistentTabView bottomNaviNovo() {
-  //   return PersistentTabView(
-  //     context,
-  //     navBarStyle: NavBarStyle.style6,
-  //     decoration: NavBarDecoration(
-  //       borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
-  //     ),
-  //     screens: subPaginas,
-  //     items: [
-  //       PersistentBottomNavBarItem(
-  //         icon: widgetImagemInterna(
-  //             imagem: Imagem(
-  //           url: 'fhome.png',
-  //           // bottomcalendario
-  //         )),
-  //         title: ("Home"),
-  //         activeColorPrimary: corBackgroundLaranja,
-  //         inactiveColorPrimary: corTextAtual,
-  //       ),
-  //       PersistentBottomNavBarItem(
-  //         icon: widgetImagemInterna(
-  //             imagem: Imagem(
-  //               url: 'fagenda.png',
-  //               // bottomcalendario
-  //             )),
-  //         title: ("Agenda"),
-  //         activeColorPrimary: corBackgroundLaranja,
-  //         inactiveColorPrimary: corTextAtual,
-  //       ),
-  //       PersistentBottomNavBarItem(
-  //         icon: widgetImagemInterna(
-  //             imagem: Imagem(
-  //               url: 'fmapa.png',
-  //               // bottomcalendario
-  //             )),
-  //         title: ("Mapa"),
-  //         activeColorPrimary: corBackgroundLaranja,
-  //         inactiveColorPrimary: corTextAtual,
-  //       ),
-  //       PersistentBottomNavBarItem(
-  //         icon: widgetImagemInterna(
-  //             imagem: Imagem(
-  //               url: 'ffavorito.png',
-  //               // bottomcalendario
-  //             )),
-  //         title: ("Favoritos"),
-  //         activeColorPrimary: corBackgroundLaranja,
-  //         inactiveColorPrimary: corTextAtual,
-  //       ),
-  //       PersistentBottomNavBarItem(
-  //         icon: widgetImagemInterna(
-  //             imagem: Imagem(
-  //               url: 'fperfil.png',
-  //               // bottomcalendario
-  //             )),
-  //         title: ("Perfil"),
-  //         activeColorPrimary: corBackgroundLaranja,
-  //         inactiveColorPrimary: corTextAtual,
-  //       ),
-  //     ],
-  //   );
-  // }
+  Future<int> getFonte() async => await Dados.getInt('tamanhofontebase');
+
+  Future<bool> getContraste() async => await Dados.getBool('altocontraste');
+
+// PersistentTabView bottomNaviNovo() {
+//   return PersistentTabView(
+//     context,
+//     navBarStyle: NavBarStyle.style6,
+//     decoration: NavBarDecoration(
+//       borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
+//     ),
+//     screens: subPaginas,
+//     items: [
+//       PersistentBottomNavBarItem(
+//         icon: widgetImagemInterna(
+//             imagem: Imagem(
+//           url: 'fhome.png',
+//           // bottomcalendario
+//         )),
+//         title: ("Home"),
+//         activeColorPrimary: corBackgroundLaranja,
+//         inactiveColorPrimary: corTextAtual,
+//       ),
+//       PersistentBottomNavBarItem(
+//         icon: widgetImagemInterna(
+//             imagem: Imagem(
+//               url: 'fagenda.png',
+//               // bottomcalendario
+//             )),
+//         title: ("Agenda"),
+//         activeColorPrimary: corBackgroundLaranja,
+//         inactiveColorPrimary: corTextAtual,
+//       ),
+//       PersistentBottomNavBarItem(
+//         icon: widgetImagemInterna(
+//             imagem: Imagem(
+//               url: 'fmapa.png',
+//               // bottomcalendario
+//             )),
+//         title: ("Mapa"),
+//         activeColorPrimary: corBackgroundLaranja,
+//         inactiveColorPrimary: corTextAtual,
+//       ),
+//       PersistentBottomNavBarItem(
+//         icon: widgetImagemInterna(
+//             imagem: Imagem(
+//               url: 'ffavorito.png',
+//               // bottomcalendario
+//             )),
+//         title: ("Favoritos"),
+//         activeColorPrimary: corBackgroundLaranja,
+//         inactiveColorPrimary: corTextAtual,
+//       ),
+//       PersistentBottomNavBarItem(
+//         icon: widgetImagemInterna(
+//             imagem: Imagem(
+//               url: 'fperfil.png',
+//               // bottomcalendario
+//             )),
+//         title: ("Perfil"),
+//         activeColorPrimary: corBackgroundLaranja,
+//         inactiveColorPrimary: corTextAtual,
+//       ),
+//     ],
+//   );
+// }
 }

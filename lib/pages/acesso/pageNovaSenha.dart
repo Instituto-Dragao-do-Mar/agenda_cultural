@@ -1,9 +1,15 @@
+import 'package:agendacultural/controller/usuario_controller.dart';
+import 'package:agendacultural/model/app_model.dart';
+import 'package:agendacultural/pages/acesso/pagelogin.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import '../../model/fontes.dart';
 import '../../shared/themes.dart';
+import '../../shared/widgetConfirma.dart';
 import '../../shared/widgetTextFonteContraste.dart';
 import '../../shared/widgetbotao.dart';
+import '../../shared/widgetemdesenvolvimento.dart';
 import '../../shared/widgetespacoh.dart';
 import '../home/widgets/widgettopocomum.dart';
 
@@ -24,10 +30,16 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
   int haveNumber = 0;
   int haveMinDigits = 0;
   int rulesMatch = 0;
+  UsuarioController? usuarioController;
+
+  @override
+  void initState() {
+    super.initState();
+    usuarioController = context.read<UsuarioController>();
+  }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: corBgAtual,
       appBar: AppBar(
@@ -60,10 +72,8 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   TextContrasteFonte(
-                    text:
-                    "Insira uma nova senha. ",
-                    semantics:
-                    "Insira uma nova senha.",
+                    text: "Insira uma nova senha. ",
+                    semantics: "Insira uma nova senha.",
                     style: Fontes.poppins12W400Grey((Fontes.tamanhoBase)),
                   ),
                 ],
@@ -89,7 +99,8 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
               ),
               const widgetEspacoH(
                 altura: 4,
-              ),TextField(
+              ),
+              TextField(
                 obscureText: obscureTextSenha,
                 style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
                 onChanged: (value) {
@@ -126,14 +137,14 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
                   contentPadding: const EdgeInsets.all(16),
                   suffixIcon: senhaInput != ''
                       ? IconButton(
-                      onPressed: () {
-                        setState(() {
-                          obscureTextSenha = !obscureTextSenha;
-                        });
-                      },
-                      icon: Icon(obscureTextSenha
-                          ? Icons.visibility
-                          : Icons.visibility_off))
+                          onPressed: () {
+                            setState(() {
+                              obscureTextSenha = !obscureTextSenha;
+                            });
+                          },
+                          icon: Icon(obscureTextSenha
+                              ? Icons.visibility
+                              : Icons.visibility_off))
                       : null,
                   focusColor: Colors.black,
                   border: const OutlineInputBorder(
@@ -193,17 +204,17 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
                   contentPadding: const EdgeInsets.all(16),
                   suffixIcon: confirmarSenhaInput != ''
                       ? IconButton(
-                    onPressed: () {
-                      setState(() {
-                        obscureTextNovaSenha = !obscureTextNovaSenha;
-                      });
-                    },
-                    icon: Icon(
-                      obscureTextNovaSenha
-                          ? Icons.visibility
-                          : Icons.visibility_off,
-                    ),
-                  )
+                          onPressed: () {
+                            setState(() {
+                              obscureTextNovaSenha = !obscureTextNovaSenha;
+                            });
+                          },
+                          icon: Icon(
+                            obscureTextNovaSenha
+                                ? Icons.visibility
+                                : Icons.visibility_off,
+                          ),
+                        )
                       : null,
                   border: const OutlineInputBorder(
                     borderSide: BorderSide(
@@ -230,86 +241,86 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
               ),
               senhaInput != "" || confirmarSenhaInput != ""
                   ? Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  TextContrasteFonte(
-                    text: "Sua senha deve conter:",
-                    style: Fontes.roboto12W400Grey(Fontes.tamanhoBase),
-                    semantics: "Sua senha deve conter:",
-                  ),
-                  const widgetEspacoH(
-                    altura: 4,
-                  ),
-                  TextContrasteFonte(
-                    text: "No mínimo 6 dígitos",
-                    style: haveMinDigits == 1
-                        ? Fontes.roboto12W300Green(Fontes.tamanhoBase)
-                        : Fontes.roboto12W300Grey(Fontes.tamanhoBase),
-                    semantics: "No mínimo 6 dígitos",
-                  ),
-                  const widgetEspacoH(
-                    altura: 4,
-                  ),
-                  TextContrasteFonte(
-                    text: "Pelo menos 1 letra maiúscula",
-                    style: haveUpperCase == 1
-                        ? Fontes.roboto12W300Green(Fontes.tamanhoBase)
-                        : Fontes.roboto12W300Grey(Fontes.tamanhoBase),
-                    semantics: "Pelo menos 1 letra maiúscula",
-                  ),
-                  const widgetEspacoH(
-                    altura: 4,
-                  ),
-                  TextContrasteFonte(
-                    text: "Pelo menos 1 letra minúscula",
-                    style: haveLowerCase == 1
-                        ? Fontes.roboto12W300Green(Fontes.tamanhoBase)
-                        : Fontes.roboto12W300Grey(Fontes.tamanhoBase),
-                    semantics: "Pelo menos 1 letra minúscula",
-                  ),
-                  const widgetEspacoH(
-                    altura: 4,
-                  ),
-                  TextContrasteFonte(
-                    text: "Pelo menos 1 número",
-                    style: haveNumber == 1
-                        ? Fontes.roboto12W300Green(Fontes.tamanhoBase)
-                        : Fontes.roboto12W300Grey(Fontes.tamanhoBase),
-                    semantics: "Pelo menos 1 número",
-                  ),
-                  const widgetEspacoH(
-                    altura: 8,
-                  ),
-                  TextContrasteFonte(
-                    text: "Força da senha:",
-                    style: Fontes.roboto12W300Grey(Fontes.tamanhoBase),
-                    semantics: "Força da senha:",
-                  ),
-                  const widgetEspacoH(
-                    altura: 8,
-                  ),
-                  Row(
-                    children: [
-                      Expanded(
-                        flex: 1,
-                        child: StepProgressIndicator(
-                          totalSteps: 4,
-                          currentStep: rulesMatch,
-                          selectedColor: Colors.deepOrange,
-                          unselectedColor: Colors.grey,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TextContrasteFonte(
+                          text: "Sua senha deve conter:",
+                          style: Fontes.roboto12W400Grey(Fontes.tamanhoBase),
+                          semantics: "Sua senha deve conter:",
                         ),
-                      ),
-                      Expanded(
-                        flex: 1,
-                        child: Row(),
-                      )
-                    ],
-                  ),
-                  const widgetEspacoH(
-                    altura: 8,
-                  ),
-                ],
-              )
+                        const widgetEspacoH(
+                          altura: 4,
+                        ),
+                        TextContrasteFonte(
+                          text: "No mínimo 6 dígitos",
+                          style: haveMinDigits == 1
+                              ? Fontes.roboto12W300Green(Fontes.tamanhoBase)
+                              : Fontes.roboto12W300Grey(Fontes.tamanhoBase),
+                          semantics: "No mínimo 6 dígitos",
+                        ),
+                        const widgetEspacoH(
+                          altura: 4,
+                        ),
+                        TextContrasteFonte(
+                          text: "Pelo menos 1 letra maiúscula",
+                          style: haveUpperCase == 1
+                              ? Fontes.roboto12W300Green(Fontes.tamanhoBase)
+                              : Fontes.roboto12W300Grey(Fontes.tamanhoBase),
+                          semantics: "Pelo menos 1 letra maiúscula",
+                        ),
+                        const widgetEspacoH(
+                          altura: 4,
+                        ),
+                        TextContrasteFonte(
+                          text: "Pelo menos 1 letra minúscula",
+                          style: haveLowerCase == 1
+                              ? Fontes.roboto12W300Green(Fontes.tamanhoBase)
+                              : Fontes.roboto12W300Grey(Fontes.tamanhoBase),
+                          semantics: "Pelo menos 1 letra minúscula",
+                        ),
+                        const widgetEspacoH(
+                          altura: 4,
+                        ),
+                        TextContrasteFonte(
+                          text: "Pelo menos 1 número",
+                          style: haveNumber == 1
+                              ? Fontes.roboto12W300Green(Fontes.tamanhoBase)
+                              : Fontes.roboto12W300Grey(Fontes.tamanhoBase),
+                          semantics: "Pelo menos 1 número",
+                        ),
+                        const widgetEspacoH(
+                          altura: 8,
+                        ),
+                        TextContrasteFonte(
+                          text: "Força da senha:",
+                          style: Fontes.roboto12W300Grey(Fontes.tamanhoBase),
+                          semantics: "Força da senha:",
+                        ),
+                        const widgetEspacoH(
+                          altura: 8,
+                        ),
+                        Row(
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: StepProgressIndicator(
+                                totalSteps: 4,
+                                currentStep: rulesMatch,
+                                selectedColor: Colors.deepOrange,
+                                unselectedColor: Colors.grey,
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Row(),
+                            )
+                          ],
+                        ),
+                        const widgetEspacoH(
+                          altura: 8,
+                        ),
+                      ],
+                    )
                   : Column(),
               const widgetEspacoH(
                 altura: 15,
@@ -319,8 +330,8 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
                 label: "Botão Salvar",
                 child: widgetBotao(
                   text: "Salvar",
-                  function: () {
-
+                  function: () async {
+                    await alterarSenha();
                   },
                 ),
               )
@@ -329,5 +340,70 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
         ),
       ),
     );
+  }
+
+  Future<void> alterarSenha() async {
+    if (senhaInput.characters.length == 0) {
+      return widgetMensagem(
+        context: context,
+        text: "Os campos precisam ser preenchidos.",
+      );
+    }
+    if (rulesMatch != 4) {
+      return widgetMensagem(
+        context: context,
+        text: "Senha fraca.",
+      );
+    }
+    if (senhaInput != confirmarSenhaInput) {
+      return widgetMensagem(
+        context: context,
+        text: "Senhas não coincidem.",
+      );
+    }
+
+    var errorMessage = await usuarioController?.usuariosNovaSenha(
+      novaSenha: senhaInput,
+    );
+
+    if (usuarioController != null && errorMessage != "") {
+      return widgetMensagem(
+        context: context,
+        text: errorMessage ?? "",
+      );
+    }
+
+
+    return widgetMensagem(
+      context: context,
+      funcaoSim: () async {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const pageLogin(),
+          ),
+        );
+      },
+      buttonText: "Entrar",
+      title: "Senha alterada.",
+      text: "Clique no botão abaixo para prosseguir para o login.",
+    );
+    return widgetConfirma(
+      context: context,
+      funcaoSim: () async {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const pageLogin(),
+          ),
+        );
+      },
+      cancelar: false,
+      textBotao: "Entrar",
+      descricao: "Senha alterada."
+          "Clique no botão abaixo para prosseguir para o login.",
+    );
+
+    await Future.delayed(const Duration(seconds: 1), () {});
   }
 }

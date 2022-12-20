@@ -35,7 +35,7 @@ class _pageMapaState extends State<pageMapa> {
 
     if (app.listaEventos.eventos != null) {
       int idespaco =
-          app.listaEventos.eventos!.first.eventosdatas!.first.idespaco!;
+      app.listaEventos.eventos!.first.eventosdatas!.first.idespaco!;
       Espaco espaco = app.listaEspacos.espacos!
           .firstWhere((element) => element.id == idespaco);
 
@@ -83,9 +83,10 @@ class _pageMapaState extends State<pageMapa> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => pageEventoDetalhe(
-                    evento: ev,
-                  ),
+                  builder: (context) =>
+                      pageEventoDetalhe(
+                        evento: ev,
+                      ),
                 ),
               );
             },
@@ -148,12 +149,18 @@ class _pageMapaState extends State<pageMapa> {
 }
 
 class pageMapaTopo extends StatelessWidget {
-  const pageMapaTopo({super.key});
+  Function? notify;
+
+  pageMapaTopo({super.key, this.notify});
 
   @override
   Widget build(BuildContext context) {
     return widgetTopoComum(
       text: "Mapa",
+      funcaoImagem1: () async {
+        notify;
+      },
+      urlImagem1: 'seta.png',
       funcaoImagem2: () async {},
       urlImagem2: 'favoritos.png',
     );

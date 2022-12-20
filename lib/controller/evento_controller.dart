@@ -11,7 +11,7 @@ class EventoController extends BaseController {
   }) async {
     ListaEventos lista = ListaEventos();
 
-    lista.eventos = [];
+    lista.eventos = <Evento>[];
 
     String url = "${urlApiIDM}eventos";
 
@@ -31,6 +31,10 @@ class EventoController extends BaseController {
     } catch (_) {
       setError(_.toString());
     }
+
+    // lista.eventos = lista.eventos?.sort((a, b) {
+    //   a.eventosdatas!.sort((a, b) => a.datahora < b.datahora,)
+    // },);
 
     return lista;
   }

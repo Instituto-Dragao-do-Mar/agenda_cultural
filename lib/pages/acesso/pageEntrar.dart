@@ -2,6 +2,7 @@ import 'package:agendacultural/controller/usuario_controller.dart';
 import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/acesso/pageCadastro.dart';
+import 'package:agendacultural/pages/acesso/pageNovaSenha.dart';
 import 'package:agendacultural/pages/acesso/pageRecuperarSenha.dart';
 import 'package:agendacultural/pages/home/widgetperfil.dart';
 import 'package:agendacultural/shared/themes.dart';
@@ -72,6 +73,15 @@ class _PageEntrarState extends State<PageEntrar> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              widgetImagemInterna(
+                imagem: Imagem(url: 'iconelaranha.png'),
+                width: 24,
+                height: 24,
+                fit: BoxFit.contain,
+              ),
+              const widgetEspacoH(
+                altura: 5,
+              ),
               TextContrasteFonte(
                 text: "Entrar",
                 style: GoogleFonts.poppins(
@@ -257,16 +267,33 @@ class _PageEntrarState extends State<PageEntrar> {
   }
 
   Future<void> sendLogin() async {
-    var usuario = await usuarioController.login(
+    await usuarioController.login(
         app: app, email: emailInput, senha: senhaInput);
     if (!RegExp(
             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(emailInput)) {
-      return widgetErro(
+      return widgetMensagem(
         context: context,
         text: "Email inválido.",
       );
     }
+
+    if(usuarioController.errorMessage == "Alterar Senha"){
+      return widgetMensagem(
+        context: context,
+        text: "Você precisa alterar sua senha para entrar no aplicativo.",
+        funcaoSim: () async {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const PageNovaSenha(),
+            ),
+          );
+        },
+        buttonText: "Alterar Senha"
+      );
+    }
+
     if (app.isLog()) {
       Navigator.pushReplacement(
         context,
@@ -275,7 +302,7 @@ class _PageEntrarState extends State<PageEntrar> {
         ),
       );
     } else
-      widgetErro(
+      widgetMensagem(
         context: context,
         text: "Dados incorretos, verifique o email e senha e tente novamente.",
       );

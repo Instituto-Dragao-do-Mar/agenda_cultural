@@ -26,7 +26,7 @@ class Widgetlocalizacao extends StatelessWidget {
         backgroundColor: corBgAtual,
         elevation: 0,
         leadingWidth: 0,
-        title: const widgetTopo(),
+        title: widgetTopo(),
       ),
       body: Container(
         padding: const EdgeInsets.only(left: 16, right: 16, top: 29),

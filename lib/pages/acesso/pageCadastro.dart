@@ -17,6 +17,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../controller/usuario_controller.dart';
 import '../../model/app_model.dart';
 import '../../shared/constantes.dart';
+import '../../shared/widgetConfirma.dart';
 import '../../shared/widgetTextFonteContraste.dart';
 import '../../shared/widgetemdesenvolvimento.dart';
 import '../home/widgets/widgettopocomum.dart';
@@ -508,26 +509,16 @@ class _PageCadastroState extends State<PageCadastro> {
   }
 
   Future<void> saveCadastro() async {
-    Fluttertoast.showToast(
-      msg: "Cadastro realizado com sucesso!",
-      toastLength: Toast.LENGTH_LONG,
-      gravity: ToastGravity.CENTER,
-      timeInSecForIosWeb: 3,
-      backgroundColor: Colors.black,
-      textColor: Colors.green,
-      fontSize: 16.0,
-      webBgColor: Colors.black,
-    );
     if (emailInput.characters.length == 0 ||
         nomeInput.characters.length == 0 ||
         senhaInput.characters.length == 0) {
-      return widgetErro(
+      return widgetMensagem(
         context: context,
         text: "Os campos precisam ser preenchidos.",
       );
     }
     if (rulesMatch != 4) {
-      return widgetErro(
+      return widgetMensagem(
         context: context,
         text: "Senha fraca.",
       );
@@ -535,20 +526,20 @@ class _PageCadastroState extends State<PageCadastro> {
     if (!RegExp(
             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(emailInput)) {
-      return widgetErro(
+      return widgetMensagem(
         context: context,
         text: "Email inválido.",
       );
     }
     if (senhaInput != confirmarSenhaInput) {
-      return widgetErro(
+      return widgetMensagem(
         context: context,
         text: "Senhas não coincidem.",
       );
     }
 
     if (!isChecked) {
-      return widgetErro(
+      return widgetMensagem(
         context: context,
         text: "Por favor, aceite os Termos de Serviço.",
       );
@@ -561,31 +552,42 @@ class _PageCadastroState extends State<PageCadastro> {
     );
 
     if (usuarioController != null && errorMessage != "") {
-      return widgetErro(
+      return widgetMensagem(
         context: context,
         text: errorMessage ?? "",
       );
     }
 
-    Fluttertoast.showToast(
-      webPosition: "top",
-      msg: "Cadastro realizado com sucesso!",
-      toastLength: Toast.LENGTH_LONG,
-      gravity: ToastGravity.CENTER,
-      timeInSecForIosWeb: 3,
-      backgroundColor: Colors.white,
-      textColor: Colors.green,
-      fontSize: 16.0,
-      webBgColor: Colors.white,
+    // Fluttertoast.showToast(
+    //   webPosition: "top",
+    //   msg: "Cadastro realizado com sucesso!",
+    //   toastLength: Toast.LENGTH_LONG,
+    //   gravity: ToastGravity.CENTER,
+    //   timeInSecForIosWeb: 3,
+    //   backgroundColor: Colors.white,
+    //   textColor: Colors.green,
+    //   fontSize: 16.0,
+    //   webBgColor: Colors.white,
+    // );
+
+    return widgetConfirma(
+      context: context,
+      funcaoSim: () async {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const pageLogin(),
+          ),
+        );
+      },
+      cancelar: false,
+      textBotao: "Entrar",
+      descricao: "Cadastro realizado."
+          "Clique no botão abaixo para prosseguir para o login.",
     );
 
     await Future.delayed(const Duration(seconds: 1), () {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const pageLogin(),
-        ),
-      );
+
     });
   }
 }

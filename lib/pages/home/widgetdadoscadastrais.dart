@@ -1,6 +1,7 @@
 import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/home/widgetperfil.dart';
+import 'package:agendacultural/pages/home/widgets/widgettopocomum.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetbotao.dart';
 import 'package:agendacultural/shared/widgetemconstrucao.dart';
@@ -67,65 +68,72 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
         backgroundColor: corBgAtual,
         elevation: 0,
         leadingWidth: 0,
-        title: const widgetTopoPerfil(),
+        title: widgetTopoComum(
+          text: "Dados Cadastrais",
+          funcaoImagem1: () async {
+            Navigator.pop(context);
+          },
+          urlImagem1: 'seta.png',
+        ),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: (i) {
-          setState(() {
-            opcaoSelecionada = i;
-          });
-        },
-        backgroundColor: corBgAtual,
-        elevation: 0,
-        showUnselectedLabels: true,
-        unselectedFontSize: 12,
-        selectedFontSize: 12,
-        unselectedItemColor: Colors.black,
-        selectedItemColor: Colors.grey,
-        currentIndex: opcaoSelecionada,
-        items: [
-          BottomNavigationBarItem(
-            backgroundColor: corBgAtual,
-            icon: widgetImagemInterna(
-                imagem: Imagem(
-              url: 'fhome.png',
-            )),
-            label: "Home",
-          ),
-          BottomNavigationBarItem(
-            backgroundColor: corBgAtual,
-            icon: widgetImagemInterna(
-                imagem: Imagem(
-              url: 'fagenda.png',
-            )),
-            label: "Agenda",
-          ),
-          BottomNavigationBarItem(
-            backgroundColor: corBgAtual,
-            icon: widgetImagemInterna(
-                imagem: Imagem(
-              url: 'fmapa.png',
-            )),
-            label: "Mapa",
-          ),
-          BottomNavigationBarItem(
-            backgroundColor: corBgAtual,
-            icon: widgetImagemInterna(
-                imagem: Imagem(
-              url: 'ffavorito.png',
-            )),
-            label: "Favoritos",
-          ),
-          BottomNavigationBarItem(
-            backgroundColor: corBgAtual,
-            icon: widgetImagemInterna(
-                imagem: Imagem(
-              url: 'fperfil.png',
-            )),
-            label: "Perfil",
-          ),
-        ],
-      ),
+      // bottomNavigationBar:
+      // BottomNavigationBar(
+      //   onTap: (i) {
+      //     setState(() {
+      //       opcaoSelecionada = i;
+      //     });
+      //   },
+      //   backgroundColor: corBgAtual,
+      //   elevation: 0,
+      //   showUnselectedLabels: true,
+      //   unselectedFontSize: 12,
+      //   selectedFontSize: 12,
+      //   unselectedItemColor: Colors.black,
+      //   selectedItemColor: Colors.grey,
+      //   currentIndex: opcaoSelecionada,
+      //   items: [
+      //     BottomNavigationBarItem(
+      //       backgroundColor: corBgAtual,
+      //       icon: widgetImagemInterna(
+      //           imagem: Imagem(
+      //         url: 'fhome.png',
+      //       )),
+      //       label: "Home",
+      //     ),
+      //     BottomNavigationBarItem(
+      //       backgroundColor: corBgAtual,
+      //       icon: widgetImagemInterna(
+      //           imagem: Imagem(
+      //         url: 'fagenda.png',
+      //       )),
+      //       label: "Agenda",
+      //     ),
+      //     BottomNavigationBarItem(
+      //       backgroundColor: corBgAtual,
+      //       icon: widgetImagemInterna(
+      //           imagem: Imagem(
+      //         url: 'fmapa.png',
+      //       )),
+      //       label: "Mapa",
+      //     ),
+      //     BottomNavigationBarItem(
+      //       backgroundColor: corBgAtual,
+      //       icon: widgetImagemInterna(
+      //           imagem: Imagem(
+      //         url: 'ffavorito.png',
+      //       )),
+      //       label: "Favoritos",
+      //     ),
+      //     BottomNavigationBarItem(
+      //       backgroundColor: corBgAtual,
+      //       icon: widgetImagemInterna(
+      //           imagem: Imagem(
+      //         url: 'fperfil.png',
+      //       )),
+      //       label: "Perfil",
+      //     ),
+      //   ],
+      // ),
       body: Container(
         padding: const EdgeInsets.all(16),
         child: SingleChildScrollView(
@@ -476,13 +484,13 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
 
     if (senhaInput.characters.length == 0 ||
         novaSenhaInput.characters.length == 0) {
-      return widgetErro(
+      return widgetMensagem(
         context: context,
         text: "Os campos precisam ser preenchidos.",
       );
     }
     if (rulesMatch != 4) {
-      return widgetErro(
+      return widgetMensagem(
         context: context,
         text: "Senha fraca.",
       );
@@ -494,7 +502,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
     var loginErrorMessage = usuarioController?.errorMessage;
 
     if (loginErrorMessage == "Usuário e/ou senha incorretos") {
-      return widgetErro(
+      return widgetMensagem(
         context: context,
         text: "Senha incorreta",
       );
@@ -507,7 +515,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
     );
 
     if (usuarioController != null && errorMessage != "") {
-      return widgetErro(
+      return widgetMensagem(
         context: context,
         text: errorMessage ?? "",
       );

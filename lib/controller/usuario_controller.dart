@@ -15,6 +15,8 @@ class UsuarioController extends BaseController {
   var state = ControllerStates.idle;
   String errorMessage = "";
 
+  TextEditingController tedEmail = TextEditingController();
+
   Future<ListaUsuarios> usuarioGet({
     required String userguidid,
   }) async {
@@ -100,6 +102,10 @@ class UsuarioController extends BaseController {
             userguidid: _usuarioRetorno.guidid!,
             usertoken: _usuarioRetorno.signature!,
           );
+
+          if(_usuarioRetorno.alterarsenhaproximologin == 1) {
+            errorMessage = "Alterar Senha";
+          }
 
           state = ControllerStates.success;
           notifyListeners();
@@ -293,5 +299,86 @@ class UsuarioController extends BaseController {
     }
 
     return lista;
+  }
+
+  Future<String?> sendRecoverPassword({
+    String? email = "",
+  }) async {
+    String? errorMessage;
+    tedEmail.text = email!;
+
+    var _body = jsonEncode(
+      <String, dynamic>{
+        // "guididoperador": "BFBC1C49-CD9A-4E04-A747-4C1817962D87",
+        "email": email.trim(),
+      },
+    );
+
+    try {
+      var response = await http.post(
+        Uri.parse('${urlApiIDM}enviaremail'),
+        headers: {
+          "Content-Type": "application/json",
+          // 'Authorization': 'Bearer ${acesso?.signature}}',
+        },
+        body: _body,
+      );
+
+      if (response.statusCode == 200) {
+        errorMessage = "";
+        var ret = jsonDecode(response.body);
+        state = ControllerStates.success;
+      } else {
+        errorMessage = response.body;
+        setError(response.body);
+        state = ControllerStates.error;
+      }
+    } catch (e) {
+      state = ControllerStates.error;
+      setError(e.toString());
+    }
+
+    return errorMessage;
+  }
+
+  Future<String?> usuariosNovaSenha({
+    String? novaSenha = "",
+  }) async {
+    String? errorMessage;
+
+    var _body = jsonEncode(
+      <String, dynamic>{
+        // "guididoperador": "BFBC1C49-CD9A-4E04-A747-4C1817962D87",
+        "email": tedEmail.text.trim(),
+        "novasenha": novaSenha,
+      },
+    );
+
+    try {
+      var response = await http.post(
+        Uri.parse('${urlApiIDM}resetarsenha'),
+        headers: {
+          "Content-Type": "application/json",
+          // 'Authorization': 'Bearer ${acesso?.signature}}',
+        },
+        body: _body,
+      );
+
+      if (response.statusCode == 200) {
+        errorMessage = "";
+        var ret = jsonDecode(response.body);
+        state = ControllerStates.success;
+        tedEmail.clear();
+      } else {
+        errorMessage = response.body;
+        setError(response.body);
+        state = ControllerStates.error;
+      }
+    } catch (e) {
+      state = ControllerStates.error;
+      setError(e.toString());
+    }
+
+    return errorMessage;
   }
 }

@@ -148,7 +148,7 @@ class _pageIntroducaoState extends State<pageIntroducao> {
                       text: "Ir para recursos de acessibilidade",
                       function: () {
                         if (!Dados.jaVisualizouCookies) {
-                          widgetErro(
+                          widgetMensagem(
                             context: context,
                             text:
                                 "A acessibilidade só pode ser acessada se "

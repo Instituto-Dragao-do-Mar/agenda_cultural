@@ -1,13 +1,18 @@
+import 'package:agendacultural/controller/usuario_controller.dart';
 import 'package:agendacultural/pages/acesso/pageEntrar.dart';
 import 'package:agendacultural/pages/acesso/pageNovaSenha.dart';
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
+import 'package:agendacultural/shared/widgetConfirma.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../model/app_model.dart';
 import '../../model/fontes.dart';
 import '../../shared/constantes.dart';
 import '../../shared/themes.dart';
 import '../../shared/widgetTextFonteContraste.dart';
 import '../../shared/widgetbotao.dart';
+import '../../shared/widgetemdesenvolvimento.dart';
 import '../../shared/widgetespacoh.dart';
 import '../home/widgets/widgettopocomum.dart';
 
@@ -20,10 +25,16 @@ class PageRecuperarSenha extends StatefulWidget {
 
 class _PageRecuperarSenhaState extends State<PageRecuperarSenha> {
   String emailInput = "";
+  UsuarioController? usuarioController;
+
+  @override
+  void initState() {
+    super.initState();
+    usuarioController = context.read<UsuarioController>();
+  }
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: corBgAtual,
       appBar: AppBar(
@@ -57,9 +68,9 @@ class _PageRecuperarSenhaState extends State<PageRecuperarSenha> {
                 children: [
                   TextContrasteFonte(
                     text:
-                    "Insira um email para receber o link de recuperação de senha.",
+                        "Insira um email para receber o link de recuperação de senha.",
                     semantics:
-                    "Insira um email para receber o link de recuperação de senha.",
+                        "Insira um email para receber o link de recuperação de senha.",
                     style: Fontes.poppins12W400Grey((Fontes.tamanhoBase)),
                   ),
                 ],
@@ -102,19 +113,75 @@ class _PageRecuperarSenhaState extends State<PageRecuperarSenha> {
                 container: true,
                 label: "Enviar",
                 child: widgetBotao(
-                  text: "Enviar",
-                  function: () async => Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const PageNovaSenha(),
-                    ),
-                  ),
-                ),
+                    text: "Enviar",
+                    function: () async => {
+                          await sendEmail(),
+                        }),
               )
             ],
           ),
         ),
       ),
+    );
+  }
+
+  Future<void> sendEmail() async {
+    if (emailInput.characters.length == 0) {
+      return widgetMensagem(
+        context: context,
+        text: "Os campos precisam ser preenchidos.",
+      );
+    }
+    if (!RegExp(
+            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+        .hasMatch(emailInput)) {
+      return widgetMensagem(
+        context: context,
+        text: "Email inválido.",
+      );
+    }
+
+    var errorMessage = await usuarioController?.sendRecoverPassword(
+      email: emailInput,
+    );
+
+    if (usuarioController != null && errorMessage != "") {
+      return widgetMensagem(
+        context: context,
+        text: errorMessage ?? "",
+      );
+    }
+
+    return widgetMensagem(
+      context: context,
+      title: "Email enviado com sucesso.",
+      text: "Verifique seu "
+          "email para saber sua nova senha.",
+      funcaoSim: () async {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const pageLogin(),
+          ),
+        );
+      },
+      buttonText: "Entrar"
+    );
+
+    return widgetConfirma(
+      context: context,
+      funcaoSim: () async {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const pageLogin(),
+          ),
+        );
+      },
+      cancelar: false,
+      textBotao: "Entrar",
+      descricao: "Email enviado com sucesso. Verifique seu "
+          "email para saber sua nova senha.",
     );
   }
 }

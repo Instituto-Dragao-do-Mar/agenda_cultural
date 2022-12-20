@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../model/fontes.dart';
+import '../../shared/widgetConfirma.dart';
 import '../../shared/widgetTextFonteContraste.dart';
 import '../../shared/widgetimagem.dart';
+import '../acesso/pagelogin.dart';
 import '../evento/widgethomeeventoscontainer.dart';
 
 class WidgetFavoritos extends StatefulWidget {
@@ -23,6 +25,8 @@ class _WidgetFavoritosState extends State<WidgetFavoritos> {
     super.initState();
     app = context.read<AppModel>();
     app.getFavoritos();
+
+    showNaoLogadoFavoritos();
   }
 
   @override
@@ -44,8 +48,13 @@ class _WidgetFavoritosState extends State<WidgetFavoritos> {
             const SizedBox(height: 10),
             Wrap(
               crossAxisAlignment: WrapCrossAlignment.start,
-              children: app.listaEventos.eventos!.where((evento) => app.listaFavoritos.favoritos
-                  ?.map((e) => e.idevento).contains(evento.id) == true).map(
+              children: app.listaEventos.eventos!
+                  .where((evento) =>
+                      app.listaFavoritos.favoritos
+                          ?.map((e) => e.idevento)
+                          .contains(evento.id) ==
+                      true)
+                  .map(
                 (e) {
                   return widgetHomeCategoriasEventosContainer(
                     evento: e,
@@ -56,6 +65,31 @@ class _WidgetFavoritosState extends State<WidgetFavoritos> {
           ],
         ),
       ),
+    );
+  }
+
+  Future<void> showNaoLogadoFavoritos() async {
+    await Future.delayed(
+      const Duration(seconds: 1),
+      () async {
+        if (!app.isLog()) {
+          widgetConfirma(
+            context: context,
+            cancelar: false,
+            descricao: 'Para exibir favoritos é preciso estar logado '
+                'no aplicativo.',
+            textBotao: "Ok",
+            funcaoSim: () {
+              // Navigator.pushReplacement(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => const pageLogin(),
+              //   ),
+              // );
+            },
+          );
+        }
+      },
     );
   }
 }

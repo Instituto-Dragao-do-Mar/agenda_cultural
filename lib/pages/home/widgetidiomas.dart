@@ -38,7 +38,7 @@ class _widgetIdiomasState extends State<widgetIdiomas> {
         backgroundColor: corBgAtual,
         elevation: 0,
         leadingWidth: 0,
-        title: const widgetTopoPerfil(),
+        title: widgetTopoPerfil(),
       ),
       bottomNavigationBar: BottomNavigationBar(
         onTap: (i) {
