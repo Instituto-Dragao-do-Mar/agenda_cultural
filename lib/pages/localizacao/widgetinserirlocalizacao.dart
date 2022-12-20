@@ -6,6 +6,7 @@ import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetbotao.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:flutter/material.dart';
+import 'package:geocoder2/geocoder2.dart';
 import '../../model/fontes.dart';
 
 class WidgetInserirLocalizacao extends StatefulWidget {
@@ -18,6 +19,7 @@ class WidgetInserirLocalizacao extends StatefulWidget {
 
 class _WidgetInserirLocalizacaoState extends State<WidgetInserirLocalizacao> {
   String? nomeLocalizacao;
+  TextEditingController tedLocal = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +53,7 @@ class _WidgetInserirLocalizacaoState extends State<WidgetInserirLocalizacao> {
               children: [
                 Expanded(
                   child: TextField(
+                    controller: tedLocal,
                     style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
                     onChanged: (value) {
                       setState(
@@ -62,7 +65,33 @@ class _WidgetInserirLocalizacaoState extends State<WidgetInserirLocalizacao> {
                   ),
                 ),
                 IconButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    GeoData data = await Geocoder2.getDataFromAddress(
+                      language: 'pt-BR',                      
+                      address: tedLocal.text,
+                      googleMapApiKey:
+                          "AIzaSyDPiOz0fCI1sfLT3W2fe--unju-f2n9jbY",
+                    );
+
+                    //Formated Address
+                    print(data.address);
+                    //City Name
+                    print(data.city);
+                    //Country Name
+                    print(data.country);
+                    //Country Code
+                    print(data.countryCode);
+                    //Latitude
+                    print(data.latitude);
+                    //Longitude
+                    print(data.longitude);
+                    //Postal Code
+                    print(data.postalCode);
+                    //State
+                    print(data.state);
+                    //Street Number
+                  
+                  },
                   icon: const Icon(Icons.search),
                 ),
               ],
