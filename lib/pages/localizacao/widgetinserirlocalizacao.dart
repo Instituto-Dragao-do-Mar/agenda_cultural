@@ -2,17 +2,11 @@ import 'package:agendacultural/dados/dados.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
 import 'package:agendacultural/pages/home/widgets/widgettopocomum.dart';
-import 'package:agendacultural/pages/localizacao/widgetlocalizacao.dart';
-import 'package:agendacultural/pages/home/widgets/widgettopo.dart';
-import 'package:agendacultural/pages/principal/home.dart';
-import 'package:agendacultural/shared/constantes.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetbotao.dart';
-import 'package:agendacultural/shared/widgetemdesenvolvimento.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
-import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
-
+import 'package:geocoder2/geocoder2.dart';
 import '../../model/fontes.dart';
 
 class WidgetInserirLocalizacao extends StatefulWidget {
@@ -25,6 +19,7 @@ class WidgetInserirLocalizacao extends StatefulWidget {
 
 class _WidgetInserirLocalizacaoState extends State<WidgetInserirLocalizacao> {
   String? nomeLocalizacao;
+  TextEditingController tedLocal = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +35,7 @@ class _WidgetInserirLocalizacaoState extends State<WidgetInserirLocalizacao> {
           funcaoImagem1: () {
             Navigator.pop(context);
           },
-          text: 'Inserir Localização manualmente',
+          text: 'Inserir seu endereço atual',
         ),
       ),
       body: Container(
@@ -54,45 +49,56 @@ class _WidgetInserirLocalizacaoState extends State<WidgetInserirLocalizacao> {
               'Informe onde você esta no momento.',
               style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
             ),
-            TextField(
-              style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
-              onChanged: (value) {
-                setState(() {
-                  nomeLocalizacao = value;
-                });
-              },
-              //decoration: textfieldPerfil,
+            Row(
+              children: [
+                Expanded(
+                  child: TextField(
+                    controller: tedLocal,
+                    style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
+                    onChanged: (value) {
+                      setState(
+                        () {
+                          nomeLocalizacao = value;
+                        },
+                      );
+                    },
+                  ),
+                ),
+                IconButton(
+                  onPressed: () async {
+                    GeoData data = await Geocoder2.getDataFromAddress(
+                      language: 'pt-BR',                      
+                      address: tedLocal.text,
+                      googleMapApiKey:
+                          "AIzaSyDPiOz0fCI1sfLT3W2fe--unju-f2n9jbY",
+                    );
+
+                    //Formated Address
+                    print(data.address);
+                    //City Name
+                    print(data.city);
+                    //Country Name
+                    print(data.country);
+                    //Country Code
+                    print(data.countryCode);
+                    //Latitude
+                    print(data.latitude);
+                    //Longitude
+                    print(data.longitude);
+                    //Postal Code
+                    print(data.postalCode);
+                    //State
+                    print(data.state);
+                    //Street Number
+                  
+                  },
+                  icon: const Icon(Icons.search),
+                ),
+              ],
             ),
             const widgetEspacoH(
               altura: 26,
             ),
-            /* ListTile(
-              leading: widgetImagemInterna(
-                imagem: Imagem(
-                  url: "local.png",
-                ),
-              ),
-              title: Text(
-                "Usar minha localização atual",
-                style: Fontes.poppins14W400E83C3B(Fontes.tamanhoBase),
-              ),
-              onTap: () {
-                widgetErro(
-                  context: context,
-                  text:
-                      "Funcionalidade em desenvolvimento, entre como visitante.",
-                );
-              },
-            ), */
-            /* SingleChildScrollView(
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: 1,
-                itemBuilder: (context, index) {
-                  return const SizedBox.shrink();
-                },
-              ),
-            ), */
             const Expanded(
               child: SizedBox.shrink(),
             ),
@@ -108,6 +114,7 @@ class _WidgetInserirLocalizacaoState extends State<WidgetInserirLocalizacao> {
                 );
               },
             ),
+            const SizedBox(height: 60),
             /*GestureDetector(
               onTap: () {
                 Navigator.pushReplacement(

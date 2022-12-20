@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:agendacultural/dados/dados.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
@@ -12,6 +14,7 @@ import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetespacov.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
+import 'package:location/location.dart';
 
 import '../../model/fontes.dart';
 
@@ -58,21 +61,57 @@ class Widgetlocalizacao extends StatelessWidget {
             const widgetEspacoH(
               altura: 16,
             ),
-            Semantics(
-              container: true,
-              label: "Clique para ativar sua localização",
-              child: widgetBotao(
-                text: "Ativar agora",
-                function: () {
-                  Dados.setBool('localizacao', true);
+            widgetBotao(
+              text: "Ativar agora",
+              function: () async {
+
+                  print("000000");
+
+                Location _location = Location();
+
+                PermissionStatus _temPermissao =
+                    await _location.hasPermission();
+
+                if (_temPermissao == PermissionStatus.granted) {
+                    print("55555");
+
+                  await Dados.setBool('localizacao', true);
+                  // ignore: use_build_context_synchronously
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const pageLogin(),
                     ),
                   );
-                },
-              ),
+                } else {
+                  _temPermissao = await _location.requestPermission();
+
+                  print("11111");
+
+                  if (_temPermissao == PermissionStatus.denied) {
+                      print("22222");
+
+                    widgetErro(
+                      context: context,
+                      text: "É necessário da a permissão ao app de "
+                          " obter a localização via GPS ou informar o local "
+                          "manualmente.",
+                    );
+                    return;
+                  } else {
+                      print("33333");
+
+                    await Dados.setBool('localizacao', true);
+                    
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const pageLogin(),
+                      ),
+                    );
+                  }
+                }
+              },
             ),
             const widgetEspacoH(
               altura: 32,

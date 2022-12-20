@@ -60,8 +60,7 @@ dependencies:
   fluttertoast: ^8.1.2
   url_launcher: ^6.1.7
   persistent_bottom_nav_bar: ^5.0.2
-  mailer: ^5.3.0
-
+  geocoder2: ^1.4.0
 
 dev_dependencies:
   flutter_test:
