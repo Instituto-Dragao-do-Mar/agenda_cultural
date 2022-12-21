@@ -52,7 +52,7 @@ class UsuarioController extends BaseController {
       bool? alterarSenha = false}) async {
     Acesso _acesso = Acesso();
     Usuario _usuarioRetorno = Usuario();
-    // var errorMessage = "";
+    errorMessage = "";
 
     try {
       var _body = jsonEncode(

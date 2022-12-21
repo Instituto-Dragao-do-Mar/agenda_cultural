@@ -31,10 +31,9 @@ class _WidgetSobreState extends State<WidgetSobre> {
         ),
       ),
       body: Center(
-        child: SingleChildScrollView(
-          child: Container(
-            width: MediaQuery.of(context).size.width * 0.8,
-            height: MediaQuery.of(context).size.height * 0.8,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 50, bottom: 50, left: 25, right: 25),
+          child: SingleChildScrollView(
             child: Wrap(
               direction: Axis.horizontal,
               crossAxisAlignment: WrapCrossAlignment.start,
