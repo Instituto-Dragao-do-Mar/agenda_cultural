@@ -43,7 +43,8 @@ class AppModel extends ChangeNotifier {
   }
 
   double getLatitude() => (localizacao == null) ? 0.0 : localizacao!.latitude!;
-  double getLongitude() => (localizacao == null) ? 0.0 : localizacao!.longitude!;
+  double getLongitude() =>
+      (localizacao == null) ? 0.0 : localizacao!.longitude!;
 
   setUser(Usuario usr) {
     usuarioLogado = usr;
@@ -135,6 +136,17 @@ class AppModel extends ChangeNotifier {
 
   String GetEnderecoEspaco(Espaco espaco) {
     return espaco.endereco ?? "Endereço não informado no espaço.";
+  }
+
+  String GetEspacoEvento(Evento evento) {
+    if (evento.eventosdatas == null || evento.eventosdatas!.isEmpty) {
+      return 'Nenhum endereço localizado.';
+    }
+    return listaEspacos.espacos!
+            .firstWhere(
+                (element) => element.id == evento.eventosdatas!.first.idespaco!)
+            .nome ??
+        '-';
   }
 
   String GetEnderecoEvento(Evento evento) {

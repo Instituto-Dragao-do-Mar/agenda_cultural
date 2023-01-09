@@ -38,70 +38,70 @@ class Fontes {
     textStyle:  TextStyle(
       fontSize: tamanho - 4,
       fontWeight: FontWeight.w400,
-      color: Color(0xff999999),
+      color: const Color(0xff999999),
     ),
   );
   static TextStyle poppins12W300Grey(int tamanho) => GoogleFonts.poppins(
     textStyle:  TextStyle(
       fontSize: tamanho - 4,
       fontWeight: FontWeight.w400,
-      color: Color(0xff999999),
+      color: const  Color(0xff999999),
     ),
   );
   static TextStyle poppins16W400Grey(int tamanho) => GoogleFonts.poppins(
     textStyle:  TextStyle(
       fontSize: tamanho.toDouble(),
       fontWeight: FontWeight.w400,
-      color: Color(0Xff999999),
+      color: const  Color(0Xff999999),
     ),
   );
   static TextStyle poppins14W400Grey(int tamanho) => GoogleFonts.poppins(
     textStyle:  TextStyle(
       fontSize: tamanho - 2,
       fontWeight: FontWeight.w400,
-      color: Color(0xff999999),
+      color: const  Color(0xff999999),
     ),
   );
   static TextStyle poppins14W400E83C3B(int tamanho) => GoogleFonts.poppins(
     textStyle:  TextStyle(
       fontSize: tamanho - 2,
       fontWeight: FontWeight.w400,
-      color: Color(0XFFE83C3B),
+      color: const  Color(0XFFE83C3B),
     ),
   );
   static TextStyle poppins14W400222(int tamanho) => GoogleFonts.poppins(
     textStyle:  TextStyle(
       fontSize: tamanho - 2,
       fontWeight: FontWeight.w400,
-      color: !Cores.contraste ? Color(0XFF222222) : Colors.white,
+      color: !Cores.contraste ? const  Color(0XFF222222) : Colors.white,
     ),
   );
   static TextStyle poppins18W400222(int tamanho) => GoogleFonts.poppins(
     textStyle:  TextStyle(
       fontSize: tamanho + 2,
       fontWeight: FontWeight.w400,
-      color: !Cores.contraste ? Color(0XFF222222) : Colors.white,
+      color: !Cores.contraste ?  const Color(0XFF222222) : Colors.white,
     ),
   );
   static TextStyle roboto16W400Grey(int tamanho) => GoogleFonts.roboto(
     textStyle:  TextStyle(
       fontSize: tamanho.toDouble(),
       fontWeight: FontWeight.w500,
-      color: Color(0xff999999),//!Cores.contraste ? Color(0xff999999) : Colors.white,
+      color:  const Color(0xff999999),//!Cores.contraste ? Color(0xff999999) : Colors.white,
     ),
   );
   static TextStyle roboto12W400Grey(int tamanho) => GoogleFonts.roboto(
     textStyle:  TextStyle(
       fontSize: tamanho - 4,
       fontWeight: FontWeight.w400,
-      color: Color(0xff666666),
+      color: const  Color(0xff666666),
     ),
   );
   static TextStyle roboto12W300Grey(int tamanho) => GoogleFonts.roboto(
     textStyle:  TextStyle(
       fontSize: tamanho - 4,
       fontWeight: FontWeight.w300,
-      color: !Cores.contraste ? Color(0xff666666) : Colors.white,
+      color: !Cores.contraste ?  const Color(0xff666666) : Colors.white,
     ),
   );
 
@@ -116,7 +116,7 @@ class Fontes {
     textStyle:  TextStyle(
       fontSize: tamanho.toDouble(),
       fontWeight: FontWeight.w500,
-      color: !Cores.contraste ? Color(0XFF000000) : Colors.white,
+      color: !Cores.contraste ? const  Color(0XFF000000) : Colors.white,
     ),
   );
   static TextStyle roboto14W400Black(int tamanho) => GoogleFonts.roboto(
@@ -130,21 +130,21 @@ class Fontes {
     textStyle:  TextStyle(
       fontSize: tamanho.toDouble(),
       fontWeight: FontWeight.w500,
-      color: Color(0XFFEA5B0C),
+      color: const  Color(0XFFEA5B0C),
     ),
   );
   static TextStyle inter16W400Black(int tamanho) => GoogleFonts.inter(
     textStyle:  TextStyle(
       fontSize: tamanho.toDouble(),
       fontWeight: FontWeight.w500,
-      color: Color(0XFF000000),
+      color: const  Color(0XFF000000),
     ),
   );
   static TextStyle inter16W400Grey(int tamanho) => GoogleFonts.inter(
     textStyle:  TextStyle(
       fontSize: tamanho.toDouble(),
       fontWeight: FontWeight.w500,
-      color: !Cores.contraste ? Color(0XFF666666) : Colors.white ,
+      color: !Cores.contraste ? const  Color(0XFF666666) : Colors.white ,
     ),
   );
   static TextStyle inter24W500Withe(int tamanho) => GoogleFonts.inter(

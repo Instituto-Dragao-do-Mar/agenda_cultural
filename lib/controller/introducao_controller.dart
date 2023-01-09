@@ -16,7 +16,7 @@ class IntroducaoController extends BaseController {
           ordem: 1,
           imagem: Imagem(
             tipoimagem: TipoImagem.url,
-            url: 'introducao1.png',
+            url: 'introducao1.jpg',
           ),
         ),
         Introducao(
@@ -24,7 +24,7 @@ class IntroducaoController extends BaseController {
           ordem: 2,
           imagem: Imagem(
             tipoimagem: TipoImagem.url,
-            url: 'introducao2.png',
+            url: 'introducao2.jpg',
           ),
         ),
         Introducao(
@@ -32,7 +32,7 @@ class IntroducaoController extends BaseController {
           ordem: 3,
           imagem: Imagem(
             tipoimagem: TipoImagem.url,
-            url: 'introducao3.png',
+            url: 'introducao3.jpg',
           ),
         ),
       },

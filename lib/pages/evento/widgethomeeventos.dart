@@ -71,7 +71,7 @@ class _widgetHomeEventosState extends State<widgetHomeEventos> {
     if (widget.exibicaoEvento == ExibicaoEvento.Destaque) {
       subtitulo = Dados.verTodosDestaques
           ? "Ver menos destaques"
-          : "Ver todos os destacados ";
+          : "Ver todos os destaques";
     }
 
     if (widget.exibicaoEvento == ExibicaoEvento.Data) {
@@ -97,6 +97,7 @@ class _widgetHomeEventosState extends State<widgetHomeEventos> {
     }
 
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.max,
       children: [
         const SizedBox(
@@ -117,44 +118,41 @@ class _widgetHomeEventosState extends State<widgetHomeEventos> {
           },
         ),
         SizedBox(
-          width: double.infinity,
-          height: tamanho,
-          child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            controller: scrollController,
-            scrollDirection: wrap ? Axis.vertical : Axis.horizontal,
-            child: Wrap(
-              children: app.listaEventos.eventos!.map(
-                (e) {
-                  if (app.filtro.categoriasSelecionadas!.isEmpty) {
-                    return widgetHomeCategoriasEventosContainer(
-                      evento: e,
-                    );
-                  } else {
-                    //
-                    // VERIFICAR SE TEM ELEMENTOS EM COMUM NA LISTA
-                    //
-                    List<int> listSel = app.filtro.categoriasSelecionadas!
-                        .map((e) => e.id!)
-                        .toList();
-                    List<int> listCategoriasEvento = e.eventoscategorias!
-                        .map((e) => e.idcategoria!)
-                        .toList();
+          height: 250 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+          child: ListView.builder(
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            itemCount: app.listaEventos.eventos!.length,
+            itemBuilder: (context, index) {
+              //return Container(width: 100, height: 100,);
 
-                    listSel.removeWhere(
-                        (element) => !listCategoriasEvento.contains(element));
+              if (wrap && index > 9) {
+                return const SizedBox.shrink();
+              }
 
-                    if (listSel.isNotEmpty) {
-                      return widgetHomeCategoriasEventosContainer(
-                        evento: e,
-                      );
-                    } else {
-                      return const SizedBox.shrink();
-                    }
-                  }
-                },
-              ).toList(),
-            ),
+              if (app.filtro.categoriasSelecionadas!.isEmpty) {
+                return widgetHomeCategoriasEventosContainer(
+                  evento: app.listaEventos.eventos![index],
+                );
+              }
+              List<int> listSel =
+                  app.filtro.categoriasSelecionadas!.map((e) => e.id!).toList();
+              List<int> listCategoriasEvento = app
+                  .listaEventos.eventos![index].eventoscategorias!
+                  .map((e) => e.idcategoria!)
+                  .toList();
+
+              listSel.removeWhere(
+                  (element) => !listCategoriasEvento.contains(element));
+
+              if (listSel.isNotEmpty) {
+                return widgetHomeCategoriasEventosContainer(
+                  evento: app.listaEventos.eventos![index],
+                );
+              } else {
+                return const SizedBox.shrink();
+              }
+            },
           ),
         ),
       ],

@@ -1,12 +1,10 @@
 // ignore_for_file: camel_case_types
 
 import 'dart:async';
-
 import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/model/espaco_model.dart';
 import 'package:agendacultural/model/evento_model.dart';
 import 'package:agendacultural/model/imagem_model.dart';
-import 'package:agendacultural/shared/constantes.dart';
 import 'package:agendacultural/shared/extensions/capitalize.dart';
 import 'package:agendacultural/shared/extensions/dates.dart';
 import 'package:agendacultural/shared/themes.dart';
@@ -14,15 +12,12 @@ import 'package:agendacultural/shared/widgetConfirma.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetespacov.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
-import 'package:agendacultural/shared/widgetimagemexterna.dart';
 import 'package:agendacultural/shared/widgetimagemhtml.dart';
-import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:readmore/readmore.dart';
-
 import '../../model/fontes.dart';
 import '../../shared/widgetBotaoFavorito.dart';
 import '../../shared/widgetTextFonteContraste.dart';
@@ -253,6 +248,13 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
         ),
         const widgetEspacoH(),
         Text(
+          app.GetEspacoEvento(widget.evento),
+          style: GoogleFonts.inter(
+            fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
+            color: corTextAtual,
+          ),
+        ),
+        Text(
           app.GetEnderecoEvento(widget.evento),
           style: GoogleFonts.inter(
             fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
@@ -292,6 +294,28 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
   }
 
   Widget widgetDatasEventos() {
+    if (widget.evento.eventosdatas!.length > 3) {
+      return Row(
+        children: [
+          widgetImagemInterna(
+            imagem: Imagem(url: 'fagenda.png'),
+          ),
+          const widgetEspacoV(largura: 4),
+          Expanded(
+            child: TextContrasteFonte(
+              text: widget.evento.eventosdatas!.first.detalhe ?? '',
+              maxlines: 3,            
+              style: GoogleFonts.inter(
+                fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
+                fontWeight: FontWeight.w500,
+                color: corTextAtual,
+              ),
+            ),
+          ),
+        ],
+      );
+    }
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [

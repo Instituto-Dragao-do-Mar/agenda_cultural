@@ -29,14 +29,14 @@ class Categoria {
   List<ImageCategoria>? imagens;
   bool? selecionada = false;
 
-  Categoria(
-      {this.id,
-      this.nome,
-      this.ativa,
-      this.guidid,
-      this.imagens,
-      this.selecionada,
-      });
+  Categoria({
+    this.id,
+    this.nome,
+    this.ativa,
+    this.guidid,
+    this.imagens,
+    this.selecionada,
+  });
 
   Categoria.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -60,6 +60,7 @@ class Categoria {
     if (imagens != null) {
       data['imagens'] = imagens!.map((v) => v.toJson()).toList();
     }
+    data['selecionada'] = selecionada;
     return data;
   }
 }

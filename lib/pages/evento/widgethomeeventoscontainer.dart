@@ -1,16 +1,13 @@
-// ignore_for_file: camel_case_types
+// ignore_for_file: camel_case_types, prefer_const_constructors_in_immutables
 
-import 'package:agendacultural/controller/evento_controller.dart';
 import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/model/evento_model.dart';
 import 'package:agendacultural/model/favorito_model.dart';
-import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/evento/pageeventodetalhe.dart';
 import 'package:agendacultural/shared/extensions/capitalize.dart';
 import 'package:agendacultural/shared/extensions/dates.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
-import 'package:agendacultural/shared/widgetimagemexterna.dart';
 import 'package:agendacultural/shared/widgetimagemhtml.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -19,7 +16,6 @@ import 'package:provider/provider.dart';
 import '../../model/cores.dart';
 import '../../model/fontes.dart';
 import '../../shared/widgetBotaoFavorito.dart';
-import '../../shared/widgetConfirma.dart';
 import '../../shared/widgetTextFonteContraste.dart';
 
 class widgetHomeCategoriasEventosContainer extends StatefulWidget {
@@ -77,7 +73,7 @@ class _widgetHomeCategoriasEventosContainerState
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: (!Cores.contraste
-                  ? Color(0xFFEDEDED).withOpacity(.2)
+                  ? const Color(0xFFEDEDED).withOpacity(.2)
                   : corBgAltoContraste.withOpacity(.8)),
               border: Border.all(width: 1, color: corBg),
             ),
@@ -96,21 +92,7 @@ class _widgetHomeCategoriasEventosContainerState
                           bottom: Radius.circular(0),
                           top: Radius.circular(10),
                         ),
-                        /* image: DecorationImage(
-                    image: widgetImagemExterna(
-                      imagem: Imagem(
-                        base64: evento
-                            .eventosimagens!.first.imagens!.first.base64,
-                        url: evento.eventosimagens!.first.imagens!.first.url,
-                        tipoimagem: evento.eventosimagens!.first.imagens!
-                                    .first.tipo ==
-                                'U'
-                            ? TipoImagem.url
-                            : TipoImagem.base64,
-                      ),
-                    ),
-                    fit: BoxFit.cover,
-                  ) */
+                        
                       ),
                       child: widgetImagemHtml(
                         url: widget

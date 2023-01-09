@@ -68,7 +68,7 @@ class MyApp extends StatelessWidget {
         //Locale('en'),
       ], */
       debugShowCheckedModeBanner: false,
-      title: 'Agenda Cultural',
+      title: 'Cultura.CE',
       theme: themeDefault,
       home: const pageSplash(),
       // home: const pageLogin(),

@@ -33,7 +33,13 @@ class _widgetHomeCategoriasState extends State<widgetHomeCategorias> {
 
   @override
   Widget build(BuildContext context) {
+    /*print("builder categorias");
+    print(app.listaCategoria.categorias![1].toJson());
+    print(app.listaCategoria.categorias![2].toJson());
+    print(app.listaCategoria.categorias![3].toJson());
+    print(app.listaCategoria.categorias![4].toJson());*/
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const SizedBox(
           height: 20,
@@ -44,7 +50,7 @@ class _widgetHomeCategoriasState extends State<widgetHomeCategorias> {
           subtitulo: Dados.verTodasCategorias
               ? "Ver menos categorias"
               : "Ver todas as categorias",
-          funcao: () async {            
+          funcao: () async {
             Dados.verTodasCategorias = !Dados.verTodasCategorias;
             await Dados.setBool('categorias', Dados.verTodasCategorias);
             setState(() {});
@@ -57,15 +63,14 @@ class _widgetHomeCategoriasState extends State<widgetHomeCategorias> {
           child: SingleChildScrollView(
             physics: const BouncingScrollPhysics(),
             controller: scrollController,
-            scrollDirection: Dados.verTodasCategorias ? Axis.vertical : Axis.horizontal,
+            scrollDirection:
+                Dados.verTodasCategorias ? Axis.vertical : Axis.horizontal,
             child: Wrap(
               children: app.listaCategoria.categorias!.map(
                 (e) {
                   if (e.imagens == null || e.imagens!.isEmpty) {
                     return const SizedBox.shrink();
                   }
-                  //print(e.imagens!.first.toJson());
-                  //return Container();
 
                   return widgetHomeCategoriasContainer(
                     categoria: e,

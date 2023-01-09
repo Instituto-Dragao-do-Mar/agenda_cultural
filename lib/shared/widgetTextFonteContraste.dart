@@ -14,17 +14,17 @@ class TextContrasteFonte extends StatefulWidget {
   final double? fontsize;
   final int? maxlines;
 
-  const TextContrasteFonte(
-      {Key? key,
-      this.color,
-      this.text,
-      this.style,
-      this.weight,
-      this.semantics,
-      this.align,
-      this.fontsize,
-      this.maxlines})
-      : super(key: key);
+  const TextContrasteFonte({
+    Key? key,
+    this.color,
+    this.text,
+    this.style,
+    this.weight,
+    this.semantics,
+    this.align,
+    this.fontsize,
+    this.maxlines,
+  }) : super(key: key);
 
   @override
   State<TextContrasteFonte> createState() => _TextContrasteFonteState();
@@ -47,6 +47,8 @@ class _TextContrasteFonteState extends State<TextContrasteFonte> {
       semanticsLabel: widget.semantics,
       textAlign: widget.align,
       maxLines: widget.maxlines,
+    
+      
     );
   }
 }

@@ -57,22 +57,27 @@ class _widgetHomeCategoriasContainerState
             GestureDetector(
               onTap: () {
                 setState(() {
+                  app.filtro.categoriasSelecionadas!.clear();
+                  for (Categoria c in app.listaCategoria.categorias!) {
+                    if (c != widget.categoria) {
+                      c.selecionada = false;
+                    }
+                  }
                   widget.categoria.selecionada = !widget.categoria.selecionada!;
 
                   if (!widget.categoria.selecionada!) {
-                    if (app.filtro.categoriasSelecionadas!
+                    /*if (app.filtro.categoriasSelecionadas!
                         .any((e) => e.id! == widget.categoria.id!)) {
                       app.filtro.categoriasSelecionadas!
                           .removeWhere((e) => e.id! == widget.categoria.id!);
-                    }
+                    }*/
                   } else {
-                    if (!app.filtro.categoriasSelecionadas!
+                    app.filtro.categoriasSelecionadas!.add(widget.categoria);
+                    /*if (!app.filtro.categoriasSelecionadas!
                         .any((e) => e.id! == widget.categoria.id!)) {
                       app.filtro.categoriasSelecionadas!.add(widget.categoria);
-                    }
+                    }*/
                   }
-                 /*  print(
-                      'Lista Categorias: ${app.filtro.categoriasSelecionadas!.length}'); */
                   app.notify();
                 });
               },

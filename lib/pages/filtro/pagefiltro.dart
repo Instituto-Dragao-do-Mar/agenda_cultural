@@ -1,10 +1,8 @@
 // ignore_for_file: camel_case_types
 
 import 'package:agendacultural/model/app_model.dart';
-import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/evento/widgethomeeventoscontainer.dart';
-import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetespacov.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';

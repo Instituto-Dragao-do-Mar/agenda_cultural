@@ -1,4 +1,4 @@
-// ignore_for_file: camel_case_types
+// ignore_for_file: camel_case_types, prefer_const_constructors
 
 import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/pages/espacos/widgethomeespacos.dart';
@@ -29,16 +29,17 @@ class _widgetHomeState extends State<widgetHome> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
-              children: [
-                widgetHomeMinhaLocalizacao(),
-                widgetHomeCategorias(),
-                widgetHomeEventos(
+              
+              children:  [
+                 widgetHomeMinhaLocalizacao(),
+                 widgetHomeCategorias(),
+                 widgetHomeEventos(
                   exibicaoEvento: ExibicaoEvento.Destaque,
                 ),
-                widgetHomeEventos(
+                 widgetHomeEventos(
                   exibicaoEvento: ExibicaoEvento.Data,
                 ),
-                widgetHomeEspacos(),
+                 widgetHomeEspacos(),
               ],
             ),
           ),
