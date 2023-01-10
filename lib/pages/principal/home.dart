@@ -53,17 +53,29 @@ class _pagePrincipalState extends State<pagePrincipal> {
   Widget getAppBarWidget() {
     switch (opcaoSelecionada) {
       case 0:
-        return widgetTopo(notify: returnToHome,);
+        return widgetTopo(
+          notify: returnToHome,
+        );
       case 1:
-        return pageAgendaTopo(notify: returnToHome,);
+        return pageAgendaTopo(
+          notify: returnToHome,
+        );
       case 2:
-        return pageMapaTopo(notify: returnToHome,);
+        return pageMapaTopo(
+          notify: returnToHome,
+        );
       case 3:
-        return WidgetTopoFavoritos(notify: returnToHome,);
+        return WidgetTopoFavoritos(
+          notify: returnToHome,
+        );
       case 4:
-        return widgetTopoPerfil(notify: returnToHome,);
+        return widgetTopoPerfil(
+          notify: returnToHome,
+        );
       default:
-        return widgetTopo(notify: returnToHome,);
+        return widgetTopo(
+          notify: returnToHome,
+        );
     }
   }
 
@@ -119,6 +131,7 @@ class _pagePrincipalState extends State<pagePrincipal> {
       },
     );
   }
+  
 
   BottomNavigationBar bottomNavi() {
     return BottomNavigationBar(

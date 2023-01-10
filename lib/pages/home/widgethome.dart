@@ -28,8 +28,8 @@ class _widgetHomeState extends State<widgetHome> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.max,
-              
+              mainAxisSize: MainAxisSize.max,              
+              // ignore: prefer_const_literals_to_create_immutables
               children:  [
                  widgetHomeMinhaLocalizacao(),
                  widgetHomeCategorias(),

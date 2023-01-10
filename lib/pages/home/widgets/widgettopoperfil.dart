@@ -31,7 +31,7 @@ class widgetTopoPerfil extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                notify;
+                 notify!();
               },
               child: widgetImagemInterna(
                 imagem: Imagem(

@@ -23,7 +23,7 @@ class WidgetTopoFavoritos extends StatelessWidget {
           children: [
             GestureDetector(
               onTap: () {
-                  notify;
+                   notify!();
               },
               child: widgetImagemInterna(
                 imagem: Imagem(

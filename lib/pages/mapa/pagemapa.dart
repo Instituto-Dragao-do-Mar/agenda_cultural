@@ -158,7 +158,7 @@ class pageMapaTopo extends StatelessWidget {
     return widgetTopoComum(
       text: "Mapa",
       funcaoImagem1: () async {
-        notify;
+         notify!();
       },
       urlImagem1: 'seta.png',
       funcaoImagem2: () async {},

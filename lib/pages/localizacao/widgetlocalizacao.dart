@@ -64,8 +64,7 @@ class Widgetlocalizacao extends StatelessWidget {
             widgetBotao(
               text: "Ativar agora",
               function: () async {
-
-                  print("000000");
+                print("000000");
 
                 Location _location = Location();
 
@@ -73,7 +72,7 @@ class Widgetlocalizacao extends StatelessWidget {
                     await _location.hasPermission();
 
                 if (_temPermissao == PermissionStatus.granted) {
-                    print("55555");
+                  print("55555");
 
                   await Dados.setBool('localizacao', true);
                   // ignore: use_build_context_synchronously
@@ -86,11 +85,7 @@ class Widgetlocalizacao extends StatelessWidget {
                 } else {
                   _temPermissao = await _location.requestPermission();
 
-                  print("11111");
-
                   if (_temPermissao == PermissionStatus.denied) {
-                      print("22222");
-
                     widgetMensagem(
                       context: context,
                       text: "É necessário da a permissão ao app de "
@@ -99,10 +94,8 @@ class Widgetlocalizacao extends StatelessWidget {
                     );
                     return;
                   } else {
-                      print("33333");
-
                     await Dados.setBool('localizacao', true);
-                    
+
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(

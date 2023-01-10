@@ -66,26 +66,22 @@ class _widgetHomeEspacosState extends State<widgetHomeEspacos> {
           },
         ),
         SizedBox(
-          width: double.infinity,
-          height: (Dados.verTodasCategorias)
-              ? null
-              : 250 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
-          child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
-            controller: scrollController,
-            scrollDirection: wrap ? Axis.vertical : Axis.horizontal,
-            child: Wrap(
-              children: app.listaEspacos.espacos!.map(
-                (e) {
-                  if (e.espacosimagens == null || e.espacosimagens!.isEmpty) {
-                    return const SizedBox.shrink();
-                  }
-                  return widgetHomeEspacosContainer(
-                    espaco: e,
-                  );
-                },
-              ).toList(),
-            ),
+          height: 250 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+          child: ListView.builder(
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            itemCount: app.listaEspacos.espacos!.length,
+            itemBuilder: (context, index) {
+              if (wrap && index > 9) {
+                return const SizedBox.shrink();
+              }
+              if (app.listaEspacos.espacos![index] != null) {
+                return widgetHomeEspacosContainer(
+                  espaco: app.listaEspacos.espacos![index],
+                );
+              }
+              return const SizedBox.shrink();
+            },
           ),
         ),
       ],

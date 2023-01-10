@@ -29,6 +29,13 @@ class widgetHomeEspacosContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     AppModel app = Provider.of<AppModel>(context, listen: false);
 
+    /* print(espaco.toJson());
+    print("==========================================");
+ */
+    if (espaco.espacosimagens == null || espaco.espacosimagens!.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
     return GestureDetector(
       onTap: () {
         if (espaco == null) {
@@ -52,7 +59,7 @@ class widgetHomeEspacosContainer extends StatelessWidget {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: (!Cores.contraste
-                  ? Color(0xFFEDEDED).withOpacity(.2)
+                  ? const Color(0xFFEDEDED).withOpacity(.2)
                   : corBgAltoContraste.withOpacity(.8)),
               border: Border.all(width: 1, color: corBg),
             ),
@@ -67,25 +74,12 @@ class widgetHomeEspacosContainer extends StatelessWidget {
                       bottom: Radius.circular(0),
                       top: Radius.circular(10),
                     ),
-                    /* image: DecorationImage(
-                      image: widgetImagemExterna(
-                        imagem: Imagem(
-                          base64: evento
-                              .eventosimagens!.first.imagens!.first.base64,
-                          url: evento.eventosimagens!.first.imagens!.first.url,
-                          tipoimagem: evento.eventosimagens!.first.imagens!
-                                      .first.tipo ==
-                                  'U'
-                              ? TipoImagem.url
-                              : TipoImagem.base64,
+                  ),
+                  child: espaco.espacosimagens!.first.imagens!.first.url == null
+                      ? SizedBox.shrink()
+                      : widgetImagemHtml(
+                          url: espaco.espacosimagens!.first.imagens!.first.url!,
                         ),
-                      ),
-                      fit: BoxFit.cover,
-                    ) */
-                  ),
-                  child: widgetImagemHtml(
-                    url: espaco.espacosimagens!.first.imagens!.first.url!,
-                  ),
                 ),
                 Padding(
                   padding:
@@ -107,27 +101,22 @@ class widgetHomeEspacosContainer extends StatelessWidget {
                             ),
                           ),
                           const widgetEspacoH(altura: 6),
-                          Flex(direction: Axis.vertical, children: [
-                            TextContrasteFonte(
-                              text: app.GetEnderecoEspaco(espaco),
-                              style: GoogleFonts.roboto(
-                                fontSize: Fontes.tamanhoBase -
-                                    (Fontes.tamanhoFonteBase16 - 12),
-                                color: corTextAtual,
+                          Flex(
+                            direction: Axis.vertical,
+                            children: [
+                              TextContrasteFonte(
+                                text: app.GetEnderecoEspaco(espaco),
+                                style: GoogleFonts.roboto(
+                                  fontSize: Fontes.tamanhoBase -
+                                      (Fontes.tamanhoFonteBase16 - 12),
+                                  color: corTextAtual,
+                                ),
+                                maxlines: 2,
                               ),
-                              maxlines: 2,
-                            ),
-                          ]),
+                            ],
+                          ),
                           const widgetEspacoH(altura: 6),
-                          /* TextContrasteFonte(
-                            text: espaco.horario ?? "Não informado.",
-                            style: GoogleFonts.roboto(
-                              fontSize: Fontes.tamanhoBase -
-                                  (Fontes.tamanhoFonteBase16 - 12),
-                              fontWeight: FontWeight.w500,
-                              color: corTextAtual,
-                            ),
-                          ), */
+
                           //
                         ],
                       );

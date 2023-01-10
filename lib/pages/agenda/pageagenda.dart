@@ -6,7 +6,6 @@ import 'package:agendacultural/pages/agenda/widgetpageagendavisualizarpordia.dar
 import 'package:agendacultural/pages/evento/widgethomeeventoscontainer.dart';
 import 'package:agendacultural/pages/filtro/pagefiltro.dart';
 import 'package:agendacultural/pages/home/widgets/widgettopocomum.dart';
-import 'package:agendacultural/shared/constantes.dart';
 import 'package:agendacultural/shared/extensions/dates.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
@@ -300,7 +299,7 @@ class pageAgendaTopo extends StatelessWidget {
     return widgetTopoComum(
       text: "Agenda",
       funcaoImagem1: () async {
-        notify;
+        notify!();
       },
       urlImagem1: 'seta.png',
       funcaoImagem2: () async {},
