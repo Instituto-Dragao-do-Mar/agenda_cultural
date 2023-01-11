@@ -45,6 +45,8 @@ class _widgetHomeEspacosState extends State<widgetHomeEspacos> {
       wrap = true;
     }
 
+    int contadorDisplay = 0;
+
     return Column(
       mainAxisSize: MainAxisSize.max,
       children: [
@@ -72,10 +74,14 @@ class _widgetHomeEspacosState extends State<widgetHomeEspacos> {
             scrollDirection: Axis.horizontal,
             itemCount: app.listaEspacos.espacos!.length,
             itemBuilder: (context, index) {
-              if (wrap && index > 9) {
+              if (wrap && contadorDisplay > 9) {
+                return const SizedBox.shrink();
+              }
+              if (app.listaEspacos.espacos![index].aprovado == 0) {
                 return const SizedBox.shrink();
               }
               if (app.listaEspacos.espacos![index] != null) {
+                contadorDisplay++;
                 return widgetHomeEspacosContainer(
                   espaco: app.listaEspacos.espacos![index],
                 );

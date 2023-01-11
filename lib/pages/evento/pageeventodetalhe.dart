@@ -235,6 +235,9 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
   }
 
   Column widgetEVLocalizacao() {
+    String nomeEspacoPrincipal = app.GetEspacoPrincipal(
+      evento: widget.evento,
+    );
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -248,6 +251,18 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
           ),
         ),
         const widgetEspacoH(),
+        if (nomeEspacoPrincipal.isNotEmpty)
+          TextContrasteFonte(
+            text: nomeEspacoPrincipal,
+            maxlines: 1,
+            style: GoogleFonts.roboto(
+              fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 12),
+              color: corTextAtual,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+        //
+        if (nomeEspacoPrincipal.isNotEmpty) const widgetEspacoH(altura: 3),
         Text(
           app.GetEspacoEvento(widget.evento),
           style: GoogleFonts.inter(
@@ -305,7 +320,7 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
           Expanded(
             child: TextContrasteFonte(
               text: widget.evento.eventosdatas!.first.detalhe ?? '',
-              maxlines: 3,            
+              maxlines: 3,
               style: GoogleFonts.inter(
                 fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
                 fontWeight: FontWeight.w500,

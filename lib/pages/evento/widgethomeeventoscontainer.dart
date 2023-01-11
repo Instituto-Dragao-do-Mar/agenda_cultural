@@ -50,118 +50,158 @@ class _widgetHomeCategoriasEventosContainerState
 
   @override
   Widget build(BuildContext context) {
-    app?.getFavoritos();
+    app!.getFavoritos();
     // var app = Provider.of<AppModel>(context, listen: false);
 
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => pageEventoDetalhe(
-              evento: widget.evento,
+    String nomeEspacoPrincipal = app!.GetEspacoPrincipal(
+      evento: widget.evento,
+    );
+
+    if (widget.evento.id == null) {
+      return const SizedBox.shrink();
+    }
+
+    try {
+      return GestureDetector(
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => pageEventoDetalhe(
+                evento: widget.evento,
+              ),
             ),
-          ),
-        );
-      },
-      child: Padding(
-        padding: const EdgeInsets.all(4),
-        child: Card(
-          child: Container(
-            height: 250 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
-            width: 180 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: (!Cores.contraste
-                  ? const Color(0xFFEDEDED).withOpacity(.2)
-                  : corBgAltoContraste.withOpacity(.8)),
-              border: Border.all(width: 1, color: corBg),
-            ),
-            child: Stack(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      height:
-                          150 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
-                      width:
-                          180 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
-                      decoration: const BoxDecoration(
-                        borderRadius: BorderRadius.vertical(
-                          bottom: Radius.circular(0),
-                          top: Radius.circular(10),
-                        ),
-                        
-                      ),
-                      child: widgetImagemHtml(
-                        url: widget
-                            .evento.eventosimagens!.first.imagens!.first.url!,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          right: 8.0, left: 8.0, bottom: 8),
-                      child: LayoutBuilder(
-                        builder: (p0, p1) {
-                          return Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              const widgetEspacoH(altura: 6),
-                              TextContrasteFonte(
-                                text: widget.evento.nome!,
-                                maxlines: 1,
-                                style: GoogleFonts.roboto(
-                                  fontSize: Fontes.tamanhoBase -
-                                      (Fontes.tamanhoFonteBase16 - 12),
-                                  fontWeight: FontWeight.w500,
-                                  color: corTextAtual,
-                                ),
-                              ),
-                              const widgetEspacoH(altura: 6),
-                              Flex(direction: Axis.vertical, children: [
+          );
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(4),
+          child: Card(
+            child: Container(
+              height: 270 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+              width: 180 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: (!Cores.contraste
+                    ? const Color(0xFFEDEDED).withOpacity(.2)
+                    : corBgAltoContraste.withOpacity(.8)),
+                border: Border.all(width: 1, color: corBg),
+              ),
+              child: Stack(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _mostraImagem(),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            right: 8.0, left: 8.0, bottom: 8),
+                        child: LayoutBuilder(
+                          builder: (p0, p1) {
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                const widgetEspacoH(altura: 6),
                                 TextContrasteFonte(
-                                  text: app?.GetEnderecoEvento(widget.evento),
+                                  text: widget.evento.nome ?? 'Evento sem nome',
+                                  maxlines: 1,
                                   style: GoogleFonts.roboto(
                                     fontSize: Fontes.tamanhoBase -
                                         (Fontes.tamanhoFonteBase16 - 12),
+                                    fontWeight: FontWeight.w500,
                                     color: corTextAtual,
                                   ),
-                                  maxlines: 2,
                                 ),
-                              ]),
-                              const widgetEspacoH(altura: 6),
-                              mostraDatas(
-                                widget.evento.eventosdatas!
-                                    .map((e) => e.datahora!)
-                                    .toList(),
-                              ),
-                              //
-                            ],
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.only(top: 5),
-                          child: WidgetBotaoFavorito(evento: widget.evento),
+                                const widgetEspacoH(altura: 6),
+
+                                //
+                                //
+
+                                if (nomeEspacoPrincipal.isNotEmpty)
+                                  TextContrasteFonte(
+                                    text: nomeEspacoPrincipal,
+                                    maxlines: 1,
+                                    style: GoogleFonts.roboto(
+                                      fontSize: Fontes.tamanhoBase -
+                                          (Fontes.tamanhoFonteBase16 - 12),
+                                      color: corTextAtual,
+                                    ),
+                                  ),
+                                //
+                                if (nomeEspacoPrincipal.isNotEmpty)
+                                  const widgetEspacoH(altura: 3),
+
+                                Flex(direction: Axis.vertical, children: [
+                                  TextContrasteFonte(
+                                    text: app?.GetEnderecoEvento(widget.evento),
+                                    style: GoogleFonts.roboto(
+                                      fontSize: Fontes.tamanhoBase -
+                                          (Fontes.tamanhoFonteBase16 - 12),
+                                      color: corTextAtual,
+                                    ),
+                                    maxlines: 2,
+                                  ),
+                                ]),
+                                const widgetEspacoH(altura: 6),
+                                 mostraDatas(
+                                  widget.evento.eventosdatas!
+                                      .map((e) => e.datahora!)
+                                      .toList(),
+                                ), 
+                                //
+                              ],
+                            );
+                          },
                         ),
-                      ],
-                    ),
-                  ],
-                ),
-              ],
+                      ),
+                    ],
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(top: 5),
+                            child: WidgetBotaoFavorito(evento: widget.evento),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ),
+      );
+    } catch (s) {
+      return Text(widget.evento.nome ?? 'sem nome');
+    }
+  }
+
+  Container _mostraImagem() {
+    if (widget.evento.eventosimagens == null ||
+        widget.evento.eventosimagens!.isEmpty ||
+        widget.evento.eventosimagens!.first.imagens == null ||
+        widget.evento.eventosimagens!.first.imagens!.isEmpty) {
+      return Container(
+        height: 150 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+        width: 180 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+        child: Text("Erro aqui"),
+      );
+    }
+    return Container(
+      height: 150 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+      width: 180 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+      decoration: const BoxDecoration(
+        borderRadius: BorderRadius.vertical(
+          bottom: Radius.circular(0),
+          top: Radius.circular(10),
+        ),
+      ),
+      child: widgetImagemHtml(
+        url: widget.evento.eventosimagens!.first.imagens!.first.url!,
       ),
     );
   }
@@ -172,15 +212,29 @@ class _widgetHomeCategoriasEventosContainerState
     String dia = datas.first.formatDate(format: "dd").capitalize();
     String mes = datas.first.formatDate(format: "MMM").capitalize();
     String hora = datas.first.formatDate(format: "HH:mm").capitalize();
-    if (datas.length == 1) {
-      ret = TextContrasteFonte(
-        text: "$diaabr. $dia/$mes - $hora hs.",
-        style: GoogleFonts.roboto(
+    //if (datas.length == 1) {
+    ret = Row(
+      children: [
+        TextContrasteFonte(
+          text: "$diaabr. $dia/$mes - $hora",
+          style: GoogleFonts.roboto(
             fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 12),
             fontWeight: FontWeight.w500,
-            color: corTextAtual),
-      );
-    } else {
+            color: corTextAtual,
+          ),
+        ),
+        const Expanded(child: SizedBox.shrink()),
+        TextContrasteFonte(
+          text: "Ver mais",
+          style: GoogleFonts.roboto(
+            fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 12),
+            fontWeight: FontWeight.w500,
+            color: corTextAtual,
+          ),
+        )
+      ],
+    );
+    /* } else {
       ret = TextContrasteFonte(
         text: "Veja em detalhes os horários",
         style: GoogleFonts.roboto(
@@ -188,7 +242,7 @@ class _widgetHomeCategoriasEventosContainerState
             fontWeight: FontWeight.w500,
             color: corTextAtual),
       );
-    }
+    }*/
     return ret;
   }
 }

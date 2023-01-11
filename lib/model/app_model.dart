@@ -36,7 +36,6 @@ class AppModel extends ChangeNotifier {
     filtro = Filtro(
       filtroDataSelecionado: FiltroData.estasemana,
     );
-    
   }
 
   void setLocalizacao(double latitude, double longitude) {
@@ -174,6 +173,42 @@ class AppModel extends ChangeNotifier {
             .firstWhere((element) => element.id == eventodatas.idespaco)
             .endereco ??
         "Endereço não informado no espaço.";
+  }
+
+  String GetEspacoPrincipal({required Evento evento}) {
+    if (evento.eventosdatas == null || evento.eventosdatas!.isEmpty) {
+      return 'x1';
+    }
+
+    Eventodatas eventodatas = evento.eventosdatas!.first;
+
+    if (eventodatas.idespaco == null) {
+      return '';
+    }
+
+    if (!listaEspacos.espacos!
+        .any((element) => element.id == eventodatas.idespaco)) {
+      // print(listaEspacos.espacos!.length);
+      return '';
+    }
+
+    Espaco e = listaEspacos.espacos!
+        .firstWhere((element) => element.id == eventodatas.idespaco);
+
+    if (e.idespacoprincipal == 0) {
+      return '';
+    }
+
+    if (!listaEspacos.espacos!
+        .any((element) => element.id == e.idespacoprincipal)) {
+      return '';
+      // 'x5 - ${e.idespacoprincipal}';
+    }
+
+    return listaEspacos.espacos!
+        .firstWhere((element) => element.id == e.idespacoprincipal)
+        .nome!
+        .capitalize();
   }
 
   String GetCategoriasEvento(Evento evento) {

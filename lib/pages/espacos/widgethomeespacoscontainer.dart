@@ -34,13 +34,10 @@ class widgetHomeEspacosContainer extends StatelessWidget {
  */
     if (espaco.espacosimagens == null || espaco.espacosimagens!.isEmpty) {
       return const SizedBox.shrink();
-    }
+    }    
 
     return GestureDetector(
       onTap: () {
-        if (espaco == null) {
-          print("ESPACO NULL NA BASE");
-        }
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -76,7 +73,7 @@ class widgetHomeEspacosContainer extends StatelessWidget {
                     ),
                   ),
                   child: espaco.espacosimagens!.first.imagens!.first.url == null
-                      ? SizedBox.shrink()
+                      ? const SizedBox.shrink()
                       : widgetImagemHtml(
                           url: espaco.espacosimagens!.first.imagens!.first.url!,
                         ),
@@ -116,7 +113,6 @@ class widgetHomeEspacosContainer extends StatelessWidget {
                             ],
                           ),
                           const widgetEspacoH(altura: 6),
-
                           //
                         ],
                       );

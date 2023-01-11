@@ -90,7 +90,7 @@ class _widgetHomeEventosState extends State<widgetHomeEventos> {
         FiltroData.proximomes.filtrodatatostring,
       ];
       subtitulo = "";
-      wdata = MenuButton<String>(        
+      wdata = MenuButton<String>(
         decoration: null,
         items: keys,
         itemBuilder: (String value) => Container(
@@ -191,7 +191,7 @@ class _widgetHomeEventosState extends State<widgetHomeEventos> {
     DateTime dini = DateTime.parse(d1);
     DateTime dfim = DateTime.parse(d2);
 
-    //print(" $dini  - $dfim ");
+    int contadorEvento = 0;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -217,7 +217,7 @@ class _widgetHomeEventosState extends State<widgetHomeEventos> {
               widget.exibicaoEvento == ExibicaoEvento.Destaque ? null : wdata,
         ),
         SizedBox(
-          height: 250 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+          height: 270 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
           child: ListView.builder(
             shrinkWrap: true,
             scrollDirection: Axis.horizontal,
@@ -225,58 +225,71 @@ class _widgetHomeEventosState extends State<widgetHomeEventos> {
             itemBuilder: (context, index) {
               //return Container(width: 100, height: 100,);
 
-              if (widget.exibicaoEvento == ExibicaoEvento.Destaque &&
-                  wrap &&
-                  index > 9) {
-                return const SizedBox.shrink();
-              }
+              try {
+                if (widget.exibicaoEvento == ExibicaoEvento.Destaque &&
+                    wrap &&
+                    contadorEvento > 9) {
+                  return const SizedBox.shrink();
+                }
 
-              if (widget.exibicaoEvento == ExibicaoEvento.Destaque &&
-                  app.filtro.categoriasSelecionadas!.isEmpty) {
-                return widgetHomeCategoriasEventosContainer(
-                  evento: app.listaEventos.eventos![index],
-                );
-              }
+                if (widget.exibicaoEvento == ExibicaoEvento.Destaque &&
+                    app.listaEventos.eventos![index].destaque == 0) {
+                  return const SizedBox.shrink();
+                }
 
-              if (widget.exibicaoEvento == ExibicaoEvento.Destaque) {
-                List<int> listSel = app.filtro.categoriasSelecionadas!
-                    .map((e) => e.id!)
-                    .toList();
-                List<int> listCategoriasEvento = app
-                    .listaEventos.eventos![index].eventoscategorias!
-                    .map((e) => e.idcategoria!)
-                    .toList();
-
-                listSel.removeWhere(
-                    (element) => !listCategoriasEvento.contains(element));
-
-                if (listSel.isNotEmpty) {
+                if (widget.exibicaoEvento == ExibicaoEvento.Destaque &&
+                    app.filtro.categoriasSelecionadas!.isEmpty) {
+                  contadorEvento++;
                   return widgetHomeCategoriasEventosContainer(
                     evento: app.listaEventos.eventos![index],
                   );
-                } else {
-                  return const SizedBox.shrink();
                 }
-              }
-              if (widget.exibicaoEvento == ExibicaoEvento.Data) {
-                Evento e = app.listaEventos.eventos![index];
 
-                bool dataTaNaLista = false;
-                for (Eventodatas d in e.eventosdatas!) {
-                  if (DateTime.parse(d.datahora!).isAfter(dini) &&
-                      DateTime.parse(d.datahora!).isBefore(dfim)) {
-                    dataTaNaLista = true;
+                if (widget.exibicaoEvento == ExibicaoEvento.Destaque) {
+                  List<int> listSel = app.filtro.categoriasSelecionadas!
+                      .map((e) => e.id!)
+                      .toList();
+                  List<int> listCategoriasEvento = app
+                      .listaEventos.eventos![index].eventoscategorias!
+                      .map((e) => e.idcategoria!)
+                      .toList();
+
+                  listSel.removeWhere(
+                      (element) => !listCategoriasEvento.contains(element));
+
+                  if (listSel.isNotEmpty) {
+                    contadorEvento++;
+                    return widgetHomeCategoriasEventosContainer(
+                      evento: app.listaEventos.eventos![index],
+                    );
+                  } else {
+                    return const SizedBox.shrink();
                   }
                 }
+                if (widget.exibicaoEvento == ExibicaoEvento.Data) {
+                  Evento e = app.listaEventos.eventos![index];
 
-                if (dataTaNaLista) {
-                  return widgetHomeCategoriasEventosContainer(
-                    evento: e,
-                  );
+                  bool dataTaNaLista = false;
+                  for (Eventodatas d in e.eventosdatas!) {
+                    if (DateTime.parse(d.datahora!).isAfter(dini) &&
+                        DateTime.parse(d.datahora!).isBefore(dfim)) {
+                      dataTaNaLista = true;
+                    }
+                  }
+
+                  if (dataTaNaLista) {
+                    contadorEvento++;
+                    return widgetHomeCategoriasEventosContainer(
+                      evento: e,
+                    );
+                  }
+
+                  return const SizedBox.shrink();
                 }
-
-                return const SizedBox.shrink();
+              } catch (e) {                
+                return Text("Erro ${e.toString()}");
               }
+
               return const SizedBox.shrink();
             },
           ),
