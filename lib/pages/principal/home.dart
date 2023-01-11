@@ -2,8 +2,8 @@
 
 import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/model/imagem_model.dart';
-import 'package:agendacultural/pages/acesso/pagelogin.dart';
 import 'package:agendacultural/pages/agenda/pageagenda.dart';
+import 'package:agendacultural/pages/perfil/widgetperfil.dart';
 import 'package:agendacultural/pages/home/widgethome.dart';
 import 'package:agendacultural/pages/home/widgets/widgettopo.dart';
 import 'package:agendacultural/pages/mapa/pagemapa.dart';
@@ -15,8 +15,7 @@ import '../../dados/dados.dart';
 import '../../model/cores.dart';
 import '../favorito/widgetFavoritos.dart';
 import '../favorito/widgetTopoFavoritos.dart';
-import '../home/widgetperfil.dart';
-import '../home/widgets/widgettopoperfil.dart';
+import '../perfil/widgettopoperfil.dart';
 
 class pagePrincipal extends StatefulWidget {
   const pagePrincipal({super.key});

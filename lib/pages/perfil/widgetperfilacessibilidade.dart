@@ -1,9 +1,12 @@
+// ignore_for_file: camel_case_types
+
+import 'package:agendacultural/dados/dados.dart';
+import 'package:agendacultural/model/cores.dart';
+import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/model/imagem_model.dart';
+import 'package:agendacultural/pages/perfil/widgetperfil.dart';
 import 'package:agendacultural/pages/home/widgethome.dart';
-import 'package:agendacultural/pages/home/widgetperfil.dart';
 import 'package:agendacultural/pages/home/widgets/widgettopocomum.dart';
-import 'package:agendacultural/pages/home/widgets/widgettopoperfil.dart';
-import 'package:agendacultural/shared/constantes.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetbotaoswitch.dart';
 import 'package:agendacultural/shared/widgetemconstrucao.dart';
@@ -11,10 +14,6 @@ import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../../dados/dados.dart';
-import '../../model/cores.dart';
-import '../../model/fontes.dart';
 
 class widgetPerfilAcessibilidade extends StatefulWidget {
   const widgetPerfilAcessibilidade({Key? key}) : super(key: key);

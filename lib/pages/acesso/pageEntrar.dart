@@ -4,25 +4,19 @@ import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/acesso/pageCadastro.dart';
 import 'package:agendacultural/pages/acesso/pageNovaSenha.dart';
 import 'package:agendacultural/pages/acesso/pageRecuperarSenha.dart';
-import 'package:agendacultural/pages/home/widgetperfil.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetbotao.dart';
-import 'package:agendacultural/shared/widgetemconstrucao.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:provider/provider.dart';
-
 import '../../model/app_model.dart';
 import '../../model/cores.dart';
 import '../../shared/constantes.dart';
 import '../../shared/widgetTextFonteContraste.dart';
 import '../../shared/widgetemdesenvolvimento.dart';
-import '../home/widgethome.dart';
 import '../home/widgets/widgettopocomum.dart';
-import '../home/widgets/widgettopoperfil.dart';
 import '../principal/home.dart';
 
 class PageEntrar extends StatefulWidget {

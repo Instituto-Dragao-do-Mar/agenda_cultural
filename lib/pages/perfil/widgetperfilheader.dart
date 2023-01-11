@@ -1,21 +1,21 @@
+// ignore_for_file: camel_case_types
+
+import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/model/imagem_model.dart';
-import 'package:agendacultural/pages/home/widgetperfilacessibilidade.dart';
+import 'package:agendacultural/pages/perfil/widgetperfil.dart';
+import 'package:agendacultural/pages/perfil/widgetperfilacessibilidade.dart';
 import 'package:agendacultural/pages/home/widgetdadoscadastrais.dart';
 import 'package:agendacultural/pages/home/widgethome.dart';
 import 'package:agendacultural/pages/home/widgetidiomas.dart';
 import 'package:agendacultural/pages/home/widgetnotificacoes.dart';
-import 'package:agendacultural/pages/home/widgetperfil.dart';
-import 'package:agendacultural/pages/home/widgets/widgettopoperfil.dart';
+import 'package:agendacultural/pages/home/widgets/widgetopcaoperfil.dart';
+import 'package:agendacultural/pages/perfil/widgettopoperfil.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetemconstrucao.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-
-import '../../model/fontes.dart';
-import '../../shared/constantes.dart';
-import 'widgets/widgetopcaoperfil.dart';
 
 class widgetPerfilHeader extends StatefulWidget {
   const widgetPerfilHeader({super.key});

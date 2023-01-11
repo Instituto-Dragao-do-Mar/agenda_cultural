@@ -1,24 +1,21 @@
+// ignore_for_file: camel_case_types
+
 import 'package:agendacultural/model/fontes.dart';
-import 'package:agendacultural/model/imagem_model.dart';
-import 'package:agendacultural/pages/home/widgetperfil.dart';
+import 'package:agendacultural/pages/perfil/widgetperfil.dart';
 import 'package:agendacultural/pages/home/widgets/widgettopocomum.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetbotao.dart';
 import 'package:agendacultural/shared/widgetemconstrucao.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
-import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
-
 import '../../controller/usuario_controller.dart';
 import '../../model/app_model.dart';
-import '../../shared/constantes.dart';
 import '../../shared/widgetTextFonteContraste.dart';
 import '../../shared/widgetemdesenvolvimento.dart';
 import 'widgethome.dart';
-import 'widgets/widgettopoperfil.dart';
 
 class widgetDadosCadastrais extends StatefulWidget {
   const widgetDadosCadastrais({Key? key}) : super(key: key);

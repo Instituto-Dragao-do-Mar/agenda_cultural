@@ -1,15 +1,13 @@
 import 'package:agendacultural/model/fontes.dart';
-import 'package:agendacultural/model/imagem_model.dart';
-import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
-import 'package:agendacultural/pages/home/widgetperfil.dart';
+
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetbotao.dart';
-import 'package:agendacultural/shared/widgetemconstrucao.dart';
+
 import 'package:agendacultural/shared/widgetespacoh.dart';
-import 'package:agendacultural/shared/widgetimagem.dart';
+
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
 import 'package:provider/provider.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -21,7 +19,7 @@ import '../../shared/widgetConfirma.dart';
 import '../../shared/widgetTextFonteContraste.dart';
 import '../../shared/widgetemdesenvolvimento.dart';
 import '../home/widgets/widgettopocomum.dart';
-import '../home/widgets/widgettopoperfil.dart';
+
 
 class PageCadastro extends StatefulWidget {
   const PageCadastro({Key? key}) : super(key: key);

@@ -11,11 +11,13 @@ class widgetHeaderCards extends StatelessWidget {
     required this.titulo,
     required this.subtitulo,
     required this.funcao,
+    this.widget,
   });
 
   final String titulo;
   final String subtitulo;
   final VoidCallback funcao;
+  final Widget? widget;
 
   @override
   Widget build(BuildContext context) {
@@ -28,15 +30,16 @@ class widgetHeaderCards extends StatelessWidget {
           semantics: titulo,
         ),
         InkWell(
-          onTap: () {           
+          onTap: () {
             funcao();
           },
-          child: TextContrasteFonte(
+          // ignore: prefer_if_null_operators
+          child: widget == null ? TextContrasteFonte(
             text: subtitulo,
             color: corBackgroundLaranja,
             weight: FontWeight.w600,
             semantics: subtitulo,
-          ),
+          ) : widget,
         )
       ],
     );

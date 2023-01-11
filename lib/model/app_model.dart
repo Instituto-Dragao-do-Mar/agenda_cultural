@@ -33,6 +33,10 @@ class AppModel extends ChangeNotifier {
 
   AppModel({Usuario? usr}) {
     usuarioLogado = usr ?? Usuario();
+    filtro = Filtro(
+      filtroDataSelecionado: FiltroData.estasemana,
+    );
+    
   }
 
   void setLocalizacao(double latitude, double longitude) {

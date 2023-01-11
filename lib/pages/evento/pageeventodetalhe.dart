@@ -5,6 +5,7 @@ import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/model/espaco_model.dart';
 import 'package:agendacultural/model/evento_model.dart';
 import 'package:agendacultural/model/imagem_model.dart';
+import 'package:agendacultural/pages/perfil/widgetperfil.dart';
 import 'package:agendacultural/shared/extensions/capitalize.dart';
 import 'package:agendacultural/shared/extensions/dates.dart';
 import 'package:agendacultural/shared/themes.dart';
@@ -25,7 +26,7 @@ import '../acesso/pagelogin.dart';
 import '../agenda/pageagenda.dart';
 import '../favorito/widgetFavoritos.dart';
 import '../home/widgethome.dart';
-import '../home/widgetperfil.dart';
+
 import '../mapa/pagemapa.dart';
 
 class pageEventoDetalhe extends StatefulWidget {

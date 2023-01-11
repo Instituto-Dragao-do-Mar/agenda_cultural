@@ -1,19 +1,12 @@
-// ignore_for_file: camel_case_types
+// ignore_for_file: camel_case_types, must_be_immutable
 
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
-import 'package:agendacultural/pages/home/widgethome.dart';
-import 'package:agendacultural/pages/home/widgetperfil.dart';
-import 'package:agendacultural/pages/home/widgetperfilheader.dart';
-import 'package:agendacultural/pages/principal/home.dart';
-import 'package:agendacultural/shared/constantes.dart';
 import 'package:agendacultural/shared/widgetespacov.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
-import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
-import '../../../model/app_model.dart';
-import '../../../model/fontes.dart';
+import '../../model/fontes.dart';
 
 class widgetTopoPerfil extends StatelessWidget {
   Function? notify;
