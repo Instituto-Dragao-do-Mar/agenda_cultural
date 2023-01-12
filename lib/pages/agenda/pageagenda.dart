@@ -97,14 +97,7 @@ class _pageAgendaState extends State<pageAgenda> {
                   style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
                 ),
                 GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const pageFiltro(),
-                      ),
-                    );
-                  },
+                  onTap: () {},
                   child: Row(
                     children: [
                       const Text('Filtrar'),
@@ -136,16 +129,7 @@ class _pageAgendaState extends State<pageAgenda> {
                     DateTime.parse(tedInicio.text.substring(0, 10)),
                     DateTime.parse(tedTermino.text.substring(0, 10)),
                   );
-
-                  /* print("Datas intervalos: ");
-                  print(listDatas.toList());
-                  print("============================================");
-                  print(" ");
-                  print(" ");
-                  print(" ");
-                  print("Datas evento ${e.nome} ");
-                  print(datasEventos.toList());
-                  print("============================================"); */
+                 
 
                   if (!dataSelecionada
                       .compareTo(DateTime.now().add(const Duration(days: -1)))
@@ -237,10 +221,22 @@ class _pageAgendaState extends State<pageAgenda> {
       onTap: () async {
         DateTime? pickedDate = await showDatePicker(
           context: context,
-          //locale: const Locale("pt_BR"),
+          locale: const Locale("pt"),
           initialDate: DateTime.tryParse(ted.text)!,
           firstDate: DateTime.now(),
           lastDate: DateTime.now().add(const Duration(days: 180)),
+          builder: (context, child) {
+            return Theme(
+              data: Theme.of(context).copyWith(
+                colorScheme: const ColorScheme.light(
+                  primary: Color(0xFFE83C3B),
+                  onPrimary: Colors.white, 
+                  onSurface: Colors.black, 
+                ),
+              ),
+              child: child!,
+            );
+          },
         );
         if (pickedDate != null) {
           ted.text = pickedDate.toIso8601String();
@@ -261,7 +257,9 @@ class _pageAgendaState extends State<pageAgenda> {
             bottomRight: Radius.circular(!primeiro ? 10 : 0),
           ),
           border: Border.all(
-            color: Cores.contraste ? Colors.white : corBackgroundLaranja.withOpacity(.2),
+            color: Cores.contraste
+                ? Colors.white
+                : corBackgroundLaranja.withOpacity(.2),
           ),
         ),
         height: 70,
@@ -303,7 +301,14 @@ class pageAgendaTopo extends StatelessWidget {
         notify!();
       },
       urlImagem1: 'seta.png',
-      funcaoImagem2: () async {},
+      funcaoImagem2: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const pageFiltro(),
+          ),
+        );
+      },
       urlImagem2: 'favoritos.png',
     );
   }

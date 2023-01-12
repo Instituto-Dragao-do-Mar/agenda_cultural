@@ -1,8 +1,10 @@
 // ignore_for_file: camel_case_types
 
 import 'package:agendacultural/model/app_model.dart';
+import 'package:agendacultural/model/espaco_model.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/evento/widgethomeeventoscontainer.dart';
+import 'package:agendacultural/pages/home/widgets/widgettopocomum.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetespacov.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
@@ -36,7 +38,7 @@ class _pageFiltroState extends State<pageFiltro> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+      /* appBar: AppBar(
         elevation: 0,
         leading: GestureDetector(
           onTap: () {
@@ -54,7 +56,7 @@ class _pageFiltroState extends State<pageFiltro> {
             fontSize: 16,
           ),
         ),
-      ),
+      ), */
       body: body(),
     );
   }
@@ -66,6 +68,23 @@ class _pageFiltroState extends State<pageFiltro> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          widgetTopoComum(
+            text: "Filtrar",
+            funcaoImagem1: () async {
+              Navigator.pop(context);
+            },
+            urlImagem1: 'seta.png',
+            funcaoImagem2: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const pageFiltro(),
+                ),
+              );
+            },
+            urlImagem2: 'favoritos.png',
+          ),
+          const SizedBox(height: 8,),
           Text(
             "Termo a Pesquisar",
             style: GoogleFonts.inter(

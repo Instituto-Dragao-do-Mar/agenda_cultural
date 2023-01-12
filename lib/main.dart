@@ -2,14 +2,8 @@ import 'package:agendacultural/controller/usuario_controller.dart';
 import 'package:agendacultural/dados/dados.dart';
 import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/model/fontes.dart';
-import 'package:agendacultural/pages/acesso/pagelogin.dart';
-import 'package:agendacultural/pages/home/acessibilidade/widgetacessibilidade.dart';
-import 'package:agendacultural/pages/localizacao/widgetlocalizacao.dart';
-import 'package:agendacultural/pages/introducao/introducao.dart';
-import 'package:agendacultural/pages/introducao/introducaoinfo.dart';
 import 'package:agendacultural/pages/introducao/pagesplash.dart';
 import 'package:agendacultural/shared/themes.dart';
-import 'package:agendacultural/shared/widgetalertdialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 // ignore: depend_on_referenced_packages
@@ -22,7 +16,7 @@ import 'model/cores.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setPathUrlStrategy();
-  
+
   int fonte = await Dados.getInt('tamanhofontebase');
   if (fonte == 0) {
     await Dados.setInt('tamanhofontebase', 16);
@@ -33,7 +27,21 @@ void main() async {
   bool altoContraste = await Dados.getBool('altocontraste');
   Cores.setAltoContraste(altoContraste);
 
-  initializeDateFormatting("pt_BR", null).then(
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<AppModel>.value(
+          value: AppModel(),
+        ),
+        ChangeNotifierProvider<UsuarioController>.value(
+          value: UsuarioController(),
+        )
+      ],
+      child: const MyApp(),
+    ),
+  );
+
+  /* initializeDateFormatting("pt_BR", null).then(
     (_) => runApp(MultiProvider(
       providers: [
         ChangeNotifierProvider<AppModel>.value(
@@ -45,7 +53,7 @@ void main() async {
       ],
       child: const MyApp(),
     )),
-  );
+  ); */
 }
 
 // Future initialization(BuildContext? context) async {
@@ -58,15 +66,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      /* localizationsDelegates: const [
+      localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate
       ],
-      supportedLocales: const [
-        Locale('pt', 'pt_BR'), // English, no country code
-        //Locale('en'),
-      ], */
+      supportedLocales: [
+        Locale('pt'),
+      ],
       debugShowCheckedModeBanner: false,
       title: 'Cultura.CE',
       theme: themeDefault,
