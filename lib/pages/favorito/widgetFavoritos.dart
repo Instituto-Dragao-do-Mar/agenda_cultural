@@ -35,8 +35,9 @@ class _WidgetFavoritosState extends State<WidgetFavoritos> {
       padding: const EdgeInsets.all(24),
       child: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Row(
+            /* Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 TextContrasteFonte(
@@ -44,7 +45,7 @@ class _WidgetFavoritosState extends State<WidgetFavoritos> {
                   style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
                 ),
               ],
-            ),
+            ), */
             const SizedBox(height: 10),
             Wrap(
               crossAxisAlignment: WrapCrossAlignment.start,

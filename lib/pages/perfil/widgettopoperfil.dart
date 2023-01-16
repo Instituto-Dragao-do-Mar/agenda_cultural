@@ -1,13 +1,35 @@
 // ignore_for_file: camel_case_types, must_be_immutable
 
-import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
-import 'package:agendacultural/shared/widgetespacov.dart';
-import 'package:agendacultural/shared/widgetimagem.dart';
+import 'package:agendacultural/pages/home/widgets/widgettopocomum.dart';
 import 'package:flutter/material.dart';
 
-import '../../model/fontes.dart';
+class widgetTopoPerfil extends StatelessWidget {
+  Function? notify;
+  widgetTopoPerfil({super.key, this.notify});
 
+  @override
+  Widget build(BuildContext context) {
+    return widgetTopoComum(
+      text: "Perfil",
+      funcaoImagem1: () async {
+        notify!();
+      },
+      urlImagem1: 'seta.png',
+      funcaoImagem2: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => pageLogin(),
+          ),
+        );
+      },
+      urlImagem2: 'Logout.png',
+    );
+  }
+}
+
+/*
 class widgetTopoPerfil extends StatelessWidget {
   Function? notify;
 
@@ -27,7 +49,7 @@ class widgetTopoPerfil extends StatelessWidget {
                  notify!();
               },
               child: widgetImagemInterna(
-                imagem: Imagem(
+                 imagem: Imagem(
                   url: 'seta.png',
                 ),
                 width: 24,
@@ -70,3 +92,4 @@ class widgetTopoPerfil extends StatelessWidget {
     );
   }
 }
+*/

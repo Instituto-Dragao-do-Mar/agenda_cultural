@@ -1,5 +1,4 @@
 import 'package:agendacultural/model/imagem_model.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 widgetImagemExterna({
@@ -9,7 +8,7 @@ widgetImagemExterna({
   double? width,
 }) {
  
-  return CachedNetworkImageProvider(
+  return Image.network(
     imagem.url!,
     scale: 1,
   );

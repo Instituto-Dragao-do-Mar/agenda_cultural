@@ -1,12 +1,36 @@
-import 'package:agendacultural/pages/home/widgethome.dart';
+// ignore_for_file: file_names, must_be_immutable
+
+import 'package:agendacultural/pages/filtro/pagefiltro.dart';
+import 'package:agendacultural/pages/home/widgets/widgettopocomum.dart';
 import 'package:flutter/material.dart';
 
-import '../../model/fontes.dart';
-import '../../model/imagem_model.dart';
-import '../../shared/widgetespacov.dart';
-import '../../shared/widgetimagem.dart';
-import '../acesso/pagelogin.dart';
 
+class WidgetTopoFavoritos extends StatelessWidget {
+  Function? notify;
+  WidgetTopoFavoritos({super.key, this.notify});
+
+  @override
+  Widget build(BuildContext context) {
+    return widgetTopoComum(
+      text: "Favoritos",
+      funcaoImagem1: () async {
+        notify!();
+      },
+      urlImagem1: 'seta.png',
+      funcaoImagem2: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const pageFiltro(),
+          ),
+        );
+      },
+      urlImagem2: 'favoritos.png',
+    );
+  }
+}
+
+/*
 class WidgetTopoFavoritos extends StatelessWidget {
   Function? notify;
   WidgetTopoFavoritos({Key? key, this.notify}) : super(key: key);
@@ -69,3 +93,5 @@ class WidgetTopoFavoritos extends StatelessWidget {
     );
   }
 }
+
+*/
