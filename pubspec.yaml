@@ -62,13 +62,15 @@ dependencies:
   url_launcher: ^6.1.7
   persistent_bottom_nav_bar: ^5.0.2
   geocoder2: ^1.4.0
-  flutter_launcher_icons: ^0.11.0
+  
   dropdown_button2: ^1.9.2
   dart_date: ^1.1.1
   menu_button: ^1.4.2+1
+  flutter_native_splash: ^2.2.13
 
 dev_dependencies:
 
+  flutter_launcher_icons: ^0.11.0
 
   flutter_test:
     sdk: flutter
@@ -92,8 +94,8 @@ flutter_icons:
   web:
     generate: true
     image_path: "imagens/iconelaranha.png"
-    background_color: "#FFE83C3B"
-    theme_color: "#FFE83C3B"
+    background_color: "#ffE83c3b"
+    theme_color: "#ffE83c3b"
   
 
 # The following section is specific to Flutter packages.
