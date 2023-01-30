@@ -27,10 +27,10 @@ class _pageSplashState extends State<pageSplash> {
   _navigatorPageIntroducao() async {
     await getCookies();
 
-    print("introducao: ${Dados.jaVisualizouIntroducao}");
+   /* print("introducao: ${Dados.jaVisualizouIntroducao}");
     print("localizacao: ${Dados.jaPermitiuLocalizacao}");
     print("governo: ${Dados.jaVisualizouGoverno}");
-    print("cookies: ${Dados.jaVisualizouCookies}");
+    print("cookies: ${Dados.jaVisualizouCookies}");*/
 
     await Future.delayed(
       const Duration(seconds: 3),

@@ -25,6 +25,11 @@ class Dados {
     return prefs!.getInt(key) ?? 0;
   }
 
+  static Future<double> getDouble(String key) async {
+    prefs ??= await getprefs();
+    return prefs!.getDouble(key) ?? 0;
+  }
+
   static Future<bool> getBool(String key) async {
     prefs ??= await getprefs();
     return prefs!.getBool(key) ?? false;
@@ -48,6 +53,13 @@ class Dados {
     if (key == 'cookies' || jaVisualizouCookies) {
       prefs ??= await getprefs();
       prefs!.setInt(key, value);
+    }
+  }
+
+  static Future<void> setDouble(String key, double value) async {
+    if (key == 'cookies' || jaVisualizouCookies) {
+      prefs ??= await getprefs();
+      prefs!.setDouble(key, value);
     }
   }
 }

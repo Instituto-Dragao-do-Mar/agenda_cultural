@@ -1,12 +1,17 @@
+import 'dart:html';
+
 import 'package:agendacultural/dados/dados.dart';
+import 'package:agendacultural/model/geolocalizacao_model.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
 import 'package:agendacultural/pages/home/widgets/widgettopocomum.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetbotao.dart';
+import 'package:agendacultural/shared/widgeterro.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoder2/geocoder2.dart';
+
 import '../../model/fontes.dart';
 
 class WidgetInserirLocalizacao extends StatefulWidget {
@@ -66,31 +71,58 @@ class _WidgetInserirLocalizacaoState extends State<WidgetInserirLocalizacao> {
                 ),
                 IconButton(
                   onPressed: () async {
-                    GeoData data = await Geocoder2.getDataFromAddress(
-                      language: 'pt-BR',                      
-                      address: tedLocal.text,
-                      googleMapApiKey:
-                          "AIzaSyDPiOz0fCI1sfLT3W2fe--unju-f2n9jbY",
-                    );
+                    try {
+                      GeoData data = await Geocoder2.getDataFromAddress(
+                        language: 'pt-BR',
+                        address: tedLocal.text,
+                        googleMapApiKey:
+                            "AIzaSyDPiOz0fCI1sfLT3W2fe--unju-f2n9jbY",
+                      );
 
-                    //Formated Address
-                    print(data.address);
-                    //City Name
-                    print(data.city);
-                    //Country Name
-                    print(data.country);
-                    //Country Code
-                    print(data.countryCode);
-                    //Latitude
-                    print(data.latitude);
-                    //Longitude
-                    print(data.longitude);
-                    //Postal Code
-                    print(data.postalCode);
-                    //State
-                    print(data.state);
-                    //Street Number
-                  
+                      // Se conseguiu achar, grava latitude e longitude
+
+                      GeoLocalizacao.local_atual_latitude = data.latitude;
+                      GeoLocalizacao.local_atual_longitude = data.longitude;
+
+                      await Dados.setDouble(
+                        'local_atual_latitude',
+                        data.latitude,
+                      );
+
+                      await Dados.setDouble(
+                        'local_atual_longitude',
+                        data.longitude,
+                      );
+
+                      await Dados.setString(
+                        'local_atual_descricao',
+                        data.address,
+                      );
+
+                      /* print(data.address);
+                      //City Name
+                      print(data.city);
+                      //Country Name
+                      print(data.country);
+                      //Country Code
+                      print(data.countryCode);
+                      //Latitude
+                      print(data.latitude);
+                      //Longitude
+                      print(data.longitude);
+                      //Postal Code
+                      print(data.postalCode);
+                      //State
+                      print(data.state);
+                      //Street Number
+                      print(data.streetNumber); */
+                    } catch (e) {
+                      widgetErro(
+                        context: context,
+                        descricao:
+                            "Localização não encontrada, tente informar o endereço com rua, bairro e cidade.",
+                      );
+                    }
                   },
                   icon: const Icon(Icons.search),
                 ),

@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 class GeoLocalizacao {
   double? latitude;
   double? longitude;
@@ -15,30 +17,35 @@ class GeoLocalizacao {
   String? postcode;
   LocalityInfo? localityInfo;
 
-  GeoLocalizacao(
-      {this.latitude,
-        this.longitude,
-        this.lookupSource,
-        this.plusCode,
-        this.localityLanguageRequested,
-        this.continent,
-        this.continentCode,
-        this.countryName,
-        this.countryCode,
-        this.principalSubdivision,
-        this.principalSubdivisionCode,
-        this.city,
-        this.locality,
-        this.postcode,
-        this.localityInfo});
+  static double local_atual_latitude = 0.00;
+  static double local_atual_longitude = 0.00;
+
+  GeoLocalizacao({
+    this.latitude,
+    this.longitude,
+    this.lookupSource,
+    this.plusCode,
+    this.localityLanguageRequested,
+    this.continent,
+    this.continentCode,
+    this.countryName,
+    this.countryCode,
+    this.principalSubdivision,
+    this.principalSubdivisionCode,
+    this.city,
+    this.locality,
+    this.postcode,
+    this.localityInfo,
+  });
 
   String getEndereco() {
-
     String retorno = "";
 
-    retorno += "" + ( locality ??  "");
-    retorno += ", " + ( city ?? "");
-    retorno += "- " + ( principalSubdivision ??  "");
+    retorno += "" + (locality ?? "");
+    retorno += ", " + (city ?? "");
+    retorno += "- " + (principalSubdivision ?? "");
+
+    //print(this.toJson());
 
     return retorno;
   }
@@ -110,8 +117,7 @@ class LocalityInfo {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     if (administrative != null) {
-      data['administrative'] =
-          administrative!.map((v) => v.toJson()).toList();
+      data['administrative'] = administrative!.map((v) => v.toJson()).toList();
     }
     if (informative != null) {
       data['informative'] = informative!.map((v) => v.toJson()).toList();
@@ -132,13 +138,13 @@ class Administrative {
 
   Administrative(
       {this.order,
-        this.adminLevel,
-        this.name,
-        this.description,
-        this.isoName,
-        this.isoCode,
-        this.wikidataId,
-        this.geonameId});
+      this.adminLevel,
+      this.name,
+      this.description,
+      this.isoName,
+      this.isoCode,
+      this.wikidataId,
+      this.geonameId});
 
   Administrative.fromJson(Map<String, dynamic> json) {
     order = json['order'];
@@ -175,11 +181,11 @@ class Informative {
 
   Informative(
       {this.order,
-        this.name,
-        this.description,
-        this.isoCode,
-        this.wikidataId,
-        this.geonameId});
+      this.name,
+      this.description,
+      this.isoCode,
+      this.wikidataId,
+      this.geonameId});
 
   Informative.fromJson(Map<String, dynamic> json) {
     order = json['order'];

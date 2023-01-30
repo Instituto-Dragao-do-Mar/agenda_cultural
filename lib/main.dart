@@ -5,6 +5,7 @@ import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/pages/introducao/pagesplash.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 // ignore: depend_on_referenced_packages
 import 'package:intl/date_symbol_data_local.dart';
@@ -78,6 +79,7 @@ class MyApp extends StatelessWidget {
       theme: themeDefault,
       home: const pageSplash(),
       // home: const pageLogin(),
+      builder: EasyLoading.init(),
     );
   }
 }

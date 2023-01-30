@@ -1,9 +1,8 @@
 // ignore_for_file: camel_case_types
 
+import 'package:agendacultural/pages/localizacaopage/pagedefinirminhalocalizacao.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:flutter/material.dart';
-
-import '../../model/cores.dart';
 import '../../model/fontes.dart';
 import '../../shared/widgetTextFonteContraste.dart';
 
@@ -12,23 +11,31 @@ class widgetHomeMinhaLocalizacao extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    bool statusAltoContraste = Cores.contraste;
     double fontSize = Fontes.tamanhoBase.toDouble();
 
-    return Row(
-      children: [
-        TextContrasteFonte(
-          text: "Minha Localização",
-          color: corBackgroundLaranja,
-        ),
-        SizedBox(width: 5),
-        Icon(
-          Icons.arrow_forward_ios,
-          color: corBackgroundLaranja,
-          size: fontSize,
-        ),
-      ],
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const pageDefinirMinhaLocalizacao(),
+          ),
+        );
+      },
+      child: Row(
+        children: [
+          TextContrasteFonte(
+            text: "Minha Localização",
+            color: corBackgroundLaranja,
+          ),
+          const SizedBox(width: 5),
+          Icon(
+            Icons.arrow_forward_ios,
+            color: corBackgroundLaranja,
+            size: fontSize,
+          ),
+        ],
+      ),
     );
   }
 }
