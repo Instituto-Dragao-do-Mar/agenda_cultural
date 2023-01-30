@@ -98,29 +98,13 @@ class _WidgetInserirLocalizacaoState extends State<WidgetInserirLocalizacao> {
                         'local_atual_descricao',
                         data.address,
                       );
-
-                      /* print(data.address);
-                      //City Name
-                      print(data.city);
-                      //Country Name
-                      print(data.country);
-                      //Country Code
-                      print(data.countryCode);
-                      //Latitude
-                      print(data.latitude);
-                      //Longitude
-                      print(data.longitude);
-                      //Postal Code
-                      print(data.postalCode);
-                      //State
-                      print(data.state);
-                      //Street Number
-                      print(data.streetNumber); */
+                      
                     } catch (e) {
                       widgetErro(
                         context: context,
-                        descricao:
-                            "Localização não encontrada, tente informar o endereço com rua, bairro e cidade.",
+                        descricao: "Localização não encontrada, "
+                            "tente informar o endereço com "
+                            "rua, bairro e cidade.",
                       );
                     }
                   },

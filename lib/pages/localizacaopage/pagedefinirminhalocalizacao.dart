@@ -85,11 +85,12 @@ class _pageDefinirMinhaLocalizacaoState
           return body();
         },
       ),
-      bottomNavigationBar: selecionado ? btnConfirmar() : null,
+      //bottomNavigationBar: selecionado ? btnConfirmar() : null,
     );
   }
 
   Widget btnConfirmar() {
+  
     return widgetBotao(
       function: () {},
       text: "Confirmar",
