@@ -1,4 +1,4 @@
-// ignore_for_file: camel_case_types
+// ignore_for_file: camel_case_types, library_private_types_in_public_api
 
 import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/pages/perfil/widgetperfil.dart';
@@ -422,8 +422,8 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
       webBgColor: Colors.black,
     );
 
-    if (senhaInput.characters.length == 0 ||
-        novaSenhaInput.characters.length == 0) {
+    if (senhaInput.characters.isEmpty ||
+        novaSenhaInput.characters.isEmpty) {
       return widgetMensagem(
         context: context,
         text: "Os campos precisam ser preenchidos.",

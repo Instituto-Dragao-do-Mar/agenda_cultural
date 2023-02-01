@@ -25,10 +25,11 @@ class CategoriaController extends BaseController {
         var ret = jsonDecode(response.body);
         lista = ListaCategorias.fromJson(ret);
       } else {
-        setError(response.body);
+        setError("Categoria ${response.body}");
       }
     } catch (_) {
-      setError(_.toString());
+      setError("Categoria ${_.toString()}");
+      
     }
 
     return lista;

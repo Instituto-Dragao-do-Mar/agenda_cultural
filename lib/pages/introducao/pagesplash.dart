@@ -27,41 +27,41 @@ class _pageSplashState extends State<pageSplash> {
   _navigatorPageIntroducao() async {
     await getCookies();
 
-   /* print("introducao: ${Dados.jaVisualizouIntroducao}");
+    /* print("introducao: ${Dados.jaVisualizouIntroducao}");
     print("localizacao: ${Dados.jaPermitiuLocalizacao}");
     print("governo: ${Dados.jaVisualizouGoverno}");
     print("cookies: ${Dados.jaVisualizouCookies}");*/
 
-    await Future.delayed(
+    Future.delayed(
       const Duration(seconds: 3),
-      () {
-        if (!Dados.jaVisualizouIntroducao) {
-          Navigator.push(
+      () {},
+    ).then((value) {
+      if (!Dados.jaVisualizouIntroducao) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: ((context) => const pageIntroducao(
+                destino: Introducaoinfo(destino: pageLogin()))),
+          ),
+        );
+      } else {
+        if (!Dados.jaPermitiuLocalizacao) {
+          Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: ((context) => const pageIntroducao(
-                  destino: Introducaoinfo(destino: pageLogin()))),
+              builder: ((context) => const Widgetlocalizacao()),
             ),
           );
         } else {
-          if (!Dados.jaPermitiuLocalizacao) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: ((context) => const Widgetlocalizacao()),
-              ),
-            );
-          } else {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: ((context) => const pageLogin()),
-              ),
-            );
-          }
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: ((context) => const pageLogin()),
+            ),
+          );
         }
-      },
-    );
+      }
+    });
   }
 
   Future<void> getCookies() async {

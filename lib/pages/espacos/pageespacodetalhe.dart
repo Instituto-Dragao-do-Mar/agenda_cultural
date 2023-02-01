@@ -346,78 +346,7 @@ class _pageEspacoDetalheState extends State<pageEspacoDetalhe> {
   Widget widgetEvMaisInformacoes() {
     return const SizedBox.shrink();
 
-    /*
-    String entrada = 'Entraga Gratuita';
-    if (widget.espaco.urlentrada != null &&
-        widget.espaco.urlentrada!.isNotEmpty) {
-      entrada = 'Entraga Paga';
-    }
-
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        TextContrasteFonte(
-          text: "Mais informações",
-          style: GoogleFonts.inter(
-            fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
-            fontWeight: FontWeight.w500,
-            color: corTextAtual,
-          ),
-        ),
-        const widgetEspacoH(),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              children: [
-                widgetImagemInterna(
-                  imagem: Imagem(
-                    url: 'classificacao.png',
-                  ),
-                  width: 24,
-                  height: 24,
-                  fit: BoxFit.contain,
-                ),
-                const SizedBox(width: 10),
-                TextContrasteFonte(
-                  text:
-                      'Classificação ${widget.espaco.classificacaoetaria ?? "Livre"}',
-                  style: GoogleFonts.inter(
-                    fontSize:
-                        Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
-                    fontWeight: FontWeight.w500,
-                    color: corTextAtual,
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                widgetImagemInterna(
-                  imagem: Imagem(
-                    url: 'ticket.png',
-                  ),
-                  width: 24,
-                  height: 24,
-                  fit: BoxFit.contain,
-                ),
-                const SizedBox(width: 10),
-                TextContrasteFonte(
-                  text: entrada,
-                  style: GoogleFonts.inter(
-                    fontSize:
-                        Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
-                    fontWeight: FontWeight.w500,
-                    color: corTextAtual,
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ],
-    );*/
+   
   }
 
   Widget widgetEvAvaliarEspaco() {
@@ -437,100 +366,109 @@ class _pageEspacoDetalheState extends State<pageEspacoDetalhe> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            GestureDetector(
-              onTap: () {
-                confirmaparaAvaliar(1);
-              },
-              child: Column(
-                children: [
-                  Icon(
-                    Icons.sentiment_satisfied_alt_outlined,
-                    color: selecionado == 1 ? corBackgroundLaranja : corTextAtual,
-                    size: 50 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
-                  ),
-                  // widgetImagemInterna(
-                  //   imagem: Imagem(
-                  //     url: 'gostei_off.png',
-                  //   ),
-                  //   width: 60,
-                  //   height: 60,
-                  //   fit: BoxFit.contain,
-                  // ),
-                  TextContrasteFonte(
-                    text: 'Gostei',
-                    style: GoogleFonts.inter(
-                      fontSize:
-                          Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
-                      fontWeight: FontWeight.w500,
-                      color: corTextAtual,
+            Expanded(
+              flex: 1,
+              child: GestureDetector(
+                onTap: () {
+                  confirmaparaAvaliar(1);
+                },
+                child: Column(
+                  children: [
+                    Icon(
+                      Icons.sentiment_satisfied_alt_outlined,
+                      color: selecionado == 1 ? corBackgroundLaranja : corTextAtual,
+                      size: 50 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
                     ),
-                  ),
-                ],
+                    // widgetImagemInterna(
+                    //   imagem: Imagem(
+                    //     url: 'gostei_off.png',
+                    //   ),
+                    //   width: 60,
+                    //   height: 60,
+                    //   fit: BoxFit.contain,
+                    // ),
+                    TextContrasteFonte(
+                      text: 'Gostei',
+                      style: GoogleFonts.inter(
+                        fontSize:
+                            Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
+                        fontWeight: FontWeight.w500,
+                        color: corTextAtual,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                confirmaparaAvaliar(2);
-              },
-              child: Column(
-                children: [
-                  Icon(
-                    Icons.sentiment_dissatisfied_outlined,
-                    color: selecionado == 2 ? corBackgroundLaranja : corTextAtual,
-                    size: 50 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
-                  ),
-                  // widgetImagemInterna(
-                  //   imagem: Imagem(
-                  //     url: 'nao_gostei_off.png',
-                  //   ),
-                  //   width: 60,
-                  //   height: 60,
-                  //   fit: BoxFit.contain,
-                  // ),
-                  TextContrasteFonte(
-                    text: 'Não Gostei',
-                    style: GoogleFonts.inter(
-                      fontSize:
-                          Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
-                      fontWeight: FontWeight.w500,
-                      color: corTextAtual,
+             Expanded(
+              flex: 1,
+              child: GestureDetector(
+                onTap: () {
+                  confirmaparaAvaliar(2);
+                },
+                child: Column(
+                  children: [
+                    Icon(
+                      Icons.sentiment_dissatisfied_outlined,
+                      color: selecionado == 2 ? corBackgroundLaranja : corTextAtual,
+                      size: 50 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
                     ),
-                  ),
-                ],
+                    // widgetImagemInterna(
+                    //   imagem: Imagem(
+                    //     url: 'nao_gostei_off.png',
+                    //   ),
+                    //   width: 60,
+                    //   height: 60,
+                    //   fit: BoxFit.contain,
+                    // ),
+                    TextContrasteFonte(
+                      text: 'Não Gostei',
+                      style: GoogleFonts.inter(
+                        fontSize:
+                            Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
+                        fontWeight: FontWeight.w500,
+                        color: corTextAtual,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                confirmaparaAvaliar(3);
-              },
-              child: Column(
-                children: [
-                  Icon(
-                    Icons.sentiment_neutral_outlined,
-                    color: selecionado == 3 ? corBackgroundLaranja : corTextAtual,
-                    size: 50 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
-                  ),
-                  // Container(
-                  //   width: 60,
-                  //   height: 60,
-                  //   color: corBg,
-                  //   child: widgetImagemInterna(
-                  //     imagem: Imagem(
-                  //       url: 'nao_aconteceu_off.png',
-                  //     ),
-                  //     fit: BoxFit.contain,
-                  //   ),
-                  // ),
-                  TextContrasteFonte(
-                    text: 'Não Aconteceu',
-                    style: GoogleFonts.inter(
-                      fontSize:
-                          Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
-                      fontWeight: FontWeight.w500,
-                      color: corTextAtual,
+            Expanded(
+              flex: 1,
+              child: GestureDetector(
+                onTap: () {
+                  confirmaparaAvaliar(3);
+                },
+                child: Column(
+                  children: [
+                    Icon(
+                      Icons.sentiment_neutral_outlined,
+                      color: selecionado == 3 ? corBackgroundLaranja : corTextAtual,
+                      size: 50 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
                     ),
-                  ),
-                ],
+                    // Container(
+                    //   width: 60,
+                    //   height: 60,
+                    //   color: corBg,
+                    //   child: widgetImagemInterna(
+                    //     imagem: Imagem(
+                    //       url: 'nao_aconteceu_off.png',
+                    //     ),
+                    //     fit: BoxFit.contain,
+                    //   ),
+                    // ),
+                    TextContrasteFonte(
+                      text: 'Não Aconteceu',
+                      style: GoogleFonts.inter(
+                        fontSize:
+                            Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
+                        fontWeight: FontWeight.w500,
+                        color: corTextAtual,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

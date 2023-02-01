@@ -414,10 +414,10 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
   }
 
   Widget widgetEvMaisInformacoes() {
-    String entrada = 'Entraga Gratuita';
+    String entrada = 'Entrada Gratuita';
     if (widget.evento.urlentrada != null &&
         widget.evento.urlentrada!.isNotEmpty) {
-      entrada = 'Entraga Paga';
+      entrada = 'Entrada Paga';
     }
 
     return Column(
@@ -506,7 +506,7 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Container(
+            SizedBox(
               width: size.width * 0.3,
               child: GestureDetector(
                 onTap: () {
@@ -542,7 +542,7 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
                 ),
               ),
             ),
-            Container(
+            SizedBox(
               width: size.width * 0.3,
               child: GestureDetector(
                 onTap: () {
@@ -557,14 +557,7 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
                           : corTextAtual,
                       size: 50 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
                     ),
-                    // widgetImagemInterna(
-                    //   imagem: Imagem(
-                    //     url: 'nao_gostei_off.png',
-                    //   ),
-                    //   width: 60,
-                    //   height: 60,
-                    //   fit: BoxFit.contain,
-                    // ),
+                    
                     TextContrasteFonte(
                       text: 'Não Gostei',
                       style: GoogleFonts.inter(
@@ -578,7 +571,7 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
                 ),
               ),
             ),
-            Container(
+            SizedBox(
               width: size.width * 0.3,
               child: GestureDetector(
                 onTap: () {
@@ -593,17 +586,7 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
                           : corTextAtual,
                       size: 50 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
                     ),
-                    // Container(
-                    //   width: 60,
-                    //   height: 60,
-                    //   color: corBg,
-                    //   child: widgetImagemInterna(
-                    //     imagem: Imagem(
-                    //       url: 'nao_aconteceu_off.png',
-                    //     ),
-                    //     fit: BoxFit.contain,
-                    //   ),
-                    // ),
+                    
                     TextContrasteFonte(
                       text: 'Não Aconteceu',
                       style: GoogleFonts.inter(
@@ -646,7 +629,7 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
           : selecionado = 0;
     });
   }
-
+/*
   BottomNavigationBar bottomNavi() {
     return BottomNavigationBar(
       onTap: (i) {
@@ -707,5 +690,5 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
         ),
       ],
     );
-  }
+  }*/
 }

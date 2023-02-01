@@ -25,10 +25,10 @@ class EspacoController extends BaseController {
         var ret = jsonDecode(response.body);
         lista = ListaEspacos.fromJson(ret);
       } else {
-        setError(response.body);
+        setError("Espaco ${response.body}");
       }
     } catch (_) {
-      setError(_.toString());
+      setError("Espaco ${_.toString()}");
     }
 
     return lista;

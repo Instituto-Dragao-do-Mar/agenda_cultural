@@ -33,9 +33,10 @@ class _pageMapaState extends State<pageMapa> {
     super.initState();
     app = context.read<AppModel>();
 
-    if (app.listaEventos.eventos != null) {
+    if (app.listaEventos.eventos != null &&
+        app.listaEventos.eventos!.isNotEmpty) {
       int idespaco =
-      app.listaEventos.eventos!.first.eventosdatas!.first.idespaco!;
+          app.listaEventos.eventos!.first.eventosdatas!.first.idespaco!;
       Espaco espaco = app.listaEspacos.espacos!
           .firstWhere((element) => element.id == idespaco);
 
@@ -65,6 +66,10 @@ class _pageMapaState extends State<pageMapa> {
   Future<void> processaMarkers() async {
     markers = {};
 
+    if (app.listaEventos.eventos == null || app.listaEventos.eventos!.isEmpty) {
+      return;
+    }
+
     for (Evento ev in app.listaEventos.eventos!) {
       int idespaco = ev.eventosdatas!.first.idespaco!;
       Espaco ep = app.listaEspacos.espacos!
@@ -83,10 +88,9 @@ class _pageMapaState extends State<pageMapa> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) =>
-                      pageEventoDetalhe(
-                        evento: ev,
-                      ),
+                  builder: (context) => pageEventoDetalhe(
+                    evento: ev,
+                  ),
                 ),
               );
             },
@@ -98,11 +102,18 @@ class _pageMapaState extends State<pageMapa> {
 
   @override
   Widget build(BuildContext context) {
+    //return const Text("Sem eventos para visualizacão.");
+
     return FutureBuilder(
       future: processaMarkers(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
+        }
+
+        if (app.listaEventos.eventos == null ||
+            app.listaEventos.eventos!.isEmpty) {
+          return const Text("Sem eventos para visualizacão.");
         }
         return Padding(
           padding: const EdgeInsets.all(24),
@@ -158,7 +169,7 @@ class pageMapaTopo extends StatelessWidget {
     return widgetTopoComum(
       text: "Mapa",
       funcaoImagem1: () async {
-         notify!();
+        notify!();
       },
       urlImagem1: 'seta.png',
       funcaoImagem2: () async {},

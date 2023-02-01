@@ -45,6 +45,7 @@ class Evento {
   List<Eventodatas>? eventosdatas;
   List<Eventoimagens>? eventosimagens;
   List<Eventocategorias>? eventoscategorias;
+  double? distancia;
 
   Evento({
     this.id,
@@ -70,7 +71,8 @@ class Evento {
     this.eventosdatas,
     this.eventosimagens,
     this.eventoscategorias,
-  });  
+    this.distancia,
+  });
 
   Evento.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -93,6 +95,7 @@ class Evento {
     idexterno = json['idexterno'];
     detalhelongo = json['detalhelongo'];
     urlavatar = json['urlavatar'];
+    distancia = json['distancia'];
     if (json['eventosdatas'] != null) {
       eventosdatas = <Eventodatas>[];
       json['eventosdatas'].forEach((v) {
@@ -135,6 +138,7 @@ class Evento {
     data['idexterno'] = idexterno;
     data['detalhelongo'] = detalhelongo;
     data['urlavatar'] = urlavatar;
+    data['distancia'] = distancia;
     if (eventosdatas != null) {
       data['eventosdatas'] = eventosdatas!.map((v) => v.toJson()).toList();
     }
@@ -165,21 +169,22 @@ class Eventodatas {
   int? idexterno;
   String? urlavatar;
 
-  Eventodatas(
-      {this.id,
-      this.idevento,
-      this.datahora,
-      this.idespaco,
-      this.nome,
-      this.horafim,
-      this.frequencia,
-      this.datainicio,
-      this.datafim,
-      this.diasemana,
-      this.detalhe,
-      this.preco,
-      this.idexterno,
-      this.urlavatar});
+  Eventodatas({
+    this.id,
+    this.idevento,
+    this.datahora,
+    this.idespaco,
+    this.nome,
+    this.horafim,
+    this.frequencia,
+    this.datainicio,
+    this.datafim,
+    this.diasemana,
+    this.detalhe,
+    this.preco,
+    this.idexterno,
+    this.urlavatar,
+  });
 
   Eventodatas.fromJson(Map<String, dynamic> json) {
     id = json['id'];

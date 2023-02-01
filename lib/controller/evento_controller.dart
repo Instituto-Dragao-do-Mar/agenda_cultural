@@ -26,10 +26,10 @@ class EventoController extends BaseController {
         var ret = jsonDecode(response.body);
         lista = ListaEventos.fromJson(ret);
       } else {
-        setError(response.body);
+        setError("Evento ${response.body}");
       }
     } catch (_) {
-      setError(_.toString());
+      setError("Evento ${_.toString()}");
     }
 
     // lista.eventos = lista.eventos?.sort((a, b) {
@@ -63,10 +63,10 @@ class EventoController extends BaseController {
         var ret = jsonDecode(response.body);
         lista = ListaFavoritos.fromJson(ret);
       } else {
-        setError(response.body);
+        setError("Favoritos ${response.body}");
       }
     } catch (_) {
-      setError(_.toString());
+      setError("Favoritos ${_.toString()}");
     }
 
     return lista;

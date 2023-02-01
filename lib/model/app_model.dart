@@ -54,9 +54,11 @@ class AppModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  resetUser() {
+  resetUser({bool? notify}) {
     usuarioLogado = null;
-    notifyListeners();
+    if (notify == null || notify) {
+      notifyListeners();
+    }
   }
 
   void notify() {

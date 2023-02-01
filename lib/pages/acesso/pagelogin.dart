@@ -32,14 +32,15 @@ class _pageLoginState extends State<pageLogin> {
 
   @override
   void initState() {
-    app = context.read<AppModel>();
     super.initState();
+    app = context.read<AppModel>();
+    
   }
 
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
-    app?.resetUser();
+    //Size size = MediaQuery.of(context).size;
+    app?.resetUser(notify: false);
 
     return Scaffold(
       backgroundColor: corBgAtual,
