@@ -1,6 +1,5 @@
 import 'package:agendacultural/pages/home/widgets/widgettopocomum.dart';
 import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../model/fontes.dart';

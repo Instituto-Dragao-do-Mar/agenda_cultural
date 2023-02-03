@@ -1,5 +1,7 @@
 // ignore_for_file: non_constant_identifier_names
-
+import 'package:agendacultural/controller/notificacao_controller.dart';
+import 'package:agendacultural/model/notificacao_model.dart';
+import 'package:flutter/material.dart';
 import 'package:agendacultural/controller/categoria_controller.dart';
 import 'package:agendacultural/controller/espaco_controller.dart';
 import 'package:agendacultural/controller/evento_controller.dart';
@@ -13,8 +15,6 @@ import 'package:agendacultural/model/localizacao_model.dart';
 import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/shared/extensions/capitalize.dart';
 import 'package:agendacultural/shared/extensions/clearMask.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class AppModel extends ChangeNotifier {
   bool categoriasVerTudo = false;
@@ -24,8 +24,19 @@ class AppModel extends ChangeNotifier {
   late ListaAcessibilidade listaAcessibilidade;
   late ListaEspacos listaEspacos;
   late Filtro filtro;
+  ListaNotificacoes listaNotificacoes = ListaNotificacoes(
+    notificacoes: [],
+  );
+
   Localizacao? localizacao;
   ListaFavoritos listaFavoritos = ListaFavoritos();
+
+  TextEditingController tedEspaco = TextEditingController();
+  TextEditingController tedPeriodo = TextEditingController();
+  TextEditingController tedAcessibilidade = TextEditingController();
+  TextEditingController tedClassificacao = TextEditingController();
+  TextEditingController tedCategoria = TextEditingController();
+  TextEditingController tedIngresso = TextEditingController();
 
   Usuario? usuarioLogado;
 
@@ -66,20 +77,32 @@ class AppModel extends ChangeNotifier {
   }
 
   Future<void> getFavoritos() async {
-    listaFavoritos = await EventoController()
-        .favoritosGet(userguidid: GetGuidId(), token: GetToken());
+    listaFavoritos = await EventoController().favoritosGet(
+      userguidid: GetGuidId(),
+      token: GetToken(),
+    );
   }
 
   Future<void> getdados() async {
     listaCategoria = await CategoriaController().categoriaGet(
-      userguidid: "",
+      userguidid: isLog() ? GetGuidId() : "",
     );
     listaEventos = await EventoController().eventoGet(
-      userguidid: "",
+      userguidid: isLog() ? GetGuidId() : "",
     );
     listaEspacos = await EspacoController().espacoGet(
-      userguidid: "",
+      userguidid: isLog() ? GetGuidId() : "",
     );
+    if (isLog()) {
+      listaNotificacoes = await NotificacaoController().NotificacaoGet(
+        userguidid: GetGuidId(),
+        token: GetToken(),
+      );
+    } else {
+      listaNotificacoes = ListaNotificacoes(
+        notificacoes: [],
+      );
+    }
 
     /*final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
     final SharedPreferences prefs = await _prefs;*/
@@ -119,6 +142,54 @@ class AppModel extends ChangeNotifier {
     }
 
     await getFavoritos();
+  }
+
+  void AplicarFiltro() {
+    if (listaEventos.eventos != null && listaEventos.eventos!.isNotEmpty) {
+      for (Evento e in listaEventos.eventos!) {
+        e.passoupelofiltro = true;
+
+        /////////////////////////////////////////////////////////////////
+        /// INRESSOS
+        /////////////////////////////////////////////////////////////////
+
+        if (tedIngresso.text.isNotEmpty && tedIngresso.text != "Todos") {
+          for (Eventodatas ed in e.eventosdatas!) {
+            e.passoupelofiltro = ((tedIngresso.text == "Gratuito" &&
+                    (ed.preco ?? '').toUpperCase() != "PAGO") ||
+                (tedIngresso.text == "Pago" &&
+                    (ed.preco ?? '').toUpperCase() == "PAGO"));
+            if (!e.passoupelofiltro!) {
+              break;
+            }
+          }
+        }
+
+        /////////////////////////////////////////////////////////////////
+        /// ESPACOS
+        /////////////////////////////////////////////////////////////////
+
+        if (e.passoupelofiltro!) {
+          if (tedEspaco.text.isNotEmpty) {
+            e.passoupelofiltro = false;
+            for (Eventodatas ed in e.eventosdatas!) {
+              if (ed.idespaco.toString() == tedEspaco.text) {
+                e.passoupelofiltro = true;
+              }
+              if (e.passoupelofiltro!) {
+                break;
+              }
+            }
+          }
+        }
+
+        /////////////////////////////////////////////////////////////////
+        /// CATEGORIA
+        /////////////////////////////////////////////////////////////////
+
+        if (e.passoupelofiltro!) {}
+      }
+    }
   }
 
   String GetGuidId() => usuarioLogado?.guidid ?? "";

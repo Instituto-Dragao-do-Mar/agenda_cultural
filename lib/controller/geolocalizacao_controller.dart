@@ -26,6 +26,7 @@ class GeoLocalizacaoController extends BaseController {
         headers: {
           "Content-Type": "application/json",
           'Accept': 'application/json',
+        
         },
       );
 

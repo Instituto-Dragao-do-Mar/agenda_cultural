@@ -4,7 +4,7 @@ import 'package:agendacultural/controller/base_controller.dart';
 import 'package:agendacultural/model/categoria_model.dart';
 import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/shared/constantes.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 import '../model/acesso_model.dart';

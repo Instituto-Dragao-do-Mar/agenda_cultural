@@ -1,10 +1,12 @@
 // ignore_for_file: camel_case_types
 
 import 'dart:async';
+import 'package:agendacultural/controller/usuarioavaliacao_controller.dart';
 import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/model/espaco_model.dart';
 import 'package:agendacultural/model/evento_model.dart';
 import 'package:agendacultural/model/imagem_model.dart';
+import 'package:agendacultural/model/usuarioavaliacao_model.dart';
 import 'package:agendacultural/pages/perfil/widgetperfil.dart';
 import 'package:agendacultural/shared/extensions/capitalize.dart';
 import 'package:agendacultural/shared/extensions/dates.dart';
@@ -180,7 +182,12 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
                     const widgetEspacoH(),
                     widgetEvMaisInformacoes(),
                     const widgetEspacoH(),
-                    widgetEvAvaliarEvento(),
+                    if (widget.evento.eventosdatas!.first.datahora!
+                            .formatDate(format: 'yyyy-MM-dd') ==
+                        DateTime.now()
+                            .toIso8601String()
+                            .formatDate(format: 'yyyy-MM-dd'))
+                      widgetEvAvaliarEvento(),
                     const widgetEspacoH(),
                     const widgetEspacoH(),
                     const widgetEspacoH(),
@@ -487,128 +494,160 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
     );
   }
 
+  Future<ListaUsuarioAvaliacao> getdadosAvaliacao() async {
+    ListaUsuarioAvaliacao lista = ListaUsuarioAvaliacao();
+
+    if (app.isLog()) {
+      UsuarioAvaliacaoController controller = UsuarioAvaliacaoController();
+
+      lista = await controller.UsuarioAvaliacaoGet(
+        userguidid: app.GetGuidId(),
+        eventoguidid: widget.evento.guidid!,
+        token: app.GetToken(),
+      );
+    }
+    return lista;
+  }
+
   Widget widgetEvAvaliarEvento() {
     var size = MediaQuery.of(context).size;
 
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        TextContrasteFonte(
-          text: "Avaliar Evento",
-          style: GoogleFonts.inter(
-            fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
-            fontWeight: FontWeight.w500,
-            color: corTextAtual,
-          ),
-        ),
-        const widgetEspacoH(),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    print(widget.evento.eventosdatas!.first.datahora);
+
+    return FutureBuilder(
+      future: getdadosAvaliacao(),
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const CircularProgressIndicator();
+        }
+
+        ListaUsuarioAvaliacao lista = snapshot.data as ListaUsuarioAvaliacao;
+
+        if (lista.usuariosavaliacoes != null &&
+            lista.usuariosavaliacoes!.isNotEmpty) {
+          selecionado = lista.usuariosavaliacoes!.first.avaliacao ?? 0;
+        }
+
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              width: size.width * 0.3,
-              child: GestureDetector(
-                onTap: () {
-                  confirmaparaAvaliar(1);
-                },
-                child: Column(
-                  children: [
-                    Icon(
-                      Icons.sentiment_satisfied_alt_outlined,
-                      color: selecionado == 1
-                          ? corBackgroundLaranja
-                          : corTextAtual,
-                      size: 50 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
-                    ),
-                    // widgetImagemInterna(
-                    //   imagem: Imagem(
-                    //     url: 'gostei_off.png',
-                    //   ),
-                    //   width: 60,
-                    //   height: 60,
-                    //   fit: BoxFit.contain,
-                    // ),
-                    TextContrasteFonte(
-                      text: 'Gostei',
-                      style: GoogleFonts.inter(
-                        fontSize: Fontes.tamanhoBase -
-                            (Fontes.tamanhoFonteBase16 - 14),
-                        fontWeight: FontWeight.w500,
-                        color: corTextAtual,
-                      ),
-                    ),
-                  ],
-                ),
+            const widgetEspacoH(),
+            const widgetEspacoH(),
+            TextContrasteFonte(
+              text: "Avaliar Evento",
+              style: GoogleFonts.inter(
+                fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
+                fontWeight: FontWeight.w500,
+                color: corTextAtual,
               ),
             ),
-            SizedBox(
-              width: size.width * 0.3,
-              child: GestureDetector(
-                onTap: () {
-                  confirmaparaAvaliar(2);
-                },
-                child: Column(
-                  children: [
-                    Icon(
-                      Icons.sentiment_dissatisfied_outlined,
-                      color: selecionado == 2
-                          ? corBackgroundLaranja
-                          : corTextAtual,
-                      size: 50 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+            const widgetEspacoH(),
+            const widgetEspacoH(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SizedBox(
+                  width: size.width * 0.3,
+                  child: GestureDetector(
+                    onTap: () {
+                      confirmaparaAvaliar(1);
+                    },
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.sentiment_satisfied_alt_outlined,
+                          color: selecionado == 1
+                              ? corBackgroundLaranja
+                              : corTextAtual,
+                          size: 50 /
+                              Fontes.tamanhoFonteBase16 *
+                              Fontes.tamanhoBase,
+                        ),
+                        TextContrasteFonte(
+                          text: 'Gostei',
+                          style: GoogleFonts.inter(
+                            fontSize: Fontes.tamanhoBase -
+                                (Fontes.tamanhoFonteBase16 - 14),
+                            fontWeight: FontWeight.w500,
+                            color: corTextAtual,
+                          ),
+                        ),
+                      ],
                     ),
-                    
-                    TextContrasteFonte(
-                      text: 'Não Gostei',
-                      style: GoogleFonts.inter(
-                        fontSize: Fontes.tamanhoBase -
-                            (Fontes.tamanhoFonteBase16 - 14),
-                        fontWeight: FontWeight.w500,
-                        color: corTextAtual,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
-            ),
-            SizedBox(
-              width: size.width * 0.3,
-              child: GestureDetector(
-                onTap: () {
-                  confirmaparaAvaliar(3);
-                },
-                child: Column(
-                  children: [
-                    Icon(
-                      Icons.sentiment_neutral_outlined,
-                      color: selecionado == 3
-                          ? corBackgroundLaranja
-                          : corTextAtual,
-                      size: 50 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+                SizedBox(
+                  width: size.width * 0.3,
+                  child: GestureDetector(
+                    onTap: () {
+                      confirmaparaAvaliar(2);
+                    },
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.sentiment_dissatisfied_outlined,
+                          color: selecionado == 2
+                              ? corBackgroundLaranja
+                              : corTextAtual,
+                          size: 50 /
+                              Fontes.tamanhoFonteBase16 *
+                              Fontes.tamanhoBase,
+                        ),
+                        TextContrasteFonte(
+                          text: 'Não Gostei',
+                          style: GoogleFonts.inter(
+                            fontSize: Fontes.tamanhoBase -
+                                (Fontes.tamanhoFonteBase16 - 14),
+                            fontWeight: FontWeight.w500,
+                            color: corTextAtual,
+                          ),
+                        ),
+                      ],
                     ),
-                    
-                    TextContrasteFonte(
-                      text: 'Não Aconteceu',
-                      style: GoogleFonts.inter(
-                        fontSize: Fontes.tamanhoBase -
-                            (Fontes.tamanhoFonteBase16 - 14),
-                        fontWeight: FontWeight.w500,
-                        color: corTextAtual,
-                      ),
-                    ),
-                  ],
+                  ),
                 ),
-              ),
+                SizedBox(
+                  width: size.width * 0.3,
+                  child: GestureDetector(
+                    onTap: () {
+                      confirmaparaAvaliar(3);
+                    },
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.sentiment_neutral_outlined,
+                          color: selecionado == 3
+                              ? corBackgroundLaranja
+                              : corTextAtual,
+                          size: 50 /
+                              Fontes.tamanhoFonteBase16 *
+                              Fontes.tamanhoBase,
+                        ),
+                        TextContrasteFonte(
+                          text: 'Não Aconteceu',
+                          style: GoogleFonts.inter(
+                            fontSize: Fontes.tamanhoBase -
+                                (Fontes.tamanhoFonteBase16 - 14),
+                            fontWeight: FontWeight.w500,
+                            color: corTextAtual,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
             ),
           ],
-        ),
-      ],
+        );
+      },
     );
   }
 
-  void confirmaparaAvaliar(int value) {
+  void confirmaparaAvaliar(int value) async {
     if (!app.isLog()) {
-      return widgetConfirma(
+      widgetConfirma(
         context: context,
         cancelar: true,
         descricao: 'Para avaliar um evento você precisa '
@@ -622,73 +661,15 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
           );
         },
       );
+    } else {
+      UsuarioAvaliacaoController ucontroller = UsuarioAvaliacaoController();
+      await ucontroller.UsuarioAvaliacaoPost(
+        userguidid: app.GetGuidId(),
+        avaliacao: value.toString(),
+        eventoguidid: widget.evento.guidid!,
+        token: app.GetToken(),
+      );
+      setState(() {});
     }
-    setState(() {
-      value != 0 && selecionado != value
-          ? selecionado = value
-          : selecionado = 0;
-    });
   }
-/*
-  BottomNavigationBar bottomNavi() {
-    return BottomNavigationBar(
-      onTap: (i) {
-        setState(
-          () {
-            opcaoSelecionadaNavBar = i;
-          },
-        );
-      },
-      backgroundColor: corBgAtual,
-      elevation: 0,
-      showUnselectedLabels: true,
-      unselectedFontSize: 12,
-      selectedFontSize: 12,
-      unselectedItemColor: corTextAtual,
-      selectedItemColor: corBackgroundLaranja,
-      currentIndex: opcaoSelecionadaNavBar,
-      items: [
-        BottomNavigationBarItem(
-          backgroundColor: corBgAtual,
-          icon: widgetImagemInterna(
-              imagem: Imagem(
-            url: 'fhome.png',
-          )),
-          label: "Home",
-        ),
-        BottomNavigationBarItem(
-          backgroundColor: corBgAtual,
-          icon: widgetImagemInterna(
-              imagem: Imagem(
-            url: 'fagenda.png',
-          )),
-          label: "Agenda",
-        ),
-        BottomNavigationBarItem(
-          backgroundColor: corBgAtual,
-          icon: widgetImagemInterna(
-              imagem: Imagem(
-            url: 'fmapa.png',
-          )),
-          label: "Mapa",
-        ),
-        BottomNavigationBarItem(
-          backgroundColor: corBgAtual,
-          icon: widgetImagemInterna(
-              imagem: Imagem(
-            url: 'ffavorito.png',
-          )),
-          label: "Favoritos",
-        ),
-        BottomNavigationBarItem(
-          backgroundColor: corBgAtual,
-          icon: widgetImagemInterna(
-              imagem: Imagem(
-            url: 'fperfil.png',
-          )),
-          label: "Perfil",
-        ),
-      ],
-    );
-  }*/
 }

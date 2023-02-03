@@ -46,6 +46,7 @@ class Evento {
   List<Eventoimagens>? eventosimagens;
   List<Eventocategorias>? eventoscategorias;
   double? distancia;
+  bool? passoupelofiltro;
 
   Evento({
     this.id,
@@ -72,6 +73,7 @@ class Evento {
     this.eventosimagens,
     this.eventoscategorias,
     this.distancia,
+    this.passoupelofiltro,
   });
 
   Evento.fromJson(Map<String, dynamic> json) {
@@ -96,6 +98,7 @@ class Evento {
     detalhelongo = json['detalhelongo'];
     urlavatar = json['urlavatar'];
     distancia = json['distancia'];
+    passoupelofiltro = true;
     if (json['eventosdatas'] != null) {
       eventosdatas = <Eventodatas>[];
       json['eventosdatas'].forEach((v) {

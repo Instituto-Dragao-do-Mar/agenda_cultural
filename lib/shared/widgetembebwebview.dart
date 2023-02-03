@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:html';
 import 'dart:ui' as ui;
-import 'package:flutter/cupertino.dart';
 
 class EmbedWebView extends StatefulWidget {
   final Key? key;

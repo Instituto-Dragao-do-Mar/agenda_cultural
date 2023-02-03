@@ -27,8 +27,8 @@ class PageEntrar extends StatefulWidget {
 }
 
 class _PageEntrarState extends State<PageEntrar> {
-  String emailInput = "";
-  String senhaInput = "";
+  String emailInput = "jader.aquino@redeinova.com.br";
+  String senhaInput = "Francisco@123";
   bool obscureTextSenha = true;
   late final AppModel app;
   late final UsuarioController usuarioController;
@@ -94,9 +94,9 @@ class _PageEntrarState extends State<PageEntrar> {
                 children: [
                   TextContrasteFonte(
                     text:
-                        "Para entrar é necessário que você tenha se cadastrado no nosso aplicativo. ",
+                        "Para entrar é necessário que você tenha se cadastrado no nosso aplicativo . ",
                     semantics:
-                        "Para entrar é necessário que você tenha se cadastrado no nosso aplicativo.",
+                        "Para entrar é necessário que você tenha se cadastrado no nosso aplicativo .",
                     style: Fontes.poppins12W400Grey((Fontes.tamanhoBase)),
                   ),
                   InkWell(

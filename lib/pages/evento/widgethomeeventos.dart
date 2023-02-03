@@ -225,10 +225,15 @@ class _widgetHomeEventosState extends State<widgetHomeEventos> {
             itemBuilder: (context, index) {
               //return Container(width: 100, height: 100,);
 
+              if(!app.listaEventos.eventos![index].passoupelofiltro! ) {
+                return const SizedBox.shrink();
+              }
+
               try {
                 if (widget.exibicaoEvento == ExibicaoEvento.Destaque &&
                     wrap &&
                     contadorEvento > 9) {
+                      
                   return const SizedBox.shrink();
                 }
 
@@ -244,6 +249,10 @@ class _widgetHomeEventosState extends State<widgetHomeEventos> {
                     evento: app.listaEventos.eventos![index],
                   );
                 }
+
+                //
+                // CATEGORIA AGORA É SOMENTE UMA
+                //
 
                 if (widget.exibicaoEvento == ExibicaoEvento.Destaque) {
                   List<int> listSel = app.filtro.categoriasSelecionadas!
