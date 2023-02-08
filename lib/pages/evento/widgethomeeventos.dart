@@ -26,9 +26,11 @@ class widgetHomeEventos extends StatefulWidget {
   const widgetHomeEventos({
     super.key,
     required this.exibicaoEvento,
+    this.titulo,
   });
 
   final ExibicaoEvento exibicaoEvento;
+  final String? titulo;
 
   @override
   State<widgetHomeEventos> createState() => _widgetHomeEventosState();
@@ -202,7 +204,7 @@ class _widgetHomeEventosState extends State<widgetHomeEventos> {
           width: double.infinity,
         ),
         widgetHeaderCards(
-          titulo: titulos[widget.exibicaoEvento.index],
+          titulo: widget.titulo ?? titulos[widget.exibicaoEvento.index],
           subtitulo: subtitulo,
           funcao: () async {
             //
@@ -225,7 +227,7 @@ class _widgetHomeEventosState extends State<widgetHomeEventos> {
             itemBuilder: (context, index) {
               //return Container(width: 100, height: 100,);
 
-              if(!app.listaEventos.eventos![index].passoupelofiltro! ) {
+              if (!app.listaEventos.eventos![index].passoupelofiltro!) {
                 return const SizedBox.shrink();
               }
 
@@ -233,7 +235,6 @@ class _widgetHomeEventosState extends State<widgetHomeEventos> {
                 if (widget.exibicaoEvento == ExibicaoEvento.Destaque &&
                     wrap &&
                     contadorEvento > 9) {
-                      
                   return const SizedBox.shrink();
                 }
 
@@ -250,6 +251,11 @@ class _widgetHomeEventosState extends State<widgetHomeEventos> {
                   );
                 }
 
+                if (widget.exibicaoEvento == ExibicaoEvento.Evento) {
+                  return widgetHomeCategoriasEventosContainer(
+                    evento: app.listaEventos.eventos![index],
+                  );
+                }
                 //
                 // CATEGORIA AGORA É SOMENTE UMA
                 //
@@ -295,7 +301,7 @@ class _widgetHomeEventosState extends State<widgetHomeEventos> {
 
                   return const SizedBox.shrink();
                 }
-              } catch (e) {                
+              } catch (e) {
                 return Text("Erro ${e.toString()}");
               }
 

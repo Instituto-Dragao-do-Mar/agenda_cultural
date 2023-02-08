@@ -16,6 +16,7 @@ import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetespacov.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:agendacultural/shared/widgetimagemhtml.dart';
+import 'package:agendacultural/shared/widgetpopup.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -512,7 +513,7 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
   Widget widgetEvAvaliarEvento() {
     var size = MediaQuery.of(context).size;
 
-    print(widget.evento.eventosdatas!.first.datahora);
+    //print(widget.evento.eventosdatas!.first.datahora);
 
     return FutureBuilder(
       future: getdadosAvaliacao(),
@@ -550,8 +551,27 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
                 SizedBox(
                   width: size.width * 0.3,
                   child: GestureDetector(
-                    onTap: () {
-                      confirmaparaAvaliar(1);
+                    onTap: () async {
+                      TextEditingController tedComentario =
+                          TextEditingController();
+
+                      await showFuturePopupDialog(
+                        context: context,
+                        edits: [
+                          EditPopup(
+                            edit: tedComentario,
+                            funcao: (v) {},
+                            tipo: EditPopupType.texto,
+                            titulo: "Comentário",
+                          ),
+                        ],
+                        funcaoBtnOk: () async {
+                          return true;
+                        },
+                        titulo: "Comentário",
+                      );
+
+                      confirmaparaAvaliar(1, tedComentario.text);
                     },
                     child: Column(
                       children: [
@@ -580,8 +600,27 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
                 SizedBox(
                   width: size.width * 0.3,
                   child: GestureDetector(
-                    onTap: () {
-                      confirmaparaAvaliar(2);
+                    onTap: () async {
+                      TextEditingController tedComentario =
+                          TextEditingController();
+
+                      await showFuturePopupDialog(
+                        context: context,
+                        edits: [
+                          EditPopup(
+                            edit: tedComentario,
+                            funcao: (v) {},
+                            tipo: EditPopupType.texto,
+                            titulo: "Comentário",
+                          ),
+                        ],
+                        funcaoBtnOk: () async {
+                          return true;
+                        },
+                        titulo: "Comentário",
+                      );
+
+                      confirmaparaAvaliar(2, tedComentario.text);
                     },
                     child: Column(
                       children: [
@@ -610,8 +649,26 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
                 SizedBox(
                   width: size.width * 0.3,
                   child: GestureDetector(
-                    onTap: () {
-                      confirmaparaAvaliar(3);
+                    onTap: () async {
+                      TextEditingController tedComentario =
+                          TextEditingController();
+                      await showFuturePopupDialog(
+                        context: context,
+                        edits: [
+                          EditPopup(
+                            edit: tedComentario,
+                            funcao: (v) {},
+                            tipo: EditPopupType.texto,
+                            titulo: "Comentário",
+                          ),
+                        ],
+                        funcaoBtnOk: () async {
+                          return true;
+                        },
+                        titulo: "Comentário",
+                      );
+
+                      confirmaparaAvaliar(3, tedComentario.text);
                     },
                     child: Column(
                       children: [
@@ -645,7 +702,7 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
     );
   }
 
-  void confirmaparaAvaliar(int value) async {
+  void confirmaparaAvaliar(int value, String comentario) async {
     if (!app.isLog()) {
       widgetConfirma(
         context: context,
@@ -668,6 +725,7 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
         avaliacao: value.toString(),
         eventoguidid: widget.evento.guidid!,
         token: app.GetToken(),
+        comentario: comentario ?? '',
       );
       setState(() {});
     }

@@ -1,16 +1,16 @@
-// ignore_for_file: camel_case_types
+// ignore_for_file: camel_case_types, must_be_immutable
 
 import 'dart:async';
 
+import 'package:agendacultural/dados/dados.dart';
 import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/model/espaco_model.dart';
 import 'package:agendacultural/model/evento_model.dart';
 import 'package:agendacultural/pages/evento/pageeventodetalhe.dart';
+import 'package:agendacultural/pages/evento/widgethomeeventos.dart';
 import 'package:agendacultural/pages/home/widgets/widgettopocomum.dart';
-import 'package:agendacultural/shared/constantes.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart';
 import 'package:provider/provider.dart';
 
 import '../../model/fontes.dart';
@@ -64,7 +64,50 @@ class _pageMapaState extends State<pageMapa> {
   }
 
   Future<void> processaMarkers() async {
+    BitmapDescriptor markerbitmapAzul = await BitmapDescriptor.fromAssetImage(
+      const ImageConfiguration(size: Size(32, 32)),
+      "imagens/markerazul.png",
+    );
+
+    BitmapDescriptor markerbitmapLaranja =
+        await BitmapDescriptor.fromAssetImage(
+      const ImageConfiguration(size: Size(32, 32)),
+      "imagens/markerlaranja.png",
+    );
+
+    double lat = await Dados.getDouble('local_atual_latitude');
+    double lon = await Dados.getDouble('local_atual_longitude');
+
+    if (lat != 0) {
+      _inicioCameraPosition = CameraPosition(
+        target: LatLng(
+          lat,
+          lon,
+        ),
+        zoom: 11,
+      );
+    }
+
     markers = {};
+
+    /* print(
+        " Minha localizacao: ${_inicioCameraPosition.target.latitude.toString()}");
+    print(
+        " Minha localizacao: ${_inicioCameraPosition.target.longitude.toString()}"); */
+
+    markers.add(
+      Marker(
+        markerId: const MarkerId('0'),
+        position: LatLng(_inicioCameraPosition.target.latitude,
+            _inicioCameraPosition.target.longitude),
+        icon: markerbitmapAzul,
+        infoWindow: InfoWindow(
+          title: 'Minha Localização',
+          snippet: '',
+          onTap: () {},
+        ),
+      ),
+    );
 
     if (app.listaEventos.eventos == null || app.listaEventos.eventos!.isEmpty) {
       return;
@@ -78,9 +121,7 @@ class _pageMapaState extends State<pageMapa> {
         Marker(
           markerId: MarkerId(ep.id.toString()),
           position: LatLng(ep.latitude ?? 0.0, ep.longitude ?? 0.00),
-          icon: BitmapDescriptor.defaultMarkerWithHue(
-            BitmapDescriptor.hueOrange,
-          ),
+          icon: markerbitmapLaranja,
           infoWindow: InfoWindow(
             title: ev.nome ?? '',
             snippet: ev.detalhe ?? '',
@@ -142,12 +183,11 @@ class _pageMapaState extends State<pageMapa> {
                         },
                       ),
                     ),
-                    const SizedBox(height: 10),
-                    Text(
-                      'Sugestões',
-                      style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
-                    ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 10),                    
+                    const widgetHomeEventos(
+                      exibicaoEvento: ExibicaoEvento.Evento,
+                      titulo: "Sugestões",
+                    )
                   ],
                 );
               },
