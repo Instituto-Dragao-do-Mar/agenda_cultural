@@ -1,3 +1,4 @@
+import 'package:agendacultural/controller/notificacao_controller.dart';
 import 'package:agendacultural/controller/usuario_controller.dart';
 import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/model/imagem_model.dart';
@@ -80,8 +81,7 @@ class _PageEntrarState extends State<PageEntrar> {
                 text: "Entrar",
                 style: GoogleFonts.poppins(
                   textStyle: TextStyle(
-                    fontSize:
-                        Fontes.tamanhoBase + 8,
+                    fontSize: Fontes.tamanhoBase + 8,
                     fontWeight: FontWeight.w500,
                     color: !Cores.contraste ? Colors.black : Colors.white,
                   ),
@@ -272,23 +272,27 @@ class _PageEntrarState extends State<PageEntrar> {
       );
     }
 
-    if(usuarioController.errorMessage == "Alterar Senha"){
+    if (usuarioController.errorMessage == "Alterar Senha") {
       return widgetMensagem(
-        context: context,
-        text: "Você precisa alterar sua senha para entrar no aplicativo.",
-        funcaoSim: () async {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const PageNovaSenha(),
-            ),
-          );
-        },
-        buttonText: "Alterar Senha"
-      );
+          context: context,
+          text: "Você precisa alterar sua senha para entrar no aplicativo.",
+          funcaoSim: () async {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const PageNovaSenha(),
+              ),
+            );
+          },
+          buttonText: "Alterar Senha");
     }
 
     if (app.isLog()) {
+      app.listaNotificacoes = await NotificacaoController().NotificacaoGet(
+        userguidid: app.GetGuidId(),
+        token: app.GetToken(),
+      );
+     
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(

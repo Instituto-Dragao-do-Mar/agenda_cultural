@@ -86,7 +86,7 @@ class EventoController extends BaseController {
 
     var operationSucceed = false;
 
-    var _body = jsonEncode(
+    var body = jsonEncode(
       <String, dynamic>{
         "guididoperador": userguidid,
         "idevento": idevento,
@@ -101,7 +101,7 @@ class EventoController extends BaseController {
           "Content-Type": "application/json",
           'Authorization': 'Bearer $token',
         },
-        body: _body,
+        body: body,
       );
       if (response.statusCode == 200) {
         operationSucceed = true;

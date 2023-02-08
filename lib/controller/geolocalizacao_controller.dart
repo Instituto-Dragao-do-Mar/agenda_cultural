@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'dart:convert';
 import 'package:agendacultural/controller/base_controller.dart';
 import 'package:agendacultural/model/geolocalizacao_model.dart';
@@ -18,7 +20,7 @@ class GeoLocalizacaoController extends BaseController {
     GeoLocalizacao retorno = GeoLocalizacao();
 
     String url =
-        "${endPointGeoLocalizacao}?latitude=${latitude}&longitude=${logitude}&localityLanguage=pt";
+        "$endPointGeoLocalizacao?latitude=$latitude&longitude=$logitude&localityLanguage=pt";
 
     try {
       var response = await http.get(

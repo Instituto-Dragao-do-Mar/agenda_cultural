@@ -20,7 +20,6 @@ import '../../shared/widgetTextFonteContraste.dart';
 import '../../shared/widgetemdesenvolvimento.dart';
 import '../home/widgets/widgettopocomum.dart';
 
-
 class PageCadastro extends StatefulWidget {
   const PageCadastro({Key? key}) : super(key: key);
 
@@ -435,7 +434,8 @@ class _PageCadastroState extends State<PageCadastro> {
                           if (await canLaunchUrl(uri)) {
                             // await launchUrl(uri,
                             //     mode: LaunchMode.externalApplication);
-                            await launchUrl(uri, mode: LaunchMode.platformDefault);
+                            await launchUrl(uri,
+                                mode: LaunchMode.platformDefault);
                           } else {
                             throw 'Could not launch $uri';
                           }
@@ -464,7 +464,8 @@ class _PageCadastroState extends State<PageCadastro> {
                           if (await canLaunchUrl(uri)) {
                             // await launchUrl(uri,
                             //     mode: LaunchMode.externalApplication);
-                            await launchUrl(uri, mode: LaunchMode.platformDefault);
+                            await launchUrl(uri,
+                                mode: LaunchMode.platformDefault);
                           } else {
                             throw 'Could not launch $uri';
                           }
@@ -509,9 +510,9 @@ class _PageCadastroState extends State<PageCadastro> {
   }
 
   Future<void> saveCadastro() async {
-    if (emailInput.characters.length == 0 ||
-        nomeInput.characters.length == 0 ||
-        senhaInput.characters.length == 0) {
+    if (emailInput.characters.isEmpty ||
+        nomeInput.characters.isEmpty ||
+        senhaInput.characters.isEmpty) {
       return widgetMensagem(
         context: context,
         text: "Os campos precisam ser preenchidos.",
@@ -552,10 +553,11 @@ class _PageCadastroState extends State<PageCadastro> {
     );
 
     if (usuarioController != null && errorMessage != "") {
-      return widgetMensagem(
+      widgetMensagem(
         context: context,
         text: errorMessage ?? "",
       );
+      return;
     }
 
     // Fluttertoast.showToast(
@@ -586,8 +588,6 @@ class _PageCadastroState extends State<PageCadastro> {
           "Clique no botão abaixo para prosseguir para o login.",
     );
 
-    await Future.delayed(const Duration(seconds: 1), () {
-
-    });
+    await Future.delayed(const Duration(seconds: 1), () {});
   }
 }

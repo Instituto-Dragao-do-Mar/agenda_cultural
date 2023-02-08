@@ -16,8 +16,8 @@ class ListaNotificacoes {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.notificacoes != null) {
-      data['notificacoes'] = this.notificacoes!.map((v) => v.toJson()).toList();
+    if (notificacoes != null) {
+      data['notificacoes'] = notificacoes!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -26,7 +26,7 @@ class ListaNotificacoes {
     int notificacoesnaolidas = 0;
     if (notificacoes != null && notificacoes!.isNotEmpty) {
       for (Notificacao n in notificacoes!) {
-        if (n.lida == 1) {
+        if (n.lida == 0) {
           notificacoesnaolidas++;
         }
       }
@@ -42,14 +42,17 @@ class Notificacao {
   String? eventoguidid;
   int? lida;
   String? nomeevento;
+  String? texto;
 
-  Notificacao(
-      {this.id,
-      this.datarecebimento,
-      this.usuarioguidid,
-      this.eventoguidid,
-      this.lida,
-      this.nomeevento});
+  Notificacao({
+    this.id,
+    this.datarecebimento,
+    this.usuarioguidid,
+    this.eventoguidid,
+    this.lida,
+    this.nomeevento,
+    this.texto,
+  });
 
   Notificacao.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -58,16 +61,18 @@ class Notificacao {
     eventoguidid = json['eventoguidid'];
     lida = json['lida'];
     nomeevento = json['nomeevento'];
+    texto = json['texto'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['datarecebimento'] = this.datarecebimento;
-    data['usuarioguidid'] = this.usuarioguidid;
-    data['eventoguidid'] = this.eventoguidid;
-    data['lida'] = this.lida;
-    data['nomeevento'] = this.nomeevento;
+    data['id'] = id;
+    data['datarecebimento'] = datarecebimento;
+    data['usuarioguidid'] = usuarioguidid;
+    data['eventoguidid'] = eventoguidid;
+    data['lida'] = lida;
+    data['nomeevento'] = nomeevento;
+    data['texto'] = texto;
     return data;
   }
 }

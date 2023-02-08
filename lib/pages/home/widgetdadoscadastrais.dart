@@ -105,7 +105,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
                 //   });
                 // },
                 decoration: InputDecoration(
-                  hintText: nomeInput ?? "",
+                  hintText: nomeInput,
                   filled: true,
                   fillColor: const Color.fromRGBO(217, 217, 217, 8.2),
                   contentPadding: const EdgeInsets.all(16),
@@ -150,7 +150,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
                 //   });
                 // },
                 decoration: InputDecoration(
-                  hintText: emailInput ?? "",
+                  hintText: emailInput ,
                   filled: true,
                   fillColor: const Color.fromRGBO(217, 217, 217, 8.2),
                   contentPadding: const EdgeInsets.all(16),

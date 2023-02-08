@@ -41,26 +41,22 @@ class NotificacaoController extends BaseController {
 
   Future<void> NotificacaoMarcaLidaPost({
     required String userguidid,
-    String? eventoguidid,
-    String? espacoguidid,
-    required String avaliacao,
-    String? comentario,
+    String? idnotificacao,
+
     required String token,
   }) async {
     ListaUsuarioAvaliacao lista = ListaUsuarioAvaliacao();
     lista.usuariosavaliacoes = [];
 
-    String url = "${urlApiIDM}avaliacao";
+    String url = "${urlApiIDM}notificacao/lida";
 
     try {
       //
       var parametros = jsonEncode(
         <String, dynamic>{
           'userguidid': userguidid,
-          'eventoguidid': eventoguidid,
-          'espacoguidid': espacoguidid,
-          'avaliacao': avaliacao,
-          'comentario': comentario
+          'id': idnotificacao,
+
         },
       );
       var response = await http.post(
