@@ -212,8 +212,8 @@ class pageMapaTopo extends StatelessWidget {
         notify!();
       },
       urlImagem1: 'seta.png',
-      funcaoImagem2: () async {},
-      urlImagem2: 'favoritos.png',
+      //funcaoImagem2: () async {},
+      //urlImagem2: 'favoritos.png',
     );
   }
 }

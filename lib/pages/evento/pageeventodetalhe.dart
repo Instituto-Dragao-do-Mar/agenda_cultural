@@ -568,7 +568,8 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
                         funcaoBtnOk: () async {
                           return true;
                         },
-                        titulo: "Comentário",
+
+                        titulo: "Comentário (opcional)",
                       );
 
                       confirmaparaAvaliar(1, tedComentario.text);
@@ -617,7 +618,7 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
                         funcaoBtnOk: () async {
                           return true;
                         },
-                        titulo: "Comentário",
+                        titulo: "Comentário (opcional)",
                       );
 
                       confirmaparaAvaliar(2, tedComentario.text);
@@ -665,7 +666,7 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
                         funcaoBtnOk: () async {
                           return true;
                         },
-                        titulo: "Comentário",
+                         titulo: "Comentário (opcional)",
                       );
 
                       confirmaparaAvaliar(3, tedComentario.text);
@@ -725,7 +726,7 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
         avaliacao: value.toString(),
         eventoguidid: widget.evento.guidid!,
         token: app.GetToken(),
-        comentario: comentario ?? '',
+        comentario: comentario,
       );
       setState(() {});
     }

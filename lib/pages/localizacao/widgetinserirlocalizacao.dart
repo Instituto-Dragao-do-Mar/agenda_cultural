@@ -26,6 +26,22 @@ class _WidgetInserirLocalizacaoState extends State<WidgetInserirLocalizacao> {
   String? nomeLocalizacao;
   TextEditingController tedLocal = TextEditingController();
 
+  String? enderecoAtual;
+  double? lat;
+  double? lon;
+  bool selecionado = false;
+
+  Future<void> getdados() async {
+    if (enderecoAtual == null || enderecoAtual!.isEmpty) {
+      enderecoAtual = await Dados.getString('local_atual_descricao');
+
+      if (enderecoAtual != null && enderecoAtual!.isNotEmpty) {
+        lat = await Dados.getDouble('local_atual_latitude');
+        lon = await Dados.getDouble('local_atual_longitude');
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,121 +59,126 @@ class _WidgetInserirLocalizacaoState extends State<WidgetInserirLocalizacao> {
           text: 'Inserir seu endereço atual',
         ),
       ),
-      body: Container(
-        padding: const EdgeInsets.only(left: 16, right: 16, top: 29),
-        child: Column(
-          children: [
-            const widgetEspacoH(
-              altura: 31,
-            ),
-            Text(
-              'Informe onde você esta no momento.',
-              style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
-            ),
-            Row(
+      body: FutureBuilder(
+        future: getdados(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+          return Container(
+            padding: const EdgeInsets.only(left: 16, right: 16, top: 29),
+            child: Column(
               children: [
-                Expanded(
-                  child: TextField(
-                    controller: tedLocal,
-                    style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
-                    onChanged: (value) {
-                      setState(
+                const widgetEspacoH(
+                  altura: 31,
+                ),
+                Text(
+                  'Informe onde você esta no momento.',
+                  style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
+                ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextField(
+                        controller: tedLocal,
+                        style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
+                        onChanged: (value) {
+                          /*setState(
                         () {
+                        nomeLocalizacao = value;
+                        },
+                      );*/
                           nomeLocalizacao = value;
                         },
-                      );
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () async {
+                        try {
+                          GeoData data = await Geocoder2.getDataFromAddress(
+                            language: 'pt-BR',
+                            address: tedLocal.text,
+                            googleMapApiKey:
+                                "AIzaSyDPiOz0fCI1sfLT3W2fe--unju-f2n9jbY",
+                          );
+
+                          // Se conseguiu achar, grava latitude e longitude
+
+                          GeoLocalizacao.local_atual_latitude = data.latitude;
+                          GeoLocalizacao.local_atual_longitude = data.longitude;
+
+                          await Dados.setDouble(
+                            'local_atual_latitude',
+                            data.latitude,
+                          );
+
+                          await Dados.setDouble(
+                            'local_atual_longitude',
+                            data.longitude,
+                          );
+
+                          await Dados.setString(
+                            'local_atual_descricao',
+                            data.address,
+                          );
+
+                          selecionado = false;
+                          enderecoAtual = null;
+                          setState(() {});
+                        } catch (e) {
+                          widgetErro(
+                            context: context,
+                            descricao: "Localização não encontrada, "
+                                "tente informar o endereço com "
+                                "rua, bairro e cidade.",
+                          );
+                          selecionado = false;
+                          enderecoAtual = null;
+                        }
+                      },
+                      icon: const Icon(Icons.search),
+                    ),
+                  ],
+                ),
+                const Divider(),
+                if (enderecoAtual != null && enderecoAtual!.isNotEmpty)
+                  InkWell(
+                    onTap: () {
+                      selecionado = !selecionado;
+                      setState(() {});
                     },
+                    child: ListTile(
+                      selected: selecionado,
+                      title: Text(enderecoAtual!),
+                      subtitle: Text(
+                        "Latidude: ${lat!.toStringAsFixed(8)}, Longitude: ${lon!.toStringAsFixed(8)}",
+                      ),
+                      selectedColor: corBackgroundLaranja,
+                    ),
                   ),
+                const widgetEspacoH(
+                  altura: 26,
                 ),
-                IconButton(
-                  onPressed: () async {
-                    try {
-                      GeoData data = await Geocoder2.getDataFromAddress(
-                        language: 'pt-BR',
-                        address: tedLocal.text,
-                        googleMapApiKey:
-                            "AIzaSyDPiOz0fCI1sfLT3W2fe--unju-f2n9jbY",
-                      );
-
-                      // Se conseguiu achar, grava latitude e longitude
-
-                      GeoLocalizacao.local_atual_latitude = data.latitude;
-                      GeoLocalizacao.local_atual_longitude = data.longitude;
-
-                      await Dados.setDouble(
-                        'local_atual_latitude',
-                        data.latitude,
-                      );
-
-                      await Dados.setDouble(
-                        'local_atual_longitude',
-                        data.longitude,
-                      );
-
-                      await Dados.setString(
-                        'local_atual_descricao',
-                        data.address,
-                      );
-                      
-                    } catch (e) {
-                      widgetErro(
-                        context: context,
-                        descricao: "Localização não encontrada, "
-                            "tente informar o endereço com "
-                            "rua, bairro e cidade.",
-                      );
-                    }
+                const Expanded(
+                  child: SizedBox.shrink(),
+                ),
+                widgetBotao(
+                  text: "Confirmar",
+                  function: () {
+                    Dados.setBool('localizacao', true);
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const pageLogin(),
+                      ),
+                    );
                   },
-                  icon: const Icon(Icons.search),
                 ),
+                const SizedBox(height: 60),
               ],
             ),
-            const widgetEspacoH(
-              altura: 26,
-            ),
-            const Expanded(
-              child: SizedBox.shrink(),
-            ),
-            widgetBotao(
-              text: "Confirmar",
-              function: () {
-                Dados.setBool('localizacao', true);
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const pageLogin(),
-                  ),
-                );
-              },
-            ),
-            const SizedBox(height: 60),
-            /*GestureDetector(
-              onTap: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const pageLogin(),
-                  ),
-                );
-              },
-              child: Container(
-                margin: const EdgeInsets.fromLTRB(32, 10, 32, 10),
-                width: double.infinity,
-                height: 65,
-                child: Center(
-                  child: Text(
-                    "Ir para login",
-                    semanticsLabel: "Entrar como vivitante",
-                    style: Fontes.roboto16W400EA5(Fontes.tamanhoBase),
-                  ),
-                ),
-              ),
-            ),
-            const widgetEspacoH(
-              altura: 32,
-            ),*/
-          ],
-        ),
+          );
+        },
       ),
     );
   }

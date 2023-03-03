@@ -1,6 +1,10 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'dart:html';
 
+import 'package:agendacultural/controller/geolocalizacao_controller.dart';
 import 'package:agendacultural/dados/dados.dart';
+import 'package:agendacultural/model/geolocalizacao_model.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
 import 'package:agendacultural/pages/localizacao/widgetinserirlocalizacao.dart';
@@ -8,6 +12,7 @@ import 'package:agendacultural/pages/home/widgets/widgettopo.dart';
 import 'package:agendacultural/pages/principal/home.dart';
 import 'package:agendacultural/shared/constantes.dart';
 import 'package:agendacultural/shared/themes.dart';
+import 'package:agendacultural/shared/widgetProcessando.dart';
 import 'package:agendacultural/shared/widgetbotao.dart';
 import 'package:agendacultural/shared/widgetemdesenvolvimento.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
@@ -64,16 +69,12 @@ class Widgetlocalizacao extends StatelessWidget {
             widgetBotao(
               text: "Ativar agora",
               function: () async {
-                print("000000");
-
                 Location _location = Location();
 
                 PermissionStatus _temPermissao =
                     await _location.hasPermission();
 
                 if (_temPermissao == PermissionStatus.granted) {
-                  print("55555");
-
                   await Dados.setBool('localizacao', true);
                   // ignore: use_build_context_synchronously
                   Navigator.pushReplacement(
@@ -94,6 +95,39 @@ class Widgetlocalizacao extends StatelessWidget {
                     );
                     return;
                   } else {
+                    await widgetProcessamento(
+                      mensagem: 'Obtendo localização ...',
+                    );
+                    Location location = Location();
+                    LocationData _locationData;
+
+                    _locationData = await location.getLocation();
+
+                    GeoLocalizacaoController geoController =
+                        GeoLocalizacaoController();
+
+                    GeoLocalizacao geo = await geoController.GeoLocalizacaoGet(
+                      latitude: _locationData.latitude!,
+                      logitude: _locationData.longitude!,
+                    );
+
+                    await Dados.setDouble(
+                      'local_atual_latitude',
+                      _locationData.latitude!,
+                    );
+
+                    await Dados.setDouble(
+                      'local_atual_longitude',
+                      _locationData.longitude!,
+                    );
+
+                    await Dados.setString(
+                      'local_atual_descricao',
+                      geo.getEndereco(),
+                    );
+
+                    await widgetProcessamento();
+
                     await Dados.setBool('localizacao', true);
 
                     Navigator.pushReplacement(

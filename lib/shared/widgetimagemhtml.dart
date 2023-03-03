@@ -17,6 +17,7 @@ class widgetImagemHtml extends StatelessWidget {
     ui.platformViewRegistry.registerViewFactory(
       imageUrl,
       (int _) => html.ImageElement()
+      
         ..style.borderTopLeftRadius = '7px'
         ..style.borderTopRightRadius = '7px'
         ..style.width = '100%'

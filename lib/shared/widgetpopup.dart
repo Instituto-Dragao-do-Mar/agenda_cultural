@@ -2,8 +2,8 @@
 
 import 'dart:html';
 
+import 'package:agendacultural/shared/themes.dart';
 import 'package:flutter/material.dart';
-
 
 enum EditPopupType {
   texto,
@@ -99,9 +99,9 @@ Future<void> showFuturePopupDialog({
     builder: (BuildContext context) {
       return AlertDialog(
         title: Text(titulo ?? "Informe os parâmetros"),
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(10.0))),
-        content: Container(
+        content: SizedBox(
           height: (edits!.length * 32) + 120.0,
           width: 300,
           child: Column(
@@ -123,7 +123,7 @@ Future<void> showFuturePopupDialog({
         ),
         actions: <Widget>[
           TextButton(
-            child: const Text('OK'),
+            child: const Text('Enviar'),
             onPressed: () async {
               if (funcaoBtnOk != null) {
                 bool retorno = await funcaoBtnOk();
@@ -144,13 +144,41 @@ Future<void> showFuturePopupDialog({
 Widget _getField(BuildContext context, EditPopup e) {
   switch (e.tipo) {
     case EditPopupType.texto:
-      return TextFormField(
-        controller: e.edit,
-        /* context: context,
-        controller: e.edit,
-        readonly: false,
-        labelText: e.titulo,
-        maxlines: e.maxlines == null ? 1 : e.maxlines, */
+      return Padding(
+        padding: const EdgeInsets.all(4),
+        child: TextFormField(
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: const Color.fromRGBO(217, 217, 217, 8.2),
+            contentPadding: const EdgeInsets.all(16),              
+            focusColor: Colors.black,
+            border: const OutlineInputBorder(
+              borderSide: BorderSide(
+                width: .5,
+                color: Color(0XFFD9D9D9),
+              ),
+              borderRadius: BorderRadius.all(
+                Radius.circular(5),
+              ),
+            ),
+            focusedBorder: OutlineInputBorder(
+              borderSide: BorderSide(
+                width: 3,
+                color: corBackgroundLaranja,
+              ),
+              borderRadius: const BorderRadius.all(
+                Radius.circular(5),
+              ),
+            ),
+          ),
+          controller: e.edit,
+          maxLines: 3,
+          /* context: context,
+          controller: e.edit,
+          readonly: false,
+          labelText: e.titulo,
+          maxlines: e.maxlines == null ? 1 : e.maxlines, */
+        ),
       );
     /*case EditPopupType.data:
       return WidgetData(
@@ -167,13 +195,12 @@ Widget _getField(BuildContext context, EditPopup e) {
       );
       break;*/
     case EditPopupType.drop:
-    return Container();
-
+      return Container();
 
     default:
-return Container();
+      return Container();
 
-     /* return widgetDropdownSearch(
+    /* return widgetDropdownSearch(
         hint: e.titulo,
         itens: e.opcoes,
         funcao: e.funcao,
