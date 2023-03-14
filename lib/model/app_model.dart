@@ -150,7 +150,7 @@ class AppModel extends ChangeNotifier {
         e.passoupelofiltro = true;
 
         /////////////////////////////////////////////////////////////////
-        /// INRESSOS
+        /// INGRESSOS
         /////////////////////////////////////////////////////////////////
 
         if (tedIngresso.text.isNotEmpty && tedIngresso.text != "Todos") {

@@ -423,8 +423,8 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
 
   Widget widgetEvMaisInformacoes() {
     String entrada = 'Entrada Gratuita';
-    if (widget.evento.urlentrada != null &&
-        widget.evento.urlentrada!.isNotEmpty) {
+    if (widget.evento.entradagratuita != null &&
+        widget.evento.entradagratuita! == 0) {
       entrada = 'Entrada Paga';
     }
 
