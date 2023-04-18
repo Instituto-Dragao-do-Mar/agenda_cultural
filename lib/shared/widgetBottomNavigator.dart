@@ -41,7 +41,7 @@ class _WidgetBottomNavigatorState extends State<WidgetBottomNavigator> {
                 url: 'fhome.png',
                 // bottomhome
               )),
-          label: "Home",
+          label: "Início",
         ),
         BottomNavigationBarItem(
           backgroundColor: corBgAtual,

@@ -66,6 +66,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
         elevation: 0,
         leadingWidth: 0,
         title: widgetTopoComum(
+          semanticsLabel: "Tela de Dados Cadastrais",
           text: "Dados Cadastrais",
           funcaoImagem1: () async {
             Navigator.pop(context);
@@ -73,7 +74,6 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
           urlImagem1: 'seta.png',
         ),
       ),
-     
       body: Container(
         padding: const EdgeInsets.all(16),
         child: SingleChildScrollView(
@@ -82,7 +82,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
             children: [
               Text(
                 "Dados cadastrais",
-                semanticsLabel: "Dados cadastrais",
+                semanticsLabel: "Dados cadastrais do usuário",
                 style: Fontes.poppins18W500Black((Fontes.tamanhoBase)),
               ),
               const widgetEspacoH(
@@ -90,7 +90,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
               ),
               Text(
                 "Nome",
-                semanticsLabel: "Digite seu Nome",
+                semanticsLabel: "Nome",
                 style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
               ),
               const widgetEspacoH(
@@ -136,7 +136,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
               Text(
                 "E-mail",
                 style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
-                semanticsLabel: "Digite seu E-mail",
+                semanticsLabel: "E-mail",
               ),
               const widgetEspacoH(
                 altura: 4,
@@ -150,7 +150,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
                 //   });
                 // },
                 decoration: InputDecoration(
-                  hintText: emailInput ,
+                  hintText: emailInput,
                   filled: true,
                   fillColor: const Color.fromRGBO(217, 217, 217, 8.2),
                   contentPadding: const EdgeInsets.all(16),
@@ -178,52 +178,56 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
               const widgetEspacoH(
                 altura: 15,
               ),
-              Text("Senha atual",
-                  style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
-                  semanticsLabel: "Digite sua Senha atual"),
+              Text(
+                "Senha atual",
+                style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
+                semanticsLabel: "Digite sua Senha atual",
+              ),
               const widgetEspacoH(
                 altura: 4,
               ),
-              TextField(
-                obscureText: obscureTextSenha,
-                style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
-                onChanged: (value) {
-                  setState(() {
-                    senhaInput = value;
-                  });
-                },
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: const Color.fromRGBO(217, 217, 217, 8.2),
-                  contentPadding: const EdgeInsets.all(16),
-                  suffixIcon: senhaInput != ''
-                      ? IconButton(
-                          onPressed: () {
-                            setState(() {
-                              obscureTextSenha = !obscureTextSenha;
-                            });
-                          },
-                          icon: Icon(obscureTextSenha
-                              ? Icons.visibility
-                              : Icons.visibility_off))
-                      : null,
-                  focusColor: Colors.black,
-                  border: const OutlineInputBorder(
-                    borderSide: BorderSide(
-                      width: .5,
-                      color: Color(0XFFD9D9D9),
+              Semantics(
+                child: TextField(
+                  obscureText: obscureTextSenha,
+                  style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
+                  onChanged: (value) {
+                    setState(() {
+                      senhaInput = value;
+                    });
+                  },
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: const Color.fromRGBO(217, 217, 217, 8.2),
+                    contentPadding: const EdgeInsets.all(16),
+                    suffixIcon: senhaInput != ''
+                        ? IconButton(
+                            onPressed: () {
+                              setState(() {
+                                obscureTextSenha = !obscureTextSenha;
+                              });
+                            },
+                            icon: Icon(obscureTextSenha
+                                ? Icons.visibility
+                                : Icons.visibility_off))
+                        : null,
+                    focusColor: Colors.black,
+                    border: const OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: .5,
+                        color: Color(0XFFD9D9D9),
+                      ),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(5),
+                      ),
                     ),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(5),
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      width: 3,
-                      color: corBackgroundLaranja,
-                    ),
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(5),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 3,
+                        color: corBackgroundLaranja,
+                      ),
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(5),
+                      ),
                     ),
                   ),
                 ),
@@ -239,72 +243,75 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
               const widgetEspacoH(
                 altura: 4,
               ),
-              TextField(
-                autofocus: false,
-                obscureText: obscureTextNovaSenha,
-                style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
-                onChanged: (value) {
-                  setState(() {
-                    value.characters.length >= 6
-                        ? haveMinDigits = 1
-                        : haveMinDigits = 0;
-                    value.contains(
-                      RegExp(r'[0-9]'),
-                    )
-                        ? haveNumber = 1
-                        : haveNumber = 0;
-                    value.contains(
-                      RegExp(r'[a-z]'),
-                    )
-                        ? haveLowerCase = 1
-                        : haveLowerCase = 0;
-                    value.contains(
-                      RegExp(r'[A-Z]'),
-                    )
-                        ? haveUpperCase = 1
-                        : haveUpperCase = 0;
+              Semantics(
+                label: "Campo de Nova Senha",
+                child: TextField(
+                  autofocus: false,
+                  obscureText: obscureTextNovaSenha,
+                  style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
+                  onChanged: (value) {
+                    setState(() {
+                      value.characters.length >= 6
+                          ? haveMinDigits = 1
+                          : haveMinDigits = 0;
+                      value.contains(
+                        RegExp(r'[0-9]'),
+                      )
+                          ? haveNumber = 1
+                          : haveNumber = 0;
+                      value.contains(
+                        RegExp(r'[a-z]'),
+                      )
+                          ? haveLowerCase = 1
+                          : haveLowerCase = 0;
+                      value.contains(
+                        RegExp(r'[A-Z]'),
+                      )
+                          ? haveUpperCase = 1
+                          : haveUpperCase = 0;
 
-                    rulesMatch = haveUpperCase +
-                        haveLowerCase +
-                        haveNumber +
-                        haveMinDigits;
-                    novaSenhaInput = value;
-                  });
-                },
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: const Color.fromRGBO(217, 217, 217, 8.2),
-                  contentPadding: const EdgeInsets.all(16),
-                  suffixIcon: novaSenhaInput != ''
-                      ? IconButton(
-                          onPressed: () {
-                            setState(() {
-                              obscureTextNovaSenha = !obscureTextNovaSenha;
-                            });
-                          },
-                          icon: Icon(
-                            obscureTextNovaSenha
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                          ),
-                        )
-                      : null,
-                  border: const OutlineInputBorder(
-                    borderSide: BorderSide(
-                      width: .5,
-                      color: Color(0XFFD9D9D9),
+                      rulesMatch = haveUpperCase +
+                          haveLowerCase +
+                          haveNumber +
+                          haveMinDigits;
+                      novaSenhaInput = value;
+                    });
+                  },
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: const Color.fromRGBO(217, 217, 217, 8.2),
+                    contentPadding: const EdgeInsets.all(16),
+                    suffixIcon: novaSenhaInput != ''
+                        ? IconButton(
+                            onPressed: () {
+                              setState(() {
+                                obscureTextNovaSenha = !obscureTextNovaSenha;
+                              });
+                            },
+                            icon: Icon(
+                              obscureTextNovaSenha
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                            ),
+                          )
+                        : null,
+                    border: const OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: .5,
+                        color: Color(0XFFD9D9D9),
+                      ),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(5),
+                      ),
                     ),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(5),
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      width: 3,
-                      color: corBackgroundLaranja,
-                    ),
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(5),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 3,
+                        color: corBackgroundLaranja,
+                      ),
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(5),
+                      ),
                     ),
                   ),
                 ),
@@ -422,8 +429,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
       webBgColor: Colors.black,
     );
 
-    if (senhaInput.characters.isEmpty ||
-        novaSenhaInput.characters.isEmpty) {
+    if (senhaInput.characters.isEmpty || novaSenhaInput.characters.isEmpty) {
       return widgetMensagem(
         context: context,
         text: "Os campos precisam ser preenchidos.",

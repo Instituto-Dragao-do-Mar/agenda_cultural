@@ -14,6 +14,7 @@ class widgetTopoComum extends StatelessWidget {
     this.urlImagem2,
     this.funcaoImagem1,
     this.funcaoImagem2,
+    this.semanticsLabel
   }) : super(key: key);
 
   final String? urlImagem1;
@@ -21,6 +22,7 @@ class widgetTopoComum extends StatelessWidget {
   final String? text;
   final Function? funcaoImagem1;
   final Function? funcaoImagem2;
+  final String? semanticsLabel;
 
   @override
   Widget build(BuildContext context) {
@@ -73,9 +75,12 @@ class widgetTopoComum extends StatelessWidget {
           widget1,
           const SizedBox(width: 8),
           Expanded(
-            child: Text(
-              text ?? "",
-              style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
+            child: Semantics(
+              label: semanticsLabel,
+              child: Text(
+                text ?? "",
+                style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
+              ),
             ),
           ),
           widget2,

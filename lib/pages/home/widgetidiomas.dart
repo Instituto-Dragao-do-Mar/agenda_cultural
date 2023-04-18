@@ -63,7 +63,7 @@ class _widgetIdiomasState extends State<widgetIdiomas> {
                 imagem: Imagem(
               url: 'fhome.png',
             )),
-            label: "Home",
+            label: "Início",
           ),
           BottomNavigationBarItem(
             backgroundColor: corBgAtual,

@@ -58,7 +58,7 @@ class Widgetlocalizacao extends StatelessWidget {
               altura: 17,
             ),
             Text(
-              "Ao definir sua localização facilitará a busca por"
+              "Definir sua localização facilitará a busca por"
               " informações relacionadas aos eventos que estão acontecendo"
               " ao seu redor e espaços culturais da cidade!",
               style: Fontes.poppins14W400Grey(Fontes.tamanhoBase),
@@ -159,7 +159,7 @@ class Widgetlocalizacao extends StatelessWidget {
                 child: Center(
                   child: Text(
                     "Inserir localização manualmente",
-                    semanticsLabel: "Clique Inserir localização manualmente",
+                    semanticsLabel: "Inserir localização manualmente",
                     style: Fontes.roboto16W400EA5(Fontes.tamanhoBase),
                   ),
                 ),

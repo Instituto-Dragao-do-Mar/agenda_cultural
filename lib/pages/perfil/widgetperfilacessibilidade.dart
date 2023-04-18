@@ -158,7 +158,7 @@ class _widgetPerfilAcessibilidadeState
               altura: 23,
             ),
             Text(
-              "Aumento da fonte",
+              "Alterar tamanho da fonte",
               style: Fontes.roboto16W400Black(Fontes.tamanhoBase),
             ),
             const widgetEspacoH(

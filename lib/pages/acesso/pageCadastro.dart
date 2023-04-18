@@ -82,8 +82,8 @@ class _PageCadastroState extends State<PageCadastro> {
             children: [
               TextContrasteFonte(
                 text:
-                    "Ao se cadastrar você terá acesso aos recursos de gerar alertas e avaliar espaços e eventos",
-                semantics: "Cadastro",
+                    "Ao se cadastrar, você terá acesso aos recursos de gerar alertas e de avaliar espaços e eventos",
+                semantics: "Ao se cadastrar, você terá acesso aos recursos de gerar alertas e de avaliar espaços e eventos",
                 style: Fontes.poppins12W400Grey((Fontes.tamanhoBase)),
               ),
               const widgetEspacoH(
@@ -496,7 +496,7 @@ class _PageCadastroState extends State<PageCadastro> {
               ),
               Semantics(
                 container: true,
-                label: "Botão Salvar",
+                label: "Botão Cadastrar-se",
                 child: widgetBotao(
                   text: "Cadastrar-se",
                   function: () async => await saveCadastro(),

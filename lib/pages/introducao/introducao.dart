@@ -88,9 +88,9 @@ class _pageIntroducaoState extends State<pageIntroducao> {
                 onSkip: () => _onIntroEnd(context),
                 showBackButton: _showBackButton,
                 showSkipButton: _showSkipButton,
-                doneSemantic: "Avançar",
+                doneSemantic: "Começar",
                 skipSemantic: "Pular",
-                nextSemantic: "Avançar",
+                nextSemantic: "Começar",
                 backSemantic: "Voltar",
                 back: const Text(
                   semanticsLabel: "Página Anterior",
@@ -258,15 +258,23 @@ class widgetStep extends StatelessWidget {
             Semantics(
               container: true,
               label: "Página $currentStep de 3",
-              child: RichText(
-                text: TextSpan(
-                    text: currentStep.toString(),
-                    style: Fontes.inter14W500EA5B0C(Fontes.tamanhoBase),
-                    children: [
-                      TextSpan(
-                          text: " de 3",
-                          style: Fontes.inter14W500Grey(Fontes.tamanhoBase))
-                    ]),
+              child: Container(
+                decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.8)
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(5),
+                  child: RichText(
+                    text: TextSpan(
+                        text: currentStep.toString(),
+                        style: Fontes.inter14W500EA5B0C(Fontes.tamanhoBase),
+                        children: [
+                          TextSpan(
+                              text: " de 3",
+                              style: Fontes.inter14W500Grey(Fontes.tamanhoBase))
+                        ]),
+                  ),
+                ),
               ),
             ),
             TextButton(
@@ -275,10 +283,18 @@ class widgetStep extends StatelessWidget {
                 Dados.jaVisualizouIntroducao = true;
                 funcao(context);
               },
-              child: Text(
-                "Pular introdução",
-                style: Fontes.inter14W500Grey(Fontes.tamanhoBase),
-                semanticsLabel: "Pular Introdução",
+              child: Container(
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.8)
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(5),
+                  child: Text(
+                    "Pular introdução",
+                    style: Fontes.inter14W500Grey(Fontes.tamanhoBase),
+                    semanticsLabel: "Pular Introdução",
+                  ),
+                ),
               ),
             )
           ],

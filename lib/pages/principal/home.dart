@@ -157,7 +157,7 @@ class _pagePrincipalState extends State<pagePrincipal> {
             url: 'fhome.png',
             // bottomhome
           )),
-          label: "Home",
+          label: "Início",
         ),
         BottomNavigationBarItem(
           backgroundColor: corBgAtual,

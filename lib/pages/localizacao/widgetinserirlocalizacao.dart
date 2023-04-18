@@ -73,7 +73,7 @@ class _WidgetInserirLocalizacaoState extends State<WidgetInserirLocalizacao> {
                   altura: 31,
                 ),
                 Text(
-                  'Informe onde você esta no momento.',
+                  'Informe onde você está no momento.',
                   style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
                 ),
                 Row(

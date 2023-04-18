@@ -247,7 +247,7 @@ class _PageEntrarState extends State<PageEntrar> {
               ),
               Semantics(
                 container: true,
-                label: "Botão Salvar",
+                label: "Botão Entrar",
                 child: widgetBotao(
                   text: "Entrar",
                   function: () async => await sendLogin(),

@@ -69,7 +69,7 @@ class _widgetNotificacoesState extends State<widgetNotificacoes> {
                 imagem: Imagem(
               url: 'fhome.png',
             )),
-            label: "Home",
+            label: "Início",
           ),
           BottomNavigationBarItem(
             backgroundColor: corBgAtual,

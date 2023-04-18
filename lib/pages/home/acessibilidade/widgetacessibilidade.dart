@@ -102,7 +102,7 @@ class _widgetAcessibilidadeState extends State<widgetAcessibilidade> {
               altura: 23,
             ),
             Text(
-              "Aumento da fonte",
+              "Alterar tamanho da fonte",
               style: Fontes.roboto16W400Black(fontSize.toInt()),
             ),
             const widgetEspacoH(
@@ -118,56 +118,65 @@ class _widgetAcessibilidadeState extends State<widgetAcessibilidade> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                IconButton(
-                  iconSize: 40,
-                  icon: widgetImagemInterna(
-                    imagem: Imagem(
-                      url: "small.png",
+                Semantics(
+                  label: fontSize > 16 ? "Diminuir fonte para " + (fontSize - 1).toString() + " pixels" : "Fonte no tamanho mínimo, impossível diminuir",
+                  child: IconButton(
+                    iconSize: 40,
+                    icon: widgetImagemInterna(
+                      imagem: Imagem(
+                        url: "small.png",
+                      ),
                     ),
+                    onPressed: () {
+                      setState(() {
+                        if (fontSize > 16) {
+                          fontSize--;
+                        }
+                        setFontSize(fontSize);
+                      });
+                    },
                   ),
-                  onPressed: () {
-                    setState(() {
-                      if (fontSize > 16) {
-                        fontSize--;
-                      }
-                      setFontSize(fontSize);
-                    });
-                  },
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text("A",
-                        style: GoogleFonts.inter(
-                          textStyle: TextStyle(
-                            fontSize: fontSize,
-                            fontWeight: FontWeight.w400,
-                            color: !Cores.contraste
-                                ? Color(0XFF000000)
-                                : Colors.white,
-                          ),
-                        )),
+                    Semantics(
+                      label: "Exemplo de texto na fonte atual",
+                      child: Text("Exemplo de texto na fonte atual",
+                          style: GoogleFonts.inter(
+                            textStyle: TextStyle(
+                              fontSize: fontSize,
+                              fontWeight: FontWeight.w400,
+                              color: !Cores.contraste
+                                  ? Color(0XFF000000)
+                                  : Colors.white,
+                            ),
+                          )),
+                    ),
                     Text(
-                      "$fontSize px",
+                      "Tamanho da fonte atual: $fontSize px",
                       style: Fontes.inter16W400Grey(fontSize.toInt()),
                     )
                   ],
                 ),
-                IconButton(
-                  iconSize: 40,
-                  icon: widgetImagemInterna(
-                    imagem: Imagem(
-                      url: "larger.png",
+                Semantics(
+                  label: fontSize < 24 ? "Aumentar fonte para " + (fontSize + 1).toString() + " pixels" : "Fonte no tamanho máximo, impossível aumentar",
+                  child: IconButton(
+                    iconSize: 40,
+                    icon: widgetImagemInterna(
+                      imagem: Imagem(
+                        url: "larger.png",
+                      ),
                     ),
+                    onPressed: () {
+                      setState(() {
+                        if (fontSize < 24) {
+                          fontSize++;
+                        }
+                        setFontSize(fontSize);
+                      });
+                    },
                   ),
-                  onPressed: () {
-                    setState(() {
-                      if (fontSize < 24) {
-                        fontSize++;
-                      }
-                      setFontSize(fontSize);
-                    });
-                  },
                 ),
               ],
             ),

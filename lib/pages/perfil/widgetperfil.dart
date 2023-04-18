@@ -92,37 +92,43 @@ class _widgetPerfilState extends State<widgetPerfil> {
               style: Fontes.poppins18W500Black(Fontes.tamanhoBase),
             ),
             const widgetEspacoH(altura: 12),
-            Padding(
-              padding: const EdgeInsets.only(left: 16),
-              child: widgetopacaoperfil(
-                subtitulo: "Termos e Serviços",
-                funcao: () async {
-                  var uri = Uri.parse(
-                      "https://grupo-manual.gitbook.io/app-cultura.ce/termos-e-servicos");
-                  if (await canLaunchUrl(uri)) {
-                    //await launchUrl(uri, mode: LaunchMode.externalApplication);
-                    await launchUrl(uri, mode: LaunchMode.platformDefault);
-                  } else {
-                    throw 'Could not launch $uri';
-                  }
-                },
+            Semantics(
+              label: "Termos e Serviços. Essa ação abrirá uma nova aba no navegador.",
+              child: Padding(
+                padding: const EdgeInsets.only(left: 16),
+                child: widgetopacaoperfil(
+                  subtitulo: "Termos e Serviços",
+                  funcao: () async {
+                    var uri = Uri.parse(
+                        "https://grupo-manual.gitbook.io/app-cultura.ce/termos-e-servicos");
+                    if (await canLaunchUrl(uri)) {
+                      //await launchUrl(uri, mode: LaunchMode.externalApplication);
+                      await launchUrl(uri, mode: LaunchMode.platformDefault);
+                    } else {
+                      throw 'Could not launch $uri';
+                    }
+                  },
+                ),
               ),
             ),
             const widgetEspacoH(altura: 16),
-            Padding(
-              padding: const EdgeInsets.only(left: 16),
-              child: widgetopacaoperfil(
-                subtitulo: "Ajuda",
-                funcao: () async {
-                  var uri = Uri.parse(
-                      "https://grupo-manual.gitbook.io/app-cultura.ce/ajuda");
-                  if (await canLaunchUrl(uri)) {
-                    //await launchUrl(uri, mode: LaunchMode.externalApplication);
-                    await launchUrl(uri, mode: LaunchMode.platformDefault);
-                  } else {
-                    throw 'Could not launch $uri';
-                  }
-                },
+            Semantics(
+              label: "Ajuda. Essa ação abrirá uma nova aba no navegador.",
+              child: Padding(
+                padding: const EdgeInsets.only(left: 16),
+                child: widgetopacaoperfil(
+                  subtitulo: "Ajuda",
+                  funcao: () async {
+                    var uri = Uri.parse(
+                        "https://grupo-manual.gitbook.io/app-cultura.ce/ajuda");
+                    if (await canLaunchUrl(uri)) {
+                      //await launchUrl(uri, mode: LaunchMode.externalApplication);
+                      await launchUrl(uri, mode: LaunchMode.platformDefault);
+                    } else {
+                      throw 'Could not launch $uri';
+                    }
+                  },
+                ),
               ),
             ),
             const widgetEspacoH(altura: 16),
@@ -134,20 +140,23 @@ class _widgetPerfilState extends State<widgetPerfil> {
               ),
             ),
             const widgetEspacoH(altura: 16),
-            Padding(
-              padding: const EdgeInsets.only(left: 16),
-              child: widgetopacaoperfil(
-                subtitulo: "Avalie o app",
-                funcao: () async {
-                  var uri = Uri.parse(
-                      "https://forms.gle/xzducZWvrhDsWeKt6");
-                  if (await canLaunchUrl(uri)) {
-                    //await launchUrl(uri, mode: LaunchMode.externalApplication);
-                    await launchUrl(uri, mode: LaunchMode.platformDefault);
-                  } else {
-                    throw 'Could not launch $uri';
-                  }
-                },
+            Semantics(
+              label: "Avalie o app. Essa ação abrirá uma nova aba no navegador.",
+              child: Padding(
+                padding: const EdgeInsets.only(left: 16),
+                child: widgetopacaoperfil(
+                  subtitulo: "Avalie o app",
+                  funcao: () async {
+                    var uri = Uri.parse(
+                        "https://forms.gle/xzducZWvrhDsWeKt6");
+                    if (await canLaunchUrl(uri)) {
+                      //await launchUrl(uri, mode: LaunchMode.externalApplication);
+                      await launchUrl(uri, mode: LaunchMode.platformDefault);
+                    } else {
+                      throw 'Could not launch $uri';
+                    }
+                  },
+                ),
               ),
             ),
             const widgetEspacoH(altura: 24),
@@ -206,7 +215,7 @@ class _widgetPerfilState extends State<widgetPerfil> {
             url: 'fhome.png',
             // bottomhome
           )),
-          label: "Home",
+          label: "Início",
         ),
         BottomNavigationBarItem(
           backgroundColor: corBgAtual,
