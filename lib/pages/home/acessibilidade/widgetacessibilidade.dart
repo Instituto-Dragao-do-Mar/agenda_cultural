@@ -154,7 +154,7 @@ class _widgetAcessibilidadeState extends State<widgetAcessibilidade> {
                           )),
                     ),
                     Text(
-                      "Tamanho da fonte atual: $fontSize px",
+                      "Tamanho da fonte: $fontSize px",
                       style: Fontes.inter16W400Grey(fontSize.toInt()),
                     )
                   ],
