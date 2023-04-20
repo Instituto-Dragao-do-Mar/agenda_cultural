@@ -54,62 +54,65 @@ class _widgetHomeCategoriasContainerState
         height: 120 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
         child: Column(
           children: [
-            GestureDetector(
-              onTap: () {
-                setState(() {
-                  app.filtro.categoriasSelecionadas!.clear();
-                  for (Categoria c in app.listaCategoria.categorias!) {
-                    if (c != widget.categoria) {
-                      c.selecionada = false;
+            Semantics(
+              label: "Categoria ${widget.categoria.nome!}",
+              child: GestureDetector(
+                onTap: () {
+                  setState(() {
+                    app.filtro.categoriasSelecionadas!.clear();
+                    for (Categoria c in app.listaCategoria.categorias!) {
+                      if (c != widget.categoria) {
+                        c.selecionada = false;
+                      }
                     }
-                  }
-                  widget.categoria.selecionada = !widget.categoria.selecionada!;
+                    widget.categoria.selecionada = !widget.categoria.selecionada!;
 
-                  if (!widget.categoria.selecionada!) {
-                    /*if (app.filtro.categoriasSelecionadas!
-                        .any((e) => e.id! == widget.categoria.id!)) {
-                      app.filtro.categoriasSelecionadas!
-                          .removeWhere((e) => e.id! == widget.categoria.id!);
-                    }*/
-                  } else {
-                    app.filtro.categoriasSelecionadas!.add(widget.categoria);
-                    /*if (!app.filtro.categoriasSelecionadas!
-                        .any((e) => e.id! == widget.categoria.id!)) {
+                    if (!widget.categoria.selecionada!) {
+                      /*if (app.filtro.categoriasSelecionadas!
+                          .any((e) => e.id! == widget.categoria.id!)) {
+                        app.filtro.categoriasSelecionadas!
+                            .removeWhere((e) => e.id! == widget.categoria.id!);
+                      }*/
+                    } else {
                       app.filtro.categoriasSelecionadas!.add(widget.categoria);
-                    }*/
-                  }
-                  app.notify();
-                });
-              },
-              child: CircleAvatar(
-                radius: 30,
-                backgroundColor: widget.categoria.selecionada!
-                    ? Colors.black
-                    : corBackgroundLaranja,
+                      /*if (!app.filtro.categoriasSelecionadas!
+                          .any((e) => e.id! == widget.categoria.id!)) {
+                        app.filtro.categoriasSelecionadas!.add(widget.categoria);
+                      }*/
+                    }
+                    app.notify();
+                  });
+                },
                 child: CircleAvatar(
-                  radius: widget.categoria.selecionada! ? 26 : 30,
-                  backgroundImage:
-                      widget.categoria.imagens!.first.url!.contains('http')
-                          ? widgetImagemExterna(
-                              imagem: Imagem(
-                                base64: widget.categoria.imagens!.first.base64,
-                                tipoimagem:
-                                    widget.categoria.imagens!.first.tipo! == 'U'
-                                        ? TipoImagem.url
-                                        : TipoImagem.base64,
-                                url: widget.categoria.imagens!.first.url,
+                  radius: 30,
+                  backgroundColor: widget.categoria.selecionada!
+                      ? Colors.black
+                      : corBackgroundLaranja,
+                  child: CircleAvatar(
+                    radius: widget.categoria.selecionada! ? 26 : 30,
+                    backgroundImage:
+                        widget.categoria.imagens!.first.url!.contains('http')
+                            ? widgetImagemExterna(
+                                imagem: Imagem(
+                                  base64: widget.categoria.imagens!.first.base64,
+                                  tipoimagem:
+                                      widget.categoria.imagens!.first.tipo! == 'U'
+                                          ? TipoImagem.url
+                                          : TipoImagem.base64,
+                                  url: widget.categoria.imagens!.first.url,
+                                ),
+                              )
+                            : widgetImagemInternaProvider(
+                                imagem: Imagem(
+                                  base64: widget.categoria.imagens!.first.base64,
+                                  tipoimagem:
+                                      widget.categoria.imagens!.first.tipo! == 'U'
+                                          ? TipoImagem.url
+                                          : TipoImagem.base64,
+                                  url: widget.categoria.imagens!.first.url,
+                                ),
                               ),
-                            )
-                          : widgetImagemInternaProvider(
-                              imagem: Imagem(
-                                base64: widget.categoria.imagens!.first.base64,
-                                tipoimagem:
-                                    widget.categoria.imagens!.first.tipo! == 'U'
-                                        ? TipoImagem.url
-                                        : TipoImagem.base64,
-                                url: widget.categoria.imagens!.first.url,
-                              ),
-                            ),
+                  ),
                 ),
               ),
             ),

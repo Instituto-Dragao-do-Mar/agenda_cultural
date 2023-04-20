@@ -73,70 +73,76 @@ class _WidgetInserirLocalizacaoState extends State<WidgetInserirLocalizacao> {
                   altura: 31,
                 ),
                 Text(
-                  'Informe onde você está no momento.',
+                  'Informe abaixo onde você está no momento.',
                   style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
                 ),
                 Row(
                   children: [
                     Expanded(
-                      child: TextField(
-                        controller: tedLocal,
-                        style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
-                        onChanged: (value) {
-                          /*setState(
-                        () {
-                        nomeLocalizacao = value;
-                        },
-                      );*/
+                      child: Semantics(
+                        label: "Digite onde você está no momento.",
+                        child: TextField(
+                          controller: tedLocal,
+                          style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
+                          onChanged: (value) {
+                            /*setState(
+                          () {
                           nomeLocalizacao = value;
-                        },
+                          },
+                        );*/
+                            nomeLocalizacao = value;
+                          },
+                        ),
                       ),
                     ),
-                    IconButton(
-                      onPressed: () async {
-                        try {
-                          GeoData data = await Geocoder2.getDataFromAddress(
-                            language: 'pt-BR',
-                            address: tedLocal.text,
-                            googleMapApiKey:
-                                "AIzaSyDPiOz0fCI1sfLT3W2fe--unju-f2n9jbY",
-                          );
+                    Semantics(
+                      label: "Clique para pesquisar a localização.",
+                      child: IconButton(
+                        onPressed: () async {
+                          try {
+                            GeoData data = await Geocoder2.getDataFromAddress(
+                              language: 'pt-BR',
+                              address: tedLocal.text,
+                              googleMapApiKey:
+                                  "AIzaSyDPiOz0fCI1sfLT3W2fe--unju-f2n9jbY",
+                            );
 
-                          // Se conseguiu achar, grava latitude e longitude
+                            // Se conseguiu achar, grava latitude e longitude
 
-                          GeoLocalizacao.local_atual_latitude = data.latitude;
-                          GeoLocalizacao.local_atual_longitude = data.longitude;
+                            GeoLocalizacao.local_atual_latitude = data.latitude;
+                            GeoLocalizacao.local_atual_longitude = data.longitude;
 
-                          await Dados.setDouble(
-                            'local_atual_latitude',
-                            data.latitude,
-                          );
+                            await Dados.setDouble(
+                              'local_atual_latitude',
+                              data.latitude,
+                            );
 
-                          await Dados.setDouble(
-                            'local_atual_longitude',
-                            data.longitude,
-                          );
+                            await Dados.setDouble(
+                              'local_atual_longitude',
+                              data.longitude,
+                            );
 
-                          await Dados.setString(
-                            'local_atual_descricao',
-                            data.address,
-                          );
+                            await Dados.setString(
+                              'local_atual_descricao',
+                              data.address,
+                            );
 
-                          selecionado = false;
-                          enderecoAtual = null;
-                          setState(() {});
-                        } catch (e) {
-                          widgetErro(
-                            context: context,
-                            descricao: "Localização não encontrada, "
-                                "tente informar o endereço com "
-                                "rua, bairro e cidade.",
-                          );
-                          selecionado = false;
-                          enderecoAtual = null;
-                        }
-                      },
-                      icon: const Icon(Icons.search),
+                            selecionado = false;
+                            enderecoAtual = null;
+                            setState(() {});
+                          } catch (e) {
+                            widgetErro(
+                              context: context,
+                              descricao: "Localização não encontrada, "
+                                  "tente informar o endereço com "
+                                  "rua, bairro e cidade.",
+                            );
+                            selecionado = false;
+                            enderecoAtual = null;
+                          }
+                        },
+                        icon: const Icon(Icons.search),
+                      ),
                     ),
                   ],
                 ),

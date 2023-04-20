@@ -75,7 +75,7 @@ class _pageLoginState extends State<pageLogin> {
                   alignment: Alignment.bottomCenter,
                   child: Semantics(
                     container: true,
-                    label: "Cultura c e, Agenda Cultural do Ceará",
+                    label: "Logo do Cultura cê é, Agenda Cultural do Ceará",
                     child: widgetImagemInterna(
                       width: 247,
                       height: 224,

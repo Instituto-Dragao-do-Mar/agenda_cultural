@@ -127,7 +127,7 @@ class _PageEntrarState extends State<PageEntrar> {
                   TextContrasteFonte(
                     text: "E-mail",
                     style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
-                    semantics: "Digite seu E-mail",
+                    semantics: "Rótulo de E-mail",
                   ),
                   TextContrasteFonte(
                     text: " *",
@@ -141,14 +141,17 @@ class _PageEntrarState extends State<PageEntrar> {
               const widgetEspacoH(
                 altura: 4,
               ),
-              TextField(
-                style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
-                onChanged: (value) {
-                  setState(() {
-                    emailInput = value;
-                  });
-                },
-                decoration: textfieldDadosCadastro,
+              Semantics(
+                label: "Campo para digitação de email",
+                child: TextField(
+                  style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
+                  onChanged: (value) {
+                    setState(() {
+                      emailInput = value;
+                    });
+                  },
+                  decoration: textfieldDadosCadastro,
+                ),
               ),
               const widgetEspacoH(
                 altura: 15,
@@ -158,7 +161,7 @@ class _PageEntrarState extends State<PageEntrar> {
                   TextContrasteFonte(
                     text: "Senha",
                     style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
-                    semantics: "Digite sua Senha",
+                    semantics: "Rótulo de Senha",
                   ),
                   TextContrasteFonte(
                     text: " *",
@@ -172,46 +175,52 @@ class _PageEntrarState extends State<PageEntrar> {
               const widgetEspacoH(
                 altura: 4,
               ),
-              TextField(
-                obscureText: obscureTextSenha,
-                style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
-                onChanged: (value) {
-                  setState(() {
-                    senhaInput = value;
-                  });
-                },
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: const Color.fromRGBO(217, 217, 217, 8.2),
-                  contentPadding: const EdgeInsets.all(16),
-                  suffixIcon: senhaInput != ''
-                      ? IconButton(
-                          onPressed: () {
-                            setState(() {
-                              obscureTextSenha = !obscureTextSenha;
-                            });
-                          },
-                          icon: Icon(obscureTextSenha
-                              ? Icons.visibility
-                              : Icons.visibility_off))
-                      : null,
-                  focusColor: Colors.black,
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      width: 3,
-                      color: corBackgroundLaranja,
+              Semantics(
+                label: "Campo para digitação de senha",
+                child: TextField(
+                  obscureText: obscureTextSenha,
+                  style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
+                  onChanged: (value) {
+                    setState(() {
+                      senhaInput = value;
+                    });
+                  },
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: const Color.fromRGBO(217, 217, 217, 8.2),
+                    contentPadding: const EdgeInsets.all(16),
+                    suffixIcon: senhaInput != ''
+                        ? Semantics(
+                          label: obscureTextSenha ? "Clique para mostrar a senha" : "Clique para ocultar a senha",
+                          child: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  obscureTextSenha = !obscureTextSenha;
+                                });
+                              },
+                              icon: Icon(obscureTextSenha
+                                  ? Icons.visibility
+                                  : Icons.visibility_off)),
+                        )
+                        : null,
+                    focusColor: Colors.black,
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 3,
+                        color: corBackgroundLaranja,
+                      ),
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(5),
+                      ),
                     ),
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(5),
-                    ),
-                  ),
-                  border: const OutlineInputBorder(
-                    borderSide: BorderSide(
-                      width: 3,
-                      color: Color(0XFFD9D9D9),
-                    ),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(5),
+                    border: const OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 3,
+                        color: Color(0XFFD9D9D9),
+                      ),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(5),
+                      ),
                     ),
                   ),
                 ),

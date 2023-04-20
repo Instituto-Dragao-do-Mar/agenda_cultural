@@ -76,11 +76,11 @@ class _pageIntroducaoState extends State<pageIntroducao> {
               container: true,
               sortKey: const OrdinalSortKey(2),
               child: IntroductionScreen(
-                isProgress: false,                
+                isProgress: false,
                 key: introKey,
                 onChange: (value) {
-                  currentStep = value+1;
-                  app.notify();                 
+                  currentStep = value + 1;
+                  app.notify();
                 },
                 onDone: () => {
                   _onIntroEnd(context),
@@ -88,9 +88,9 @@ class _pageIntroducaoState extends State<pageIntroducao> {
                 onSkip: () => _onIntroEnd(context),
                 showBackButton: _showBackButton,
                 showSkipButton: _showSkipButton,
-                doneSemantic: "Começar",
+                // doneSemantic: "Começar",
                 skipSemantic: "Pular",
-                nextSemantic: "Começar",
+                // nextSemantic: "Começar",
                 backSemantic: "Voltar",
                 back: const Text(
                   semanticsLabel: "Página Anterior",
@@ -143,15 +143,13 @@ class _pageIntroducaoState extends State<pageIntroducao> {
                   height: 60,
                   child: Semantics(
                     container: true,
-                    label: "Ir para recursos de acessibilidade",
                     child: widgetBottomBotao(
                       text: "Ir para recursos de acessibilidade",
                       function: () {
                         if (!Dados.jaVisualizouCookies) {
                           widgetMensagem(
                             context: context,
-                            text:
-                                "A acessibilidade só pode ser acessada se "
+                            text: "A acessibilidade só pode ser acessada se "
                                 "você permitir o uso de cookies.",
                           );
                           return;
@@ -242,14 +240,12 @@ class widgetStep extends StatelessWidget {
     return Column(
       children: [
         StepProgressIndicator(
-
           //mainAxisAlignment: MainAxisAlignment.center,
           totalSteps: totalSteps,
           currentStep: currentStep,
           //selectedGradientColor: gradientPrincipal,
           unselectedColor: Colors.grey,
           selectedColor: const Color(0xFFE83C3B),
-         
         ),
         widgetEspacoH(altura: 24),
         Row(
@@ -257,11 +253,11 @@ class widgetStep extends StatelessWidget {
           children: [
             Semantics(
               container: true,
-              label: "Página $currentStep de 3",
+              label: "Página "
+              // "$currentStep de 3"
+              ,
               child: Container(
-                decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.8)
-                ),
+                decoration: BoxDecoration(color: Colors.black.withOpacity(0.8)),
                 child: Padding(
                   padding: const EdgeInsets.all(5),
                   child: RichText(
@@ -284,9 +280,7 @@ class widgetStep extends StatelessWidget {
                 funcao(context);
               },
               child: Container(
-                decoration: BoxDecoration(
-                  color: Colors.black.withOpacity(0.8)
-                ),
+                decoration: BoxDecoration(color: Colors.black.withOpacity(0.8)),
                 child: Padding(
                   padding: const EdgeInsets.all(5),
                   child: Text(

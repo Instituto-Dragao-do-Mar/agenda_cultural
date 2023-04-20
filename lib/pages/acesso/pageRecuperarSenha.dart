@@ -48,11 +48,14 @@ class _PageRecuperarSenhaState extends State<PageRecuperarSenha> {
         //     imagem: Imagem(url: 'seta.png'),
         //   ),
         // ),
-        title: widgetTopoComum(
-          funcaoImagem1: () async {
-            Navigator.pop(context);
-          },
-          urlImagem1: 'seta.png',
+        title: Semantics(
+          label: "Tela de recuperação de senha",
+          child: widgetTopoComum(
+            funcaoImagem1: () async {
+              Navigator.pop(context);
+            },
+            urlImagem1: 'seta.png',
+          ),
         ),
       ),
       body: Container(
@@ -70,7 +73,7 @@ class _PageRecuperarSenhaState extends State<PageRecuperarSenha> {
                     text:
                         "Insira um email para receber o link de recuperação de senha.",
                     semantics:
-                        "Insira um email para receber o link de recuperação de senha.",
+                        "Insira um email abaixo para receber o link de recuperação de senha.",
                     style: Fontes.poppins12W400Grey((Fontes.tamanhoBase)),
                   ),
                 ],
@@ -83,7 +86,7 @@ class _PageRecuperarSenhaState extends State<PageRecuperarSenha> {
                   TextContrasteFonte(
                     text: "E-mail",
                     style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
-                    semantics: "Digite seu E-mail",
+                    semantics: "Rótulo de E-mail",
                   ),
                   TextContrasteFonte(
                     text: " *",
