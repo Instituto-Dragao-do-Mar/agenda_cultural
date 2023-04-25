@@ -78,14 +78,17 @@ class _widgetAcessibilidadeState extends State<widgetAcessibilidade> {
                   "Alto contraste",
                   style: Fontes.roboto16W400Black(fontSize.toInt()),
                 ),
-                widgetBotaoSwitch(
-                  value: statusAltoContraste,
-                  function: (value) {
-                    setState(() {
-                      statusAltoContraste = value;
-                      setAltoContraste(statusAltoContraste);
-                    });
-                  },
+                Semantics(
+                  label: statusAltoContraste ? "Desativar alto contraste" : "Ativar alto contraste",
+                  child: widgetBotaoSwitch(
+                    value: statusAltoContraste,
+                    function: (value) {
+                      setState(() {
+                        statusAltoContraste = value;
+                        setAltoContraste(statusAltoContraste);
+                      });
+                    },
+                  ),
                 )
               ],
             ),
@@ -109,7 +112,7 @@ class _widgetAcessibilidadeState extends State<widgetAcessibilidade> {
               altura: 20,
             ),
             Text(
-              "Aumenta o tamanho da fonte do texto para 24px facilitando a leitura.",
+              "Aumenta o tamanho da fonte do texto para até 24px facilitando a leitura.",
               style: Fontes.poppins12W300Grey(fontSize.toInt()),
             ),
             const widgetEspacoH(
@@ -141,7 +144,7 @@ class _widgetAcessibilidadeState extends State<widgetAcessibilidade> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Semantics(
-                      label: "Exemplo de texto na fonte atual",
+                      container: true,
                       child: Text("Exemplo de texto na fonte atual",
                           style: GoogleFonts.inter(
                             textStyle: TextStyle(

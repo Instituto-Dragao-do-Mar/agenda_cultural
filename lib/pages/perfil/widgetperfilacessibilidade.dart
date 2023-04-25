@@ -134,14 +134,17 @@ class _widgetPerfilAcessibilidadeState
                   "Alto contraste",
                   style: Fontes.roboto16W400Black(Fontes.tamanhoBase),
                 ),
-                widgetBotaoSwitch(
-                  value: statusAltoContraste,
-                  function: (value) {
-                    setState(() {
-                      statusAltoContraste = value;
-                      setAltoContraste(statusAltoContraste);
-                    });
-                  },
+                Semantics(
+                  label: statusAltoContraste ? "Desativar alto contraste" : "Ativar alto contraste",
+                  child: widgetBotaoSwitch(
+                    value: statusAltoContraste,
+                    function: (value) {
+                      setState(() {
+                        statusAltoContraste = value;
+                        setAltoContraste(statusAltoContraste);
+                      });
+                    },
+                  ),
                 )
               ],
             ),

@@ -88,11 +88,15 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
                     style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
                     semantics: "Digite sua Senha",
                   ),
-                  TextContrasteFonte(
-                    text: " *",
-                    style: TextStyle(
-                      color: corBackgroundLaranja,
-                      fontSize: Fontes.tamanhoBase.toDouble(),
+                  Semantics(
+                    container: false,
+                    label: "Campo obrigatório",
+                    child: TextContrasteFonte(
+                      text: " *",
+                      style: TextStyle(
+                        color: corBackgroundLaranja,
+                        fontSize: Fontes.tamanhoBase.toDouble(),
+                      ),
                     ),
                   ),
                 ],

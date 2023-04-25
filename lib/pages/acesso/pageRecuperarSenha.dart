@@ -88,11 +88,15 @@ class _PageRecuperarSenhaState extends State<PageRecuperarSenha> {
                     style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
                     semantics: "Rótulo de E-mail",
                   ),
-                  TextContrasteFonte(
-                    text: " *",
-                    style: TextStyle(
-                      color: corBackgroundLaranja,
-                      fontSize: Fontes.tamanhoBase.toDouble(),
+                  Semantics(
+                    container: false,
+                    label: "Campo obrigatório",
+                    child: TextContrasteFonte(
+                      text: " *",
+                      style: TextStyle(
+                        color: corBackgroundLaranja,
+                        fontSize: Fontes.tamanhoBase.toDouble(),
+                      ),
                     ),
                   ),
                 ],
