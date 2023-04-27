@@ -129,7 +129,6 @@ class _pageAgendaState extends State<pageAgenda> {
                     DateTime.parse(tedInicio.text.substring(0, 10)),
                     DateTime.parse(tedTermino.text.substring(0, 10)),
                   );
-                 
 
                   if (!dataSelecionada
                       .compareTo(DateTime.now().add(const Duration(days: -1)))
@@ -230,8 +229,8 @@ class _pageAgendaState extends State<pageAgenda> {
               data: Theme.of(context).copyWith(
                 colorScheme: const ColorScheme.light(
                   primary: Color(0xFFE83C3B),
-                  onPrimary: Colors.white, 
-                  onSurface: Colors.black, 
+                  onPrimary: Colors.white,
+                  onSurface: Colors.black,
                 ),
               ),
               child: child!,
@@ -291,6 +290,7 @@ class _pageAgendaState extends State<pageAgenda> {
 // ignore: must_be_immutable
 class pageAgendaTopo extends StatelessWidget {
   Function? notify;
+
   pageAgendaTopo({super.key, this.notify});
 
   @override
@@ -301,6 +301,9 @@ class pageAgendaTopo extends StatelessWidget {
         notify!();
       },
       urlImagem1: 'seta.png',
+      labelImagem1: "Voltar para tela anterior",
+      labelImagem2: "Ir para tela de filtros",
+      semanticsLabel: "Página de agenda",
       funcaoImagem2: () {
         Navigator.push(
           context,

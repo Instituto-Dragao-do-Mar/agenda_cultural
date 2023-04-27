@@ -57,7 +57,9 @@ class _widgetPerfilAcessibilidadeState
           funcaoImagem1: () async {
             Navigator.pop(context);
           },
+          semanticsLabel: "Tela de acessibilidade",
           urlImagem1: 'seta.png',
+          labelImagem1: "Voltar para página anterior",
         ),
       ),
       // bottomNavigationBar: BottomNavigationBar(
@@ -168,7 +170,7 @@ class _widgetPerfilAcessibilidadeState
               altura: 20,
             ),
             Text(
-              "Aumenta o tamanho da fonte do texto para 24px facilitando a leitura.",
+              "Aumenta o tamanho da fonte do texto para até 24px facilitando a leitura.",
               style: Fontes.poppins12W300Grey(Fontes.tamanhoBase),
             ),
             const widgetEspacoH(
@@ -177,54 +179,63 @@ class _widgetPerfilAcessibilidadeState
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                IconButton(
-                  iconSize: 40,
-                  icon: widgetImagemInterna(
-                    imagem: Imagem(
-                      url: "small.png",
+                Semantics(
+                  label: fontSize > 16 ? "Diminuir fonte para " + (fontSize - 1).toString() + " pixels" : "Fonte no tamanho mínimo, impossível diminuir",
+                  child: IconButton(
+                    iconSize: 40,
+                    icon: widgetImagemInterna(
+                      imagem: Imagem(
+                        url: "small.png",
+                      ),
                     ),
+                    onPressed: () {
+                      setState(() {
+                        if (fontSize > 16) {
+                          fontSize--;
+                        }
+                        setFontSize(fontSize);
+                      });
+                    },
                   ),
-                  onPressed: () {
-                    setState(() {
-                      if (fontSize > 16) {
-                        fontSize--;
-                      }
-                      setFontSize(fontSize);
-                    });
-                  },
                 ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    Text("A",
-                        style: GoogleFonts.inter(
-                          textStyle: TextStyle(
-                            fontSize: fontSize,
-                            fontWeight: FontWeight.w400,
-                            color: corTextLocal,
-                          ),
-                        )),
+                    Semantics(
+                      container: true,
+                      child: Text("Exemplo de texto na fonte atual",
+                          style: GoogleFonts.inter(
+                            textStyle: TextStyle(
+                              fontSize: fontSize,
+                              fontWeight: FontWeight.w400,
+                              color: corTextLocal,
+                            ),
+                          )),
+                    ),
                     Text(
-                      "$fontSize px",
+                      "Tamanho da fonte: $fontSize px",
                       style: Fontes.inter16W400Grey(Fontes.tamanhoBase),
                     )
                   ],
                 ),
-                IconButton(
-                  iconSize: 40,
-                  icon: widgetImagemInterna(
-                    imagem: Imagem(
-                      url: "larger.png",
+                Semantics(
+                  label: fontSize < 24 ? "Aumentar fonte para " + (fontSize + 1).toString() + " pixels" : "Fonte no tamanho máximo, impossível aumentar",
+                  child: IconButton(
+                    iconSize: 40,
+                    icon: widgetImagemInterna(
+                      imagem: Imagem(
+                        url: "larger.png",
+                      ),
                     ),
+                    onPressed: () {
+                      setState(() {
+                        if (fontSize < 24) {
+                          fontSize++;
+                        }
+                        setFontSize(fontSize);
+                      });
+                    },
                   ),
-                  onPressed: () {
-                    setState(() {
-                      if (fontSize < 24) {
-                        fontSize++;
-                      }
-                      setFontSize(fontSize);
-                    });
-                  },
                 ),
               ],
             )

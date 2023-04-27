@@ -17,6 +17,8 @@ class WidgetTopoFavoritos extends StatelessWidget {
         notify!();
       },
       urlImagem1: 'seta.png',
+      labelImagem1: "Voltar para página anterior",
+        semanticsLabel: "Página de favoritos",
       funcaoImagem2: () {
         Navigator.push(
           context,
@@ -26,6 +28,7 @@ class WidgetTopoFavoritos extends StatelessWidget {
         );
       },
       urlImagem2: 'favoritos.png',
+      labelImagem2: "Filtrar",
     );
   }
 }

@@ -23,10 +23,12 @@ class _WidgetSobreState extends State<WidgetSobre> {
         leadingWidth: 0,
         title: widgetTopoComum(
           text: "Sobre o App",
+          semanticsLabel: "Sobre o Aplicativo",
           funcaoImagem1: () async {
             Navigator.pop(context);
           },
           urlImagem1: 'seta.png',
+          labelImagem1: "Voltar para página anterior",
         ),
       ),
       body: Center(

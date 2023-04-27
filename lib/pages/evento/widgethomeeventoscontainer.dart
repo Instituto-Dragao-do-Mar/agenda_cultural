@@ -142,11 +142,11 @@ class _widgetHomeCategoriasEventosContainerState
                                   ),
                                 ]),
                                 const widgetEspacoH(altura: 6),
-                                 mostraDatas(
+                                mostraDatas(
                                   widget.evento.eventosdatas!
                                       .map((e) => e.datahora!)
                                       .toList(),
-                                ), 
+                                ),
                                 //
                               ],
                             );
@@ -163,7 +163,12 @@ class _widgetHomeCategoriasEventosContainerState
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(top: 5),
-                            child: WidgetBotaoFavorito(evento: widget.evento),
+                            child: Semantics(
+                                container: false,
+                                label: favorito == 1 ? ("Remover " + widget.evento.nome.toString() + " dos favoritos") : "Adicionar " + widget.evento.nome.toString() + " aos favoritos",
+                                child: WidgetBotaoFavorito(
+                              evento: widget.evento,
+                            )),
                           ),
                         ],
                       ),

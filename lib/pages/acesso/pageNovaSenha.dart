@@ -58,6 +58,7 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
             Navigator.pop(context);
           },
           urlImagem1: 'seta.png',
+          labelImagem1: "Voltar para página anterior",
         ),
       ),
       body: Container(
@@ -207,18 +208,21 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
                   fillColor: const Color.fromRGBO(217, 217, 217, 8.2),
                   contentPadding: const EdgeInsets.all(16),
                   suffixIcon: confirmarSenhaInput != ''
-                      ? IconButton(
-                          onPressed: () {
-                            setState(() {
-                              obscureTextNovaSenha = !obscureTextNovaSenha;
-                            });
-                          },
-                          icon: Icon(
-                            obscureTextNovaSenha
-                                ? Icons.visibility
-                                : Icons.visibility_off,
+                      ? Semantics(
+                    label: obscureTextSenha ? "Clique para mostrar a senha" : "Clique para ocultar a senha",
+                        child: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                obscureTextNovaSenha = !obscureTextNovaSenha;
+                              });
+                            },
+                            icon: Icon(
+                              obscureTextNovaSenha
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                            ),
                           ),
-                        )
+                      )
                       : null,
                   border: const OutlineInputBorder(
                     borderSide: BorderSide(
@@ -330,7 +334,7 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
                 altura: 15,
               ),
               Semantics(
-                container: true,
+                container: false,
                 label: "Botão Salvar",
                 child: widgetBotao(
                   text: "Salvar",

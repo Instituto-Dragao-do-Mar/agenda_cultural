@@ -55,6 +55,7 @@ class _PageRecuperarSenhaState extends State<PageRecuperarSenha> {
               Navigator.pop(context);
             },
             urlImagem1: 'seta.png',
+            labelImagem1: "Voltar para página anterior",
           ),
         ),
       ),

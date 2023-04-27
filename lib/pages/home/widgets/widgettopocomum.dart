@@ -14,11 +14,15 @@ class widgetTopoComum extends StatelessWidget {
     this.urlImagem2,
     this.funcaoImagem1,
     this.funcaoImagem2,
+    this.labelImagem1,
+    this.labelImagem2,
     this.semanticsLabel
   }) : super(key: key);
 
   final String? urlImagem1;
+  final String? labelImagem1;
   final String? urlImagem2;
+  final String? labelImagem2;
   final String? text;
   final Function? funcaoImagem1;
   final Function? funcaoImagem2;
@@ -31,19 +35,23 @@ class widgetTopoComum extends StatelessWidget {
     if (urlImagem1 == null) {
       widget1 = const SizedBox.shrink();
     } else {
-      widget1 = GestureDetector(
-        onTap: () {
-          if (funcaoImagem1 != null) {
-            funcaoImagem1!();
-          }
-        },
-        child: widgetImagemInterna(
-          imagem: Imagem(
-            url: urlImagem1,
+      widget1 = Semantics(
+        container: false,
+        label: labelImagem1,
+        child: GestureDetector(
+          onTap: () {
+            if (funcaoImagem1 != null) {
+              funcaoImagem1!();
+            }
+          },
+          child: widgetImagemInterna(
+            imagem: Imagem(
+              url: urlImagem1,
+            ),
+            width: 24,
+            height: 24,
+            fit: BoxFit.contain,
           ),
-          width: 24,
-          height: 24,
-          fit: BoxFit.contain,
         ),
       );
     }
@@ -51,20 +59,24 @@ class widgetTopoComum extends StatelessWidget {
     if (urlImagem2 == null) {
       widget2 = const SizedBox.shrink();
     } else {
-      widget2 = GestureDetector(
-          onTap: () {
-            if (funcaoImagem2 != null) {
-              funcaoImagem2!();
-            }
-          },
-          child: widgetImagemInterna(
-            imagem: Imagem(
-              url: urlImagem2,
-            ),
-            width: 24,
-            height: 24,
-            fit: BoxFit.contain,
-          ));
+      widget2 = Semantics(
+        container: false,
+        label: labelImagem2,
+        child: GestureDetector(
+            onTap: () {
+              if (funcaoImagem2 != null) {
+                funcaoImagem2!();
+              }
+            },
+            child: widgetImagemInterna(
+              imagem: Imagem(
+                url: urlImagem2,
+              ),
+              width: 24,
+              height: 24,
+              fit: BoxFit.contain,
+            ),),
+      );
     }
 
     return SizedBox(

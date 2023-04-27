@@ -10,7 +10,9 @@ import 'package:provider/provider.dart';
 
 class widgetTopo extends StatelessWidget {
   Function? notify;
-  widgetTopo({Key? key, this.notify}) : super(key: key);
+  bool? notificacao;
+
+  widgetTopo({Key? key, this.notify, this.notificacao}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -35,27 +37,32 @@ class widgetTopo extends StatelessWidget {
           fit: BoxFit.contain,
         ),
         const Expanded(child: SizedBox.shrink()),
-        InkWell(
-          onTap: () {
-            Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => pageNotificacao(notify: notify),
-            ),
-          );
-          },
-          child: Badge(
-            isLabelVisible: (app.isLog() && nlidas > 0),
-            label: Text(nlidas.toString()),
-            backgroundColor: corBackgroundLaranja.withOpacity(.5),
-            child: widgetImagemInterna(
-              imagem: Imagem(url: 'iconenotificacao.png'),
-              width: 24,
-              height: 24,
-              fit: BoxFit.contain,
+        if (notificacao == true)
+          Semantics(
+            container: false,
+            label: "Notificações",
+            child: InkWell(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => pageNotificacao(notify: notify),
+                  ),
+                );
+              },
+              child: Badge(
+                isLabelVisible: (app.isLog() && nlidas > 0),
+                label: Text(nlidas.toString()),
+                backgroundColor: corBackgroundLaranja.withOpacity(.5),
+                child: widgetImagemInterna(
+                  imagem: Imagem(url: 'iconenotificacao.png'),
+                  width: 24,
+                  height: 24,
+                  fit: BoxFit.contain,
+                ),
+              ),
             ),
           ),
-        ),
       ],
     );
   }

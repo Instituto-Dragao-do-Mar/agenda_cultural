@@ -16,6 +16,7 @@ class widgetTopoPerfil extends StatelessWidget {
         notify!();
       },
       urlImagem1: 'seta.png',
+      semanticsLabel: "Página de perfil",
       funcaoImagem2: () {
         Navigator.push(
           context,
@@ -25,6 +26,8 @@ class widgetTopoPerfil extends StatelessWidget {
         );
       },
       urlImagem2: 'Logout.png',
+      labelImagem2: "Sair do aplicativo",
+      labelImagem1: "Voltar para página anterior",
     );
   }
 }

@@ -72,6 +72,7 @@ class _PageCadastroState extends State<PageCadastro> {
             Navigator.pop(context);
           },
           urlImagem1: 'seta.png',
+          labelImagem1: "Voltar para página anterior",
         ),
       ),
       body: Container(
@@ -108,14 +109,18 @@ class _PageCadastroState extends State<PageCadastro> {
               const widgetEspacoH(
                 altura: 4,
               ),
-              TextField(
-                style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
-                onChanged: (value) {
-                  setState(() {
-                    nomeInput = value;
-                  });
-                },
-                decoration: textfieldDadosCadastro,
+              Semantics(
+                container: false,
+                label: "Campo para digitação de nome",
+                child: TextField(
+                  style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
+                  onChanged: (value) {
+                    setState(() {
+                      nomeInput = value;
+                    });
+                  },
+                  decoration: textfieldDadosCadastro,
+                ),
               ),
               const widgetEspacoH(
                 altura: 15,
@@ -125,13 +130,17 @@ class _PageCadastroState extends State<PageCadastro> {
                   TextContrasteFonte(
                     text: "E-mail",
                     style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
-                    semantics: "Digite seu E-mail",
+                    semantics: "Digite seu E-mail abaixo",
                   ),
-                  TextContrasteFonte(
-                    text: " *",
-                    style: TextStyle(
-                      color: corBackgroundLaranja,
-                      fontSize: Fontes.tamanhoBase.toDouble(),
+                  Semantics(
+                    container: false,
+                    label: "Campo obrigatório",
+                    child: TextContrasteFonte(
+                      text: " *",
+                      style: TextStyle(
+                        color: corBackgroundLaranja,
+                        fontSize: Fontes.tamanhoBase.toDouble(),
+                      ),
                     ),
                   ),
                 ],
@@ -139,14 +148,18 @@ class _PageCadastroState extends State<PageCadastro> {
               const widgetEspacoH(
                 altura: 4,
               ),
-              TextField(
-                style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
-                onChanged: (value) {
-                  setState(() {
-                    emailInput = value;
-                  });
-                },
-                decoration: textfieldDadosCadastro,
+              Semantics(
+                container: false,
+                label: "Campo para digitação de email",
+                child: TextField(
+                  style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
+                  onChanged: (value) {
+                    setState(() {
+                      emailInput = value;
+                    });
+                  },
+                  decoration: textfieldDadosCadastro,
+                ),
               ),
               const widgetEspacoH(
                 altura: 15,
@@ -156,13 +169,17 @@ class _PageCadastroState extends State<PageCadastro> {
                   TextContrasteFonte(
                     text: "Senha",
                     style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
-                    semantics: "Digite sua Senha",
+                    semantics: "Digite sua Senha abaixo",
                   ),
-                  TextContrasteFonte(
-                    text: " *",
-                    style: TextStyle(
-                      color: corBackgroundLaranja,
-                      fontSize: Fontes.tamanhoBase.toDouble(),
+                  Semantics(
+                    container: false,
+                    label: "Campo obrigatório",
+                    child: TextContrasteFonte(
+                      text: " *",
+                      style: TextStyle(
+                        color: corBackgroundLaranja,
+                        fontSize: Fontes.tamanhoBase.toDouble(),
+                      ),
                     ),
                   ),
                 ],
@@ -170,69 +187,76 @@ class _PageCadastroState extends State<PageCadastro> {
               const widgetEspacoH(
                 altura: 4,
               ),
-              TextField(
-                obscureText: obscureTextSenha,
-                style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
-                onChanged: (value) {
-                  setState(() {
-                    value.characters.length >= 6
-                        ? haveMinDigits = 1
-                        : haveMinDigits = 0;
-                    value.contains(
-                      RegExp(r'[0-9]'),
-                    )
-                        ? haveNumber = 1
-                        : haveNumber = 0;
-                    value.contains(
-                      RegExp(r'[a-z]'),
-                    )
-                        ? haveLowerCase = 1
-                        : haveLowerCase = 0;
-                    value.contains(
-                      RegExp(r'[A-Z]'),
-                    )
-                        ? haveUpperCase = 1
-                        : haveUpperCase = 0;
+              Semantics(
+                container: false,
+                label: "Campo para digitação de senha",
+                child: TextField(
+                  obscureText: obscureTextSenha,
+                  style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
+                  onChanged: (value) {
+                    setState(() {
+                      value.characters.length >= 6
+                          ? haveMinDigits = 1
+                          : haveMinDigits = 0;
+                      value.contains(
+                        RegExp(r'[0-9]'),
+                      )
+                          ? haveNumber = 1
+                          : haveNumber = 0;
+                      value.contains(
+                        RegExp(r'[a-z]'),
+                      )
+                          ? haveLowerCase = 1
+                          : haveLowerCase = 0;
+                      value.contains(
+                        RegExp(r'[A-Z]'),
+                      )
+                          ? haveUpperCase = 1
+                          : haveUpperCase = 0;
 
-                    rulesMatch = haveUpperCase +
-                        haveLowerCase +
-                        haveNumber +
-                        haveMinDigits;
-                    senhaInput = value;
-                  });
-                },
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: const Color.fromRGBO(217, 217, 217, 8.2),
-                  contentPadding: const EdgeInsets.all(16),
-                  suffixIcon: senhaInput != ''
-                      ? IconButton(
-                          onPressed: () {
-                            setState(() {
-                              obscureTextSenha = !obscureTextSenha;
-                            });
-                          },
-                          icon: Icon(obscureTextSenha
-                              ? Icons.visibility
-                              : Icons.visibility_off))
-                      : null,
-                  focusColor: Colors.black,
-                  border: const OutlineInputBorder(
-                    borderSide: BorderSide(
-                      width: .5,
-                      color: Color(0XFFD9D9D9),
+                      rulesMatch = haveUpperCase +
+                          haveLowerCase +
+                          haveNumber +
+                          haveMinDigits;
+                      senhaInput = value;
+                    });
+                  },
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: const Color.fromRGBO(217, 217, 217, 8.2),
+                    contentPadding: const EdgeInsets.all(16),
+                    suffixIcon: senhaInput != ''
+                        ? Semantics(
+                          label: obscureTextSenha ? "Clique para mostrar a senha" : "Clique para ocultar a senha",
+                          child: IconButton(
+                              onPressed: () {
+                                setState(() {
+                                  obscureTextSenha = !obscureTextSenha;
+                                });
+                              },
+                              icon: Icon(obscureTextSenha
+                                  ? Icons.visibility
+                                  : Icons.visibility_off)),
+                        )
+                        : null,
+                    focusColor: Colors.black,
+                    border: const OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: .5,
+                        color: Color(0XFFD9D9D9),
+                      ),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(5),
+                      ),
                     ),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(5),
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      width: 3,
-                      color: corBackgroundLaranja,
-                    ),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(5),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 3,
+                        color: corBackgroundLaranja,
+                      ),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(5),
+                      ),
                     ),
                   ),
                 ),
@@ -247,11 +271,15 @@ class _PageCadastroState extends State<PageCadastro> {
                     semantics: "Digite sua senha novamente",
                     style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
                   ),
-                  TextContrasteFonte(
-                    text: " *",
-                    style: TextStyle(
-                      color: corBackgroundLaranja,
-                      fontSize: Fontes.tamanhoBase.toDouble(),
+                  Semantics(
+                    container: false,
+                    label: "Campo obrigatório",
+                    child: TextContrasteFonte(
+                      text: " *",
+                      style: TextStyle(
+                        color: corBackgroundLaranja,
+                        fontSize: Fontes.tamanhoBase.toDouble(),
+                      ),
                     ),
                   ),
                 ],
@@ -259,49 +287,53 @@ class _PageCadastroState extends State<PageCadastro> {
               const widgetEspacoH(
                 altura: 4,
               ),
-              TextField(
-                autofocus: false,
-                obscureText: obscureTextNovaSenha,
-                style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
-                onChanged: (value) {
-                  setState(() {
-                    confirmarSenhaInput = value;
-                  });
-                },
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: const Color.fromRGBO(217, 217, 217, 8.2),
-                  contentPadding: const EdgeInsets.all(16),
-                  suffixIcon: confirmarSenhaInput != ''
-                      ? IconButton(
-                          onPressed: () {
-                            setState(() {
-                              obscureTextNovaSenha = !obscureTextNovaSenha;
-                            });
-                          },
-                          icon: Icon(
-                            obscureTextNovaSenha
-                                ? Icons.visibility
-                                : Icons.visibility_off,
-                          ),
-                        )
-                      : null,
-                  border: const OutlineInputBorder(
-                    borderSide: BorderSide(
-                      width: .5,
-                      color: Color(0XFFD9D9D9),
+              Semantics(
+                container: false,
+                label: "Campo para digitar novamente a senha",
+                child: TextField(
+                  autofocus: false,
+                  obscureText: obscureTextNovaSenha,
+                  style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
+                  onChanged: (value) {
+                    setState(() {
+                      confirmarSenhaInput = value;
+                    });
+                  },
+                  decoration: InputDecoration(
+                    filled: true,
+                    fillColor: const Color.fromRGBO(217, 217, 217, 8.2),
+                    contentPadding: const EdgeInsets.all(16),
+                    suffixIcon: confirmarSenhaInput != ''
+                        ? IconButton(
+                            onPressed: () {
+                              setState(() {
+                                obscureTextNovaSenha = !obscureTextNovaSenha;
+                              });
+                            },
+                            icon: Icon(
+                              obscureTextNovaSenha
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                            ),
+                          )
+                        : null,
+                    border: const OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: .5,
+                        color: Color(0XFFD9D9D9),
+                      ),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(5),
+                      ),
                     ),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(5),
-                    ),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      width: 3,
-                      color: corBackgroundLaranja,
-                    ),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(5),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 3,
+                        color: corBackgroundLaranja,
+                      ),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(5),
+                      ),
                     ),
                   ),
                 ),
@@ -398,26 +430,30 @@ class _PageCadastroState extends State<PageCadastro> {
                   Wrap(
                     direction: Axis.horizontal,
                     children: [
-                      Checkbox(
-                        checkColor: Colors.white,
-                        fillColor: MaterialStateProperty.resolveWith((states) {
-                          const Set<MaterialState> interactiveStates =
-                              <MaterialState>{
-                            MaterialState.pressed,
-                            MaterialState.hovered,
-                            MaterialState.focused,
-                          };
-                          if (states.any(interactiveStates.contains)) {
-                            return Colors.grey;
-                          }
-                          return corBackgroundLaranja;
-                        }),
-                        value: isChecked,
-                        onChanged: (bool? value) {
-                          setState(() {
-                            isChecked = value!;
-                          });
-                        },
+                      Semantics(
+                        container: false,
+                        label: isChecked ? "Caixa marcada, clique duas vezes para desmarcar" : "Caixa desmarcada, clique duas vezes para marcar",
+                        child: Checkbox(
+                          checkColor: Colors.white,
+                          fillColor: MaterialStateProperty.resolveWith((states) {
+                            const Set<MaterialState> interactiveStates =
+                                <MaterialState>{
+                              MaterialState.pressed,
+                              MaterialState.hovered,
+                              MaterialState.focused,
+                            };
+                            if (states.any(interactiveStates.contains)) {
+                              return Colors.grey;
+                            }
+                            return corBackgroundLaranja;
+                          }),
+                          value: isChecked,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              isChecked = value!;
+                            });
+                          },
+                        ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 10),

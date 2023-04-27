@@ -46,11 +46,13 @@ class _pageNotificacaoState extends State<pageNotificacao> {
         leadingWidth: 0,
         title: widgetTopoComum(
           text: "Notificações",
+          semanticsLabel: "Página de Notificações",
           funcaoImagem1: () async {
             widget.notify!();
             Navigator.pop(context);
           },
           urlImagem1: 'seta.png',
+          labelImagem1: "Voltar para página anterior",
         ),
       ),
       body: Container(

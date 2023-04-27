@@ -212,6 +212,8 @@ class pageMapaTopo extends StatelessWidget {
         notify!();
       },
       urlImagem1: 'seta.png',
+      labelImagem1: "Voltar para página anterior",
+        semanticsLabel: "Página de mapa"
       //funcaoImagem2: () async {},
       //urlImagem2: 'favoritos.png',
     );

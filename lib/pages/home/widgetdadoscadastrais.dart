@@ -66,12 +66,13 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
         elevation: 0,
         leadingWidth: 0,
         title: widgetTopoComum(
-          semanticsLabel: "Tela de Dados Cadastrais",
+          semanticsLabel: "Tela de Dados Cadastrais. Se desejar, é possível alterar a senha nesta tela.",
           text: "Dados Cadastrais",
           funcaoImagem1: () async {
             Navigator.pop(context);
           },
           urlImagem1: 'seta.png',
+          labelImagem1: "Voltar para página anterior",
         ),
       ),
       body: Container(
@@ -96,36 +97,40 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
               const widgetEspacoH(
                 altura: 4,
               ),
-              TextField(
-                style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
-                enabled: false,
-                // onChanged: (value) {
-                //   setState(() {
-                //     nomeInput = value;
-                //   });
-                // },
-                decoration: InputDecoration(
-                  hintText: nomeInput,
-                  filled: true,
-                  fillColor: const Color.fromRGBO(217, 217, 217, 8.2),
-                  contentPadding: const EdgeInsets.all(16),
-                  focusColor: Colors.black,
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      width: 3,
-                      color: corBackgroundLaranja,
+              Semantics(
+                container: false,
+                label: "Nome do usuário " + nomeInput,
+                child: TextField(
+                  style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
+                  enabled: false,
+                  // onChanged: (value) {
+                  //   setState(() {
+                  //     nomeInput = value;
+                  //   });
+                  // },
+                  decoration: InputDecoration(
+                    hintText: nomeInput,
+                    filled: true,
+                    fillColor: const Color.fromRGBO(217, 217, 217, 8.2),
+                    contentPadding: const EdgeInsets.all(16),
+                    focusColor: Colors.black,
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 3,
+                        color: corBackgroundLaranja,
+                      ),
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(5),
+                      ),
                     ),
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(5),
-                    ),
-                  ),
-                  border: const OutlineInputBorder(
-                    borderSide: BorderSide(
-                      width: 3,
-                      color: Color(0XFFD9D9D9),
-                    ),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(5),
+                    border: const OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 3,
+                        color: Color(0XFFD9D9D9),
+                      ),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(5),
+                      ),
                     ),
                   ),
                 ),
@@ -141,36 +146,40 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
               const widgetEspacoH(
                 altura: 4,
               ),
-              TextField(
-                style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
-                enabled: false,
-                // onChanged: (value) {
-                //   setState(() {
-                //     emailInput = value;
-                //   });
-                // },
-                decoration: InputDecoration(
-                  hintText: emailInput,
-                  filled: true,
-                  fillColor: const Color.fromRGBO(217, 217, 217, 8.2),
-                  contentPadding: const EdgeInsets.all(16),
-                  focusColor: Colors.black,
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(
-                      width: 3,
-                      color: corBackgroundLaranja,
+              Semantics(
+                container: false,
+                label: "Email do usuário " + emailInput,
+                child: TextField(
+                  style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
+                  enabled: false,
+                  // onChanged: (value) {
+                  //   setState(() {
+                  //     emailInput = value;
+                  //   });
+                  // },
+                  decoration: InputDecoration(
+                    hintText: emailInput,
+                    filled: true,
+                    fillColor: const Color.fromRGBO(217, 217, 217, 8.2),
+                    contentPadding: const EdgeInsets.all(16),
+                    focusColor: Colors.black,
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 3,
+                        color: corBackgroundLaranja,
+                      ),
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(5),
+                      ),
                     ),
-                    borderRadius: const BorderRadius.all(
-                      Radius.circular(5),
-                    ),
-                  ),
-                  border: const OutlineInputBorder(
-                    borderSide: BorderSide(
-                      width: 3,
-                      color: Color(0XFFD9D9D9),
-                    ),
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(5),
+                    border: const OutlineInputBorder(
+                      borderSide: BorderSide(
+                        width: 3,
+                        color: Color(0XFFD9D9D9),
+                      ),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(5),
+                      ),
                     ),
                   ),
                 ),
@@ -181,7 +190,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
               Text(
                 "Senha atual",
                 style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
-                semanticsLabel: "Digite sua Senha atual",
+                semanticsLabel: "Senha atual",
               ),
               const widgetEspacoH(
                 altura: 4,
@@ -237,7 +246,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
               ),
               Text(
                 "Nova senha",
-                semanticsLabel: "Digite sua nova senha",
+                semanticsLabel: "Nova senha",
                 style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
               ),
               const widgetEspacoH(

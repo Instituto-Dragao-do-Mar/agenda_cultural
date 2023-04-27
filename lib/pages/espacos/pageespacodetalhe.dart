@@ -84,12 +84,16 @@ class _pageEspacoDetalheState extends State<pageEspacoDetalhe> {
       backgroundColor: corBgAtual,
       appBar: AppBar(
         backgroundColor: corBgAtual,
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: widgetImagemInterna(
-            imagem: Imagem(url: 'seta.png'),
+        leading: Semantics(
+          container: false,
+          label: "Voltar para tela anterior",
+          child: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: widgetImagemInterna(
+              imagem: Imagem(url: 'seta.png'),
+            ),
           ),
         ),
         centerTitle: false,
@@ -117,8 +121,11 @@ class _pageEspacoDetalheState extends State<pageEspacoDetalhe> {
           SizedBox(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.width * .7,
-            child: widgetImagemHtml(
-              url: widget.espaco.espacosimagens!.first.imagens!.first.url!,
+            child: Semantics(
+              label: "Imagem do espaço",
+              child: widgetImagemHtml(
+                url: widget.espaco.espacosimagens!.first.imagens!.first.url!,
+              ),
             ),
           ),
           Padding(

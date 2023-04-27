@@ -73,6 +73,7 @@ class _pageFiltroState extends State<pageFiltro> {
             funcaoImagem1: () async {
               Navigator.pop(context);
             },
+            labelImagem1: "Voltar para página anterior",
             urlImagem1: 'seta.png',
             funcaoImagem2: () {
               Navigator.push(
@@ -83,6 +84,7 @@ class _pageFiltroState extends State<pageFiltro> {
               );
             },
             urlImagem2: 'favoritos.png',
+            labelImagem2: "Filtrar",
           ),
           const SizedBox(height: 8,),
           Text(

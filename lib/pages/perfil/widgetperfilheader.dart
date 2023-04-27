@@ -43,12 +43,16 @@ class _widgetPerfilHeaderState extends State<widgetPerfilHeader> {
         elevation: 0,
         leadingWidth: 0,
         title: widgetTopoPerfil(),
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: widgetImagemInterna(
-            imagem: Imagem(url: 'seta.png'),
+        leading: Semantics(
+          container: false,
+          label: "Voltar para tela anterior",
+          child: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: widgetImagemInterna(
+              imagem: Imagem(url: 'seta.png'),
+            ),
           ),
         ),
       ),

@@ -60,6 +60,7 @@ class _PageEntrarState extends State<PageEntrar> {
             Navigator.pop(context);
           },
           urlImagem1: 'seta.png',
+          labelImagem1: "Voltar para página anterior",
         ),
       ),
       body: Container(

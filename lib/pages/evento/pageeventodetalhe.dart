@@ -52,6 +52,8 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
   var selecionado = 0;
   int opcaoSelecionadaNavBar = 0;
 
+  // var favoritos = app.listaFavoritos.favoritos != null?;
+
   Espaco? espaco;
   List<Widget> subPaginas = [
     const widgetHome(),
@@ -65,6 +67,7 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
   void initState() {
     super.initState();
     app = Provider.of<AppModel>(context, listen: false);
+    // var favoritos = app.listaFavoritos.favoritos != null?;
 
     int idEspaco = widget.evento.eventosdatas!.first.idespaco!;
     if (app.listaEspacos.espacos!.any((element) => element.id == idEspaco)) {
@@ -108,12 +111,16 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
       // bottomNavigationBar: bottomNavi(),
       appBar: AppBar(
         backgroundColor: corBgAtual,
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: widgetImagemInterna(
-            imagem: Imagem(url: 'seta.png'),
+        leading: Semantics(
+          container: false,
+          label: "Voltar para tela anterior",
+          child: GestureDetector(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: widgetImagemInterna(
+              imagem: Imagem(url: 'seta.png'),
+            ),
           ),
         ),
         centerTitle: false,
@@ -141,8 +148,11 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
           SizedBox(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.width * .7,
-            child: widgetImagemHtml(
-              url: widget.evento.eventosimagens!.first.imagens!.first.url!,
+            child: Semantics(
+              label: "Imagem do evento",
+              child: widgetImagemHtml(
+                url: widget.evento.eventosimagens!.first.imagens!.first.url!,
+              ),
             ),
           ),
           Padding(
@@ -153,12 +163,15 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    TextContrasteFonte(
-                      text: app.GetCategoriasEvento(widget.evento),
-                      style: GoogleFonts.inter(
-                        fontSize: Fontes.tamanhoBase -
-                            (Fontes.tamanhoFonteBase16 - 14),
-                        color: corBackgroundLaranja,
+                    Semantics(
+                      label: "Categoria: " + app.GetCategoriasEvento(widget.evento),
+                      child: TextContrasteFonte(
+                        text: app.GetCategoriasEvento(widget.evento),
+                        style: GoogleFonts.inter(
+                          fontSize: Fontes.tamanhoBase -
+                              (Fontes.tamanhoFonteBase16 - 14),
+                          color: corBackgroundLaranja,
+                        ),
                       ),
                     ),
                     const widgetEspacoH(),
@@ -386,7 +399,13 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
             );
           }).toList(),
         ),
-        WidgetBotaoFavorito(evento: widget.evento),
+        Semantics(
+            container: false,
+            // label: favorito == 1 ? ("Remover " + widget.evento.nome.toString() + " dos favoritos") : "Adicionar " + widget.evento.nome.toString() + " aos favoritos",
+            label: "Botão favorito",
+            child: WidgetBotaoFavorito(
+          evento: widget.evento,
+        )),
       ],
     );
   }
@@ -568,7 +587,6 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
                         funcaoBtnOk: () async {
                           return true;
                         },
-
                         titulo: "Comentário (opcional)",
                       );
 
@@ -666,7 +684,7 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
                         funcaoBtnOk: () async {
                           return true;
                         },
-                         titulo: "Comentário (opcional)",
+                        titulo: "Comentário (opcional)",
                       );
 
                       confirmaparaAvaliar(3, tedComentario.text);
