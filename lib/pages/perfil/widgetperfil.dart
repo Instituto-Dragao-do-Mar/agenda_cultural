@@ -16,6 +16,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../../shared/widgetemdesenvolvimento.dart';
+
 
 class widgetPerfil extends StatefulWidget {
   const widgetPerfil({super.key});
@@ -92,41 +94,57 @@ class _widgetPerfilState extends State<widgetPerfil> {
               style: Fontes.poppins18W500Black(Fontes.tamanhoBase),
             ),
             const widgetEspacoH(altura: 12),
-            Semantics(
-              label: "Termos e Serviços. Essa ação abrirá uma nova aba no navegador.",
-              child: Padding(
-                padding: const EdgeInsets.only(left: 16),
+            Padding(
+              padding: const EdgeInsets.only(left: 16),
+              child: Semantics(
+                container: true,
                 child: widgetopacaoperfil(
                   subtitulo: "Termos e Serviços",
                   funcao: () async {
-                    var uri = Uri.parse(
-                        "https://grupo-manual.gitbook.io/app-cultura.ce/termos-e-servicos");
-                    if (await canLaunchUrl(uri)) {
-                      //await launchUrl(uri, mode: LaunchMode.externalApplication);
-                      await launchUrl(uri, mode: LaunchMode.platformDefault);
-                    } else {
-                      throw 'Could not launch $uri';
-                    }
+                    widgetConfirma(
+                      context: context,
+                      cancelar: true,
+                      descricao: "Essa ação abrirá uma nova aba no navegador.",
+                      funcaoSim: () async {
+                        var uri = Uri.parse(
+                            "https://grupo-manual.gitbook.io/app-cultura.ce/termos-e-servicos");
+                        if (await canLaunchUrl(uri)) {
+                          //await launchUrl(uri, mode: LaunchMode.externalApplication);
+                          await launchUrl(uri, mode: LaunchMode.platformDefault);
+                        } else {
+                          throw 'Could not launch $uri';
+                        }
+                      }
+                    );
                   },
                 ),
               ),
             ),
             const widgetEspacoH(altura: 16),
-            Semantics(
-              label: "Ajuda. Essa ação abrirá uma nova aba no navegador.",
-              child: Padding(
-                padding: const EdgeInsets.only(left: 16),
+            Padding(
+              padding: const EdgeInsets.only(left: 16),
+              child: Semantics(
+                container: true,
                 child: widgetopacaoperfil(
                   subtitulo: "Ajuda",
                   funcao: () async {
-                    var uri = Uri.parse(
-                        "https://grupo-manual.gitbook.io/app-cultura.ce/ajuda");
-                    if (await canLaunchUrl(uri)) {
-                      //await launchUrl(uri, mode: LaunchMode.externalApplication);
-                      await launchUrl(uri, mode: LaunchMode.platformDefault);
-                    } else {
-                      throw 'Could not launch $uri';
-                    }
+
+                    widgetConfirma(
+                        context: context,
+                        cancelar: true,
+                        descricao: "Essa ação abrirá uma nova aba no navegador.",
+                        funcaoSim: () async {
+
+                          var uri = Uri.parse(
+                              "https://grupo-manual.gitbook.io/app-cultura.ce/ajuda");
+                          if (await canLaunchUrl(uri)) {
+                            //await launchUrl(uri, mode: LaunchMode.externalApplication);
+                            await launchUrl(uri, mode: LaunchMode.platformDefault);
+                          } else {
+                            throw 'Could not launch $uri';
+                          }
+                        }
+                    );
                   },
                 ),
               ),
@@ -140,21 +158,29 @@ class _widgetPerfilState extends State<widgetPerfil> {
               ),
             ),
             const widgetEspacoH(altura: 16),
-            Semantics(
-              label: "Avalie o app. Essa ação abrirá uma nova aba no navegador.",
-              child: Padding(
-                padding: const EdgeInsets.only(left: 16),
+            Padding(
+              padding: const EdgeInsets.only(left: 16),
+              child: Semantics(
+                container: true,
                 child: widgetopacaoperfil(
                   subtitulo: "Avalie o app",
                   funcao: () async {
-                    var uri = Uri.parse(
-                        "https://forms.gle/xzducZWvrhDsWeKt6");
-                    if (await canLaunchUrl(uri)) {
-                      //await launchUrl(uri, mode: LaunchMode.externalApplication);
-                      await launchUrl(uri, mode: LaunchMode.platformDefault);
-                    } else {
-                      throw 'Could not launch $uri';
-                    }
+                    widgetConfirma(
+                        context: context,
+                        cancelar: true,
+                        descricao: "Essa ação abrirá uma nova aba no navegador.",
+                        funcaoSim: () async {
+
+                          var uri = Uri.parse(
+                              "https://forms.gle/xzducZWvrhDsWeKt6");
+                          if (await canLaunchUrl(uri)) {
+                            //await launchUrl(uri, mode: LaunchMode.externalApplication);
+                            await launchUrl(uri, mode: LaunchMode.platformDefault);
+                          } else {
+                            throw 'Could not launch $uri';
+                          }
+                        }
+                    );
                   },
                 ),
               ),
@@ -167,16 +193,20 @@ class _widgetPerfilState extends State<widgetPerfil> {
             const widgetEspacoH(altura: 12),
             Padding(
               padding: const EdgeInsets.only(left: 16),
-              child: widgetopacaoperfil(
-                subtitulo: "Recursos",
-                funcao: () async {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const widgetPerfilAcessibilidade(),
-                    ),
-                  ).then((value) => setState(() {}));
-                },
+              child: Semantics(
+                container: false,
+                label: "Recursos de acessibilidade",
+                child: widgetopacaoperfil(
+                  subtitulo: "Recursos",
+                  funcao: () async {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const widgetPerfilAcessibilidade(),
+                      ),
+                    ).then((value) => setState(() {}));
+                  },
+                ),
               ),
             ),
             const widgetEspacoH(altura: 16),

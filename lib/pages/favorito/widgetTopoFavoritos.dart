@@ -18,7 +18,7 @@ class WidgetTopoFavoritos extends StatelessWidget {
       },
       urlImagem1: 'seta.png',
       labelImagem1: "Voltar para página anterior",
-        semanticsLabel: "Página de favoritos",
+        semanticsLabel: "Página de ",
       funcaoImagem2: () {
         Navigator.push(
           context,

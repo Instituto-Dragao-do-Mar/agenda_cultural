@@ -16,7 +16,7 @@ class widgetTopoPerfil extends StatelessWidget {
         notify!();
       },
       urlImagem1: 'seta.png',
-      semanticsLabel: "Página de perfil",
+      semanticsLabel: "Página de ",
       funcaoImagem2: () {
         Navigator.push(
           context,

@@ -57,7 +57,7 @@ class _widgetPerfilAcessibilidadeState
           funcaoImagem1: () async {
             Navigator.pop(context);
           },
-          semanticsLabel: "Tela de acessibilidade",
+          semanticsLabel: "Tela de ",
           urlImagem1: 'seta.png',
           labelImagem1: "Voltar para página anterior",
         ),

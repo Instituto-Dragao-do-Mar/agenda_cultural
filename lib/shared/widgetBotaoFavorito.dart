@@ -50,43 +50,46 @@ class _WidgetBotaoFavoritoState extends State<WidgetBotaoFavorito> {
             left: 1,
             top: 1,
           ),
-          child: IconButton(
-            iconSize: 26,
-            onPressed: () async {
-              if (!app!.isLog()) {
-                return widgetConfirma(
-                  context: context,
-                  cancelar: true,
-                  descricao: 'Para favoritar é preciso estar logado '
-                      'no aplicativo. Gostaria de ir para a página de login?',
-                  funcaoSim: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const pageLogin(),
-                      ),
-                    );
-                  },
+          child: Semantics(
+            label: favorito == 1 ? ("Remover " + widget.evento.nome.toString() + " dos favoritos") : "Adicionar " + widget.evento.nome.toString() + " aos favoritos",
+            child: IconButton(
+              iconSize: 26,
+              onPressed: () async {
+                if (!app!.isLog()) {
+                  return widgetConfirma(
+                    context: context,
+                    cancelar: true,
+                    descricao: 'Para favoritar é preciso estar logado '
+                        'no aplicativo. Gostaria de ir para a página de login?',
+                    funcaoSim: () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const pageLogin(),
+                        ),
+                      );
+                    },
+                  );
+                }
+                var isFavorited =
+                await EventoController().favoritosPost(
+                  userguidid: app?.GetGuidId() ?? "",
+                  token: app?.GetToken() ?? "",
+                  idevento: widget.evento.id ?? 0,
+                  ativo: favorito,
                 );
-              }
-              var isFavorited =
-              await EventoController().favoritosPost(
-                userguidid: app?.GetGuidId() ?? "",
-                token: app?.GetToken() ?? "",
-                idevento: widget.evento.id ?? 0,
-                ativo: favorito,
-              );
-              if (isFavorited) {
-                setState(() {
-                  favorito == 0 ? favorito = 1 : favorito = 0;
-                });
-              }
-            },
-            icon: favorito == 1
-                ? const Icon(Icons.favorite, color: Colors.red)
-                : const Icon(
-              Icons.favorite,
-              color: Colors.grey,
+                if (isFavorited) {
+                  setState(() {
+                    favorito == 0 ? favorito = 1 : favorito = 0;
+                  });
+                }
+              },
+              icon: favorito == 1
+                  ? const Icon(Icons.favorite, color: Colors.red)
+                  : const Icon(
+                Icons.favorite,
+                color: Colors.grey,
+              ),
             ),
           ),
         ),

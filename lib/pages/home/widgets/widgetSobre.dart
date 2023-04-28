@@ -22,13 +22,13 @@ class _WidgetSobreState extends State<WidgetSobre> {
         elevation: 0,
         leadingWidth: 0,
         title: widgetTopoComum(
-          text: "Sobre o App",
-          semanticsLabel: "Sobre o Aplicativo",
+          text: "Sobre o Aplicativo",
+          semanticsLabel: "Página",
           funcaoImagem1: () async {
             Navigator.pop(context);
           },
           urlImagem1: 'seta.png',
-          labelImagem1: "Voltar para página anterior",
+          labelImagem1: "Clicar duas vezes para voltar para página anterior",
         ),
       ),
       body: Center(

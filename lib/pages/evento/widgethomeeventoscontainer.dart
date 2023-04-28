@@ -163,12 +163,9 @@ class _widgetHomeCategoriasEventosContainerState
                         children: [
                           Padding(
                             padding: const EdgeInsets.only(top: 5),
-                            child: Semantics(
-                                container: false,
-                                label: favorito == 1 ? ("Remover " + widget.evento.nome.toString() + " dos favoritos") : "Adicionar " + widget.evento.nome.toString() + " aos favoritos",
-                                child: WidgetBotaoFavorito(
+                            child: WidgetBotaoFavorito(
                               evento: widget.evento,
-                            )),
+                            ),
                           ),
                         ],
                       ),
