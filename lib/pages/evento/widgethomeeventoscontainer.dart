@@ -183,16 +183,16 @@ class _widgetHomeCategoriasEventosContainerState
   }
 
   Container _mostraImagem() {
-    if (widget.evento.eventosimagens == null ||
-        widget.evento.eventosimagens!.isEmpty ||
-        widget.evento.eventosimagens!.first.imagens == null ||
-        widget.evento.eventosimagens!.first.imagens!.isEmpty) {
-      return Container(
-        height: 150 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
-        width: 180 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
-        child: Text("Erro aqui"),
-      );
-    }
+    // if (widget.evento.eventosimagens == null ||
+    //     widget.evento.eventosimagens!.isEmpty ||
+    //     widget.evento.eventosimagens!.first.imagens == null ||
+    //     widget.evento.eventosimagens!.first.imagens!.isEmpty) {
+    //   return Container(
+    //     height: 150 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+    //     width: 180 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+    //     child: Text("Erro aqui"),
+    //   );
+    // }
     return Container(
       height: 150 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
       width: 180 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,

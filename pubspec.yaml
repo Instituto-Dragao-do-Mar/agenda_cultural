@@ -52,7 +52,7 @@ dependencies:
   flutter_switch: ^0.3.2
   platform_info: ^3.2.0
   group_button: ^5.2.2
-  intl: ^0.17.0
+  intl: ^0.18.1
   google_maps_flutter: ^2.2.3
   google_maps_flutter_web: ^0.4.0+5
   url_strategy: ^0.2.0

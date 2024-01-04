@@ -11,10 +11,20 @@ import 'package:agendacultural/pages/home/widgets/widgetheadercards.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../evento/widgethomeeventos.dart';
+
+enum ExibicaoEspaco {
+  Destaque,
+  Data,
+  Evento,
+}
+
 class widgetHomeEspacos extends StatefulWidget {
-  const widgetHomeEspacos({
+  widgetHomeEspacos({
+    required this.exibicaoEspaco,
     super.key,
   });
+  final ExibicaoEspaco exibicaoEspaco;
 
   @override
   State<widgetHomeEspacos> createState() => _widgetHomeEspacosState();
@@ -22,6 +32,9 @@ class widgetHomeEspacos extends StatefulWidget {
 
 class _widgetHomeEspacosState extends State<widgetHomeEspacos> {
   ScrollController scrollController = ScrollController();
+  bool wrap = false;
+  double? tamanho;
+
 
   late AppModel app;
 
@@ -41,9 +54,18 @@ class _widgetHomeEspacosState extends State<widgetHomeEspacos> {
     //
     bool wrap = false;
 
-    if (!Dados.verTodosEspacos) {
-      wrap = true;
+    if (widget.exibicaoEspaco == ExibicaoEspaco.Destaque) {
+      if (!Dados.verTodosEspacos) {
+        wrap = false;
+        tamanho = 255 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase;
+      } else {
+        wrap = true;
+      }
     }
+
+    // if (!Dados.verTodosEspacos) {
+    //   wrap = true;
+    // }
 
     int contadorDisplay = 0;
 
@@ -74,10 +96,12 @@ class _widgetHomeEspacosState extends State<widgetHomeEspacos> {
             scrollDirection: Axis.horizontal,
             itemCount: app.listaEspacos.espacos!.length,
             itemBuilder: (context, index) {
-              if (wrap && contadorDisplay > 9) {
+              if (widget.exibicaoEspaco == ExibicaoEspaco.Destaque &&
+                  wrap &&
+                  contadorDisplay > 9) {
                 return const SizedBox.shrink();
               }
-              if (app.listaEspacos.espacos![index].aprovado == 0) {
+              if (widget.exibicaoEspaco == ExibicaoEspaco.Destaque && app.listaEspacos.espacos![index].aprovado == 0) {
                 return const SizedBox.shrink();
               }
               if (app.listaEspacos.espacos![index] != null) {

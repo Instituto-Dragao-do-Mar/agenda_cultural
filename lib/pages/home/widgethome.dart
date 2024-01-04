@@ -43,7 +43,9 @@ class _widgetHomeState extends State<widgetHome> {
                 widgetHomeEventos(
                   exibicaoEvento: ExibicaoEvento.Data,
                 ),
-                widgetHomeEspacos(),
+                widgetHomeEspacos(
+                  exibicaoEspaco: ExibicaoEspaco.Destaque,
+                ),
               ],
             ),
           ),
