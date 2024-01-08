@@ -1,7 +1,6 @@
 // ignore_for_file: non_constant_identifier_names
 import 'package:agendacultural/controller/notificacao_controller.dart';
 import 'package:agendacultural/model/notificacao_model.dart';
-import 'package:agendacultural/shared/userSharedPreferences.dart';
 import 'package:flutter/material.dart';
 import 'package:agendacultural/controller/categoria_controller.dart';
 import 'package:agendacultural/controller/espaco_controller.dart';
