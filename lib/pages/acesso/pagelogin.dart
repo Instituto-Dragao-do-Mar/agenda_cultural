@@ -77,10 +77,10 @@ class _pageLoginState extends State<pageLogin> {
                     container: true,
                     label: "Logo do Cultura cê é, Agenda Cultural do Ceará",
                     child: widgetImagemInterna(
-                      width: 247,
-                      height: 224,
+                      width: 402, //247,
+                      height: 299,//224
                       imagem: Imagem(
-                        url: 'logotelalogindemo.png',
+                        url: 'logotelaloginnovo.png',
                       ),
                       fit: BoxFit.fill,
                     ),

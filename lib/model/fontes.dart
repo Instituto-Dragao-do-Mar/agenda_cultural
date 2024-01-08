@@ -48,6 +48,13 @@ class Fontes {
       color: const  Color(0xff999999),
     ),
   );
+  static TextStyle poppins14W300Grey(int tamanho) => GoogleFonts.poppins(
+    textStyle:  TextStyle(
+      fontSize: tamanho - 2,
+      fontWeight: FontWeight.w400,
+      color: const  Color(0xff999999),
+    ),
+  );
   static TextStyle poppins16W400Grey(int tamanho) => GoogleFonts.poppins(
     textStyle:  TextStyle(
       fontSize: tamanho.toDouble(),

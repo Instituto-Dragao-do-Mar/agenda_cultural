@@ -90,28 +90,40 @@ class _widgetHomeEspacosState extends State<widgetHomeEspacos> {
           },
         ),
         SizedBox(
-          height: 250 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
-          child: ListView.builder(
-            shrinkWrap: true,
-            scrollDirection: Axis.horizontal,
-            itemCount: app.listaEspacos.espacos!.length,
-            itemBuilder: (context, index) {
-              if (widget.exibicaoEspaco == ExibicaoEspaco.Destaque &&
-                  wrap &&
-                  contadorDisplay > 9) {
-                return const SizedBox.shrink();
-              }
-              if (widget.exibicaoEspaco == ExibicaoEspaco.Destaque && app.listaEspacos.espacos![index].aprovado == 0) {
-                return const SizedBox.shrink();
-              }
-              if (app.listaEspacos.espacos![index] != null) {
-                contadorDisplay++;
-                return widgetHomeEspacosContainer(
-                  espaco: app.listaEspacos.espacos![index],
-                );
-              }
-              return const SizedBox.shrink();
-            },
+          width: double.infinity,
+          // height: (Dados.verTodasCategorias) ? null : 130,
+          height: Dados.verTodosEspacos ? 500 : 250 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+          // width: 250 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+          child: SingleChildScrollView(
+            // shrinkWrap: Dados.verTodosEspacos ? false : true,
+            scrollDirection:  Dados.verTodosEspacos ? Axis.vertical : Axis.horizontal,
+            controller: scrollController,
+            // physics: Dados.verTodosEspacos ? const NeverScrollableScrollPhysics() : null,
+            // itemCount: app.listaEspacos.espacos!.length,
+            // itemBuilder: (context, index) {
+            //
+            // },
+            child: Wrap(
+              children:app.listaEspacos.espacos!.map(
+                    (e) {
+                      if (widget.exibicaoEspaco == ExibicaoEspaco.Destaque &&
+                          wrap &&
+                          contadorDisplay > 9) {
+                        return const SizedBox.shrink();
+                      }
+                      if (widget.exibicaoEspaco == ExibicaoEspaco.Destaque && e.aprovado == 0) {
+                        return const SizedBox.shrink();
+                      }
+                      if (e != null) {
+                        contadorDisplay++;
+                        return widgetHomeEspacosContainer(
+                          espaco: e,
+                        );
+                      }
+                      return const SizedBox.shrink();
+                },
+              ).toList(),
+            ),
           ),
         ),
       ],

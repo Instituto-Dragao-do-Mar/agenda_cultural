@@ -58,10 +58,12 @@ class Widgetlocalizacao extends StatelessWidget {
               altura: 17,
             ),
             Text(
-              "Definir sua localização facilitará a busca por"
-              " informações relacionadas aos eventos que estão acontecendo"
-              " ao seu redor e espaços culturais da cidade!",
+              "Definir sua localização facilitará a busca por informações relacionadas "
+                  "aos eventos que estão acontecendo ao seu redor e espaços culturais da cidade!",
               style: Fontes.poppins14W400Grey(Fontes.tamanhoBase),
+              semanticsLabel:
+                  "Definir sua localização facilitará a busca por informações relacionadas "
+                      "aos eventos que estão acontecendo ao seu redor e espaços culturais da cidade!",
             ),
             const widgetEspacoH(
               altura: 16,

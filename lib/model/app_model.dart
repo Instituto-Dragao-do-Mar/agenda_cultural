@@ -15,6 +15,7 @@ import 'package:agendacultural/model/localizacao_model.dart';
 import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/shared/extensions/capitalize.dart';
 import 'package:agendacultural/shared/extensions/clearMask.dart';
+import 'package:agendacultural/shared/extensions/ex_compare_date_strings_in_days.dart';
 
 class AppModel extends ChangeNotifier {
   bool categoriasVerTudo = false;
@@ -57,6 +58,7 @@ class AppModel extends ChangeNotifier {
   }
 
   double getLatitude() => (localizacao == null) ? 0.0 : localizacao!.latitude!;
+
   double getLongitude() =>
       (localizacao == null) ? 0.0 : localizacao!.longitude!;
 
@@ -90,6 +92,13 @@ class AppModel extends ChangeNotifier {
     listaEventos = await EventoController().eventoGet(
       userguidid: isLog() ? GetGuidId() : "",
     );
+
+    // listaEventos.eventos?.forEach((element) {
+    //   element.eventosdatas
+    //       ?.sort((a, b) => (a.datahora?.compareDateInDays(b.datafim))!);
+    // });
+    await sortEventos();
+
     listaEspacos = await EspacoController().espacoGet(
       userguidid: isLog() ? GetGuidId() : "",
     );
@@ -121,7 +130,7 @@ class AppModel extends ChangeNotifier {
     if (listaEventos.eventos != null && listaEventos.eventos!.isNotEmpty) {
       filtro.opcoesClassificacoes = [];
       listaEventos.eventos!.map(
-        (e) {
+            (e) {
           if (!filtro.opcoesClassificacoes!
               .any((element) => element == (e.classificacaoetaria ?? ''))) {
             filtro.opcoesClassificacoes!.add(e.classificacaoetaria ?? '');
@@ -132,7 +141,7 @@ class AppModel extends ChangeNotifier {
     if (listaEspacos.espacos != null && listaEspacos.espacos!.isNotEmpty) {
       filtro.opcoesAcessibilidade = [];
       listaEspacos.espacos!.map(
-        (e) {
+            (e) {
           /*if (!filtro.opcoesClassificacoes!
               .any((element) => element == (e.classificacaoetaria ?? ''))) {
             filtro.opcoesClassificacoes!.add(e.classificacaoetaria ?? '');
@@ -156,7 +165,7 @@ class AppModel extends ChangeNotifier {
         if (tedIngresso.text.isNotEmpty && tedIngresso.text != "Todos") {
           for (Eventodatas ed in e.eventosdatas!) {
             e.passoupelofiltro = ((tedIngresso.text == "Gratuito" &&
-                    (ed.preco ?? '').toUpperCase() != "PAGO") ||
+                (ed.preco ?? '').toUpperCase() != "PAGO") ||
                 (tedIngresso.text == "Pago" &&
                     (ed.preco ?? '').toUpperCase() == "PAGO"));
             if (!e.passoupelofiltro!) {
@@ -218,11 +227,14 @@ class AppModel extends ChangeNotifier {
     if (evento.eventosdatas == null || evento.eventosdatas!.isEmpty) {
       return 'Nenhum endereço localizado.';
     }
-    return listaEspacos.espacos!
-            .firstWhere(
-                (element) => element.id == evento.eventosdatas!.first.idespaco!)
-            .nome ??
-        '-';
+    var espaco = listaEspacos.espacos!.firstWhere(
+            (element) => element.id == evento.eventosdatas!.first.idespaco!);
+    if (espaco.idespacoprincipal != null && espaco.idespacoprincipal != 0) {
+      espaco = listaEspacos.espacos!
+          .firstWhere((element) => element.id == espaco.idespacoprincipal!);
+    }
+
+    return espaco.nome ?? '-';
   }
 
   String GetEnderecoEvento(Evento evento) {
@@ -242,10 +254,14 @@ class AppModel extends ChangeNotifier {
       return 'Local não localizado (${eventodatas.idespaco}).';
     }
 
-    return listaEspacos.espacos!
-            .firstWhere((element) => element.id == eventodatas.idespaco)
-            .endereco ??
-        "Endereço não informado no espaço.";
+    var espaco = listaEspacos.espacos!
+        .firstWhere((element) => element.id == eventodatas.idespaco);
+    if (espaco.idespacoprincipal != null && espaco.idespacoprincipal != 0) {
+      espaco = listaEspacos.espacos!
+          .firstWhere((element) => element.id == espaco.idespacoprincipal!);
+    }
+
+    return espaco.endereco ?? "Endereço não informado no espaço.";
   }
 
   String GetEspacoPrincipal({required Evento evento}) {
@@ -290,13 +306,37 @@ class AppModel extends ChangeNotifier {
     }
     return evento.eventoscategorias!
         .map((e) {
-          return listaCategoria.categorias!
-              .firstWhere((element) => element.id == e.idcategoria)
-              .nome!
-              .capitalize();
-        })
+      return listaCategoria.categorias!
+          .firstWhere((element) => element.id == e.idcategoria)
+          .nome!
+          .capitalize();
+    })
         .toList()
         .toString()
-        .clearMask();
+        .clearMaskWithSpaces();
+  }
+
+  Future sortEventos() async {
+    listaEventos.eventos?.sort(
+            (a, b) => (a.datahora?.compareDateInDays(b.datahora))!
+    );
+    listaEventos.eventos?.forEach(
+          (element) =>
+          element.eventosdatas?.sort(
+                  (a, b) => (a.datahora?.compareDateInDays(b.datahora))!
+          ),
+    );
+    listaEventos.eventos?.sort((a, b) {
+      var eventoData1 = a.eventosdatas?.first;
+      var eventoData2 = b.eventosdatas?.first;
+
+      if(eventoData1?.datahora?.compareDateInDays(eventoData2?.datahora) != 0) return 0;
+
+      var diasParaFimEvento1 = eventoData1?.datahora?.compareDateInDays(eventoData1.datafim);
+      var diasParaFimEvento2 = eventoData2?.datahora?.compareDateInDays(eventoData2.datafim);
+
+      var aa =  diasParaFimEvento1!.compareTo(diasParaFimEvento2!);
+      return aa;
+    });
   }
 }

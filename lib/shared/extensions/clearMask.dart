@@ -10,6 +10,17 @@ extension ClearMask on String {
         .replaceAll(".", "")
         .replaceAll(" ", "");
   }
+  String clearMaskWithSpaces() {
+    return this
+        .replaceAll('-', '')
+        .replaceAll("/", "")
+        .replaceAll("(", "")
+        .replaceAll(")", "")
+        .replaceAll("[", "")
+        .replaceAll("]", "")
+        .replaceAll(".", "");
+  }
+
 
   double? textToDouble()
   {

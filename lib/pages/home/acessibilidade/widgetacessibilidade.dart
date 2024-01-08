@@ -58,146 +58,170 @@ class _widgetAcessibilidadeState extends State<widgetAcessibilidade> {
               Navigator.pop(context);
             }),
       ),
-      body: Container(
-        color: corBackground,
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Acessibilidade",
-              style: Fontes.poppins18W500Black(fontSize.toInt()),
-            ),
-            const widgetEspacoH(
-              altura: 23,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  "Alto contraste",
-                  style: Fontes.roboto16W400Black(fontSize.toInt()),
-                ),
-                Semantics(
-                  label: statusAltoContraste ? "Desativar alto contraste" : "Ativar alto contraste",
-                  child: widgetBotaoSwitch(
-                    value: statusAltoContraste,
-                    function: (value) {
-                      setState(() {
-                        statusAltoContraste = value;
-                        setAltoContraste(statusAltoContraste);
-                      });
-                    },
+      body: SingleChildScrollView(
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          color: corBackground,
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                "Acessibilidade",
+                style: Fontes.poppins18W500Black(fontSize.toInt()),
+              ),
+              const widgetEspacoH(
+                altura: 20,
+              ),
+              Text(
+                "Para garantir uma melhor experiência defina os recursos que irão lhe ajudar durante o uso do aplicativo",
+                style: Fontes.poppins14W300Grey(Fontes.tamanhoBase),
+              ),
+              const widgetEspacoH(
+                altura: 23,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Alto contraste",
+                    style: Fontes.roboto16W400Black(fontSize.toInt()),
                   ),
-                )
-              ],
-            ),
-            const widgetEspacoH(
-              altura: 20,
-            ),
-            Text(
-              "O modo de alto contraste permite ao usuário inverter as cores "
-              "do primeiro plano e do plano de fundo, o que geralmente ajuda o "
-              "texto a se destacar melhor.",
-              style: Fontes.poppins12W300Grey(fontSize.toInt()),
-            ),
-            const widgetEspacoH(
-              altura: 23,
-            ),
-            Text(
-              "Alterar tamanho da fonte",
-              style: Fontes.roboto16W400Black(fontSize.toInt()),
-            ),
-            const widgetEspacoH(
-              altura: 20,
-            ),
-            Text(
-              "Aumenta o tamanho da fonte do texto para até 24px facilitando a leitura.",
-              style: Fontes.poppins12W300Grey(fontSize.toInt()),
-            ),
-            const widgetEspacoH(
-              altura: 31,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Semantics(
-                  label: fontSize > 16 ? "Diminuir fonte para " + (fontSize - 1).toString() + " pixels" : "Fonte no tamanho mínimo, impossível diminuir",
-                  child: IconButton(
-                    iconSize: 40,
-                    icon: widgetImagemInterna(
-                      imagem: Imagem(
-                        url: "small.png",
+                  Semantics(
+                    label: statusAltoContraste ? "Desativar alto contraste" : "Ativar alto contraste",
+                    child: widgetBotaoSwitch(
+                      value: statusAltoContraste,
+                      function: (value) {
+                        setState(() {
+                          statusAltoContraste = value;
+                          setAltoContraste(statusAltoContraste);
+                        });
+                      },
+                    ),
+                  )
+                ],
+              ),
+              const widgetEspacoH(
+                altura: 20,
+              ),
+              Text(
+                "O modo de alto contraste permite ao usuário inverter as cores "
+                "do primeiro plano e do plano de fundo, o que geralmente ajuda o "
+                "texto a se destacar melhor.",
+                style: Fontes.poppins14W300Grey(fontSize.toInt()),
+              ),const widgetEspacoH(
+                altura: 23,
+              ),
+              Text(
+                "Aumento da fonte",
+                style: Fontes.roboto16W400Black(Fontes.tamanhoBase),
+              ),
+              const widgetEspacoH(
+                altura: 20,
+              ),
+              Text(
+                "Texto de exemplo",
+                //"Aumenta o tamanho da fonte do texto para até 24px facilitando a leitura.",
+                style: Fontes.poppins14W300Grey(Fontes.tamanhoBase),
+              ),
+              const widgetEspacoH(
+                altura: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Mas a terra de Oz nunca foi civilizada, porque vivemos separados do resto do mundo.",
+                    semanticsLabel: "Mas a terra de Oz nunca foi civilizada, porque vivemos separados do resto do mundo." + "Fonte atual: " + fontSize.toString() + " pixels",
+                    style: Fontes.roboto14W400Black(Fontes.tamanhoBase),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+              const widgetEspacoH(
+                altura: 31,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Semantics(
+                    label: fontSize > 16 ? "Diminuir fonte para " + (fontSize - 1).toString() + " pixels" : "Fonte no tamanho mínimo, impossível diminuir",
+                    child: IconButton(
+                      iconSize: 40,
+                      icon: widgetImagemInterna(
+                        imagem: Imagem(
+                          url: "small.png",
+                        ),
                       ),
+                      onPressed: () {
+                        setState(() {
+                          if (fontSize > 16) {
+                            fontSize--;
+                          }
+                          setFontSize(fontSize);
+                        });
+                      },
                     ),
-                    onPressed: () {
-                      setState(() {
-                        if (fontSize > 16) {
-                          fontSize--;
-                        }
-                        setFontSize(fontSize);
-                      });
-                    },
                   ),
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Semantics(
-                      container: true,
-                      child: Text("Exemplo de texto na fonte atual",
-                          style: GoogleFonts.inter(
-                            textStyle: TextStyle(
-                              fontSize: fontSize,
-                              fontWeight: FontWeight.w400,
-                              color: !Cores.contraste
-                                  ? Color(0XFF000000)
-                                  : Colors.white,
-                            ),
-                          )),
-                    ),
-                    Text(
-                      "Tamanho da fonte: $fontSize px",
-                      style: Fontes.inter16W400Grey(fontSize.toInt()),
-                    )
-                  ],
-                ),
-                Semantics(
-                  label: fontSize < 24 ? "Aumentar fonte para " + (fontSize + 1).toString() + " pixels" : "Fonte no tamanho máximo, impossível aumentar",
-                  child: IconButton(
-                    iconSize: 40,
-                    icon: widgetImagemInterna(
-                      imagem: Imagem(
-                        url: "larger.png",
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      // Semantics(
+                      //   container: true,
+                      //   child: Text("Exemplo de texto na fonte atual",
+                      //       style: GoogleFonts.inter(
+                      //         textStyle: TextStyle(
+                      //           fontSize: fontSize,
+                      //           fontWeight: FontWeight.w400,
+                      //           color: !Cores.contraste
+                      //               ? Color(0XFF000000)
+                      //               : Colors.white,
+                      //         ),
+                      //       )),
+                      // ),
+                      Text(
+                        "Tamanho da fonte: $fontSize px",
+                        style: Fontes.inter16W400Grey(fontSize.toInt()),
+                      )
+                    ],
+                  ),
+                  Semantics(
+                    label: fontSize < 24 ? "Aumentar fonte para " + (fontSize + 1).toString() + " pixels" : "Fonte no tamanho máximo, impossível aumentar",
+                    child: IconButton(
+                      iconSize: 40,
+                      icon: widgetImagemInterna(
+                        imagem: Imagem(
+                          url: "larger.png",
+                        ),
                       ),
+                      onPressed: () {
+                        setState(() {
+                          if (fontSize < 24) {
+                            fontSize++;
+                          }
+                          setFontSize(fontSize);
+                        });
+                      },
                     ),
-                    onPressed: () {
-                      setState(() {
-                        if (fontSize < 24) {
-                          fontSize++;
-                        }
-                        setFontSize(fontSize);
-                      });
-                    },
                   ),
-                ),
-              ],
-            ),
-            const widgetEspacoH(altura: 55),
-            widgetBotao(
-              text: "Voltar",
-              function: () {
-                Navigator.pop(context);
-                /* Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const pagePrincipal(),
-                  ),
-                ); */
-              },
-            ),
-          ],
+                ],
+              ),
+              const widgetEspacoH(altura: 55),
+              widgetBotao(
+                text: "Voltar",
+                function: () {
+                  Navigator.pop(context);
+                  /* Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const pagePrincipal(),
+                    ),
+                  ); */
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );

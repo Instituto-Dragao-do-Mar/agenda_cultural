@@ -10,7 +10,7 @@ void widgetMensagem({
 }) {
   AwesomeDialog(
     context: context,
-    dialogType: DialogType.error,
+    dialogType: DialogType.noHeader,
     // animType: AnimType.bottomSlide,
     headerAnimationLoop: false,
     title: title,

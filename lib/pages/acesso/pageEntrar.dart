@@ -28,8 +28,8 @@ class PageEntrar extends StatefulWidget {
 }
 
 class _PageEntrarState extends State<PageEntrar> {
-  String emailInput = "jader.aquino@redeinova.com.br";
-  String senhaInput = "Francisco@123";
+  String emailInput = "";
+  String senhaInput = "";
   bool obscureTextSenha = true;
   late final AppModel app;
   late final UsuarioController usuarioController;

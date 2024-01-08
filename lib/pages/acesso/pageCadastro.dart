@@ -1,5 +1,4 @@
 import 'package:agendacultural/model/fontes.dart';
-import 'package:agendacultural/pages/acesso/pageEntrar.dart';
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
 
 import 'package:agendacultural/shared/themes.dart';
@@ -615,13 +614,13 @@ class _PageCadastroState extends State<PageCadastro> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => const PageEntrar(),
+            builder: (context) => const pageLogin(),
           ),
         );
       },
       cancelar: false,
       textBotao: "Entrar",
-      descricao: "Cadastro realizado. "
+      descricao: "Cadastro realizado."
           "Clique no botão abaixo para prosseguir para o login.",
     );
 

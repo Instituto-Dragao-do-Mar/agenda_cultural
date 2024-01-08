@@ -50,13 +50,13 @@ class _WidgetalertdialogState extends State<Widgetalertdialog> {
                       ),
                       const widgetEspacoH(altura: 8),
                       Text(
-                        "Nós armazenamos dados temporariamente para melhorar"
-                        " a sua experiência de navegação e recomendar conteúdo de seu interesse."
-                        " Recusar pode impossibilitar a utilização de alguns dos recursos.",
+                        "Nós armazenamos dados temporariamente para melhorar a sua experiência de "
+                            "navegação e recomendar conteúdo de seu interesse. "
+                            "Ao recusar pode impossibilitar a utilização de alguns dos recursos.",
                         semanticsLabel:
                             "Nós armazenamos dados temporariamente para melhorar"
-                            " a sua experiência de navegação e recomendar conteúdo de seu interesse."
-                            " Recusar pode impossibilitar a utilização de alguns dos recursos.",
+                            " a sua experiência de navegação e recomendar conteúdo de seu interesse. "
+                            "Ao recusar pode impossibilitar a utilização de alguns dos recursos.",
                         style: Fontes.poppins12W400Grey(Fontes.tamanhoBase),
                       ),
                       const widgetEspacoH(altura: 16),

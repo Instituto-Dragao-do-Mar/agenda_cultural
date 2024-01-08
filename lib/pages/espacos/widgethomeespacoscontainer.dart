@@ -50,76 +50,80 @@ class widgetHomeEspacosContainer extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(4),
         child: Card(
-          child: Container(
+          child: SizedBox(
             height: 250 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
             width: 180 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: (!Cores.contraste
-                  ? const Color(0xFFEDEDED).withOpacity(.2)
-                  : corBgAltoContraste.withOpacity(.8)),
-              border: Border.all(width: 1, color: corBg),
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  height: 150 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
-                  width: 180 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
-                  decoration: const BoxDecoration(
-                    borderRadius: BorderRadius.vertical(
-                      bottom: Radius.circular(0),
-                      top: Radius.circular(10),
+            child: Container(
+              height: 250 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+              width: 180 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                color: (!Cores.contraste
+                    ? const Color(0xFFEDEDED).withOpacity(.2)
+                    : corBgAltoContraste.withOpacity(.8)),
+                border: Border.all(width: 1, color: corBg),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    height: 150 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+                    width: 180 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+                    decoration: const BoxDecoration(
+                      borderRadius: BorderRadius.vertical(
+                        bottom: Radius.circular(0),
+                        top: Radius.circular(10),
+                      ),
+                    ),
+                    child: espaco.espacosimagens!.first.imagens!.first.url == null
+                        ? const SizedBox.shrink()
+                        : widgetImagemHtml(
+                            url: espaco.espacosimagens!.first.imagens!.first.url!,
+                          ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(right: 8.0, left: 8.0, bottom: 8),
+                    child: LayoutBuilder(
+                      builder: (p0, p1) {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const widgetEspacoH(altura: 6),
+                            TextContrasteFonte(
+                              text: espaco.nome!,
+                              maxlines: 1,
+                              style: GoogleFonts.roboto(
+                                fontSize: Fontes.tamanhoBase -
+                                    (Fontes.tamanhoFonteBase16 - 12),
+                                fontWeight: FontWeight.w500,
+                                color: corTextAtual,
+                              ),
+                            ),
+                            const widgetEspacoH(altura: 6),
+                            Flex(
+                              direction: Axis.vertical,
+                              children: [
+                                TextContrasteFonte(
+                                  text: app.GetEnderecoEspaco(espaco),
+                                  style: GoogleFonts.roboto(
+                                    fontSize: Fontes.tamanhoBase -
+                                        (Fontes.tamanhoFonteBase16 - 12),
+                                    color: corTextAtual,
+                                  ),
+                                  maxlines: 2,
+                                ),
+                              ],
+                            ),
+                            const widgetEspacoH(altura: 6),
+                            //
+                          ],
+                        );
+                      },
                     ),
                   ),
-                  child: espaco.espacosimagens!.first.imagens!.first.url == null
-                      ? const SizedBox.shrink()
-                      : widgetImagemHtml(
-                          url: espaco.espacosimagens!.first.imagens!.first.url!,
-                        ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(right: 8.0, left: 8.0, bottom: 8),
-                  child: LayoutBuilder(
-                    builder: (p0, p1) {
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const widgetEspacoH(altura: 6),
-                          TextContrasteFonte(
-                            text: espaco.nome!,
-                            maxlines: 1,
-                            style: GoogleFonts.roboto(
-                              fontSize: Fontes.tamanhoBase -
-                                  (Fontes.tamanhoFonteBase16 - 12),
-                              fontWeight: FontWeight.w500,
-                              color: corTextAtual,
-                            ),
-                          ),
-                          const widgetEspacoH(altura: 6),
-                          Flex(
-                            direction: Axis.vertical,
-                            children: [
-                              TextContrasteFonte(
-                                text: app.GetEnderecoEspaco(espaco),
-                                style: GoogleFonts.roboto(
-                                  fontSize: Fontes.tamanhoBase -
-                                      (Fontes.tamanhoFonteBase16 - 12),
-                                  color: corTextAtual,
-                                ),
-                                maxlines: 2,
-                              ),
-                            ],
-                          ),
-                          const widgetEspacoH(altura: 6),
-                          //
-                        ],
-                      );
-                    },
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

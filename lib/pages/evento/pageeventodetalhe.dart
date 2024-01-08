@@ -166,7 +166,7 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
                     Semantics(
                       label: "Categoria: " + app.GetCategoriasEvento(widget.evento),
                       child: TextContrasteFonte(
-                        text: app.GetCategoriasEvento(widget.evento),
+                        text: "Categoria: " + app.GetCategoriasEvento(widget.evento),
                         style: GoogleFonts.inter(
                           fontSize: Fontes.tamanhoBase -
                               (Fontes.tamanhoFonteBase16 - 14),
@@ -256,9 +256,9 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
   }
 
   Column widgetEVLocalizacao() {
-    String nomeEspacoPrincipal = app.GetEspacoPrincipal(
-      evento: widget.evento,
-    );
+    // String nomeEspacoPrincipal = app.GetEspacoPrincipal(
+    //   evento: widget.evento,
+    // );
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -272,18 +272,18 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
           ),
         ),
         const widgetEspacoH(),
-        if (nomeEspacoPrincipal.isNotEmpty)
-          TextContrasteFonte(
-            text: nomeEspacoPrincipal,
-            maxlines: 1,
-            style: GoogleFonts.roboto(
-              fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 12),
-              color: corTextAtual,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
+        // if (nomeEspacoPrincipal.isNotEmpty)
+        //   TextContrasteFonte(
+        //     text: nomeEspacoPrincipal,
+        //     maxlines: 1,
+        //     style: GoogleFonts.roboto(
+        //       fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 12),
+        //       color: corTextAtual,
+        //       fontWeight: FontWeight.w500,
+        //     ),
+        //   ),
         //
-        if (nomeEspacoPrincipal.isNotEmpty) const widgetEspacoH(altura: 3),
+        // if (nomeEspacoPrincipal.isNotEmpty) const widgetEspacoH(altura: 3),
         Text(
           app.GetEspacoEvento(widget.evento),
           style: GoogleFonts.inter(
@@ -331,7 +331,7 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
   }
 
   Widget widgetDatasEventos() {
-    if (widget.evento.eventosdatas!.length > 3) {
+    if (widget.evento.eventosdatas!.length > 1) {
       return Row(
         children: [
           widgetImagemInterna(
@@ -441,11 +441,12 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
   }
 
   Widget widgetEvMaisInformacoes() {
-    String entrada = 'Entrada Gratuita';
-    if (widget.evento.entradagratuita != null &&
-        widget.evento.entradagratuita! == 0) {
-      entrada = 'Entrada Paga';
-    }
+    String? entrada;
+    // if (widget.evento.eventosdatas != null &&
+    //     widget.evento.entradagratuita! == 0) {
+    //   entrada = 'Entrada Paga';
+        entrada = 'Entrada: ${widget.evento.eventosdatas?.first.preco}';
+
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,

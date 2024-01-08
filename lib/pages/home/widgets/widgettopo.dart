@@ -31,7 +31,7 @@ class widgetTopo extends StatelessWidget {
         ),
         const SizedBox(width: 10),
         widgetImagemInterna(
-          imagem: Imagem(url: 'iconculturacedemo.png'),
+          imagem: Imagem(url: 'iconculturacenovo.png'),
           //width: 160,
           height: 18,
           fit: BoxFit.contain,

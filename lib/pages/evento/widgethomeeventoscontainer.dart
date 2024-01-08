@@ -132,6 +132,15 @@ class _widgetHomeCategoriasEventosContainerState
 
                                 Flex(direction: Axis.vertical, children: [
                                   TextContrasteFonte(
+                                    text:app?.GetEspacoEvento(widget.evento),
+                                    style: GoogleFonts.roboto(
+                                      fontSize: Fontes.tamanhoBase -
+                                          (Fontes.tamanhoFonteBase16 - 12),
+                                      color: corTextAtual,
+                                    ),
+                                    maxlines: 2,
+                                  ),
+                                  TextContrasteFonte(
                                     text: app?.GetEnderecoEvento(widget.evento),
                                     style: GoogleFonts.roboto(
                                       fontSize: Fontes.tamanhoBase -
