@@ -7,15 +7,15 @@ class ListaUsuarios {
     if (json['usuarios'] != null) {
       usuarios = <Usuario>[];
       json['usuarios'].forEach((v) {
-        usuarios!.add(new Usuario.fromJson(v));
+        usuarios!.add(Usuario.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.usuarios != null) {
-      data['usuarios'] = this.usuarios!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (usuarios != null) {
+      data['usuarios'] = usuarios!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -45,29 +45,30 @@ class Usuario {
   String? signature;
   String? expiration;
 
-  Usuario(
-      {this.id,
-      this.login,
-      this.guidid,
-      this.nome,
-      this.email,
-      this.telefone,
-      this.idimagem,
-      this.datacadastro,
-      this.ativo,
-      this.cpf,
-      this.cpfcnpj,
-      this.alterarsenhaproximologin,
-      this.dataalteracao,
-      this.cep,
-      this.logradouro,
-      this.numero,
-      this.bairro,
-      this.cidade,
-      this.uf,
-      this.complemento,
-      this.signature,
-      this.expiration});
+  Usuario({
+    this.id,
+    this.login,
+    this.guidid,
+    this.nome,
+    this.email,
+    this.telefone,
+    this.idimagem,
+    this.datacadastro,
+    this.ativo,
+    this.cpf,
+    this.cpfcnpj,
+    this.alterarsenhaproximologin,
+    this.dataalteracao,
+    this.cep,
+    this.logradouro,
+    this.numero,
+    this.bairro,
+    this.cidade,
+    this.uf,
+    this.complemento,
+    this.signature,
+    this.expiration,
+  });
 
   Usuario.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -95,27 +96,27 @@ class Usuario {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['login'] = this.login;
-    data['guidid'] = this.guidid;
-    data['nome'] = this.nome;
-    data['email'] = this.email;
-    data['telefone'] = this.telefone;
-    data['idimagem'] = this.idimagem;
-    data['datacadastro'] = this.datacadastro;
-    data['ativo'] = this.ativo;
-    data['cpf'] = this.cpf;
-    data['cpfcnpj'] = this.cpfcnpj;
-    data['alterarsenhaproximologin'] = this.alterarsenhaproximologin;
-    data['dataalteracao'] = this.dataalteracao;
-    data['cep'] = this.cep;
-    data['logradouro'] = this.logradouro;
-    data['numero'] = this.numero;
-    data['bairro'] = this.bairro;
-    data['cidade'] = this.cidade;
-    data['uf'] = this.uf;
-    data['complemento'] = this.complemento;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['login'] = login;
+    data['guidid'] = guidid;
+    data['nome'] = nome;
+    data['email'] = email;
+    data['telefone'] = telefone;
+    data['idimagem'] = idimagem;
+    data['datacadastro'] = datacadastro;
+    data['ativo'] = ativo;
+    data['cpf'] = cpf;
+    data['cpfcnpj'] = cpfcnpj;
+    data['alterarsenhaproximologin'] = alterarsenhaproximologin;
+    data['dataalteracao'] = dataalteracao;
+    data['cep'] = cep;
+    data['logradouro'] = logradouro;
+    data['numero'] = numero;
+    data['bairro'] = bairro;
+    data['cidade'] = cidade;
+    data['uf'] = uf;
+    data['complemento'] = complemento;
     return data;
   }
 }
