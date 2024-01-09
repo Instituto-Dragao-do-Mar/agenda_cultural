@@ -96,7 +96,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
               ),
               Semantics(
                 container: false,
-                label: "Nome do usuário " + nomeInput,
+                label: "Nome do usuário $nomeInput",
                 child: TextField(
                   style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
                   enabled: false,
@@ -145,7 +145,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
               ),
               Semantics(
                 container: false,
-                label: "Email do usuário " + emailInput,
+                label: "Email do usuário $emailInput",
                 child: TextField(
                   style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
                   enabled: false,

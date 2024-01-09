@@ -4,7 +4,6 @@ import 'package:agendacultural/dados/dados.dart';
 import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/model/introducao_model.dart';
 import 'package:agendacultural/pages/home/acessibilidade/widgetacessibilidade.dart';
-import 'package:agendacultural/shared/constantes.dart';
 import 'package:agendacultural/shared/widgetalertdialog.dart';
 import 'package:agendacultural/shared/widgetbottombotao.dart';
 import 'package:agendacultural/shared/widgetemdesenvolvimento.dart';

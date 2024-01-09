@@ -105,8 +105,6 @@ class UsuarioController extends BaseController {
             email: acesso.email,
             nome: acesso.nome,
           );
-          // await UserSharedPreferences.setUserData(
-          //     jsonEncode(usuarioRetorno.toJson()));
 
           if (usuarioRetorno.alterarsenhaproximologin == 1) {
             errorMessage = "Alterar Senha";
