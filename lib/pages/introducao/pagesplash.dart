@@ -1,14 +1,20 @@
 // ignore_for_file: camel_case_types
 
+import 'package:agendacultural/controller/usuario_controller.dart';
 import 'package:agendacultural/dados/dados.dart';
+import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/model/imagem_model.dart';
+import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
 import 'package:agendacultural/pages/introducao/introducao.dart';
 import 'package:agendacultural/pages/introducao/introducaoinfo.dart';
 import 'package:agendacultural/pages/localizacao/widgetlocalizacao.dart';
+import 'package:agendacultural/pages/principal/home.dart';
 import 'package:agendacultural/shared/constantes.dart';
+import 'package:agendacultural/shared/userSharedPreferences.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class pageSplash extends StatefulWidget {
   const pageSplash({super.key});
@@ -18,13 +24,39 @@ class pageSplash extends StatefulWidget {
 }
 
 class _pageSplashState extends State<pageSplash> {
+  late AppModel app;
+  late Usuario user;
+
   @override
   void initState() {
     super.initState();
+    app = context.read<AppModel>();
+    user = app.usuarioLogado ?? Usuario();
+
+    _handleAuthenticated();
+  }
+
+  Future<void> _handleAuthenticated() async {
+    var userPrefs = await UserSharedPreferences.getUserData();
+
+    if (userPrefs != null) {
+      user = await UsuarioController()
+          .getUserbyPrefData(userPrefs.signature!, userPrefs.email!);
+      user.signature = userPrefs.signature;
+      app.setUser(user);
+
+      await UserSharedPreferences.setUser(
+        userguidid: user.guidid ?? "",
+        usertoken: user.signature ?? "",
+        email: user.email ?? "",
+        nome: user.nome ?? "",
+      );
+    }
+
     _navigatorPageIntroducao();
   }
 
-  _navigatorPageIntroducao() async {
+  Future<void> _navigatorPageIntroducao() async {
     await getCookies();
 
     /* print("introducao: ${Dados.jaVisualizouIntroducao}");
@@ -36,7 +68,15 @@ class _pageSplashState extends State<pageSplash> {
       const Duration(seconds: 3),
       () {},
     ).then((value) {
-      if (!Dados.jaVisualizouIntroducao) {
+      if (app.isLog() &&
+          (user.signature != null && user.signature!.isNotEmpty)) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: ((context) => const pagePrincipal()),
+          ),
+        );
+      } else if (!Dados.jaVisualizouIntroducao) {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(

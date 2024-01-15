@@ -3,6 +3,7 @@
 import 'dart:async';
 import 'package:agendacultural/controller/usuarioavaliacao_controller.dart';
 import 'package:agendacultural/model/app_model.dart';
+import 'package:agendacultural/model/cores.dart';
 import 'package:agendacultural/model/espaco_model.dart';
 import 'package:agendacultural/model/evento_model.dart';
 import 'package:agendacultural/model/imagem_model.dart';
@@ -164,9 +165,11 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Semantics(
-                      label: "Categoria: " + app.GetCategoriasEvento(widget.evento),
+                      label: "Categoria: " +
+                          app.GetCategoriasEvento(widget.evento),
                       child: TextContrasteFonte(
-                        text: "Categoria: " + app.GetCategoriasEvento(widget.evento),
+                        text: "Categoria: " +
+                            app.GetCategoriasEvento(widget.evento),
                         style: GoogleFonts.inter(
                           fontSize: Fontes.tamanhoBase -
                               (Fontes.tamanhoFonteBase16 - 14),
@@ -404,8 +407,8 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
             // label: favorito == 1 ? ("Remover " + widget.evento.nome.toString() + " dos favoritos") : "Adicionar " + widget.evento.nome.toString() + " aos favoritos",
             label: "Botão favorito",
             child: WidgetBotaoFavorito(
-          evento: widget.evento,
-        )),
+              evento: widget.evento,
+            )),
       ],
     );
   }
@@ -445,8 +448,7 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
     // if (widget.evento.eventosdatas != null &&
     //     widget.evento.entradagratuita! == 0) {
     //   entrada = 'Entrada Paga';
-        entrada = 'Entrada: ${widget.evento.eventosdatas?.first.preco}';
-
+    entrada = 'Entrada: ${widget.evento.eventosdatas?.first.preco}';
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -595,14 +597,26 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
                     },
                     child: Column(
                       children: [
-                        Icon(
-                          Icons.sentiment_satisfied_alt_outlined,
-                          color: selecionado == 1
-                              ? corBackgroundLaranja
-                              : corTextAtual,
-                          size: 50 /
-                              Fontes.tamanhoFonteBase16 *
-                              Fontes.tamanhoBase,
+                        // Icon(
+                        //   Icons.sentiment_satisfied_alt_outlined,
+                        //   color: selecionado == 1
+                        //       ? corBackgroundLaranja
+                        //       : corTextAtual,
+                        //   size: 50 /
+                        //       Fontes.tamanhoFonteBase16 *
+                        //       Fontes.tamanhoBase,
+                        // ),
+                        widgetImagemInterna(
+                          imagem: Imagem(
+                            url: selecionado == 1
+                                ? 'liked_orange.png'
+                                : !Cores.contraste
+                                    ? 'liked_black.png'
+                                    : 'liked_white.png',
+                          ),
+                          width: 50,
+                          height: 50,
+                          fit: BoxFit.contain,
                         ),
                         TextContrasteFonte(
                           text: 'Gostei',
@@ -644,14 +658,26 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
                     },
                     child: Column(
                       children: [
-                        Icon(
-                          Icons.sentiment_dissatisfied_outlined,
-                          color: selecionado == 2
-                              ? corBackgroundLaranja
-                              : corTextAtual,
-                          size: 50 /
-                              Fontes.tamanhoFonteBase16 *
-                              Fontes.tamanhoBase,
+                        // Icon(
+                        //   Icons.sentiment_dissatisfied_outlined,
+                        //   color: selecionado == 2
+                        //       ? corBackgroundLaranja
+                        //       : corTextAtual,
+                        //   size: 50 /
+                        //       Fontes.tamanhoFonteBase16 *
+                        //       Fontes.tamanhoBase,
+                        // ),
+                        widgetImagemInterna(
+                          imagem: Imagem(
+                            url: selecionado == 2
+                                ? 'not_liked_orange.png'
+                                : !Cores.contraste
+                                    ? 'not_liked_black.png'
+                                    : 'not_liked_white.png',
+                          ),
+                          width: 50,
+                          height: 50,
+                          fit: BoxFit.contain,
                         ),
                         TextContrasteFonte(
                           text: 'Não Gostei',
@@ -692,14 +718,26 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
                     },
                     child: Column(
                       children: [
-                        Icon(
-                          Icons.sentiment_neutral_outlined,
-                          color: selecionado == 3
-                              ? corBackgroundLaranja
-                              : corTextAtual,
-                          size: 50 /
-                              Fontes.tamanhoFonteBase16 *
-                              Fontes.tamanhoBase,
+                        // Icon(
+                        //   Icons.sentiment_neutral_outlined,
+                        //   color: selecionado == 3
+                        //       ? corBackgroundLaranja
+                        //       : corTextAtual,
+                        //   size: 50 /
+                        //       Fontes.tamanhoFonteBase16 *
+                        //       Fontes.tamanhoBase,
+                        // ),
+                        widgetImagemInterna(
+                          imagem: Imagem(
+                            url: selecionado == 3
+                                ? 'closed_face_orange.png'
+                                : !Cores.contraste
+                                    ? 'closed_face_black.png'
+                                    : 'closed_face_white.png',
+                          ),
+                          width: 50,
+                          height: 50,
+                          fit: BoxFit.contain,
                         ),
                         TextContrasteFonte(
                           text: 'Não Aconteceu',

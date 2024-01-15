@@ -130,7 +130,7 @@ class AppModel extends ChangeNotifier {
     if (listaEventos.eventos != null && listaEventos.eventos!.isNotEmpty) {
       filtro.opcoesClassificacoes = [];
       listaEventos.eventos!.map(
-            (e) {
+        (e) {
           if (!filtro.opcoesClassificacoes!
               .any((element) => element == (e.classificacaoetaria ?? ''))) {
             filtro.opcoesClassificacoes!.add(e.classificacaoetaria ?? '');
@@ -141,7 +141,7 @@ class AppModel extends ChangeNotifier {
     if (listaEspacos.espacos != null && listaEspacos.espacos!.isNotEmpty) {
       filtro.opcoesAcessibilidade = [];
       listaEspacos.espacos!.map(
-            (e) {
+        (e) {
           /*if (!filtro.opcoesClassificacoes!
               .any((element) => element == (e.classificacaoetaria ?? ''))) {
             filtro.opcoesClassificacoes!.add(e.classificacaoetaria ?? '');
@@ -165,7 +165,7 @@ class AppModel extends ChangeNotifier {
         if (tedIngresso.text.isNotEmpty && tedIngresso.text != "Todos") {
           for (Eventodatas ed in e.eventosdatas!) {
             e.passoupelofiltro = ((tedIngresso.text == "Gratuito" &&
-                (ed.preco ?? '').toUpperCase() != "PAGO") ||
+                    (ed.preco ?? '').toUpperCase() != "PAGO") ||
                 (tedIngresso.text == "Pago" &&
                     (ed.preco ?? '').toUpperCase() == "PAGO"));
             if (!e.passoupelofiltro!) {
@@ -228,7 +228,7 @@ class AppModel extends ChangeNotifier {
       return 'Nenhum endereço localizado.';
     }
     var espaco = listaEspacos.espacos!.firstWhere(
-            (element) => element.id == evento.eventosdatas!.first.idespaco!);
+        (element) => element.id == evento.eventosdatas!.first.idespaco!);
     if (espaco.idespacoprincipal != null && espaco.idespacoprincipal != 0) {
       espaco = listaEspacos.espacos!
           .firstWhere((element) => element.id == espaco.idespacoprincipal!);
@@ -306,36 +306,38 @@ class AppModel extends ChangeNotifier {
     }
     return evento.eventoscategorias!
         .map((e) {
-      return listaCategoria.categorias!
-          .firstWhere((element) => element.id == e.idcategoria)
-          .nome!
-          .capitalize();
-    })
+          return listaCategoria.categorias!
+              .firstWhere((element) => element.id == e.idcategoria)
+              .nome!
+              .capitalize();
+        })
         .toList()
         .toString()
         .clearMaskWithSpaces();
   }
 
   Future sortEventos() async {
-    listaEventos.eventos?.sort(
-            (a, b) => (a.datahora?.compareDateInDays(b.datahora))!
-    );
+    listaEventos.eventos
+        ?.sort((a, b) => (a.datahora?.compareDateInDays(b.datahora))!);
     listaEventos.eventos?.forEach(
-          (element) =>
-          element.eventosdatas?.sort(
-                  (a, b) => (a.datahora?.compareDateInDays(b.datahora))!
-          ),
+      (element) => element.eventosdatas
+          ?.sort((a, b) => (a.datahora?.compareDateInDays(b.datahora))!),
     );
     listaEventos.eventos?.sort((a, b) {
       var eventoData1 = a.eventosdatas?.first;
       var eventoData2 = b.eventosdatas?.first;
 
-      if(eventoData1?.datahora?.compareDateInDays(eventoData2?.datahora) != 0) return 0;
+      if (eventoData1?.datahora?.compareDateInDays(eventoData2?.datahora) !=
+          0) {
+        return 0;
+      }
 
-      var diasParaFimEvento1 = eventoData1?.datahora?.compareDateInDays(eventoData1.datafim);
-      var diasParaFimEvento2 = eventoData2?.datahora?.compareDateInDays(eventoData2.datafim);
+      var diasParaFimEvento1 =
+          eventoData1?.datahora?.compareDateInDays(eventoData1.datafim);
+      var diasParaFimEvento2 =
+          eventoData2?.datahora?.compareDateInDays(eventoData2.datafim);
 
-      var aa =  diasParaFimEvento1!.compareTo(diasParaFimEvento2!);
+      var aa = diasParaFimEvento1!.compareTo(diasParaFimEvento2!);
       return aa;
     });
   }

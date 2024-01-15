@@ -16,7 +16,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../shared/widgetemdesenvolvimento.dart';
 
 
 class widgetPerfil extends StatefulWidget {
@@ -154,7 +153,7 @@ class _widgetPerfilState extends State<widgetPerfil> {
               padding: const EdgeInsets.only(left: 16),
               child: widgetopacaoperfil(
                 subtitulo: "Sobre o app",
-                paginaDestino: WidgetSobre(),
+                paginaDestino: const WidgetSobre(),
               ),
             ),
             const widgetEspacoH(altura: 16),

@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:agendacultural/controller/base_controller.dart';
-import 'package:agendacultural/model/categoria_model.dart';
 import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/shared/constantes.dart';
 import 'package:flutter/material.dart';
@@ -45,17 +44,18 @@ class UsuarioController extends BaseController {
     return lista;
   }
 
-  Future<Usuario> login(
-      {AppModel? app,
-      String? email,
-      String? senha,
-      bool? alterarSenha = false}) async {
-    Acesso _acesso = Acesso();
-    Usuario _usuarioRetorno = Usuario();
+  Future<Usuario> login({
+    AppModel? app,
+    String? email,
+    String? senha,
+    bool? alterarSenha = false,
+  }) async {
+    Acesso acesso = Acesso();
+    Usuario usuarioRetorno = Usuario();
     errorMessage = "";
 
     try {
-      var _body = jsonEncode(
+      var body = jsonEncode(
         <String, dynamic>{
           "login": email?.trim(),
           'senha': senha?.trim(),
@@ -70,40 +70,43 @@ class UsuarioController extends BaseController {
         headers: {
           "Content-Type": "application/json",
         },
-        body: _body,
+        body: body,
       );
 
       //print(response.body);
 
       if (response.statusCode == 200) {
         var ret = jsonDecode(response.body);
-        _acesso = Acesso.fromJson(ret);
-        _acesso.expiration = DateTime.now().add(Duration(days: 1)).toString();
+        acesso = Acesso.fromJson(ret);
+        acesso.expiration =
+            DateTime.now().add(const Duration(days: 1)).toString();
 
-        _usuarioRetorno = await getUser(
-          token: _acesso.signature,
+        usuarioRetorno = await getUser(
+          token: acesso.signature,
           login: email?.trim(),
         );
 
-        debugPrint("usuario retorno $_usuarioRetorno");
+        debugPrint("usuario retorno $usuarioRetorno");
 
-        if (_usuarioRetorno.ativo != 1) {
-          _usuarioRetorno.nome = null;
+        if (usuarioRetorno.ativo != 1) {
+          usuarioRetorno.nome = null;
           errorMessage = "Usuário inativado";
           state = ControllerStates.error;
           notifyListeners();
         } else {
-          _usuarioRetorno.expiration = _acesso.expiration;
-          _usuarioRetorno.signature = _acesso.signature;
+          usuarioRetorno.expiration = acesso.expiration;
+          usuarioRetorno.signature = acesso.signature;
 
-          app?.setUser(_usuarioRetorno);
+          app?.setUser(usuarioRetorno);
 
           await UserSharedPreferences.setUser(
-            userguidid: _usuarioRetorno.guidid!,
-            usertoken: _usuarioRetorno.signature!,
+            userguidid: usuarioRetorno.guidid!,
+            usertoken: usuarioRetorno.signature!,
+            email: acesso.email,
+            nome: acesso.nome,
           );
 
-          if(_usuarioRetorno.alterarsenhaproximologin == 1) {
+          if (usuarioRetorno.alterarsenhaproximologin == 1) {
             errorMessage = "Alterar Senha";
           }
 
@@ -113,7 +116,8 @@ class UsuarioController extends BaseController {
       } else {
         if (!alterarSenha!) {
           app?.resetUser();
-          _usuarioRetorno == null;
+          await UserSharedPreferences.resetUser();
+          usuarioRetorno == null;
         }
         errorMessage = response.body;
         state = ControllerStates.error;
@@ -122,22 +126,33 @@ class UsuarioController extends BaseController {
     } catch (e) {
       if (!alterarSenha!) {
         app?.resetUser();
-        _usuarioRetorno == null;
+        await UserSharedPreferences.resetUser();
+
+        usuarioRetorno == null;
       }
       errorMessage = "Acesso inválido (${e.toString()})";
-      print(errorMessage);
+      debugPrint(errorMessage);
       state = ControllerStates.error;
       notifyListeners();
     }
 
-    return _usuarioRetorno;
+    return usuarioRetorno;
+  }
+
+  Future<Usuario> getUserbyPrefData(String token, String email) async {
+    var user = await getUser(
+      token: token,
+      login: email.trim(),
+    );
+
+    return user;
   }
 
   Future<Usuario> getUser({
     String? login,
     String? token,
   }) async {
-    Usuario _return = Usuario();
+    Usuario user = Usuario();
 
     try {
       var response = await http.get(
@@ -150,16 +165,16 @@ class UsuarioController extends BaseController {
 
       if (response.statusCode == 200) {
         var ret = jsonDecode(response.body);
-        ListaUsuarios _listaUsuarios = ListaUsuarios.fromJson(ret);
-        _return = _listaUsuarios.usuarios!.first;
+        ListaUsuarios listaUsuarios = ListaUsuarios.fromJson(ret);
+        user = listaUsuarios.usuarios!.first;
       } else {
         //print(response.body);
       }
     } catch (e) {
-      print("erro ${e.runtimeType}  ${e.toString()}");
+      debugPrint("erro ${e.runtimeType}  ${e.toString()}");
     }
 
-    return _return;
+    return user;
   }
 
   Future<String?> usuariosPost({
@@ -202,7 +217,7 @@ class UsuarioController extends BaseController {
 
     state = ControllerStates.loading;
 
-    var _body = jsonEncode(
+    var body = jsonEncode(
       <String, dynamic>{
         // "guididoperador": "BFBC1C49-CD9A-4E04-A747-4C1817962D87",
         "login": email?.trim(),
@@ -220,7 +235,7 @@ class UsuarioController extends BaseController {
           "Content-Type": "application/json",
           // 'Authorization': 'Bearer ${acesso?.signature}}',
         },
-        body: _body,
+        body: body,
       );
 
       if (response.statusCode == 200) {
@@ -264,7 +279,7 @@ class UsuarioController extends BaseController {
 
     state = ControllerStates.loading;
 
-    var _body = jsonEncode(
+    var body = jsonEncode(
       <String, dynamic>{
         "guididoperador": guidid,
         "idusuario": app?.usuarioLogado?.id,
@@ -282,7 +297,7 @@ class UsuarioController extends BaseController {
           "Content-Type": "application/json",
           'Authorization': 'Bearer $token',
         },
-        body: _body,
+        body: body,
       );
 
       if (response.statusCode == 200) {
@@ -307,7 +322,7 @@ class UsuarioController extends BaseController {
     String? errorMessage;
     tedEmail.text = email!;
 
-    var _body = jsonEncode(
+    var body = jsonEncode(
       <String, dynamic>{
         // "guididoperador": "BFBC1C49-CD9A-4E04-A747-4C1817962D87",
         "email": email.trim(),
@@ -321,7 +336,7 @@ class UsuarioController extends BaseController {
           "Content-Type": "application/json",
           // 'Authorization': 'Bearer ${acesso?.signature}}',
         },
-        body: _body,
+        body: body,
       );
 
       if (response.statusCode == 200) {
@@ -346,7 +361,7 @@ class UsuarioController extends BaseController {
   }) async {
     String? errorMessage;
 
-    var _body = jsonEncode(
+    var body = jsonEncode(
       <String, dynamic>{
         // "guididoperador": "BFBC1C49-CD9A-4E04-A747-4C1817962D87",
         "email": tedEmail.text.trim(),
@@ -361,7 +376,7 @@ class UsuarioController extends BaseController {
           "Content-Type": "application/json",
           // 'Authorization': 'Bearer ${acesso?.signature}}',
         },
-        body: _body,
+        body: body,
       );
 
       if (response.statusCode == 200) {

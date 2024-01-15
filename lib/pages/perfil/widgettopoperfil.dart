@@ -2,6 +2,7 @@
 
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
 import 'package:agendacultural/pages/home/widgets/widgettopocomum.dart';
+import 'package:agendacultural/shared/userSharedPreferences.dart';
 import 'package:flutter/material.dart';
 
 class widgetTopoPerfil extends StatelessWidget {
@@ -18,10 +19,12 @@ class widgetTopoPerfil extends StatelessWidget {
       urlImagem1: 'seta.png',
       semanticsLabel: "Página de ",
       funcaoImagem2: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => pageLogin(),
+        UserSharedPreferences.resetUser().then(
+          (value) => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const pageLogin(),
+            ),
           ),
         );
       },
