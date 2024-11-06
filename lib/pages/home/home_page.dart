@@ -7,7 +7,7 @@ import 'package:agendacultural/controller/espaco_controller.dart';
 import 'package:agendacultural/controller/evento_controller.dart';
 import 'package:agendacultural/pages/home/event/area_event.dart';
 import 'package:agendacultural/controller/categoria_controller.dart';
-import 'package:agendacultural/pages/espacos/widgethomeespacos.dart';
+import 'package:agendacultural/pages/home/space/area_space.dart';
 import 'package:agendacultural/pages/home/general/button_filter.dart';
 import 'package:agendacultural/pages/home/category/area_category.dart';
 import 'package:agendacultural/pages/home/location/area_location.dart';
@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
                 ButtonFilterWidget(),
                 AreaEventWidget(exibicaoEvento: ExibicaoEvento.destaque),
                 AreaEventWidget(exibicaoEvento: ExibicaoEvento.data),
-                widgetHomeEspacos(exibicaoEspaco: ExibicaoEspaco.Destaque),
+                AreaSpaceWidget(exibicaoEspaco: ExibicaoEspaco.Destaque),
               ],
             ),
           );

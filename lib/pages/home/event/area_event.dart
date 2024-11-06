@@ -94,7 +94,6 @@ class _AreaEventWidgetState extends State<AreaEventWidget> {
           app.filtro.filtroDataSelecionado = FiltroData.values.firstWhere((element) {
             return element.filtrodatatostring(context) == value;
           });
-          app.notify();
           setState(() {});
         },
         child: SizedBox(
