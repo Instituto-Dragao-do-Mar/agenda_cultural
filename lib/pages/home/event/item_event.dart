@@ -61,97 +61,99 @@ class _ItemEventWidgetState extends State<ItemEventWidget> {
 
     try {
       return GestureDetector(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => EventDetailPage(
-                evento: widget.evento,
-                origem: widget.origem,
-              ),
+        onTap: () => Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => EventDetailPage(
+              evento: widget.evento,
+              origem: widget.origem,
             ),
-          );
-        },
-        child: Padding(
-            padding: const EdgeInsets.all(4),
-            child: Card(
-              child: Container(
-                height: 270 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
-                width: 180 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color:
-                      !Cores.contraste ? const Color(0xFFEDEDED).withOpacity(.2) : corBgAltoContraste.withOpacity(.8),
-                  border: Border.all(width: 1, color: corBg),
-                ),
-                child: Stack(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        _buildImageEvent(),
-                        Padding(
-                          padding: const EdgeInsets.only(right: 8.0, left: 8.0, bottom: 8),
-                          child: LayoutBuilder(
-                            builder: (p0, p1) {
-                              return Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const SizedBox(height: 6),
-                                  TextContrasteFonte(
-                                    text: widget.evento.nome ?? 'Evento',
-                                    maxlines: 1,
-                                    style: GoogleFonts.roboto(
-                                      fontSize: Fontes.tamanhoBase - 4,
-                                      fontWeight: FontWeight.w500,
-                                      color: corTextAtual,
-                                    ),
-                                  ),
-                                  SizedBox(height: nomeEspacoPrincipal.isNotEmpty ? 9 : 6),
-                                  Flex(
-                                    direction: Axis.vertical,
-                                    children: [
-                                      TextContrasteFonte(
-                                        text: app?.GetEspacoEvento(widget.evento),
-                                        style: GoogleFonts.roboto(
-                                          fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 12),
-                                          color: corTextAtual,
-                                        ),
-                                        maxlines: 2,
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 6),
-                                  _buildDatesEvent(
-                                    widget.evento.eventosdatas!.map((e) => e.datahora!).toList(),
-                                  ),
-                                ],
-                              );
-                            },
-                          ),
-                        ),
-                      ],
-                    ),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
+          ),
+        ),
+        child: Container(
+          margin: const EdgeInsets.all(8),
+          height: 270 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+          width: 180 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+          clipBehavior: Clip.antiAlias,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(10),
+            color: !Cores.contraste ? const Color(0xFFF6F6F6) : Colors.black.withOpacity(.8),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(.1),
+                blurRadius: 2,
+                offset: const Offset(2, 2),
+              ),
+            ],
+          ),
+          child: Stack(
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildImageEvent(),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 8, left: 8, bottom: 8),
+                    child: LayoutBuilder(
+                      builder: (p0, p1) {
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 5),
-                              child: WidgetBotaoFavorito(
-                                evento: widget.evento,
+                            const SizedBox(height: 6),
+                            TextContrasteFonte(
+                              text: widget.evento.nome ?? 'Evento',
+                              maxlines: 1,
+                              style: GoogleFonts.roboto(
+                                fontSize: Fontes.tamanhoBase - 4,
+                                fontWeight: FontWeight.w500,
+                                color: corTextAtual,
                               ),
                             ),
+                            SizedBox(height: nomeEspacoPrincipal.isNotEmpty ? 9 : 6),
+                            Flex(
+                              direction: Axis.vertical,
+                              children: [
+                                TextContrasteFonte(
+                                  text: app?.GetEspacoEvento(widget.evento),
+                                  style: GoogleFonts.roboto(
+                                    fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 12),
+                                    color: corTextAtual,
+                                  ),
+                                  maxlines: 2,
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 6),
+                            _buildDatesEvent(
+                              widget.evento.eventosdatas!.map((e) => e.datahora!).toList(),
+                            ),
                           ],
-                        ),
-                      ],
+                        );
+                      },
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            )),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5),
+                        child: ButtonFavoriteWidget(
+                          evento: widget.evento,
+                          isCardEvent: true,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
       );
     } catch (s) {
       return Text(widget.evento.nome ?? 'sem nome');

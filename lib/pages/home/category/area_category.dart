@@ -50,7 +50,7 @@ class _AreaCategoryWidgetState extends State<AreaCategoryWidget> {
           width: double.infinity,
           height: Dados.verTodasCategorias ? null : 130,
           child: SingleChildScrollView(
-            physics: const BouncingScrollPhysics(),
+            physics: const AlwaysScrollableScrollPhysics(),
             controller: scrollController,
             scrollDirection: Dados.verTodasCategorias ? Axis.vertical : Axis.horizontal,
             child: Wrap(
@@ -65,8 +65,8 @@ class _AreaCategoryWidgetState extends State<AreaCategoryWidget> {
                   return Padding(
                     padding: !Dados.verTodasCategorias
                         ? e == app.listaCategoria.categorias!.first
-                            ? const EdgeInsets.symmetric(horizontal: 16)
-                            : const EdgeInsets.only(right: 16)
+                            ? const EdgeInsets.symmetric(horizontal: 8)
+                            : const EdgeInsets.only(right: 8)
                         : const EdgeInsets.symmetric(horizontal: 8),
                     child: ItemCategoryFilterWidget(categoria: e),
                   );

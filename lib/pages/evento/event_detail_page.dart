@@ -300,7 +300,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
           Semantics(
             container: false,
             label: "Botão favorito",
-            child: WidgetBotaoFavorito(
+            child: ButtonFavoriteWidget(
               evento: widget.evento,
             ),
           ),
@@ -360,7 +360,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
         Semantics(
           container: false,
           label: "Botão favorito",
-          child: WidgetBotaoFavorito(
+          child: ButtonFavoriteWidget(
             evento: widget.evento,
           ),
         ),

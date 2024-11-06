@@ -65,17 +65,20 @@ class _AreaEventWidgetState extends State<AreaEventWidget> {
         wrap = true;
       }
     }
+
     if (widget.exibicaoEvento == ExibicaoEvento.destaque) {
       subtitulo = Dados.verTodosDestaques
           ? AppLocalizations.of(context)!.home_emphasis_less
           : AppLocalizations.of(context)!.home_emphasis_all;
     }
+
     if (widget.exibicaoEvento == ExibicaoEvento.data) {
       List<String> keys = <String>[
         FiltroData.estasemana.filtrodatatostring(context),
         FiltroData.proximasemana.filtrodatatostring(context),
         FiltroData.proximomes.filtrodatatostring(context),
       ];
+
       subtitulo = "";
 
       wdata = MenuButton<String>(
@@ -110,16 +113,10 @@ class _AreaEventWidgetState extends State<AreaEventWidget> {
                     semantics: app.filtro.filtroDataSelecionado!.filtrodatatostring(context),
                   ),
                 ),
-                const SizedBox(
-                  width: 12,
-                  height: 17,
-                  child: FittedBox(
-                    fit: BoxFit.fill,
-                    child: Icon(
-                      Icons.arrow_drop_down,
-                      color: Colors.orange,
-                    ),
-                  ),
+                Icon(
+                  Icons.arrow_drop_down,
+                  color: corBackgroundLaranja,
+                  size: 22,
                 ),
               ],
             ),
@@ -129,8 +126,8 @@ class _AreaEventWidgetState extends State<AreaEventWidget> {
     }
 
     List<int> listSelecionadas = app.filtro.categoriasSelecionadas!.map((e) => e.id!).toList();
-
     List<int> listCategoriasEvento = [];
+
     for (Evento e in app.listaEventos.eventos!) {
       listCategoriasEvento.addAll(e.eventoscategorias!.map((c) => c.idcategoria!).toList());
     }
@@ -194,10 +191,7 @@ class _AreaEventWidgetState extends State<AreaEventWidget> {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.max,
       children: [
-        const SizedBox(
-          height: 20,
-          width: double.infinity,
-        ),
+        const SizedBox(height: 20),
         HeaderCardsCategoryWidget(
           titulo: widget.titulo ?? titulos[widget.exibicaoEvento.index],
           subtitulo: subtitulo,
@@ -210,6 +204,7 @@ class _AreaEventWidgetState extends State<AreaEventWidget> {
           },
           widget: widget.exibicaoEvento == ExibicaoEvento.destaque ? null : wdata,
         ),
+        const SizedBox(height: 5),
         SizedBox(
           height: 270 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
           child: ListView.builder(
