@@ -1,0 +1,86 @@
+// ignore_for_file: file_names
+
+import 'package:agendacultural/controller/base_controller.dart';
+import 'package:agendacultural/shared/themes.dart';
+import 'package:agendacultural/shared/widgetimagem.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../model/imagem_model.dart';
+
+class WidgetBottomNavigator extends StatefulWidget {
+  const WidgetBottomNavigator({
+    Key? key,
+    this.replacePage,
+  }) : super(key: key);
+
+  final num? replacePage;
+
+  @override
+  State<WidgetBottomNavigator> createState() => _WidgetBottomNavigatorState();
+}
+
+class _WidgetBottomNavigatorState extends State<WidgetBottomNavigator> {
+  @override
+  Widget build(BuildContext context) {
+    BaseController baseController = Provider.of<BaseController>(context);
+
+    return BottomNavigationBar(
+      onTap: (i) {
+        baseController.setBottomBarSelectedOption(i);
+        if (widget.replacePage != null) {
+          for (int i = 0; i < (widget.replacePage! - 1); i++) {
+            Navigator.of(context).pop();
+          }
+        }
+        Navigator.of(context).pop();
+      },
+      backgroundColor: corBgAtual,
+      elevation: 0,
+      showUnselectedLabels: true,
+      unselectedFontSize: 12,
+      selectedFontSize: 12,
+      unselectedItemColor: corTextAtual,
+      selectedItemColor: corBackgroundLaranja,
+      currentIndex: baseController.bottomBarSelectedOption,
+      items: [
+        BottomNavigationBarItem(
+          backgroundColor: corBgAtual,
+          icon: SvgPicture.asset(
+            'imagens/navHome.svg',
+          ),
+          label: AppLocalizations.of(context)!.nav_bar_home,
+        ),
+        BottomNavigationBarItem(
+          backgroundColor: corBgAtual,
+          icon: SvgPicture.asset(
+            'imagens/navSchedule.svg',
+          ),
+          label: AppLocalizations.of(context)!.nav_bar_schedule,
+        ),
+        BottomNavigationBarItem(
+          backgroundColor: corBgAtual,
+          icon: SvgPicture.asset(
+            'imagens/navMap.svg',
+          ),
+          label: AppLocalizations.of(context)!.nav_bar_map,
+        ),
+        BottomNavigationBarItem(
+          backgroundColor: corBgAtual,
+          icon: SvgPicture.asset(
+            'imagens/navFavorite.svg',
+          ),
+          label: AppLocalizations.of(context)!.nav_bar_favorites,
+        ),
+        BottomNavigationBarItem(
+          backgroundColor: corBgAtual,
+          icon: SvgPicture.asset(
+            'imagens/navProfile.svg',
+          ),
+          label: AppLocalizations.of(context)!.nav_bar_profile,
+        ),
+      ],
+    );
+  }
+}

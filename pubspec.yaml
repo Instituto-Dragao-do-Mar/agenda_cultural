@@ -1,0 +1,67 @@
+name: agendacultural
+description: Cultura.CE
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.4 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+
+  shared_preferences: ^2.0.15
+  http: ^1.0.0
+  provider: ^6.0.4
+  google_fonts: ^4.0.1
+  introduction_screen: ^3.0.2
+  awesome_dialog: ^3.0.2
+  readmore: ^2.2.0
+  step_progress_indicator: ^1.0.2
+  flutter_switch: ^0.3.2
+  platform_info: ^3.2.0
+  group_button: ^5.2.2
+  intl: ^0.18.1
+  google_maps_flutter: ^2.5.3
+  url_strategy: ^0.2.0
+  adaptive_action_sheet: ^2.0.2
+  fluttertoast: ^8.1.2
+  url_launcher: ^6.1.7
+  persistent_bottom_nav_bar: ^5.0.2
+#  geocoder2: ^1.4.0
+  dropdown_search: 5.0.2
+  dart_date: ^1.1.1
+  menu_button: ^1.4.2+1
+  flutter_native_splash: ^2.2.17
+  flutter_easyloading: 3.0.5
+  uuid: ^4.3.3
+  # dependecias ajustadas
+  flutter_svg: ^2.0.10+1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "imagens/iconelaranha.png"
+  min_sdk_android: 21
+  web:
+    generate: true
+    image_path: "imagens/iconelaranha.png"
+    background_color: "#ffE83c3b"
+    theme_color: "#ffE83c3b"
+
+flutter:
+  generate: true
+  uses-material-design: true
+
+  assets:
+    - imagens/

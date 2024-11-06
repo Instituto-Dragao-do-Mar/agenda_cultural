@@ -1,0 +1,47 @@
+import 'package:intl/intl.dart';
+
+extension Dates on String {
+  int compareDateInDays(String? endDate) {
+    DateTime _startDate;
+    DateTime _endDate;
+
+    _startDate = DateTime.parse(this);
+    _endDate = DateTime.parse(endDate!);
+
+    Duration _duration = _startDate.difference(_endDate);
+
+    return _duration.inDays;
+  }
+
+  int compareDateInSeconds(String? endDate) {
+    DateTime _startDate;
+    DateTime _endDate;
+
+    _startDate = DateTime.parse(this);
+    _endDate = DateTime.parse(endDate!);
+
+    Duration _duration = _startDate.difference(_endDate);
+
+    return _duration.inSeconds;
+  }
+
+
+  String formatDate({String? format}) {
+    String _defaultFormat = "dd/MM/yyyy";
+    String _format = format == null ? _defaultFormat : format;
+
+    if(this.isEmpty)
+      return "";
+
+    final df = new DateFormat(_format,"pt_BR");
+
+    return df.format(DateTime.parse(this));
+  }
+}
+
+extension DateOnlyCompare on DateTime {
+  bool isSameDate(DateTime other) {
+    return year == other.year && month == other.month
+        && day == other.day;
+  }
+}
