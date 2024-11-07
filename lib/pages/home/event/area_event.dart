@@ -33,8 +33,6 @@ class AreaEventWidget extends StatefulWidget {
 
 class _AreaEventWidgetState extends State<AreaEventWidget> {
   List<String> titulos = ['Destaques', 'Data', 'Eventos'];
-  ScrollController scrollController = ScrollController();
-  String? selectedKey;
   bool wrap = false;
   String subtitulo = '';
   Widget? wdata;
@@ -95,6 +93,7 @@ class _AreaEventWidgetState extends State<AreaEventWidget> {
             return element.filtrodatatostring(context) == value;
           });
           setState(() {});
+          app.notify();
         },
         child: SizedBox(
           width: 200,
@@ -164,12 +163,14 @@ class _AreaEventWidgetState extends State<AreaEventWidget> {
           );
       d2 = DateTime.now().endOfWeek.format('yyyy-MM-dd 23:59:59');
     }
+
     if (app.filtro.filtroDataSelecionado == FiltroData.proximasemana) {
       d1 = DateTime.now().nextWeek.startOfWeek.addDays(1).toString().formatDate(
             format: 'yyyy-MM-dd',
           );
       d2 = DateTime.now().nextWeek.endOfWeek.format('yyyy-MM-dd 23:59:59');
     }
+
     if (app.filtro.filtroDataSelecionado == FiltroData.proximomes) {
       d1 = DateTime.now().nextMonth.startOfMonth.toString().formatDate(
             format: 'yyyy-MM-dd',

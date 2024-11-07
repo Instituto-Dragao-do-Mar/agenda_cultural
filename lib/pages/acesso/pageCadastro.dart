@@ -3,7 +3,7 @@
 import 'package:agendacultural/controller/base_controller.dart';
 import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/pages/acesso/pageEntrar.dart';
-import 'package:agendacultural/pages/principal/home.dart';
+import 'package:agendacultural/pages/logged_area_page.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetbotao.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
@@ -640,7 +640,7 @@ class _PageCadastroState extends State<PageCadastro> {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (context) => const PagePrincipal(),
+                builder: (context) => const LoggedAreaPage(),
               ),
             );
           } else {

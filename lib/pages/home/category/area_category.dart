@@ -1,3 +1,4 @@
+import 'package:agendacultural/model/categoria_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -8,7 +9,12 @@ import 'package:agendacultural/pages/home/general/header_areas_home.dart';
 import 'package:agendacultural/pages/home/category/item_category_filter.dart';
 
 class AreaCategoryWidget extends StatefulWidget {
-  const AreaCategoryWidget({super.key});
+  final void Function(Categoria categoria) applyFilterCategory;
+
+  const AreaCategoryWidget({
+    super.key,
+    required this.applyFilterCategory,
+  });
 
   @override
   State<AreaCategoryWidget> createState() => _AreaCategoryWidgetState();
@@ -50,25 +56,29 @@ class _AreaCategoryWidgetState extends State<AreaCategoryWidget> {
           width: double.infinity,
           height: Dados.verTodasCategorias ? null : 130,
           child: SingleChildScrollView(
-            physics: const AlwaysScrollableScrollPhysics(),
+            physics: Dados.verTodasCategorias ? const NeverScrollableScrollPhysics() : const BouncingScrollPhysics(),
             controller: scrollController,
             scrollDirection: Dados.verTodasCategorias ? Axis.vertical : Axis.horizontal,
             child: Wrap(
               alignment: WrapAlignment.center,
               direction: Axis.horizontal,
               children: app.listaCategoria.categorias!.map(
-                (e) {
-                  if (e.imagens == null || e.imagens!.isEmpty) {
+                (categoryComponent) {
+                  if (categoryComponent.imagens == null || categoryComponent.imagens!.isEmpty) {
                     return const SizedBox.shrink();
                   }
 
                   return Padding(
                     padding: !Dados.verTodasCategorias
-                        ? e == app.listaCategoria.categorias!.first
+                        ? categoryComponent == app.listaCategoria.categorias!.first
                             ? const EdgeInsets.symmetric(horizontal: 8)
                             : const EdgeInsets.only(right: 8)
                         : const EdgeInsets.symmetric(horizontal: 8),
-                    child: ItemCategoryFilterWidget(categoria: e),
+                    child: ItemCategoryFilterWidget(
+                      category: categoryComponent,
+                      nameCategory: app.getNomeCategoria(categoryComponent.nome!, context),
+                      applyFilterCategory: () => widget.applyFilterCategory(categoryComponent),
+                    ),
                   );
                 },
               ).toList(),

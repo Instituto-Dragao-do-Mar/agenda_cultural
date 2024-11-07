@@ -1,14 +1,14 @@
-import 'package:agendacultural/model/cores.dart';
-import 'package:agendacultural/model/fontes.dart';
-import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'package:agendacultural/model/cores.dart';
+import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/model/espaco_model.dart';
-import 'package:agendacultural/shared/widgetespacoh.dart';
-import 'package:agendacultural/pages/espacos/pageespacodetalhe.dart';
+import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
+import 'package:agendacultural/pages/espacos/space_detail_page.dart';
 
 class ItemSpaceWidget extends StatelessWidget {
   final Espaco espaco;
@@ -32,7 +32,7 @@ class ItemSpaceWidget extends StatelessWidget {
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => pageEspacoDetalhe(espaco: espaco),
+          builder: (context) => SpaceDetailPage(espaco: espaco),
         ),
       ),
       child: Container(

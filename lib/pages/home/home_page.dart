@@ -1,3 +1,4 @@
+import 'package:agendacultural/model/categoria_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -48,18 +49,38 @@ class _HomePageState extends State<HomePage> {
       color: corBgAtual,
       child: Consumer<AppModel>(
         builder: (context, app, child) {
-          return const SingleChildScrollView(
+          return SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
               children: [
-                AreaLocationWidget(),
-                AreaCategoryWidget(),
-                ButtonFilterWidget(),
-                AreaEventWidget(exibicaoEvento: ExibicaoEvento.destaque),
-                AreaEventWidget(exibicaoEvento: ExibicaoEvento.data),
-                AreaSpaceWidget(exibicaoEspaco: ExibicaoEspaco.Destaque),
+                const AreaLocationWidget(),
+                AreaCategoryWidget(
+                  applyFilterCategory: (categoria) {
+                    setState(() {
+                      app.filtro.categoriasSelecionadas!.clear();
+
+                      for (Categoria c in app.listaCategoria.categorias!) {
+                        if (c != categoria) {
+                          c.selecionada = false;
+                        }
+                      }
+
+                      categoria.selecionada = !categoria.selecionada!;
+
+                      if (!categoria.selecionada!) {
+                      } else {
+                        app.filtro.categoriasSelecionadas!.add(categoria);
+                      }
+                      app.notify();
+                    });
+                  },
+                ),
+                const ButtonFilterWidget(),
+                const AreaEventWidget(exibicaoEvento: ExibicaoEvento.destaque),
+                const AreaEventWidget(exibicaoEvento: ExibicaoEvento.data),
+                const AreaSpaceWidget(),
               ],
             ),
           );

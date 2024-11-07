@@ -7,8 +7,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'package:agendacultural/model/cores.dart';
 import 'package:agendacultural/model/fontes.dart';
@@ -19,20 +19,15 @@ import 'package:agendacultural/model/evento_model.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/shared/widgetbotao.dart';
 import 'package:agendacultural/shared/widgetpopup.dart';
-import 'package:agendacultural/pages/mapa/pagemapa.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
-import 'package:agendacultural/pages/home/home_page.dart';
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
-import 'package:agendacultural/pages/agenda/pageagenda.dart';
 import 'package:agendacultural/shared/extensions/dates.dart';
-import 'package:agendacultural/pages/perfil/widgetperfil.dart';
 import 'package:agendacultural/shared/widgetBotaoFavorito.dart';
 import 'package:agendacultural/shared/widgetimagemexterna.dart';
 import 'package:agendacultural/shared/widgetBottomNavigator.dart';
 import 'package:agendacultural/model/usuarioavaliacao_model.dart';
 import 'package:agendacultural/shared/extensions/capitalize.dart';
 import 'package:agendacultural/shared/widgetNotificacaoPopUp.dart';
-import 'package:agendacultural/pages/favorito/widgetFavoritos.dart';
 import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
 import 'package:agendacultural/controller/usuarioavaliacao_controller.dart';
 
@@ -56,16 +51,8 @@ class _EventDetailPageState extends State<EventDetailPage> {
   Espaco? espaco;
 
   var selecionado = 0;
-  int opcaoSelecionadaNavBar = 0;
   Set<Marker> markers = {};
   String siteIngresso = '';
-  List<Widget> subPaginas = [
-    const HomePage(),
-    const pageAgenda(),
-    const pageMapa(),
-    const WidgetFavoritos(),
-    const widgetPerfil(),
-  ];
 
   @override
   void initState() {
@@ -94,11 +81,6 @@ class _EventDetailPageState extends State<EventDetailPage> {
       markers.add(marker);
 
       siteIngresso = widget.evento.urlentrada ?? '';
-    } else {
-      inicioCamera = const CameraPosition(
-        target: LatLng(-3.7608777226578134, -38.521393491712224),
-        zoom: 16,
-      );
     }
   }
 
@@ -242,7 +224,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
                 ),
                 const SizedBox(height: 5),
                 TextContrasteFonte(
-                  text: widget.evento.nome!,
+                  text: widget.evento.nome,
                   style: GoogleFonts.inter(
                     fontSize: Fontes.tamanhoBase.toDouble(),
                     fontWeight: FontWeight.w600,
@@ -588,11 +570,12 @@ class _EventDetailPageState extends State<EventDetailPage> {
 
   Widget? _buildEvaluation() {
     var size = MediaQuery.of(context).size;
-
     double fontePadrao = Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14);
+
     var av1 = AppLocalizations.of(context)!.e_evaluation_one;
     var av2 = AppLocalizations.of(context)!.e_evaluation_two;
     var av3 = AppLocalizations.of(context)!.e_evaluation_three;
+
     if (widget.evento.eventosdatas!.first.datahora!.formatDate(format: 'yyyy-MM-dd') ==
         DateTime.now().toIso8601String().formatDate(format: 'yyyy-MM-dd')) {
       return FutureBuilder(
@@ -627,9 +610,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
                   SizedBox(
                     width: size.width * 0.3,
                     child: GestureDetector(
-                      onTap: () async {
-                        _confirmEvaluation(1);
-                      },
+                      onTap: () async => _confirmEvaluation(1),
                       child: Column(
                         children: [
                           widgetImagemInterna(
@@ -659,9 +640,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
                   SizedBox(
                     width: size.width * 0.3,
                     child: GestureDetector(
-                      onTap: () async {
-                        _confirmEvaluation(2);
-                      },
+                      onTap: () async => _confirmEvaluation(2),
                       child: Column(
                         children: [
                           widgetImagemInterna(
@@ -691,9 +670,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
                   SizedBox(
                     width: size.width * 0.3,
                     child: GestureDetector(
-                      onTap: () async {
-                        _confirmEvaluation(3);
-                      },
+                      onTap: () async => _confirmEvaluation(3),
                       child: Column(
                         children: [
                           widgetImagemInterna(

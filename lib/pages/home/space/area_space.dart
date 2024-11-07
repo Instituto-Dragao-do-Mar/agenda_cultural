@@ -8,15 +8,8 @@ import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/pages/home/space/item_space.dart';
 import 'package:agendacultural/pages/home/general/header_areas_home.dart';
 
-enum ExibicaoEspaco { Destaque, Data, Evento }
-
 class AreaSpaceWidget extends StatefulWidget {
-  const AreaSpaceWidget({
-    required this.exibicaoEspaco,
-    super.key,
-  });
-
-  final ExibicaoEspaco exibicaoEspaco;
+  const AreaSpaceWidget({super.key});
 
   @override
   State<AreaSpaceWidget> createState() => _AreaSpaceWidgetState();
@@ -32,6 +25,12 @@ class _AreaSpaceWidgetState extends State<AreaSpaceWidget> {
   void initState() {
     super.initState();
     app = Provider.of<AppModel>(context, listen: false);
+
+    if (!Dados.verTodosEspacos) {
+      wrap = false;
+    } else {
+      wrap = true;
+    }
   }
 
   @override
@@ -40,14 +39,6 @@ class _AreaSpaceWidgetState extends State<AreaSpaceWidget> {
   @override
   Widget build(BuildContext context) {
     int contadorDisplay = 0;
-
-    if (widget.exibicaoEspaco == ExibicaoEspaco.Destaque) {
-      if (!Dados.verTodosEspacos) {
-        wrap = false;
-      } else {
-        wrap = true;
-      }
-    }
 
     return Column(
       mainAxisSize: MainAxisSize.max,
@@ -74,10 +65,10 @@ class _AreaSpaceWidgetState extends State<AreaSpaceWidget> {
             child: Wrap(
               children: app.listaEspacos.espacos!.map(
                 (e) {
-                  if (widget.exibicaoEspaco == ExibicaoEspaco.Destaque && !wrap && contadorDisplay > 9) {
+                  if (!wrap && contadorDisplay > 9) {
                     return const SizedBox.shrink();
                   }
-                  if (widget.exibicaoEspaco == ExibicaoEspaco.Destaque && e.aprovado == 0) {
+                  if (e.aprovado == 0) {
                     return const SizedBox.shrink();
                   }
 

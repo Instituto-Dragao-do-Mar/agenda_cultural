@@ -7,7 +7,7 @@ import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/pages/introducao/introducao.dart';
-import 'package:agendacultural/pages/principal/home.dart';
+import 'package:agendacultural/pages/logged_area_page.dart';
 import 'package:agendacultural/shared/constantes.dart';
 import 'package:agendacultural/shared/userSharedPreferences.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
@@ -67,7 +67,7 @@ class _pageSplashState extends State<pageSplash> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: ((context) => const PagePrincipal()),
+            builder: ((context) => const LoggedAreaPage()),
           ),
         );
       } else if (!Dados.jaVisualizouIntroducao) {
@@ -75,7 +75,7 @@ class _pageSplashState extends State<pageSplash> {
           context,
           MaterialPageRoute(
             builder: (context) => const IntroducaoPage(
-              destino: PagePrincipal(),
+              destino: LoggedAreaPage(),
             ),
           ),
         );
@@ -83,7 +83,7 @@ class _pageSplashState extends State<pageSplash> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => const PagePrincipal(),
+            builder: (context) => const LoggedAreaPage(),
           ),
         );
       }

@@ -20,7 +20,7 @@ import '../../shared/constantes.dart';
 import '../../shared/widgetTextFonteContraste.dart';
 import '../../shared/widgetNotificacaoPopUp.dart';
 import '../home/general/widgettopocomum.dart';
-import '../principal/home.dart';
+import '../logged_area_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // ignore_for_file: use_build_context_synchronously
@@ -325,7 +325,7 @@ class _PageEntrarState extends State<PageEntrar> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => const PagePrincipal(),
+          builder: (context) => const LoggedAreaPage(),
         ),
       );
     } else {
