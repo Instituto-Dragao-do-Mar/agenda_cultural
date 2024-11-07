@@ -8,7 +8,7 @@ import '../../shared/constantes.dart';
 import '../../shared/themes.dart';
 import '../../shared/widgetTextFonteContraste.dart';
 import '../../shared/widgetbotao.dart';
-import '../../shared/widgetNotificacaoPopUp.dart';
+import '../../shared/notify_pop_up.dart';
 import '../../shared/widgetespacoh.dart';
 import '../home/general/widgettopocomum.dart';
 
@@ -135,7 +135,7 @@ class _PageRecuperarSenhaState extends State<PageRecuperarSenha> {
 
   Future<void> sendEmail(BuildContext context) async {
     if (emailInput.characters.isEmpty) {
-      widgetNotificaoPopUp(
+      notifyPopUpWidget(
         context: context,
         textDescritivo: AppLocalizations.of(context)!.login_notify_empty,
       );
@@ -144,7 +144,7 @@ class _PageRecuperarSenhaState extends State<PageRecuperarSenha> {
     if (!RegExp(
             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(emailInput)) {
-      widgetNotificaoPopUp(
+      notifyPopUpWidget(
         context: context,
         textDescritivo: AppLocalizations.of(context)!.login_notify_invalid,
       );
@@ -156,14 +156,14 @@ class _PageRecuperarSenhaState extends State<PageRecuperarSenha> {
     );
 
     if (usuarioController != null && errorMessage != "") {
-      widgetNotificaoPopUp(
+      notifyPopUpWidget(
         context: context,
         textDescritivo: errorMessage ?? '',
       );
       return;
     }
 
-    widgetNotificaoPopUp(
+    notifyPopUpWidget(
         context: context,
         textChamativo: AppLocalizations.of(context)!.login_reset_conclude_title,
         textDescritivo:

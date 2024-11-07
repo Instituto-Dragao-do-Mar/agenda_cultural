@@ -22,7 +22,7 @@ import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
 import 'package:agendacultural/shared/widgetBottomNavigator.dart';
-import 'package:agendacultural/shared/widgetNotificacaoPopUp.dart';
+import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
 import 'package:agendacultural/pages/espacos/programacaoespaco.page.dart';
 
@@ -357,7 +357,7 @@ class _SpaceDetailPageState extends State<SpaceDetailPage> {
                 ),
                 const SizedBox(width: 10),
                 GestureDetector(
-                  onTap: () async => widgetNotificaoPopUp(
+                  onTap: () async => notifyPopUpWidget(
                     context: context,
                     permitirFechar: true,
                     textDescritivo: textDesc,
@@ -507,7 +507,7 @@ class _SpaceDetailPageState extends State<SpaceDetailPage> {
 
   void _confirmEvaluation(int value) {
     if (!app.isLog()) {
-      widgetNotificaoPopUp(
+      notifyPopUpWidget(
         context: context,
         textDescritivo: AppLocalizations.of(context)!.e_alert_spaces,
         textBotao: AppLocalizations.of(context)!.profile_general_alert_accept,

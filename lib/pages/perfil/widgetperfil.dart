@@ -10,7 +10,7 @@ import 'package:agendacultural/pages/home/widgetdadoscadastrais.dart';
 import 'package:agendacultural/pages/home/general/widgetSobre.dart';
 import 'package:agendacultural/pages/home/general/widgetopcaoperfil.dart';
 import 'package:agendacultural/shared/themes.dart';
-import 'package:agendacultural/shared/widgetNotificacaoPopUp.dart';
+import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
@@ -56,7 +56,7 @@ class _widgetPerfilState extends State<widgetPerfil> {
                 subtitulo: AppLocalizations.of(context)!.profile_account_data,
                 funcao: () async {
                   if (!app!.isLog()) {
-                    widgetNotificaoPopUp(
+                    notifyPopUpWidget(
                         context: context,
                         permitirFechar: true,
                         textDescritivo: AppLocalizations.of(context)!
@@ -96,7 +96,7 @@ class _widgetPerfilState extends State<widgetPerfil> {
                   subtitulo:
                       AppLocalizations.of(context)!.profile_general_terms,
                   funcao: () async {
-                    widgetNotificaoPopUp(
+                    notifyPopUpWidget(
                       context: context,
                       permitirFechar: true,
                       textDescritivo:
@@ -126,7 +126,7 @@ class _widgetPerfilState extends State<widgetPerfil> {
                 child: widgetopacaoperfil(
                   subtitulo: AppLocalizations.of(context)!.profile_general_help,
                   funcao: () async {
-                    widgetNotificaoPopUp(
+                    notifyPopUpWidget(
                       context: context,
                       permitirFechar: true,
                       textDescritivo:
@@ -165,7 +165,7 @@ class _widgetPerfilState extends State<widgetPerfil> {
                   subtitulo:
                       AppLocalizations.of(context)!.profile_general_evaluate,
                   funcao: () async {
-                    widgetNotificaoPopUp(
+                    notifyPopUpWidget(
                       context: context,
                       permitirFechar: true,
                       textDescritivo:

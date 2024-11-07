@@ -45,8 +45,6 @@ class GeoLocalizacao {
     retorno += ", " + (city ?? "");
     retorno += "- " + (principalSubdivision ?? "");
 
-    //print(this.toJson());
-
     return retorno;
   }
 
@@ -65,9 +63,7 @@ class GeoLocalizacao {
     city = json['city'];
     locality = json['locality'];
     postcode = json['postcode'];
-    localityInfo = json['localityInfo'] != null
-        ? new LocalityInfo.fromJson(json['localityInfo'])
-        : null;
+    localityInfo = json['localityInfo'] != null ? new LocalityInfo.fromJson(json['localityInfo']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -179,13 +175,7 @@ class Informative {
   String? wikidataId;
   int? geonameId;
 
-  Informative(
-      {this.order,
-      this.name,
-      this.description,
-      this.isoCode,
-      this.wikidataId,
-      this.geonameId});
+  Informative({this.order, this.name, this.description, this.isoCode, this.wikidataId, this.geonameId});
 
   Informative.fromJson(Map<String, dynamic> json) {
     order = json['order'];

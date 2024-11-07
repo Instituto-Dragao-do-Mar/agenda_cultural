@@ -1,19 +1,20 @@
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:url_strategy/url_strategy.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+
+import 'package:agendacultural/dados/dados.dart';
+import 'package:agendacultural/model/cores.dart';
+import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/shared/themes.dart';
+import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/controller/base_controller.dart';
-import 'package:agendacultural/controller/categoria_controller.dart';
+import 'package:agendacultural/pages/introducao/pagesplash.dart';
 import 'package:agendacultural/controller/espaco_controller.dart';
 import 'package:agendacultural/controller/evento_controller.dart';
 import 'package:agendacultural/controller/usuario_controller.dart';
-import 'package:agendacultural/dados/dados.dart';
-import 'package:agendacultural/model/app_model.dart';
-import 'package:agendacultural/model/fontes.dart';
-import 'package:agendacultural/pages/introducao/pagesplash.dart';
-import 'package:agendacultural/shared/themes.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:provider/provider.dart';
-import 'package:url_strategy/url_strategy.dart';
-import 'model/cores.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:agendacultural/controller/categoria_controller.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

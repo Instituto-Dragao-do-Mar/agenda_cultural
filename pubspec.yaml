@@ -15,7 +15,7 @@ dependencies:
     sdk: flutter
 
   shared_preferences: ^2.0.15
-  http: ^1.0.0
+  http: ^0.13.4
   provider: ^6.0.4
   google_fonts: ^4.0.1
   introduction_screen: ^3.0.2
@@ -34,15 +34,16 @@ dependencies:
   fluttertoast: ^8.1.2
   url_launcher: ^6.1.7
   persistent_bottom_nav_bar: ^5.0.2
-#  geocoder2: ^1.4.0
+  geocoder2: ^1.4.0
+  geolocator: ^7.0.1
+  permission_handler: ^11.3.1
   dropdown_search: 5.0.2
   dart_date: ^1.1.1
   menu_button: ^1.4.2+1
   flutter_native_splash: ^2.2.17
   flutter_easyloading: 3.0.5
   uuid: ^4.3.3
-  # dependecias ajustadas
-  flutter_svg: ^2.0.10+1
+  flutter_svg: ^2.0.9
 
 dev_dependencies:
   flutter_test:
@@ -54,7 +55,7 @@ flutter_icons:
   android: "launcher_icon"
   ios: true
   image_path: "imagens/iconelaranha.png"
-  min_sdk_android: 21
+  min_sdk_android: 20
   web:
     generate: true
     image_path: "imagens/iconelaranha.png"

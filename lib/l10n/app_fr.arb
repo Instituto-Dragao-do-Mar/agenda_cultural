@@ -38,6 +38,7 @@
     "location_search": "Entrez votre localisation",
     "location_subtitle": "Utiliser ma localisation",
     "location_error": "Localisation non trouvée, veuillez essayer de fournir l'adresse avec rue, quartier et ville",
+    "location_no_permission": "Pour accéder à la localisation, il est nécessaire d’autoriser l’accès au GPS dans les enregistrements de votre appareil!",
     "location_latitude": "Latitude :",
     "location_longitude": "Longitude :",
     "localion_loading": "Localisation en cours...",

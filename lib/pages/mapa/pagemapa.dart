@@ -32,26 +32,17 @@ class _pageMapaState extends State<pageMapa> {
     super.initState();
     app = context.read<AppModel>();
 
-    if (app.listaEventos.eventos != null &&
-        app.listaEventos.eventos!.isNotEmpty) {
-      int idespaco =
-          app.listaEventos.eventos!.first.eventosdatas!.first.idespaco!;
-      Espaco espaco = app.listaEspacos.espacos!
-          .firstWhere((element) => element.id == idespaco);
+    if (app.listaEventos.eventos != null && app.listaEventos.eventos!.isNotEmpty) {
+      int idespaco = app.listaEventos.eventos!.first.eventosdatas!.first.idespaco!;
+      Espaco espaco = app.listaEspacos.espacos!.firstWhere((element) => element.id == idespaco);
 
       _inicioCameraPosition = CameraPosition(
-        target: LatLng(
-          espaco.latitude ?? 0.0,
-          espaco.longitude ?? 0.0,
-        ),
+        target: LatLng(espaco.latitude ?? 0.0, espaco.longitude ?? 0.0),
         zoom: 11,
       );
     } else {
       _inicioCameraPosition = const CameraPosition(
-        target: LatLng(
-          -3.7608777226578134,
-          -38.521393491712224,
-        ),
+        target: LatLng(-3.7608777226578134, -38.521393491712224),
         zoom: 11,
       );
     }
@@ -68,8 +59,7 @@ class _pageMapaState extends State<pageMapa> {
       "imagens/markerazul.png",
     );
 
-    BitmapDescriptor markerbitmapLaranja =
-        await BitmapDescriptor.fromAssetImage(
+    BitmapDescriptor markerbitmapLaranja = await BitmapDescriptor.fromAssetImage(
       const ImageConfiguration(size: Size(32, 32)),
       "imagens/markerlaranja.png",
     );
@@ -78,33 +68,17 @@ class _pageMapaState extends State<pageMapa> {
     double lon = await Dados.getDouble('local_atual_longitude');
 
     if (lat != 0) {
-      _inicioCameraPosition = CameraPosition(
-        target: LatLng(
-          lat,
-          lon,
-        ),
-        zoom: 11,
-      );
+      _inicioCameraPosition = CameraPosition(target: LatLng(lat, lon), zoom: 11);
     }
 
     markers = {};
 
-    /* print(
-        " Minha localizacao: ${_inicioCameraPosition.target.latitude.toString()}");
-    print(
-        " Minha localizacao: ${_inicioCameraPosition.target.longitude.toString()}"); */
-
     markers.add(
       Marker(
         markerId: const MarkerId('0'),
-        position: LatLng(_inicioCameraPosition.target.latitude,
-            _inicioCameraPosition.target.longitude),
+        position: LatLng(_inicioCameraPosition.target.latitude, _inicioCameraPosition.target.longitude),
         icon: markerbitmapAzul,
-        infoWindow: InfoWindow(
-          title: 'Minha Localização',
-          snippet: '',
-          onTap: () {},
-        ),
+        infoWindow: InfoWindow(title: 'Minha Localização', snippet: '', onTap: () {}),
       ),
     );
 
@@ -114,8 +88,7 @@ class _pageMapaState extends State<pageMapa> {
 
     for (Evento ev in app.listaEventos.eventos!) {
       int idespaco = ev.eventosdatas!.first.idespaco!;
-      Espaco ep = app.listaEspacos.espacos!
-          .firstWhere((element) => element.id == idespaco);
+      Espaco ep = app.listaEspacos.espacos!.firstWhere((element) => element.id == idespaco);
       markers.add(
         Marker(
           markerId: MarkerId(ep.id.toString()),
@@ -124,16 +97,12 @@ class _pageMapaState extends State<pageMapa> {
           infoWindow: InfoWindow(
             title: ev.nome ?? '',
             snippet: ev.detalhe ?? '',
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => EventDetailPage(
-                    evento: ev,
-                  ),
-                ),
-              );
-            },
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => EventDetailPage(evento: ev),
+              ),
+            ),
           ),
         ),
       );
@@ -142,8 +111,6 @@ class _pageMapaState extends State<pageMapa> {
 
   @override
   Widget build(BuildContext context) {
-    //return const Text("Sem eventos para visualizacão.");
-
     return FutureBuilder(
       future: processaMarkers(),
       builder: (context, snapshot) {
@@ -151,10 +118,10 @@ class _pageMapaState extends State<pageMapa> {
           return const Center(child: CircularProgressIndicator());
         }
 
-        if (app.listaEventos.eventos == null ||
-            app.listaEventos.eventos!.isEmpty) {
+        if (app.listaEventos.eventos == null || app.listaEventos.eventos!.isEmpty) {
           return Text(AppLocalizations.of(context)!.map_empty_events);
         }
+
         return Padding(
           padding: const EdgeInsets.all(24),
           child: SingleChildScrollView(
@@ -173,13 +140,8 @@ class _pageMapaState extends State<pageMapa> {
                         initialCameraPosition: _inicioCameraPosition,
                         onMapCreated: (GoogleMapController controller) {
                           _controller.complete(controller);
-                          //_manager.setMapId(controller.mapId);
                         },
-                        //onCameraMove: _manager.onCameraMove,
-                        onCameraIdle: () {
-                          // processaMarkers();
-                          //_manager.updateMap();
-                        },
+                        onCameraIdle: () {},
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -206,15 +168,11 @@ class pageMapaTopo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return widgetTopoComum(
-        text: AppLocalizations.of(context)!.map_title,
-        funcaoImagem1: () async {
-          notify!();
-        },
-        urlImagem1: 'seta.png',
-        labelImagem1: "Voltar para página anterior",
-        semanticsLabel: "Página de "
-        //funcaoImagem2: () async {},
-        //urlImagem2: 'favoritos.png',
-        );
+      text: AppLocalizations.of(context)!.map_title,
+      funcaoImagem1: () => notify!(),
+      urlImagem1: 'seta.png',
+      labelImagem1: "Voltar para página anterior",
+      semanticsLabel: "Página de ",
+    );
   }
 }

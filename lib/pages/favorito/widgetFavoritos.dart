@@ -3,7 +3,7 @@
 import 'package:agendacultural/controller/base_controller.dart';
 import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
-import 'package:agendacultural/shared/widgetNotificacaoPopUp.dart';
+import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../home/event/item_event.dart';
@@ -65,7 +65,7 @@ class _WidgetFavoritosState extends State<WidgetFavoritos> {
       const Duration(seconds: 0),
       () async {
         if (!app.isLog()) {
-          widgetNotificaoPopUp(
+          notifyPopUpWidget(
             context: context,
             permitirFechar: true,
             textDescritivo: AppLocalizations.of(context)!.e_alert_favorite_page,

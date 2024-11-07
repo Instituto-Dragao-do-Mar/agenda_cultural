@@ -1,12 +1,13 @@
+import 'package:flutter/material.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
 import 'package:agendacultural/model/cores.dart';
 import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
-import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // usada apenas na page de notificação
-void widgetMensagemSuccess({
+void notifySuccessWidget({
   required BuildContext context,
   required String text,
   VoidCallback? funcaoSim,
@@ -16,18 +17,16 @@ void widgetMensagemSuccess({
   AwesomeDialog(
     context: context,
     dialogType: DialogType.noHeader,
-    // animType: AnimType.bottomSlide,
     headerAnimationLoop: false,
     title: title,
     desc: text,
     btnOkOnPress: funcaoSim ?? () {},
     btnOkText: buttonText,
-    // btnOkIcon: Icons.cancel,
     btnOkColor: const Color(0XFFEA5B0C),
   ).show();
 }
 
-void widgetNotificaoPopUp({
+void notifyPopUpWidget({
   required BuildContext context,
   required String textDescritivo,
   String? textChamativo,
@@ -57,16 +56,14 @@ void widgetNotificaoPopUp({
                     color: !Cores.contraste ? Colors.white : Colors.black,
                     borderRadius: BorderRadius.circular(8),
                     border: Border.all(
-                      color:
-                          Cores.contraste ? Colors.white : Colors.transparent,
+                      color: Cores.contraste ? Colors.white : Colors.transparent,
                     )),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     widgetEspacoH(altura: permitirFechar ? 0 : 42),
                     Text(
-                      textChamativo ??
-                          AppLocalizations.of(context)!.notification_attention,
+                      textChamativo ?? AppLocalizations.of(context)!.notification_attention,
                       style: Fontes.poppins16W400Black(Fontes.tamanhoBase + 2),
                     ),
                     const widgetEspacoH(altura: 10),
@@ -84,8 +81,7 @@ void widgetNotificaoPopUp({
                               Navigator.pop(context);
                             },
                         child: Text(
-                          textBotao ??
-                              AppLocalizations.of(context)!.notification_ok,
+                          textBotao ?? AppLocalizations.of(context)!.notification_ok,
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: Fontes.tamanhoBase.toDouble(),
@@ -110,9 +106,7 @@ void widgetNotificaoPopUp({
                             ),
                           ),
                           child: Text(
-                            textBotaoSecundario ??
-                                AppLocalizations.of(context)!
-                                    .notification_cancel,
+                            textBotaoSecundario ?? AppLocalizations.of(context)!.notification_cancel,
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: Fontes.tamanhoBase.toDouble(),

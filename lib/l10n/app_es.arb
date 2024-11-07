@@ -38,6 +38,7 @@
     "location_search": "Ingrese su ubicación",
     "location_subtitle": "Usar mi ubicación",
     "location_error": "Ubicación no encontrada, por favor intente proporcionar la dirección con calle, barrio y ciudad",
+    "location_no_permission": "¡Para acceder a la ubicación es necesario permitir el acceso al GPS en las grabaciones de su dispositivo!",
     "location_latitude": "Latitud:",
     "location_longitude": "Longitud:",
     "localion_loading": "Localizando...",

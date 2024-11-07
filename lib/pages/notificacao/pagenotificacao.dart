@@ -6,7 +6,7 @@ import 'package:agendacultural/pages/home/general/widgettopocomum.dart';
 import 'package:agendacultural/pages/notificacao/widgetnotificacaocard.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetBottomNavigator.dart';
-import 'package:agendacultural/shared/widgetNotificacaoPopUp.dart';
+import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -65,7 +65,7 @@ class _pageNotificacaoState extends State<pageNotificacao> {
               children: [
                 InkWell(
                   onTap: () {
-                    widgetMensagemSuccess(
+                    notifySuccessWidget(
                       context: context,
                       text: app.listaNotificacoes.notificacoes![index].texto ??
                           "",

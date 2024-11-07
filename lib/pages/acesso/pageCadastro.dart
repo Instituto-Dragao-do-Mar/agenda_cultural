@@ -16,7 +16,7 @@ import '../../controller/usuario_controller.dart';
 import '../../model/app_model.dart';
 import '../../shared/constantes.dart';
 import '../../shared/widgetTextFonteContraste.dart';
-import '../../shared/widgetNotificacaoPopUp.dart';
+import '../../shared/notify_pop_up.dart';
 import '../home/general/widgettopocomum.dart';
 
 // ignore_for_file: use_build_context_synchronously
@@ -564,7 +564,7 @@ class _PageCadastroState extends State<PageCadastro> {
     if (emailInput.characters.isEmpty ||
         nomeInput.characters.isEmpty ||
         senhaInput.characters.isEmpty) {
-      widgetNotificaoPopUp(
+      notifyPopUpWidget(
         context: context,
         textDescritivo: AppLocalizations.of(context)!.login_notify_empty,
       );
@@ -573,14 +573,14 @@ class _PageCadastroState extends State<PageCadastro> {
     if (!RegExp(
             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(emailInput)) {
-      widgetNotificaoPopUp(
+      notifyPopUpWidget(
         context: context,
         textDescritivo: AppLocalizations.of(context)!.login_notify_invalid,
       );
       return;
     }
     if (rulesMatch != 4) {
-      widgetNotificaoPopUp(
+      notifyPopUpWidget(
         context: context,
         textDescritivo:
             AppLocalizations.of(context)!.registern_notify_weak_password,
@@ -588,7 +588,7 @@ class _PageCadastroState extends State<PageCadastro> {
       return;
     }
     if (senhaInput != confirmarSenhaInput) {
-      widgetNotificaoPopUp(
+      notifyPopUpWidget(
         context: context,
         textDescritivo:
             AppLocalizations.of(context)!.register_notify_different_passwords,
@@ -597,7 +597,7 @@ class _PageCadastroState extends State<PageCadastro> {
     }
 
     if (!isChecked) {
-      widgetNotificaoPopUp(
+      notifyPopUpWidget(
         context: context,
         textDescritivo:
             AppLocalizations.of(context)!.register_notify_accept_terms,
@@ -612,12 +612,12 @@ class _PageCadastroState extends State<PageCadastro> {
     );
 
     if (usuarioController != null && errorMessage != "") {
-      widgetNotificaoPopUp(
+      notifyPopUpWidget(
           context: context, textDescritivo: errorMessage ?? '');
       return;
     }
 
-    widgetNotificaoPopUp(
+    notifyPopUpWidget(
         context: context,
         textChamativo:
             AppLocalizations.of(context)!.register_notify_register_conclude,

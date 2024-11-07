@@ -18,7 +18,7 @@ import '../../model/app_model.dart';
 import '../../model/cores.dart';
 import '../../shared/constantes.dart';
 import '../../shared/widgetTextFonteContraste.dart';
-import '../../shared/widgetNotificacaoPopUp.dart';
+import '../../shared/notify_pop_up.dart';
 import '../home/general/widgettopocomum.dart';
 import '../logged_area_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -293,7 +293,7 @@ class _PageEntrarState extends State<PageEntrar> {
     if (!RegExp(
             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
         .hasMatch(emailInput)) {
-      widgetNotificaoPopUp(
+      notifyPopUpWidget(
         context: context,
         textDescritivo: AppLocalizations.of(context)!.login_notify_invalid,
       );
@@ -301,7 +301,7 @@ class _PageEntrarState extends State<PageEntrar> {
     }
 
     if (usuarioController.errorMessage == "Alterar Senha") {
-      widgetNotificaoPopUp(
+      notifyPopUpWidget(
           context: context,
           textDescritivo: AppLocalizations.of(context)!.login_notify_reset,
           textBotao: AppLocalizations.of(context)!.login_notify_reset_button,
@@ -329,7 +329,7 @@ class _PageEntrarState extends State<PageEntrar> {
         ),
       );
     } else {
-      widgetNotificaoPopUp(
+      notifyPopUpWidget(
         context: context,
         textDescritivo: AppLocalizations.of(context)!.login_notify_data_invalid,
       );

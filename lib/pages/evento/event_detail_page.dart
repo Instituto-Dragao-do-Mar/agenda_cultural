@@ -20,6 +20,7 @@ import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/shared/widgetbotao.dart';
 import 'package:agendacultural/shared/widgetpopup.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
+import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
 import 'package:agendacultural/shared/extensions/dates.dart';
 import 'package:agendacultural/shared/widgetBotaoFavorito.dart';
@@ -27,7 +28,6 @@ import 'package:agendacultural/shared/widgetimagemexterna.dart';
 import 'package:agendacultural/shared/widgetBottomNavigator.dart';
 import 'package:agendacultural/model/usuarioavaliacao_model.dart';
 import 'package:agendacultural/shared/extensions/capitalize.dart';
-import 'package:agendacultural/shared/widgetNotificacaoPopUp.dart';
 import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
 import 'package:agendacultural/controller/usuarioavaliacao_controller.dart';
 
@@ -132,7 +132,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
               child: widgetBotao(
                 margin: const EdgeInsets.symmetric(horizontal: 10),
                 text: AppLocalizations.of(context)!.e_ticket,
-                function: () => widgetNotificaoPopUp(
+                function: () => notifyPopUpWidget(
                   context: context,
                   permitirFechar: true,
                   textDescritivo: textDesc,
@@ -710,7 +710,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
 
   void _confirmEvaluation(int value) async {
     if (!app.isLog()) {
-      widgetNotificaoPopUp(
+      notifyPopUpWidget(
           context: context,
           textDescritivo: AppLocalizations.of(context)!.e_alert_events,
           textBotao: AppLocalizations.of(context)!.profile_general_alert_accept,
@@ -728,7 +728,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
       TextEditingController tedComentario = TextEditingController();
       bool comentarioFeito = false;
 
-      widgetNotificaoPopUp(
+      notifyPopUpWidget(
         context: context,
         textDescritivo: AppLocalizations.of(context)!.e_alert_coments,
         textBotao: AppLocalizations.of(context)!.profile_general_alert_accept,

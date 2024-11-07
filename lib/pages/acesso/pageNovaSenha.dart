@@ -5,7 +5,7 @@ import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
 import 'package:agendacultural/pages/home/general/widgettopocomum.dart';
 import 'package:agendacultural/shared/themes.dart';
-import 'package:agendacultural/shared/widgetNotificacaoPopUp.dart';
+import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
 import 'package:agendacultural/shared/widgetbotao.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
@@ -327,21 +327,21 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
 
   Future<void> alterarSenha() async {
     if (senhaInput.characters.isEmpty) {
-      widgetNotificaoPopUp(
+      notifyPopUpWidget(
         context: context,
         textDescritivo: 'Os campos precisam ser preenchidos.',
       );
       return;
     }
     if (rulesMatch != 4) {
-      widgetNotificaoPopUp(
+      notifyPopUpWidget(
         context: context,
         textDescritivo: 'Senha fraca.',
       );
       return;
     }
     if (senhaInput != confirmarSenhaInput) {
-      widgetNotificaoPopUp(
+      notifyPopUpWidget(
         context: context,
         textDescritivo: 'Senhas não coincidem.',
       );
@@ -353,14 +353,14 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
     );
 
     if (usuarioController != null && errorMessage != "") {
-      widgetNotificaoPopUp(
+      notifyPopUpWidget(
         context: context,
         textDescritivo: errorMessage ?? '',
       );
       return;
     }
 
-    widgetNotificaoPopUp(
+    notifyPopUpWidget(
         context: context,
         textChamativo: 'Senha alterada!',
         textDescritivo: 'Clique no botão abaixo para prosseguir para o login.',
