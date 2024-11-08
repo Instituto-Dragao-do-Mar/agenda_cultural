@@ -1,16 +1,8 @@
-// ignore_for_file: missing_return, use_build_context_synchronously
-
-import 'package:agendacultural/shared/themes.dart';
 import 'package:flutter/material.dart';
+import 'package:agendacultural/shared/themes.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-enum EditPopupType {
-  texto,
-  data,
-  drop,
-  datahora,
-  ligadesliga,
-}
+enum EditPopupType { texto, data, drop, datahora, ligadesliga }
 
 class EditPopup {
   String? titulo;
@@ -45,26 +37,27 @@ Future<void> showPopupDialog({
     builder: (BuildContext context) {
       return AlertDialog(
         title: Text(titulo ?? "Informe os parâmetros"),
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(10.0))),
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
         content: SizedBox(
           height: (edits!.length * 32) + 120.0,
           width: 300,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
-            children: edits.map((e) {
-              return Column(
-                children: [
-                  Row(
-                    children: [
-                      Expanded(flex: 3, child: _getField(context, e)),
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                ],
-              );
-            }).toList(),
+            children: edits.map(
+              (e) {
+                return Column(
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(flex: 3, child: _getField(context, e)),
+                      ],
+                    ),
+                    const SizedBox(height: 8),
+                  ],
+                );
+              },
+            ).toList(),
           ),
         ),
         actions: <Widget>[
@@ -98,8 +91,7 @@ Future<void> showFuturePopupDialog({
     builder: (BuildContext context) {
       return AlertDialog(
         title: Text(titulo ?? "Informe os parâmetros"),
-        shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(10.0))),
+        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
         content: SizedBox(
           height: (edits!.length * 32) + 120.0,
           width: 300,
@@ -152,88 +144,21 @@ Widget _getField(BuildContext context, EditPopup e) {
             contentPadding: const EdgeInsets.all(16),
             focusColor: Colors.black,
             border: const OutlineInputBorder(
-              borderSide: BorderSide(
-                width: .5,
-                color: Color(0XFFD9D9D9),
-              ),
-              borderRadius: BorderRadius.all(
-                Radius.circular(5),
-              ),
+              borderSide: BorderSide(width: .5, color: Color(0XFFD9D9D9)),
+              borderRadius: BorderRadius.all(Radius.circular(5)),
             ),
             focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(
-                width: 3,
-                color: corBackgroundLaranja,
-              ),
-              borderRadius: const BorderRadius.all(
-                Radius.circular(5),
-              ),
+              borderSide: BorderSide(width: 3, color: corBackgroundLaranja),
+              borderRadius: const BorderRadius.all(Radius.circular(5)),
             ),
           ),
           controller: e.edit,
           maxLines: 3,
-          /* context: context,
-          controller: e.edit,
-          readonly: false,
-          labelText: e.titulo,
-          maxlines: e.maxlines == null ? 1 : e.maxlines, */
         ),
       );
-    /*case EditPopupType.data:
-      return WidgetData(
-        controller: e.edit!,
-        labeltext: e.titulo!,
-        readonly: false,
-      );
-      break;*/
-    /*case EditPopupType.datahora:
-      return WidgetDataHora(
-        controller: e.edit!,
-        labeltext: e.titulo!,
-        readonly: false,
-      );
-      break;*/
     case EditPopupType.drop:
       return Container();
-
     default:
       return Container();
-
-    /* return widgetDropdownSearch(
-        hint: e.titulo,
-        itens: e.opcoes,
-        funcao: e.funcao,
-        enable: true,
-        valorInicial: e.edit.text,
-      );/
-      break;
-    /*case EditPopupType.ligadesliga:
-      return WidgetSwitch(
-        ted: e.edit!,
-        titulo: e.titulo!,
-        border: true,
-        funcao: () {},
-      );
-      break;*/
-    /*default:
-      return widgetTextFormField(
-        context: context,
-        controller: e.edit!,
-        readonly: false,
-        labelText: e.titulo!,
-      );
-      break;*/
-    case EditPopupType.data:
-      // ignore: todo
-      // Handle this case.
-      break;
-    case EditPopupType.datahora:
-      // ignore: todo
-      // Handle this case.
-      break;
-    case EditPopupType.ligadesliga:
-      // ignore: todo
-      // Handle this case.
-      break;*/
   }
 }
