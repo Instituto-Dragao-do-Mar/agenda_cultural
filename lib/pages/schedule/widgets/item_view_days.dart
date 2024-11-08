@@ -6,11 +6,11 @@ import 'package:agendacultural/shared/extensions/dates.dart';
 import 'package:agendacultural/shared/extensions/capitalize.dart';
 import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
 
-class ItemListDatesWidget extends StatelessWidget {
+class ItemViewDaysWidget extends StatelessWidget {
   final DateTime data;
   final bool selecionada;
 
-  const ItemListDatesWidget({
+  const ItemViewDaysWidget({
     super.key,
     required this.data,
     required this.selecionada,

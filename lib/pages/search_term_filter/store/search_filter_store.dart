@@ -1,6 +1,7 @@
 import 'package:agendacultural/model/evento_model.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:mobx/mobx.dart';
+import 'package:flutter/cupertino.dart';
 
 part 'search_filter_store.g.dart';
 

@@ -1,7 +1,8 @@
-import 'package:agendacultural/pages/filtro/pagefiltrocompleto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import 'package:agendacultural/pages/filtro/pagefiltrocompleto.dart';
 
 class ButtonFilterWidget extends StatelessWidget {
   const ButtonFilterWidget({Key? key}) : super(key: key);
@@ -36,7 +37,7 @@ class ButtonFilterWidget extends StatelessWidget {
               child: Row(
                 children: [
                   Text(AppLocalizations.of(context)!.home_filter),
-                  const SizedBox(width: 5),
+                  const SizedBox(width: 10),
                   SvgPicture.asset('imagens/filter.svg'),
                 ],
               ),

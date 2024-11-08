@@ -4,8 +4,6 @@ import 'package:agendacultural/pages/acesso/pagelogin.dart';
 import 'package:agendacultural/pages/home/general/widgettopocomum.dart';
 import 'package:agendacultural/shared/userSharedPreferences.dart';
 import 'package:flutter/material.dart';
-import 'package:agendacultural/controller/base_controller.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class widgetTopoPerfil extends StatelessWidget {

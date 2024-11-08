@@ -72,37 +72,39 @@ class _FiltroCompletoPageState extends State<FiltroCompletoPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          widgetTopoComum(
-            text: AppLocalizations.of(context)!.home_filter,
-            funcaoImagem1: () async {
-              Navigator.pop(context);
-            },
-            urlImagem1: 'seta.png',
-          ),
-          const widgetEspacoH(altura: 16),
-          Expanded(
-            child: Scrollbar(
-              controller: scrollController,
-              trackVisibility: true,
-              thumbVisibility: true,
-              child: SingleChildScrollView(
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            widgetTopoComum(
+              text: AppLocalizations.of(context)!.home_filter,
+              funcaoImagem1: () async {
+                Navigator.pop(context);
+              },
+              urlImagem1: 'seta.png',
+            ),
+            const widgetEspacoH(altura: 16),
+            Expanded(
+              child: Scrollbar(
                 controller: scrollController,
-                child: listadeFiltros(),
+                trackVisibility: true,
+                thumbVisibility: true,
+                child: SingleChildScrollView(
+                  controller: scrollController,
+                  child: listadeFiltros(),
+                ),
               ),
             ),
-          ),
-          const widgetEspacoH(altura: 16),
-          widgetBottomBotao(
-            function: () {},
-            text: AppLocalizations.of(context)!.profile_accessibility_save,
-          ),
-        ],
+            const widgetEspacoH(altura: 16),
+            widgetBottomBotao(
+              function: () {},
+              text: AppLocalizations.of(context)!.profile_accessibility_save,
+            ),
+          ],
+        ),
       ),
     );
   }

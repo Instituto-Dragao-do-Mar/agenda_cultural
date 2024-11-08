@@ -24,7 +24,7 @@ class _SearchFilterPageState extends State<SearchFilterPage> {
   void initState() {
     super.initState();
     app = Provider.of<AppModel>(context, listen: false);
-    searchFilterStore.eventsFilter = app.listaEventos.eventos ?? [];
+    searchFilterStore.setEventsFilter(app.listaEventos.eventos ?? []);
     searchFilterStore.searchController.addListener(
       () => searchFilterStore.eventsFilter = app.listaEventos.eventos
               ?.where((event) =>
