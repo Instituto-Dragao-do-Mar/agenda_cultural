@@ -85,7 +85,7 @@ class _AreaEventWidgetState extends State<AreaEventWidget> {
         itemBuilder: (String value) => Container(
           height: 40,
           alignment: Alignment.centerLeft,
-          padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 16),
+          padding: const EdgeInsets.symmetric(horizontal: 16),
           child: Text(value),
         ),
         onItemSelected: (String value) {

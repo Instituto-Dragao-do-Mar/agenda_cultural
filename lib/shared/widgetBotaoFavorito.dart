@@ -1,12 +1,13 @@
-import 'package:agendacultural/controller/evento_controller.dart';
-import 'package:agendacultural/model/app_model.dart';
-import 'package:agendacultural/model/evento_model.dart';
-import 'package:agendacultural/model/favorito_model.dart';
-import 'package:agendacultural/pages/acesso/pagelogin.dart';
-import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import 'package:agendacultural/model/app_model.dart';
+import 'package:agendacultural/model/evento_model.dart';
+import 'package:agendacultural/model/favorito_model.dart';
+import 'package:agendacultural/shared/notify_pop_up.dart';
+import 'package:agendacultural/pages/acesso/pagelogin.dart';
+import 'package:agendacultural/controller/evento_controller.dart';
 
 class ButtonFavoriteWidget extends StatefulWidget {
   final Evento evento;
@@ -45,8 +46,8 @@ class _ButtonFavoriteWidgetState extends State<ButtonFavoriteWidget> {
       label: favorito == 1
           ? ("Remover ${widget.evento.nome} dos favoritos")
           : "Adicionar ${widget.evento.nome} aos favoritos",
-      child: Padding(
-        padding: const EdgeInsets.all(10),
+      child: Container(
+        margin: const EdgeInsets.only(right: 4),
         child: GestureDetector(
           onTap: () async {
             if (!app!.isLog()) {

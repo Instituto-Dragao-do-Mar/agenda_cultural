@@ -1,27 +1,24 @@
-// ignore_for_file: camel_case_types
-
-import 'package:agendacultural/shared/extensions/capitalize.dart';
-import 'package:agendacultural/shared/extensions/dates.dart';
-import 'package:agendacultural/shared/themes.dart';
 import 'package:flutter/material.dart';
 
-import '../../shared/constantes.dart';
-import '../../shared/widgetTextFonteContraste.dart';
+import 'package:agendacultural/shared/themes.dart';
+import 'package:agendacultural/shared/constantes.dart';
+import 'package:agendacultural/shared/extensions/dates.dart';
+import 'package:agendacultural/shared/extensions/capitalize.dart';
+import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
 
-class widgetPageAgendaVisualizarPorDia extends StatelessWidget {
-  const widgetPageAgendaVisualizarPorDia({
+class ItemListDatesWidget extends StatelessWidget {
+  final DateTime data;
+  final bool selecionada;
+
+  const ItemListDatesWidget({
     super.key,
     required this.data,
     required this.selecionada,
   });
 
-  final DateTime data;
-  final bool selecionada;
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(4),
       height: 80,
       width: 70,
       decoration: selecionada

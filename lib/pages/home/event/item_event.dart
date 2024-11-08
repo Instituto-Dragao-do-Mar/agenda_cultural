@@ -140,12 +140,9 @@ class _ItemEventWidgetState extends State<ItemEventWidget> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 5),
-                        child: ButtonFavoriteWidget(
-                          evento: widget.evento,
-                          isCardEvent: true,
-                        ),
+                      ButtonFavoriteWidget(
+                        evento: widget.evento,
+                        isCardEvent: true,
                       ),
                     ],
                   ),

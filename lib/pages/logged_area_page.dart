@@ -9,12 +9,12 @@ import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/pages/mapa/pagemapa.dart';
 import 'package:agendacultural/pages/home/home_page.dart';
-import 'package:agendacultural/pages/agenda/pageagenda.dart';
 import 'package:agendacultural/pages/perfil/widgetperfil.dart';
 import 'package:agendacultural/controller/base_controller.dart';
-import 'package:agendacultural/pages/home/general/app_bar_general.dart';
+import 'package:agendacultural/pages/schedule/schedule_page.dart';
 import 'package:agendacultural/pages/perfil/widgettopoperfil.dart';
 import 'package:agendacultural/pages/favorito/widgetFavoritos.dart';
+import 'package:agendacultural/pages/home/general/app_bar_general.dart';
 import 'package:agendacultural/pages/favorito/widgetTopoFavoritos.dart';
 
 class LoggedAreaPage extends StatefulWidget {
@@ -31,14 +31,14 @@ class _LoggedAreaPageState extends State<LoggedAreaPage> {
   bool? contraste = false;
   List<Widget> pagesBody = [
     const HomePage(),
-    const pageAgenda(),
+    const SchedulePage(),
     const pageMapa(),
     const WidgetFavoritos(),
     const widgetPerfil(),
   ];
   List<Widget> pagesBodyAppBar = [
-    AppBarGeneral(),
-    pageAgendaTopo(),
+    const AppBarGeneral(),
+    const ScheduleAppBarWidget(),
     pageMapaTopo(),
     WidgetTopoFavoritos(),
     widgetTopoPerfil(),
@@ -72,6 +72,7 @@ class _LoggedAreaPageState extends State<LoggedAreaPage> {
         title: _buildAppBar(),
         backgroundColor: corBgAtual,
         elevation: 0,
+        titleSpacing: 0,
         leadingWidth: 0,
         automaticallyImplyLeading: false,
       ),
@@ -141,7 +142,7 @@ class _LoggedAreaPageState extends State<LoggedAreaPage> {
       case 0:
         return AppBarGeneral(notify: () => baseController.setBottomBarSelectedOption(0));
       case 1:
-        return pageAgendaTopo(notify: () => baseController.setBottomBarSelectedOption(0));
+        return ScheduleAppBarWidget(notify: () => baseController.setBottomBarSelectedOption(0));
       case 2:
         return pageMapaTopo(notify: () => baseController.setBottomBarSelectedOption(0));
       case 3:

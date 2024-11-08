@@ -13,16 +13,16 @@ class ButtonFilterWidget extends StatelessWidget {
       children: [
         IntrinsicWidth(
           child: Container(
-            margin: const EdgeInsets.only(right: 16),
-            padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 4),
+            margin: const EdgeInsets.only(right: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(4),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(0.05),
+                  color: Colors.black.withOpacity(0.1),
                   blurRadius: 5,
-                  offset: const Offset(2, 2),
+                  offset: const Offset(0, 0),
                 ),
               ],
             ),

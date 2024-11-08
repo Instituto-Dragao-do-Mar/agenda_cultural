@@ -263,6 +263,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
               children: [
                 SvgPicture.asset(
                   'imagens/icon_calendar.svg',
+                  height: 18,
                 ),
                 const SizedBox(width: 5),
                 Expanded(
@@ -270,7 +271,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
                     text: widget.evento.eventosdatas!.first.detalhe ?? '',
                     maxlines: 3,
                     style: GoogleFonts.inter(
-                      fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
+                      fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 12),
                       fontWeight: FontWeight.w500,
                       color: corTextAtual,
                     ),
@@ -315,7 +316,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
                   TextContrasteFonte(
                     text: "$dayWeek, $day/$month/$year",
                     style: GoogleFonts.inter(
-                      fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
+                      fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 12),
                       fontWeight: FontWeight.w500,
                       color: corTextAtual,
                     ),
