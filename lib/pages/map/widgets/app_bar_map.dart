@@ -5,12 +5,11 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
-import 'package:agendacultural/pages/search_term_filter/page/search_filter_page.dart';
 
-class AppBarScheduleWidget extends StatelessWidget {
+class AppBarMapWidget extends StatelessWidget {
   final void Function() onTapReturn;
 
-  const AppBarScheduleWidget({
+  const AppBarMapWidget({
     super.key,
     required this.onTapReturn,
   });
@@ -31,26 +30,12 @@ class AppBarScheduleWidget extends StatelessWidget {
         ),
         const SizedBox(width: 8),
         TextContrasteFonte(
-          text: AppLocalizations.of(context)!.schedule_title,
+          text: AppLocalizations.of(context)!.map_title,
           style: TextStyle(
             color: corTextAtual,
             fontSize: Fontes.tamanhoBase.toDouble(),
           ),
         ),
-        const Spacer(),
-        Semantics(
-          label: 'Ir para a tela de filtros',
-          child: GestureDetector(
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const SearchFilterPage(),
-              ),
-            ),
-            child: SvgPicture.asset('imagens/icon_favorite.svg'),
-          ),
-        ),
-        const SizedBox(width: 8),
       ],
     );
   }

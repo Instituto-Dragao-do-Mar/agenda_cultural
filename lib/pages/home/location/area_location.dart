@@ -4,7 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
-import 'package:agendacultural/pages/my_location/my_location_page.dart';
+import 'package:agendacultural/pages/my_location/page/my_location_page.dart';
 
 class AreaLocationWidget extends StatelessWidget {
   const AreaLocationWidget({super.key});

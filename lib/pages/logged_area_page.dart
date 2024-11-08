@@ -7,10 +7,11 @@ import 'package:agendacultural/dados/dados.dart';
 import 'package:agendacultural/model/cores.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/model/app_model.dart';
-import 'package:agendacultural/pages/mapa/pagemapa.dart';
 import 'package:agendacultural/pages/home/home_page.dart';
+import 'package:agendacultural/pages/map/page/map_page.dart';
 import 'package:agendacultural/pages/perfil/widgetperfil.dart';
 import 'package:agendacultural/controller/base_controller.dart';
+import 'package:agendacultural/pages/map/widgets/app_bar_map.dart';
 import 'package:agendacultural/pages/perfil/widgettopoperfil.dart';
 import 'package:agendacultural/pages/favorito/widgetFavoritos.dart';
 import 'package:agendacultural/pages/schedule/page/schedule_page.dart';
@@ -33,7 +34,7 @@ class _LoggedAreaPageState extends State<LoggedAreaPage> {
   List<Widget> pagesBody = [
     const HomePage(),
     const SchedulePage(),
-    const pageMapa(),
+    const MapPage(),
     const WidgetFavoritos(),
     const widgetPerfil(),
   ];
@@ -139,7 +140,7 @@ class _LoggedAreaPageState extends State<LoggedAreaPage> {
       case 1:
         return AppBarScheduleWidget(onTapReturn: () => baseController.setBottomBarSelectedOption(0));
       case 2:
-        return pageMapaTopo(notify: () => baseController.setBottomBarSelectedOption(0));
+        return AppBarMapWidget(onTapReturn: () => baseController.setBottomBarSelectedOption(0));
       case 3:
         return WidgetTopoFavoritos(notify: () => baseController.setBottomBarSelectedOption(0));
       case 4:
