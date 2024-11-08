@@ -38,8 +38,8 @@ class _MyLocationPageState extends State<MyLocationPage> {
 
   @override
   void dispose() {
-    super.dispose();
     _disposeDataLocation();
+    super.dispose();
   }
 
   Future<void> _getDataLocation() async {

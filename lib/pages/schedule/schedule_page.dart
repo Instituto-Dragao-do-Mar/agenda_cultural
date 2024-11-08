@@ -1,18 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-import 'package:agendacultural/model/cores.dart';
 import 'package:agendacultural/model/fontes.dart';
-import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/model/app_model.dart';
-import 'package:agendacultural/pages/filtro/pagefiltro.dart';
-import 'package:agendacultural/shared/extensions/dates.dart';
 import 'package:agendacultural/pages/home/event/item_event.dart';
-import 'package:agendacultural/pages/schedule/item_list_dates.dart';
 import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
 import 'package:agendacultural/pages/home/general/button_filter.dart';
+import 'package:agendacultural/pages/schedule/widgets/insert_date.dart';
+import 'package:agendacultural/pages/schedule/widgets/item_list_dates.dart';
 
 class SchedulePage extends StatefulWidget {
   const SchedulePage({super.key});
@@ -39,9 +34,7 @@ class _SchedulePageState extends State<SchedulePage> {
   }
 
   @override
-  void dispose() {
-    super.dispose();
-  }
+  void dispose() => super.dispose();
 
   @override
   Widget build(BuildContext context) {
@@ -63,19 +56,19 @@ class _SchedulePageState extends State<SchedulePage> {
             children: [
               const SizedBox(width: 8),
               Expanded(
-                flex: 1,
-                child: getDate(
-                  ted: tedInicio,
-                  titulo: AppLocalizations.of(context)!.schedule_choice_in,
-                  primeiro: true,
+                child: InsertDateWidget(
+                  onTapDate: () => _onTapInsertDate(tedInicio),
+                  firstDate: true,
+                  label: AppLocalizations.of(context)!.schedule_choice_in,
+                  controller: tedInicio,
                 ),
               ),
               Expanded(
-                flex: 1,
-                child: getDate(
-                  ted: tedTermino,
-                  titulo: AppLocalizations.of(context)!.schedule_choice_until,
-                  primeiro: false,
+                child: InsertDateWidget(
+                  onTapDate: () => _onTapInsertDate(tedTermino),
+                  firstDate: false,
+                  label: AppLocalizations.of(context)!.schedule_choice_until,
+                  controller: tedTermino,
                 ),
               ),
               const SizedBox(width: 8),
@@ -192,123 +185,32 @@ class _SchedulePageState extends State<SchedulePage> {
     );
   }
 
-  Widget getDate({
-    required TextEditingController ted,
-    required String titulo,
-    required bool primeiro,
-  }) {
-    return GestureDetector(
-      onTap: () async {
-        DateTime? pickedDate = await showDatePicker(
-          context: context,
-          initialDate: DateTime.tryParse(ted.text)!,
-          firstDate: DateTime.now(),
-          lastDate: DateTime.now().add(const Duration(days: 180)),
-          builder: (context, child) {
-            return Theme(
-              data: Theme.of(context).copyWith(
-                colorScheme: const ColorScheme.light(
-                  primary: Color(0xFFE83C3B),
-                  onPrimary: Colors.white,
-                  onSurface: Colors.black,
-                ),
-              ),
-              child: child!,
-            );
-          },
-        );
-        if (pickedDate != null) {
-          ted.text = pickedDate.toIso8601String();
-
-          if (tedInicio.text.compareTo(tedTermino.text) > 0) {
-            tedInicio.text = tedTermino.text;
-          }
-
-          setState(() {});
-        }
-      },
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(primeiro ? 10 : 0),
-            bottomLeft: Radius.circular(primeiro ? 10 : 0),
-            topRight: Radius.circular(!primeiro ? 10 : 0),
-            bottomRight: Radius.circular(!primeiro ? 10 : 0),
-          ),
-          border: Border.all(
-            color: Cores.contraste ? Colors.white : corBackgroundLaranja.withOpacity(.2),
+  Future<void> _onTapInsertDate(TextEditingController controller) async {
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.tryParse(controller.text)!,
+      firstDate: DateTime.now(),
+      lastDate: DateTime.now().add(const Duration(days: 180)),
+      builder: (context, child) => Theme(
+        data: Theme.of(context).copyWith(
+          colorScheme: const ColorScheme.light(
+            primary: Color(0xFFE83C3B),
+            onPrimary: Colors.white,
+            onSurface: Colors.black,
           ),
         ),
-        height: 70,
-        width: double.infinity,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            TextContrasteFonte(
-              text: titulo,
-              color: corBackgroundLaranja,
-              weight: FontWeight.bold,
-              fontsize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
-            ),
-            const SizedBox(width: 5),
-            TextContrasteFonte(
-              text: ted.text.formatDate(format: "E, dd MMM"),
-              color: corTextAtual,
-              fontsize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
-            ),
-          ],
-        ),
+        child: child!,
       ),
     );
-  }
-}
 
-class ScheduleAppBarWidget extends StatelessWidget {
-  final void Function()? notify;
+    if (pickedDate != null) {
+      controller.text = pickedDate.toIso8601String();
 
-  const ScheduleAppBarWidget({
-    super.key,
-    this.notify,
-  });
+      if (tedInicio.text.compareTo(tedTermino.text) > 0) {
+        tedInicio.text = tedTermino.text;
+      }
 
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        const SizedBox(width: 8),
-        Semantics(
-          label: 'Voltar para a tela anterior',
-          child: GestureDetector(
-            onTap: () => Navigator.pop(context),
-            child: SvgPicture.asset(
-              'imagens/icon_arrow_back.svg',
-            ),
-          ),
-        ),
-        const SizedBox(width: 8),
-        TextContrasteFonte(
-          text: AppLocalizations.of(context)!.schedule_title,
-          style: TextStyle(
-            color: corTextAtual,
-            fontSize: Fontes.tamanhoBase.toDouble(),
-          ),
-        ),
-        const Spacer(),
-        Semantics(
-          label: 'Ir para a tela de filtros',
-          child: GestureDetector(
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const pageFiltro(),
-              ),
-            ),
-            child: SvgPicture.asset('imagens/icon_favorite.svg'),
-          ),
-        ),
-        const SizedBox(width: 8),
-      ],
-    );
+      setState(() {});
+    }
   }
 }

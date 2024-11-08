@@ -16,6 +16,7 @@ import 'package:agendacultural/pages/perfil/widgettopoperfil.dart';
 import 'package:agendacultural/pages/favorito/widgetFavoritos.dart';
 import 'package:agendacultural/pages/home/general/app_bar_general.dart';
 import 'package:agendacultural/pages/favorito/widgetTopoFavoritos.dart';
+import 'package:agendacultural/pages/schedule/widgets/app_bar_schedule.dart';
 
 class LoggedAreaPage extends StatefulWidget {
   const LoggedAreaPage({super.key});
@@ -35,13 +36,6 @@ class _LoggedAreaPageState extends State<LoggedAreaPage> {
     const pageMapa(),
     const WidgetFavoritos(),
     const widgetPerfil(),
-  ];
-  List<Widget> pagesBodyAppBar = [
-    const AppBarGeneral(),
-    const ScheduleAppBarWidget(),
-    pageMapaTopo(),
-    WidgetTopoFavoritos(),
-    widgetTopoPerfil(),
   ];
 
   @override
@@ -142,7 +136,7 @@ class _LoggedAreaPageState extends State<LoggedAreaPage> {
       case 0:
         return AppBarGeneral(notify: () => baseController.setBottomBarSelectedOption(0));
       case 1:
-        return ScheduleAppBarWidget(notify: () => baseController.setBottomBarSelectedOption(0));
+        return AppBarScheduleWidget(onTapReturn: () => baseController.setBottomBarSelectedOption(0));
       case 2:
         return pageMapaTopo(notify: () => baseController.setBottomBarSelectedOption(0));
       case 3:
