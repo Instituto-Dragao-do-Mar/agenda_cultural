@@ -13,10 +13,10 @@ import 'package:agendacultural/pages/perfil/widgetperfil.dart';
 import 'package:agendacultural/controller/base_controller.dart';
 import 'package:agendacultural/pages/map/widgets/app_bar_map.dart';
 import 'package:agendacultural/pages/perfil/widgettopoperfil.dart';
-import 'package:agendacultural/pages/favorito/widgetFavoritos.dart';
+import 'package:agendacultural/pages/favorite/page/favorite_page.dart';
 import 'package:agendacultural/pages/schedule/page/schedule_page.dart';
 import 'package:agendacultural/pages/home/general/app_bar_general.dart';
-import 'package:agendacultural/pages/favorito/widgetTopoFavoritos.dart';
+import 'package:agendacultural/pages/favorite/widgets/app_bar_favorite.dart';
 import 'package:agendacultural/pages/schedule/widgets/app_bar_schedule.dart';
 
 class LoggedAreaPage extends StatefulWidget {
@@ -35,7 +35,7 @@ class _LoggedAreaPageState extends State<LoggedAreaPage> {
     const HomePage(),
     const SchedulePage(),
     const MapPage(),
-    const WidgetFavoritos(),
+    const FavoritePage(),
     const widgetPerfil(),
   ];
 
@@ -79,15 +79,15 @@ class _LoggedAreaPageState extends State<LoggedAreaPage> {
 
   Widget _buildBody() {
     return FutureBuilder(
-      future: app.getdados(),
+      future: baseController.bottomBarSelectedOption != 3 ? app.getdados() : null,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return Center(
             child: CircularProgressIndicator(color: corBackgroundLaranja),
           );
+        } else {
+          return pagesBody[baseController.bottomBarSelectedOption];
         }
-
-        return pagesBody[baseController.bottomBarSelectedOption];
       },
     );
   }
@@ -142,7 +142,7 @@ class _LoggedAreaPageState extends State<LoggedAreaPage> {
       case 2:
         return AppBarMapWidget(onTapReturn: () => baseController.setBottomBarSelectedOption(0));
       case 3:
-        return WidgetTopoFavoritos(notify: () => baseController.setBottomBarSelectedOption(0));
+        return AppBarFavoriteWidget(onTapReturn: () => baseController.setBottomBarSelectedOption(0));
       case 4:
         return widgetTopoPerfil(notify: () => baseController.setBottomBarSelectedOption(0));
       default:

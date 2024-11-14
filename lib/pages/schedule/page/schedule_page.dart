@@ -67,82 +67,84 @@ class _SchedulePageState extends State<SchedulePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Observer(builder: (context) {
-      return SingleChildScrollView(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            ChoiceDatesWidget(
-              onTapDate: (controller) async {
-                final value = await _onTapInsertDate(controller);
-                if (value != null) {
-                  if (controller == scheduleStore.initialController) {
-                    scheduleStore.setTextInitialController(value.toIso8601String());
-
-                    // Verifica se a data inicial é maior que a data final e ajusta se necessário
-                    if (DateTime.parse(scheduleStore.initialController.text)
-                        .isAfter(DateTime.parse(scheduleStore.finalController.text))) {
-                      scheduleStore.setTextFinalController(value.toIso8601String());
-                    }
-                  } else {
-                    scheduleStore.setTextFinalController(value.toIso8601String());
-
-                    // Verifica se a data final é menor que a data inicial e ajusta se necessário
-                    if (DateTime.parse(scheduleStore.finalController.text)
-                        .isBefore(DateTime.parse(scheduleStore.initialController.text))) {
+    return Observer(
+      builder: (context) {
+        return SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              ChoiceDatesWidget(
+                onTapDate: (controller) async {
+                  final value = await _onTapInsertDate(controller);
+                  if (value != null) {
+                    if (controller == scheduleStore.initialController) {
                       scheduleStore.setTextInitialController(value.toIso8601String());
-                    }
-                  }
 
-                  // Atualiza a lista de eventos e datas
-                  _updateListDatesAndEvents();
-                }
-              },
-              initialController: scheduleStore.initialController,
-              finalController: scheduleStore.finalController,
-            ),
-            const SizedBox(height: 20),
-            ViewDaysWidget(
-              listDatesFilter: scheduleStore.listDatesFilter,
-              dateSelected: scheduleStore.dateSelected,
-              onTapDate: (date) {
-                if (date == scheduleStore.dateSelected) {
-                  // Desmarca a data e volta para os eventos no intervalo de datas
-                  scheduleStore.setDateSelected(DateTime.now().subtract(const Duration(days: 1)));
-                  _updateListDatesAndEvents();
-                } else {
-                  // Seleciona a data específica e mostra eventos somente para aquele dia
-                  scheduleStore.setDateSelected(date);
-                  scheduleStore.setEventsFilter(
-                    app.listaEventos.eventos?.where((event) {
-                          return app.getEventoDatas(event).any((element) => element.compareTo(date) == 0);
-                        }).toList() ??
-                        [],
-                  );
-                }
-              },
-            ),
-            const SizedBox(height: 20),
-            Row(
-              children: [
-                const SizedBox(width: 8),
-                TextContrasteFonte(
-                  text: AppLocalizations.of(context)!.schedule_results,
-                  style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
-                ),
-                const Spacer(),
-                const ButtonFilterWidget(),
-              ],
-            ),
-            const SizedBox(height: 5),
-            Wrap(
-              children: scheduleStore.eventsFilter.map((event) => ItemEventWidget(evento: event)).toList(),
-            ),
-          ],
-        ),
-      );
-    });
+                      // Verifica se a data inicial é maior que a data final e ajusta se necessário
+                      if (DateTime.parse(scheduleStore.initialController.text)
+                          .isAfter(DateTime.parse(scheduleStore.finalController.text))) {
+                        scheduleStore.setTextFinalController(value.toIso8601String());
+                      }
+                    } else {
+                      scheduleStore.setTextFinalController(value.toIso8601String());
+
+                      // Verifica se a data final é menor que a data inicial e ajusta se necessário
+                      if (DateTime.parse(scheduleStore.finalController.text)
+                          .isBefore(DateTime.parse(scheduleStore.initialController.text))) {
+                        scheduleStore.setTextInitialController(value.toIso8601String());
+                      }
+                    }
+
+                    // Atualiza a lista de eventos e datas
+                    _updateListDatesAndEvents();
+                  }
+                },
+                initialController: scheduleStore.initialController,
+                finalController: scheduleStore.finalController,
+              ),
+              const SizedBox(height: 20),
+              ViewDaysWidget(
+                listDatesFilter: scheduleStore.listDatesFilter,
+                dateSelected: scheduleStore.dateSelected,
+                onTapDate: (date) {
+                  if (date == scheduleStore.dateSelected) {
+                    // Desmarca a data e volta para os eventos no intervalo de datas
+                    scheduleStore.setDateSelected(DateTime.now().subtract(const Duration(days: 1)));
+                    _updateListDatesAndEvents();
+                  } else {
+                    // Seleciona a data específica e mostra eventos somente para aquele dia
+                    scheduleStore.setDateSelected(date);
+                    scheduleStore.setEventsFilter(
+                      app.listaEventos.eventos?.where((event) {
+                            return app.getEventoDatas(event).any((element) => element.compareTo(date) == 0);
+                          }).toList() ??
+                          [],
+                    );
+                  }
+                },
+              ),
+              const SizedBox(height: 20),
+              Row(
+                children: [
+                  const SizedBox(width: 8),
+                  TextContrasteFonte(
+                    text: AppLocalizations.of(context)!.schedule_results,
+                    style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
+                  ),
+                  const Spacer(),
+                  const ButtonFilterWidget(),
+                ],
+              ),
+              const SizedBox(height: 5),
+              Wrap(
+                children: scheduleStore.eventsFilter.map((event) => ItemEventWidget(evento: event)).toList(),
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   List<DateTime> _calculateDaysInterval(DateTime startDate, DateTime endDate) {

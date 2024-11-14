@@ -4,7 +4,7 @@
         android:name="${applicationName}"
         android:enableOnBackInvokedCallback="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="Agenda Cultural">
+        android:label="Cultura.CE">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD6N1Bi7N9NkV8VtpbI4L5aB6wDwxm82vA" />

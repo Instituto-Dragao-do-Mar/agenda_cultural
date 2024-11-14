@@ -90,14 +90,10 @@ class AppModel extends ChangeNotifier {
       userguidid: isLog() ? GetGuidId() : "",
     );
 
-    // listaEventos.eventos?.forEach((element) {
-    //   element.eventosdatas
-    //       ?.sort((a, b) => (a.datahora?.compareDateInDays(b.datafim))!);
-    // });
     await sortEventos();
 
     listaEspacos = await EspacoController().espacoGet(
-      userguidid: isLog() ? GetGuidId() : "",
+      userguidid: isLog() ? GetGuidId() : ""
     );
     if (isLog()) {
       listaNotificacoes = await NotificacaoController().NotificacaoGet(
@@ -109,9 +105,6 @@ class AppModel extends ChangeNotifier {
         notificacoes: [],
       );
     }
-
-    /*final Future<SharedPreferences> _prefs = SharedPreferences.getInstance();
-    final SharedPreferences prefs = await _prefs;*/
 
     // Populo o filtro
     filtro = Filtro(
@@ -145,8 +138,6 @@ class AppModel extends ChangeNotifier {
         },
       );
     }
-
-    await getFavoritos();
   }
 
   void AplicarFiltro() {

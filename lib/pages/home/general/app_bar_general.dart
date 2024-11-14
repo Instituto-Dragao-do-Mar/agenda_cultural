@@ -10,60 +10,30 @@ import 'package:agendacultural/pages/notificacao/pagenotificacao.dart';
 
 class AppBarGeneral extends StatelessWidget {
   final Function? notify;
-  final bool? notificacao;
 
   const AppBarGeneral({
     super.key,
     this.notify,
-    this.notificacao,
   });
 
   @override
   Widget build(BuildContext context) {
     AppModel app = context.read<AppModel>();
-    int nlidas = app.listaNotificacoes.NotificacoesNaoLidas();
 
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(width: 0),
-        widgetImagemInterna(
-          imagem: Imagem(url: 'iconelaranha.png'),
+        const SizedBox(width: 8),
+        Image.asset(
+          'imagens/icon_idm_orange.png',
           width: 24,
-          height: 24,
           fit: BoxFit.contain,
         ),
-        const SizedBox(width: 10),
+        const SizedBox(width: 8),
         Image.asset(
-          'imagens/iconculturacenovo.png',
+          'imagens/icon_cultura_ce.png',
           height: 18,
           fit: BoxFit.contain,
         ),
-        const Expanded(child: SizedBox.shrink()),
-        if (notificacao == true)
-          Semantics(
-            container: false,
-            label: "Notificações",
-            child: InkWell(
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => pageNotificacao(notify: notify),
-                ),
-              ),
-              child: Badge(
-                isLabelVisible: (app.isLog() && nlidas > 0),
-                label: Text(nlidas.toString()),
-                backgroundColor: corBackgroundLaranja.withOpacity(.5),
-                child: widgetImagemInterna(
-                  imagem: Imagem(url: 'iconenotificacao.png'),
-                  width: 24,
-                  height: 24,
-                  fit: BoxFit.contain,
-                ),
-              ),
-            ),
-          ),
       ],
     );
   }

@@ -24,10 +24,9 @@ class ButtonFavoriteWidget extends StatefulWidget {
 }
 
 class _ButtonFavoriteWidgetState extends State<ButtonFavoriteWidget> {
+  AppModel? app;
   List<Favorito> favoritos = <Favorito>[];
   int favorito = 0;
-
-  AppModel? app;
 
   @override
   void initState() {
@@ -40,8 +39,6 @@ class _ButtonFavoriteWidgetState extends State<ButtonFavoriteWidget> {
 
   @override
   Widget build(BuildContext context) {
-    app?.getFavoritos();
-
     return Semantics(
       label: favorito == 1
           ? ("Remover ${widget.evento.nome} dos favoritos")

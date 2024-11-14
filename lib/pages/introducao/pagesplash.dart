@@ -34,6 +34,18 @@ class _pageSplashState extends State<pageSplash> {
     _handleAuthenticated();
   }
 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        decoration: const BoxDecoration(gradient: gradientPrincipal),
+        child: Center(
+          child: Image.asset('imagens/logo_idm_white.png', height: 200, width: 200),
+        ),
+      ),
+    );
+  }
+
   Future<void> _handleAuthenticated() async {
     var userPrefs = await UserSharedPreferences.getUserData();
 
@@ -46,10 +58,10 @@ class _pageSplashState extends State<pageSplash> {
       app.setUser(user);
 
       await UserSharedPreferences.setUser(
-        userguidid: user.guidid ?? "",
-        usertoken: user.signature ?? "",
-        email: user.email ?? "",
-        nome: user.nome ?? "",
+        userguidid: user.guidid ?? '',
+        usertoken: user.signature ?? '',
+        email: user.email ?? '',
+        nome: user.nome ?? '',
       );
     }
 
@@ -57,40 +69,33 @@ class _pageSplashState extends State<pageSplash> {
   }
 
   Future<void> _navigatorPageIntroducao() async {
-    await getCookies();
+    await _getCookies();
 
-    Future.delayed(
-      const Duration(seconds: 3),
-      () {},
-    ).then((value) {
-      if (app.isLog() && (user.signature != null && user.signature!.isNotEmpty)) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: ((context) => const LoggedAreaPage()),
-          ),
-        );
-      } else if (!Dados.jaVisualizouIntroducao) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const IntroducaoPage(
-              destino: LoggedAreaPage(),
-            ),
-          ),
-        );
-      } else {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const LoggedAreaPage(),
-          ),
-        );
-      }
-    });
+    if (app.isLog() && (user.signature != null && user.signature!.isNotEmpty)) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: ((context) => const LoggedAreaPage()),
+        ),
+      );
+    } else if (!Dados.jaVisualizouIntroducao) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const IntroducaoPage(destino: LoggedAreaPage()),
+        ),
+      );
+    } else {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const LoggedAreaPage(),
+        ),
+      );
+    }
   }
 
-  Future<void> getCookies() async {
+  Future<void> _getCookies() async {
     Dados.jaVisualizouCookies = await Dados.getBool('cookies');
     Dados.jaVisualizouGoverno = await Dados.getBool('governo');
     Dados.jaVisualizouIntroducao = await Dados.getBool('introducao');
@@ -102,25 +107,5 @@ class _pageSplashState extends State<pageSplash> {
     if (Dados.jaVisualizouCookies == true) {
       MyApp.setLocale(context, Locale(Dados.idiomaSalvo, ''));
     }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: gradientPrincipal,
-        ),
-        child: Center(
-          child: widgetImagemInterna(
-            width: 178,
-            height: 178,
-            imagem: Imagem(
-              url: 'logobranco.png',
-            ),
-          ),
-        ),
-      ),
-    );
   }
 }

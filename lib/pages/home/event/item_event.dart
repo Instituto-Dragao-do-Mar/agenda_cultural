@@ -9,7 +9,6 @@ import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/model/evento_model.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
-import 'package:agendacultural/model/favorito_model.dart';
 import 'package:agendacultural/shared/extensions/dates.dart';
 import 'package:agendacultural/shared/widgetBotaoFavorito.dart';
 import 'package:agendacultural/shared/widgetimagemexterna.dart';
@@ -34,8 +33,6 @@ class ItemEventWidget extends StatefulWidget {
 class _ItemEventWidgetState extends State<ItemEventWidget> {
   bool statusAltoContraste = Cores.contraste;
   double fontSize = Fontes.tamanhoBase.toDouble();
-  List<Favorito> favoritos = <Favorito>[];
-  int favorito = 0;
 
   AppModel? app;
 
@@ -43,14 +40,10 @@ class _ItemEventWidgetState extends State<ItemEventWidget> {
   void initState() {
     super.initState();
     app = context.read<AppModel>();
-    favoritos = app?.listaFavoritos.favoritos ?? <Favorito>[];
-    favoritos.map((e) => e.idevento).contains(widget.evento.id) ? favorito = 1 : favorito = 0;
   }
 
   @override
   Widget build(BuildContext context) {
-    app!.getFavoritos();
-
     String nomeEspacoPrincipal = app!.GetEspacoPrincipal(
       evento: widget.evento,
     );

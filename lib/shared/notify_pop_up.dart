@@ -36,8 +36,8 @@ void notifyPopUpWidget({
   bool permitirFechar = false,
   VoidCallback? funcaoBotao,
   VoidCallback? funcaoBotaoSecundario,
-}) {
-  showDialog(
+}) async {
+  await showDialog(
     context: context,
     barrierDismissible: false,
     builder: (BuildContext context) {
