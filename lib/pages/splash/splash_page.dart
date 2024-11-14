@@ -1,29 +1,26 @@
-// ignore_for_file: camel_case_types, use_build_context_synchronously
-
-import 'package:agendacultural/controller/usuario_controller.dart';
-import 'package:agendacultural/dados/dados.dart';
-import 'package:agendacultural/main.dart';
-import 'package:agendacultural/model/app_model.dart';
-import 'package:agendacultural/model/imagem_model.dart';
-import 'package:agendacultural/model/usuario_model.dart';
-import 'package:agendacultural/pages/introducao/introducao.dart';
-import 'package:agendacultural/pages/logged_area_page.dart';
-import 'package:agendacultural/shared/constantes.dart';
-import 'package:agendacultural/shared/userSharedPreferences.dart';
-import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class pageSplash extends StatefulWidget {
-  const pageSplash({super.key});
+import 'package:agendacultural/main.dart';
+import 'package:agendacultural/dados/dados.dart';
+import 'package:agendacultural/model/app_model.dart';
+import 'package:agendacultural/shared/constantes.dart';
+import 'package:agendacultural/model/usuario_model.dart';
+import 'package:agendacultural/pages/logged_area_page.dart';
+import 'package:agendacultural/shared/userSharedPreferences.dart';
+import 'package:agendacultural/controller/usuario_controller.dart';
+import 'package:agendacultural/pages/introduction/presenter/page/introduction_page.dart';
+
+class SplashPage extends StatefulWidget {
+  const SplashPage({super.key});
 
   @override
-  State<pageSplash> createState() => _pageSplashState();
+  State<SplashPage> createState() => _SplashPageState();
 }
 
-class _pageSplashState extends State<pageSplash> {
+class _SplashPageState extends State<SplashPage> {
   late AppModel app;
-  late Usuario user;
+  Usuario user = Usuario();
 
   @override
   void initState() {
@@ -31,7 +28,7 @@ class _pageSplashState extends State<pageSplash> {
     app = context.read<AppModel>();
     user = app.usuarioLogado ?? Usuario();
 
-    _handleAuthenticated();
+    _verifyAuthenticated();
   }
 
   @override
@@ -46,14 +43,11 @@ class _pageSplashState extends State<pageSplash> {
     );
   }
 
-  Future<void> _handleAuthenticated() async {
+  Future<void> _verifyAuthenticated() async {
     var userPrefs = await UserSharedPreferences.getUserData();
 
     if (userPrefs != null) {
-      user = await UsuarioController().getUserbyPrefData(
-        userPrefs.signature!,
-        userPrefs.email!,
-      );
+      user = await UsuarioController().getUserbyPrefData(userPrefs.signature!, userPrefs.email!);
       user.signature = userPrefs.signature;
       app.setUser(user);
 
@@ -65,13 +59,14 @@ class _pageSplashState extends State<pageSplash> {
       );
     }
 
-    _navigatorPageIntroducao();
+    _navigatorIntroduction();
   }
 
-  Future<void> _navigatorPageIntroducao() async {
+  Future<void> _navigatorIntroduction() async {
     await _getCookies();
 
     if (app.isLog() && (user.signature != null && user.signature!.isNotEmpty)) {
+      if (!mounted) return;
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
@@ -79,13 +74,15 @@ class _pageSplashState extends State<pageSplash> {
         ),
       );
     } else if (!Dados.jaVisualizouIntroducao) {
+      if (!mounted) return;
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => const IntroducaoPage(destino: LoggedAreaPage()),
+          builder: (context) => const IntroductionPage(),
         ),
       );
     } else {
+      if (!mounted) return;
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
@@ -96,6 +93,7 @@ class _pageSplashState extends State<pageSplash> {
   }
 
   Future<void> _getCookies() async {
+    //Puxa os dados necessários do SharedPreferences
     Dados.jaVisualizouCookies = await Dados.getBool('cookies');
     Dados.jaVisualizouGoverno = await Dados.getBool('governo');
     Dados.jaVisualizouIntroducao = await Dados.getBool('introducao');
@@ -104,7 +102,8 @@ class _pageSplashState extends State<pageSplash> {
     Dados.verTodosDestaques = await Dados.getBool('destaques');
     Dados.verTodosEspacos = await Dados.getBool('espacos');
     Dados.idiomaSalvo = await Dados.getString('idioma');
-    if (Dados.jaVisualizouCookies == true) {
+    if (Dados.jaVisualizouCookies) {
+      if (!mounted) return;
       MyApp.setLocale(context, Locale(Dados.idiomaSalvo, ''));
     }
   }

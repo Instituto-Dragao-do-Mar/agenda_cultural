@@ -10,7 +10,7 @@ import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/controller/base_controller.dart';
-import 'package:agendacultural/pages/introducao/pagesplash.dart';
+import 'package:agendacultural/pages/splash/splash_page.dart';
 import 'package:agendacultural/controller/espaco_controller.dart';
 import 'package:agendacultural/controller/evento_controller.dart';
 import 'package:agendacultural/controller/usuario_controller.dart';
@@ -87,7 +87,7 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: false,
       title: 'Cultura.CE',
       theme: themeDefault,
-      home: const pageSplash(),
+      home: const SplashPage(),
       builder: EasyLoading.init(),
     );
   }
