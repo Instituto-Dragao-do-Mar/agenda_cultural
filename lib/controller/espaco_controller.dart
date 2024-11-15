@@ -5,12 +5,8 @@ import 'package:agendacultural/shared/constantes.dart';
 import 'package:http/http.dart' as http;
 
 class EspacoController extends BaseController {
-  Future<ListaEspacos> espacoGet({
-    required String userguidid,
-  }) async {
-    ListaEspacos lista = ListaEspacos();
-
-    lista.espacos = [];
+  Future<List<Espaco>> espacoGet() async {
+    List<Espaco> list = [];
 
     String url = "${baseUrlApi}espacos";
 
@@ -23,7 +19,9 @@ class EspacoController extends BaseController {
       );
       if (response.statusCode == 200) {
         var ret = jsonDecode(response.body);
-        lista = ListaEspacos.fromJson(ret);
+        list = (ret['espacos'] as List).map((e) {
+          return Espaco.fromJson(e);
+        }).toList();
       } else {
         setError("Espaco ${response.body}");
       }
@@ -31,6 +29,6 @@ class EspacoController extends BaseController {
       setError("Espaco ${_.toString()}");
     }
 
-    return lista;
+    return list;
   }
 }

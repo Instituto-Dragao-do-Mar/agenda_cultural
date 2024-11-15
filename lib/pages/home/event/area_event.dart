@@ -13,7 +13,7 @@ import 'package:agendacultural/model/filtro_model.dart';
 import 'package:agendacultural/shared/extensions/dates.dart';
 import 'package:agendacultural/pages/home/event/item_event.dart';
 import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
-import 'package:agendacultural/pages/home/general/header_areas_home.dart';
+import 'package:agendacultural/modules/logged/features/home/presenter/page/areas/general/header_areas_home.dart';
 
 enum ExibicaoEvento { destaque, data, evento }
 
@@ -192,17 +192,17 @@ class _AreaEventWidgetState extends State<AreaEventWidget> {
       mainAxisSize: MainAxisSize.max,
       children: [
         const SizedBox(height: 20),
-        HeaderCardsCategoryWidget(
-          titulo: widget.titulo ?? titulos[widget.exibicaoEvento.index],
-          subtitulo: subtitulo,
-          funcao: () async {
+        HeaderCardsWidget(
+          title: widget.titulo ?? titulos[widget.exibicaoEvento.index],
+          subtitle: subtitulo,
+          onTap: () async {
             if (widget.exibicaoEvento == ExibicaoEvento.destaque) {
               Dados.verTodosDestaques = !Dados.verTodosDestaques;
               await Dados.setBool('categorias', Dados.verTodosDestaques);
               setState(() {});
             }
           },
-          widget: widget.exibicaoEvento == ExibicaoEvento.destaque ? null : wdata,
+          secundaryComponent: widget.exibicaoEvento == ExibicaoEvento.destaque ? null : wdata,
         ),
         const SizedBox(height: 5),
         SizedBox(

@@ -1,3 +1,4 @@
+import 'package:agendacultural/common/utils/tradutors.dart';
 import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
@@ -41,7 +42,7 @@ class _FiltroCategoriaWidgetState extends State<FiltroCategoriaWidget> {
 
   void traduzOpcoes() {
     for (String categoria in opcoes) {
-      String categoriaTrad = widget.app.getNomeCategoria(categoria, context);
+      String categoriaTrad = getNomeCategoria(categoria, context);
       categTrad.add(categoriaTrad);
     }
     if (!expandido) {

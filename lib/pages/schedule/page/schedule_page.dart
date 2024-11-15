@@ -1,3 +1,4 @@
+import 'package:agendacultural/pages/filtro/pagefiltrocompleto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
@@ -133,7 +134,14 @@ class _SchedulePageState extends State<SchedulePage> {
                     style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
                   ),
                   const Spacer(),
-                  const ButtonFilterWidget(),
+                  ButtonFilterWidget(
+                    onTapNavigateFilter: () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const FiltroCompletoPage(),
+                      ),
+                    ),
+                  ),
                 ],
               ),
               const SizedBox(height: 5),

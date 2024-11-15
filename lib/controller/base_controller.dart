@@ -5,16 +5,6 @@ class BaseController extends ChangeNotifier {
   String messageError = "";
   bool _isError = false;
 
-  int _bottomBarSelectecOption = 0;
-
-  void setBottomBarSelectedOption(int op) {
-    _bottomBarSelectecOption = op;
-
-    notifyListeners();
-  }
-
-  int get bottomBarSelectedOption => _bottomBarSelectecOption;
-
   void setError(String s) {
     debugPrint("");
     debugPrint("==========================================================");
@@ -34,12 +24,7 @@ class BaseController extends ChangeNotifier {
   }
 
   void status401(String? usrGuidId) {
-    //BuildContext context = navigatorKey.currentContext!;
-    //context.read<AcessoController>().usuarioResetLogin(usrGuidId!);
-    navigatorKey.currentState!.pushNamedAndRemoveUntil(
-      "/login",
-      (_) => false,
-    );
+    navigatorKey.currentState!.pushNamedAndRemoveUntil("/login", (_) => false);
   }
 
   void clearError() {

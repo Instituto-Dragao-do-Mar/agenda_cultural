@@ -6,11 +6,8 @@ import 'package:agendacultural/shared/constantes.dart';
 import 'package:http/http.dart' as http;
 
 class CategoriaController extends BaseController {
-  Future<ListaCategorias> categoriaGet({
-    required String userguidid,
-  }) async {
-    ListaCategorias lista = ListaCategorias();
-    lista.categorias = [];
+  Future<List<Categoria>> categoriaGet() async {
+    List<Categoria> list = [];
 
     String url = "${baseUrlApi}categorias";
 
@@ -23,7 +20,9 @@ class CategoriaController extends BaseController {
       );
       if (response.statusCode == 200) {
         var ret = jsonDecode(response.body);
-        lista = ListaCategorias.fromJson(ret);
+        list = (ret['categorias'] as List).map((e) {
+          return Categoria.fromJson(e);
+        }).toList();
       } else {
         setError("Categoria ${response.body}");
       }
@@ -31,6 +30,6 @@ class CategoriaController extends BaseController {
       setError("Categoria ${_.toString()}");
     }
 
-    return lista;
+    return list;
   }
 }

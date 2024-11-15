@@ -3,19 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
 
-class HeaderCardsCategoryWidget extends StatelessWidget {
-  const HeaderCardsCategoryWidget({
-    super.key,
-    required this.titulo,
-    required this.subtitulo,
-    required this.funcao,
-    this.widget,
-  });
+class HeaderCardsWidget extends StatelessWidget {
+  final String title;
+  final String subtitle;
+  final void Function() onTap;
+  final Widget? secundaryComponent;
 
-  final String titulo;
-  final String subtitulo;
-  final VoidCallback funcao;
-  final Widget? widget;
+  const HeaderCardsWidget({
+    super.key,
+    required this.title,
+    required this.subtitle,
+    required this.onTap,
+    this.secundaryComponent,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,19 +24,15 @@ class HeaderCardsCategoryWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          TextContrasteFonte(
-            text: titulo,
-            weight: FontWeight.w600,
-            semantics: titulo,
-          ),
+          TextContrasteFonte(text: title, weight: FontWeight.w600, semantics: title),
           InkWell(
-            onTap: () => funcao(),
-            child: widget ??
+            onTap: () => onTap(),
+            child: secundaryComponent ??
                 TextContrasteFonte(
-                  text: subtitulo,
+                  text: subtitle,
                   color: corBackgroundLaranja,
                   weight: FontWeight.w600,
-                  semantics: subtitulo,
+                  semantics: subtitle,
                 ),
           )
         ],

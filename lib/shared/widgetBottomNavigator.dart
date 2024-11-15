@@ -28,13 +28,13 @@ class _WidgetBottomNavigatorState extends State<WidgetBottomNavigator> {
 
     return BottomNavigationBar(
       onTap: (i) {
-        baseController.setBottomBarSelectedOption(i);
-        if (widget.replacePage != null) {
-          for (int i = 0; i < (widget.replacePage! - 1); i++) {
-            Navigator.of(context).pop();
-          }
-        }
-        Navigator.of(context).pop();
+        // baseController.setBottomBarSelectedOption(i);
+        // if (widget.replacePage != null) {
+        //   for (int i = 0; i < (widget.replacePage! - 1); i++) {
+        //     Navigator.of(context).pop();
+        //   }
+        // }
+        // Navigator.of(context).pop();
       },
       backgroundColor: corBgAtual,
       elevation: 0,
@@ -43,40 +43,40 @@ class _WidgetBottomNavigatorState extends State<WidgetBottomNavigator> {
       selectedFontSize: 12,
       unselectedItemColor: corTextAtual,
       selectedItemColor: corBackgroundLaranja,
-      currentIndex: baseController.bottomBarSelectedOption,
+      // currentIndex: baseController.bottomBarSelectedOption,
       items: [
         BottomNavigationBarItem(
           backgroundColor: corBgAtual,
           icon: SvgPicture.asset(
-            'imagens/navHome.svg',
+            'imagens/nav_home.svg',
           ),
           label: AppLocalizations.of(context)!.nav_bar_home,
         ),
         BottomNavigationBarItem(
           backgroundColor: corBgAtual,
           icon: SvgPicture.asset(
-            'imagens/navSchedule.svg',
+            'imagens/nav_schedule.svg',
           ),
           label: AppLocalizations.of(context)!.nav_bar_schedule,
         ),
         BottomNavigationBarItem(
           backgroundColor: corBgAtual,
           icon: SvgPicture.asset(
-            'imagens/navMap.svg',
+            'imagens/nav_map.svg',
           ),
           label: AppLocalizations.of(context)!.nav_bar_map,
         ),
         BottomNavigationBarItem(
           backgroundColor: corBgAtual,
           icon: SvgPicture.asset(
-            'imagens/navFavorite.svg',
+            'imagens/nav_favorite.svg',
           ),
           label: AppLocalizations.of(context)!.nav_bar_favorites,
         ),
         BottomNavigationBarItem(
           backgroundColor: corBgAtual,
           icon: SvgPicture.asset(
-            'imagens/navProfile.svg',
+            'imagens/nav_profile.svg',
           ),
           label: AppLocalizations.of(context)!.nav_bar_profile,
         ),

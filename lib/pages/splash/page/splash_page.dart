@@ -6,7 +6,7 @@ import 'package:agendacultural/dados/dados.dart';
 import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/shared/constantes.dart';
 import 'package:agendacultural/model/usuario_model.dart';
-import 'package:agendacultural/pages/logged_area_page.dart';
+import 'package:agendacultural/modules/logged/presenter/page/logged_area_page.dart';
 import 'package:agendacultural/shared/userSharedPreferences.dart';
 import 'package:agendacultural/controller/usuario_controller.dart';
 import 'package:agendacultural/pages/splash/store/splash_store.dart';
@@ -96,7 +96,6 @@ class _SplashPageState extends State<SplashPage> {
     Dados.jaVisualizouGoverno = await Dados.getBool('governo');
     Dados.jaVisualizouIntroducao = await Dados.getBool('introducao');
     Dados.jaPermitiuLocalizacao = await Dados.getBool('localizacao');
-    Dados.verTodasCategorias = await Dados.getBool('categorias');
     Dados.verTodosDestaques = await Dados.getBool('destaques');
     Dados.verTodosEspacos = await Dados.getBool('espacos');
     Dados.idiomaSalvo = await Dados.getString('idioma');

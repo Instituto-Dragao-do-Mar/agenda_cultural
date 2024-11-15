@@ -1,3 +1,4 @@
+import 'package:agendacultural/common/utils/tradutors.dart';
 import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/model/espaco_model.dart';
 import 'package:agendacultural/model/fontes.dart';
@@ -56,7 +57,7 @@ class _FiltroAcessibilidadeWidgetState
 
   void traduzOpcoes() {
     for (String acessibilidade in opcoes) {
-      String acessTrad = widget.app.getNomeAcessib(acessibilidade, context);
+      String acessTrad = getNomeAcessib(acessibilidade, context);
       acessibTrad.add(acessTrad);
     }
     if (!expandido) {

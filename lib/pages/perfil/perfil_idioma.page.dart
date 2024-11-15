@@ -134,7 +134,6 @@ class _PerfilIdiomaPageState extends State<PerfilIdiomaPage> {
                   Dados.idiomaSalvo = languageSelecionada!.languageCode;
                   Dados.setString('idioma', Dados.idiomaSalvo);
                   Navigator.of(context).pop();
-                  baseController.setBottomBarSelectedOption(0);
                 },
               )
             ],

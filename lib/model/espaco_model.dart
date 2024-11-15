@@ -7,13 +7,13 @@ class ListaEspacos {
     if (json['espacos'] != null) {
       espacos = <Espaco>[];
       json['espacos'].forEach((v) {
-        espacos!.add(new Espaco.fromJson(v));
+        espacos!.add(Espaco.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     if (espacos != null) {
       data['espacos'] = espacos!.map((v) => v.toJson()).toList();
     }

@@ -5,7 +5,7 @@ import 'package:agendacultural/main.dart';
 import 'package:agendacultural/model/cores.dart';
 import 'package:agendacultural/dados/dados.dart';
 import 'package:agendacultural/model/fontes.dart';
-import 'package:agendacultural/pages/logged_area_page.dart';
+import 'package:agendacultural/modules/logged/presenter/page/logged_area_page.dart';
 import 'package:agendacultural/pages/introduction/presenter/page/widgets/step.dart';
 import 'package:agendacultural/pages/introduction/domain/entities/introducao_model.dart';
 import 'package:agendacultural/pages/introduction/presenter/store/introduction_store.dart';
@@ -31,14 +31,10 @@ class _IntroductionPageState extends State<IntroductionPage> {
   final _introductionStore = IntroductionStore();
 
   @override
-  void initState() {
-    super.initState();
-  }
+  void initState() => super.initState();
 
   @override
-  void dispose() {
-    super.dispose();
-  }
+  void dispose() => super.dispose();
 
   @override
   Widget build(BuildContext context) {

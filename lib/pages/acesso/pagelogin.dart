@@ -4,7 +4,7 @@ import 'package:agendacultural/controller/base_controller.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/acesso/pageCadastro.dart';
 import 'package:agendacultural/pages/acesso/pageEntrar.dart';
-import 'package:agendacultural/pages/logged_area_page.dart';
+import 'package:agendacultural/modules/logged/presenter/page/logged_area_page.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetbotao.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
@@ -123,7 +123,6 @@ class _pageLoginState extends State<pageLogin> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          baseController.setBottomBarSelectedOption(0);
                           Navigator.push(
                             context,
                             MaterialPageRoute(

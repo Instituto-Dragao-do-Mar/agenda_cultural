@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:agendacultural/common/utils/tradutors.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -169,7 +170,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
     List<String> categoriasTraduzidas = [];
     List<String> categorias = listCat.split(",").map((cat) => cat.trim()).toList();
     for (String categoria in categorias) {
-      String categoriaTraduzida = app.getNomeCategoria(categoria, context);
+      String categoriaTraduzida = getNomeCategoria(categoria, context);
       categoriasTraduzidas.add(categoriaTraduzida);
     }
     String listaCategoriasTraduzidas = categoriasTraduzidas.join(", ");
@@ -454,7 +455,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
       texto = AppLocalizations.of(context)!.e_accessibility_default;
     } else {
       for (String acessibilidade in acessibilidades) {
-        String acessTrad = app.getNomeAcessib(acessibilidade, context);
+        String acessTrad = getNomeAcessib(acessibilidade, context);
         acessibilidadesTraduzidas.add(acessTrad);
       }
       texto = acessibilidadesTraduzidas.join("; ");

@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:agendacultural/common/utils/tradutors.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -300,7 +301,7 @@ class _SpaceDetailPageState extends State<SpaceDetailPage> {
       texto = AppLocalizations.of(context)!.e_accessibility_default;
     } else {
       for (String acessibilidade in acessibilidades) {
-        String acessTrad = app.getNomeAcessib(acessibilidade, context);
+        String acessTrad = getNomeAcessib(acessibilidade, context);
         acessibilidadesTraduzidas.add(acessTrad);
       }
       texto = acessibilidadesTraduzidas.join("; ");

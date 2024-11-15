@@ -6,7 +6,7 @@ import 'package:agendacultural/dados/dados.dart';
 import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/pages/home/space/item_space.dart';
-import 'package:agendacultural/pages/home/general/header_areas_home.dart';
+import 'package:agendacultural/modules/logged/features/home/presenter/page/areas/general/header_areas_home.dart';
 
 class AreaSpaceWidget extends StatefulWidget {
   const AreaSpaceWidget({super.key});
@@ -44,12 +44,12 @@ class _AreaSpaceWidgetState extends State<AreaSpaceWidget> {
       mainAxisSize: MainAxisSize.max,
       children: [
         const SizedBox(height: 20),
-        HeaderCardsCategoryWidget(
-          titulo: AppLocalizations.of(context)!.home_spaces_title,
-          subtitulo: Dados.verTodosEspacos
+        HeaderCardsWidget(
+          title: AppLocalizations.of(context)!.home_spaces_title,
+          subtitle: Dados.verTodosEspacos
               ? AppLocalizations.of(context)!.home_spaces_less
               : AppLocalizations.of(context)!.home_spaces_all,
-          funcao: () async {
+          onTap: () async {
             Dados.verTodosEspacos = !Dados.verTodosEspacos;
             await Dados.setBool('espacos', Dados.verTodosEspacos);
             setState(() {});

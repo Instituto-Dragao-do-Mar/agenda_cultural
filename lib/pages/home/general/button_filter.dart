@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-import 'package:agendacultural/pages/filtro/pagefiltrocompleto.dart';
-
 class ButtonFilterWidget extends StatelessWidget {
-  const ButtonFilterWidget({Key? key}) : super(key: key);
+  final void Function() onTapNavigateFilter;
+
+  const ButtonFilterWidget({
+    super.key,
+    required this.onTapNavigateFilter,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +31,7 @@ class ButtonFilterWidget extends StatelessWidget {
               ],
             ),
             child: InkWell(
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const FiltroCompletoPage(),
-                ),
-              ),
+              onTap: onTapNavigateFilter,
               child: Row(
                 children: [
                   Text(AppLocalizations.of(context)!.home_filter),

@@ -9,10 +9,9 @@ class Cores {
     contraste = altoContraste;
   }
 
-  static void reloadColors(){
+  static void reloadColors() {
     corBgAtual = !contraste ? Colors.white : Colors.black;
     corAppBarAtual = !contraste ? Colors.white : Colors.black;
     corTextAtual = !contraste ? Colors.black : Colors.white;
   }
-
 }

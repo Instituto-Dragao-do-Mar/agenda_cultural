@@ -11,12 +11,14 @@ import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
 class ItemCategoryFilterWidget extends StatelessWidget {
   final Categoria category;
   final String nameCategory;
+  final bool isSelected;
   final void Function() applyFilterCategory;
 
   const ItemCategoryFilterWidget({
     super.key,
     required this.category,
     required this.nameCategory,
+    required this.isSelected,
     required this.applyFilterCategory,
   });
 
@@ -34,9 +36,9 @@ class ItemCategoryFilterWidget extends StatelessWidget {
               onTap: applyFilterCategory,
               child: CircleAvatar(
                 radius: 30,
-                backgroundColor: category.selecionada! ? Colors.black : corBackgroundLaranja,
+                backgroundColor: isSelected ? Colors.black : corBackgroundLaranja,
                 child: CircleAvatar(
-                  radius: category.selecionada! ? 26 : 30,
+                  radius: isSelected ? 26 : 30,
                   backgroundImage: _getCategoryImage(),
                 ),
               ),

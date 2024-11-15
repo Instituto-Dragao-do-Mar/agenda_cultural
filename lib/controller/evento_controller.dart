@@ -6,12 +6,8 @@ import 'package:agendacultural/shared/constantes.dart';
 import 'package:http/http.dart' as http;
 
 class EventoController extends BaseController {
-  Future<ListaEventos> eventoGet({
-    required String userguidid,
-  }) async {
-    ListaEventos lista = ListaEventos();
-
-    lista.eventos = <Evento>[];
+  Future<List<Evento>> eventoGet() async {
+    List<Evento> list = [];
 
     String url = "${baseUrlApi}eventos";
 
@@ -24,7 +20,10 @@ class EventoController extends BaseController {
       );
       if (response.statusCode == 200) {
         var ret = jsonDecode(response.body);
-        lista = ListaEventos.fromJson(ret);
+
+        list = (ret['eventos'] as List).map((e) {
+          return Evento.fromJson(e);
+        }).toList();
       } else {
         setError("Evento ${response.body}");
       }
@@ -32,11 +31,7 @@ class EventoController extends BaseController {
       setError("Evento ${_.toString()}");
     }
 
-    // lista.eventos = lista.eventos?.sort((a, b) {
-    //   a.eventosdatas!.sort((a, b) => a.datahora < b.datahora,)
-    // },);
-
-    return lista;
+    return list;
   }
 
   Future<ListaFavoritos> favoritosGet({

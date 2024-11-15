@@ -8,6 +8,7 @@ import 'package:agendacultural/pages/filtro/widgets/widgetfiltroingresso.dart';
 import 'package:agendacultural/pages/filtro/widgets/widgetfiltroperiodo.dart';
 import 'package:agendacultural/pages/home/location/area_location.dart';
 import 'package:agendacultural/pages/home/general/widgettopocomum.dart';
+import 'package:agendacultural/pages/my_location/page/my_location_page.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetbottombotao.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
@@ -118,7 +119,12 @@ class _FiltroCompletoPageState extends State<FiltroCompletoPage> {
           AppLocalizations.of(context)!.e_location,
           style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
         ),
-        const AreaLocationWidget(),
+        AreaLocationWidget(
+          onTapNavigateLocation: () => Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const MyLocationPage()),
+          ),
+        ),
         const widgetEspacoH(altura: 16),
         // widgetfiltroespaco(
         //   app: app,
