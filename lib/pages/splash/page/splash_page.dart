@@ -9,6 +9,7 @@ import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/pages/logged_area_page.dart';
 import 'package:agendacultural/shared/userSharedPreferences.dart';
 import 'package:agendacultural/controller/usuario_controller.dart';
+import 'package:agendacultural/pages/splash/store/splash_store.dart';
 import 'package:agendacultural/pages/introduction/presenter/page/introduction_page.dart';
 
 class SplashPage extends StatefulWidget {
@@ -19,14 +20,14 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  late AppModel app;
-  Usuario user = Usuario();
+  late AppModel _app;
+  final _splashStore = SplashStore();
 
   @override
   void initState() {
     super.initState();
-    app = context.read<AppModel>();
-    user = app.usuarioLogado ?? Usuario();
+    _app = context.read<AppModel>();
+    _splashStore.setUser(_app.usuarioLogado ?? Usuario());
 
     _verifyAuthenticated();
   }
@@ -47,15 +48,18 @@ class _SplashPageState extends State<SplashPage> {
     var userPrefs = await UserSharedPreferences.getUserData();
 
     if (userPrefs != null) {
-      user = await UsuarioController().getUserbyPrefData(userPrefs.signature!, userPrefs.email!);
-      user.signature = userPrefs.signature;
-      app.setUser(user);
+      _splashStore.setUser(await UsuarioController().getUserbyPrefData(
+        userPrefs.signature!,
+        userPrefs.email!,
+      ));
+      _splashStore.setSignatureUser(userPrefs.signature ?? '');
+      _app.setUser(_splashStore.user);
 
       await UserSharedPreferences.setUser(
-        userguidid: user.guidid ?? '',
-        usertoken: user.signature ?? '',
-        email: user.email ?? '',
-        nome: user.nome ?? '',
+        userguidid: _splashStore.user.guidid ?? '',
+        usertoken: _splashStore.user.signature ?? '',
+        email: _splashStore.user.email ?? '',
+        nome: _splashStore.user.nome ?? '',
       );
     }
 
@@ -65,15 +69,8 @@ class _SplashPageState extends State<SplashPage> {
   Future<void> _navigatorIntroduction() async {
     await _getCookies();
 
-    if (app.isLog() && (user.signature != null && user.signature!.isNotEmpty)) {
-      if (!mounted) return;
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: ((context) => const LoggedAreaPage()),
-        ),
-      );
-    } else if (!Dados.jaVisualizouIntroducao) {
+    //Verifica se o usuário já visualizou a introdução
+    if (!Dados.jaVisualizouIntroducao) {
       if (!mounted) return;
       Navigator.pushReplacement(
         context,
@@ -81,19 +78,20 @@ class _SplashPageState extends State<SplashPage> {
           builder: (context) => const IntroductionPage(),
         ),
       );
-    } else {
-      if (!mounted) return;
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const LoggedAreaPage(),
-        ),
-      );
+      return;
     }
+
+    if (!mounted) return;
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const LoggedAreaPage(),
+      ),
+    );
   }
 
   Future<void> _getCookies() async {
-    //Puxa os dados necessários do SharedPreferences
+    //Puxa os dados do SharedPreferences e verifica se o usuário já visualizou os cookies
     Dados.jaVisualizouCookies = await Dados.getBool('cookies');
     Dados.jaVisualizouGoverno = await Dados.getBool('governo');
     Dados.jaVisualizouIntroducao = await Dados.getBool('introducao');

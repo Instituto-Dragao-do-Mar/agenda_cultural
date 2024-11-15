@@ -10,9 +10,9 @@ import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/controller/base_controller.dart';
-import 'package:agendacultural/pages/splash/splash_page.dart';
 import 'package:agendacultural/controller/espaco_controller.dart';
 import 'package:agendacultural/controller/evento_controller.dart';
+import 'package:agendacultural/pages/splash/page/splash_page.dart';
 import 'package:agendacultural/controller/usuario_controller.dart';
 import 'package:agendacultural/controller/categoria_controller.dart';
 
@@ -72,11 +72,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Locale? _locale;
 
-  setLocale(Locale locale) {
-    setState(() {
-      _locale = locale;
-    });
-  }
+  setLocale(Locale locale) => _locale = locale;
 
   @override
   Widget build(BuildContext context) {

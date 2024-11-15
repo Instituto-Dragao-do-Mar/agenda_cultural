@@ -28,7 +28,7 @@ class IntroductionPage extends StatefulWidget {
 }
 
 class _IntroductionPageState extends State<IntroductionPage> {
-  final _myIntroductionStore = IntroductionStore();
+  final _introductionStore = IntroductionStore();
 
   @override
   void initState() {
@@ -43,16 +43,16 @@ class _IntroductionPageState extends State<IntroductionPage> {
   @override
   Widget build(BuildContext context) {
     return PopScope(
-      canPop: _myIntroductionStore.currentStep == 1,
+      canPop: _introductionStore.currentStep == 1,
       child: Scaffold(
         backgroundColor: Colors.black,
         body: Observer(builder: (context) {
           return Stack(
             children: [
               PageView.builder(
-                controller: _myIntroductionStore.controllerPage,
+                controller: _introductionStore.controllerPage,
                 itemCount: screens.length,
-                onPageChanged: (int index) => _myIntroductionStore.setCurrentStep(index + 1),
+                onPageChanged: (int index) => _introductionStore.setCurrentStep(index + 1),
                 itemBuilder: (context, index) {
                   return Observer(
                     warnWhenNoObservables: false,
@@ -69,15 +69,15 @@ class _IntroductionPageState extends State<IntroductionPage> {
                         ),
                         child: screens[index].order == 1
                             ? LanguageIntroductionScreen(
-                                languageSelecionada: _myIntroductionStore.languageSelecionada,
+                                languageSelecionada: _introductionStore.languageSelecionada,
                                 setLanguageSelecionada: (language) {
-                                  _myIntroductionStore.setLanguageSelecionada(language);
+                                  _introductionStore.setLanguageSelecionada(language);
                                   MyApp.setLocale(context, Locale(language.languageCode, ''));
                                   Dados.idiomaSalvo = language.languageCode;
                                 },
                                 onNextStep: () {
-                                  _myIntroductionStore.setCurrentStep(2);
-                                  _myIntroductionStore.controllerPage.nextPage(
+                                  _introductionStore.setCurrentStep(2);
+                                  _introductionStore.controllerPage.nextPage(
                                     duration: const Duration(milliseconds: 200),
                                     curve: Curves.bounceIn,
                                   );
@@ -85,30 +85,30 @@ class _IntroductionPageState extends State<IntroductionPage> {
                               )
                             : screens[index].order == 2
                                 ? AccessibilityIntroductionScreen(
-                                    statusAltoContraste: _myIntroductionStore.statusAltoContraste,
-                                    fontSize: _myIntroductionStore.fontSize,
+                                    statusAltoContraste: _introductionStore.statusAltoContraste,
+                                    fontSize: _introductionStore.fontSize,
                                     setAltoContraste: (value) async {
-                                      _myIntroductionStore.setStatusAltoContraste(value);
+                                      _introductionStore.setStatusAltoContraste(value);
                                       Cores.setAltoContraste(value);
                                       await Dados.setBool('altocontraste', value);
                                       Cores.reloadColors();
                                     },
                                     setFontSize: (isIncrement) async {
                                       if (isIncrement) {
-                                        if (_myIntroductionStore.fontSize < 24) {
-                                          _myIntroductionStore.setFontSize(_myIntroductionStore.fontSize + 2);
+                                        if (_introductionStore.fontSize < 24) {
+                                          _introductionStore.setFontSize(_introductionStore.fontSize + 2);
                                         }
                                       } else {
-                                        if (_myIntroductionStore.fontSize > 16) {
-                                          _myIntroductionStore.setFontSize(_myIntroductionStore.fontSize - 2);
+                                        if (_introductionStore.fontSize > 16) {
+                                          _introductionStore.setFontSize(_introductionStore.fontSize - 2);
                                         }
                                       }
-                                      Fontes.setTamanhoBase(_myIntroductionStore.fontSize.toInt());
-                                      await Dados.setInt('tamanhofontebase', _myIntroductionStore.fontSize.toInt());
+                                      Fontes.setTamanhoBase(_introductionStore.fontSize.toInt());
+                                      await Dados.setInt('tamanhofontebase', _introductionStore.fontSize.toInt());
                                     },
                                     onNextStep: () {
-                                      _myIntroductionStore.setCurrentStep(3);
-                                      _myIntroductionStore.controllerPage.nextPage(
+                                      _introductionStore.setCurrentStep(3);
+                                      _introductionStore.controllerPage.nextPage(
                                         duration: const Duration(milliseconds: 200),
                                         curve: Curves.bounceIn,
                                       );
@@ -127,7 +127,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
                   padding: const EdgeInsets.only(left: 8, right: 8, top: 40),
                   child: StepWidget(
                     totalSteps: 3,
-                    currentStep: _myIntroductionStore.currentStep,
+                    currentStep: _introductionStore.currentStep,
                   ),
                 ),
               ),
