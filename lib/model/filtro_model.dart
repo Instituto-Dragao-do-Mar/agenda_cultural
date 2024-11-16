@@ -12,7 +12,7 @@ enum FiltroData {
 }
 
 extension FiltroDataString on FiltroData {
-  String filtrodatatostring(BuildContext context) {
+  String filterDateToString(BuildContext context) {
     switch (this) {
       case FiltroData.estasemana:
         return AppLocalizations.of(context)!.home_events_this_week;

@@ -1,6 +1,6 @@
 import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/model/evento_model.dart';
-import 'package:agendacultural/pages/home/event/item_event.dart';
+import 'package:agendacultural/modules/logged/features/home/presenter/page/areas/events/item_event.dart';
 import 'package:agendacultural/pages/home/general/widgettopocomum.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetespacov.dart';

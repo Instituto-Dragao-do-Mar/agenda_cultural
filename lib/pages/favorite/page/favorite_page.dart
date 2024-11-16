@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
-import 'package:agendacultural/model/app_model.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:agendacultural/shared/themes.dart';
+import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
-import 'package:agendacultural/pages/home/event/item_event.dart';
 import 'package:agendacultural/controller/evento_controller.dart';
 import 'package:agendacultural/pages/favorite/store/favorite_store.dart';
+import 'package:agendacultural/modules/logged/features/home/presenter/page/areas/events/item_event.dart';
 
 class FavoritePage extends StatefulWidget {
   const FavoritePage({Key? key}) : super(key: key);

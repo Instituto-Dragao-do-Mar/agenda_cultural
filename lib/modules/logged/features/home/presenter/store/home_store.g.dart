@@ -9,6 +9,23 @@ part of 'home_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$HomeStore on HomeStoreBase, Store {
+  late final _$scrollControllerGeneralAtom =
+      Atom(name: 'HomeStoreBase.scrollControllerGeneral', context: context);
+
+  @override
+  ScrollController get scrollControllerGeneral {
+    _$scrollControllerGeneralAtom.reportRead();
+    return super.scrollControllerGeneral;
+  }
+
+  @override
+  set scrollControllerGeneral(ScrollController value) {
+    _$scrollControllerGeneralAtom
+        .reportWrite(value, super.scrollControllerGeneral, () {
+      super.scrollControllerGeneral = value;
+    });
+  }
+
   late final _$isLoadingAtom =
       Atom(name: 'HomeStoreBase.isLoading', context: context);
 
@@ -25,19 +42,20 @@ mixin _$HomeStore on HomeStoreBase, Store {
     });
   }
 
-  late final _$scrollControllerAtom =
-      Atom(name: 'HomeStoreBase.scrollController', context: context);
+  late final _$scrollControllerCategoriesAtom =
+      Atom(name: 'HomeStoreBase.scrollControllerCategories', context: context);
 
   @override
-  ScrollController get scrollController {
-    _$scrollControllerAtom.reportRead();
-    return super.scrollController;
+  ScrollController get scrollControllerCategories {
+    _$scrollControllerCategoriesAtom.reportRead();
+    return super.scrollControllerCategories;
   }
 
   @override
-  set scrollController(ScrollController value) {
-    _$scrollControllerAtom.reportWrite(value, super.scrollController, () {
-      super.scrollController = value;
+  set scrollControllerCategories(ScrollController value) {
+    _$scrollControllerCategoriesAtom
+        .reportWrite(value, super.scrollControllerCategories, () {
+      super.scrollControllerCategories = value;
     });
   }
 
@@ -105,6 +123,88 @@ mixin _$HomeStore on HomeStoreBase, Store {
     });
   }
 
+  late final _$filterDateAtom =
+      Atom(name: 'HomeStoreBase.filterDate', context: context);
+
+  @override
+  FilterDate get filterDate {
+    _$filterDateAtom.reportRead();
+    return super.filterDate;
+  }
+
+  @override
+  set filterDate(FilterDate value) {
+    _$filterDateAtom.reportWrite(value, super.filterDate, () {
+      super.filterDate = value;
+    });
+  }
+
+  late final _$eventsDateFilteredAtom =
+      Atom(name: 'HomeStoreBase.eventsDateFiltered', context: context);
+
+  @override
+  List<Evento> get eventsDateFiltered {
+    _$eventsDateFilteredAtom.reportRead();
+    return super.eventsDateFiltered;
+  }
+
+  @override
+  set eventsDateFiltered(List<Evento> value) {
+    _$eventsDateFilteredAtom.reportWrite(value, super.eventsDateFiltered, () {
+      super.eventsDateFiltered = value;
+    });
+  }
+
+  late final _$eventsProminenceFilteredAtom =
+      Atom(name: 'HomeStoreBase.eventsProminenceFiltered', context: context);
+
+  @override
+  List<Evento> get eventsProminenceFiltered {
+    _$eventsProminenceFilteredAtom.reportRead();
+    return super.eventsProminenceFiltered;
+  }
+
+  @override
+  set eventsProminenceFiltered(List<Evento> value) {
+    _$eventsProminenceFilteredAtom
+        .reportWrite(value, super.eventsProminenceFiltered, () {
+      super.eventsProminenceFiltered = value;
+    });
+  }
+
+  late final _$allEventsProminenceAtom =
+      Atom(name: 'HomeStoreBase.allEventsProminence', context: context);
+
+  @override
+  bool get allEventsProminence {
+    _$allEventsProminenceAtom.reportRead();
+    return super.allEventsProminence;
+  }
+
+  @override
+  set allEventsProminence(bool value) {
+    _$allEventsProminenceAtom.reportWrite(value, super.allEventsProminence, () {
+      super.allEventsProminence = value;
+    });
+  }
+
+  late final _$scrollControllerSpacesAtom =
+      Atom(name: 'HomeStoreBase.scrollControllerSpaces', context: context);
+
+  @override
+  ScrollController get scrollControllerSpaces {
+    _$scrollControllerSpacesAtom.reportRead();
+    return super.scrollControllerSpaces;
+  }
+
+  @override
+  set scrollControllerSpaces(ScrollController value) {
+    _$scrollControllerSpacesAtom
+        .reportWrite(value, super.scrollControllerSpaces, () {
+      super.scrollControllerSpaces = value;
+    });
+  }
+
   late final _$spacesAtom =
       Atom(name: 'HomeStoreBase.spaces', context: context);
 
@@ -118,6 +218,38 @@ mixin _$HomeStore on HomeStoreBase, Store {
   set spaces(List<Espaco> value) {
     _$spacesAtom.reportWrite(value, super.spaces, () {
       super.spaces = value;
+    });
+  }
+
+  late final _$spacesFilteredAtom =
+      Atom(name: 'HomeStoreBase.spacesFiltered', context: context);
+
+  @override
+  List<Espaco> get spacesFiltered {
+    _$spacesFilteredAtom.reportRead();
+    return super.spacesFiltered;
+  }
+
+  @override
+  set spacesFiltered(List<Espaco> value) {
+    _$spacesFilteredAtom.reportWrite(value, super.spacesFiltered, () {
+      super.spacesFiltered = value;
+    });
+  }
+
+  late final _$allSpacesAtom =
+      Atom(name: 'HomeStoreBase.allSpaces', context: context);
+
+  @override
+  bool get allSpaces {
+    _$allSpacesAtom.reportRead();
+    return super.allSpaces;
+  }
+
+  @override
+  set allSpaces(bool value) {
+    _$allSpacesAtom.reportWrite(value, super.allSpaces, () {
+      super.allSpaces = value;
     });
   }
 
@@ -180,11 +312,77 @@ mixin _$HomeStore on HomeStoreBase, Store {
   }
 
   @override
+  void setFilterDate(FilterDate value) {
+    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
+        name: 'HomeStoreBase.setFilterDate');
+    try {
+      return super.setFilterDate(value);
+    } finally {
+      _$HomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setEventsDateFiltered(List<Evento> value) {
+    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
+        name: 'HomeStoreBase.setEventsDateFiltered');
+    try {
+      return super.setEventsDateFiltered(value);
+    } finally {
+      _$HomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setEventsProminenceFiltered(List<Evento> value) {
+    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
+        name: 'HomeStoreBase.setEventsProminenceFiltered');
+    try {
+      return super.setEventsProminenceFiltered(value);
+    } finally {
+      _$HomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setAllEventsProminence(bool value) {
+    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
+        name: 'HomeStoreBase.setAllEventsProminence');
+    try {
+      return super.setAllEventsProminence(value);
+    } finally {
+      _$HomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void setSpaces(List<Espaco> value) {
     final _$actionInfo = _$HomeStoreBaseActionController.startAction(
         name: 'HomeStoreBase.setSpaces');
     try {
       return super.setSpaces(value);
+    } finally {
+      _$HomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setSpacesFiltered(List<Espaco> value) {
+    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
+        name: 'HomeStoreBase.setSpacesFiltered');
+    try {
+      return super.setSpacesFiltered(value);
+    } finally {
+      _$HomeStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setAllSpaces(bool value) {
+    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
+        name: 'HomeStoreBase.setAllSpaces');
+    try {
+      return super.setAllSpaces(value);
     } finally {
       _$HomeStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -204,13 +402,21 @@ mixin _$HomeStore on HomeStoreBase, Store {
   @override
   String toString() {
     return '''
+scrollControllerGeneral: ${scrollControllerGeneral},
 isLoading: ${isLoading},
-scrollController: ${scrollController},
+scrollControllerCategories: ${scrollControllerCategories},
 categories: ${categories},
 allCategories: ${allCategories},
 selectedCategory: ${selectedCategory},
 events: ${events},
-spaces: ${spaces}
+filterDate: ${filterDate},
+eventsDateFiltered: ${eventsDateFiltered},
+eventsProminenceFiltered: ${eventsProminenceFiltered},
+allEventsProminence: ${allEventsProminence},
+scrollControllerSpaces: ${scrollControllerSpaces},
+spaces: ${spaces},
+spacesFiltered: ${spacesFiltered},
+allSpaces: ${allSpaces}
     ''';
   }
 }

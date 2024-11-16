@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import 'package:agendacultural/model/cores.dart';
 import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/shared/themes.dart';
-import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/model/evento_model.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
@@ -16,7 +14,7 @@ import 'package:agendacultural/shared/extensions/capitalize.dart';
 import 'package:agendacultural/pages/evento/event_detail_page.dart';
 import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
 
-class ItemEventWidget extends StatefulWidget {
+class ItemEventWidget extends StatelessWidget {
   final Evento evento;
   final String? origem;
 
@@ -27,28 +25,12 @@ class ItemEventWidget extends StatefulWidget {
   });
 
   @override
-  State<ItemEventWidget> createState() => _ItemEventWidgetState();
-}
-
-class _ItemEventWidgetState extends State<ItemEventWidget> {
-  bool statusAltoContraste = Cores.contraste;
-  double fontSize = Fontes.tamanhoBase.toDouble();
-
-  AppModel? app;
-
-  @override
-  void initState() {
-    super.initState();
-    app = context.read<AppModel>();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    String nomeEspacoPrincipal = app!.GetEspacoPrincipal(
-      evento: widget.evento,
-    );
+    // String nomeEspacoPrincipal = app!.GetEspacoPrincipal(
+    //   evento: widget.evento,
+    // );
 
-    if (widget.evento.id == null) {
+    if (evento.id == null) {
       return const SizedBox.shrink();
     }
 
@@ -58,8 +40,8 @@ class _ItemEventWidgetState extends State<ItemEventWidget> {
           context,
           MaterialPageRoute(
             builder: (context) => EventDetailPage(
-              evento: widget.evento,
-              origem: widget.origem,
+              evento: evento,
+              origem: origem,
             ),
           ),
         ),
@@ -71,13 +53,7 @@ class _ItemEventWidgetState extends State<ItemEventWidget> {
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10),
             color: !Cores.contraste ? const Color(0xFFF6F6F6) : Colors.black.withOpacity(.8),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(.1),
-                blurRadius: 2,
-                offset: const Offset(2, 2),
-              ),
-            ],
+            boxShadow: [BoxShadow(color: Colors.black.withOpacity(.1), blurRadius: 2, offset: const Offset(2, 2))],
           ),
           child: Stack(
             children: [
@@ -94,7 +70,7 @@ class _ItemEventWidgetState extends State<ItemEventWidget> {
                           children: [
                             const SizedBox(height: 6),
                             TextContrasteFonte(
-                              text: widget.evento.nome ?? 'Evento',
+                              text: evento.nome ?? 'Evento',
                               maxlines: 1,
                               style: GoogleFonts.roboto(
                                 fontSize: Fontes.tamanhoBase - 4,
@@ -102,23 +78,23 @@ class _ItemEventWidgetState extends State<ItemEventWidget> {
                                 color: corTextAtual,
                               ),
                             ),
-                            SizedBox(height: nomeEspacoPrincipal.isNotEmpty ? 9 : 6),
-                            Flex(
-                              direction: Axis.vertical,
-                              children: [
-                                TextContrasteFonte(
-                                  text: app?.GetEspacoEvento(widget.evento),
-                                  style: GoogleFonts.roboto(
-                                    fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 12),
-                                    color: corTextAtual,
-                                  ),
-                                  maxlines: 2,
-                                ),
-                              ],
-                            ),
+                            // SizedBox(height: nomeEspacoPrincipal.isNotEmpty ? 9 : 6),
+                            // Flex(
+                            //   direction: Axis.vertical,
+                            //   children: [
+                            //     TextContrasteFonte(
+                            //       text: app?.GetEspacoEvento(widget.evento),
+                            //       style: GoogleFonts.roboto(
+                            //         fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 12),
+                            //         color: corTextAtual,
+                            //       ),
+                            //       maxlines: 2,
+                            //     ),
+                            //   ],
+                            // ),
                             const SizedBox(height: 6),
                             _buildDatesEvent(
-                              widget.evento.eventosdatas!.map((e) => e.datahora!).toList(),
+                              evento.eventosdatas!.map((e) => e.datahora!).toList(),
                             ),
                           ],
                         );
@@ -134,7 +110,7 @@ class _ItemEventWidgetState extends State<ItemEventWidget> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       ButtonFavoriteWidget(
-                        evento: widget.evento,
+                        evento: evento,
                         isCardEvent: true,
                       ),
                     ],
@@ -146,12 +122,12 @@ class _ItemEventWidgetState extends State<ItemEventWidget> {
         ),
       );
     } catch (s) {
-      return Text(widget.evento.nome ?? 'sem nome');
+      return Text(evento.nome ?? 'sem nome');
     }
   }
 
   Container _buildImageEvent() {
-    var imagemEvento = widget.evento.eventosimagens!.first.imagens!.first.url!;
+    var imagemEvento = evento.eventosimagens!.first.imagens!.first.url!;
 
     return Container(
       height: 150 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
@@ -182,15 +158,16 @@ class _ItemEventWidgetState extends State<ItemEventWidget> {
   }
 
   Widget _buildDatesEvent(List<String> datas) {
-    Widget ret = const Text("");
-    String diaabr = datas.first.formatDate(format: "E").capitalize();
-    String dia = datas.first.formatDate(format: "dd").capitalize();
-    String mes = datas.first.formatDate(format: "MMM").capitalize();
-    String hora = datas.first.formatDate(format: "HH:mm").capitalize();
-    ret = Row(
+    Widget date = const Text('');
+    String diaabr = datas.first.formatDate(format: 'E').capitalize();
+    String dia = datas.first.formatDate(format: 'dd').capitalize();
+    String mes = datas.first.formatDate(format: 'MMM').capitalize();
+    String hora = datas.first.formatDate(format: 'HH:mm').capitalize();
+
+    date = Row(
       children: [
         TextContrasteFonte(
-          text: "$diaabr. $dia/$mes - $hora",
+          text: '$diaabr $dia/$mes - $hora',
           style: GoogleFonts.roboto(
             fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 12),
             fontWeight: FontWeight.w500,
@@ -199,6 +176,7 @@ class _ItemEventWidgetState extends State<ItemEventWidget> {
         ),
       ],
     );
-    return ret;
+
+    return date;
   }
 }

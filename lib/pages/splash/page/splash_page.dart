@@ -96,8 +96,6 @@ class _SplashPageState extends State<SplashPage> {
     Dados.jaVisualizouGoverno = await Dados.getBool('governo');
     Dados.jaVisualizouIntroducao = await Dados.getBool('introducao');
     Dados.jaPermitiuLocalizacao = await Dados.getBool('localizacao');
-    Dados.verTodosDestaques = await Dados.getBool('destaques');
-    Dados.verTodosEspacos = await Dados.getBool('espacos');
     Dados.idiomaSalvo = await Dados.getString('idioma');
     if (Dados.jaVisualizouCookies) {
       if (!mounted) return;

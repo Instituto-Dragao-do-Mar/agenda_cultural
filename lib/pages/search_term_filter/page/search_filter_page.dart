@@ -5,7 +5,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/model/app_model.dart';
-import 'package:agendacultural/pages/home/event/item_event.dart';
+import 'package:agendacultural/modules/logged/features/home/presenter/page/areas/events/item_event.dart';
 import 'package:agendacultural/pages/search_term_filter/store/search_filter_store.dart';
 import 'package:agendacultural/pages/search_term_filter/widgets/app_bar_search_filter.dart';
 

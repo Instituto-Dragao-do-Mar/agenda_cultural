@@ -7,7 +7,7 @@ import 'package:agendacultural/modules/logged/features/home/presenter/page/areas
 import 'package:agendacultural/modules/logged/features/home/presenter/page/areas/categories/item_category_filter.dart';
 
 class AreaCategoryWidget extends StatelessWidget {
-  final ScrollController scrollController;
+  final ScrollController scrollControllerCategories;
   final List<Categoria> categories;
   final bool showAllCategories;
   final Categoria? selectedCategory;
@@ -16,7 +16,7 @@ class AreaCategoryWidget extends StatelessWidget {
 
   const AreaCategoryWidget({
     super.key,
-    required this.scrollController,
+    required this.scrollControllerCategories,
     required this.categories,
     required this.showAllCategories,
     required this.selectedCategory,
@@ -38,37 +38,41 @@ class AreaCategoryWidget extends StatelessWidget {
           onTap: onTapExpandCategories,
         ),
         const SizedBox(height: 10),
-        SizedBox(
-          width: double.infinity,
-          height: showAllCategories ? null : 130,
-          child: SingleChildScrollView(
-            physics: showAllCategories ? const NeverScrollableScrollPhysics() : const BouncingScrollPhysics(),
-            controller: scrollController,
-            scrollDirection: showAllCategories ? Axis.vertical : Axis.horizontal,
-            child: Wrap(
-              alignment: WrapAlignment.center,
-              direction: Axis.horizontal,
-              children: categories.map(
-                (categoryComponent) {
-                  if (categoryComponent.imagens == null || categoryComponent.imagens!.isEmpty) {
-                    return const SizedBox.shrink();
-                  }
+        AnimatedSize(
+          duration: const Duration(milliseconds: 300),
+          curve: Curves.easeInQuad,
+          child: SizedBox(
+            width: double.infinity,
+            height: showAllCategories ? null : 130,
+            child: SingleChildScrollView(
+              physics: showAllCategories ? const NeverScrollableScrollPhysics() : const BouncingScrollPhysics(),
+              controller: scrollControllerCategories,
+              scrollDirection: showAllCategories ? Axis.vertical : Axis.horizontal,
+              child: Wrap(
+                alignment: WrapAlignment.center,
+                direction: Axis.horizontal,
+                children: categories.map(
+                  (categoryComponent) {
+                    if (categoryComponent.imagens == null || categoryComponent.imagens!.isEmpty) {
+                      return const SizedBox.shrink();
+                    }
 
-                  return Padding(
-                    padding: !showAllCategories
-                        ? categoryComponent == categories.first
-                            ? const EdgeInsets.symmetric(horizontal: 8)
-                            : const EdgeInsets.only(right: 8)
-                        : const EdgeInsets.symmetric(horizontal: 8),
-                    child: ItemCategoryFilterWidget(
-                      category: categoryComponent,
-                      nameCategory: getNomeCategoria(categoryComponent.nome ?? '', context),
-                      isSelected: selectedCategory == categoryComponent,
-                      applyFilterCategory: () => applyFilterCategory(categoryComponent),
-                    ),
-                  );
-                },
-              ).toList(),
+                    return Padding(
+                      padding: !showAllCategories
+                          ? categoryComponent == categories.first
+                              ? const EdgeInsets.symmetric(horizontal: 8)
+                              : const EdgeInsets.only(right: 8)
+                          : const EdgeInsets.symmetric(horizontal: 8),
+                      child: ItemCategoryFilterWidget(
+                        category: categoryComponent,
+                        nameCategory: getNomeCategoria(categoryComponent.nome ?? '', context),
+                        isSelected: selectedCategory == categoryComponent,
+                        applyFilterCategory: () => applyFilterCategory(categoryComponent),
+                      ),
+                    );
+                  },
+                ).toList(),
+              ),
             ),
           ),
         ),

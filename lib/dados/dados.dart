@@ -7,8 +7,6 @@ class Dados {
   static bool jaVisualizouCookies = false;
   static bool jaVisualizouGoverno = false;
   static bool jaPermitiuLocalizacao = false;
-  static bool verTodosDestaques = false;
-  static bool verTodosEspacos = false;
   static String idiomaSalvo = '';
 
   static Future<SharedPreferences> getprefs() async {

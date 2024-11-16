@@ -7,7 +7,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/model/app_model.dart';
-import 'package:agendacultural/pages/home/event/item_event.dart';
+import 'package:agendacultural/modules/logged/features/home/presenter/page/areas/events/item_event.dart';
 import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
 import 'package:agendacultural/pages/schedule/widgets/view_days.dart';
 import 'package:agendacultural/pages/home/general/button_filter.dart';

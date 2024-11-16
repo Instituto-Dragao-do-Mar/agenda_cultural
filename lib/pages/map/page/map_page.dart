@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import 'package:agendacultural/dados/dados.dart';
@@ -12,7 +11,6 @@ import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/model/espaco_model.dart';
 import 'package:agendacultural/model/evento_model.dart';
 import 'package:agendacultural/pages/map/store/map_store.dart';
-import 'package:agendacultural/pages/home/event/area_event.dart';
 import 'package:agendacultural/pages/evento/event_detail_page.dart';
 
 class MapPage extends StatefulWidget {
@@ -128,10 +126,11 @@ class _MapPageState extends State<MapPage> {
                         },
                       ),
               ),
-              AreaEventWidget(
-                exibicaoEvento: ExibicaoEvento.evento,
-                titulo: AppLocalizations.of(context)!.map_suggestion,
-              ),
+              // AreaEventsWidget(
+              //   exibicaoEvento: ExhibitionEvent.event,
+              //   titulo: AppLocalizations.of(context)!.map_suggestion,
+              //   events: [],
+              // ),
               const SizedBox(height: 10),
             ],
           ),
