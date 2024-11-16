@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:dart_date/dart_date.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import 'package:agendacultural/shared/themes.dart';
-import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/shared/extensions/dates.dart';
 import 'package:agendacultural/controller/espaco_controller.dart';
 import 'package:agendacultural/controller/evento_controller.dart';
@@ -13,7 +11,7 @@ import 'package:agendacultural/controller/categoria_controller.dart';
 import 'package:agendacultural/pages/filtro/pagefiltrocompleto.dart';
 import 'package:agendacultural/pages/home/general/button_filter.dart';
 import 'package:agendacultural/pages/home/location/area_location.dart';
-import 'package:agendacultural/pages/my_location/page/my_location_page.dart';
+import 'package:agendacultural/modules/my_location/page/my_location_page.dart';
 import 'package:agendacultural/modules/logged/features/home/domain/enum/filter_date.dart';
 import 'package:agendacultural/modules/logged/features/home/presenter/store/home_store.dart';
 import 'package:agendacultural/modules/logged/features/home/domain/enum/exhibition_event.dart';
@@ -29,12 +27,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late AppModel app;
   final _homeStore = HomeStore();
 
   @override
   void initState() {
-    app = context.read<AppModel>();
     _initializeData();
     super.initState();
   }
@@ -98,18 +94,19 @@ class _HomePageState extends State<HomePage> {
                     onTapExpandEvents: () => _homeStore.setAllEventsProminence(!_homeStore.allEventsProminence),
                     events: _homeStore.eventsProminenceFiltered,
                   ),
-                AreaEventsWidget(
-                  exhibitionEvent: ExhibitionEvent.date,
-                  title: filterDateToString(context, _homeStore.filterDate),
-                  events: _homeStore.eventsDateFiltered,
-                  filterDateSelected: _homeStore.filterDate,
-                  onItemSelected: (value) {
-                    _homeStore.setFilterDate(
-                      FilterDate.values.firstWhere((element) => filterDateToString(context, element) == value),
-                    );
-                    _filterEventsByDate(_homeStore.filterDate);
-                  },
-                ),
+                if (_homeStore.eventsDateFiltered.isNotEmpty)
+                  AreaEventsWidget(
+                    exhibitionEvent: ExhibitionEvent.date,
+                    title: filterDateToString(context, _homeStore.filterDate),
+                    events: _homeStore.eventsDateFiltered,
+                    filterDateSelected: _homeStore.filterDate,
+                    onItemSelected: (value) {
+                      _homeStore.setFilterDate(
+                        FilterDate.values.firstWhere((element) => filterDateToString(context, element) == value),
+                      );
+                      _filterEventsByDate(_homeStore.filterDate);
+                    },
+                  ),
                 AreaSpacesWidget(
                   scrollControllerSpaces: _homeStore.scrollControllerSpaces,
                   spaces: _homeStore.spacesFiltered,

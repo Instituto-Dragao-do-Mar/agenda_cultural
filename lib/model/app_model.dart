@@ -9,7 +9,6 @@ import 'package:agendacultural/model/espaco_model.dart';
 import 'package:agendacultural/model/evento_model.dart';
 import 'package:agendacultural/model/favorito_model.dart';
 import 'package:agendacultural/model/filtro_model.dart';
-import 'package:agendacultural/model/localizacao_model.dart';
 import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/shared/extensions/capitalize.dart';
 import 'package:agendacultural/shared/extensions/clearMask.dart';
@@ -23,10 +22,7 @@ class AppModel extends ChangeNotifier {
   late ListaEspacos listaEspacos;
   late Filtro filtro;
   ListaNotificacoes listaNotificacoes = ListaNotificacoes(notificacoes: []);
-
-  Localizacao? localizacao;
   ListaFavoritos listaFavoritos = ListaFavoritos();
-
   TextEditingController tedEspaco = TextEditingController();
   TextEditingController tedPeriodo = TextEditingController();
   TextEditingController tedAcessibilidade = TextEditingController();
@@ -44,17 +40,6 @@ class AppModel extends ChangeNotifier {
       filtroDataSelecionado: FiltroData.estasemana,
     );
   }
-
-  void setLocalizacao(double latitude, double longitude) {
-    localizacao = Localizacao(
-      latitude: latitude,
-      longitude: longitude,
-    );
-  }
-
-  double getLatitude() => (localizacao == null) ? 0.0 : localizacao!.latitude!;
-
-  double getLongitude() => (localizacao == null) ? 0.0 : localizacao!.longitude!;
 
   setUser(Usuario usr) {
     usuarioLogado = usr;

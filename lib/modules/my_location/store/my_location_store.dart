@@ -1,5 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:mobx/mobx.dart';
+import 'package:flutter/cupertino.dart';
 
 part 'my_location_store.g.dart';
 
