@@ -1,3 +1,4 @@
+import 'package:agendacultural/model/espaco_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -31,7 +32,7 @@ class _FavoritePageState extends State<FavoritePage> {
   }
 
   void _initializeData() async {
-    if (app.usuarioLogado?.email == null) {
+    if (app.usuarioLogado?.guidid == null) {
       Future.delayed(
         const Duration(seconds: 0),
         () async {
@@ -83,7 +84,13 @@ class _FavoritePageState extends State<FavoritePage> {
             children: [
               Wrap(
                 crossAxisAlignment: WrapCrossAlignment.start,
-                children: favoriteStore.eventsFavorite.map((evento) => ItemEventWidget(evento: evento)).toList(),
+                children: favoriteStore.eventsFavorite
+                    .map((evento) => ItemEventWidget(
+                          evento: evento,
+                          spacePrincipal: Espaco(),
+                          onTapEvent: () {},
+                        ))
+                    .toList(),
               )
             ],
           ),

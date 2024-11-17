@@ -1,4 +1,5 @@
 import 'package:agendacultural/model/app_model.dart';
+import 'package:agendacultural/model/espaco_model.dart';
 import 'package:agendacultural/model/evento_model.dart';
 import 'package:agendacultural/modules/logged/features/home/presenter/page/areas/events/item_event.dart';
 import 'package:agendacultural/pages/home/general/widgettopocomum.dart';
@@ -101,6 +102,8 @@ class _PesquisarProgramacaoPageState extends State<PesquisarProgramacaoPage> {
                   .map((e) {
                 return ItemEventWidget(
                   evento: e,
+                  spacePrincipal: Espaco(),
+                  onTapEvent: () {},
                 );
               }).toList(),
             ),

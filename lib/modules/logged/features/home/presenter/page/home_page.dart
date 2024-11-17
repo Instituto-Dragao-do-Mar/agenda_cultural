@@ -93,12 +93,13 @@ class _HomePageState extends State<HomePage> {
                     showAllEvents: _homeStore.allEventsProminence,
                     onTapExpandEvents: () => _homeStore.setAllEventsProminence(!_homeStore.allEventsProminence),
                     events: _homeStore.eventsProminenceFiltered,
+                    spaces: _homeStore.spaces,
+                    categories: _homeStore.categories,
                   ),
                 if (_homeStore.eventsDateFiltered.isNotEmpty)
                   AreaEventsWidget(
                     exhibitionEvent: ExhibitionEvent.date,
                     title: filterDateToString(context, _homeStore.filterDate),
-                    events: _homeStore.eventsDateFiltered,
                     filterDateSelected: _homeStore.filterDate,
                     onItemSelected: (value) {
                       _homeStore.setFilterDate(
@@ -106,6 +107,9 @@ class _HomePageState extends State<HomePage> {
                       );
                       _filterEventsByDate(_homeStore.filterDate);
                     },
+                    events: _homeStore.eventsDateFiltered,
+                    spaces: _homeStore.spaces,
+                    categories: _homeStore.categories,
                   ),
                 AreaSpacesWidget(
                   scrollControllerSpaces: _homeStore.scrollControllerSpaces,

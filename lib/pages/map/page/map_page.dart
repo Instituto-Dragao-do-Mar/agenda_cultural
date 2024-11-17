@@ -11,7 +11,6 @@ import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/model/espaco_model.dart';
 import 'package:agendacultural/model/evento_model.dart';
 import 'package:agendacultural/pages/map/store/map_store.dart';
-import 'package:agendacultural/pages/evento/event_detail_page.dart';
 
 class MapPage extends StatefulWidget {
   const MapPage({super.key});
@@ -91,7 +90,7 @@ class _MapPageState extends State<MapPage> {
               onTap: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => EventDetailPage(evento: event),
+                  builder: (context) => const SizedBox(),//EventDetailPage(evento: event),
                 ),
               ),
             ),

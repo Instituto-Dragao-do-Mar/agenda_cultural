@@ -157,6 +157,7 @@ class AppModel extends ChangeNotifier {
   }
 
   String GetEspacoEvento(Evento evento) {
+    //isso retorna sempre o nome do espaco principal
     if (evento.eventosdatas == null || evento.eventosdatas!.isEmpty) {
       return 'Nenhum endereço localizado.';
     }
@@ -213,6 +214,7 @@ class AppModel extends ChangeNotifier {
   }
 
   String GetEspacoPrincipal({required Evento evento}) {
+    //isso aqui retorna o nome do espaco em que o evento ocorrerá, pode não ser principal
     if (evento.eventosdatas == null || evento.eventosdatas!.isEmpty) {
       return 'x1';
     }
@@ -224,7 +226,6 @@ class AppModel extends ChangeNotifier {
     }
 
     if (!listaEspacos.espacos!.any((element) => element.id == eventodatas.idespaco)) {
-      // print(listaEspacos.espacos!.length);
       return '';
     }
 
@@ -236,7 +237,6 @@ class AppModel extends ChangeNotifier {
 
     if (!listaEspacos.espacos!.any((element) => element.id == e.idespacoprincipal)) {
       return '';
-      // 'x5 - ${e.idespacoprincipal}';
     }
 
     return listaEspacos.espacos!.firstWhere((element) => element.id == e.idespacoprincipal).nome!.capitalize();

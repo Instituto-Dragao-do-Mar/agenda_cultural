@@ -51,20 +51,21 @@ void notifyPopUpWidget({
               color: const Color.fromRGBO(0, 0, 0, 0),
               child: Container(
                 width: double.infinity,
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                    color: !Cores.contraste ? Colors.white : Colors.black,
-                    borderRadius: BorderRadius.circular(8),
-                    border: Border.all(
-                      color: Cores.contraste ? Colors.white : Colors.transparent,
-                    )),
+                  color: !Cores.contraste ? Colors.white : Colors.black,
+                  borderRadius: BorderRadius.circular(25),
+                  border: Border.all(
+                    color: Cores.contraste ? Colors.white : Colors.transparent,
+                  ),
+                ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     widgetEspacoH(altura: permitirFechar ? 0 : 42),
                     Text(
                       textChamativo ?? AppLocalizations.of(context)!.notification_attention,
-                      style: Fontes.poppins16W400Black(Fontes.tamanhoBase + 2),
+                      style: Fontes.poppins16W500Black(Fontes.tamanhoBase + 2),
                     ),
                     const widgetEspacoH(altura: 10),
                     Text(
@@ -72,7 +73,7 @@ void notifyPopUpWidget({
                       style: Fontes.poppins16W400Black(Fontes.tamanhoBase - 2),
                       textAlign: TextAlign.center,
                     ),
-                    const widgetEspacoH(altura: 20),
+                    const widgetEspacoH(altura: 10),
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(

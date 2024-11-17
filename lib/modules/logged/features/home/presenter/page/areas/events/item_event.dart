@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:agendacultural/model/cores.dart';
 import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/shared/themes.dart';
+import 'package:agendacultural/model/espaco_model.dart';
 import 'package:agendacultural/model/evento_model.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
@@ -11,119 +12,115 @@ import 'package:agendacultural/shared/extensions/dates.dart';
 import 'package:agendacultural/shared/widgetBotaoFavorito.dart';
 import 'package:agendacultural/shared/widgetimagemexterna.dart';
 import 'package:agendacultural/shared/extensions/capitalize.dart';
-import 'package:agendacultural/pages/evento/event_detail_page.dart';
 import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
 
 class ItemEventWidget extends StatelessWidget {
   final Evento evento;
-  final String? origem;
+  final Espaco spacePrincipal;
+  final void Function() onTapEvent;
 
   const ItemEventWidget({
     super.key,
     required this.evento,
-    this.origem,
+    required this.spacePrincipal,
+    required this.onTapEvent,
   });
 
   @override
   Widget build(BuildContext context) {
-    // String nomeEspacoPrincipal = app!.GetEspacoPrincipal(
-    //   evento: widget.evento,
-    // );
+    List<String> datas = evento.eventosdatas!.map((e) => e.datahora!).toList();
+    String diaabr = datas.first.formatDate(format: 'E').capitalize();
+    String dia = datas.first.formatDate(format: 'dd').capitalize();
+    String mes = datas.first.formatDate(format: 'MMM').capitalize();
+    String hora = datas.first.formatDate(format: 'HH:mm').capitalize();
 
-    if (evento.id == null) {
-      return const SizedBox.shrink();
-    }
-
-    try {
-      return GestureDetector(
-        onTap: () => Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => EventDetailPage(
-              evento: evento,
-              origem: origem,
-            ),
-          ),
+    return GestureDetector(
+      onTap: onTapEvent,
+      child: Container(
+        margin: const EdgeInsets.all(8),
+        height: 270 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+        width: 180 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+        clipBehavior: Clip.antiAlias,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: !Cores.contraste ? const Color(0xFFF6F6F6) : Colors.black.withOpacity(.8),
+          boxShadow: [BoxShadow(color: Colors.black.withOpacity(.1), blurRadius: 2, offset: const Offset(2, 2))],
         ),
-        child: Container(
-          margin: const EdgeInsets.all(8),
-          height: 270 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
-          width: 180 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
-          clipBehavior: Clip.antiAlias,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10),
-            color: !Cores.contraste ? const Color(0xFFF6F6F6) : Colors.black.withOpacity(.8),
-            boxShadow: [BoxShadow(color: Colors.black.withOpacity(.1), blurRadius: 2, offset: const Offset(2, 2))],
-          ),
-          child: Stack(
-            children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _buildImageEvent(),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8, left: 8, bottom: 8),
-                    child: LayoutBuilder(
-                      builder: (p0, p1) {
-                        return Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(height: 6),
-                            TextContrasteFonte(
-                              text: evento.nome ?? 'Evento',
-                              maxlines: 1,
-                              style: GoogleFonts.roboto(
-                                fontSize: Fontes.tamanhoBase - 4,
-                                fontWeight: FontWeight.w500,
-                                color: corTextAtual,
+        child: Stack(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildImageEvent(),
+                Padding(
+                  padding: const EdgeInsets.only(right: 8, left: 8, bottom: 8),
+                  child: LayoutBuilder(
+                    builder: (p0, p1) {
+                      return Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const SizedBox(height: 6),
+                          TextContrasteFonte(
+                            text: evento.nome ?? 'Evento',
+                            maxlines: 2,
+                            style: GoogleFonts.roboto(
+                              fontSize: Fontes.tamanhoBase - 4,
+                              fontWeight: FontWeight.w500,
+                              color: corTextAtual,
+                            ),
+                          ),
+                          const SizedBox(height: 5),
+                          Flex(
+                            direction: Axis.vertical,
+                            children: [
+                              TextContrasteFonte(
+                                text: spacePrincipal.nome ?? 'Espaço',
+                                style: GoogleFonts.roboto(
+                                  fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 12),
+                                  color: corTextAtual,
+                                ),
+                                maxlines: 2,
                               ),
-                            ),
-                            // SizedBox(height: nomeEspacoPrincipal.isNotEmpty ? 9 : 6),
-                            // Flex(
-                            //   direction: Axis.vertical,
-                            //   children: [
-                            //     TextContrasteFonte(
-                            //       text: app?.GetEspacoEvento(widget.evento),
-                            //       style: GoogleFonts.roboto(
-                            //         fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 12),
-                            //         color: corTextAtual,
-                            //       ),
-                            //       maxlines: 2,
-                            //     ),
-                            //   ],
-                            // ),
-                            const SizedBox(height: 6),
-                            _buildDatesEvent(
-                              evento.eventosdatas!.map((e) => e.datahora!).toList(),
-                            ),
-                          ],
-                        );
-                      },
+                            ],
+                          ),
+                          const SizedBox(height: 5),
+                          Row(
+                            children: [
+                              TextContrasteFonte(
+                                text: '$diaabr $dia/$mes - $hora',
+                                style: GoogleFonts.roboto(
+                                  fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 12),
+                                  fontWeight: FontWeight.w500,
+                                  color: corTextAtual,
+                                ),
+                              ),
+                            ],
+                          )
+                        ],
+                      );
+                    },
+                  ),
+                ),
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    ButtonFavoriteWidget(
+                      evento: evento,
+                      isCardEvent: true,
                     ),
-                  ),
-                ],
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      ButtonFavoriteWidget(
-                        evento: evento,
-                        isCardEvent: true,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
+                  ],
+                ),
+              ],
+            ),
+          ],
         ),
-      );
-    } catch (s) {
-      return Text(evento.nome ?? 'sem nome');
-    }
+      ),
+    );
   }
 
   Container _buildImageEvent() {
@@ -155,28 +152,5 @@ class ItemEventWidget extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
     );
-  }
-
-  Widget _buildDatesEvent(List<String> datas) {
-    Widget date = const Text('');
-    String diaabr = datas.first.formatDate(format: 'E').capitalize();
-    String dia = datas.first.formatDate(format: 'dd').capitalize();
-    String mes = datas.first.formatDate(format: 'MMM').capitalize();
-    String hora = datas.first.formatDate(format: 'HH:mm').capitalize();
-
-    date = Row(
-      children: [
-        TextContrasteFonte(
-          text: '$diaabr $dia/$mes - $hora',
-          style: GoogleFonts.roboto(
-            fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 12),
-            fontWeight: FontWeight.w500,
-            color: corTextAtual,
-          ),
-        ),
-      ],
-    );
-
-    return date;
   }
 }

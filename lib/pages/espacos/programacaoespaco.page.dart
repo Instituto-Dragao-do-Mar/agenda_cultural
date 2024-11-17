@@ -162,7 +162,8 @@ class _ProgramacaoEspacoPageState extends State<ProgramacaoEspacoPage> {
                       (e) {
                         return ItemEventWidget(
                           evento: e,
-                          origem: "programacao",
+                          spacePrincipal: Espaco(),
+                          onTapEvent: () {},
                         );
                       },
                     ).toList(),

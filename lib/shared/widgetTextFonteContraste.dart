@@ -44,11 +44,10 @@ class _TextContrasteFonteState extends State<TextContrasteFonte> {
             fontSize: widget.fontsize ?? fontSize,
             fontWeight: widget.weight,
           ),
+      overflow: TextOverflow.ellipsis,
       semanticsLabel: widget.semantics,
       textAlign: widget.align,
       maxLines: widget.maxlines,
-    
-      
     );
   }
 }

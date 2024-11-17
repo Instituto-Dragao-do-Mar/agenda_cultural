@@ -78,7 +78,7 @@ class _LoggedAreaPageState extends State<LoggedAreaPage> {
     return BottomNavigationBar(
       onTap: (index) async {
         await setScreen(index);
-        if (index == 0) {
+        if (index == 0 || index == 3) {
           _loggedAreaStore.setIsLoading(true);
           await Future.delayed(const Duration(microseconds: 1));
           _loggedAreaStore.setIsLoading(false);

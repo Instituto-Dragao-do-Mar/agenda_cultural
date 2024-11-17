@@ -1,3 +1,4 @@
+import 'package:agendacultural/model/espaco_model.dart';
 import 'package:agendacultural/pages/filtro/pagefiltrocompleto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -146,7 +147,13 @@ class _SchedulePageState extends State<SchedulePage> {
               ),
               const SizedBox(height: 5),
               Wrap(
-                children: scheduleStore.eventsFilter.map((event) => ItemEventWidget(evento: event)).toList(),
+                children: scheduleStore.eventsFilter
+                    .map((event) => ItemEventWidget(
+                          evento: event,
+                          spacePrincipal: Espaco(),
+                          onTapEvent: () {},
+                        ))
+                    .toList(),
               ),
             ],
           ),

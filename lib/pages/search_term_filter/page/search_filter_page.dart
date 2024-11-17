@@ -1,3 +1,4 @@
+import 'package:agendacultural/model/espaco_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -114,7 +115,11 @@ class _SearchFilterPageState extends State<SearchFilterPage> {
                       .map(
                         (e) => Container(
                           margin: EdgeInsets.only(bottom: e == searchFilterStore.eventsFilter.last ? 20 : 0),
-                          child: ItemEventWidget(evento: e),
+                          child: ItemEventWidget(
+                            evento: e,
+                            spacePrincipal: Espaco(),
+                            onTapEvent: () {},
+                          ),
                         ),
                       )
                       .toList(),
