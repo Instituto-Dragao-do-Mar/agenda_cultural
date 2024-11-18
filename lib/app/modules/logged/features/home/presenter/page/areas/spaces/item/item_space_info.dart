@@ -4,16 +4,14 @@ import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
 
-class ItemEventInfoWidget extends StatelessWidget {
-  final String nameEvent;
-  final String nameSpace;
-  final String date;
+class ItemSpaceInfo extends StatelessWidget {
+  final String? nameSpace;
+  final String address;
 
-  const ItemEventInfoWidget({
+  const ItemSpaceInfo({
     super.key,
-    required this.nameEvent,
     required this.nameSpace,
-    required this.date,
+    required this.address,
   });
 
   @override
@@ -25,10 +23,10 @@ class ItemEventInfoWidget extends StatelessWidget {
         children: [
           const SizedBox(height: 5),
           TextContrasteFonte(
-            text: nameEvent,
+            text: nameSpace ?? 'Nome não informado!',
             maxlines: 2,
             style: GoogleFonts.roboto(
-              fontSize: Fontes.tamanhoBase - 4,
+              fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 12),
               fontWeight: FontWeight.w500,
               color: corTextAtual,
             ),
@@ -38,28 +36,15 @@ class ItemEventInfoWidget extends StatelessWidget {
             direction: Axis.vertical,
             children: [
               TextContrasteFonte(
-                text: nameSpace,
+                text: address != '' ? address : 'Endereço não informado!',
                 style: GoogleFonts.roboto(
                   fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 12),
                   color: corTextAtual,
                 ),
-                maxlines: 2,
+                maxlines: 3,
               ),
             ],
           ),
-          const SizedBox(height: 5),
-          Row(
-            children: [
-              TextContrasteFonte(
-                text: date,
-                style: GoogleFonts.roboto(
-                  fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 12),
-                  fontWeight: FontWeight.w500,
-                  color: corTextAtual,
-                ),
-              ),
-            ],
-          )
         ],
       ),
     );

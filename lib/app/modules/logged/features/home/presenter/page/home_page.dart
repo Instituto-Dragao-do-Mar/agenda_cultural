@@ -126,6 +126,7 @@ class _HomePageState extends State<HomePage> {
                       );
                     }
                   },
+                  user: _handler.appStore.userLogged,
                 ),
               ],
             ),

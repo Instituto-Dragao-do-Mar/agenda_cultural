@@ -5,10 +5,13 @@ import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/app/common/utils/tradutors.dart';
 
-class EventDetailAccessibilityWidget extends StatelessWidget {
+class SpaceDetailAccessibilityWidget extends StatelessWidget {
   final String accessibility;
 
-  const EventDetailAccessibilityWidget({super.key, required this.accessibility});
+  const SpaceDetailAccessibilityWidget({
+    super.key,
+    required this.accessibility,
+  });
 
   @override
   Widget build(BuildContext context) {

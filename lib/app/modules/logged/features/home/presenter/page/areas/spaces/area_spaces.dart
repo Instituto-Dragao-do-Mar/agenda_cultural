@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/model/espaco_model.dart';
-import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/spaces/item_space.dart';
+import 'package:agendacultural/model/usuario_model.dart';
+import 'package:agendacultural/pages/espacos/space_detail_page.dart';
+import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/spaces/item/item_space.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/general/header_areas_home.dart';
 
 class AreaSpacesWidget extends StatelessWidget {
   final ScrollController scrollControllerSpaces;
   final List<Espaco> spaces;
   final bool showAllSpaces;
+  final Usuario user;
   final void Function() onTapExpandSpaces;
 
   const AreaSpacesWidget({
@@ -16,6 +19,7 @@ class AreaSpacesWidget extends StatelessWidget {
     required this.scrollControllerSpaces,
     required this.spaces,
     required this.showAllSpaces,
+    required this.user,
     required this.onTapExpandSpaces,
   });
 
@@ -35,12 +39,22 @@ class AreaSpacesWidget extends StatelessWidget {
         const SizedBox(height: 5),
         SizedBox(
           width: double.infinity,
-          height: showAllSpaces ? 532 : 266 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+          height: showAllSpaces ? 572 : 286 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
           child: SingleChildScrollView(
             scrollDirection: showAllSpaces ? Axis.vertical : Axis.horizontal,
             controller: scrollControllerSpaces,
             child: Wrap(
-              children: spaces.map((space) => ItemSpaceWidget(space: space)).toList(),
+              children: spaces.map((space) {
+                return ItemSpaceWidget(
+                  space: space,
+                  onTapSpace: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SpaceDetailPage(space: space, user: user),
+                    ),
+                  ),
+                );
+              }).toList(),
             ),
           ),
         ),
