@@ -1,5 +1,6 @@
 // ignore_for_file: must_be_immutable
 
+import 'package:agendacultural/app/modules/logged/presenter/page/logged_area_page.dart';
 import 'package:agendacultural/controller/notificacao_controller.dart';
 import 'package:agendacultural/controller/usuario_controller.dart';
 import 'package:agendacultural/model/fontes.dart';
@@ -20,7 +21,6 @@ import '../../shared/constantes.dart';
 import '../../shared/widgetTextFonteContraste.dart';
 import '../../shared/notify_pop_up.dart';
 import '../home/general/widgettopocomum.dart';
-import '../../modules/logged/presenter/page/logged_area_page.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 // ignore_for_file: use_build_context_synchronously

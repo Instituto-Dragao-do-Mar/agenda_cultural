@@ -1,8 +1,8 @@
+import 'package:agendacultural/app/app_widget.dart';
+import 'package:agendacultural/app/modules/introduction/domain/entities/languages_model.dart';
 import 'package:agendacultural/controller/base_controller.dart';
 import 'package:agendacultural/dados/dados.dart';
-import 'package:agendacultural/main.dart';
 import 'package:agendacultural/model/imagem_model.dart';
-import 'package:agendacultural/pages/introduction/domain/entities/languages_model.dart';
 import 'package:agendacultural/pages/home/general/widgettopocomum.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetBottomNavigator.dart';
@@ -92,9 +92,8 @@ class _PerfilIdiomaPageState extends State<PerfilIdiomaPage> {
                         margin: const EdgeInsets.only(bottom: 10),
                         decoration: BoxDecoration(
                           border: Border.all(
-                            color: languageSelecionada!.name == language.name
-                                ? Colors.black
-                                : Colors.grey.withOpacity(.5),
+                            color:
+                                languageSelecionada!.name == language.name ? Colors.black : Colors.grey.withOpacity(.5),
                             width: 2,
                           ),
                           borderRadius: const BorderRadius.all(
@@ -127,10 +126,7 @@ class _PerfilIdiomaPageState extends State<PerfilIdiomaPage> {
               widgetBotao(
                 text: AppLocalizations.of(context)!.profile_accessibility_save,
                 function: () {
-                  MyApp.setLocale(
-                    context,
-                    Locale(languageSelecionada!.languageCode, ''),
-                  );
+                  AppWidget.setLocale(context, Locale(languageSelecionada!.languageCode, ''));
                   Dados.idiomaSalvo = languageSelecionada!.languageCode;
                   Dados.setString('idioma', Dados.idiomaSalvo);
                   Navigator.of(context).pop();

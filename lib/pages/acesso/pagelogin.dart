@@ -1,10 +1,10 @@
 // ignore_for_file: camel_case_types
 
+import 'package:agendacultural/app/modules/logged/presenter/page/logged_area_page.dart';
 import 'package:agendacultural/controller/base_controller.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/acesso/pageCadastro.dart';
 import 'package:agendacultural/pages/acesso/pageEntrar.dart';
-import 'package:agendacultural/modules/logged/presenter/page/logged_area_page.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetbotao.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
@@ -161,9 +161,7 @@ class _pageLoginState extends State<pageLogin> {
                   const widgetEspacoH(altura: 5),
                   widgetImagemInterna(
                     imagem: Imagem(
-                      url: !Cores.contraste
-                          ? "dragaodomarnova.png"
-                          : "dragaodomarcontraste.png",
+                      url: !Cores.contraste ? "dragaodomarnova.png" : "dragaodomarcontraste.png",
                     ),
                     width: 213, //201
                     height: 46, //201

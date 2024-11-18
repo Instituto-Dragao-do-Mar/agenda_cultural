@@ -1,11 +1,11 @@
 // ignore_for_file: camel_case_types, unused_local_variable
 
+import 'package:agendacultural/app/modules/logged/features/home/presenter/page/home_page.dart';
 import 'package:agendacultural/dados/dados.dart';
 import 'package:agendacultural/model/cores.dart';
 import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/perfil/widgetperfil.dart';
-import 'package:agendacultural/modules/logged/features/home/presenter/page/home_page.dart';
 import 'package:agendacultural/pages/home/general/widgettopocomum.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetBottomNavigator.dart';

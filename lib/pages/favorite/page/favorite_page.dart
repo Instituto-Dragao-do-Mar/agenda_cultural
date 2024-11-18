@@ -1,16 +1,14 @@
+import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/item/item_event.dart';
 import 'package:agendacultural/model/espaco_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
-import 'package:agendacultural/controller/evento_controller.dart';
 import 'package:agendacultural/pages/favorite/store/favorite_store.dart';
-import 'package:agendacultural/modules/logged/features/home/presenter/page/areas/events/item_event.dart';
 
 class FavoritePage extends StatefulWidget {
   const FavoritePage({Key? key}) : super(key: key);
@@ -53,12 +51,12 @@ class _FavoritePageState extends State<FavoritePage> {
       return;
     }
     favoriteStore.setIsLoading(true);
-    favoriteStore.setFavorites(
-      await EventoController().favoritosGet(
-        userguidid: app.usuarioLogado?.guidid ?? '',
-        token: app.usuarioLogado?.signature ?? '',
-      ),
-    );
+    // favoriteStore.setFavorites(
+    // await EventoController().favoritosGet(
+    //   userguidid: app.usuarioLogado?.guidid ?? '',
+    //   token: app.usuarioLogado?.signature ?? '',
+    // ),
+    // );
     app.listaFavoritos = favoriteStore.favorites;
     favoriteStore.setListEventsFavorite(
       app.listaEventos.eventos?.where((evento) {

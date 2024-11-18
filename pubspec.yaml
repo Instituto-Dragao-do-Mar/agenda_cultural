@@ -44,6 +44,7 @@ dependencies:
   flutter_svg: ^2.0.9
   mobx: ^2.2.0
   flutter_mobx: ^2.2.1+1
+  flutter_modular: ^6.0.4+1
 
 dev_dependencies:
   flutter_test:

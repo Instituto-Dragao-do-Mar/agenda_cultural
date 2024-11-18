@@ -1,9 +1,9 @@
 // ignore_for_file: file_names
 
+import 'package:agendacultural/app/modules/logged/presenter/page/logged_area_page.dart';
 import 'package:agendacultural/controller/base_controller.dart';
 import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/pages/acesso/pageEntrar.dart';
-import 'package:agendacultural/modules/logged/presenter/page/logged_area_page.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetbotao.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';

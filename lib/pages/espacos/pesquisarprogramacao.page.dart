@@ -1,7 +1,7 @@
+import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/item/item_event.dart';
 import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/model/espaco_model.dart';
 import 'package:agendacultural/model/evento_model.dart';
-import 'package:agendacultural/modules/logged/features/home/presenter/page/areas/events/item_event.dart';
 import 'package:agendacultural/pages/home/general/widgettopocomum.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetespacov.dart';
@@ -19,8 +19,7 @@ class PesquisarProgramacaoPage extends StatefulWidget {
   final List<Evento> eventos;
 
   @override
-  State<PesquisarProgramacaoPage> createState() =>
-      _PesquisarProgramacaoPageState();
+  State<PesquisarProgramacaoPage> createState() => _PesquisarProgramacaoPageState();
 }
 
 class _PesquisarProgramacaoPageState extends State<PesquisarProgramacaoPage> {
@@ -96,9 +95,7 @@ class _PesquisarProgramacaoPageState extends State<PesquisarProgramacaoPage> {
           Expanded(
             child: Wrap(
               children: widget.eventos
-                  .where((element) => element.nome!
-                      .toUpperCase()
-                      .contains(filtro.toUpperCase()))
+                  .where((element) => element.nome!.toUpperCase().contains(filtro.toUpperCase()))
                   .map((e) {
                 return ItemEventWidget(
                   evento: e,

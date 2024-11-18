@@ -1,10 +1,10 @@
+import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/item/item_event.dart';
 import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/model/espaco_model.dart';
 import 'package:agendacultural/model/evento_model.dart';
 import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/espacos/pesquisarprogramacao.page.dart';
-import 'package:agendacultural/modules/logged/features/home/presenter/page/areas/events/item_event.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetBottomNavigator.dart';
 import 'package:agendacultural/shared/widgetTextFonteContraste.dart';

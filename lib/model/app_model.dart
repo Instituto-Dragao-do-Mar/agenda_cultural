@@ -3,7 +3,6 @@ import 'package:agendacultural/controller/notificacao_controller.dart';
 import 'package:agendacultural/model/notificacao_model.dart';
 import 'package:flutter/material.dart';
 import 'package:agendacultural/controller/evento_controller.dart';
-import 'package:agendacultural/model/acessibilidade_model.dart';
 import 'package:agendacultural/model/categoria_model.dart';
 import 'package:agendacultural/model/espaco_model.dart';
 import 'package:agendacultural/model/evento_model.dart';
@@ -14,11 +13,8 @@ import 'package:agendacultural/shared/extensions/capitalize.dart';
 import 'package:agendacultural/shared/extensions/clearMask.dart';
 
 class AppModel extends ChangeNotifier {
-  bool categoriasVerTudo = false;
-
   late ListaCategorias listaCategoria;
   late ListaEventos listaEventos;
-  late ListaAcessibilidade listaAcessibilidade;
   late ListaEspacos listaEspacos;
   late Filtro filtro;
   ListaNotificacoes listaNotificacoes = ListaNotificacoes(notificacoes: []);
@@ -51,17 +47,6 @@ class AppModel extends ChangeNotifier {
     if (notify == null || notify) {
       notifyListeners();
     }
-  }
-
-  void notify() {
-    notifyListeners();
-  }
-
-  Future<void> getFavoritos() async {
-    listaFavoritos = await EventoController().favoritosGet(
-      userguidid: GetGuidId(),
-      token: GetToken(),
-    );
   }
 
   Future<void> getdados() async {

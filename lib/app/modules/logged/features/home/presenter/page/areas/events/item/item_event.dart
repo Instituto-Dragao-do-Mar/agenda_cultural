@@ -1,0 +1,75 @@
+import 'package:flutter/material.dart';
+import 'package:agendacultural/model/cores.dart';
+import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/espaco_model.dart';
+import 'package:agendacultural/model/evento_model.dart';
+import 'package:agendacultural/shared/extensions/dates.dart';
+import 'package:agendacultural/shared/extensions/capitalize.dart';
+import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/item/item_event_info.dart';
+import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/item/item_event_image.dart';
+
+class ItemEventWidget extends StatelessWidget {
+  final Evento evento;
+  final Espaco spacePrincipal;
+  final void Function() onTapEvent;
+
+  const ItemEventWidget({
+    super.key,
+    required this.evento,
+    required this.spacePrincipal,
+    required this.onTapEvent,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    List<String> datas = evento.eventosdatas!.map((e) => e.datahora!).toList();
+    String diaabr = datas.first.formatDate(format: 'E').capitalize();
+    String dia = datas.first.formatDate(format: 'dd').capitalize();
+    String mes = datas.first.formatDate(format: 'MMM').capitalize();
+    String hora = datas.first.formatDate(format: 'HH:mm').capitalize();
+
+    return GestureDetector(
+      onTap: onTapEvent,
+      child: Container(
+        margin: const EdgeInsets.all(8),
+        height: 270 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+        width: 180 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+        clipBehavior: Clip.antiAlias,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: !Cores.contraste ? const Color(0xFFF6F6F6) : Colors.black.withOpacity(.8),
+          boxShadow: [BoxShadow(color: Colors.black.withOpacity(.2), blurRadius: 3, offset: const Offset(0, 0))],
+        ),
+        child: Stack(
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                ItemEventImageWidget(
+                  urlImage: evento.eventosimagens?.first.imagens?.first.url ?? '',
+                ),
+                ItemEventInfoWidget(
+                  nameEvent: evento.nome ?? 'Evento',
+                  nameSpace: spacePrincipal.nome ?? 'Espaço',
+                  date: '$diaabr $dia/$mes - $hora',
+                ),
+              ],
+            ),
+            //TODO IMPLEMENTAR FAVORITAR EVENTO
+            // Column(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     Row(
+            //       mainAxisAlignment: MainAxisAlignment.end,
+            //       children: [
+            //         ButtonFavoriteWidget(evento: evento, isCardEvent: true),
+            //       ],
+            //     ),
+            //   ],
+            // ),
+          ],
+        ),
+      ),
+    );
+  }
+}

@@ -37,13 +37,6 @@ class UsuarioAvaliacaoController extends BaseController {
 
     return lista;
   }
-  /*
-  @userguidid			char(36),
-	@eventoguidid		varchar(36) = null,
-	@espacoguidid		varchar(36) = null,
-	@avaliacao			varchar(10),
-	@comentario			varchar(max)
-  */
 
   Future<void> UsuarioAvaliacaoPost({
     required String userguidid,

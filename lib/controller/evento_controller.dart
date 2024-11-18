@@ -34,29 +34,26 @@ class EventoController extends BaseController {
     return list;
   }
 
-  Future<ListaFavoritos> favoritosGet({
+  Future<List<Favorito>> favoritosGet({
     required String userguidid,
     required String token,
   }) async {
-    ListaFavoritos lista = ListaFavoritos();
+    List<Favorito> list = [];
 
-    lista.favoritos = [];
-
-    if (userguidid.isEmpty && token.isEmpty) return lista;
+    if (userguidid.isEmpty && token.isEmpty) return list;
 
     String url = "${baseUrlApi}favoritos?g=$userguidid";
 
     try {
       var response = await http.get(
         Uri.parse(url),
-        headers: {
-          "Content-Type": "application/json",
-          'Authorization': 'Bearer $token',
-        },
+        headers: {"Content-Type": "application/json", 'Authorization': 'Bearer $token'},
       );
       if (response.statusCode == 200) {
         var ret = jsonDecode(response.body);
-        lista = ListaFavoritos.fromJson(ret);
+        list = (ret['espacos'] as List).map((e) {
+          return Favorito.fromJson(e);
+        }).toList();
       } else {
         setError("Favoritos ${response.body}");
       }
@@ -64,38 +61,30 @@ class EventoController extends BaseController {
       setError("Favoritos ${_.toString()}");
     }
 
-    return lista;
+    return list;
   }
 
-  Future<bool> favoritosPost({
+  Future<bool> postFavorited({
     required String userguidid,
     required String token,
     required int idevento,
     required int ativo,
   }) async {
-    ListaFavoritos lista = ListaFavoritos();
-
-    lista.favoritos = [];
-
     String url = "${baseUrlApi}favoritos";
+
+    ListaFavoritos lista = ListaFavoritos();
+    lista.favoritos = [];
 
     var operationSucceed = false;
 
     var body = jsonEncode(
-      <String, dynamic>{
-        "guididoperador": userguidid,
-        "idevento": idevento,
-        "ativo": ativo,
-      },
+      <String, dynamic>{"guididoperador": userguidid, "idevento": idevento, "ativo": ativo},
     );
 
     try {
       var response = await http.post(
         Uri.parse(url),
-        headers: {
-          "Content-Type": "application/json",
-          'Authorization': 'Bearer $token',
-        },
+        headers: {"Content-Type": "application/json", 'Authorization': 'Bearer $token'},
         body: body,
       );
       if (response.statusCode == 200) {

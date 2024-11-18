@@ -1,4 +1,4 @@
-import 'package:agendacultural/common/utils/tradutors.dart';
+import 'package:agendacultural/app/common/utils/tradutors.dart';
 import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/model/espaco_model.dart';
 import 'package:agendacultural/model/fontes.dart';

@@ -13,9 +13,7 @@ class EspacoController extends BaseController {
     try {
       var response = await http.get(
         Uri.parse(url),
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: {"Content-Type": "application/json"},
       );
       if (response.statusCode == 200) {
         var ret = jsonDecode(response.body);
