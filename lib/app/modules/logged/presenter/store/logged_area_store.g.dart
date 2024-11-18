@@ -99,11 +99,11 @@ mixin _$LoggedAreaStore on LoggedAreaStoreBase, Store {
   }
 
   @override
-  void addScreen(Widget value) {
+  void setScreens(List<Widget> value) {
     final _$actionInfo = _$LoggedAreaStoreBaseActionController.startAction(
-        name: 'LoggedAreaStoreBase.addScreen');
+        name: 'LoggedAreaStoreBase.setScreens');
     try {
-      return super.addScreen(value);
+      return super.setScreens(value);
     } finally {
       _$LoggedAreaStoreBaseActionController.endAction(_$actionInfo);
     }

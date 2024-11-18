@@ -23,7 +23,7 @@ abstract class LoggedAreaStoreBase with Store {
   List<Widget> screens = [];
 
   @action
-  void addScreen(Widget value) => screens.add(value);
+  void setScreens(List<Widget> value) => screens = value;
 
   @observable
   bool isLoading = false;

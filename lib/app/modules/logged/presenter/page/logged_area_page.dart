@@ -1,20 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/model/cores.dart';
 import 'package:agendacultural/shared/themes.dart';
-import 'package:agendacultural/pages/map/page/map_page.dart';
-import 'package:agendacultural/pages/perfil/widgetperfil.dart';
 import 'package:agendacultural/pages/map/widgets/app_bar_map.dart';
 import 'package:agendacultural/pages/perfil/widgettopoperfil.dart';
-import 'package:agendacultural/pages/favorite/page/favorite_page.dart';
-import 'package:agendacultural/pages/schedule/page/schedule_page.dart';
 import 'package:agendacultural/pages/home/general/app_bar_general.dart';
 import 'package:agendacultural/pages/favorite/widgets/app_bar_favorite.dart';
 import 'package:agendacultural/pages/schedule/widgets/app_bar_schedule.dart';
-import 'package:agendacultural/app/modules/logged/features/home/presenter/page/home_page.dart';
-import 'package:agendacultural/app/modules/logged/presenter/store/logged_area_store.dart';
+import 'package:agendacultural/app/modules/logged/presenter/handler/logged_state_handler.dart';
 
 class LoggedAreaPage extends StatefulWidget {
   const LoggedAreaPage({super.key});
@@ -24,26 +20,12 @@ class LoggedAreaPage extends StatefulWidget {
 }
 
 class _LoggedAreaPageState extends State<LoggedAreaPage> {
-  final _loggedAreaStore = LoggedAreaStore();
-  final List<Widget> _screens = [
-    const HomePage(),
-    const SchedulePage(),
-    const MapPage(),
-    const FavoritePage(),
-    const widgetPerfil(),
-  ];
+  final LoggedPageStateHandler _handler = Modular.get();
 
   @override
   void initState() {
-    initializeScreen();
-    super.initState();
-  }
-
-  Future<void> initializeScreen() async => await setScreen(0);
-
-  Future<void> setScreen(int index) async {
-    _loggedAreaStore.setCurrentScreen(_screens[index]);
-    _loggedAreaStore.setCurrentTab(index);
+    if (!mounted) super.initState();
+    _handler.initialize();
   }
 
   @override
@@ -66,7 +48,7 @@ class _LoggedAreaPageState extends State<LoggedAreaPage> {
             leadingWidth: 0,
             automaticallyImplyLeading: false,
           ),
-          body: _loggedAreaStore.isLoading ? const SizedBox.shrink() : _loggedAreaStore.currentScreen,
+          body: _handler.store.isLoading ? const SizedBox.shrink() : _handler.store.currentScreen,
           bottomNavigationBar: _buildBottonNavigation(),
         );
       },
@@ -75,8 +57,8 @@ class _LoggedAreaPageState extends State<LoggedAreaPage> {
 
   Widget _buildBottonNavigation() {
     return BottomNavigationBar(
-      onTap: (index) async => await setScreen(index),
-      currentIndex: _loggedAreaStore.currentTab,
+      onTap: (index) async => await _handler.setScreen(index),
+      currentIndex: _handler.store.currentTab,
       backgroundColor: corBgAtual,
       unselectedItemColor: corTextAtual,
       selectedItemColor: corBackgroundLaranja,
@@ -115,17 +97,17 @@ class _LoggedAreaPageState extends State<LoggedAreaPage> {
   }
 
   Widget _buildAppBar() {
-    switch (_loggedAreaStore.currentTab) {
+    switch (_handler.store.currentTab) {
       case 0:
         return const AppBarGeneral();
       case 1:
-        return AppBarScheduleWidget(onTapReturn: () => setScreen(0));
+        return AppBarScheduleWidget(onTapReturn: () => _handler.setScreen(0));
       case 2:
-        return AppBarMapWidget(onTapReturn: () => setScreen(0));
+        return AppBarMapWidget(onTapReturn: () => _handler.setScreen(0));
       case 3:
-        return AppBarFavoriteWidget(onTapReturn: () => setScreen(0));
+        return AppBarFavoriteWidget(onTapReturn: () => _handler.setScreen(0));
       case 4:
-        return widgetTopoPerfil(notify: () => setScreen(0));
+        return widgetTopoPerfil(notify: () => _handler.setScreen(0));
       default:
         return const AppBarGeneral();
     }

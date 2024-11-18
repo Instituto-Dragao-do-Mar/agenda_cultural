@@ -1,11 +1,9 @@
 // ignore_for_file: non_constant_identifier_names
-
 import 'dart:convert';
-import 'package:agendacultural/controller/base_controller.dart';
-import 'package:agendacultural/model/notificacao_model.dart';
-import 'package:agendacultural/model/usuarioavaliacao_model.dart';
-import 'package:agendacultural/shared/constantes.dart';
 import 'package:http/http.dart' as http;
+import 'package:agendacultural/shared/constantes.dart';
+import 'package:agendacultural/model/notificacao_model.dart';
+import 'package:agendacultural/controller/base_controller.dart';
 
 class NotificacaoController extends BaseController {
   Future<ListaNotificacoes> NotificacaoGet({
@@ -43,13 +41,9 @@ class NotificacaoController extends BaseController {
     String? idnotificacao,
     required String token,
   }) async {
-    ListaUsuarioAvaliacao lista = ListaUsuarioAvaliacao();
-    lista.usuariosavaliacoes = [];
-
     String url = "${baseUrlApi}notificacao/lida";
 
     try {
-      //
       var parametros = jsonEncode(
         <String, dynamic>{
           'userguidid': userguidid,

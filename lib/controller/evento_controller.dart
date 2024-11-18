@@ -51,7 +51,7 @@ class EventoController extends BaseController {
       );
       if (response.statusCode == 200) {
         var ret = jsonDecode(response.body);
-        list = (ret['espacos'] as List).map((e) {
+        list = (ret['favoritos'] as List).map((e) {
           return Favorito.fromJson(e);
         }).toList();
       } else {

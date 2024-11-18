@@ -92,6 +92,7 @@ class _HomePageState extends State<HomePage> {
                     events: _handler.store.eventsProminenceFiltered,
                     spaces: _handler.appStore.spaces,
                     categories: _handler.appStore.categories,
+                    user: _handler.appStore.userLogged,
                   ),
                 if (_handler.store.eventsDateFiltered.isNotEmpty)
                   AreaEventsWidget(
@@ -107,6 +108,7 @@ class _HomePageState extends State<HomePage> {
                     events: _handler.store.eventsDateFiltered,
                     spaces: _handler.appStore.spaces,
                     categories: _handler.appStore.categories,
+                    user: _handler.appStore.userLogged,
                   ),
                 AreaSpacesWidget(
                   scrollControllerSpaces: _handler.store.scrollControllerSpaces,

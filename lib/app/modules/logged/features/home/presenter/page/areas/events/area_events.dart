@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/model/espaco_model.dart';
 import 'package:agendacultural/model/evento_model.dart';
+import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/model/categoria_model.dart';
 import 'package:agendacultural/app/modules/logged/features/home/domain/enum/filter_date.dart';
 import 'package:agendacultural/app/modules/logged/features/home/domain/enum/exhibition_event.dart';
@@ -19,6 +20,7 @@ class AreaEventsWidget extends StatelessWidget {
   final List<Categoria> categories;
   final FilterDate? filterDateSelected;
   final bool showAllEvents;
+  final Usuario user;
   final void Function()? onTapExpandEvents;
   final void Function(String value)? onItemSelected;
 
@@ -32,6 +34,7 @@ class AreaEventsWidget extends StatelessWidget {
     required this.categories,
     this.filterDateSelected,
     this.showAllEvents = false,
+    required this.user,
     this.onTapExpandEvents,
     this.onItemSelected,
   });
@@ -80,10 +83,11 @@ class AreaEventsWidget extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                         builder: (context) => EventDetail(
-                          evento: event,
+                          event: event,
                           spaceReal: spaceReal,
                           spacePrincipal: spacePrincipal,
                           categories: categories,
+                          user: user,
                         ),
                       ),
                     ),

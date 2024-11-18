@@ -1,28 +1,29 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/model/cores.dart';
 import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/shared/themes.dart';
-import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/shared/widgetpopup.dart';
 import 'package:agendacultural/model/evento_model.dart';
+import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
-import 'package:agendacultural/model/usuarioavaliacao_model.dart';
 import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
-import 'package:agendacultural/controller/usuarioavaliacao_controller.dart';
 import 'package:agendacultural/shared/extensions/ex_compare_date_strings_in_days.dart';
+import 'package:agendacultural/app/modules/logged/features/home/domain/adapter/user_evaluation.dart';
+import 'package:agendacultural/app/modules/logged/features/home/domain/controller/user_evaluation_controller.dart';
 
 class EventDetailEvaluationWidget extends StatefulWidget {
-  final Evento evento;
+  final Evento event;
+  final Usuario user;
 
   const EventDetailEvaluationWidget({
     super.key,
-    required this.evento,
+    required this.event,
+    required this.user,
   });
 
   @override
@@ -30,25 +31,21 @@ class EventDetailEvaluationWidget extends StatefulWidget {
 }
 
 class _EventDetailEvaluationWidgetState extends State<EventDetailEvaluationWidget> {
-  late AppModel app;
   int selected = 0;
 
   @override
-  void initState() {
-    super.initState();
-    app = Provider.of<AppModel>(context, listen: false);
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final av1 = AppLocalizations.of(context)!.e_evaluation_one;
+    final av2 = AppLocalizations.of(context)!.e_evaluation_two;
+    final av3 = AppLocalizations.of(context)!.e_evaluation_three;
     final size = MediaQuery.of(context).size;
-    final fontePadrao = Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14);
+    final font = Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14);
 
-    if (!_isToday(widget.evento.eventosdatas!.first.datahora!)) {
+    if (!_isToday(widget.event.eventosdatas!.first.datahora!)) {
       return const SizedBox();
     }
 
-    return FutureBuilder<ListaUsuarioAvaliacao>(
+    return FutureBuilder(
       future: _getDataEvaluation(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -58,7 +55,7 @@ class _EventDetailEvaluationWidgetState extends State<EventDetailEvaluationWidge
               TextContrasteFonte(
                 text: AppLocalizations.of(context)!.e_evaluation,
                 style: GoogleFonts.inter(
-                  fontSize: fontePadrao.toDouble(),
+                  fontSize: font.toDouble(),
                   fontWeight: FontWeight.w600,
                   color: corTextAtual,
                 ),
@@ -81,12 +78,33 @@ class _EventDetailEvaluationWidgetState extends State<EventDetailEvaluationWidge
           return _buildErrorWidget();
         }
 
-        final lista = snapshot.data;
-        if (lista?.usuariosavaliacoes?.isNotEmpty ?? false) {
-          selected = lista!.usuariosavaliacoes!.first.avaliacao ?? 0;
+        final list = snapshot.data;
+        if (list?.isNotEmpty ?? false) {
+          selected = list?.first.avaliacao ?? 0;
         }
 
-        return _buildEvaluationContent(context, size, fontePadrao);
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TextContrasteFonte(
+              text: AppLocalizations.of(context)!.e_evaluation,
+              style: GoogleFonts.inter(
+                fontSize: font.toDouble(),
+                fontWeight: FontWeight.w600,
+                color: corTextAtual,
+              ),
+            ),
+            const SizedBox(height: 5),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _buildEvaluationOption(size, 1, av1, 'liked', font),
+                _buildEvaluationOption(size, 2, av2, 'not_liked', font),
+                _buildEvaluationOption(size, 3, av3, 'closed_face', font),
+              ],
+            ),
+          ],
+        );
       },
     );
   }
@@ -94,36 +112,6 @@ class _EventDetailEvaluationWidgetState extends State<EventDetailEvaluationWidge
   // Verifica se a data é hoje
   bool _isToday(String date) {
     return date.formatDate(format: 'yyyy-MM-dd') == DateTime.now().toIso8601String().formatDate(format: 'yyyy-MM-dd');
-  }
-
-  // Constrói o conteúdo principal da avaliação
-  Widget _buildEvaluationContent(BuildContext context, Size size, int fontePadrao) {
-    final av1 = AppLocalizations.of(context)!.e_evaluation_one;
-    final av2 = AppLocalizations.of(context)!.e_evaluation_two;
-    final av3 = AppLocalizations.of(context)!.e_evaluation_three;
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        TextContrasteFonte(
-          text: AppLocalizations.of(context)!.e_evaluation,
-          style: GoogleFonts.inter(
-            fontSize: fontePadrao.toDouble(),
-            fontWeight: FontWeight.w600,
-            color: corTextAtual,
-          ),
-        ),
-        const SizedBox(height: 5),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            _buildEvaluationOption(size, 1, av1, 'liked', fontePadrao),
-            _buildEvaluationOption(size, 2, av2, 'not_liked', fontePadrao),
-            _buildEvaluationOption(size, 3, av3, 'closed_face', fontePadrao),
-          ],
-        ),
-      ],
-    );
   }
 
   // Constrói uma opção de avaliação
@@ -164,7 +152,7 @@ class _EventDetailEvaluationWidgetState extends State<EventDetailEvaluationWidge
 
   // Confirma a avaliação
   void _confirmEvaluation(int value) async {
-    if (app.usuarioLogado?.guidid == null) {
+    if (widget.user.guidid == null) {
       _showLoginAlert();
       return;
     }
@@ -223,12 +211,13 @@ class _EventDetailEvaluationWidgetState extends State<EventDetailEvaluationWidge
   /// Envia a avaliação
   Future<void> _submitEvaluation(int value, String comentario) async {
     final controller = UsuarioAvaliacaoController();
-    await controller.UsuarioAvaliacaoPost(
-      userguidid: app.usuarioLogado?.guidid ?? '',
-      avaliacao: value.toString(),
-      eventoguidid: widget.evento.guidid ?? '',
-      token: app.usuarioLogado?.signature ?? '',
-      comentario: comentario,
+    await controller.postUserEvaluation(
+      userGuidId: widget.user.guidid ?? '',
+      evaluation: value.toString(),
+      eventGuidId: widget.event.guidid ?? '',
+      spaceGuidId: widget.event.eventosdatas?.first.idespaco.toString() ?? '',
+      token: widget.user.signature ?? '',
+      coment: comentario,
     );
     setState(() {
       selected = value;
@@ -236,15 +225,17 @@ class _EventDetailEvaluationWidgetState extends State<EventDetailEvaluationWidge
   }
 
   /// Obtém os dados de avaliação
-  Future<ListaUsuarioAvaliacao> _getDataEvaluation() async {
-    if (app.usuarioLogado?.guidid == null) {
-      return ListaUsuarioAvaliacao(usuariosavaliacoes: []);
+  Future<List<UserEvaluation>> _getDataEvaluation() async {
+    await Future.delayed(const Duration(seconds: 1));
+
+    if (widget.user.guidid == null) {
+      return [];
     } else {
       final controller = UsuarioAvaliacaoController();
-      return controller.UsuarioAvaliacaoGet(
-        userguidid: app.usuarioLogado?.guidid ?? '',
-        eventoguidid: widget.evento.guidid ?? '',
-        token: app.usuarioLogado?.signature ?? '',
+      return controller.getUserEvaluation(
+        userGuidId: widget.user.guidid ?? '',
+        eventGuidId: widget.event.guidid ?? '',
+        token: widget.user.signature ?? '',
       );
     }
   }

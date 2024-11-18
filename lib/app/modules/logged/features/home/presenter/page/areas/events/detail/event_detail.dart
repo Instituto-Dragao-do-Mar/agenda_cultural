@@ -5,33 +5,36 @@ import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/model/espaco_model.dart';
 import 'package:agendacultural/model/evento_model.dart';
+import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:agendacultural/model/categoria_model.dart';
 import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
-import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/detail/event_detail_acessibility.dart';
-import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/detail/event_detail_app_bar.dart';
-import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/detail/event_detail_categories.dart';
-import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/detail/event_detail_dates.dart';
-import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/detail/event_detail_description.dart';
-import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/detail/event_detail_evaluation.dart';
-import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/detail/event_detail_image.dart';
-import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/detail/event_detail_link_entry.dart';
-import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/detail/event_detail_location.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/detail/event_detail_map.dart';
+import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/detail/event_detail_dates.dart';
+import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/detail/event_detail_image.dart';
+import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/detail/event_detail_app_bar.dart';
+import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/detail/event_detail_location.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/detail/event_detail_more_info.dart';
+import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/detail/event_detail_evaluation.dart';
+import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/detail/event_detail_categories.dart';
+import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/detail/event_detail_link_entry.dart';
+import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/detail/event_detail_description.dart';
+import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/detail/event_detail_acessibility.dart';
 
 class EventDetail extends StatelessWidget {
-  final Evento evento;
+  final Evento event;
   final Espaco spaceReal;
   final Espaco spacePrincipal;
   final List<Categoria> categories;
+  final Usuario user;
 
   const EventDetail({
     super.key,
-    required this.evento,
+    required this.event,
     required this.spaceReal,
     required this.spacePrincipal,
     required this.categories,
+    required this.user,
   });
 
   @override
@@ -52,7 +55,7 @@ class EventDetail extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 EventDetailImageWidget(
-                  urlImage: evento.eventosimagens!.first.imagens!.first.url!,
+                  urlImage: event.eventosimagens!.first.imagens!.first.url!,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8),
@@ -61,25 +64,26 @@ class EventDetail extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       EventDetailCategories(
-                        event: evento,
+                        event: event,
                         categories: categories,
                       ),
                       const SizedBox(height: 5),
                       TextContrasteFonte(
-                        text: evento.nome,
+                        text: event.nome,
+                        maxlines: 3,
                         style: GoogleFonts.inter(
                           fontSize: Fontes.tamanhoBase.toDouble(),
                           fontWeight: FontWeight.w600,
                           color: corTextAtual,
                         ),
                       ),
-                      if (evento.eventosdatas!.length > 1) const SizedBox(height: 7),
+                      if (event.eventosdatas!.length > 1) const SizedBox(height: 7),
                       EventDetailDatesWidget(
-                        event: evento,
+                        event: event,
                       ),
-                      if (evento.eventosdatas!.length > 1) const SizedBox(height: 7),
+                      if (event.eventosdatas!.length > 1) const SizedBox(height: 7),
                       EventDetailDescriptionWidget(
-                        description: evento.detalhe ?? '',
+                        description: event.detalhe ?? '',
                       ),
                       const SizedBox(height: 10),
                       EventDetailLocation(
@@ -88,7 +92,7 @@ class EventDetail extends StatelessWidget {
                       const SizedBox(height: 10),
                       EventDetailMapWidget(
                         spaceReal: spaceReal,
-                        event: evento,
+                        event: event,
                       ),
                       const SizedBox(height: 10),
                       EventDetailAccessibilityWidget(
@@ -96,25 +100,26 @@ class EventDetail extends StatelessWidget {
                       ),
                       const SizedBox(height: 10),
                       EventDetailMoreInfoWidget(
-                        price: evento.eventosdatas?.first.preco ?? '',
-                        ageRating: evento.classificacaoetaria ?? '',
+                        price: event.eventosdatas?.first.preco ?? '',
+                        ageRating: event.classificacaoetaria ?? '',
                       ),
                       const SizedBox(height: 10),
                       EventDetailEvaluationWidget(
-                        evento: evento,
+                        event: event,
+                        user: user,
                       ),
-                      evento.urlentrada != '' ? const SizedBox(height: 80) : const SizedBox(height: 10)
+                      event.urlentrada != '' ? const SizedBox(height: 80) : const SizedBox(height: 10)
                     ],
                   ),
                 ),
               ],
             ),
           ),
-          if (evento.urlentrada != '')
+          if (event.urlentrada != '')
             EventDetailLinkEntry(
               onTap: () async {
                 try {
-                  await launchUrlString(evento.urlentrada ?? '');
+                  await launchUrlString(event.urlentrada ?? '');
                 } catch (e) {
                   openNotificationError();
                 }
