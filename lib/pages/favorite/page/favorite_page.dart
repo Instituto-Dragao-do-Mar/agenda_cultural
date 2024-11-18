@@ -80,16 +80,16 @@ class _FavoritePageState extends State<FavoritePage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Wrap(
-                crossAxisAlignment: WrapCrossAlignment.start,
-                children: favoriteStore.eventsFavorite
-                    .map((evento) => ItemEventWidget(
-                          evento: evento,
-                          spacePrincipal: Espaco(),
-                          onTapEvent: () {},
-                        ))
-                    .toList(),
-              )
+              // Wrap(
+              //   crossAxisAlignment: WrapCrossAlignment.start,
+              //   children: favoriteStore.eventsFavorite
+              //       .map((evento) => ItemEventWidget(
+              //             event: evento,
+              //             spacePrincipal: Espaco(),
+              //             onTapEvent: () {},
+              //           ))
+              //       .toList(),
+              // )
             ],
           ),
         );

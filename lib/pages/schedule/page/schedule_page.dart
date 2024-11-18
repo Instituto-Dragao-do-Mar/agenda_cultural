@@ -146,15 +146,15 @@ class _SchedulePageState extends State<SchedulePage> {
                 ],
               ),
               const SizedBox(height: 5),
-              Wrap(
-                children: scheduleStore.eventsFilter
-                    .map((event) => ItemEventWidget(
-                          evento: event,
-                          spacePrincipal: Espaco(),
-                          onTapEvent: () {},
-                        ))
-                    .toList(),
-              ),
+              // Wrap(
+              //   children: scheduleStore.eventsFilter
+              //       .map((event) => ItemEventWidget(
+              //             event: event,
+              //             spacePrincipal: Espaco(),
+              //             onTapEvent: () {},
+              //           ))
+              //       .toList(),
+              // ),
             ],
           ),
         );

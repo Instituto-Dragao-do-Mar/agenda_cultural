@@ -92,19 +92,19 @@ class _PesquisarProgramacaoPageState extends State<PesquisarProgramacaoPage> {
             ],
           ),
           const widgetEspacoV(),
-          Expanded(
-            child: Wrap(
-              children: widget.eventos
-                  .where((element) => element.nome!.toUpperCase().contains(filtro.toUpperCase()))
-                  .map((e) {
-                return ItemEventWidget(
-                  evento: e,
-                  spacePrincipal: Espaco(),
-                  onTapEvent: () {},
-                );
-              }).toList(),
-            ),
-          ),
+          // Expanded(
+          //   child: Wrap(
+          //     children: widget.eventos
+          //         .where((element) => element.nome!.toUpperCase().contains(filtro.toUpperCase()))
+          //         .map((e) {
+          //       return ItemEventWidget(
+          //         event: e,
+          //         spacePrincipal: Espaco(),
+          //         onTapEvent: () {},
+          //       );
+          //     }).toList(),
+          //   ),
+          // ),
         ],
       ),
     );

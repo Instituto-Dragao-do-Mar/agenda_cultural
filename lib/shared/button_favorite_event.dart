@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/model/evento_model.dart';
+import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/model/favorito_model.dart';
 import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
 import 'package:agendacultural/controller/evento_controller.dart';
 
 class ButtonFavoriteWidget extends StatefulWidget {
-  final Evento evento;
+  final Evento event;
   final bool isCardEvent;
+  final Usuario user;
+  final List<Favorito> favorites;
 
   const ButtonFavoriteWidget({
     super.key,
-    required this.evento,
+    required this.event,
     this.isCardEvent = false,
+    required this.user,
+    required this.favorites,
   });
 
   @override
@@ -24,30 +26,25 @@ class ButtonFavoriteWidget extends StatefulWidget {
 }
 
 class _ButtonFavoriteWidgetState extends State<ButtonFavoriteWidget> {
-  late AppModel app;
-  List<Favorito> favorites = <Favorito>[];
   int isFavorite = 0;
 
   @override
   void initState() {
     super.initState();
-    app = context.read<AppModel>();
-
-    favorites = app.listaFavoritos.favoritos ?? <Favorito>[];
-    favorites.map((e) => e.idevento).contains(widget.evento.id) ? isFavorite = 1 : isFavorite = 0;
+    widget.favorites.map((e) => e.idevento).contains(widget.event.id) ? isFavorite = 1 : isFavorite = 0;
   }
 
   @override
   Widget build(BuildContext context) {
     return Semantics(
       label: isFavorite == 1
-          ? 'Remover ${widget.evento.nome} dos favoritos'
-          : 'Adicionar ${widget.evento.nome} aos favoritos',
+          ? 'Remover ${widget.event.nome} dos favoritos'
+          : 'Adicionar ${widget.event.nome} aos favoritos',
       child: Container(
         margin: const EdgeInsets.only(right: 4),
         child: GestureDetector(
           onTap: () async {
-            if (app.usuarioLogado?.guidid == null) {
+            if (widget.user.guidid == null) {
               notifyPopUpWidget(
                 context: context,
                 permitirFechar: true,
@@ -64,14 +61,14 @@ class _ButtonFavoriteWidgetState extends State<ButtonFavoriteWidget> {
             }
 
             var isFavorited = await EventoController().postFavorited(
-              userguidid: app.usuarioLogado?.guidid ?? '',
-              token: app.usuarioLogado?.signature ?? '',
-              idevento: widget.evento.id ?? 0,
+              userguidid: widget.user.guidid ?? '',
+              token: widget.user.signature ?? '',
+              idevento: widget.event.id ?? 0,
               ativo: isFavorite,
             );
 
             if (isFavorited) {
-              setState(() => isFavorite == 0 ? isFavorite = 1 : isFavorite = 0);
+              setState(() => isFavorite = isFavorite == 1 ? 0 : 1);
             }
           },
           child: Icon(

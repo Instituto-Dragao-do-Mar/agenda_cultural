@@ -3,6 +3,7 @@ import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/model/espaco_model.dart';
 import 'package:agendacultural/model/evento_model.dart';
 import 'package:agendacultural/model/usuario_model.dart';
+import 'package:agendacultural/model/favorito_model.dart';
 import 'package:agendacultural/model/categoria_model.dart';
 import 'package:agendacultural/app/modules/logged/features/home/domain/enum/filter_date.dart';
 import 'package:agendacultural/app/modules/logged/features/home/domain/enum/exhibition_event.dart';
@@ -18,6 +19,7 @@ class AreaEventsWidget extends StatelessWidget {
   final List<Evento> events;
   final List<Espaco> spaces;
   final List<Categoria> categories;
+  final List<Favorito> favorites;
   final FilterDate? filterDateSelected;
   final bool showAllEvents;
   final Usuario user;
@@ -32,6 +34,7 @@ class AreaEventsWidget extends StatelessWidget {
     required this.events,
     required this.spaces,
     required this.categories,
+    required this.favorites,
     this.filterDateSelected,
     this.showAllEvents = false,
     required this.user,
@@ -77,8 +80,10 @@ class AreaEventsWidget extends StatelessWidget {
                   }
 
                   return ItemEventWidget(
-                    evento: event,
+                    event: event,
                     spacePrincipal: spacePrincipal,
+                    user: user,
+                    favorites: favorites,
                     onTapEvent: () => Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -87,6 +92,7 @@ class AreaEventsWidget extends StatelessWidget {
                           spaceReal: spaceReal,
                           spacePrincipal: spacePrincipal,
                           categories: categories,
+                          favorites: favorites,
                           user: user,
                         ),
                       ),

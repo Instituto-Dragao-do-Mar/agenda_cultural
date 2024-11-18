@@ -3,26 +3,33 @@ import 'package:agendacultural/model/cores.dart';
 import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/model/espaco_model.dart';
 import 'package:agendacultural/model/evento_model.dart';
+import 'package:agendacultural/model/usuario_model.dart';
+import 'package:agendacultural/model/favorito_model.dart';
 import 'package:agendacultural/shared/extensions/dates.dart';
+import 'package:agendacultural/shared/button_favorite_event.dart';
 import 'package:agendacultural/shared/extensions/capitalize.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/item/item_event_info.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/item/item_event_image.dart';
 
 class ItemEventWidget extends StatelessWidget {
-  final Evento evento;
+  final Evento event;
   final Espaco spacePrincipal;
+  final List<Favorito> favorites;
+  final Usuario user;
   final void Function() onTapEvent;
 
   const ItemEventWidget({
     super.key,
-    required this.evento,
+    required this.event,
     required this.spacePrincipal,
     required this.onTapEvent,
+    required this.favorites,
+    required this.user,
   });
 
   @override
   Widget build(BuildContext context) {
-    List<String> datas = evento.eventosdatas!.map((e) => e.datahora!).toList();
+    List<String> datas = event.eventosdatas!.map((e) => e.datahora!).toList();
     String diaabr = datas.first.formatDate(format: 'E').capitalize();
     String dia = datas.first.formatDate(format: 'dd').capitalize();
     String mes = datas.first.formatDate(format: 'MMM').capitalize();
@@ -46,27 +53,31 @@ class ItemEventWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ItemEventImageWidget(
-                  urlImage: evento.eventosimagens?.first.imagens?.first.url ?? '',
+                  urlImage: event.eventosimagens?.first.imagens?.first.url ?? '',
                 ),
                 ItemEventInfoWidget(
-                  nameEvent: evento.nome ?? 'Evento',
+                  nameEvent: event.nome ?? 'Evento',
                   nameSpace: spacePrincipal.nome ?? 'Espaço',
                   date: '$diaabr $dia/$mes - $hora',
                 ),
               ],
             ),
-            //TODO IMPLEMENTAR FAVORITAR EVENTO
-            // Column(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   children: [
-            //     Row(
-            //       mainAxisAlignment: MainAxisAlignment.end,
-            //       children: [
-            //         ButtonFavoriteWidget(evento: evento, isCardEvent: true),
-            //       ],
-            //     ),
-            //   ],
-            // ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    ButtonFavoriteWidget(
+                      event: event,
+                      isCardEvent: true,
+                      user: user,
+                      favorites: favorites,
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ],
         ),
       ),

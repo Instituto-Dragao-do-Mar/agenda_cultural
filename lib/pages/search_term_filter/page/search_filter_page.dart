@@ -108,24 +108,24 @@ class _SearchFilterPageState extends State<SearchFilterPage> {
               ],
             ),
             const SizedBox(height: 20),
-            Expanded(
-              child: SingleChildScrollView(
-                child: Wrap(
-                  children: searchFilterStore.eventsFilter
-                      .map(
-                        (e) => Container(
-                          margin: EdgeInsets.only(bottom: e == searchFilterStore.eventsFilter.last ? 20 : 0),
-                          child: ItemEventWidget(
-                            evento: e,
-                            spacePrincipal: Espaco(),
-                            onTapEvent: () {},
-                          ),
-                        ),
-                      )
-                      .toList(),
-                ),
-              ),
-            ),
+            // Expanded(
+            //   child: SingleChildScrollView(
+            //     child: Wrap(
+            //       children: searchFilterStore.eventsFilter
+            //           .map(
+            //             (e) => Container(
+            //               margin: EdgeInsets.only(bottom: e == searchFilterStore.eventsFilter.last ? 20 : 0),
+            //               child: ItemEventWidget(
+            //                 event: e,
+            //                 spacePrincipal: Espaco(),
+            //                 onTapEvent: () {},
+            //               ),
+            //             ),
+            //           )
+            //           .toList(),
+            //     ),
+            //   ),
+            // ),
           ],
         ),
       ),

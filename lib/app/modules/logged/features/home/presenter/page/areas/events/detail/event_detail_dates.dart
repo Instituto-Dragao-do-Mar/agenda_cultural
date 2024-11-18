@@ -4,6 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/model/evento_model.dart';
+import 'package:agendacultural/model/usuario_model.dart';
+import 'package:agendacultural/model/favorito_model.dart';
 import 'package:agendacultural/shared/extensions/dates.dart';
 import 'package:agendacultural/shared/button_favorite_event.dart';
 import 'package:agendacultural/shared/extensions/capitalize.dart';
@@ -11,10 +13,14 @@ import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
 
 class EventDetailDatesWidget extends StatelessWidget {
   final Evento event;
+  final Usuario user;
+  final List<Favorito> favorites;
 
   const EventDetailDatesWidget({
     super.key,
     required this.event,
+    required this.user,
+    required this.favorites,
   });
 
   @override
@@ -46,7 +52,7 @@ class EventDetailDatesWidget extends StatelessWidget {
           ),
           Semantics(
             label: 'Botão favorito',
-            child: ButtonFavoriteWidget(evento: event),
+            child: ButtonFavoriteWidget(event: event, user: user, favorites: favorites),
           ),
         ],
       );
@@ -104,7 +110,7 @@ class EventDetailDatesWidget extends StatelessWidget {
         ),
         Semantics(
           label: 'Botão favorito',
-          child: ButtonFavoriteWidget(evento: event),
+          child: ButtonFavoriteWidget(event: event, user: user, favorites: favorites),
         ),
       ],
     );

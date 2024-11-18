@@ -153,21 +153,21 @@ class _ProgramacaoEspacoPageState extends State<ProgramacaoEspacoPage> {
               style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
             ),
             const SizedBox(height: 10),
-            eventos.isEmpty
-                ? Text(
-                    AppLocalizations.of(context)!.e_programming_default,
-                  )
-                : Wrap(
-                    children: eventos.map(
-                      (e) {
-                        return ItemEventWidget(
-                          evento: e,
-                          spacePrincipal: Espaco(),
-                          onTapEvent: () {},
-                        );
-                      },
-                    ).toList(),
-                  ),
+            // eventos.isEmpty
+            //     ? Text(
+            //         AppLocalizations.of(context)!.e_programming_default,
+            //       )
+            //     : Wrap(
+            //         children: eventos.map(
+            //           (e) {
+            //             return ItemEventWidget(
+            //               event: e,
+            //               spacePrincipal: Espaco(),
+            //               onTapEvent: () {},
+            //             );
+            //           },
+            //         ).toList(),
+            //       ),
           ],
         ),
       ),

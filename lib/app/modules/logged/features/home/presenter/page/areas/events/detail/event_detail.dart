@@ -6,6 +6,7 @@ import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/model/espaco_model.dart';
 import 'package:agendacultural/model/evento_model.dart';
 import 'package:agendacultural/model/usuario_model.dart';
+import 'package:agendacultural/model/favorito_model.dart';
 import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:agendacultural/model/categoria_model.dart';
 import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
@@ -26,6 +27,7 @@ class EventDetail extends StatelessWidget {
   final Espaco spaceReal;
   final Espaco spacePrincipal;
   final List<Categoria> categories;
+  final List<Favorito> favorites;
   final Usuario user;
 
   const EventDetail({
@@ -34,6 +36,7 @@ class EventDetail extends StatelessWidget {
     required this.spaceReal,
     required this.spacePrincipal,
     required this.categories,
+    required this.favorites,
     required this.user,
   });
 
@@ -80,6 +83,8 @@ class EventDetail extends StatelessWidget {
                       if (event.eventosdatas!.length > 1) const SizedBox(height: 7),
                       EventDetailDatesWidget(
                         event: event,
+                        user: user,
+                        favorites: favorites,
                       ),
                       if (event.eventosdatas!.length > 1) const SizedBox(height: 7),
                       EventDetailDescriptionWidget(
