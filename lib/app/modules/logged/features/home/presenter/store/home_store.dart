@@ -2,7 +2,6 @@ import 'package:mobx/mobx.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:agendacultural/model/espaco_model.dart';
 import 'package:agendacultural/model/evento_model.dart';
-import 'package:agendacultural/model/favorito_model.dart';
 import 'package:agendacultural/model/categoria_model.dart';
 import 'package:agendacultural/app/modules/logged/features/home/domain/enum/filter_date.dart';
 
@@ -27,12 +26,6 @@ abstract class HomeStoreBase with Store {
   ScrollController scrollControllerCategories = ScrollController();
 
   @observable
-  List<Categoria> categories = [];
-
-  @action
-  void setCategories(List<Categoria> value) => categories = value;
-
-  @observable
   bool allCategories = false;
 
   @action
@@ -45,12 +38,6 @@ abstract class HomeStoreBase with Store {
   void setSelectedCategory(Categoria value) => selectedCategory = value;
 
   //Events
-
-  @observable
-  List<Evento> events = [];
-
-  @action
-  void setEvents(List<Evento> value) => events = value;
 
   @observable
   FilterDate filterDate = FilterDate.thisWeek;
@@ -82,12 +69,6 @@ abstract class HomeStoreBase with Store {
   ScrollController scrollControllerSpaces = ScrollController();
 
   @observable
-  List<Espaco> spaces = [];
-
-  @action
-  void setSpaces(List<Espaco> value) => spaces = value;
-
-  @observable
   List<Espaco> spacesFiltered = [];
 
   @action
@@ -100,12 +81,6 @@ abstract class HomeStoreBase with Store {
   void setAllSpaces(bool value) => allSpaces = value;
 
   //Favorites
-
-  @observable
-  List<Favorito> favorites = [];
-
-  @action
-  void setFavorites(List<Favorito> value) => favorites = value;
 
   @action
   void dispose() {}

@@ -75,14 +75,7 @@ class _LoggedAreaPageState extends State<LoggedAreaPage> {
 
   Widget _buildBottonNavigation() {
     return BottomNavigationBar(
-      onTap: (index) async {
-        await setScreen(index);
-        if (index == 0 || index == 3) {
-          _loggedAreaStore.setIsLoading(true);
-          await Future.delayed(const Duration(microseconds: 1));
-          _loggedAreaStore.setIsLoading(false);
-        }
-      },
+      onTap: (index) async => await setScreen(index),
       currentIndex: _loggedAreaStore.currentTab,
       backgroundColor: corBgAtual,
       unselectedItemColor: corTextAtual,

@@ -59,22 +59,6 @@ mixin _$HomeStore on HomeStoreBase, Store {
     });
   }
 
-  late final _$categoriesAtom =
-      Atom(name: 'HomeStoreBase.categories', context: context);
-
-  @override
-  List<Categoria> get categories {
-    _$categoriesAtom.reportRead();
-    return super.categories;
-  }
-
-  @override
-  set categories(List<Categoria> value) {
-    _$categoriesAtom.reportWrite(value, super.categories, () {
-      super.categories = value;
-    });
-  }
-
   late final _$allCategoriesAtom =
       Atom(name: 'HomeStoreBase.allCategories', context: context);
 
@@ -104,22 +88,6 @@ mixin _$HomeStore on HomeStoreBase, Store {
   set selectedCategory(Categoria? value) {
     _$selectedCategoryAtom.reportWrite(value, super.selectedCategory, () {
       super.selectedCategory = value;
-    });
-  }
-
-  late final _$eventsAtom =
-      Atom(name: 'HomeStoreBase.events', context: context);
-
-  @override
-  List<Evento> get events {
-    _$eventsAtom.reportRead();
-    return super.events;
-  }
-
-  @override
-  set events(List<Evento> value) {
-    _$eventsAtom.reportWrite(value, super.events, () {
-      super.events = value;
     });
   }
 
@@ -205,22 +173,6 @@ mixin _$HomeStore on HomeStoreBase, Store {
     });
   }
 
-  late final _$spacesAtom =
-      Atom(name: 'HomeStoreBase.spaces', context: context);
-
-  @override
-  List<Espaco> get spaces {
-    _$spacesAtom.reportRead();
-    return super.spaces;
-  }
-
-  @override
-  set spaces(List<Espaco> value) {
-    _$spacesAtom.reportWrite(value, super.spaces, () {
-      super.spaces = value;
-    });
-  }
-
   late final _$spacesFilteredAtom =
       Atom(name: 'HomeStoreBase.spacesFiltered', context: context);
 
@@ -253,22 +205,6 @@ mixin _$HomeStore on HomeStoreBase, Store {
     });
   }
 
-  late final _$favoritesAtom =
-      Atom(name: 'HomeStoreBase.favorites', context: context);
-
-  @override
-  List<Favorito> get favorites {
-    _$favoritesAtom.reportRead();
-    return super.favorites;
-  }
-
-  @override
-  set favorites(List<Favorito> value) {
-    _$favoritesAtom.reportWrite(value, super.favorites, () {
-      super.favorites = value;
-    });
-  }
-
   late final _$HomeStoreBaseActionController =
       ActionController(name: 'HomeStoreBase', context: context);
 
@@ -278,17 +214,6 @@ mixin _$HomeStore on HomeStoreBase, Store {
         name: 'HomeStoreBase.setIsLoading');
     try {
       return super.setIsLoading(value);
-    } finally {
-      _$HomeStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void setCategories(List<Categoria> value) {
-    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
-        name: 'HomeStoreBase.setCategories');
-    try {
-      return super.setCategories(value);
     } finally {
       _$HomeStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -311,17 +236,6 @@ mixin _$HomeStore on HomeStoreBase, Store {
         name: 'HomeStoreBase.setSelectedCategory');
     try {
       return super.setSelectedCategory(value);
-    } finally {
-      _$HomeStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void setEvents(List<Evento> value) {
-    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
-        name: 'HomeStoreBase.setEvents');
-    try {
-      return super.setEvents(value);
     } finally {
       _$HomeStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -372,17 +286,6 @@ mixin _$HomeStore on HomeStoreBase, Store {
   }
 
   @override
-  void setSpaces(List<Espaco> value) {
-    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
-        name: 'HomeStoreBase.setSpaces');
-    try {
-      return super.setSpaces(value);
-    } finally {
-      _$HomeStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   void setSpacesFiltered(List<Espaco> value) {
     final _$actionInfo = _$HomeStoreBaseActionController.startAction(
         name: 'HomeStoreBase.setSpacesFiltered');
@@ -405,17 +308,6 @@ mixin _$HomeStore on HomeStoreBase, Store {
   }
 
   @override
-  void setFavorites(List<Favorito> value) {
-    final _$actionInfo = _$HomeStoreBaseActionController.startAction(
-        name: 'HomeStoreBase.setFavorites');
-    try {
-      return super.setFavorites(value);
-    } finally {
-      _$HomeStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   void dispose() {
     final _$actionInfo = _$HomeStoreBaseActionController.startAction(
         name: 'HomeStoreBase.dispose');
@@ -432,19 +324,15 @@ mixin _$HomeStore on HomeStoreBase, Store {
 scrollControllerGeneral: ${scrollControllerGeneral},
 isLoading: ${isLoading},
 scrollControllerCategories: ${scrollControllerCategories},
-categories: ${categories},
 allCategories: ${allCategories},
 selectedCategory: ${selectedCategory},
-events: ${events},
 filterDate: ${filterDate},
 eventsDateFiltered: ${eventsDateFiltered},
 eventsProminenceFiltered: ${eventsProminenceFiltered},
 allEventsProminence: ${allEventsProminence},
 scrollControllerSpaces: ${scrollControllerSpaces},
-spaces: ${spaces},
 spacesFiltered: ${spacesFiltered},
-allSpaces: ${allSpaces},
-favorites: ${favorites}
+allSpaces: ${allSpaces}
     ''';
   }
 }

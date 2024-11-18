@@ -25,6 +25,68 @@ mixin _$AppStore on AppStoreBase, Store {
     });
   }
 
+  late final _$categoriesAtom =
+      Atom(name: 'AppStoreBase.categories', context: context);
+
+  @override
+  List<Categoria> get categories {
+    _$categoriesAtom.reportRead();
+    return super.categories;
+  }
+
+  @override
+  set categories(List<Categoria> value) {
+    _$categoriesAtom.reportWrite(value, super.categories, () {
+      super.categories = value;
+    });
+  }
+
+  late final _$eventsAtom = Atom(name: 'AppStoreBase.events', context: context);
+
+  @override
+  List<Evento> get events {
+    _$eventsAtom.reportRead();
+    return super.events;
+  }
+
+  @override
+  set events(List<Evento> value) {
+    _$eventsAtom.reportWrite(value, super.events, () {
+      super.events = value;
+    });
+  }
+
+  late final _$spacesAtom = Atom(name: 'AppStoreBase.spaces', context: context);
+
+  @override
+  List<Espaco> get spaces {
+    _$spacesAtom.reportRead();
+    return super.spaces;
+  }
+
+  @override
+  set spaces(List<Espaco> value) {
+    _$spacesAtom.reportWrite(value, super.spaces, () {
+      super.spaces = value;
+    });
+  }
+
+  late final _$favoritesAtom =
+      Atom(name: 'AppStoreBase.favorites', context: context);
+
+  @override
+  List<Favorito> get favorites {
+    _$favoritesAtom.reportRead();
+    return super.favorites;
+  }
+
+  @override
+  set favorites(List<Favorito> value) {
+    _$favoritesAtom.reportWrite(value, super.favorites, () {
+      super.favorites = value;
+    });
+  }
+
   late final _$AppStoreBaseActionController =
       ActionController(name: 'AppStoreBase', context: context);
 
@@ -51,9 +113,57 @@ mixin _$AppStore on AppStoreBase, Store {
   }
 
   @override
+  void setCategories(List<Categoria> value) {
+    final _$actionInfo = _$AppStoreBaseActionController.startAction(
+        name: 'AppStoreBase.setCategories');
+    try {
+      return super.setCategories(value);
+    } finally {
+      _$AppStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setEvents(List<Evento> value) {
+    final _$actionInfo = _$AppStoreBaseActionController.startAction(
+        name: 'AppStoreBase.setEvents');
+    try {
+      return super.setEvents(value);
+    } finally {
+      _$AppStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setSpaces(List<Espaco> value) {
+    final _$actionInfo = _$AppStoreBaseActionController.startAction(
+        name: 'AppStoreBase.setSpaces');
+    try {
+      return super.setSpaces(value);
+    } finally {
+      _$AppStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setFavorites(List<Favorito> value) {
+    final _$actionInfo = _$AppStoreBaseActionController.startAction(
+        name: 'AppStoreBase.setFavorites');
+    try {
+      return super.setFavorites(value);
+    } finally {
+      _$AppStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
-userLogged: ${userLogged}
+userLogged: ${userLogged},
+categories: ${categories},
+events: ${events},
+spaces: ${spaces},
+favorites: ${favorites}
     ''';
   }
 }

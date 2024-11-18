@@ -1,11 +1,11 @@
 import 'dart:convert';
-import 'package:agendacultural/controller/base_controller.dart';
-import 'package:agendacultural/model/espaco_model.dart';
-import 'package:agendacultural/shared/constantes.dart';
 import 'package:http/http.dart' as http;
+import 'package:agendacultural/shared/constantes.dart';
+import 'package:agendacultural/model/espaco_model.dart';
+import 'package:agendacultural/controller/base_controller.dart';
 
 class EspacoController extends BaseController {
-  Future<List<Espaco>> espacoGet() async {
+  Future<List<Espaco>> getSpaces() async {
     List<Espaco> list = [];
 
     String url = "${baseUrlApi}espacos";

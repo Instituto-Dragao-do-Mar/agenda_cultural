@@ -1,12 +1,12 @@
 import 'dart:convert';
-import 'package:agendacultural/controller/base_controller.dart';
+import 'package:http/http.dart' as http;
+import 'package:agendacultural/shared/constantes.dart';
 import 'package:agendacultural/model/evento_model.dart';
 import 'package:agendacultural/model/favorito_model.dart';
-import 'package:agendacultural/shared/constantes.dart';
-import 'package:http/http.dart' as http;
+import 'package:agendacultural/controller/base_controller.dart';
 
 class EventoController extends BaseController {
-  Future<List<Evento>> eventoGet() async {
+  Future<List<Evento>> getEvents() async {
     List<Evento> list = [];
 
     String url = "${baseUrlApi}eventos";
@@ -34,7 +34,7 @@ class EventoController extends BaseController {
     return list;
   }
 
-  Future<List<Favorito>> favoritosGet({
+  Future<List<Favorito>> getFavorites({
     required String userguidid,
     required String token,
   }) async {

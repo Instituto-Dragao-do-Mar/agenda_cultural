@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:dart_date/dart_date.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/extensions/dates.dart';
-import 'package:agendacultural/core/app_store/app_store.dart';
-import 'package:agendacultural/controller/espaco_controller.dart';
-import 'package:agendacultural/controller/evento_controller.dart';
-import 'package:agendacultural/controller/categoria_controller.dart';
 import 'package:agendacultural/pages/filtro/pagefiltrocompleto.dart';
 import 'package:agendacultural/pages/home/general/button_filter.dart';
 import 'package:agendacultural/pages/home/location/area_location.dart';
 import 'package:agendacultural/modules/my_location/page/my_location_page.dart';
 import 'package:agendacultural/app/modules/logged/features/home/domain/enum/filter_date.dart';
-import 'package:agendacultural/app/modules/logged/features/home/presenter/store/home_store.dart';
 import 'package:agendacultural/app/modules/logged/features/home/domain/enum/exhibition_event.dart';
+import 'package:agendacultural/app/modules/logged/features/home/presenter/handler/home_state_handler.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/area_events.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/spaces/area_spaces.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/categories/area_categories.dart';
@@ -27,22 +24,19 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final HomeStore _homeStore = HomeStore();
-  final AppStore _instanceAppStore = AppStore();
-
-  AppStore get _appStore => _instanceAppStore;
+  final HomePageStateHandler _handler = Modular.get();
 
   @override
   void initState() {
+    if (!mounted) super.initState();
     _initializeData();
-    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Observer(
       builder: (context) {
-        if (_homeStore.isLoading) {
+        if (_handler.store.isLoading) {
           return Center(
             child: CircularProgressIndicator(color: corBackgroundLaranja),
           );
@@ -50,7 +44,7 @@ class _HomePageState extends State<HomePage> {
         return Container(
           color: corBgAtual,
           child: SingleChildScrollView(
-            controller: _homeStore.scrollControllerGeneral,
+            controller: _handler.store.scrollControllerGeneral,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -63,16 +57,16 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 AreaCategoryWidget(
-                  scrollControllerCategories: _homeStore.scrollControllerCategories,
-                  categories: _homeStore.categories,
-                  showAllCategories: _homeStore.allCategories,
-                  selectedCategory: _homeStore.selectedCategory,
-                  onTapExpandCategories: () => _homeStore.setAllCategories(!_homeStore.allCategories),
+                  scrollControllerCategories: _handler.store.scrollControllerCategories,
+                  categories: _handler.appStore.categories,
+                  showAllCategories: _handler.store.allCategories,
+                  selectedCategory: _handler.store.selectedCategory,
+                  onTapExpandCategories: () => _handler.store.setAllCategories(!_handler.store.allCategories),
                   applyFilterCategory: (categoria) {
-                    if (_homeStore.selectedCategory == categoria) {
-                      _homeStore.selectedCategory = null;
+                    if (_handler.store.selectedCategory == categoria) {
+                      _handler.store.selectedCategory = null;
                     } else {
-                      _homeStore.selectedCategory = categoria;
+                      _handler.store.selectedCategory = categoria;
                     }
                   },
                 ),
@@ -84,48 +78,50 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-                if (_homeStore.eventsProminenceFiltered.isNotEmpty)
+                if (_handler.store.eventsProminenceFiltered.isNotEmpty)
                   AreaEventsWidget(
                     exhibitionEvent: ExhibitionEvent.prominence,
                     title: AppLocalizations.of(context)!.home_emphasis_title,
-                    subtitle: _homeStore.eventsProminenceFiltered.length > 9
-                        ? _homeStore.allEventsProminence
+                    subtitle: _handler.store.eventsProminenceFiltered.length > 9
+                        ? _handler.store.allEventsProminence
                             ? AppLocalizations.of(context)!.home_emphasis_less
                             : AppLocalizations.of(context)!.home_emphasis_all
                         : '',
-                    showAllEvents: _homeStore.allEventsProminence,
-                    onTapExpandEvents: () => _homeStore.setAllEventsProminence(!_homeStore.allEventsProminence),
-                    events: _homeStore.eventsProminenceFiltered,
-                    spaces: _homeStore.spaces,
-                    categories: _homeStore.categories,
+                    showAllEvents: _handler.store.allEventsProminence,
+                    onTapExpandEvents: () => _handler.store.setAllEventsProminence(!_handler.store.allEventsProminence),
+                    events: _handler.store.eventsProminenceFiltered,
+                    spaces: _handler.appStore.spaces,
+                    categories: _handler.appStore.categories,
                   ),
-                if (_homeStore.eventsDateFiltered.isNotEmpty)
+                if (_handler.store.eventsDateFiltered.isNotEmpty)
                   AreaEventsWidget(
                     exhibitionEvent: ExhibitionEvent.date,
-                    title: filterDateToString(context, _homeStore.filterDate),
-                    filterDateSelected: _homeStore.filterDate,
+                    title: filterDateToString(context, _handler.store.filterDate),
+                    filterDateSelected: _handler.store.filterDate,
                     onItemSelected: (value) {
-                      _homeStore.setFilterDate(
+                      _handler.store.setFilterDate(
                         FilterDate.values.firstWhere((element) => filterDateToString(context, element) == value),
                       );
-                      _filterEventsByDate(_homeStore.filterDate);
+                      _filterEventsByDate(_handler.store.filterDate);
                     },
-                    events: _homeStore.eventsDateFiltered,
-                    spaces: _homeStore.spaces,
-                    categories: _homeStore.categories,
+                    events: _handler.store.eventsDateFiltered,
+                    spaces: _handler.appStore.spaces,
+                    categories: _handler.appStore.categories,
                   ),
                 AreaSpacesWidget(
-                  scrollControllerSpaces: _homeStore.scrollControllerSpaces,
-                  spaces: _homeStore.spacesFiltered,
-                  showAllSpaces: _homeStore.allSpaces,
+                  scrollControllerSpaces: _handler.store.scrollControllerSpaces,
+                  spaces: _handler.store.spacesFiltered,
+                  showAllSpaces: _handler.store.allSpaces,
                   onTapExpandSpaces: () {
-                    _homeStore.setAllSpaces(!_homeStore.allSpaces);
+                    _handler.store.setAllSpaces(!_handler.store.allSpaces);
 
-                    if (_homeStore.allSpaces) {
-                      _homeStore.setSpacesFiltered(_homeStore.spaces.where((space) => space.aprovado == 1).toList());
+                    if (_handler.store.allSpaces) {
+                      _handler.store.setSpacesFiltered(
+                        _handler.appStore.spaces.where((space) => space.aprovado == 1).toList(),
+                      );
                     } else {
-                      _homeStore.setSpacesFiltered(
-                        _homeStore.spaces.where((space) => space.aprovado == 1).toList().take(9).toList(),
+                      _handler.store.setSpacesFiltered(
+                        _handler.appStore.spaces.where((space) => space.aprovado == 1).toList().take(9).toList(),
                       );
                     }
                   },
@@ -139,75 +135,19 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _initializeData() async {
-    _homeStore.setIsLoading(true);
-
-    //Categories
-    _homeStore.setCategories(await CategoriaController().categoriaGet());
+    _handler.store.setIsLoading(true);
+    await Future.delayed(const Duration(milliseconds: 500));
 
     //Events
-    _homeStore.setEvents(await EventoController().eventoGet());
-    await _sortEvents();
-    _filterEventsByDate(_homeStore.filterDate);
+    _filterEventsByDate(_handler.store.filterDate);
     _initEventsProminence();
 
     //Spaces
-    _homeStore.setSpaces(await EspacoController().espacoGet());
-    _homeStore.setSpacesFiltered(_homeStore.spaces.where((space) => space.aprovado == 1).toList().take(9).toList());
+    _handler.store.setSpacesFiltered(
+      _handler.appStore.spaces.where((space) => space.aprovado == 1).toList().take(9).toList(),
+    );
 
-    //Favorites
-    _homeStore.setFavorites(await EventoController().favoritosGet(
-      userguidid: _appStore.userLogged.guidid ?? '',
-      token: _appStore.userLogged.signature ?? '',
-    ));
-
-    _homeStore.setIsLoading(false);
-  }
-
-  Future<void> _sortEvents() async {
-    // Ordena os eventos na lista com base nas datas de início e fim.
-    _homeStore.events.sort((a, b) {
-      // Obtém a data e hora inicial do primeiro evento de cada lista.
-      var dateTimeA = a.eventosdatas?.first.datahora;
-      var dateTimeB = b.eventosdatas?.first.datahora;
-
-      // Converte as strings para objetos DateTime locais.
-      var dateA = DateTime.parse(dateTimeA!).toLocal();
-      var dateB = DateTime.parse(dateTimeB!).toLocal();
-
-      // Compara as datas (ano, mês e dia) sem considerar horas.
-      var compareResultado = DateTime(dateA.year, dateA.month, dateA.day).compareTo(
-        DateTime(dateB.year, dateB.month, dateB.day),
-      );
-
-      // Se as datas forem diferentes, retorna o resultado da comparação.
-      if (compareResultado != 0) {
-        return compareResultado;
-      }
-
-      // Se as datas forem iguais, obtém a data de fim para desempate.
-      var dateFinishA = a.eventosdatas?.first.datafim ?? a.eventosdatas?.first.datainicio;
-      var dateFinishB = b.eventosdatas?.first.datafim ?? b.eventosdatas?.first.datainicio;
-
-      // Calcula os dias restantes até o fim para cada evento.
-      var diasParaFimA = _calculateDaysToFinish(dateFinishA, dateTimeA);
-      var diasParaFimB = _calculateDaysToFinish(dateFinishB, dateTimeB);
-
-      // Compara os dias restantes e retorna o resultado.
-      return diasParaFimA.compareTo(diasParaFimB);
-    });
-  }
-
-  int _calculateDaysToFinish(String? dataFim, String? dataInicio) {
-    // Se a data de fim for válida, calcula os dias restantes.
-    if (dataFim != null && dataInicio != null) {
-      var dateFinishDateTime = DateTime.parse(dataFim);
-      var dateInitialDateTime = DateTime.parse(dataInicio);
-      // Calcula a diferença em dias entre as datas.
-      var daysForFinish = dateFinishDateTime.difference(dateInitialDateTime).inDays;
-      return daysForFinish;
-    }
-    // Se as datas não forem válidas, retorna 0.
-    return 0;
+    _handler.store.setIsLoading(false);
   }
 
   void _filterEventsByDate(FilterDate filterDate) {
@@ -230,8 +170,8 @@ class _HomePageState extends State<HomePage> {
     DateTime dfim = DateTime.parse(d2);
 
     // Filtra os eventos com base no intervalo de datas e se estão aprovados.
-    _homeStore.setEventsDateFiltered(
-      _homeStore.events.where((event) {
+    _handler.store.setEventsDateFiltered(
+      _handler.appStore.events.where((event) {
         bool dateInList = false;
 
         // Ignora eventos que não estão aprovados.
@@ -254,7 +194,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void _initEventsProminence() {
-    final eventsProminence = _homeStore.events.where((event) {
+    final eventsProminence = _handler.appStore.events.where((event) {
       // Ignora eventos que não estão aprovados.
       if (event.aprovado != 1) {
         return false;
@@ -265,8 +205,8 @@ class _HomePageState extends State<HomePage> {
     }).toList();
 
     // Aplica o filtro com base no valor de allEventsProminence.
-    _homeStore.setEventsProminenceFiltered(
-      _homeStore.allEventsProminence
+    _handler.store.setEventsProminenceFiltered(
+      _handler.store.allEventsProminence
           ? eventsProminence // Mostra todos os eventos destacados.
           : eventsProminence.take(9).toList(), // Limita a 9 eventos destacados.
     );

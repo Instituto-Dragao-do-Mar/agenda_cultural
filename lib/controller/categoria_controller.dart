@@ -1,12 +1,11 @@
 import 'dart:convert';
-
-import 'package:agendacultural/controller/base_controller.dart';
-import 'package:agendacultural/model/categoria_model.dart';
-import 'package:agendacultural/shared/constantes.dart';
 import 'package:http/http.dart' as http;
+import 'package:agendacultural/shared/constantes.dart';
+import 'package:agendacultural/model/categoria_model.dart';
+import 'package:agendacultural/controller/base_controller.dart';
 
 class CategoriaController extends BaseController {
-  Future<List<Categoria>> categoriaGet() async {
+  Future<List<Categoria>> getCategories() async {
     List<Categoria> list = [];
 
     String url = "${baseUrlApi}categorias";
