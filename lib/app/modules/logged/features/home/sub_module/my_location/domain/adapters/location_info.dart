@@ -1,5 +1,5 @@
-import 'package:agendacultural/modules/my_location/adapters/informative.dart';
-import 'package:agendacultural/modules/my_location/adapters/administrative.dart';
+import 'package:agendacultural/app/modules/logged/features/home/sub_module/my_location/domain/adapters/informative.dart';
+import 'package:agendacultural/app/modules/logged/features/home/sub_module/my_location/domain/adapters/administrative.dart';
 
 class LocalityInfo {
   List<Administrative>? administrative;

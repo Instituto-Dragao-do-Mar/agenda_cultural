@@ -5,10 +5,10 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/extensions/dates.dart';
+import 'package:agendacultural/app/common/router/router.dart';
 import 'package:agendacultural/pages/filtro/pagefiltrocompleto.dart';
 import 'package:agendacultural/pages/home/general/button_filter.dart';
 import 'package:agendacultural/pages/home/location/area_location.dart';
-import 'package:agendacultural/modules/my_location/page/my_location_page.dart';
 import 'package:agendacultural/app/modules/logged/features/home/domain/enum/filter_date.dart';
 import 'package:agendacultural/app/modules/logged/features/home/domain/enum/exhibition_event.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/handler/home_state_handler.dart';
@@ -51,10 +51,7 @@ class _HomePageState extends State<HomePage> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 AreaLocationWidget(
-                  onTapNavigateLocation: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const MyLocationPage()),
-                  ),
+                  onTapNavigateLocation: () => Modular.to.pushNamed(RouterApp.logged + RouterApp.myLocation),
                 ),
                 AreaCategoryWidget(
                   scrollControllerCategories: _handler.store.scrollControllerCategories,

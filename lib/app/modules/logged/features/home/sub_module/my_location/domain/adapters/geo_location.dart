@@ -1,4 +1,4 @@
-import 'package:agendacultural/modules/my_location/adapters/location_info.dart';
+import 'package:agendacultural/app/modules/logged/features/home/sub_module/my_location/domain/adapters/location_info.dart';
 
 class GeoLocation {
   double? latitude;

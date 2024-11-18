@@ -20,20 +20,17 @@ class AppModule extends Module {
     r.module(
       RouterApp.splashApp,
       module: SplashModule(),
-      transition: TransitionType.fadeIn,
-      duration: const Duration(seconds: 0),
+      transition: TransitionType.noTransition,
     );
     r.module(
       RouterApp.introduction,
       module: IntroductionModule(),
-      transition: TransitionType.fadeIn,
-      duration: const Duration(seconds: 0),
+      transition: TransitionType.noTransition,
     );
     r.module(
       RouterApp.logged,
       module: LoggedModule(),
-      transition: TransitionType.fadeIn,
-      duration: const Duration(seconds: 0),
+      transition: TransitionType.noTransition,
     );
   }
 }

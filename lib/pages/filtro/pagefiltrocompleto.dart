@@ -6,7 +6,7 @@ import 'package:agendacultural/pages/filtro/widgets/widgetfiltroingresso.dart';
 import 'package:agendacultural/pages/filtro/widgets/widgetfiltroperiodo.dart';
 import 'package:agendacultural/pages/home/location/area_location.dart';
 import 'package:agendacultural/pages/home/general/widgettopocomum.dart';
-import 'package:agendacultural/modules/my_location/page/my_location_page.dart';
+import 'package:agendacultural/app/modules/logged/features/home/sub_module/my_location/presenter/page/my_location_page.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetbottombotao.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
