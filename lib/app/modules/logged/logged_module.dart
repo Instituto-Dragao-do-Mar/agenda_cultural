@@ -8,8 +8,10 @@ import 'package:agendacultural/app/modules/logged/presenter/handler/logged_state
 import 'package:agendacultural/app/modules/logged/features/home/presenter/store/home_store.dart';
 import 'package:agendacultural/app/modules/logged/features/schedule/presenter/store/schedule_store.dart';
 import 'package:agendacultural/app/modules/logged/features/map/presenter/handler/map_state_handler.dart';
+import 'package:agendacultural/app/modules/logged/features/favorites/presenter/store/favorite_store.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/handler/home_state_handler.dart';
 import 'package:agendacultural/app/modules/logged/features/schedule/presenter/handler/schedule_state_handler.dart';
+import 'package:agendacultural/app/modules/logged/features/favorites/presenter/handler/favorite_state_handler.dart';
 import 'package:agendacultural/app/modules/logged/features/home/sub_module/my_location/presenter/page/my_location_page.dart';
 import 'package:agendacultural/app/modules/logged/features/home/sub_module/my_location/presenter/store/my_location_store.dart';
 import 'package:agendacultural/app/modules/logged/features/home/sub_module/my_location/presenter/handler/my_location_state_handler.dart';
@@ -36,6 +38,9 @@ class LoggedModule extends Module {
 
     i.addLazySingleton(MapPageStateHandler.new);
     i.addLazySingleton(MapStore.new);
+
+    i.addLazySingleton(FavoritePageStateHandler.new);
+    i.addLazySingleton(FavoriteStore.new);
   }
 
   @override

@@ -12,6 +12,7 @@ class ButtonFavoriteWidget extends StatefulWidget {
   final bool isCardEvent;
   final Usuario user;
   final List<Favorite> favorites;
+  final void Function()? onConcludeFavorite;
 
   const ButtonFavoriteWidget({
     super.key,
@@ -19,6 +20,7 @@ class ButtonFavoriteWidget extends StatefulWidget {
     this.isCardEvent = false,
     required this.user,
     required this.favorites,
+    this.onConcludeFavorite,
   });
 
   @override
@@ -70,6 +72,8 @@ class _ButtonFavoriteWidgetState extends State<ButtonFavoriteWidget> {
             if (isFavorited) {
               setState(() => isFavorite = isFavorite == 1 ? 0 : 1);
             }
+
+            widget.onConcludeFavorite != null ? widget.onConcludeFavorite!() : null;
           },
           child: Icon(
             Icons.favorite,

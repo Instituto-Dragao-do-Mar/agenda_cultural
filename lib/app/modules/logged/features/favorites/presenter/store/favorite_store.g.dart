@@ -25,22 +25,6 @@ mixin _$FavoriteStore on FavoriteStoreBase, Store {
     });
   }
 
-  late final _$favoritesAtom =
-      Atom(name: 'FavoriteStoreBase.favorites', context: context);
-
-  @override
-  List<Favorite> get favorites {
-    _$favoritesAtom.reportRead();
-    return super.favorites;
-  }
-
-  @override
-  set favorites(List<Favorite> value) {
-    _$favoritesAtom.reportWrite(value, super.favorites, () {
-      super.favorites = value;
-    });
-  }
-
   late final _$eventsFavoriteAtom =
       Atom(name: 'FavoriteStoreBase.eventsFavorite', context: context);
 
@@ -72,17 +56,6 @@ mixin _$FavoriteStore on FavoriteStoreBase, Store {
   }
 
   @override
-  void setFavorites(List<Favorite> value) {
-    final _$actionInfo = _$FavoriteStoreBaseActionController.startAction(
-        name: 'FavoriteStoreBase.setFavorites');
-    try {
-      return super.setFavorites(value);
-    } finally {
-      _$FavoriteStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   void setListEventsFavorite(List<Event> value) {
     final _$actionInfo = _$FavoriteStoreBaseActionController.startAction(
         name: 'FavoriteStoreBase.setListEventsFavorite');
@@ -108,7 +81,6 @@ mixin _$FavoriteStore on FavoriteStoreBase, Store {
   String toString() {
     return '''
 isLoading: ${isLoading},
-favorites: ${favorites},
 eventsFavorite: ${eventsFavorite}
     ''';
   }

@@ -1,6 +1,5 @@
 import 'package:mobx/mobx.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
-import 'package:agendacultural/app/modules/splash/domain/adapter/favorite.dart';
 
 part 'favorite_store.g.dart';
 
@@ -12,12 +11,6 @@ abstract class FavoriteStoreBase with Store {
 
   @action
   void setIsLoading(bool value) => isLoading = value;
-
-  @observable
-  List<Favorite> favorites = [];
-
-  @action
-  void setFavorites(List<Favorite> value) => favorites = value;
 
   @observable
   List<Event> eventsFavorite = [];

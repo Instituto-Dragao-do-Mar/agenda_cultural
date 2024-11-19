@@ -17,6 +17,7 @@ class ItemEventWidget extends StatelessWidget {
   final List<Favorite> favorites;
   final Usuario user;
   final void Function() onTapEvent;
+  final void Function()? onConcludeFavorite;
 
   const ItemEventWidget({
     super.key,
@@ -25,6 +26,7 @@ class ItemEventWidget extends StatelessWidget {
     required this.onTapEvent,
     required this.favorites,
     required this.user,
+    this.onConcludeFavorite,
   });
 
   @override
@@ -73,6 +75,7 @@ class ItemEventWidget extends StatelessWidget {
                       isCardEvent: true,
                       user: user,
                       favorites: favorites,
+                      onConcludeFavorite: onConcludeFavorite,
                     ),
                   ],
                 ),

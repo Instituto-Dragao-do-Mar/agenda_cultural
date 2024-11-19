@@ -1,11 +1,11 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:agendacultural/pages/perfil/widgetperfil.dart';
 import 'package:agendacultural/app/core/app_store/app_store.dart';
-import 'package:agendacultural/pages/favorite/page/favorite_page.dart';
 import 'package:agendacultural/app/modules/logged/presenter/store/logged_area_store.dart';
 import 'package:agendacultural/app/modules/logged/features/map/presenter/page/map_page.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/home_page.dart';
 import 'package:agendacultural/app/modules/logged/features/schedule/presenter/page/schedule_page.dart';
+import 'package:agendacultural/app/modules/logged/features/favorites/presenter/page/favorite_page.dart';
 
 class LoggedPageStateHandler {
   final AppStore _appStore;
