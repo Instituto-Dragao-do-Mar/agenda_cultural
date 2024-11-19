@@ -8,6 +8,12 @@ class ScheduleStore = ScheduleStoreBase with _$ScheduleStore;
 
 abstract class ScheduleStoreBase with Store {
   @observable
+  bool isLoading = false;
+
+  @action
+  void setIsLoading(bool value) => isLoading = value;
+
+  @observable
   TextEditingController initialController = TextEditingController();
 
   @action

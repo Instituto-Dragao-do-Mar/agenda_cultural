@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/constantes.dart';
 import 'package:agendacultural/shared/extensions/dates.dart';
+import 'package:agendacultural/shared/text_contrast_font.dart';
 import 'package:agendacultural/shared/extensions/capitalize.dart';
-import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
 
 class ItemViewDaysWidget extends StatelessWidget {
   final DateTime data;
@@ -34,7 +33,7 @@ class ItemViewDaysWidget extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          TextContrasteFonte(
+          TextContrastFont(
             text: data.toIso8601String().formatDate(format: "dd"),
             style: TextStyle(
               fontSize: selecionada ? 26 : 22,
@@ -43,7 +42,7 @@ class ItemViewDaysWidget extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 5),
-          TextContrasteFonte(
+          TextContrastFont(
             text: selecionada
                 ? data.toIso8601String().formatDate(format: "E").toUpperCase()
                 : data.toIso8601String().formatDate(format: "E").capitalize(),

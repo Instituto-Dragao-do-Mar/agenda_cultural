@@ -1,6 +1,6 @@
 import 'package:agendacultural/pages/home/general/widgettopocomum.dart';
 import 'package:agendacultural/shared/widgetBottomNavigator.dart';
-import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
+import 'package:agendacultural/shared/text_contrast_font.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../model/fonts.dart';
@@ -42,7 +42,7 @@ class _WidgetSobreState extends State<WidgetSobre> {
               direction: Axis.horizontal,
               crossAxisAlignment: WrapCrossAlignment.start,
               children: [
-                TextContrasteFonte(
+                TextContrastFont(
                   text: AppLocalizations.of(context)!.profile_general_upon_text,
                   style: FontsApp.poppins16W500Black(FontsApp.tamanhoBase),
                 ),

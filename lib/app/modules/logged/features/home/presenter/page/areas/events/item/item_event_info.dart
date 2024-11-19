@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/shared/themes.dart';
-import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
+import 'package:agendacultural/shared/text_contrast_font.dart';
 
 class ItemEventInfoWidget extends StatelessWidget {
   final String nameEvent;
@@ -24,7 +24,7 @@ class ItemEventInfoWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 5),
-          TextContrasteFonte(
+          TextContrastFont(
             text: nameEvent,
             maxlines: 2,
             style: GoogleFonts.roboto(
@@ -37,7 +37,7 @@ class ItemEventInfoWidget extends StatelessWidget {
           Flex(
             direction: Axis.vertical,
             children: [
-              TextContrasteFonte(
+              TextContrastFont(
                 text: nameSpace,
                 style: GoogleFonts.roboto(
                   fontSize: FontsApp.tamanhoBase - (FontsApp.tamanhoFonteBase16 - 12),
@@ -50,7 +50,7 @@ class ItemEventInfoWidget extends StatelessWidget {
           const SizedBox(height: 5),
           Row(
             children: [
-              TextContrasteFonte(
+              TextContrastFont(
                 text: date,
                 style: GoogleFonts.roboto(
                   fontSize: FontsApp.tamanhoBase - (FontsApp.tamanhoFonteBase16 - 12),

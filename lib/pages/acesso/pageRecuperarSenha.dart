@@ -6,7 +6,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../model/fonts.dart';
 import '../../shared/constantes.dart';
 import '../../shared/themes.dart';
-import '../../shared/widgetTextFonteContraste.dart';
+import '../../shared/text_contrast_font.dart';
 import '../../shared/button_default.dart';
 import '../../shared/notify_pop_up.dart';
 import '../../shared/widgetespacoh.dart';
@@ -69,7 +69,7 @@ class _PageRecuperarSenhaState extends State<PageRecuperarSenha> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TextContrasteFonte(
+                  TextContrastFont(
                     text:
                         AppLocalizations.of(context)!.login_reset_password_text,
                     semantics:
@@ -83,7 +83,7 @@ class _PageRecuperarSenhaState extends State<PageRecuperarSenha> {
               ),
               Row(
                 children: [
-                  TextContrasteFonte(
+                  TextContrastFont(
                     text: AppLocalizations.of(context)!.login_email,
                     style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
                     semantics: "Rótulo de E-mail",
@@ -91,7 +91,7 @@ class _PageRecuperarSenhaState extends State<PageRecuperarSenha> {
                   Semantics(
                     container: false,
                     label: "Campo obrigatório",
-                    child: TextContrasteFonte(
+                    child: TextContrastFont(
                       text: " *",
                       style: TextStyle(
                         color: corBackgroundLaranja,

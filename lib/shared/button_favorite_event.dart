@@ -30,7 +30,7 @@ class _ButtonFavoriteWidgetState extends State<ButtonFavoriteWidget> {
 
   @override
   void initState() {
-    super.initState();
+    if (!mounted) super.initState();
     widget.favorites.map((e) => e.idevento).contains(widget.event.id) ? isFavorite = 1 : isFavorite = 0;
   }
 

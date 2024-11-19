@@ -10,7 +10,7 @@ import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
-import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
+import 'package:agendacultural/shared/text_contrast_font.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
 import 'package:agendacultural/shared/extensions/ex_compare_date_strings_in_days.dart';
 import 'package:agendacultural/app/modules/logged/features/home/domain/adapter/user_evaluation.dart';
@@ -52,7 +52,7 @@ class _EventDetailEvaluationWidgetState extends State<EventDetailEvaluationWidge
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TextContrasteFonte(
+              TextContrastFont(
                 text: AppLocalizations.of(context)!.e_evaluation,
                 style: GoogleFonts.inter(
                   fontSize: font.toDouble(),
@@ -86,7 +86,7 @@ class _EventDetailEvaluationWidgetState extends State<EventDetailEvaluationWidge
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            TextContrasteFonte(
+            TextContrastFont(
               text: AppLocalizations.of(context)!.e_evaluation,
               style: GoogleFonts.inter(
                 fontSize: font.toDouble(),
@@ -128,7 +128,7 @@ class _EventDetailEvaluationWidgetState extends State<EventDetailEvaluationWidge
               height: 50,
               fit: BoxFit.contain,
             ),
-            TextContrasteFonte(
+            TextContrastFont(
               text: label,
               style: GoogleFonts.inter(
                 fontSize: fontePadrao.toDouble(),

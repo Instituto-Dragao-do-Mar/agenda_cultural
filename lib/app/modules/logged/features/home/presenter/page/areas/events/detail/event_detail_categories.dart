@@ -3,10 +3,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/shared/themes.dart';
+import 'package:agendacultural/shared/text_contrast_font.dart';
 import 'package:agendacultural/app/common/utils/tradutors.dart';
 import 'package:agendacultural/shared/extensions/clearMask.dart';
 import 'package:agendacultural/shared/extensions/capitalize.dart';
-import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/category.dart';
 
@@ -24,7 +24,7 @@ class EventDetailCategories extends StatelessWidget {
   Widget build(BuildContext context) {
     return Semantics(
       label: _getListCategories(context),
-      child: TextContrasteFonte(
+      child: TextContrastFont(
         text: _getListCategories(context),
         style: GoogleFonts.inter(
           fontSize: FontsApp.tamanhoBase - (FontsApp.tamanhoFonteBase16 - 14),

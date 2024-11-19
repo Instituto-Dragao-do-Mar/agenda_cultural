@@ -32,7 +32,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
 
   @override
   void initState() {
-    super.initState();
+    if (!mounted) super.initState();
     _handler.initialize();
   }
 

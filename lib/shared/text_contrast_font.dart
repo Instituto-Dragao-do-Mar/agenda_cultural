@@ -1,10 +1,9 @@
-import 'package:agendacultural/shared/themes.dart';
 import 'package:flutter/material.dart';
+import 'package:agendacultural/model/fonts.dart';
+import 'package:agendacultural/model/colors.dart';
+import 'package:agendacultural/shared/themes.dart';
 
-import '../model/colors.dart';
-import '../model/fonts.dart';
-
-class TextContrasteFonte extends StatefulWidget {
+class TextContrastFont extends StatefulWidget {
   final TextStyle? style;
   final String? text;
   final Color? color;
@@ -14,7 +13,7 @@ class TextContrasteFonte extends StatefulWidget {
   final double? fontsize;
   final int? maxlines;
 
-  const TextContrasteFonte({
+  const TextContrastFont({
     Key? key,
     this.color,
     this.text,
@@ -27,10 +26,10 @@ class TextContrasteFonte extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<TextContrasteFonte> createState() => _TextContrasteFonteState();
+  State<TextContrastFont> createState() => _TextContrastFontState();
 }
 
-class _TextContrasteFonteState extends State<TextContrasteFonte> {
+class _TextContrastFontState extends State<TextContrastFont> {
   bool statusAltoContraste = ColorsApp.contraste;
   double fontSize = FontsApp.tamanhoBase.toDouble();
 

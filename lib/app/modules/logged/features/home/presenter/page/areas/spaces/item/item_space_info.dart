@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/shared/themes.dart';
-import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
+import 'package:agendacultural/shared/text_contrast_font.dart';
 
 class ItemSpaceInfo extends StatelessWidget {
   final String? nameSpace;
@@ -22,7 +22,7 @@ class ItemSpaceInfo extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 5),
-          TextContrasteFonte(
+          TextContrastFont(
             text: nameSpace ?? 'Nome não informado!',
             maxlines: 2,
             style: GoogleFonts.roboto(
@@ -35,7 +35,7 @@ class ItemSpaceInfo extends StatelessWidget {
           Flex(
             direction: Axis.vertical,
             children: [
-              TextContrasteFonte(
+              TextContrastFont(
                 text: address != '' ? address : 'Endereço não informado!',
                 style: GoogleFonts.roboto(
                   fontSize: FontsApp.tamanhoBase - (FontsApp.tamanhoFonteBase16 - 12),

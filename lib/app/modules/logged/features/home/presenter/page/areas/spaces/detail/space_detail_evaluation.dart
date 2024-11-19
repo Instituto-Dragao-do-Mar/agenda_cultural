@@ -9,7 +9,7 @@ import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
-import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
+import 'package:agendacultural/shared/text_contrast_font.dart';
 
 class SpaceDetailEvaluationWidget extends StatefulWidget {
   final Usuario user;
@@ -38,7 +38,7 @@ class _SpaceDetailEvaluationWidgetState extends State<SpaceDetailEvaluationWidge
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TextContrasteFonte(
+        TextContrastFont(
           text: AppLocalizations.of(context)!.e_evaluation_e,
           style: GoogleFonts.inter(
             fontSize: font.toDouble(),
@@ -73,7 +73,7 @@ class _SpaceDetailEvaluationWidgetState extends State<SpaceDetailEvaluationWidge
               height: 50,
               fit: BoxFit.contain,
             ),
-            TextContrasteFonte(
+            TextContrastFont(
               text: label,
               style: GoogleFonts.inter(
                 fontSize: fontePadrao.toDouble(),

@@ -15,7 +15,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../controller/user_controller.dart';
 import '../../model/app_model.dart';
 import '../../shared/constantes.dart';
-import '../../shared/widgetTextFonteContraste.dart';
+import '../../shared/text_contrast_font.dart';
 import '../../shared/notify_pop_up.dart';
 import '../home/general/widgettopocomum.dart';
 
@@ -77,7 +77,7 @@ class _PageCadastroState extends State<PageCadastro> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TextContrasteFonte(
+              TextContrastFont(
                 text: AppLocalizations.of(context)!.register_subtitle,
                 semantics:
                     "Ao se cadastrar, você terá acesso aos recursos de gerar alertas e de avaliar espaços e eventos",
@@ -88,12 +88,12 @@ class _PageCadastroState extends State<PageCadastro> {
               ),
               Row(
                 children: [
-                  TextContrasteFonte(
+                  TextContrastFont(
                     text: AppLocalizations.of(context)!.register_name,
                     semantics: "Digite seu Nome",
                     style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
                   ),
-                  TextContrasteFonte(
+                  TextContrastFont(
                     text: " *",
                     style: TextStyle(
                       color: corBackgroundLaranja,
@@ -123,7 +123,7 @@ class _PageCadastroState extends State<PageCadastro> {
               ),
               Row(
                 children: [
-                  TextContrasteFonte(
+                  TextContrastFont(
                     text: AppLocalizations.of(context)!.register_email,
                     style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
                     semantics: "Digite seu E-mail abaixo",
@@ -131,7 +131,7 @@ class _PageCadastroState extends State<PageCadastro> {
                   Semantics(
                     container: false,
                     label: "Campo obrigatório",
-                    child: TextContrasteFonte(
+                    child: TextContrastFont(
                       text: " *",
                       style: TextStyle(
                         color: corBackgroundLaranja,
@@ -162,7 +162,7 @@ class _PageCadastroState extends State<PageCadastro> {
               ),
               Row(
                 children: [
-                  TextContrasteFonte(
+                  TextContrastFont(
                     text: AppLocalizations.of(context)!.register_password,
                     style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
                     semantics: "Digite sua Senha abaixo",
@@ -170,7 +170,7 @@ class _PageCadastroState extends State<PageCadastro> {
                   Semantics(
                     container: false,
                     label: "Campo obrigatório",
-                    child: TextContrasteFonte(
+                    child: TextContrastFont(
                       text: " *",
                       style: TextStyle(
                         color: corBackgroundLaranja,
@@ -264,7 +264,7 @@ class _PageCadastroState extends State<PageCadastro> {
               ),
               Row(
                 children: [
-                  TextContrasteFonte(
+                  TextContrastFont(
                     text:
                         AppLocalizations.of(context)!.register_confirm_password,
                     semantics: "Digite sua senha novamente",
@@ -273,7 +273,7 @@ class _PageCadastroState extends State<PageCadastro> {
                   Semantics(
                     container: false,
                     label: "Campo obrigatório",
-                    child: TextContrasteFonte(
+                    child: TextContrastFont(
                       text: " *",
                       style: TextStyle(
                         color: corBackgroundLaranja,
@@ -344,7 +344,7 @@ class _PageCadastroState extends State<PageCadastro> {
                   ? Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        TextContrasteFonte(
+                        TextContrastFont(
                           text: AppLocalizations.of(context)!
                               .register_password_order,
                           style: FontsApp.roboto12W400Grey(FontsApp.tamanhoBase),
@@ -353,7 +353,7 @@ class _PageCadastroState extends State<PageCadastro> {
                         const widgetEspacoH(
                           altura: 4,
                         ),
-                        TextContrasteFonte(
+                        TextContrastFont(
                           text: AppLocalizations.of(context)!
                               .register_password_order_one,
                           style: haveMinDigits == 1
@@ -364,7 +364,7 @@ class _PageCadastroState extends State<PageCadastro> {
                         const widgetEspacoH(
                           altura: 4,
                         ),
-                        TextContrasteFonte(
+                        TextContrastFont(
                           text: AppLocalizations.of(context)!
                               .register_password_order_two,
                           style: haveUpperCase == 1
@@ -375,7 +375,7 @@ class _PageCadastroState extends State<PageCadastro> {
                         const widgetEspacoH(
                           altura: 4,
                         ),
-                        TextContrasteFonte(
+                        TextContrastFont(
                           text: AppLocalizations.of(context)!
                               .register_password_order_three,
                           style: haveLowerCase == 1
@@ -386,7 +386,7 @@ class _PageCadastroState extends State<PageCadastro> {
                         const widgetEspacoH(
                           altura: 4,
                         ),
-                        TextContrasteFonte(
+                        TextContrastFont(
                           text: AppLocalizations.of(context)!
                               .register_password_order_four,
                           style: haveNumber == 1
@@ -397,7 +397,7 @@ class _PageCadastroState extends State<PageCadastro> {
                         const widgetEspacoH(
                           altura: 8,
                         ),
-                        TextContrasteFonte(
+                        TextContrastFont(
                           text: AppLocalizations.of(context)!
                               .register_password_order_five,
                           style: FontsApp.roboto12W300Grey(FontsApp.tamanhoBase),
@@ -465,7 +465,7 @@ class _PageCadastroState extends State<PageCadastro> {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 10),
-                        child: TextContrasteFonte(
+                        child: TextContrastFont(
                           text:
                               AppLocalizations.of(context)!.register_terms_one,
                           fontsize: FontsApp.tamanhoBase.toDouble(),
@@ -490,7 +490,7 @@ class _PageCadastroState extends State<PageCadastro> {
                             left: 2,
                             right: 2,
                           ),
-                          child: TextContrasteFonte(
+                          child: TextContrastFont(
                             text: AppLocalizations.of(context)!
                                 .register_terms_two,
                             color: corBackgroundLaranja,
@@ -498,7 +498,7 @@ class _PageCadastroState extends State<PageCadastro> {
                           ),
                         ),
                       ),
-                      TextContrasteFonte(
+                      TextContrastFont(
                         text:
                             AppLocalizations.of(context)!.register_terms_three,
                         fontsize: FontsApp.tamanhoBase.toDouble(),
@@ -522,7 +522,7 @@ class _PageCadastroState extends State<PageCadastro> {
                             left: 2,
                             right: 2,
                           ),
-                          child: TextContrasteFonte(
+                          child: TextContrastFont(
                             text: AppLocalizations.of(context)!
                                 .register_terms_four,
                             color: corBackgroundLaranja,
@@ -530,7 +530,7 @@ class _PageCadastroState extends State<PageCadastro> {
                           ),
                         ),
                       ),
-                      TextContrasteFonte(
+                      TextContrastFont(
                         text: AppLocalizations.of(context)!.register_terms_five,
                         fontsize: FontsApp.tamanhoBase.toDouble(),
                         color: const Color(0xff999999),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:agendacultural/shared/themes.dart';
-import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
+import 'package:agendacultural/shared/text_contrast_font.dart';
 
 class HeaderCardsWidget extends StatelessWidget {
   final String title;
@@ -23,11 +23,11 @@ class HeaderCardsWidget extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          TextContrasteFonte(text: title, weight: FontWeight.w600, semantics: title),
+          TextContrastFont(text: title, weight: FontWeight.w600, semantics: title),
           InkWell(
             onTap: () => onTap(),
             child: secundaryComponent ??
-                TextContrasteFonte(
+                TextContrastFont(
                   text: subtitle,
                   color: corBackgroundLaranja,
                   weight: FontWeight.w600,

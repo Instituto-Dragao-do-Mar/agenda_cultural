@@ -5,7 +5,7 @@ import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/shared/notify_pop_up.dart';
-import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
+import 'package:agendacultural/shared/text_contrast_font.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/favorite.dart';
@@ -71,7 +71,7 @@ class EventDetail extends StatelessWidget {
                         categories: categories,
                       ),
                       const SizedBox(height: 5),
-                      TextContrasteFonte(
+                      TextContrastFont(
                         text: event.nome,
                         maxlines: 3,
                         style: GoogleFonts.inter(

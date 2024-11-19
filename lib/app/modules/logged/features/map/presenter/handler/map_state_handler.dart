@@ -21,6 +21,7 @@ class MapPageStateHandler {
 
   void initialize(BuildContext context) async {
     _store.setIsLoading(true);
+    await Future.delayed(const Duration(seconds: 1));
 
     _store.setAddress(await Dados.getString('local_atual_descricao'));
 

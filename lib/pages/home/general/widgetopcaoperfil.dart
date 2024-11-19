@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../../../model/fonts.dart';
 import '../../../shared/constantes.dart';
-import '../../../shared/widgetTextFonteContraste.dart';
+import '../../../shared/text_contrast_font.dart';
 
 class widgetopacaoperfil extends StatelessWidget {
   widgetopacaoperfil(
@@ -30,7 +30,7 @@ class widgetopacaoperfil extends StatelessWidget {
                 ),
               );
       },
-      child: TextContrasteFonte(
+      child: TextContrastFont(
         text: subtitulo,
         style: FontsApp.roboto16W400Grey(FontsApp.tamanhoBase),
         semantics: subtitulo,

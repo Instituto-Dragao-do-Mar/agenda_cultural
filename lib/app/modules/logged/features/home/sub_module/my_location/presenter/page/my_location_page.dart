@@ -6,7 +6,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/model/colors.dart';
 import 'package:agendacultural/shared/themes.dart';
-import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
+import 'package:agendacultural/shared/text_contrast_font.dart';
 import 'package:agendacultural/app/modules/logged/features/home/sub_module/my_location/presenter/handler/my_location_state_handler.dart';
 
 class MyLocationPage extends StatefulWidget {
@@ -21,7 +21,7 @@ class _MyLocationPageState extends State<MyLocationPage> {
 
   @override
   void initState() {
-    super.initState();
+    if (!mounted) super.initState();
     _handler.initialize();
   }
 
@@ -55,7 +55,7 @@ class _MyLocationPageState extends State<MyLocationPage> {
           ),
           centerTitle: false,
           titleSpacing: 0,
-          title: TextContrasteFonte(
+          title: TextContrastFont(
             text: AppLocalizations.of(context)!.location_title,
             style: TextStyle(color: corTextAtual, fontSize: FontsApp.tamanhoBase.toDouble()),
           ),

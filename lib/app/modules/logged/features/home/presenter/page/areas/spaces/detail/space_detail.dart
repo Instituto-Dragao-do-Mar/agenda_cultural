@@ -7,7 +7,7 @@ import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:agendacultural/shared/button_default.dart';
-import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
+import 'package:agendacultural/shared/text_contrast_font.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/spaces/detail/space_detail_map.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/spaces/detail/space_detail_image.dart';
@@ -55,7 +55,7 @@ class SpaceDetail extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextContrasteFonte(
+                      TextContrastFont(
                         text: space.nome ?? 'Nome do Espaço',
                         style: GoogleFonts.inter(
                           fontSize: FontsApp.tamanhoBase.toDouble(),

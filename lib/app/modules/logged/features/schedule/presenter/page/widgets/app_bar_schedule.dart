@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/shared/themes.dart';
-import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
+import 'package:agendacultural/shared/text_contrast_font.dart';
 import 'package:agendacultural/pages/search_term_filter/page/search_filter_page.dart';
 
 class AppBarScheduleWidget extends StatelessWidget {
@@ -29,7 +29,7 @@ class AppBarScheduleWidget extends StatelessWidget {
           ),
         ),
         const SizedBox(width: 8),
-        TextContrasteFonte(
+        TextContrastFont(
           text: AppLocalizations.of(context)!.schedule_title,
           style: TextStyle(
             color: corTextAtual,

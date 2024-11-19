@@ -6,7 +6,7 @@ import 'package:agendacultural/pages/acesso/pagelogin.dart';
 import 'package:agendacultural/pages/home/general/widgettopocomum.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/notify_pop_up.dart';
-import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
+import 'package:agendacultural/shared/text_contrast_font.dart';
 import 'package:agendacultural/shared/button_default.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:flutter/material.dart';
@@ -67,7 +67,7 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TextContrasteFonte(
+                  TextContrastFont(
                     text: "Insira uma nova senha. ",
                     semantics: "Insira uma nova senha.",
                     style: FontsApp.poppins12W400Grey((FontsApp.tamanhoBase)),
@@ -77,7 +77,7 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
               const widgetEspacoH(altura: 15),
               Row(
                 children: [
-                  TextContrasteFonte(
+                  TextContrastFont(
                     text: "Nova Senha",
                     style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
                     semantics: "Digite sua Senha",
@@ -85,7 +85,7 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
                   Semantics(
                     container: false,
                     label: "Campo obrigatório",
-                    child: TextContrasteFonte(
+                    child: TextContrastFont(
                       text: " *",
                       style: TextStyle(
                         color: corBackgroundLaranja,
@@ -166,12 +166,12 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
               const widgetEspacoH(altura: 15),
               Row(
                 children: [
-                  TextContrasteFonte(
+                  TextContrastFont(
                     text: AppLocalizations.of(context)!.register_confirm_password,
                     semantics: "Digite sua senha novamente",
                     style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
                   ),
-                  TextContrasteFonte(
+                  TextContrastFont(
                     text: " *",
                     style: TextStyle(
                       color: corBackgroundLaranja,
@@ -238,14 +238,14 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
                   ? Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        TextContrasteFonte(
+                        TextContrastFont(
                           text: AppLocalizations.of(context)!
                               .register_password_order,
                           style: FontsApp.roboto12W400Grey(FontsApp.tamanhoBase),
                           semantics: "Sua senha deve conter:",
                         ),
                         const widgetEspacoH(altura: 4),
-                        TextContrasteFonte(
+                        TextContrastFont(
                           text: AppLocalizations.of(context)!
                               .register_password_order_one,
                           style: haveMinDigits == 1
@@ -254,7 +254,7 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
                           semantics: "No mínimo 6 dígitos",
                         ),
                         const widgetEspacoH(altura: 4),
-                        TextContrasteFonte(
+                        TextContrastFont(
                           text: AppLocalizations.of(context)!
                               .register_password_order_two,
                           style: haveUpperCase == 1
@@ -263,7 +263,7 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
                           semantics: "Pelo menos 1 letra maiúscula",
                         ),
                         const widgetEspacoH(altura: 4),
-                        TextContrasteFonte(
+                        TextContrastFont(
                           text: AppLocalizations.of(context)!
                               .register_password_order_three,
                           style: haveLowerCase == 1
@@ -272,7 +272,7 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
                           semantics: "Pelo menos 1 letra minúscula",
                         ),
                         const widgetEspacoH(altura: 4),
-                        TextContrasteFonte(
+                        TextContrastFont(
                           text: AppLocalizations.of(context)!
                               .register_password_order_four,
                           style: haveNumber == 1
@@ -281,7 +281,7 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
                           semantics: "Pelo menos 1 número",
                         ),
                         const widgetEspacoH(altura: 8),
-                        TextContrasteFonte(
+                        TextContrastFont(
                           text: AppLocalizations.of(context)!
                               .register_password_order_five,
                           style: FontsApp.roboto12W300Grey(FontsApp.tamanhoBase),

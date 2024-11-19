@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/shared/themes.dart';
-import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
+import 'package:agendacultural/shared/text_contrast_font.dart';
 
 class EventDetailMoreInfoWidget extends StatelessWidget {
   final String price;
@@ -32,7 +32,7 @@ class EventDetailMoreInfoWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        TextContrasteFonte(
+        TextContrastFont(
           text: AppLocalizations.of(context)!.e_more_info,
           style: GoogleFonts.inter(
             fontSize: FontsApp.tamanhoBase - 2,
@@ -51,7 +51,7 @@ class EventDetailMoreInfoWidget extends StatelessWidget {
                   height: 18,
                 ),
                 const SizedBox(width: 5),
-                TextContrasteFonte(
+                TextContrastFont(
                   text: infocl,
                   style: GoogleFonts.inter(
                     fontSize: FontsApp.tamanhoBase - 2,
@@ -68,7 +68,7 @@ class EventDetailMoreInfoWidget extends StatelessWidget {
                   height: 16,
                 ),
                 const SizedBox(width: 5),
-                TextContrasteFonte(
+                TextContrastFont(
                   text: infoEntry,
                   style: GoogleFonts.inter(
                     fontSize: FontsApp.tamanhoBase - 2,

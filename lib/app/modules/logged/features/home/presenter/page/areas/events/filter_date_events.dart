@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:menu_button/menu_button.dart';
 import 'package:agendacultural/shared/themes.dart';
-import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
+import 'package:agendacultural/shared/text_contrast_font.dart';
 import 'package:agendacultural/app/modules/logged/features/home/domain/enum/filter_date.dart';
 
 class FilterDateWidget extends StatelessWidget {
@@ -39,7 +39,7 @@ class FilterDateWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               Flexible(
-                child: TextContrasteFonte(
+                child: TextContrastFont(
                   semantics: filterDateToString(context, filterDateSelected),
                   text: filterDateToString(context, filterDateSelected),
                   color: corBackgroundLaranja,

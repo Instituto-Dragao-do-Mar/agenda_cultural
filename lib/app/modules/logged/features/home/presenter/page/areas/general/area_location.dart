@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/shared/themes.dart';
-import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
+import 'package:agendacultural/shared/text_contrast_font.dart';
 
 class AreaLocationWidget extends StatelessWidget {
   final void Function() onTapNavigateLocation;
@@ -20,7 +20,7 @@ class AreaLocationWidget extends StatelessWidget {
         onTap: onTapNavigateLocation,
         child: Row(
           children: [
-            TextContrasteFonte(
+            TextContrastFont(
               text: AppLocalizations.of(context)!.home_location,
               color: corBackgroundLaranja,
             ),

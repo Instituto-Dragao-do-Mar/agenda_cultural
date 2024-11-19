@@ -5,9 +5,9 @@ import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/shared/extensions/dates.dart';
+import 'package:agendacultural/shared/text_contrast_font.dart';
 import 'package:agendacultural/shared/button_favorite_event.dart';
 import 'package:agendacultural/shared/extensions/capitalize.dart';
-import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/favorite.dart';
 
@@ -37,7 +37,7 @@ class EventDetailDatesWidget extends StatelessWidget {
                 ),
                 const SizedBox(width: 5),
                 Expanded(
-                  child: TextContrasteFonte(
+                  child: TextContrastFont(
                     text: event.eventosdatas?.first.detalhe ?? '',
                     maxlines: 3,
                     style: GoogleFonts.inter(
@@ -80,7 +80,7 @@ class EventDetailDatesWidget extends StatelessWidget {
                         height: 18,
                       ),
                       const SizedBox(width: 4),
-                      TextContrasteFonte(
+                      TextContrastFont(
                         text: '$dayWeek $day/$month/$year',
                         style: GoogleFonts.inter(
                           fontSize: FontsApp.tamanhoBase - (FontsApp.tamanhoFonteBase16 - 14),
@@ -94,7 +94,7 @@ class EventDetailDatesWidget extends StatelessWidget {
                         height: 18,
                       ),
                       const SizedBox(width: 4),
-                      TextContrasteFonte(
+                      TextContrastFont(
                         text: hour,
                         style: GoogleFonts.inter(
                           fontSize: FontsApp.tamanhoBase - (FontsApp.tamanhoFonteBase16 - 14),

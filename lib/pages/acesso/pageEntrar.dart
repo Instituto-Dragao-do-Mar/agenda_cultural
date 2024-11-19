@@ -18,7 +18,7 @@ import 'package:provider/provider.dart';
 import '../../model/app_model.dart';
 import '../../model/colors.dart';
 import '../../shared/constantes.dart';
-import '../../shared/widgetTextFonteContraste.dart';
+import '../../shared/text_contrast_font.dart';
 import '../../shared/notify_pop_up.dart';
 import '../home/general/widgettopocomum.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -85,7 +85,7 @@ class _PageEntrarState extends State<PageEntrar> {
               const widgetEspacoH(
                 altura: 5,
               ),
-              TextContrasteFonte(
+              TextContrastFont(
                 text: AppLocalizations.of(context)!.login_enter,
                 style: GoogleFonts.poppins(
                   textStyle: TextStyle(
@@ -100,7 +100,7 @@ class _PageEntrarState extends State<PageEntrar> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  TextContrasteFonte(
+                  TextContrastFont(
                     text: AppLocalizations.of(context)!.login_text,
                     semantics:
                         "Para entrar é necessário que você tenha se cadastrado no nosso aplicativo .",
@@ -115,7 +115,7 @@ class _PageEntrarState extends State<PageEntrar> {
                         ),
                       );
                     },
-                    child: TextContrasteFonte(
+                    child: TextContrastFont(
                       text: AppLocalizations.of(context)!.register,
                       semantics: "Cadastre-se!",
                       style: TextStyle(
@@ -131,7 +131,7 @@ class _PageEntrarState extends State<PageEntrar> {
               ),
               Row(
                 children: [
-                  TextContrasteFonte(
+                  TextContrastFont(
                     text: AppLocalizations.of(context)!.login_email,
                     style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
                     semantics: "Rótulo de E-mail",
@@ -139,7 +139,7 @@ class _PageEntrarState extends State<PageEntrar> {
                   Semantics(
                     container: false,
                     label: "Campo obrigatório",
-                    child: TextContrasteFonte(
+                    child: TextContrastFont(
                       text: " *",
                       style: TextStyle(
                         color: corBackgroundLaranja,
@@ -170,7 +170,7 @@ class _PageEntrarState extends State<PageEntrar> {
               ),
               Row(
                 children: [
-                  TextContrasteFonte(
+                  TextContrastFont(
                     text: AppLocalizations.of(context)!.login_password,
                     style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
                     semantics: "Rótulo de Senha",
@@ -178,7 +178,7 @@ class _PageEntrarState extends State<PageEntrar> {
                   Semantics(
                     container: false,
                     label: "Campo obrigatório",
-                    child: TextContrasteFonte(
+                    child: TextContrastFont(
                       text: " *",
                       style: TextStyle(
                         color: corBackgroundLaranja,
@@ -258,7 +258,7 @@ class _PageEntrarState extends State<PageEntrar> {
                         ),
                       );
                     },
-                    child: TextContrasteFonte(
+                    child: TextContrastFont(
                       text: AppLocalizations.of(context)!.login_reset_password,
                       semantics: "Esqueci minha senha",
                       style: TextStyle(

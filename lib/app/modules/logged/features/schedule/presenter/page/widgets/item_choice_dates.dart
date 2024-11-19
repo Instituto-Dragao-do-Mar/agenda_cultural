@@ -3,7 +3,7 @@ import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/model/colors.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/extensions/dates.dart';
-import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
+import 'package:agendacultural/shared/text_contrast_font.dart';
 
 class InsertDateWidget extends StatelessWidget {
   final void Function() onTapDate;
@@ -39,14 +39,14 @@ class InsertDateWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            TextContrasteFonte(
+            TextContrastFont(
               text: label,
               color: corBackgroundLaranja,
               weight: FontWeight.bold,
               fontsize: FontsApp.tamanhoBase - (FontsApp.tamanhoFonteBase16 - 14),
             ),
             const SizedBox(width: 5),
-            TextContrasteFonte(
+            TextContrastFont(
               text: controller.text.formatDate(format: "E, dd MMM"),
               color: corTextAtual,
               fontsize: FontsApp.tamanhoBase - (FontsApp.tamanhoFonteBase16 - 14),

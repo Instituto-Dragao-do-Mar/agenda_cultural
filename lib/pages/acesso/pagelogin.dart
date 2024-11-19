@@ -16,7 +16,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../model/app_model.dart';
 import '../../model/colors.dart';
 import '../../model/fonts.dart';
-import '../../shared/widgetTextFonteContraste.dart';
+import '../../shared/text_contrast_font.dart';
 
 class pageLogin extends StatefulWidget {
   const pageLogin({super.key});
@@ -51,7 +51,7 @@ class _pageLoginState extends State<pageLogin> {
             children: [
               Column(
                 children: [
-                  TextContrasteFonte(
+                  TextContrastFont(
                     text: "", //Realização
                     style: FontsApp.roboto16W400Black(FontsApp.tamanhoBase),
                     semantics: "Realização Governo do Estado do Ceará.",
@@ -135,7 +135,7 @@ class _pageLoginState extends State<pageLogin> {
                           width: double.infinity,
                           height: 35,
                           child: Center(
-                            child: TextContrasteFonte(
+                            child: TextContrastFont(
                               text: AppLocalizations.of(context)!.visitor,
                               semantics: "Entrar como visitante",
                               style: GoogleFonts.roboto(
@@ -153,7 +153,7 @@ class _pageLoginState extends State<pageLogin> {
               const widgetEspacoH(altura: 10),
               Column(
                 children: [
-                  TextContrasteFonte(
+                  TextContrastFont(
                     text: "", //Gestão
                     semantics: "Gestão Instituto Dragão do Mar",
                     style: FontsApp.roboto16W400Black(FontsApp.tamanhoBase),
