@@ -2,7 +2,7 @@
 
 import 'package:agendacultural/app/modules/logged/presenter/page/logged_area_page.dart';
 import 'package:agendacultural/controller/notificacao_controller.dart';
-import 'package:agendacultural/controller/usuario_controller.dart';
+import 'package:agendacultural/controller/user_controller.dart';
 import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/acesso/pageCadastro.dart';
@@ -37,13 +37,13 @@ class _PageEntrarState extends State<PageEntrar> {
   String senhaInput = "";
   bool obscureTextSenha = true;
   late final AppModel app;
-  late final UsuarioController usuarioController;
+  late final UserController usuarioController;
 
   void initState() {
     super.initState();
     app = context.read<AppModel>();
     emailInput = app.usuarioLogado?.email ?? "";
-    usuarioController = context.read<UsuarioController>();
+    usuarioController = context.read<UserController>();
   }
 
   @override
@@ -318,8 +318,8 @@ class _PageEntrarState extends State<PageEntrar> {
 
     if (app.isLog()) {
       app.listaNotificacoes = await NotificacaoController().NotificacaoGet(
-        userguidid: app.GetGuidId(),
-        token: app.GetToken(),
+        userguidid: app.getGuidId(),
+        token: app.getToken(),
       );
 
       Navigator.pushReplacement(

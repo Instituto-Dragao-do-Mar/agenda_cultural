@@ -29,13 +29,13 @@ mixin _$AppStore on AppStoreBase, Store {
       Atom(name: 'AppStoreBase.categories', context: context);
 
   @override
-  List<Categoria> get categories {
+  List<Category> get categories {
     _$categoriesAtom.reportRead();
     return super.categories;
   }
 
   @override
-  set categories(List<Categoria> value) {
+  set categories(List<Category> value) {
     _$categoriesAtom.reportWrite(value, super.categories, () {
       super.categories = value;
     });
@@ -44,13 +44,13 @@ mixin _$AppStore on AppStoreBase, Store {
   late final _$eventsAtom = Atom(name: 'AppStoreBase.events', context: context);
 
   @override
-  List<Evento> get events {
+  List<Event> get events {
     _$eventsAtom.reportRead();
     return super.events;
   }
 
   @override
-  set events(List<Evento> value) {
+  set events(List<Event> value) {
     _$eventsAtom.reportWrite(value, super.events, () {
       super.events = value;
     });
@@ -59,13 +59,13 @@ mixin _$AppStore on AppStoreBase, Store {
   late final _$spacesAtom = Atom(name: 'AppStoreBase.spaces', context: context);
 
   @override
-  List<Espaco> get spaces {
+  List<Space> get spaces {
     _$spacesAtom.reportRead();
     return super.spaces;
   }
 
   @override
-  set spaces(List<Espaco> value) {
+  set spaces(List<Space> value) {
     _$spacesAtom.reportWrite(value, super.spaces, () {
       super.spaces = value;
     });
@@ -75,13 +75,13 @@ mixin _$AppStore on AppStoreBase, Store {
       Atom(name: 'AppStoreBase.favorites', context: context);
 
   @override
-  List<Favorito> get favorites {
+  List<Favorite> get favorites {
     _$favoritesAtom.reportRead();
     return super.favorites;
   }
 
   @override
-  set favorites(List<Favorito> value) {
+  set favorites(List<Favorite> value) {
     _$favoritesAtom.reportWrite(value, super.favorites, () {
       super.favorites = value;
     });
@@ -113,7 +113,7 @@ mixin _$AppStore on AppStoreBase, Store {
   }
 
   @override
-  void setCategories(List<Categoria> value) {
+  void setCategories(List<Category> value) {
     final _$actionInfo = _$AppStoreBaseActionController.startAction(
         name: 'AppStoreBase.setCategories');
     try {
@@ -124,7 +124,7 @@ mixin _$AppStore on AppStoreBase, Store {
   }
 
   @override
-  void setEvents(List<Evento> value) {
+  void setEvents(List<Event> value) {
     final _$actionInfo = _$AppStoreBaseActionController.startAction(
         name: 'AppStoreBase.setEvents');
     try {
@@ -135,7 +135,7 @@ mixin _$AppStore on AppStoreBase, Store {
   }
 
   @override
-  void setSpaces(List<Espaco> value) {
+  void setSpaces(List<Space> value) {
     final _$actionInfo = _$AppStoreBaseActionController.startAction(
         name: 'AppStoreBase.setSpaces');
     try {
@@ -146,7 +146,7 @@ mixin _$AppStore on AppStoreBase, Store {
   }
 
   @override
-  void setFavorites(List<Favorito> value) {
+  void setFavorites(List<Favorite> value) {
     final _$actionInfo = _$AppStoreBaseActionController.startAction(
         name: 'AppStoreBase.setFavorites');
     try {

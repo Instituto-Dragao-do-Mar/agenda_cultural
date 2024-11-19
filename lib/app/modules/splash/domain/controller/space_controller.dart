@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:agendacultural/shared/constantes.dart';
-import 'package:agendacultural/model/espaco_model.dart';
 import 'package:agendacultural/controller/base_controller.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
 
-class EspacoController extends BaseController {
-  Future<List<Espaco>> getSpaces() async {
-    List<Espaco> list = [];
+class SpaceController extends BaseController {
+  Future<List<Space>> getSpaces() async {
+    List<Space> list = [];
 
     String url = "${baseUrlApi}espacos";
 
@@ -18,7 +18,7 @@ class EspacoController extends BaseController {
       if (response.statusCode == 200) {
         var ret = jsonDecode(response.body);
         list = (ret['espacos'] as List).map((e) {
-          return Espaco.fromJson(e);
+          return Space.fromJson(e);
         }).toList();
       } else {
         setError("Espaco ${response.body}");

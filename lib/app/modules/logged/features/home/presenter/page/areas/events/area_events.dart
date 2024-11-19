@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:agendacultural/model/fontes.dart';
-import 'package:agendacultural/model/espaco_model.dart';
-import 'package:agendacultural/model/evento_model.dart';
 import 'package:agendacultural/model/usuario_model.dart';
-import 'package:agendacultural/model/favorito_model.dart';
-import 'package:agendacultural/model/categoria_model.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/favorite.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/category.dart';
 import 'package:agendacultural/app/modules/logged/features/home/domain/enum/filter_date.dart';
 import 'package:agendacultural/app/modules/logged/features/home/domain/enum/exhibition_event.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/item/item_event.dart';
@@ -16,10 +16,10 @@ class AreaEventsWidget extends StatelessWidget {
   final ExhibitionEvent exhibitionEvent;
   final String title;
   final String subtitle;
-  final List<Evento> events;
-  final List<Espaco> spaces;
-  final List<Categoria> categories;
-  final List<Favorito> favorites;
+  final List<Event> events;
+  final List<Space> spaces;
+  final List<Category> categories;
+  final List<Favorite> favorites;
   final FilterDate? filterDateSelected;
   final bool showAllEvents;
   final Usuario user;
@@ -71,8 +71,8 @@ class AreaEventsWidget extends StatelessWidget {
               child: Wrap(
                 children: events.map((event) {
                   var eventsDate = event.eventosdatas!.first;
-                  Espaco spaceReal = spaces.firstWhere((element) => element.id == eventsDate.idespaco);
-                  Espaco spacePrincipal;
+                  Space spaceReal = spaces.firstWhere((element) => element.id == eventsDate.idespaco);
+                  Space spacePrincipal;
                   if (spaceReal.idespacoprincipal == 0) {
                     spacePrincipal = spaceReal;
                   } else {

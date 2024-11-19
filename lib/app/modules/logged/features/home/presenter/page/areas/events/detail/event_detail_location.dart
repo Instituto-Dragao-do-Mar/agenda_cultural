@@ -3,10 +3,10 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/shared/themes.dart';
-import 'package:agendacultural/model/espaco_model.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
 
 class EventDetailLocation extends StatelessWidget {
-  final Espaco spacePrincipal;
+  final Space spacePrincipal;
 
   const EventDetailLocation({
     super.key,

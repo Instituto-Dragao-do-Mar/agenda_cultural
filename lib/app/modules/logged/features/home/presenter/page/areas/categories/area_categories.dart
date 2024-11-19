@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/model/categoria_model.dart';
 import 'package:agendacultural/app/common/utils/tradutors.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/category.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/general/header_areas_home.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/categories/item_category_filter.dart';
 
 class AreaCategoryWidget extends StatelessWidget {
   final ScrollController scrollControllerCategories;
-  final List<Categoria> categories;
+  final List<Category> categories;
   final bool showAllCategories;
-  final Categoria? selectedCategory;
+  final Category? selectedCategory;
   final void Function() onTapExpandCategories;
-  final void Function(Categoria categoria) applyFilterCategory;
+  final void Function(Category categoria) applyFilterCategory;
 
   const AreaCategoryWidget({
     super.key,

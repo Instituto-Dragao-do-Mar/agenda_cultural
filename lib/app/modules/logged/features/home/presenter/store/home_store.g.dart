@@ -79,13 +79,13 @@ mixin _$HomeStore on HomeStoreBase, Store {
       Atom(name: 'HomeStoreBase.selectedCategory', context: context);
 
   @override
-  Categoria? get selectedCategory {
+  Category? get selectedCategory {
     _$selectedCategoryAtom.reportRead();
     return super.selectedCategory;
   }
 
   @override
-  set selectedCategory(Categoria? value) {
+  set selectedCategory(Category? value) {
     _$selectedCategoryAtom.reportWrite(value, super.selectedCategory, () {
       super.selectedCategory = value;
     });
@@ -111,13 +111,13 @@ mixin _$HomeStore on HomeStoreBase, Store {
       Atom(name: 'HomeStoreBase.eventsDateFiltered', context: context);
 
   @override
-  List<Evento> get eventsDateFiltered {
+  List<Event> get eventsDateFiltered {
     _$eventsDateFilteredAtom.reportRead();
     return super.eventsDateFiltered;
   }
 
   @override
-  set eventsDateFiltered(List<Evento> value) {
+  set eventsDateFiltered(List<Event> value) {
     _$eventsDateFilteredAtom.reportWrite(value, super.eventsDateFiltered, () {
       super.eventsDateFiltered = value;
     });
@@ -127,13 +127,13 @@ mixin _$HomeStore on HomeStoreBase, Store {
       Atom(name: 'HomeStoreBase.eventsProminenceFiltered', context: context);
 
   @override
-  List<Evento> get eventsProminenceFiltered {
+  List<Event> get eventsProminenceFiltered {
     _$eventsProminenceFilteredAtom.reportRead();
     return super.eventsProminenceFiltered;
   }
 
   @override
-  set eventsProminenceFiltered(List<Evento> value) {
+  set eventsProminenceFiltered(List<Event> value) {
     _$eventsProminenceFilteredAtom
         .reportWrite(value, super.eventsProminenceFiltered, () {
       super.eventsProminenceFiltered = value;
@@ -177,13 +177,13 @@ mixin _$HomeStore on HomeStoreBase, Store {
       Atom(name: 'HomeStoreBase.spacesFiltered', context: context);
 
   @override
-  List<Espaco> get spacesFiltered {
+  List<Space> get spacesFiltered {
     _$spacesFilteredAtom.reportRead();
     return super.spacesFiltered;
   }
 
   @override
-  set spacesFiltered(List<Espaco> value) {
+  set spacesFiltered(List<Space> value) {
     _$spacesFilteredAtom.reportWrite(value, super.spacesFiltered, () {
       super.spacesFiltered = value;
     });
@@ -231,7 +231,7 @@ mixin _$HomeStore on HomeStoreBase, Store {
   }
 
   @override
-  void setSelectedCategory(Categoria value) {
+  void setSelectedCategory(Category value) {
     final _$actionInfo = _$HomeStoreBaseActionController.startAction(
         name: 'HomeStoreBase.setSelectedCategory');
     try {
@@ -253,7 +253,7 @@ mixin _$HomeStore on HomeStoreBase, Store {
   }
 
   @override
-  void setEventsDateFiltered(List<Evento> value) {
+  void setEventsDateFiltered(List<Event> value) {
     final _$actionInfo = _$HomeStoreBaseActionController.startAction(
         name: 'HomeStoreBase.setEventsDateFiltered');
     try {
@@ -264,7 +264,7 @@ mixin _$HomeStore on HomeStoreBase, Store {
   }
 
   @override
-  void setEventsProminenceFiltered(List<Evento> value) {
+  void setEventsProminenceFiltered(List<Event> value) {
     final _$actionInfo = _$HomeStoreBaseActionController.startAction(
         name: 'HomeStoreBase.setEventsProminenceFiltered');
     try {
@@ -286,7 +286,7 @@ mixin _$HomeStore on HomeStoreBase, Store {
   }
 
   @override
-  void setSpacesFiltered(List<Espaco> value) {
+  void setSpacesFiltered(List<Space> value) {
     final _$actionInfo = _$HomeStoreBaseActionController.startAction(
         name: 'HomeStoreBase.setSpacesFiltered');
     try {

@@ -3,12 +3,12 @@ import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
-import 'package:agendacultural/model/categoria_model.dart';
 import 'package:agendacultural/shared/widgetimagemexterna.dart';
 import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/category.dart';
 
 class ItemCategoryFilterWidget extends StatelessWidget {
-  final Categoria category;
+  final Category category;
   final String nameCategory;
   final bool isSelected;
   final void Function() applyFilterCategory;

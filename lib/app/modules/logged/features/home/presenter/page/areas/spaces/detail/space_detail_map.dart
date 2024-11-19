@@ -2,10 +2,10 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:agendacultural/model/espaco_model.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
 
 class SpaceDetailMapWidget extends StatelessWidget {
-  final Espaco space;
+  final Space space;
 
   const SpaceDetailMapWidget({
     super.key,

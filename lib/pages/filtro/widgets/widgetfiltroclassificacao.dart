@@ -1,12 +1,9 @@
-// ignore_for_file: camel_case_types
-
-import 'package:agendacultural/model/app_model.dart';
-import 'package:agendacultural/model/evento_model.dart';
-import 'package:agendacultural/model/fontes.dart';
-import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:flutter/material.dart';
 import 'package:group_button/group_button.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/app_model.dart';
+import 'package:agendacultural/shared/widgetespacoh.dart';
 
 class widgetfiltroclassificacao extends StatefulWidget {
   const widgetfiltroclassificacao({
@@ -38,11 +35,11 @@ class _widgetfiltroclassificacaoState extends State<widgetfiltroclassificacao> {
 
   void processaOpcoes() {
     opcoes = [];
-    for (Evento e in widget.app.listaEventos.eventos!) {
-      if (!opcoes.any((element) => element == e.classificacaoetaria)) {
-        opcoes.add(e.classificacaoetaria!);
-      }
-    }
+    // for (Event e in widget.app.listaEventos.eventos!) {
+    //   if (!opcoes.any((element) => element == e.classificacaoetaria)) {
+    //     opcoes.add(e.classificacaoetaria!);
+    //   }
+    // }
   }
 
   void traduzOpcoes() {

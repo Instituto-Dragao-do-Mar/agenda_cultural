@@ -1,27 +1,6 @@
-class ListaEspacos {
-  List<Espaco>? espacos;
+import 'package:agendacultural/app/modules/splash/domain/adapter/space_images.dart';
 
-  ListaEspacos({this.espacos});
-
-  ListaEspacos.fromJson(Map<String, dynamic> json) {
-    if (json['espacos'] != null) {
-      espacos = <Espaco>[];
-      json['espacos'].forEach((v) {
-        espacos!.add(Espaco.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    if (espacos != null) {
-      data['espacos'] = espacos!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
-
-class Espaco {
+class Space {
   int? id;
   String? guidid;
   String? nome;
@@ -54,9 +33,9 @@ class Espaco {
   String? acessibilidadeFisica;
   String? urlavatar;
   int? idespacoprincipal;
-  List<Espacoimagens>? espacosimagens;
+  List<SpaceImages>? espacosimagens;
 
-  Espaco({
+  Space({
     this.id,
     this.guidid,
     this.nome,
@@ -92,7 +71,7 @@ class Espaco {
     this.idespacoprincipal,
   });
 
-  Espaco.fromJson(Map<String, dynamic> json) {
+  Space.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     guidid = json['guidid'];
     nome = json['nome'];
@@ -126,15 +105,15 @@ class Espaco {
     urlavatar = json['urlavatar'];
     idespacoprincipal = json['idespacoprincipal'];
     if (json['espacosimagens'] != null) {
-      espacosimagens = <Espacoimagens>[];
+      espacosimagens = <SpaceImages>[];
       json['espacosimagens'].forEach((v) {
-        espacosimagens!.add(new Espacoimagens.fromJson(v));
+        espacosimagens!.add(SpaceImages.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['guidid'] = guidid;
     data['nome'] = nome;
@@ -170,63 +149,6 @@ class Espaco {
     if (espacosimagens != null) {
       data['espacosimagens'] = espacosimagens!.map((v) => v.toJson()).toList();
     }
-    return data;
-  }
-}
-
-class Espacoimagens {
-  int? id;
-  int? idespaco;
-  String? idimagem;
-  List<ImagemEspaco>? imagens;
-
-  Espacoimagens({this.id, this.idespaco, this.idimagem, this.imagens});
-
-  Espacoimagens.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    idespaco = json['idespaco'];
-    idimagem = json['idimagem'];
-    if (json['imagens'] != null) {
-      imagens = <ImagemEspaco>[];
-      json['imagens'].forEach((v) {
-        imagens!.add(new ImagemEspaco.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = id;
-    data['idespaco'] = idespaco;
-    data['idimagem'] = idimagem;
-    if (imagens != null) {
-      data['imagens'] = imagens!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
-
-class ImagemEspaco {
-  String? id;
-  String? base64;
-  String? url;
-  String? tipo;
-
-  ImagemEspaco({this.id, this.base64, this.url, this.tipo});
-
-  ImagemEspaco.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    base64 = json['base64'];
-    url = json['url'];
-    tipo = json['tipo'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = id;
-    data['base64'] = base64;
-    data['url'] = url;
-    data['tipo'] = tipo;
     return data;
   }
 }

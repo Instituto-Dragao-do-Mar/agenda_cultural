@@ -2,12 +2,12 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:agendacultural/model/espaco_model.dart';
-import 'package:agendacultural/model/evento_model.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
 
 class EventDetailMapWidget extends StatelessWidget {
-  final Espaco spaceReal;
-  final Evento event;
+  final Space spaceReal;
+  final Event event;
 
   const EventDetailMapWidget({
     super.key,

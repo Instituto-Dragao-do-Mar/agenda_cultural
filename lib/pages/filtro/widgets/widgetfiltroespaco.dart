@@ -1,13 +1,10 @@
-// ignore_for_file: camel_case_types
-
-import 'package:agendacultural/model/app_model.dart';
-import 'package:agendacultural/model/espaco_model.dart';
-import 'package:agendacultural/model/fontes.dart';
-import 'package:agendacultural/shared/widgetdropdownsearch.dart';
-import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:flutter/material.dart';
 import 'package:group_button/group_button.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/app_model.dart';
+import 'package:agendacultural/shared/widgetespacoh.dart';
+import 'package:agendacultural/shared/widgetdropdownsearch.dart';
 
 class widgetfiltroespaco extends StatefulWidget {
   const widgetfiltroespaco({
@@ -37,11 +34,11 @@ class _widgetfiltroespacoState extends State<widgetfiltroespaco> {
 
   void processaOpcoes() {
     opcoes = [];
-    for (Espaco e in widget.app.listaEspacos.espacos!) {
-      if (!opcoes.any((element) => element == e.nome)) {
-        opcoes.add(e.nome!);
-      }
-    }
+    // for (Espaco e in widget.app.listaEspacos.espacos!) {
+    //   if (!opcoes.any((element) => element == e.nome)) {
+    //     opcoes.add(e.nome!);
+    //   }
+    // }
     opcoes.insert(0, 'Selecionar espaço');
   }
 

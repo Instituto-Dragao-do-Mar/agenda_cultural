@@ -1,7 +1,6 @@
-import 'package:agendacultural/model/evento_model.dart';
-
 import 'package:mobx/mobx.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
 
 part 'schedule_store.g.dart';
 
@@ -33,10 +32,10 @@ abstract class ScheduleStoreBase with Store {
   void setDateSelected(DateTime value) => dateSelected = value;
 
   @observable
-  List<Evento> eventsFilter = [];
+  List<Event> eventsFilter = [];
 
   @action
-  void setEventsFilter(List<Evento> value) => eventsFilter = value;
+  void setEventsFilter(List<Event> value) => eventsFilter = value;
 
   @action
   void dispose() {

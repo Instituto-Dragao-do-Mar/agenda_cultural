@@ -71,16 +71,16 @@ class _pageNotificacaoState extends State<pageNotificacao> {
                           "",
                       funcaoSim: () async {
                         await NotificacaoController().NotificacaoMarcaLidaPost(
-                          userguidid: app.GetGuidId(),
+                          userguidid: app.getGuidId(),
                           idnotificacao: app
                               .listaNotificacoes.notificacoes![index].id
                               .toString(),
-                          token: app.GetToken(),
+                          token: app.getToken(),
                         );
                         app.listaNotificacoes =
                             await NotificacaoController().NotificacaoGet(
-                          userguidid: app.GetGuidId(),
-                          token: app.GetToken(),
+                          userguidid: app.getGuidId(),
+                          token: app.getToken(),
                         );
                         setState(() {});
                       },

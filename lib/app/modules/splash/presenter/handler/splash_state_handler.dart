@@ -6,12 +6,12 @@ import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/app/app_widget.dart';
 import 'package:agendacultural/app/common/router/router.dart';
 import 'package:agendacultural/core/app_store/app_store.dart';
-import 'package:agendacultural/controller/espaco_controller.dart';
-import 'package:agendacultural/controller/evento_controller.dart';
 import 'package:agendacultural/shared/userSharedPreferences.dart';
-import 'package:agendacultural/controller/usuario_controller.dart';
-import 'package:agendacultural/controller/categoria_controller.dart';
+import 'package:agendacultural/controller/user_controller.dart';
 import 'package:agendacultural/app/modules/splash/presenter/store/splash_store.dart';
+import 'package:agendacultural/app/modules/splash/domain/controller/space_controller.dart';
+import 'package:agendacultural/app/modules/splash/domain/controller/event_controller.dart';
+import 'package:agendacultural/app/modules/splash/domain/controller/category_controller.dart';
 
 class SplashPageStateHandler {
   final AppStore _appStore;
@@ -46,19 +46,19 @@ class SplashPageStateHandler {
 
   Future<void> _initDataApp() async {
     //Categories
-    _appStore.setCategories(await CategoriaController().getCategories());
+    _appStore.setCategories(await CategoryController().getCategories());
 
     //Events
-    _appStore.setEvents(await EventoController().getEvents());
+    _appStore.setEvents(await EventController().getEvents());
     await _sortEvents();
 
     //Spaces
-    _appStore.setSpaces(await EspacoController().getSpaces());
+    _appStore.setSpaces(await SpaceController().getSpaces());
 
     //Favorites
     _appStore.setFavorites(
-      await EventoController().getFavorites(
-        userguidid: _appStore.userLogged.guidid ?? '',
+      await EventController().getFavorites(
+        userGuidId: _appStore.userLogged.guidid ?? '',
         token: _appStore.userLogged.signature ?? '',
       ),
     );
@@ -116,7 +116,7 @@ class SplashPageStateHandler {
 
     //Verifica se o usuário já está logado
     if (userPrefs != null) {
-      _appStore.setUser(await UsuarioController().getUserbyPrefData(
+      _appStore.setUser(await UserController().getUserbyPrefData(
         userPrefs.signature!,
         userPrefs.email!,
       ));

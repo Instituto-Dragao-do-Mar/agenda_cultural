@@ -1,6 +1,6 @@
 // ignore_for_file: file_names, use_build_context_synchronously
 
-import 'package:agendacultural/controller/usuario_controller.dart';
+import 'package:agendacultural/controller/user_controller.dart';
 import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
 import 'package:agendacultural/pages/home/general/widgettopocomum.dart';
@@ -31,12 +31,12 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
   int haveNumber = 0;
   int haveMinDigits = 0;
   int rulesMatch = 0;
-  UsuarioController? usuarioController;
+  UserController? usuarioController;
 
   @override
   void initState() {
     super.initState();
-    usuarioController = context.read<UsuarioController>();
+    usuarioController = context.read<UserController>();
   }
 
   @override

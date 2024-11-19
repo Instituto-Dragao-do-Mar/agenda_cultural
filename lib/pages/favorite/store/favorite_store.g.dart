@@ -29,13 +29,13 @@ mixin _$FavoriteStore on FavoriteStoreBase, Store {
       Atom(name: 'FavoriteStoreBase.favorites', context: context);
 
   @override
-  ListaFavoritos get favorites {
+  List<Favorite> get favorites {
     _$favoritesAtom.reportRead();
     return super.favorites;
   }
 
   @override
-  set favorites(ListaFavoritos value) {
+  set favorites(List<Favorite> value) {
     _$favoritesAtom.reportWrite(value, super.favorites, () {
       super.favorites = value;
     });
@@ -45,13 +45,13 @@ mixin _$FavoriteStore on FavoriteStoreBase, Store {
       Atom(name: 'FavoriteStoreBase.eventsFavorite', context: context);
 
   @override
-  List<Evento> get eventsFavorite {
+  List<Event> get eventsFavorite {
     _$eventsFavoriteAtom.reportRead();
     return super.eventsFavorite;
   }
 
   @override
-  set eventsFavorite(List<Evento> value) {
+  set eventsFavorite(List<Event> value) {
     _$eventsFavoriteAtom.reportWrite(value, super.eventsFavorite, () {
       super.eventsFavorite = value;
     });
@@ -72,7 +72,7 @@ mixin _$FavoriteStore on FavoriteStoreBase, Store {
   }
 
   @override
-  void setFavorites(ListaFavoritos value) {
+  void setFavorites(List<Favorite> value) {
     final _$actionInfo = _$FavoriteStoreBaseActionController.startAction(
         name: 'FavoriteStoreBase.setFavorites');
     try {
@@ -83,7 +83,7 @@ mixin _$FavoriteStore on FavoriteStoreBase, Store {
   }
 
   @override
-  void setListEventsFavorite(List<Evento> value) {
+  void setListEventsFavorite(List<Event> value) {
     final _$actionInfo = _$FavoriteStoreBaseActionController.startAction(
         name: 'FavoriteStoreBase.setListEventsFavorite');
     try {

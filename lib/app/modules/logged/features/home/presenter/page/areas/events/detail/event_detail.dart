@@ -3,13 +3,13 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/shared/themes.dart';
-import 'package:agendacultural/model/espaco_model.dart';
-import 'package:agendacultural/model/evento_model.dart';
 import 'package:agendacultural/model/usuario_model.dart';
-import 'package:agendacultural/model/favorito_model.dart';
 import 'package:agendacultural/shared/notify_pop_up.dart';
-import 'package:agendacultural/model/categoria_model.dart';
 import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/favorite.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/category.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/detail/event_detail_map.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/detail/event_detail_dates.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/detail/event_detail_image.dart';
@@ -23,11 +23,11 @@ import 'package:agendacultural/app/modules/logged/features/home/presenter/page/a
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/detail/event_detail_acessibility.dart';
 
 class EventDetail extends StatelessWidget {
-  final Evento event;
-  final Espaco spaceReal;
-  final Espaco spacePrincipal;
-  final List<Categoria> categories;
-  final List<Favorito> favorites;
+  final Event event;
+  final Space spaceReal;
+  final Space spacePrincipal;
+  final List<Category> categories;
+  final List<Favorite> favorites;
   final Usuario user;
 
   const EventDetail({

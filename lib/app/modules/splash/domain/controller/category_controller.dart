@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:agendacultural/shared/constantes.dart';
-import 'package:agendacultural/model/categoria_model.dart';
 import 'package:agendacultural/controller/base_controller.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/category.dart';
 
-class CategoriaController extends BaseController {
-  Future<List<Categoria>> getCategories() async {
-    List<Categoria> list = [];
+class CategoryController extends BaseController {
+  Future<List<Category>> getCategories() async {
+    List<Category> list = [];
 
     String url = "${baseUrlApi}categorias";
 
@@ -20,7 +20,7 @@ class CategoriaController extends BaseController {
       if (response.statusCode == 200) {
         var ret = jsonDecode(response.body);
         list = (ret['categorias'] as List).map((e) {
-          return Categoria.fromJson(e);
+          return Category.fromJson(e);
         }).toList();
       } else {
         setError("Categoria ${response.body}");

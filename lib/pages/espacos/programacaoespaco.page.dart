@@ -1,17 +1,16 @@
-import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/item/item_event.dart';
-import 'package:agendacultural/model/app_model.dart';
-import 'package:agendacultural/model/espaco_model.dart';
-import 'package:agendacultural/model/evento_model.dart';
-import 'package:agendacultural/model/fontes.dart';
-import 'package:agendacultural/model/imagem_model.dart';
-import 'package:agendacultural/pages/espacos/pesquisarprogramacao.page.dart';
-import 'package:agendacultural/shared/themes.dart';
-import 'package:agendacultural/shared/widgetBottomNavigator.dart';
-import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
-import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/shared/themes.dart';
+import 'package:agendacultural/model/app_model.dart';
+import 'package:agendacultural/model/imagem_model.dart';
+import 'package:agendacultural/shared/widgetimagem.dart';
+import 'package:agendacultural/shared/widgetBottomNavigator.dart';
+import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
+import 'package:agendacultural/pages/espacos/pesquisarprogramacao.page.dart';
 
 class ProgramacaoEspacoPage extends StatefulWidget {
   const ProgramacaoEspacoPage({
@@ -19,7 +18,7 @@ class ProgramacaoEspacoPage extends StatefulWidget {
     required this.espaco,
   });
 
-  final Espaco espaco;
+  final Space espaco;
 
   @override
   State<ProgramacaoEspacoPage> createState() => _ProgramacaoEspacoPageState();
@@ -27,21 +26,21 @@ class ProgramacaoEspacoPage extends StatefulWidget {
 
 class _ProgramacaoEspacoPageState extends State<ProgramacaoEspacoPage> {
   late AppModel? app;
-  List<Evento> eventos = [];
+  List<Event> eventos = [];
 
   @override
   void initState() {
     super.initState();
     app = Provider.of<AppModel>(context, listen: false);
-    for (Evento e in app!.listaEventos.eventos ?? eventos) {
-      String nomeEspacoPrincipal = app!.GetEspacoPrincipal(evento: e);
-      String nomeEspacoPrincipal2 = app!.GetEspacoEvento(e);
-      if (nomeEspacoPrincipal != '') {
-        if (nomeEspacoPrincipal == widget.espaco.nome) eventos.add(e);
-      } else {
-        if (nomeEspacoPrincipal2 == widget.espaco.nome) eventos.add(e);
-      }
-    }
+    // for (Event e in app!.listaEventos.eventos ?? eventos) {
+    //   String nomeEspacoPrincipal = app!.GetEspacoPrincipal(evento: e);
+    //   String nomeEspacoPrincipal2 = app!.GetEspacoEvento(e);
+    //   if (nomeEspacoPrincipal != '') {
+    //     if (nomeEspacoPrincipal == widget.espaco.nome) eventos.add(e);
+    //   } else {
+    //     if (nomeEspacoPrincipal2 == widget.espaco.nome) eventos.add(e);
+    //   }
+    // }
   }
 
   @override

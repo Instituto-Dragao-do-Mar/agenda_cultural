@@ -7,13 +7,13 @@ import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/extensions/dates.dart';
 import 'package:agendacultural/app/common/router/router.dart';
 import 'package:agendacultural/pages/filtro/pagefiltrocompleto.dart';
-import 'package:agendacultural/pages/home/general/button_filter.dart';
-import 'package:agendacultural/pages/home/location/area_location.dart';
 import 'package:agendacultural/app/modules/logged/features/home/domain/enum/filter_date.dart';
 import 'package:agendacultural/app/modules/logged/features/home/domain/enum/exhibition_event.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/handler/home_state_handler.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/area_events.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/spaces/area_spaces.dart';
+import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/general/area_location.dart';
+import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/general/button_filter.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/categories/area_categories.dart';
 
 class HomePage extends StatefulWidget {

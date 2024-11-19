@@ -1,8 +1,8 @@
 import 'package:mobx/mobx.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:agendacultural/model/espaco_model.dart';
-import 'package:agendacultural/model/evento_model.dart';
-import 'package:agendacultural/model/categoria_model.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/category.dart';
 import 'package:agendacultural/app/modules/logged/features/home/domain/enum/filter_date.dart';
 
 part 'home_store.g.dart';
@@ -32,10 +32,10 @@ abstract class HomeStoreBase with Store {
   void setAllCategories(bool value) => allCategories = value;
 
   @observable
-  Categoria? selectedCategory;
+  Category? selectedCategory;
 
   @action
-  void setSelectedCategory(Categoria value) => selectedCategory = value;
+  void setSelectedCategory(Category value) => selectedCategory = value;
 
   //Events
 
@@ -46,16 +46,16 @@ abstract class HomeStoreBase with Store {
   void setFilterDate(FilterDate value) => filterDate = value;
 
   @observable
-  List<Evento> eventsDateFiltered = [];
+  List<Event> eventsDateFiltered = [];
 
   @action
-  void setEventsDateFiltered(List<Evento> value) => eventsDateFiltered = value;
+  void setEventsDateFiltered(List<Event> value) => eventsDateFiltered = value;
 
   @observable
-  List<Evento> eventsProminenceFiltered = [];
+  List<Event> eventsProminenceFiltered = [];
 
   @action
-  void setEventsProminenceFiltered(List<Evento> value) => eventsProminenceFiltered = value;
+  void setEventsProminenceFiltered(List<Event> value) => eventsProminenceFiltered = value;
 
   @observable
   bool allEventsProminence = false;
@@ -69,10 +69,10 @@ abstract class HomeStoreBase with Store {
   ScrollController scrollControllerSpaces = ScrollController();
 
   @observable
-  List<Espaco> spacesFiltered = [];
+  List<Space> spacesFiltered = [];
 
   @action
-  void setSpacesFiltered(List<Espaco> value) => spacesFiltered = value;
+  void setSpacesFiltered(List<Space> value) => spacesFiltered = value;
 
   @observable
   bool allSpaces = false;

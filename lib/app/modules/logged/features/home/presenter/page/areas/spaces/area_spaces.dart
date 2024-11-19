@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/model/fontes.dart';
-import 'package:agendacultural/model/espaco_model.dart';
 import 'package:agendacultural/model/usuario_model.dart';
-import 'package:agendacultural/pages/espacos/space_detail_page.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
+import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/spaces/detail/space_detail.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/spaces/item/item_space.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/general/header_areas_home.dart';
 
 class AreaSpacesWidget extends StatelessWidget {
   final ScrollController scrollControllerSpaces;
-  final List<Espaco> spaces;
+  final List<Space> spaces;
   final bool showAllSpaces;
   final Usuario user;
   final void Function() onTapExpandSpaces;
@@ -50,7 +50,7 @@ class AreaSpacesWidget extends StatelessWidget {
                   onTapSpace: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => SpaceDetailPage(space: space, user: user),
+                      builder: (context) => SpaceDetail(space: space, user: user),
                     ),
                   ),
                 );

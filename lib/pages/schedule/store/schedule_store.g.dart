@@ -77,13 +77,13 @@ mixin _$ScheduleStore on ScheduleStoreBase, Store {
       Atom(name: 'ScheduleStoreBase.eventsFilter', context: context);
 
   @override
-  List<Evento> get eventsFilter {
+  List<Event> get eventsFilter {
     _$eventsFilterAtom.reportRead();
     return super.eventsFilter;
   }
 
   @override
-  set eventsFilter(List<Evento> value) {
+  set eventsFilter(List<Event> value) {
     _$eventsFilterAtom.reportWrite(value, super.eventsFilter, () {
       super.eventsFilter = value;
     });
@@ -137,7 +137,7 @@ mixin _$ScheduleStore on ScheduleStoreBase, Store {
   }
 
   @override
-  void setEventsFilter(List<Evento> value) {
+  void setEventsFilter(List<Event> value) {
     final _$actionInfo = _$ScheduleStoreBaseActionController.startAction(
         name: 'ScheduleStoreBase.setEventsFilter');
     try {

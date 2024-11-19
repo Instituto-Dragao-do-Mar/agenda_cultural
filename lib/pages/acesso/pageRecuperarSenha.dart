@@ -1,4 +1,4 @@
-import 'package:agendacultural/controller/usuario_controller.dart';
+import 'package:agendacultural/controller/user_controller.dart';
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -23,12 +23,12 @@ class PageRecuperarSenha extends StatefulWidget {
 
 class _PageRecuperarSenhaState extends State<PageRecuperarSenha> {
   String emailInput = "";
-  UsuarioController? usuarioController;
+  UserController? usuarioController;
 
   @override
   void initState() {
     super.initState();
-    usuarioController = context.read<UsuarioController>();
+    usuarioController = context.read<UserController>();
   }
 
   @override

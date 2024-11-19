@@ -1,19 +1,16 @@
-import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/item/item_event.dart';
-import 'package:agendacultural/model/espaco_model.dart';
-import 'package:agendacultural/pages/filtro/pagefiltrocompleto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/model/app_model.dart';
+import 'package:agendacultural/pages/filtro/pagefiltrocompleto.dart';
 import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
 import 'package:agendacultural/pages/schedule/widgets/view_days.dart';
-import 'package:agendacultural/pages/home/general/button_filter.dart';
 import 'package:agendacultural/pages/schedule/widgets/choice_dates.dart';
 import 'package:agendacultural/pages/schedule/store/schedule_store.dart';
+import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/general/button_filter.dart';
 
 class SchedulePage extends StatefulWidget {
   const SchedulePage({super.key});
@@ -56,15 +53,15 @@ class _SchedulePageState extends State<SchedulePage> {
     final DateTime startDate = DateTime.parse(scheduleStore.initialController.text.substring(0, 10));
     final DateTime endDate = DateTime.parse(scheduleStore.finalController.text.substring(0, 10));
 
-    scheduleStore.setEventsFilter(
-      app.listaEventos.eventos?.where((event) {
-            return app.getEventoDatas(event).any((date) {
-              return date.isAfter(startDate.subtract(const Duration(days: 1))) &&
-                  date.isBefore(endDate.add(const Duration(days: 1)));
-            });
-          }).toList() ??
-          [],
-    );
+    // scheduleStore.setEventsFilter(
+      // app.listaEventos.eventos?.where((event) {
+      //       return app.getEventoDatas(event).any((date) {
+      //         return date.isAfter(startDate.subtract(const Duration(days: 1))) &&
+      //             date.isBefore(endDate.add(const Duration(days: 1)));
+      //       });
+      //     }).toList() ??
+      //     [],
+    // );
   }
 
   @override
@@ -117,12 +114,12 @@ class _SchedulePageState extends State<SchedulePage> {
                   } else {
                     // Seleciona a data específica e mostra eventos somente para aquele dia
                     scheduleStore.setDateSelected(date);
-                    scheduleStore.setEventsFilter(
-                      app.listaEventos.eventos?.where((event) {
-                            return app.getEventoDatas(event).any((element) => element.compareTo(date) == 0);
-                          }).toList() ??
-                          [],
-                    );
+                    // scheduleStore.setEventsFilter(
+                    //   app.listaEventos.eventos?.where((event) {
+                    //         return app.getEventoDatas(event).any((element) => element.compareTo(date) == 0);
+                    //       }).toList() ??
+                    //       [],
+                    // );
                   }
                 },
               ),

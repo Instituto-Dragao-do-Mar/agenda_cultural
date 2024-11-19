@@ -3,18 +3,18 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/shared/themes.dart';
-import 'package:agendacultural/model/evento_model.dart';
 import 'package:agendacultural/model/usuario_model.dart';
-import 'package:agendacultural/model/favorito_model.dart';
 import 'package:agendacultural/shared/extensions/dates.dart';
 import 'package:agendacultural/shared/button_favorite_event.dart';
 import 'package:agendacultural/shared/extensions/capitalize.dart';
 import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/favorite.dart';
 
 class EventDetailDatesWidget extends StatelessWidget {
-  final Evento event;
+  final Event event;
   final Usuario user;
-  final List<Favorito> favorites;
+  final List<Favorite> favorites;
 
   const EventDetailDatesWidget({
     super.key,

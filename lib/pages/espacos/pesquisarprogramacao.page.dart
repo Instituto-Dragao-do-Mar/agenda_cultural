@@ -1,14 +1,12 @@
-import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/item/item_event.dart';
-import 'package:agendacultural/model/app_model.dart';
-import 'package:agendacultural/model/espaco_model.dart';
-import 'package:agendacultural/model/evento_model.dart';
-import 'package:agendacultural/pages/home/general/widgettopocomum.dart';
-import 'package:agendacultural/shared/widgetespacoh.dart';
-import 'package:agendacultural/shared/widgetespacov.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:agendacultural/model/app_model.dart';
+import 'package:agendacultural/shared/widgetespacov.dart';
+import 'package:agendacultural/shared/widgetespacoh.dart';
+import 'package:agendacultural/pages/home/general/widgettopocomum.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
 
 class PesquisarProgramacaoPage extends StatefulWidget {
   const PesquisarProgramacaoPage({
@@ -16,7 +14,7 @@ class PesquisarProgramacaoPage extends StatefulWidget {
     required this.eventos,
   });
 
-  final List<Evento> eventos;
+  final List<Event> eventos;
 
   @override
   State<PesquisarProgramacaoPage> createState() => _PesquisarProgramacaoPageState();

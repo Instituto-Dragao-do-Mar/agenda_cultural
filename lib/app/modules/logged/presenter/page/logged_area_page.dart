@@ -7,10 +7,10 @@ import 'package:agendacultural/model/cores.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/pages/map/widgets/app_bar_map.dart';
 import 'package:agendacultural/pages/perfil/widgettopoperfil.dart';
-import 'package:agendacultural/pages/home/general/app_bar_general.dart';
 import 'package:agendacultural/pages/favorite/widgets/app_bar_favorite.dart';
 import 'package:agendacultural/pages/schedule/widgets/app_bar_schedule.dart';
 import 'package:agendacultural/app/modules/logged/presenter/handler/logged_state_handler.dart';
+import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/general/app_bar_general.dart';
 
 class LoggedAreaPage extends StatefulWidget {
   const LoggedAreaPage({super.key});

@@ -1,5 +1,3 @@
-import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/item/item_event.dart';
-import 'package:agendacultural/model/espaco_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -25,14 +23,14 @@ class _SearchFilterPageState extends State<SearchFilterPage> {
   void initState() {
     super.initState();
     app = Provider.of<AppModel>(context, listen: false);
-    searchFilterStore.setEventsFilter(app.listaEventos.eventos ?? []);
-    searchFilterStore.searchController.addListener(
-      () => searchFilterStore.eventsFilter = app.listaEventos.eventos
-              ?.where((event) =>
-                  event.nome?.toLowerCase().contains(searchFilterStore.searchController.text.toLowerCase()) ?? false)
-              .toList() ??
-          [],
-    );
+    // searchFilterStore.setEventsFilter(app.listaEventos.eventos ?? []);
+    // searchFilterStore.searchController.addListener(
+    //   () => searchFilterStore.eventsFilter = app.listaEventos.eventos
+    //           ?.where((event) =>
+    //               event.nome?.toLowerCase().contains(searchFilterStore.searchController.text.toLowerCase()) ?? false)
+    //           .toList() ??
+    //       [],
+    // );
   }
 
   @override

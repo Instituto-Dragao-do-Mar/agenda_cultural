@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:agendacultural/model/cores.dart';
 import 'package:agendacultural/model/fontes.dart';
-import 'package:agendacultural/model/espaco_model.dart';
-import 'package:agendacultural/model/evento_model.dart';
 import 'package:agendacultural/model/usuario_model.dart';
-import 'package:agendacultural/model/favorito_model.dart';
 import 'package:agendacultural/shared/extensions/dates.dart';
 import 'package:agendacultural/shared/button_favorite_event.dart';
 import 'package:agendacultural/shared/extensions/capitalize.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/favorite.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/item/item_event_info.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/item/item_event_image.dart';
 
 class ItemEventWidget extends StatelessWidget {
-  final Evento event;
-  final Espaco spacePrincipal;
-  final List<Favorito> favorites;
+  final Event event;
+  final Space spacePrincipal;
+  final List<Favorite> favorites;
   final Usuario user;
   final void Function() onTapEvent;
 

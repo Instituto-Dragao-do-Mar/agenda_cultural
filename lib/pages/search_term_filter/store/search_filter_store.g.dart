@@ -29,13 +29,13 @@ mixin _$SearchFilterStore on SearchFilterStoreBase, Store {
       Atom(name: 'SearchFilterStoreBase.eventsFilter', context: context);
 
   @override
-  List<Evento> get eventsFilter {
+  List<Event> get eventsFilter {
     _$eventsFilterAtom.reportRead();
     return super.eventsFilter;
   }
 
   @override
-  set eventsFilter(List<Evento> value) {
+  set eventsFilter(List<Event> value) {
     _$eventsFilterAtom.reportWrite(value, super.eventsFilter, () {
       super.eventsFilter = value;
     });
@@ -45,7 +45,7 @@ mixin _$SearchFilterStore on SearchFilterStoreBase, Store {
       ActionController(name: 'SearchFilterStoreBase', context: context);
 
   @override
-  void setEventsFilter(List<Evento> value) {
+  void setEventsFilter(List<Event> value) {
     final _$actionInfo = _$SearchFilterStoreBaseActionController.startAction(
         name: 'SearchFilterStoreBase.setEventsFilter');
     try {

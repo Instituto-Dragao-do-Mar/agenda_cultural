@@ -1,9 +1,9 @@
 // ignore_for_file: camel_case_extensions
 
-import 'package:agendacultural/model/categoria_model.dart';
-import 'package:agendacultural/model/espaco_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/category.dart';
 
 enum FiltroData {
   estasemana,
@@ -32,8 +32,8 @@ class Filtro {
 
   FiltroData? filtroDataSelecionado;
 
-  List<Categoria>? categoriasSelecionadas = [];
-  List<Espaco>? espacosSelecionados = [];
+  List<Category>? categoriasSelecionadas = [];
+  List<Space>? espacosSelecionados = [];
   List<String>? acessibilidadeSelecionadas = [];
   List<String>? ingressoSelecionados = [];
 

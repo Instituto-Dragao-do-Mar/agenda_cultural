@@ -4,12 +4,12 @@ import 'package:url_launcher/url_launcher_string.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/shared/themes.dart';
-import 'package:agendacultural/model/espaco_model.dart';
 import 'package:agendacultural/shared/widgetbotao.dart';
 import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
 import 'package:agendacultural/pages/espacos/programacaoespaco.page.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/spaces/detail/space_detail_map.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/spaces/detail/space_detail_image.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/spaces/detail/space_detail_app_bar.dart';
@@ -19,11 +19,11 @@ import 'package:agendacultural/app/modules/logged/features/home/presenter/page/a
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/spaces/detail/space_detail_description.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/spaces/detail/space_detail_accessibility.dart';
 
-class SpaceDetailPage extends StatelessWidget {
-  final Espaco space;
+class SpaceDetail extends StatelessWidget {
+  final Space space;
   final Usuario user;
 
-  const SpaceDetailPage({
+  const SpaceDetail({
     super.key,
     required this.space,
     required this.user,

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:agendacultural/model/cores.dart';
 import 'package:agendacultural/model/fontes.dart';
-import 'package:agendacultural/model/espaco_model.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/spaces/item/item_space_info.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/spaces/item/item_space_image.dart';
 
 class ItemSpaceWidget extends StatelessWidget {
-  final Espaco space;
+  final Space space;
   final void Function() onTapSpace;
 
   const ItemSpaceWidget({

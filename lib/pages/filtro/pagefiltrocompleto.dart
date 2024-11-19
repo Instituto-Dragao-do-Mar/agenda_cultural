@@ -1,19 +1,19 @@
-import 'package:agendacultural/model/app_model.dart';
-import 'package:agendacultural/model/fontes.dart';
-import 'package:agendacultural/pages/filtro/widgets/widgetfiltroacessibilidade.dart';
-import 'package:agendacultural/pages/filtro/widgets/widgetfiltrocategoria.dart';
-import 'package:agendacultural/pages/filtro/widgets/widgetfiltroingresso.dart';
-import 'package:agendacultural/pages/filtro/widgets/widgetfiltroperiodo.dart';
-import 'package:agendacultural/pages/home/location/area_location.dart';
-import 'package:agendacultural/pages/home/general/widgettopocomum.dart';
-import 'package:agendacultural/app/modules/logged/features/home/sub_module/my_location/presenter/page/my_location_page.dart';
-import 'package:agendacultural/shared/themes.dart';
-import 'package:agendacultural/shared/widgetbottombotao.dart';
-import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:flutter/material.dart';
-import 'package:group_button/group_button.dart';
 import 'package:provider/provider.dart';
+import 'package:group_button/group_button.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/shared/themes.dart';
+import 'package:agendacultural/model/app_model.dart';
+import 'package:agendacultural/shared/widgetespacoh.dart';
+import 'package:agendacultural/shared/widgetbottombotao.dart';
+import 'package:agendacultural/pages/home/general/widgettopocomum.dart';
+import 'package:agendacultural/pages/filtro/widgets/widgetfiltroperiodo.dart';
+import 'package:agendacultural/pages/filtro/widgets/widgetfiltroingresso.dart';
+import 'package:agendacultural/pages/filtro/widgets/widgetfiltrocategoria.dart';
+import 'package:agendacultural/pages/filtro/widgets/widgetfiltroacessibilidade.dart';
+import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/general/area_location.dart';
+import 'package:agendacultural/app/modules/logged/features/home/sub_module/my_location/presenter/page/my_location_page.dart';
 
 class FiltroCompletoPage extends StatefulWidget {
   const FiltroCompletoPage({super.key});

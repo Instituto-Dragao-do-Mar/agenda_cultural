@@ -1,50 +1,18 @@
-// ignore_for_file: unnecessary_null_comparison
-
 import 'dart:convert';
-
-import 'package:agendacultural/controller/base_controller.dart';
-import 'package:agendacultural/model/usuario_model.dart';
-import 'package:agendacultural/shared/constantes.dart';
+import 'package:uuid/uuid.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:uuid/uuid.dart';
-import '../model/acesso_model.dart';
-import '../model/app_model.dart';
-import '../shared/userSharedPreferences.dart';
+import 'package:agendacultural/model/app_model.dart';
+import 'package:agendacultural/shared/constantes.dart';
+import 'package:agendacultural/model/acesso_model.dart';
+import 'package:agendacultural/model/usuario_model.dart';
+import 'package:agendacultural/controller/base_controller.dart';
+import 'package:agendacultural/shared/userSharedPreferences.dart';
 
-class UsuarioController extends BaseController {
+class UserController extends BaseController {
   var state = ControllerStates.idle;
   String errorMessage = "";
-
-  TextEditingController tedEmail = TextEditingController();
-
-  Future<ListaUsuarios> usuarioGet({
-    required String userguidid,
-  }) async {
-    ListaUsuarios lista = ListaUsuarios();
-    lista.usuarios = [];
-
-    String url = "${baseUrlApi}usuario";
-
-    try {
-      var response = await http.get(
-        Uri.parse(url),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      );
-      if (response.statusCode == 200) {
-        var ret = jsonDecode(response.body);
-        lista = ListaUsuarios.fromJson(ret);
-      } else {
-        setError(response.body);
-      }
-    } catch (_) {
-      setError(_.toString());
-    }
-
-    return lista;
-  }
+  TextEditingController emailController = TextEditingController();
 
   Future<Usuario> login({
     AppModel? app,
@@ -69,19 +37,14 @@ class UsuarioController extends BaseController {
 
       var response = await http.post(
         Uri.parse('${baseUrlApi}auth'),
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: {"Content-Type": "application/json"},
         body: body,
       );
-
-      //print(response.body);
 
       if (response.statusCode == 200) {
         var ret = jsonDecode(response.body);
         acesso = Acesso.fromJson(ret);
-        acesso.expiration =
-            DateTime.now().add(const Duration(days: 1)).toString();
+        acesso.expiration = DateTime.now().add(const Duration(days: 1)).toString();
 
         usuarioRetorno = await getUser(
           token: acesso.signature,
@@ -119,7 +82,6 @@ class UsuarioController extends BaseController {
         if (!alterarSenha!) {
           app?.resetUser();
           await UserSharedPreferences.resetUser();
-          usuarioRetorno == null;
         }
         errorMessage = response.body;
         state = ControllerStates.error;
@@ -129,8 +91,6 @@ class UsuarioController extends BaseController {
       if (!alterarSenha!) {
         app?.resetUser();
         await UserSharedPreferences.resetUser();
-
-        usuarioRetorno == null;
       }
       errorMessage = "Acesso inválido (${e.toString()})";
       debugPrint(errorMessage);
@@ -141,7 +101,10 @@ class UsuarioController extends BaseController {
     return usuarioRetorno;
   }
 
-  Future<Usuario> getUserbyPrefData(String token, String email) async {
+  Future<Usuario> getUserbyPrefData(
+    String token,
+    String email,
+  ) async {
     var user = await getUser(
       token: token,
       login: email.trim(),
@@ -318,12 +281,11 @@ class UsuarioController extends BaseController {
     String? email = "",
   }) async {
     String? errorMessage;
-    tedEmail.text = email!;
+    emailController.text = email!;
 
     var senhaTemporaria = const Uuid().v4().toString().substring(0, 5);
 
-    String urlSenha =
-        "https://coretools.redeinova.com.br/api/hash?senha=$senhaTemporaria";
+    String urlSenha = "https://coretools.redeinova.com.br/api/hash?senha=$senhaTemporaria";
 
     var responseCript = await http.get(
       Uri.parse(urlSenha),
@@ -377,7 +339,7 @@ class UsuarioController extends BaseController {
     var body = jsonEncode(
       <String, dynamic>{
         // "guididoperador": "BFBC1C49-CD9A-4E04-A747-4C1817962D87",
-        "email": tedEmail.text.trim(),
+        "email": emailController.text.trim(),
         "novasenha": novaSenha,
       },
     );
@@ -395,7 +357,7 @@ class UsuarioController extends BaseController {
       if (response.statusCode == 200) {
         errorMessage = "";
         state = ControllerStates.success;
-        tedEmail.clear();
+        emailController.clear();
       } else {
         errorMessage = response.body;
         setError(response.body);

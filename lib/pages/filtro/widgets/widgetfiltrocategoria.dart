@@ -37,7 +37,7 @@ class _FiltroCategoriaWidgetState extends State<FiltroCategoriaWidget> {
   }
 
   void processaOpcoes() {
-    opcoes = widget.app.listaCategoria.categorias!.map((e) => e.nome!).toList();
+    // opcoes = widget.app.listaCategoria.categorias!.map((e) => e.nome!).toList();
   }
 
   void traduzOpcoes() {

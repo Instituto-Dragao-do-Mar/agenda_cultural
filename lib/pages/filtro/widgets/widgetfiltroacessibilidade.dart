@@ -1,11 +1,10 @@
-import 'package:agendacultural/app/common/utils/tradutors.dart';
-import 'package:agendacultural/model/app_model.dart';
-import 'package:agendacultural/model/espaco_model.dart';
-import 'package:agendacultural/model/fontes.dart';
-import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:flutter/material.dart';
 import 'package:group_button/group_button.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/app_model.dart';
+import 'package:agendacultural/shared/widgetespacoh.dart';
+import 'package:agendacultural/app/common/utils/tradutors.dart';
 
 class FiltroAcessibilidadeWidget extends StatefulWidget {
   const FiltroAcessibilidadeWidget({
@@ -40,19 +39,19 @@ class _FiltroAcessibilidadeWidgetState
 
   void processaOpcoes() {
     opcoes = [];
-    if (widget.app.listaEspacos.espacos != null &&
-        widget.app.listaEspacos.espacos!.isNotEmpty) {
-      for (Espaco e in widget.app.listaEspacos.espacos!) {
-        if (e.acessibilidadeFisica != null &&
-            e.acessibilidadeFisica!.isNotEmpty) {
-          for (String s in e.acessibilidadeFisica!.split(';')) {
-            if (!opcoes.any((element) => element == s)) {
-              opcoes.add(s);
-            }
-          }
-        }
-      }
-    }
+    // if (widget.app.listaEspacos.espacos != null &&
+    //     widget.app.listaEspacos.espacos!.isNotEmpty) {
+    //   for (Espaco e in widget.app.listaEspacos.espacos!) {
+    //     if (e.acessibilidadeFisica != null &&
+    //         e.acessibilidadeFisica!.isNotEmpty) {
+    //       for (String s in e.acessibilidadeFisica!.split(';')) {
+    //         if (!opcoes.any((element) => element == s)) {
+    //           opcoes.add(s);
+    //         }
+    //       }
+    //     }
+    //   }
+    // }
   }
 
   void traduzOpcoes() {

@@ -5,11 +5,8 @@ import 'package:provider/provider.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
 import 'package:agendacultural/dados/dados.dart';
 import 'package:agendacultural/model/app_model.dart';
-import 'package:agendacultural/model/espaco_model.dart';
-import 'package:agendacultural/model/evento_model.dart';
 import 'package:agendacultural/pages/map/store/map_store.dart';
 
 class MapPage extends StatefulWidget {
@@ -58,46 +55,46 @@ class _MapPageState extends State<MapPage> {
       );
     } else {
       // Se não houver localização atual, o mapa será centralizado no primeiro evento
-      if (app.listaEventos.eventos != null && app.listaEventos.eventos!.isNotEmpty) {
-        int idespaco = app.listaEventos.eventos!.first.eventosdatas!.first.idespaco!;
-        Espaco espaco = app.listaEspacos.espacos!.firstWhere((element) => element.id == idespaco);
-
-        mapStore.inicioCameraPosition = CameraPosition(
-          target: LatLng(espaco.latitude ?? 0.0, espaco.longitude ?? 0.0),
-          zoom: 11,
-        );
-        // Se não houver eventos, o mapa será centralizado em 'Fortaleza'
-      } else {
-        mapStore.inicioCameraPosition = const CameraPosition(
-          target: LatLng(-3.7608777226578134, -38.521393491712224),
-          zoom: 11,
-        );
-      }
+      // if (app.listaEventos.eventos != null && app.listaEventos.eventos!.isNotEmpty) {
+      //   int idespaco = app.listaEventos.eventos!.first.eventosdatas!.first.idespaco!;
+      //   Espaco espaco = app.listaEspacos.espacos!.firstWhere((element) => element.id == idespaco);
+      //
+      //   mapStore.inicioCameraPosition = CameraPosition(
+      //     target: LatLng(espaco.latitude ?? 0.0, espaco.longitude ?? 0.0),
+      //     zoom: 11,
+      //   );
+      //   // Se não houver eventos, o mapa será centralizado em 'Fortaleza'
+      // } else {
+      //   mapStore.inicioCameraPosition = const CameraPosition(
+      //     target: LatLng(-3.7608777226578134, -38.521393491712224),
+      //     zoom: 11,
+      //   );
+      // }
     }
 
     // Adiciona os marcadores dos eventos no mapa (se houver)
-    if (app.listaEventos.eventos != null || app.listaEventos.eventos!.isNotEmpty) {
-      for (Evento event in app.listaEventos.eventos!) {
-        int spaceEvent = event.eventosdatas!.first.idespaco!;
-        Espaco space = app.listaEspacos.espacos!.firstWhere((element) => element.id == spaceEvent);
-        mapStore.addMarker(
-          Marker(
-            markerId: MarkerId(space.id.toString()),
-            position: LatLng(space.latitude ?? 0.0, space.longitude ?? 0.00),
-            infoWindow: InfoWindow(
-              title: event.nome ?? '',
-              snippet: event.detalhe ?? '',
-              onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const SizedBox(),//EventDetailPage(evento: event),
-                ),
-              ),
-            ),
-          ),
-        );
-      }
-    }
+    // if (app.listaEventos.eventos != null || app.listaEventos.eventos!.isNotEmpty) {
+    //   for (Event event in app.listaEventos.eventos!) {
+    //     int spaceEvent = event.eventosdatas!.first.idespaco!;
+    //     Espaco space = app.listaEspacos.espacos!.firstWhere((element) => element.id == spaceEvent);
+    //     mapStore.addMarker(
+    //       Marker(
+    //         markerId: MarkerId(space.id.toString()),
+    //         position: LatLng(space.latitude ?? 0.0, space.longitude ?? 0.00),
+    //         infoWindow: InfoWindow(
+    //           title: event.nome ?? '',
+    //           snippet: event.detalhe ?? '',
+    //           onTap: () => Navigator.push(
+    //             context,
+    //             MaterialPageRoute(
+    //               builder: (context) => const SizedBox(),//EventDetailPage(evento: event),
+    //             ),
+    //           ),
+    //         ),
+    //       ),
+    //     );
+    //   }
+    // }
 
     mapStore.setIsLoading(false);
   }

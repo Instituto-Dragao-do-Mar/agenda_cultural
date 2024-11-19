@@ -12,7 +12,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:url_launcher/url_launcher.dart';
-import '../../controller/usuario_controller.dart';
+import '../../controller/user_controller.dart';
 import '../../model/app_model.dart';
 import '../../shared/constantes.dart';
 import '../../shared/widgetTextFonteContraste.dart';
@@ -36,7 +36,7 @@ class _PageCadastroState extends State<PageCadastro> {
   bool obscureTextSenha = true;
   bool obscureTextNovaSenha = true;
   AppModel? app;
-  UsuarioController? usuarioController;
+  UserController? usuarioController;
   BaseController? baseController;
   int haveUpperCase = 0;
   int haveLowerCase = 0;
@@ -49,7 +49,7 @@ class _PageCadastroState extends State<PageCadastro> {
   void initState() {
     super.initState();
     app = context.read<AppModel>();
-    usuarioController = context.read<UsuarioController>();
+    usuarioController = context.read<UserController>();
     baseController = context.read<BaseController>();
   }
 

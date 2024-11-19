@@ -1,9 +1,9 @@
-import 'package:agendacultural/model/categoria_model.dart';
-import 'package:agendacultural/model/espaco_model.dart';
-import 'package:agendacultural/model/evento_model.dart';
-import 'package:agendacultural/model/favorito_model.dart';
 import 'package:mobx/mobx.dart';
 import 'package:agendacultural/model/usuario_model.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/category.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/favorite.dart';
 
 part 'app_store.g.dart';
 
@@ -24,32 +24,32 @@ abstract class AppStoreBase with Store {
   //Categories
 
   @observable
-  List<Categoria> categories = [];
+  List<Category> categories = [];
 
   @action
-  void setCategories(List<Categoria> value) => categories = value;
+  void setCategories(List<Category> value) => categories = value;
 
   //Events
 
   @observable
-  List<Evento> events = [];
+  List<Event> events = [];
 
   @action
-  void setEvents(List<Evento> value) => events = value;
+  void setEvents(List<Event> value) => events = value;
 
   //Spaces
 
   @observable
-  List<Espaco> spaces = [];
+  List<Space> spaces = [];
 
   @action
-  void setSpaces(List<Espaco> value) => spaces = value;
+  void setSpaces(List<Space> value) => spaces = value;
 
   //Favorites
 
   @observable
-  List<Favorito> favorites = [];
+  List<Favorite> favorites = [];
 
   @action
-  void setFavorites(List<Favorito> value) => favorites = value;
+  void setFavorites(List<Favorite> value) => favorites = value;
 }

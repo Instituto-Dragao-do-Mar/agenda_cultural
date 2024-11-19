@@ -1,5 +1,3 @@
-import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/item/item_event.dart';
-import 'package:agendacultural/model/espaco_model.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -57,13 +55,13 @@ class _FavoritePageState extends State<FavoritePage> {
     //   token: app.usuarioLogado?.signature ?? '',
     // ),
     // );
-    app.listaFavoritos = favoriteStore.favorites;
-    favoriteStore.setListEventsFavorite(
-      app.listaEventos.eventos?.where((evento) {
-            return favoriteStore.favorites.favoritos?.map((e) => e.idevento).contains(evento.id) == true;
-          }).toList() ??
-          [],
-    );
+    // app.listaFavoritos = favoriteStore.favorites;
+    // favoriteStore.setListEventsFavorite(
+    //   app.listaEventos.eventos?.where((evento) {
+    //         return favoriteStore.favorites.favoritos?.map((e) => e.idevento).contains(evento.id) == true;
+    //       }).toList() ??
+    //       [],
+    // );
     favoriteStore.setIsLoading(false);
   }
 

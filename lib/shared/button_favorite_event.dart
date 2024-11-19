@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/model/evento_model.dart';
 import 'package:agendacultural/model/usuario_model.dart';
-import 'package:agendacultural/model/favorito_model.dart';
 import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
-import 'package:agendacultural/controller/evento_controller.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/favorite.dart';
+import 'package:agendacultural/app/modules/splash/domain/controller/event_controller.dart';
 
 class ButtonFavoriteWidget extends StatefulWidget {
-  final Evento event;
+  final Event event;
   final bool isCardEvent;
   final Usuario user;
-  final List<Favorito> favorites;
+  final List<Favorite> favorites;
 
   const ButtonFavoriteWidget({
     super.key,
@@ -60,11 +60,11 @@ class _ButtonFavoriteWidgetState extends State<ButtonFavoriteWidget> {
               return;
             }
 
-            var isFavorited = await EventoController().postFavorited(
-              userguidid: widget.user.guidid ?? '',
+            var isFavorited = await EventController().postFavorited(
+              userGuidId: widget.user.guidid ?? '',
               token: widget.user.signature ?? '',
-              idevento: widget.event.id ?? 0,
-              ativo: isFavorite,
+              idEvent: widget.event.id ?? 0,
+              active: isFavorite,
             );
 
             if (isFavorited) {

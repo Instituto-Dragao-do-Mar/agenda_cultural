@@ -6,18 +6,18 @@ import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/shared/widgetpopup.dart';
-import 'package:agendacultural/model/evento_model.dart';
 import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
 import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
 import 'package:agendacultural/shared/extensions/ex_compare_date_strings_in_days.dart';
 import 'package:agendacultural/app/modules/logged/features/home/domain/adapter/user_evaluation.dart';
 import 'package:agendacultural/app/modules/logged/features/home/domain/controller/user_evaluation_controller.dart';
 
 class EventDetailEvaluationWidget extends StatefulWidget {
-  final Evento event;
+  final Event event;
   final Usuario user;
 
   const EventDetailEvaluationWidget({
