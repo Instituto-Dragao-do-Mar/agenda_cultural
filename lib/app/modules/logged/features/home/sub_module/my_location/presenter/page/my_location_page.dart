@@ -3,8 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/model/cores.dart';
-import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/fonts.dart';
+import 'package:agendacultural/model/colors.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
 import 'package:agendacultural/app/modules/logged/features/home/sub_module/my_location/presenter/handler/my_location_state_handler.dart';
@@ -57,7 +57,7 @@ class _MyLocationPageState extends State<MyLocationPage> {
           titleSpacing: 0,
           title: TextContrasteFonte(
             text: AppLocalizations.of(context)!.location_title,
-            style: TextStyle(color: corTextAtual, fontSize: Fontes.tamanhoBase.toDouble()),
+            style: TextStyle(color: corTextAtual, fontSize: FontsApp.tamanhoBase.toDouble()),
           ),
         ),
         body: Observer(
@@ -74,10 +74,10 @@ class _MyLocationPageState extends State<MyLocationPage> {
                           margin: const EdgeInsets.only(left: 16),
                           child: TextField(
                             controller: _handler.store.addressController,
-                            style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
+                            style: FontsApp.poppins16W400Grey(FontsApp.tamanhoBase),
                             decoration: InputDecoration(
                               hintText: AppLocalizations.of(context)!.location_search,
-                              hintStyle: Fontes.poppins14W400Grey(Fontes.tamanhoBase),
+                              hintStyle: FontsApp.poppins14W400Grey(FontsApp.tamanhoBase),
                               filled: true,
                               fillColor: const Color.fromRGBO(217, 217, 217, 8.2),
                               contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 8),
@@ -121,7 +121,7 @@ class _MyLocationPageState extends State<MyLocationPage> {
                             child: Text(
                               AppLocalizations.of(context)!.location_subtitle,
                               semanticsLabel: AppLocalizations.of(context)!.location_subtitle,
-                              style: Fontes.poppins14W400E83C3B((Fontes.tamanhoBase)),
+                              style: FontsApp.poppins14W400E83C3B((FontsApp.tamanhoBase)),
                             ),
                           ),
                         ],
@@ -141,9 +141,9 @@ class _MyLocationPageState extends State<MyLocationPage> {
                         title: Text(
                           _handler.store.address,
                           style: TextStyle(
-                            fontSize: Fontes.tamanhoBase.toDouble(),
+                            fontSize: FontsApp.tamanhoBase.toDouble(),
                             fontWeight: FontWeight.w400,
-                            color: !Cores.contraste ? const Color(0XFF000000) : Colors.white,
+                            color: !ColorsApp.contraste ? const Color(0XFF000000) : Colors.white,
                             height: 1.4,
                           ),
                         ),
@@ -153,7 +153,7 @@ class _MyLocationPageState extends State<MyLocationPage> {
                           '${AppLocalizations.of(context)!.location_longitude} '
                           '${_handler.store.longitude.toStringAsFixed(8)}.',
                         ),
-                        subtitleTextStyle: Fontes.poppins14W400Grey(Fontes.tamanhoBase - 2),
+                        subtitleTextStyle: FontsApp.poppins14W400Grey(FontsApp.tamanhoBase - 2),
                         selectedColor: corBackgroundLaranja,
                       ),
                     ),
@@ -171,7 +171,7 @@ class _MyLocationPageState extends State<MyLocationPage> {
                           child: Text(
                             AppLocalizations.of(context)!.location_unselected,
                             semanticsLabel: 'Usar minha localização atual.',
-                            style: Fontes.poppins16W400Black((Fontes.tamanhoBase - 2)),
+                            style: FontsApp.poppins16W400Black((FontsApp.tamanhoBase - 2)),
                           ),
                         ),
                       ],

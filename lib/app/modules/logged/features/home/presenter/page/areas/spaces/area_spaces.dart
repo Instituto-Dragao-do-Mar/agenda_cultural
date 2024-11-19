@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/spaces/detail/space_detail.dart';
@@ -39,7 +39,7 @@ class AreaSpacesWidget extends StatelessWidget {
         const SizedBox(height: 5),
         SizedBox(
           width: double.infinity,
-          height: showAllSpaces ? 572 : 286 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+          height: showAllSpaces ? 572 : 286 / FontsApp.tamanhoFonteBase16 * FontsApp.tamanhoBase,
           child: SingleChildScrollView(
             scrollDirection: showAllSpaces ? Axis.vertical : Axis.horizontal,
             controller: scrollControllerSpaces,

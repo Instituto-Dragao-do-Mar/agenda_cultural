@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/model/cores.dart';
-import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/fonts.dart';
+import 'package:agendacultural/model/colors.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/shared/widgetpopup.dart';
@@ -39,7 +39,7 @@ class _EventDetailEvaluationWidgetState extends State<EventDetailEvaluationWidge
     final av2 = AppLocalizations.of(context)!.e_evaluation_two;
     final av3 = AppLocalizations.of(context)!.e_evaluation_three;
     final size = MediaQuery.of(context).size;
-    final font = Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14);
+    final font = FontsApp.tamanhoBase - (FontsApp.tamanhoFonteBase16 - 14);
 
     if (!_isToday(widget.event.eventosdatas!.first.datahora!)) {
       return const SizedBox();
@@ -147,7 +147,7 @@ class _EventDetailEvaluationWidgetState extends State<EventDetailEvaluationWidge
     if (selected == value) {
       return '${iconName}_orange.png';
     }
-    return !Cores.contraste ? '${iconName}_black.png' : '${iconName}_white.png';
+    return !ColorsApp.contraste ? '${iconName}_black.png' : '${iconName}_white.png';
   }
 
   // Confirma a avaliação

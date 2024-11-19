@@ -1,8 +1,8 @@
 import 'package:agendacultural/shared/themes.dart';
 import 'package:flutter/material.dart';
 
-import '../model/cores.dart';
-import '../model/fontes.dart';
+import '../model/colors.dart';
+import '../model/fonts.dart';
 
 class TextContrasteFonte extends StatefulWidget {
   final TextStyle? style;
@@ -31,8 +31,8 @@ class TextContrasteFonte extends StatefulWidget {
 }
 
 class _TextContrasteFonteState extends State<TextContrasteFonte> {
-  bool statusAltoContraste = Cores.contraste;
-  double fontSize = Fontes.tamanhoBase.toDouble();
+  bool statusAltoContraste = ColorsApp.contraste;
+  double fontSize = FontsApp.tamanhoBase.toDouble();
 
   @override
   Widget build(BuildContext context) {

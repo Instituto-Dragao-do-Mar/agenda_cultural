@@ -2,10 +2,10 @@
 
 import 'package:agendacultural/app/modules/logged/presenter/page/logged_area_page.dart';
 import 'package:agendacultural/controller/base_controller.dart';
-import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/pages/acesso/pageEntrar.dart';
 import 'package:agendacultural/shared/themes.dart';
-import 'package:agendacultural/shared/widgetbotao.dart';
+import 'package:agendacultural/shared/button_default.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -81,7 +81,7 @@ class _PageCadastroState extends State<PageCadastro> {
                 text: AppLocalizations.of(context)!.register_subtitle,
                 semantics:
                     "Ao se cadastrar, você terá acesso aos recursos de gerar alertas e de avaliar espaços e eventos",
-                style: Fontes.poppins12W400Grey((Fontes.tamanhoBase)),
+                style: FontsApp.poppins12W400Grey((FontsApp.tamanhoBase)),
               ),
               const widgetEspacoH(
                 altura: 15,
@@ -91,13 +91,13 @@ class _PageCadastroState extends State<PageCadastro> {
                   TextContrasteFonte(
                     text: AppLocalizations.of(context)!.register_name,
                     semantics: "Digite seu Nome",
-                    style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
+                    style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
                   ),
                   TextContrasteFonte(
                     text: " *",
                     style: TextStyle(
                       color: corBackgroundLaranja,
-                      fontSize: Fontes.tamanhoBase.toDouble(),
+                      fontSize: FontsApp.tamanhoBase.toDouble(),
                     ),
                   ),
                 ],
@@ -109,7 +109,7 @@ class _PageCadastroState extends State<PageCadastro> {
                 container: false,
                 label: "Campo para digitação de nome",
                 child: TextField(
-                  style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
+                  style: FontsApp.poppins16W400Grey(FontsApp.tamanhoBase),
                   onChanged: (value) {
                     setState(() {
                       nomeInput = value;
@@ -125,7 +125,7 @@ class _PageCadastroState extends State<PageCadastro> {
                 children: [
                   TextContrasteFonte(
                     text: AppLocalizations.of(context)!.register_email,
-                    style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
+                    style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
                     semantics: "Digite seu E-mail abaixo",
                   ),
                   Semantics(
@@ -135,7 +135,7 @@ class _PageCadastroState extends State<PageCadastro> {
                       text: " *",
                       style: TextStyle(
                         color: corBackgroundLaranja,
-                        fontSize: Fontes.tamanhoBase.toDouble(),
+                        fontSize: FontsApp.tamanhoBase.toDouble(),
                       ),
                     ),
                   ),
@@ -148,7 +148,7 @@ class _PageCadastroState extends State<PageCadastro> {
                 container: false,
                 label: "Campo para digitação de email",
                 child: TextField(
-                  style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
+                  style: FontsApp.poppins16W400Grey(FontsApp.tamanhoBase),
                   onChanged: (value) {
                     setState(() {
                       emailInput = value;
@@ -164,7 +164,7 @@ class _PageCadastroState extends State<PageCadastro> {
                 children: [
                   TextContrasteFonte(
                     text: AppLocalizations.of(context)!.register_password,
-                    style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
+                    style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
                     semantics: "Digite sua Senha abaixo",
                   ),
                   Semantics(
@@ -174,7 +174,7 @@ class _PageCadastroState extends State<PageCadastro> {
                       text: " *",
                       style: TextStyle(
                         color: corBackgroundLaranja,
-                        fontSize: Fontes.tamanhoBase.toDouble(),
+                        fontSize: FontsApp.tamanhoBase.toDouble(),
                       ),
                     ),
                   ),
@@ -188,7 +188,7 @@ class _PageCadastroState extends State<PageCadastro> {
                 label: "Campo para digitação de senha",
                 child: TextField(
                   obscureText: obscureTextSenha,
-                  style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
+                  style: FontsApp.poppins16W400Grey(FontsApp.tamanhoBase),
                   onChanged: (value) {
                     setState(() {
                       value.characters.length >= 6
@@ -268,7 +268,7 @@ class _PageCadastroState extends State<PageCadastro> {
                     text:
                         AppLocalizations.of(context)!.register_confirm_password,
                     semantics: "Digite sua senha novamente",
-                    style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
+                    style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
                   ),
                   Semantics(
                     container: false,
@@ -277,7 +277,7 @@ class _PageCadastroState extends State<PageCadastro> {
                       text: " *",
                       style: TextStyle(
                         color: corBackgroundLaranja,
-                        fontSize: Fontes.tamanhoBase.toDouble(),
+                        fontSize: FontsApp.tamanhoBase.toDouble(),
                       ),
                     ),
                   ),
@@ -292,7 +292,7 @@ class _PageCadastroState extends State<PageCadastro> {
                 child: TextField(
                   autofocus: false,
                   obscureText: obscureTextNovaSenha,
-                  style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
+                  style: FontsApp.poppins16W400Grey(FontsApp.tamanhoBase),
                   onChanged: (value) {
                     setState(() {
                       confirmarSenhaInput = value;
@@ -347,7 +347,7 @@ class _PageCadastroState extends State<PageCadastro> {
                         TextContrasteFonte(
                           text: AppLocalizations.of(context)!
                               .register_password_order,
-                          style: Fontes.roboto12W400Grey(Fontes.tamanhoBase),
+                          style: FontsApp.roboto12W400Grey(FontsApp.tamanhoBase),
                           semantics: "Sua senha deve conter:",
                         ),
                         const widgetEspacoH(
@@ -357,8 +357,8 @@ class _PageCadastroState extends State<PageCadastro> {
                           text: AppLocalizations.of(context)!
                               .register_password_order_one,
                           style: haveMinDigits == 1
-                              ? Fontes.roboto12W300Green(Fontes.tamanhoBase)
-                              : Fontes.roboto12W300Grey(Fontes.tamanhoBase),
+                              ? FontsApp.roboto12W300Green(FontsApp.tamanhoBase)
+                              : FontsApp.roboto12W300Grey(FontsApp.tamanhoBase),
                           semantics: "No mínimo 6 dígitos",
                         ),
                         const widgetEspacoH(
@@ -368,8 +368,8 @@ class _PageCadastroState extends State<PageCadastro> {
                           text: AppLocalizations.of(context)!
                               .register_password_order_two,
                           style: haveUpperCase == 1
-                              ? Fontes.roboto12W300Green(Fontes.tamanhoBase)
-                              : Fontes.roboto12W300Grey(Fontes.tamanhoBase),
+                              ? FontsApp.roboto12W300Green(FontsApp.tamanhoBase)
+                              : FontsApp.roboto12W300Grey(FontsApp.tamanhoBase),
                           semantics: "Pelo menos 1 letra maiúscula",
                         ),
                         const widgetEspacoH(
@@ -379,8 +379,8 @@ class _PageCadastroState extends State<PageCadastro> {
                           text: AppLocalizations.of(context)!
                               .register_password_order_three,
                           style: haveLowerCase == 1
-                              ? Fontes.roboto12W300Green(Fontes.tamanhoBase)
-                              : Fontes.roboto12W300Grey(Fontes.tamanhoBase),
+                              ? FontsApp.roboto12W300Green(FontsApp.tamanhoBase)
+                              : FontsApp.roboto12W300Grey(FontsApp.tamanhoBase),
                           semantics: "Pelo menos 1 letra minúscula",
                         ),
                         const widgetEspacoH(
@@ -390,8 +390,8 @@ class _PageCadastroState extends State<PageCadastro> {
                           text: AppLocalizations.of(context)!
                               .register_password_order_four,
                           style: haveNumber == 1
-                              ? Fontes.roboto12W300Green(Fontes.tamanhoBase)
-                              : Fontes.roboto12W300Grey(Fontes.tamanhoBase),
+                              ? FontsApp.roboto12W300Green(FontsApp.tamanhoBase)
+                              : FontsApp.roboto12W300Grey(FontsApp.tamanhoBase),
                           semantics: "Pelo menos 1 número",
                         ),
                         const widgetEspacoH(
@@ -400,7 +400,7 @@ class _PageCadastroState extends State<PageCadastro> {
                         TextContrasteFonte(
                           text: AppLocalizations.of(context)!
                               .register_password_order_five,
-                          style: Fontes.roboto12W300Grey(Fontes.tamanhoBase),
+                          style: FontsApp.roboto12W300Grey(FontsApp.tamanhoBase),
                           semantics: "Força da senha:",
                         ),
                         const widgetEspacoH(
@@ -468,7 +468,7 @@ class _PageCadastroState extends State<PageCadastro> {
                         child: TextContrasteFonte(
                           text:
                               AppLocalizations.of(context)!.register_terms_one,
-                          fontsize: Fontes.tamanhoBase.toDouble(),
+                          fontsize: FontsApp.tamanhoBase.toDouble(),
                           color: const Color(0xff999999),
                         ),
                       ),
@@ -494,14 +494,14 @@ class _PageCadastroState extends State<PageCadastro> {
                             text: AppLocalizations.of(context)!
                                 .register_terms_two,
                             color: corBackgroundLaranja,
-                            fontsize: Fontes.tamanhoBase.toDouble(),
+                            fontsize: FontsApp.tamanhoBase.toDouble(),
                           ),
                         ),
                       ),
                       TextContrasteFonte(
                         text:
                             AppLocalizations.of(context)!.register_terms_three,
-                        fontsize: Fontes.tamanhoBase.toDouble(),
+                        fontsize: FontsApp.tamanhoBase.toDouble(),
                         color: const Color(0xff999999),
                       ),
                       InkWell(
@@ -526,13 +526,13 @@ class _PageCadastroState extends State<PageCadastro> {
                             text: AppLocalizations.of(context)!
                                 .register_terms_four,
                             color: corBackgroundLaranja,
-                            fontsize: Fontes.tamanhoBase.toDouble(),
+                            fontsize: FontsApp.tamanhoBase.toDouble(),
                           ),
                         ),
                       ),
                       TextContrasteFonte(
                         text: AppLocalizations.of(context)!.register_terms_five,
-                        fontsize: Fontes.tamanhoBase.toDouble(),
+                        fontsize: FontsApp.tamanhoBase.toDouble(),
                         color: const Color(0xff999999),
                       ),
                     ],
@@ -545,7 +545,7 @@ class _PageCadastroState extends State<PageCadastro> {
               Semantics(
                 container: true,
                 label: "Botão Cadastrar-se",
-                child: widgetBotao(
+                child: ButtonDefault(
                   text: AppLocalizations.of(context)!.register_conclude,
                   function:
                       (usuarioController!.state == ControllerStates.loading)

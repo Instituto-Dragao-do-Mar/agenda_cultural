@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/pages/search_term_filter/store/search_filter_store.dart';
@@ -65,7 +65,7 @@ class _SearchFilterPageState extends State<SearchFilterPage> {
                 AppLocalizations.of(context)!.schedule_filter_subtitle,
                 style: TextStyle(
                   color: corTextAtual,
-                  fontSize: Fontes.tamanhoBase.toDouble(),
+                  fontSize: FontsApp.tamanhoBase.toDouble(),
                 ),
               ),
             ),
@@ -78,10 +78,10 @@ class _SearchFilterPageState extends State<SearchFilterPage> {
                     margin: const EdgeInsets.symmetric(horizontal: 8),
                     child: TextField(
                       controller: searchFilterStore.searchController,
-                      style: Fontes.poppins14W400Grey(Fontes.tamanhoBase),
+                      style: FontsApp.poppins14W400Grey(FontsApp.tamanhoBase),
                       decoration: InputDecoration(
                         hintText: AppLocalizations.of(context)!.schedule_filter_subtitle,
-                        hintStyle: Fontes.poppins14W400Grey(Fontes.tamanhoBase),
+                        hintStyle: FontsApp.poppins14W400Grey(FontsApp.tamanhoBase),
                         filled: true,
                         fillColor: const Color.fromRGBO(217, 217, 217, 8.2),
                         contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),

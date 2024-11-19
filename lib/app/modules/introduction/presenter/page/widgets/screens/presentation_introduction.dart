@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/shared/widgetbottombotao.dart';
 
 class PresentationIntroductionScreen extends StatelessWidget {
@@ -20,7 +20,7 @@ class PresentationIntroductionScreen extends StatelessWidget {
           AppLocalizations.of(context)!.int_text_presentation,
           style: TextStyle(
             color: Colors.white,
-            fontSize: Fontes.tamanhoBase.toDouble() + 2,
+            fontSize: FontsApp.tamanhoBase.toDouble() + 2,
           ),
         ),
         const SizedBox(height: 80),

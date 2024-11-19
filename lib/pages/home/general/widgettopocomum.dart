@@ -3,7 +3,7 @@ import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
 
-import '../../../model/fontes.dart';
+import '../../../model/fonts.dart';
 
 class widgetTopoComum extends StatelessWidget {
   const widgetTopoComum({
@@ -90,7 +90,7 @@ class widgetTopoComum extends StatelessWidget {
               label: semanticsLabel,
               child: Text(
                 text ?? "",
-                style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
+                style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
               ),
             ),
           ),

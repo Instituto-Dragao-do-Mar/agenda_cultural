@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:readmore/readmore.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
 
@@ -23,7 +23,7 @@ class SpaceDetailDescriptionWidget extends StatelessWidget {
         TextContrasteFonte(
           text: AppLocalizations.of(context)!.e_descr,
           style: GoogleFonts.inter(
-            fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
+            fontSize: FontsApp.tamanhoBase - (FontsApp.tamanhoFonteBase16 - 14),
             fontWeight: FontWeight.w600,
             color: corTextAtual,
           ),
@@ -32,7 +32,7 @@ class SpaceDetailDescriptionWidget extends StatelessWidget {
         ReadMoreText(
           description,
           style: GoogleFonts.inter(
-            fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
+            fontSize: FontsApp.tamanhoBase - (FontsApp.tamanhoFonteBase16 - 14),
             color: corTextAtual,
           ),
           colorClickableText: corBackgroundLaranja,
@@ -41,12 +41,12 @@ class SpaceDetailDescriptionWidget extends StatelessWidget {
           trimCollapsedText: ' ${AppLocalizations.of(context)!.e_descr_more}',
           trimExpandedText: ' ${AppLocalizations.of(context)!.e_descr_less}',
           moreStyle: TextStyle(
-            fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
+            fontSize: FontsApp.tamanhoBase - (FontsApp.tamanhoFonteBase16 - 14),
             fontWeight: FontWeight.bold,
             color: corBackgroundLaranja,
           ),
           lessStyle: TextStyle(
-            fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
+            fontSize: FontsApp.tamanhoBase - (FontsApp.tamanhoFonteBase16 - 14),
             fontWeight: FontWeight.bold,
             color: corBackgroundLaranja,
           ),

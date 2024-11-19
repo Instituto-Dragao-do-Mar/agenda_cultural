@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/shared/themes.dart';
-import 'package:agendacultural/shared/widgetbotao.dart';
 import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/shared/notify_pop_up.dart';
+import 'package:agendacultural/shared/button_default.dart';
 import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
-import 'package:agendacultural/pages/espacos/programacaoespaco.page.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/spaces/detail/space_detail_map.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/spaces/detail/space_detail_image.dart';
@@ -18,6 +17,7 @@ import 'package:agendacultural/app/modules/logged/features/home/presenter/page/a
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/spaces/detail/space_detail_evaluation.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/spaces/detail/space_detail_description.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/spaces/detail/space_detail_accessibility.dart';
+import 'package:agendacultural/app/modules/logged/features/home/sub_module/programming_space/presenter/page/programming_space_page.dart';
 
 class SpaceDetail extends StatelessWidget {
   final Space space;
@@ -58,7 +58,7 @@ class SpaceDetail extends StatelessWidget {
                       TextContrasteFonte(
                         text: space.nome ?? 'Nome do Espaço',
                         style: GoogleFonts.inter(
-                          fontSize: Fontes.tamanhoBase.toDouble(),
+                          fontSize: FontsApp.tamanhoBase.toDouble(),
                           fontWeight: FontWeight.w600,
                           color: corTextAtual,
                         ),
@@ -104,14 +104,14 @@ class SpaceDetail extends StatelessWidget {
             left: 0,
             right: 0,
             bottom: 20,
-            child: widgetBotao(
+            child: ButtonDefault(
               margin: const EdgeInsets.symmetric(horizontal: 10),
               text: AppLocalizations.of(context)!.e_programming,
               function: () => Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ProgramacaoEspacoPage(
-                    espaco: space,
+                  builder: (context) => ProgrammingSpace(
+                    space: space,
                   ),
                 ),
               ),

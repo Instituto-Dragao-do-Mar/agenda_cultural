@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:group_button/group_button.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetdropdownsearch.dart';
@@ -56,7 +56,7 @@ class _widgetfiltroespacoState extends State<widgetfiltroespaco> {
         const widgetEspacoH(altura: 16),
         Text(
           AppLocalizations.of(context)!.filter_spaces,
-          style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
+          style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
         ),
         const widgetEspacoH(altura: 5),
         widgetDropdownSearch(

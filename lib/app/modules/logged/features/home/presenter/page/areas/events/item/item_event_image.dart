@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:agendacultural/shared/widgetimagemexterna.dart';
@@ -15,8 +15,8 @@ class ItemEventImageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 150 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
-      width: 180 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+      height: 150 / FontsApp.tamanhoFonteBase16 * FontsApp.tamanhoBase,
+      width: 180 / FontsApp.tamanhoFonteBase16 * FontsApp.tamanhoBase,
       decoration: const BoxDecoration(
         borderRadius: BorderRadius.vertical(bottom: Radius.circular(0), top: Radius.circular(10)),
       ),

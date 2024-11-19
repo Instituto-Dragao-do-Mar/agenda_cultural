@@ -1,6 +1,6 @@
 // ignore_for_file: camel_case_types, library_private_types_in_public_api, use_build_context_synchronously
 
-import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/pages/home/general/widgettopocomum.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetBottomNavigator.dart';
@@ -59,7 +59,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
               Text(
                 AppLocalizations.of(context)!.profile_account_data,
                 semanticsLabel: "Dados cadastrais do usuário",
-                style: Fontes.poppins18W500Black((Fontes.tamanhoBase)),
+                style: FontsApp.poppins18W500Black((FontsApp.tamanhoBase)),
               ),
               const widgetEspacoH(
                 altura: 15,
@@ -67,7 +67,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
               Text(
                 AppLocalizations.of(context)!.register_name,
                 semanticsLabel: "Nome",
-                style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
+                style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
               ),
               const widgetEspacoH(
                 altura: 4,
@@ -76,7 +76,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
                 container: false,
                 label: "Nome do usuário $nomeInput",
                 child: TextField(
-                  style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
+                  style: FontsApp.poppins16W400Grey(FontsApp.tamanhoBase),
                   enabled: false,
                   decoration: InputDecoration(
                     hintText: nomeInput,
@@ -110,7 +110,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
               ),
               Text(
                 AppLocalizations.of(context)!.register_email,
-                style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
+                style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
                 semanticsLabel: "E-mail",
               ),
               const widgetEspacoH(
@@ -120,7 +120,7 @@ class _widgetDadosCadastraisState extends State<widgetDadosCadastrais> {
                 container: false,
                 label: "Email do usuário $emailInput",
                 child: TextField(
-                  style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
+                  style: FontsApp.poppins16W400Grey(FontsApp.tamanhoBase),
                   enabled: false,
                   decoration: InputDecoration(
                     hintText: emailInput,

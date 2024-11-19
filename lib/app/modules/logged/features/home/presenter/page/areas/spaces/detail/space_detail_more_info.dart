@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
@@ -24,7 +24,7 @@ class SpaceDetailMoreInfoWidget extends StatelessWidget {
         TextContrasteFonte(
           text: AppLocalizations.of(context)!.e_more_info,
           style: GoogleFonts.inter(
-            fontSize: Fontes.tamanhoBase - 2,
+            fontSize: FontsApp.tamanhoBase - 2,
             fontWeight: FontWeight.w500,
             color: corTextAtual,
           ),
@@ -51,7 +51,7 @@ class SpaceDetailMoreInfoWidget extends StatelessWidget {
                     text: AppLocalizations.of(context)!.e_more_info_scheduling,
                     style: GoogleFonts.inter(
                       decoration: TextDecoration.underline,
-                      fontSize: Fontes.tamanhoBase - 2,
+                      fontSize: FontsApp.tamanhoBase - 2,
                       fontWeight: FontWeight.w500,
                       color: corTextAtual,
                     ),

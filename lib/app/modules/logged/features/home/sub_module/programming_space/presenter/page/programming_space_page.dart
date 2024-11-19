@@ -1,37 +1,32 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/shared/themes.dart';
-import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
-import 'package:agendacultural/shared/widgetBottomNavigator.dart';
 import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
 import 'package:agendacultural/pages/espacos/pesquisarprogramacao.page.dart';
 
-class ProgramacaoEspacoPage extends StatefulWidget {
-  const ProgramacaoEspacoPage({
+class ProgrammingSpace extends StatefulWidget {
+  final Space space;
+
+  const ProgrammingSpace({
     super.key,
-    required this.espaco,
+    required this.space,
   });
 
-  final Space espaco;
-
   @override
-  State<ProgramacaoEspacoPage> createState() => _ProgramacaoEspacoPageState();
+  State<ProgrammingSpace> createState() => _ProgrammingSpaceState();
 }
 
-class _ProgramacaoEspacoPageState extends State<ProgramacaoEspacoPage> {
-  late AppModel? app;
+class _ProgrammingSpaceState extends State<ProgrammingSpace> {
   List<Event> eventos = [];
 
   @override
   void initState() {
     super.initState();
-    app = Provider.of<AppModel>(context, listen: false);
     // for (Event e in app!.listaEventos.eventos ?? eventos) {
     //   String nomeEspacoPrincipal = app!.GetEspacoPrincipal(evento: e);
     //   String nomeEspacoPrincipal2 = app!.GetEspacoEvento(e);
@@ -76,22 +71,18 @@ class _ProgramacaoEspacoPageState extends State<ProgramacaoEspacoPage> {
               text: AppLocalizations.of(context)!.e_title_e,
               style: TextStyle(
                 color: corTextAtual,
-                fontSize: Fontes.tamanhoBase.toDouble(),
+                fontSize: FontsApp.tamanhoBase.toDouble(),
               ),
             ),
             GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return PesquisarProgramacaoPage(
-                        eventos: eventos,
-                      );
-                    },
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => PesquisarProgramacaoPage(
+                    eventos: eventos,
                   ),
-                );
-              },
+                ),
+              ),
               child: widgetImagemInterna(
                 imagem: Imagem(url: 'favoritos.png'),
               ),
@@ -101,13 +92,12 @@ class _ProgramacaoEspacoPageState extends State<ProgramacaoEspacoPage> {
         automaticallyImplyLeading: false,
       ),
       body: body(),
-      bottomNavigationBar: const WidgetBottomNavigator(replacePage: 2),
     );
   }
 
   Widget body() {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: const EdgeInsets.all(8),
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -117,8 +107,8 @@ class _ProgramacaoEspacoPageState extends State<ProgramacaoEspacoPage> {
               children: [
                 Flexible(
                   child: Text(
-                    widget.espaco.nome ?? 'Nome do Espaço',
-                    style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
+                    widget.space.nome ?? 'Nome do Espaço',
+                    style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
                     overflow: TextOverflow.ellipsis,
                   ),
                 ),
@@ -128,7 +118,7 @@ class _ProgramacaoEspacoPageState extends State<ProgramacaoEspacoPage> {
                       margin: const EdgeInsets.only(left: 20),
                       child: Text(
                         AppLocalizations.of(context)!.home_filter,
-                        style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
+                        style: FontsApp.poppins16W400Grey(FontsApp.tamanhoBase),
                       ),
                     ),
                     const SizedBox(width: 5),
@@ -149,7 +139,7 @@ class _ProgramacaoEspacoPageState extends State<ProgramacaoEspacoPage> {
             ),
             Text(
               AppLocalizations.of(context)!.e_programming,
-              style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
+              style: FontsApp.poppins16W400Grey(FontsApp.tamanhoBase),
             ),
             const SizedBox(height: 10),
             // eventos.isEmpty

@@ -6,7 +6,7 @@ import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/home/general/widgettopocomum.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetBottomNavigator.dart';
-import 'package:agendacultural/shared/widgetbotao.dart';
+import 'package:agendacultural/shared/button_default.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -123,7 +123,7 @@ class _PerfilIdiomaPageState extends State<PerfilIdiomaPage> {
                 ),
               ),
               const SizedBox(height: 70),
-              widgetBotao(
+              ButtonDefault(
                 text: AppLocalizations.of(context)!.profile_accessibility_save,
                 function: () {
                   AppWidget.setLocale(context, Locale(languageSelecionada!.languageCode, ''));

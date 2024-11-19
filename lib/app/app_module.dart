@@ -1,6 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:agendacultural/app/common/router/router.dart';
-import 'package:agendacultural/core/app_store/app_store.dart';
+import 'package:agendacultural/app/core/app_store/app_store.dart';
 import 'package:agendacultural/app/modules/splash/splash_module.dart';
 import 'package:agendacultural/app/modules/logged/logged_module.dart';
 import 'package:agendacultural/app/modules/introduction/introduction_module.dart';

@@ -3,20 +3,20 @@
 import 'package:agendacultural/app/modules/logged/presenter/page/logged_area_page.dart';
 import 'package:agendacultural/controller/notificacao_controller.dart';
 import 'package:agendacultural/controller/user_controller.dart';
-import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/acesso/pageCadastro.dart';
 import 'package:agendacultural/pages/acesso/pageNovaSenha.dart';
 import 'package:agendacultural/pages/acesso/pageRecuperarSenha.dart';
 import 'package:agendacultural/shared/themes.dart';
-import 'package:agendacultural/shared/widgetbotao.dart';
+import 'package:agendacultural/shared/button_default.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../../model/app_model.dart';
-import '../../model/cores.dart';
+import '../../model/colors.dart';
 import '../../shared/constantes.dart';
 import '../../shared/widgetTextFonteContraste.dart';
 import '../../shared/notify_pop_up.dart';
@@ -89,9 +89,9 @@ class _PageEntrarState extends State<PageEntrar> {
                 text: AppLocalizations.of(context)!.login_enter,
                 style: GoogleFonts.poppins(
                   textStyle: TextStyle(
-                    fontSize: Fontes.tamanhoBase + 8,
+                    fontSize: FontsApp.tamanhoBase + 8,
                     fontWeight: FontWeight.w500,
-                    color: !Cores.contraste ? Colors.black : Colors.white,
+                    color: !ColorsApp.contraste ? Colors.black : Colors.white,
                   ),
                 ),
               ),
@@ -104,7 +104,7 @@ class _PageEntrarState extends State<PageEntrar> {
                     text: AppLocalizations.of(context)!.login_text,
                     semantics:
                         "Para entrar é necessário que você tenha se cadastrado no nosso aplicativo .",
-                    style: Fontes.poppins12W400Grey((Fontes.tamanhoBase)),
+                    style: FontsApp.poppins12W400Grey((FontsApp.tamanhoBase)),
                   ),
                   InkWell(
                     onTap: () {
@@ -120,7 +120,7 @@ class _PageEntrarState extends State<PageEntrar> {
                       semantics: "Cadastre-se!",
                       style: TextStyle(
                         color: corBackgroundLaranja,
-                        fontSize: Fontes.tamanhoBase.toDouble(),
+                        fontSize: FontsApp.tamanhoBase.toDouble(),
                       ),
                     ),
                   ),
@@ -133,7 +133,7 @@ class _PageEntrarState extends State<PageEntrar> {
                 children: [
                   TextContrasteFonte(
                     text: AppLocalizations.of(context)!.login_email,
-                    style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
+                    style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
                     semantics: "Rótulo de E-mail",
                   ),
                   Semantics(
@@ -143,7 +143,7 @@ class _PageEntrarState extends State<PageEntrar> {
                       text: " *",
                       style: TextStyle(
                         color: corBackgroundLaranja,
-                        fontSize: Fontes.tamanhoBase.toDouble(),
+                        fontSize: FontsApp.tamanhoBase.toDouble(),
                       ),
                     ),
                   ),
@@ -156,7 +156,7 @@ class _PageEntrarState extends State<PageEntrar> {
                 label: "Campo para digitação de email",
                 child: TextFormField(
                   initialValue: emailInput,
-                  style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
+                  style: FontsApp.poppins16W400Grey(FontsApp.tamanhoBase),
                   onChanged: (value) {
                     setState(() {
                       emailInput = value;
@@ -172,7 +172,7 @@ class _PageEntrarState extends State<PageEntrar> {
                 children: [
                   TextContrasteFonte(
                     text: AppLocalizations.of(context)!.login_password,
-                    style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
+                    style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
                     semantics: "Rótulo de Senha",
                   ),
                   Semantics(
@@ -182,7 +182,7 @@ class _PageEntrarState extends State<PageEntrar> {
                       text: " *",
                       style: TextStyle(
                         color: corBackgroundLaranja,
-                        fontSize: Fontes.tamanhoBase.toDouble(),
+                        fontSize: FontsApp.tamanhoBase.toDouble(),
                       ),
                     ),
                   ),
@@ -195,7 +195,7 @@ class _PageEntrarState extends State<PageEntrar> {
                 label: "Campo para digitação de senha",
                 child: TextField(
                   obscureText: obscureTextSenha,
-                  style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
+                  style: FontsApp.poppins16W400Grey(FontsApp.tamanhoBase),
                   onChanged: (value) {
                     setState(() {
                       senhaInput = value;
@@ -263,7 +263,7 @@ class _PageEntrarState extends State<PageEntrar> {
                       semantics: "Esqueci minha senha",
                       style: TextStyle(
                         color: corBackgroundLaranja,
-                        fontSize: Fontes.tamanhoBase.toDouble(),
+                        fontSize: FontsApp.tamanhoBase.toDouble(),
                       ),
                     ),
                   ),
@@ -275,7 +275,7 @@ class _PageEntrarState extends State<PageEntrar> {
               Semantics(
                 container: true,
                 label: "Botão Entrar",
-                child: widgetBotao(
+                child: ButtonDefault(
                   text: AppLocalizations.of(context)!.login_enter,
                   function: () async => await sendLogin(context),
                 ),

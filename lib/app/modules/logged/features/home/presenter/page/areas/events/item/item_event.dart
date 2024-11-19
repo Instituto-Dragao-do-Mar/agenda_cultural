@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:agendacultural/model/cores.dart';
-import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/fonts.dart';
+import 'package:agendacultural/model/colors.dart';
 import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/shared/extensions/dates.dart';
 import 'package:agendacultural/shared/button_favorite_event.dart';
@@ -39,12 +39,12 @@ class ItemEventWidget extends StatelessWidget {
       onTap: onTapEvent,
       child: Container(
         margin: const EdgeInsets.all(8),
-        height: 270 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
-        width: 180 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+        height: 270 / FontsApp.tamanhoFonteBase16 * FontsApp.tamanhoBase,
+        width: 180 / FontsApp.tamanhoFonteBase16 * FontsApp.tamanhoBase,
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          color: !Cores.contraste ? const Color(0xFFF6F6F6) : Colors.black.withOpacity(.8),
+          color: !ColorsApp.contraste ? const Color(0xFFF6F6F6) : Colors.black.withOpacity(.8),
           boxShadow: [BoxShadow(color: Colors.black.withOpacity(.2), blurRadius: 3, offset: const Offset(0, 0))],
         ),
         child: Stack(

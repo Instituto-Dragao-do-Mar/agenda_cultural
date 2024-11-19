@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/app/common/utils/tradutors.dart';
 import 'package:agendacultural/shared/extensions/clearMask.dart';
@@ -27,7 +27,7 @@ class EventDetailCategories extends StatelessWidget {
       child: TextContrasteFonte(
         text: _getListCategories(context),
         style: GoogleFonts.inter(
-          fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
+          fontSize: FontsApp.tamanhoBase - (FontsApp.tamanhoFonteBase16 - 14),
           color: corBackgroundLaranja,
         ),
       ),

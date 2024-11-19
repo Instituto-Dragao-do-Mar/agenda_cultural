@@ -3,11 +3,11 @@ import 'package:agendacultural/pages/acesso/pagelogin.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../../model/fontes.dart';
+import '../../model/fonts.dart';
 import '../../shared/constantes.dart';
 import '../../shared/themes.dart';
 import '../../shared/widgetTextFonteContraste.dart';
-import '../../shared/widgetbotao.dart';
+import '../../shared/button_default.dart';
 import '../../shared/notify_pop_up.dart';
 import '../../shared/widgetespacoh.dart';
 import '../home/general/widgettopocomum.dart';
@@ -74,7 +74,7 @@ class _PageRecuperarSenhaState extends State<PageRecuperarSenha> {
                         AppLocalizations.of(context)!.login_reset_password_text,
                     semantics:
                         "Insira um email abaixo para receber o link de recuperação de senha.",
-                    style: Fontes.poppins12W400Grey((Fontes.tamanhoBase)),
+                    style: FontsApp.poppins12W400Grey((FontsApp.tamanhoBase)),
                   ),
                 ],
               ),
@@ -85,7 +85,7 @@ class _PageRecuperarSenhaState extends State<PageRecuperarSenha> {
                 children: [
                   TextContrasteFonte(
                     text: AppLocalizations.of(context)!.login_email,
-                    style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
+                    style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
                     semantics: "Rótulo de E-mail",
                   ),
                   Semantics(
@@ -95,7 +95,7 @@ class _PageRecuperarSenhaState extends State<PageRecuperarSenha> {
                       text: " *",
                       style: TextStyle(
                         color: corBackgroundLaranja,
-                        fontSize: Fontes.tamanhoBase.toDouble(),
+                        fontSize: FontsApp.tamanhoBase.toDouble(),
                       ),
                     ),
                   ),
@@ -105,7 +105,7 @@ class _PageRecuperarSenhaState extends State<PageRecuperarSenha> {
                 altura: 4,
               ),
               TextField(
-                style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
+                style: FontsApp.poppins16W400Grey(FontsApp.tamanhoBase),
                 onChanged: (value) {
                   setState(() {
                     emailInput = value;
@@ -119,7 +119,7 @@ class _PageRecuperarSenhaState extends State<PageRecuperarSenha> {
               Semantics(
                 container: true,
                 label: "Enviar",
-                child: widgetBotao(
+                child: ButtonDefault(
                     text:
                         AppLocalizations.of(context)!.login_reset_password_send,
                     function: () async => {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/shared/themes.dart';
 
 class SpaceDetailLocationWidget extends StatelessWidget {
@@ -21,7 +21,7 @@ class SpaceDetailLocationWidget extends StatelessWidget {
         Text(
           AppLocalizations.of(context)!.e_location,
           style: GoogleFonts.inter(
-            fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
+            fontSize: FontsApp.tamanhoBase - (FontsApp.tamanhoFonteBase16 - 14),
             fontWeight: FontWeight.w600,
             color: corTextAtual,
           ),
@@ -30,7 +30,7 @@ class SpaceDetailLocationWidget extends StatelessWidget {
         Text(
           address,
           style: GoogleFonts.inter(
-            fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
+            fontSize: FontsApp.tamanhoBase - (FontsApp.tamanhoFonteBase16 - 14),
             color: corTextAtual,
           ),
         ),

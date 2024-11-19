@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-import 'package:agendacultural/model/cores.dart';
-import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/fonts.dart';
+import 'package:agendacultural/model/colors.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 
 // usada apenas na page de notificação
@@ -53,10 +52,10 @@ void notifyPopUpWidget({
                 width: double.infinity,
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: !Cores.contraste ? Colors.white : Colors.black,
+                  color: !ColorsApp.contraste ? Colors.white : Colors.black,
                   borderRadius: BorderRadius.circular(25),
                   border: Border.all(
-                    color: Cores.contraste ? Colors.white : Colors.transparent,
+                    color: ColorsApp.contraste ? Colors.white : Colors.transparent,
                   ),
                 ),
                 child: Column(
@@ -65,12 +64,12 @@ void notifyPopUpWidget({
                     widgetEspacoH(altura: permitirFechar ? 0 : 42),
                     Text(
                       textChamativo ?? AppLocalizations.of(context)!.notification_attention,
-                      style: Fontes.poppins16W500Black(Fontes.tamanhoBase + 2),
+                      style: FontsApp.poppins16W500Black(FontsApp.tamanhoBase + 2),
                     ),
                     const widgetEspacoH(altura: 10),
                     Text(
                       textDescritivo,
-                      style: Fontes.poppins16W400Black(Fontes.tamanhoBase - 2),
+                      style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase - 2),
                       textAlign: TextAlign.center,
                     ),
                     const widgetEspacoH(altura: 10),
@@ -85,7 +84,7 @@ void notifyPopUpWidget({
                           textBotao ?? AppLocalizations.of(context)!.notification_ok,
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: Fontes.tamanhoBase.toDouble(),
+                            fontSize: FontsApp.tamanhoBase.toDouble(),
                           ),
                         ),
                       ),
@@ -110,7 +109,7 @@ void notifyPopUpWidget({
                             textBotaoSecundario ?? AppLocalizations.of(context)!.notification_cancel,
                             style: TextStyle(
                               color: Colors.black,
-                              fontSize: Fontes.tamanhoBase.toDouble(),
+                              fontSize: FontsApp.tamanhoBase.toDouble(),
                             ),
                           ),
                         ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-
-import 'package:agendacultural/model/cores.dart';
-import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/fonts.dart';
+import 'package:agendacultural/model/colors.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/extensions/dates.dart';
 import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
@@ -32,7 +31,7 @@ class InsertDateWidget extends StatelessWidget {
             topRight: Radius.circular(!firstDate ? 10 : 0),
             bottomRight: Radius.circular(!firstDate ? 10 : 0),
           ),
-          border: Border.all(color: Cores.contraste ? Colors.white : corBackgroundLaranja.withOpacity(.2)),
+          border: Border.all(color: ColorsApp.contraste ? Colors.white : corBackgroundLaranja.withOpacity(.2)),
         ),
         height: 70,
         width: double.infinity,
@@ -44,13 +43,13 @@ class InsertDateWidget extends StatelessWidget {
               text: label,
               color: corBackgroundLaranja,
               weight: FontWeight.bold,
-              fontsize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
+              fontsize: FontsApp.tamanhoBase - (FontsApp.tamanhoFonteBase16 - 14),
             ),
             const SizedBox(width: 5),
             TextContrasteFonte(
               text: controller.text.formatDate(format: "E, dd MMM"),
               color: corTextAtual,
-              fontsize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
+              fontsize: FontsApp.tamanhoBase - (FontsApp.tamanhoFonteBase16 - 14),
             ),
           ],
         ),

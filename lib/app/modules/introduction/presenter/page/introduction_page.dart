@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:agendacultural/dados/dados.dart';
-import 'package:agendacultural/model/cores.dart';
-import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/fonts.dart';
+import 'package:agendacultural/model/colors.dart';
 import 'package:agendacultural/app/app_widget.dart';
 import 'package:agendacultural/app/common/router/router.dart';
 import 'package:agendacultural/app/modules/introduction/presenter/page/widgets/step.dart';
@@ -92,9 +92,9 @@ class _IntroductionPageState extends State<IntroductionPage> {
                                       fontSize: _handler.store.fontSize,
                                       setAltoContraste: (value) async {
                                         _handler.store.setStatusAltoContraste(value);
-                                        Cores.setAltoContraste(value);
+                                        ColorsApp.setAltoContraste(value);
                                         await Dados.setBool('altocontraste', value);
-                                        Cores.reloadColors();
+                                        ColorsApp.reloadColors();
                                       },
                                       setFontSize: (isIncrement) async {
                                         if (isIncrement) {
@@ -106,7 +106,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
                                             _handler.store.setFontSize(_handler.store.fontSize - 2);
                                           }
                                         }
-                                        Fontes.setTamanhoBase(_handler.store.fontSize.toInt());
+                                        FontsApp.setTamanhoBase(_handler.store.fontSize.toInt());
                                         await Dados.setInt('tamanhofontebase', _handler.store.fontSize.toInt());
                                       },
                                       onNextStep: () {

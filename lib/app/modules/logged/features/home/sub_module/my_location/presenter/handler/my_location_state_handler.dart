@@ -6,7 +6,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:agendacultural/dados/dados.dart';
 import 'package:agendacultural/shared/notify_pop_up.dart';
-import 'package:agendacultural/core/app_store/app_store.dart';
+import 'package:agendacultural/app/core/app_store/app_store.dart';
 import 'package:agendacultural/app/modules/logged/features/home/sub_module/my_location/domain/adapters/geo_location.dart';
 import 'package:agendacultural/app/modules/logged/features/home/sub_module/my_location/presenter/store/my_location_store.dart';
 

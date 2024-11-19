@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/fonts.dart';
 
 class ItemSpaceImageWidget extends StatelessWidget {
   final String? urlImage;
@@ -12,8 +12,8 @@ class ItemSpaceImageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 150 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
-      width: 180 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+      height: 150 / FontsApp.tamanhoFonteBase16 * FontsApp.tamanhoBase,
+      width: 180 / FontsApp.tamanhoFonteBase16 * FontsApp.tamanhoBase,
       child: urlImage == null
           ? Image.asset(
               'imagens/Outros - 1padrao.png',

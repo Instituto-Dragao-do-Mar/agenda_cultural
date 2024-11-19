@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
@@ -25,8 +25,8 @@ class ItemCategoryFilterWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: corBgAtual,
-      width: 70 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
-      height: 110 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+      width: 70 / FontsApp.tamanhoFonteBase16 * FontsApp.tamanhoBase,
+      height: 110 / FontsApp.tamanhoFonteBase16 * FontsApp.tamanhoBase,
       child: Column(
         children: [
           Semantics(
@@ -47,7 +47,7 @@ class ItemCategoryFilterWidget extends StatelessWidget {
           TextContrasteFonte(
             text: nameCategory,
             align: TextAlign.center,
-            fontsize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 10),
+            fontsize: FontsApp.tamanhoBase - (FontsApp.tamanhoFonteBase16 - 10),
           ),
         ],
       ),

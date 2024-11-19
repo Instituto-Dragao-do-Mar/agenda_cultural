@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
-import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/fonts.dart';
 
 class StepWidget extends StatelessWidget {
   final int currentStep;
@@ -37,11 +37,11 @@ class StepWidget extends StatelessWidget {
                   child: RichText(
                     text: TextSpan(
                       text: currentStep.toString(),
-                      style: Fontes.inter14W500EA5B0C(Fontes.tamanhoBase),
+                      style: FontsApp.inter14W500EA5B0C(FontsApp.tamanhoBase),
                       children: [
                         TextSpan(
                           text: " $de 3",
-                          style: Fontes.inter14W500Grey(Fontes.tamanhoBase),
+                          style: FontsApp.inter14W500Grey(FontsApp.tamanhoBase),
                         )
                       ],
                     ),

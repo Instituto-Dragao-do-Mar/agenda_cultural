@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../model/cores.dart';
+import '../model/colors.dart';
 
 var themeDefault = ThemeData(
   // Define the default brightness and colors.
@@ -27,15 +27,15 @@ var corBackgroundNegative = Colors.white;
 
 const corBg = Colors.white;
 const corBgAltoContraste = Colors.black;
-var corBgAtual = !Cores.contraste ? Colors.white : Colors.black;
+var corBgAtual = !ColorsApp.contraste ? Colors.white : Colors.black;
 
 const corAppBar = Colors.white;
 const corAppBarAltoContraste = Colors.black;
-var corAppBarAtual = !Cores.contraste ? Colors.white : Colors.black;
+var corAppBarAtual = !ColorsApp.contraste ? Colors.white : Colors.black;
 
 const corText = Colors.black;
 const corTextAltoContraste = Colors.white;
-var corTextAtual = !Cores.contraste ? Colors.black : Colors.white;
+var corTextAtual = !ColorsApp.contraste ? Colors.black : Colors.white;
 
 InputDecoration InputDecorationDefault({
   String? hint,

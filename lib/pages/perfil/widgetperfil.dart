@@ -1,7 +1,7 @@
 // ignore_for_file: camel_case_types
 
 import 'package:agendacultural/model/app_model.dart';
-import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
 import 'package:agendacultural/pages/perfil/perfil_idioma.page.dart';
@@ -47,7 +47,7 @@ class _widgetPerfilState extends State<widgetPerfil> {
           children: [
             Text(
               AppLocalizations.of(context)!.profile_account,
-              style: Fontes.poppins18W500Black(Fontes.tamanhoBase),
+              style: FontsApp.poppins18W500Black(FontsApp.tamanhoBase),
             ),
             const widgetEspacoH(altura: 12),
             Padding(
@@ -85,7 +85,7 @@ class _widgetPerfilState extends State<widgetPerfil> {
             const widgetEspacoH(altura: 24),
             Text(
               AppLocalizations.of(context)!.profile_general,
-              style: Fontes.poppins18W500Black(Fontes.tamanhoBase),
+              style: FontsApp.poppins18W500Black(FontsApp.tamanhoBase),
             ),
             const widgetEspacoH(altura: 12),
             Padding(
@@ -190,7 +190,7 @@ class _widgetPerfilState extends State<widgetPerfil> {
             const widgetEspacoH(altura: 24),
             Text(
               AppLocalizations.of(context)!.profile_accessibility,
-              style: Fontes.poppins18W500Black(Fontes.tamanhoBase),
+              style: FontsApp.poppins18W500Black(FontsApp.tamanhoBase),
             ),
             const widgetEspacoH(altura: 12),
             Padding(

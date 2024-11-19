@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/model/cores.dart';
-import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/colors.dart';
+import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/model/usuario_model.dart';
@@ -32,7 +32,7 @@ class _SpaceDetailEvaluationWidgetState extends State<SpaceDetailEvaluationWidge
     final av2 = AppLocalizations.of(context)!.e_evaluation_two;
     final av3 = AppLocalizations.of(context)!.e_evaluation_three_e;
     final size = MediaQuery.of(context).size;
-    final font = Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14);
+    final font = FontsApp.tamanhoBase - (FontsApp.tamanhoFonteBase16 - 14);
 
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -92,7 +92,7 @@ class _SpaceDetailEvaluationWidgetState extends State<SpaceDetailEvaluationWidge
     if (selected == value) {
       return '${iconName}_orange.png';
     }
-    return !Cores.contraste ? '${iconName}_black.png' : '${iconName}_white.png';
+    return !ColorsApp.contraste ? '${iconName}_black.png' : '${iconName}_white.png';
   }
 
   void _confirmEvaluation(int value) {

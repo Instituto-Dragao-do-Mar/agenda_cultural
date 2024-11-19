@@ -1,21 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:agendacultural/model/colors.dart';
 
-import 'cores.dart';
-
-class Fontes {
+class FontsApp {
   static const int tamanhoFonteBase16 = 16;
   static int tamanhoBase = 16;
 
-  static void setTamanhoBase(int tamanho) {
-    tamanhoBase = tamanho;
-  }
+  static void setTamanhoBase(int tamanho) => tamanhoBase = tamanho;
 
   static TextStyle poppins18W500Black(int tamanho) => GoogleFonts.poppins(
         textStyle: TextStyle(
           fontSize: tamanho + 2,
           fontWeight: FontWeight.w500,
-          color: !Cores.contraste ? Colors.black : Colors.white,
+          color: !ColorsApp.contraste ? Colors.black : Colors.white,
         ),
       );
 
@@ -23,7 +20,7 @@ class Fontes {
         textStyle: TextStyle(
           fontSize: tamanho.toDouble(),
           fontWeight: FontWeight.w500,
-          color: !Cores.contraste ? Colors.black : Colors.white,
+          color: !ColorsApp.contraste ? Colors.black : Colors.white,
         ),
       );
 
@@ -31,7 +28,7 @@ class Fontes {
         textStyle: TextStyle(
           fontSize: tamanho.toDouble(),
           fontWeight: FontWeight.w400,
-          color: !Cores.contraste ? Colors.black : Colors.white,
+          color: !ColorsApp.contraste ? Colors.black : Colors.white,
         ),
       );
 
@@ -87,7 +84,7 @@ class Fontes {
         textStyle: TextStyle(
           fontSize: tamanho - 2,
           fontWeight: FontWeight.w400,
-          color: !Cores.contraste ? const Color(0XFF222222) : Colors.white,
+          color: !ColorsApp.contraste ? const Color(0XFF222222) : Colors.white,
         ),
       );
 
@@ -95,7 +92,7 @@ class Fontes {
         textStyle: TextStyle(
           fontSize: tamanho + 2,
           fontWeight: FontWeight.w400,
-          color: !Cores.contraste ? const Color(0XFF222222) : Colors.white,
+          color: !ColorsApp.contraste ? const Color(0XFF222222) : Colors.white,
         ),
       );
 
@@ -103,7 +100,7 @@ class Fontes {
         textStyle: TextStyle(
           fontSize: tamanho.toDouble(),
           fontWeight: FontWeight.w500,
-          color: const Color(0xff999999), //!Cores.contraste ? Color(0xff999999) : Colors.white,
+          color: const Color(0xff999999),
         ),
       );
 
@@ -119,7 +116,7 @@ class Fontes {
         textStyle: TextStyle(
           fontSize: tamanho - 4,
           fontWeight: FontWeight.w300,
-          color: !Cores.contraste ? const Color(0xff666666) : Colors.white,
+          color: !ColorsApp.contraste ? const Color(0xff666666) : Colors.white,
         ),
       );
 
@@ -135,7 +132,7 @@ class Fontes {
         textStyle: TextStyle(
           fontSize: tamanho.toDouble(),
           fontWeight: FontWeight.w500,
-          color: !Cores.contraste ? const Color(0XFF000000) : Colors.white,
+          color: !ColorsApp.contraste ? const Color(0XFF000000) : Colors.white,
         ),
       );
 
@@ -143,7 +140,7 @@ class Fontes {
         textStyle: TextStyle(
           fontSize: tamanho - 2,
           fontWeight: FontWeight.w500,
-          color: !Cores.contraste ? Colors.black : Colors.white,
+          color: !ColorsApp.contraste ? Colors.black : Colors.white,
         ),
       );
 
@@ -167,7 +164,7 @@ class Fontes {
         textStyle: TextStyle(
           fontSize: tamanho.toDouble(),
           fontWeight: FontWeight.w500,
-          color: !Cores.contraste ? const Color(0XFF666666) : Colors.white,
+          color: !ColorsApp.contraste ? const Color(0XFF666666) : Colors.white,
         ),
       );
 
@@ -183,7 +180,7 @@ class Fontes {
         textStyle: TextStyle(
           fontSize: tamanho.toDouble(),
           fontWeight: FontWeight.w700,
-          color: Cores.contraste ? Colors.black : Colors.white,
+          color: ColorsApp.contraste ? Colors.black : Colors.white,
         ),
       );
 
@@ -199,7 +196,7 @@ class Fontes {
         textStyle: TextStyle(
           fontSize: tamanho.toDouble(),
           fontWeight: FontWeight.w500,
-          color: Color(0XFF999999),
+          color: const Color(0XFF999999),
         ),
       );
 
@@ -207,7 +204,7 @@ class Fontes {
         textStyle: TextStyle(
           fontSize: tamanho.toDouble(),
           fontWeight: FontWeight.w500,
-          color: Color(0XFFEA5B0C),
+          color: const Color(0XFFEA5B0C),
         ),
       );
 }

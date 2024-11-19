@@ -1,13 +1,13 @@
 // ignore_for_file: file_names, use_build_context_synchronously
 
 import 'package:agendacultural/controller/user_controller.dart';
-import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/pages/acesso/pagelogin.dart';
 import 'package:agendacultural/pages/home/general/widgettopocomum.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
-import 'package:agendacultural/shared/widgetbotao.dart';
+import 'package:agendacultural/shared/button_default.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -70,7 +70,7 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
                   TextContrasteFonte(
                     text: "Insira uma nova senha. ",
                     semantics: "Insira uma nova senha.",
-                    style: Fontes.poppins12W400Grey((Fontes.tamanhoBase)),
+                    style: FontsApp.poppins12W400Grey((FontsApp.tamanhoBase)),
                   ),
                 ],
               ),
@@ -79,7 +79,7 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
                 children: [
                   TextContrasteFonte(
                     text: "Nova Senha",
-                    style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
+                    style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
                     semantics: "Digite sua Senha",
                   ),
                   Semantics(
@@ -89,7 +89,7 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
                       text: " *",
                       style: TextStyle(
                         color: corBackgroundLaranja,
-                        fontSize: Fontes.tamanhoBase.toDouble(),
+                        fontSize: FontsApp.tamanhoBase.toDouble(),
                       ),
                     ),
                   ),
@@ -98,7 +98,7 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
               const widgetEspacoH(altura: 4),
               TextField(
                 obscureText: obscureTextSenha,
-                style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
+                style: FontsApp.poppins16W400Grey(FontsApp.tamanhoBase),
                 onChanged: (value) {
                   setState(() {
                     value.characters.length >= 6
@@ -169,13 +169,13 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
                   TextContrasteFonte(
                     text: AppLocalizations.of(context)!.register_confirm_password,
                     semantics: "Digite sua senha novamente",
-                    style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
+                    style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
                   ),
                   TextContrasteFonte(
                     text: " *",
                     style: TextStyle(
                       color: corBackgroundLaranja,
-                      fontSize: Fontes.tamanhoBase.toDouble(),
+                      fontSize: FontsApp.tamanhoBase.toDouble(),
                     ),
                   ),
                 ],
@@ -184,7 +184,7 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
               TextField(
                 autofocus: false,
                 obscureText: obscureTextNovaSenha,
-                style: Fontes.poppins16W400Grey(Fontes.tamanhoBase),
+                style: FontsApp.poppins16W400Grey(FontsApp.tamanhoBase),
                 onChanged: (value) {
                   setState(() {
                     confirmarSenhaInput = value;
@@ -241,7 +241,7 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
                         TextContrasteFonte(
                           text: AppLocalizations.of(context)!
                               .register_password_order,
-                          style: Fontes.roboto12W400Grey(Fontes.tamanhoBase),
+                          style: FontsApp.roboto12W400Grey(FontsApp.tamanhoBase),
                           semantics: "Sua senha deve conter:",
                         ),
                         const widgetEspacoH(altura: 4),
@@ -249,8 +249,8 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
                           text: AppLocalizations.of(context)!
                               .register_password_order_one,
                           style: haveMinDigits == 1
-                              ? Fontes.roboto12W300Green(Fontes.tamanhoBase)
-                              : Fontes.roboto12W300Grey(Fontes.tamanhoBase),
+                              ? FontsApp.roboto12W300Green(FontsApp.tamanhoBase)
+                              : FontsApp.roboto12W300Grey(FontsApp.tamanhoBase),
                           semantics: "No mínimo 6 dígitos",
                         ),
                         const widgetEspacoH(altura: 4),
@@ -258,8 +258,8 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
                           text: AppLocalizations.of(context)!
                               .register_password_order_two,
                           style: haveUpperCase == 1
-                              ? Fontes.roboto12W300Green(Fontes.tamanhoBase)
-                              : Fontes.roboto12W300Grey(Fontes.tamanhoBase),
+                              ? FontsApp.roboto12W300Green(FontsApp.tamanhoBase)
+                              : FontsApp.roboto12W300Grey(FontsApp.tamanhoBase),
                           semantics: "Pelo menos 1 letra maiúscula",
                         ),
                         const widgetEspacoH(altura: 4),
@@ -267,8 +267,8 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
                           text: AppLocalizations.of(context)!
                               .register_password_order_three,
                           style: haveLowerCase == 1
-                              ? Fontes.roboto12W300Green(Fontes.tamanhoBase)
-                              : Fontes.roboto12W300Grey(Fontes.tamanhoBase),
+                              ? FontsApp.roboto12W300Green(FontsApp.tamanhoBase)
+                              : FontsApp.roboto12W300Grey(FontsApp.tamanhoBase),
                           semantics: "Pelo menos 1 letra minúscula",
                         ),
                         const widgetEspacoH(altura: 4),
@@ -276,15 +276,15 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
                           text: AppLocalizations.of(context)!
                               .register_password_order_four,
                           style: haveNumber == 1
-                              ? Fontes.roboto12W300Green(Fontes.tamanhoBase)
-                              : Fontes.roboto12W300Grey(Fontes.tamanhoBase),
+                              ? FontsApp.roboto12W300Green(FontsApp.tamanhoBase)
+                              : FontsApp.roboto12W300Grey(FontsApp.tamanhoBase),
                           semantics: "Pelo menos 1 número",
                         ),
                         const widgetEspacoH(altura: 8),
                         TextContrasteFonte(
                           text: AppLocalizations.of(context)!
                               .register_password_order_five,
-                          style: Fontes.roboto12W300Grey(Fontes.tamanhoBase),
+                          style: FontsApp.roboto12W300Grey(FontsApp.tamanhoBase),
                           semantics: "Força da senha:",
                         ),
                         const widgetEspacoH(altura: 8),
@@ -310,7 +310,7 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
               Semantics(
                 container: false,
                 label: "Botão Salvar",
-                child: widgetBotao(
+                child: ButtonDefault(
                   text:
                       AppLocalizations.of(context)!.profile_accessibility_save,
                   function: () async {

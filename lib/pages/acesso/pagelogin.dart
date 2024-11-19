@@ -6,7 +6,7 @@ import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/acesso/pageCadastro.dart';
 import 'package:agendacultural/pages/acesso/pageEntrar.dart';
 import 'package:agendacultural/shared/themes.dart';
-import 'package:agendacultural/shared/widgetbotao.dart';
+import 'package:agendacultural/shared/button_default.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
@@ -14,8 +14,8 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../model/app_model.dart';
-import '../../model/cores.dart';
-import '../../model/fontes.dart';
+import '../../model/colors.dart';
+import '../../model/fonts.dart';
 import '../../shared/widgetTextFonteContraste.dart';
 
 class pageLogin extends StatefulWidget {
@@ -53,7 +53,7 @@ class _pageLoginState extends State<pageLogin> {
                 children: [
                   TextContrasteFonte(
                     text: "", //Realização
-                    style: Fontes.roboto16W400Black(Fontes.tamanhoBase),
+                    style: FontsApp.roboto16W400Black(FontsApp.tamanhoBase),
                     semantics: "Realização Governo do Estado do Ceará.",
                   ),
                   widgetImagemInterna(
@@ -96,7 +96,7 @@ class _pageLoginState extends State<pageLogin> {
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
-                      widgetBotao(
+                      ButtonDefault(
                         margin: const EdgeInsets.fromLTRB(32, 10, 32, 10),
                         text: AppLocalizations.of(context)!.login_enter,
                         function: () {
@@ -108,7 +108,7 @@ class _pageLoginState extends State<pageLogin> {
                           );
                         },
                       ),
-                      widgetBotao(
+                      ButtonDefault(
                         margin: const EdgeInsets.fromLTRB(32, 10, 32, 10),
                         text: AppLocalizations.of(context)!.register,
                         negative: true,
@@ -156,12 +156,12 @@ class _pageLoginState extends State<pageLogin> {
                   TextContrasteFonte(
                     text: "", //Gestão
                     semantics: "Gestão Instituto Dragão do Mar",
-                    style: Fontes.roboto16W400Black(Fontes.tamanhoBase),
+                    style: FontsApp.roboto16W400Black(FontsApp.tamanhoBase),
                   ),
                   const widgetEspacoH(altura: 5),
                   widgetImagemInterna(
                     imagem: Imagem(
-                      url: !Cores.contraste ? "dragaodomarnova.png" : "dragaodomarcontraste.png",
+                      url: !ColorsApp.contraste ? "dragaodomarnova.png" : "dragaodomarcontraste.png",
                     ),
                     width: 213, //201
                     height: 46, //201

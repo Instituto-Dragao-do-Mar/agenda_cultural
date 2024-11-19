@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/shared/notify_pop_up.dart';
@@ -75,7 +75,7 @@ class EventDetail extends StatelessWidget {
                         text: event.nome,
                         maxlines: 3,
                         style: GoogleFonts.inter(
-                          fontSize: Fontes.tamanhoBase.toDouble(),
+                          fontSize: FontsApp.tamanhoBase.toDouble(),
                           fontWeight: FontWeight.w600,
                           color: corTextAtual,
                         ),

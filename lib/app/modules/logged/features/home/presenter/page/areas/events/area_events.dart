@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
@@ -53,7 +53,7 @@ class AreaEventsWidget extends StatelessWidget {
           title: title,
           subtitle: subtitle,
           onTap: onTapExpandEvents ?? () {},
-          secundaryComponent: exhibitionEvent == ExhibitionEvent.prominence
+          secundaryComponent: exhibitionEvent == ExhibitionEvent.prominence || exhibitionEvent == ExhibitionEvent.event
               ? null
               : FilterDateWidget(
                   filterDateSelected: filterDateSelected ?? FilterDate.thisWeek,
@@ -65,7 +65,7 @@ class AreaEventsWidget extends StatelessWidget {
           duration: const Duration(milliseconds: 500),
           curve: Curves.easeInQuad,
           child: SizedBox(
-            height: showAllEvents ? 572 : 286 / Fontes.tamanhoFonteBase16 * Fontes.tamanhoBase,
+            height: showAllEvents ? 572 : 286 / FontsApp.tamanhoFonteBase16 * FontsApp.tamanhoBase,
             child: SingleChildScrollView(
               scrollDirection: showAllEvents ? Axis.vertical : Axis.horizontal,
               child: Wrap(

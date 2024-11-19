@@ -1,7 +1,7 @@
-import 'package:agendacultural/pages/schedule/widgets/item_view_days.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/fonts.dart';
+import 'package:agendacultural/pages/schedule/widgets/item_view_days.dart';
 
 class ViewDaysWidget extends StatelessWidget {
   final List<DateTime> listDatesFilter;
@@ -26,7 +26,7 @@ class ViewDaysWidget extends StatelessWidget {
           margin: const EdgeInsets.only(left: 8),
           child: Text(
             AppLocalizations.of(context)!.schedule_view_day,
-            style: Fontes.poppins16W400Black(Fontes.tamanhoBase),
+            style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
           ),
         ),
         const SizedBox(height: 5),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
 
@@ -22,7 +22,7 @@ class EventDetailLocation extends StatelessWidget {
         Text(
           AppLocalizations.of(context)!.e_location,
           style: GoogleFonts.inter(
-            fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
+            fontSize: FontsApp.tamanhoBase - (FontsApp.tamanhoFonteBase16 - 14),
             fontWeight: FontWeight.w600,
             color: corTextAtual,
           ),
@@ -31,7 +31,7 @@ class EventDetailLocation extends StatelessWidget {
         Text(
           spacePrincipal.nome ?? '',
           style: GoogleFonts.inter(
-            fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
+            fontSize: FontsApp.tamanhoBase - (FontsApp.tamanhoFonteBase16 - 14),
             color: corTextAtual,
           ),
         ),
@@ -39,7 +39,7 @@ class EventDetailLocation extends StatelessWidget {
           Text(
             spacePrincipal.endereco ?? '',
             style: GoogleFonts.inter(
-              fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
+              fontSize: FontsApp.tamanhoBase - (FontsApp.tamanhoFonteBase16 - 14),
               color: corTextAtual,
             ),
           ),

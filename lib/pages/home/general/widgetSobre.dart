@@ -3,7 +3,7 @@ import 'package:agendacultural/shared/widgetBottomNavigator.dart';
 import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../../../model/fontes.dart';
+import '../../../model/fonts.dart';
 import '../../../shared/themes.dart';
 
 class WidgetSobre extends StatefulWidget {
@@ -44,7 +44,7 @@ class _WidgetSobreState extends State<WidgetSobre> {
               children: [
                 TextContrasteFonte(
                   text: AppLocalizations.of(context)!.profile_general_upon_text,
-                  style: Fontes.poppins16W500Black(Fontes.tamanhoBase),
+                  style: FontsApp.poppins16W500Black(FontsApp.tamanhoBase),
                 ),
               ],
             ),

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
-import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
 
@@ -28,7 +27,7 @@ class AppBarSearchFilter extends StatelessWidget {
           text: AppLocalizations.of(context)!.schedule_filter,
           style: TextStyle(
             color: corTextAtual,
-            fontSize: Fontes.tamanhoBase.toDouble(),
+            fontSize: FontsApp.tamanhoBase.toDouble(),
           ),
         ),
       ],

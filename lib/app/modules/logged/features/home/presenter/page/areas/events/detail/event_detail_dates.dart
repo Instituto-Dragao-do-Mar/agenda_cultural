@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/shared/extensions/dates.dart';
@@ -41,7 +41,7 @@ class EventDetailDatesWidget extends StatelessWidget {
                     text: event.eventosdatas?.first.detalhe ?? '',
                     maxlines: 3,
                     style: GoogleFonts.inter(
-                      fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
+                      fontSize: FontsApp.tamanhoBase - (FontsApp.tamanhoFonteBase16 - 14),
                       fontWeight: FontWeight.w500,
                       color: corTextAtual,
                     ),
@@ -83,7 +83,7 @@ class EventDetailDatesWidget extends StatelessWidget {
                       TextContrasteFonte(
                         text: '$dayWeek $day/$month/$year',
                         style: GoogleFonts.inter(
-                          fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
+                          fontSize: FontsApp.tamanhoBase - (FontsApp.tamanhoFonteBase16 - 14),
                           fontWeight: FontWeight.w500,
                           color: corTextAtual,
                         ),
@@ -97,7 +97,7 @@ class EventDetailDatesWidget extends StatelessWidget {
                       TextContrasteFonte(
                         text: hour,
                         style: GoogleFonts.inter(
-                          fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 14),
+                          fontSize: FontsApp.tamanhoBase - (FontsApp.tamanhoFonteBase16 - 14),
                           fontWeight: FontWeight.w500,
                           color: corTextAtual,
                         ),

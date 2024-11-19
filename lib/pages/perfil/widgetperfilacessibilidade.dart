@@ -2,8 +2,8 @@
 
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/home_page.dart';
 import 'package:agendacultural/dados/dados.dart';
-import 'package:agendacultural/model/cores.dart';
-import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/colors.dart';
+import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/perfil/widgetperfil.dart';
 import 'package:agendacultural/pages/home/general/widgettopocomum.dart';
@@ -15,7 +15,7 @@ import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../../shared/widgetbotao.dart';
+import '../../shared/button_default.dart';
 
 class widgetPerfilAcessibilidade extends StatefulWidget {
   const widgetPerfilAcessibilidade({Key? key}) : super(key: key);
@@ -40,8 +40,8 @@ class _widgetPerfilAcessibilidadeState
     const widgetPerfil(),
   ];
 
-  bool statusAltoContraste = Cores.contraste;
-  double fontSize = Fontes.tamanhoBase.toDouble();
+  bool statusAltoContraste = ColorsApp.contraste;
+  double fontSize = FontsApp.tamanhoBase.toDouble();
 
   @override
   Widget build(BuildContext context) {
@@ -76,14 +76,14 @@ class _widgetPerfilAcessibilidadeState
             children: [
               Text(
                 AppLocalizations.of(context)!.profile_accessibility,
-                style: Fontes.poppins18W500Black(Fontes.tamanhoBase),
+                style: FontsApp.poppins18W500Black(FontsApp.tamanhoBase),
               ),
               const widgetEspacoH(
                 altura: 20,
               ),
               Text(
                 AppLocalizations.of(context)!.profile_accessibility_resume,
-                style: Fontes.poppins14W300Grey(Fontes.tamanhoBase),
+                style: FontsApp.poppins14W300Grey(FontsApp.tamanhoBase),
               ),
               const widgetEspacoH(
                 altura: 23,
@@ -94,7 +94,7 @@ class _widgetPerfilAcessibilidadeState
                 children: [
                   Text(
                     AppLocalizations.of(context)!.int_first_subtitle,
-                    style: Fontes.roboto16W400Black(Fontes.tamanhoBase),
+                    style: FontsApp.roboto16W400Black(FontsApp.tamanhoBase),
                   ),
                   Semantics(
                     label: statusAltoContraste
@@ -117,14 +117,14 @@ class _widgetPerfilAcessibilidadeState
               ),
               Text(
                 AppLocalizations.of(context)!.int_first_explanation,
-                style: Fontes.poppins14W300Grey(Fontes.tamanhoBase),
+                style: FontsApp.poppins14W300Grey(FontsApp.tamanhoBase),
               ),
               const widgetEspacoH(
                 altura: 23,
               ),
               Text(
                 AppLocalizations.of(context)!.int_second_title,
-                style: Fontes.roboto16W400Black(Fontes.tamanhoBase),
+                style: FontsApp.roboto16W400Black(FontsApp.tamanhoBase),
               ),
               const widgetEspacoH(
                 altura: 20,
@@ -132,7 +132,7 @@ class _widgetPerfilAcessibilidadeState
               Text(
                 AppLocalizations.of(context)!.int_second_example_title,
                 //"Aumenta o tamanho da fonte do texto para até 24px facilitando a leitura.",
-                style: Fontes.poppins14W300Grey(Fontes.tamanhoBase),
+                style: FontsApp.poppins14W300Grey(FontsApp.tamanhoBase),
               ),
               const widgetEspacoH(
                 altura: 20,
@@ -145,7 +145,7 @@ class _widgetPerfilAcessibilidadeState
                       AppLocalizations.of(context)!.int_second_example_text,
                       semanticsLabel:
                           "Mas a terra de Oz nunca foi civilizada, porque vivemos separados do resto do mundo.Fonte atual: $fontSize pixels",
-                      style: Fontes.roboto14W400Black(Fontes.tamanhoBase),
+                      style: FontsApp.roboto14W400Black(FontsApp.tamanhoBase),
                       textAlign: TextAlign.center,
                     ),
                   )
@@ -194,7 +194,7 @@ class _widgetPerfilAcessibilidadeState
                       // ),
                       Text(
                         "${AppLocalizations.of(context)!.int_font_size} $fontSize px",
-                        style: Fontes.inter16W400Grey(Fontes.tamanhoBase),
+                        style: FontsApp.inter16W400Grey(FontsApp.tamanhoBase),
                       )
                     ],
                   ),
@@ -224,7 +224,7 @@ class _widgetPerfilAcessibilidadeState
               Semantics(
                 container: false,
                 label: "Botão Salvar",
-                child: widgetBotao(
+                child: ButtonDefault(
                   text:
                       AppLocalizations.of(context)!.profile_accessibility_save,
                   function: () async {
@@ -240,13 +240,13 @@ class _widgetPerfilAcessibilidadeState
   }
 
   Future setFontSize(double fontSize) async {
-    Fontes.setTamanhoBase(fontSize.toInt());
+    FontsApp.setTamanhoBase(fontSize.toInt());
     await Dados.setInt('tamanhofontebase', fontSize.toInt());
   }
 
   Future setAltoContraste(bool val) async {
-    Cores.setAltoContraste(val);
+    ColorsApp.setAltoContraste(val);
     await Dados.setBool('altocontraste', val);
-    Cores.reloadColors();
+    ColorsApp.reloadColors();
   }
 }

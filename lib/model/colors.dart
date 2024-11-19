@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:agendacultural/shared/themes.dart';
 
-import '../shared/themes.dart';
-
-class Cores {
+class ColorsApp {
   static bool contraste = false;
 
-  static void setAltoContraste(bool altoContraste) {
-    contraste = altoContraste;
-  }
+  static void setAltoContraste(bool altoContraste) => contraste = altoContraste;
 
   static void reloadColors() {
     corBgAtual = !contraste ? Colors.white : Colors.black;

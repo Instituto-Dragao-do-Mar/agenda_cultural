@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetTextFonteContraste.dart';
 
@@ -26,7 +26,7 @@ class ItemSpaceInfo extends StatelessWidget {
             text: nameSpace ?? 'Nome não informado!',
             maxlines: 2,
             style: GoogleFonts.roboto(
-              fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 12),
+              fontSize: FontsApp.tamanhoBase - (FontsApp.tamanhoFonteBase16 - 12),
               fontWeight: FontWeight.w500,
               color: corTextAtual,
             ),
@@ -38,7 +38,7 @@ class ItemSpaceInfo extends StatelessWidget {
               TextContrasteFonte(
                 text: address != '' ? address : 'Endereço não informado!',
                 style: GoogleFonts.roboto(
-                  fontSize: Fontes.tamanhoBase - (Fontes.tamanhoFonteBase16 - 12),
+                  fontSize: FontsApp.tamanhoBase - (FontsApp.tamanhoFonteBase16 - 12),
                   color: corTextAtual,
                 ),
                 maxlines: 3,

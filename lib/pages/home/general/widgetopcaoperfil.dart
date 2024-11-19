@@ -3,7 +3,7 @@
 import 'package:agendacultural/shared/widgetemconstrucao.dart';
 import 'package:flutter/material.dart';
 
-import '../../../model/fontes.dart';
+import '../../../model/fonts.dart';
 import '../../../shared/constantes.dart';
 import '../../../shared/widgetTextFonteContraste.dart';
 
@@ -32,7 +32,7 @@ class widgetopacaoperfil extends StatelessWidget {
       },
       child: TextContrasteFonte(
         text: subtitulo,
-        style: Fontes.roboto16W400Grey(Fontes.tamanhoBase),
+        style: FontsApp.roboto16W400Grey(FontsApp.tamanhoBase),
         semantics: subtitulo,
       ),
     );

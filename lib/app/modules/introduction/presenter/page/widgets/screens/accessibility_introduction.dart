@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/model/fontes.dart';
+import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetbotaoswitch.dart';
 
@@ -72,7 +72,7 @@ class AccessibilityIntroductionScreen extends StatelessWidget {
               child: Text(
                 AppLocalizations.of(context)!.int_second_example_text,
                 semanticsLabel: AppLocalizations.of(context)!.int_second_example_text,
-                style: TextStyle(color: Colors.white, fontSize: Fontes.tamanhoBase.toDouble()),
+                style: TextStyle(color: Colors.white, fontSize: FontsApp.tamanhoBase.toDouble()),
                 textAlign: TextAlign.center,
               ),
             )
