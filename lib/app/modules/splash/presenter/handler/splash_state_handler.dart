@@ -11,7 +11,12 @@ import 'package:agendacultural/shared/userSharedPreferences.dart';
 import 'package:agendacultural/app/modules/splash/presenter/store/splash_store.dart';
 import 'package:agendacultural/app/modules/splash/domain/controller/space_controller.dart';
 import 'package:agendacultural/app/modules/splash/domain/controller/event_controller.dart';
+import 'package:agendacultural/app/modules/logged/features/map/presenter/page/map_page.dart';
 import 'package:agendacultural/app/modules/splash/domain/controller/category_controller.dart';
+import 'package:agendacultural/app/modules/logged/features/home/presenter/page/home_page.dart';
+import 'package:agendacultural/app/modules/logged/features/profile/presenter/page/profile_page.dart';
+import 'package:agendacultural/app/modules/logged/features/schedule/presenter/page/schedule_page.dart';
+import 'package:agendacultural/app/modules/logged/features/favorites/presenter/page/favorite_page.dart';
 
 class SplashPageStateHandler {
   final AppStore _appStore;
@@ -29,6 +34,19 @@ class SplashPageStateHandler {
     await _initContrastFont();
     if (!mounted) return;
     _verifyAuthenticated(mounted, context);
+
+    // Define as telas da aplicação e a tela atual
+    _appStore.setScreens(
+      [
+        const HomePage(),
+        const SchedulePage(),
+        const MapPage(),
+        const FavoritePage(),
+        const ProfilePage()
+      ],
+    );
+    _appStore.setCurrentScreen(_appStore.screens[0]);
+    _appStore.setCurrentTab(0);
   }
 
   //Ajusta o tamanho da fonte e o contraste
@@ -42,6 +60,7 @@ class SplashPageStateHandler {
 
     bool altoContraste = await Dados.getBool('altocontraste');
     ColorsApp.setAltoContraste(altoContraste);
+    ColorsApp.reloadColors();
   }
 
   Future<void> _initDataApp() async {

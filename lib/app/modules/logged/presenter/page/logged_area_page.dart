@@ -3,11 +3,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/model/colors.dart';
 import 'package:agendacultural/shared/themes.dart';
-import 'package:agendacultural/pages/perfil/widgettopoperfil.dart';
 import 'package:agendacultural/app/modules/logged/presenter/handler/logged_state_handler.dart';
 import 'package:agendacultural/app/modules/logged/features/map/presenter/page/widgets/app_bar_map.dart';
+import 'package:agendacultural/app/modules/logged/features/profile/presenter/page/widgets/app_bar_profile.dart';
 import 'package:agendacultural/app/modules/logged/features/schedule/presenter/page/widgets/app_bar_schedule.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/general/app_bar_general.dart';
 import 'package:agendacultural/app/modules/logged/features/favorites/presenter/page/widgets/app_bar_favorite.dart';
@@ -33,8 +32,6 @@ class _LoggedAreaPageState extends State<LoggedAreaPage> {
 
   @override
   Widget build(BuildContext context) {
-    ColorsApp.reloadColors();
-
     return Observer(
       builder: (context) {
         return Scaffold(
@@ -48,7 +45,7 @@ class _LoggedAreaPageState extends State<LoggedAreaPage> {
             leadingWidth: 0,
             automaticallyImplyLeading: false,
           ),
-          body: _handler.store.isLoading ? const SizedBox.shrink() : _handler.store.currentScreen,
+          body: _handler.store.isLoading ? const SizedBox.shrink() : _handler.appStore.currentScreen,
           bottomNavigationBar: _buildBottonNavigation(),
         );
       },
@@ -58,7 +55,7 @@ class _LoggedAreaPageState extends State<LoggedAreaPage> {
   Widget _buildBottonNavigation() {
     return BottomNavigationBar(
       onTap: (index) async => await _handler.setScreen(index),
-      currentIndex: _handler.store.currentTab,
+      currentIndex: _handler.appStore.currentTab,
       backgroundColor: corBgAtual,
       unselectedItemColor: corTextAtual,
       selectedItemColor: corBackgroundLaranja,
@@ -97,7 +94,7 @@ class _LoggedAreaPageState extends State<LoggedAreaPage> {
   }
 
   Widget _buildAppBar() {
-    switch (_handler.store.currentTab) {
+    switch (_handler.appStore.currentTab) {
       case 0:
         return const AppBarGeneral();
       case 1:
@@ -107,7 +104,7 @@ class _LoggedAreaPageState extends State<LoggedAreaPage> {
       case 3:
         return AppBarFavoriteWidget(onTapReturn: () => _handler.setScreen(0));
       case 4:
-        return widgetTopoPerfil(notify: () => _handler.setScreen(0));
+        return AppBarProfile(onTapReturn: () => _handler.setScreen(0));
       default:
         return const AppBarGeneral();
     }
