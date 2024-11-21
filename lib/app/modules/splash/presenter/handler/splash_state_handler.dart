@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:agendacultural/dados/dados.dart';
 import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/model/colors.dart';
 import 'package:agendacultural/app/app_widget.dart';
@@ -8,6 +7,7 @@ import 'package:agendacultural/app/common/router/router.dart';
 import 'package:agendacultural/controller/user_controller.dart';
 import 'package:agendacultural/app/core/app_store/app_store.dart';
 import 'package:agendacultural/shared/userSharedPreferences.dart';
+import 'package:agendacultural/app/core/data_preferences/data_preferences.dart';
 import 'package:agendacultural/app/modules/splash/presenter/store/splash_store.dart';
 import 'package:agendacultural/app/modules/splash/domain/controller/space_controller.dart';
 import 'package:agendacultural/app/modules/splash/domain/controller/event_controller.dart';

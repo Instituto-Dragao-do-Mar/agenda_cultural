@@ -1,6 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:agendacultural/dados/dados.dart';
 import 'package:agendacultural/app/core/app_store/app_store.dart';
+import 'package:agendacultural/app/core/data_preferences/data_preferences.dart';
 import 'package:agendacultural/app/modules/introduction/domain/entities/languages_model.dart';
 import 'package:agendacultural/app/modules/logged/features/profile/sub_module/language/presenter/store/language_store.dart';
 

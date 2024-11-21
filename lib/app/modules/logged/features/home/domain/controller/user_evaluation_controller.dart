@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:agendacultural/shared/constantes.dart';
-import 'package:agendacultural/controller/base_controller.dart';
+import 'package:agendacultural/app/core/htpp_client/http_client.dart';
 import 'package:agendacultural/app/modules/logged/features/home/domain/adapter/user_evaluation.dart';
 
-class UsuarioAvaliacaoController extends BaseController {
+class UsuarioAvaliacaoController extends HttpClient {
   Future<List<UserEvaluation>> getUserEvaluation({
     required String userGuidId,
     required String eventGuidId,
@@ -25,10 +25,10 @@ class UsuarioAvaliacaoController extends BaseController {
           return UserEvaluation.fromJson(e);
         }).toList();
       } else {
-        setError(response.body);
+        setErrorMessage(response.body);
       }
     } catch (_) {
-      setError(_.toString());
+      setErrorMessage(_.toString());
     }
 
     return list;
@@ -60,10 +60,10 @@ class UsuarioAvaliacaoController extends BaseController {
         body: parametros,
       );
       if (response.statusCode != 200) {
-        setError(response.body);
+        setErrorMessage(response.body);
       }
     } catch (_) {
-      setError(_.toString());
+      setErrorMessage(_.toString());
     }
 
     return;

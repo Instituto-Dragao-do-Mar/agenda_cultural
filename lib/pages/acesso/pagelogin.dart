@@ -1,7 +1,7 @@
 // ignore_for_file: camel_case_types
 
 import 'package:agendacultural/app/modules/logged/presenter/page/logged_area_page.dart';
-import 'package:agendacultural/controller/base_controller.dart';
+import 'package:agendacultural/app/core/htpp_client/http_client.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/pages/acesso/pageCadastro.dart';
 import 'package:agendacultural/pages/acesso/pageEntrar.dart';
@@ -28,13 +28,13 @@ class pageLogin extends StatefulWidget {
 class _pageLoginState extends State<pageLogin> {
   final ScrollController scrollController = ScrollController();
   AppModel? app;
-  late BaseController baseController;
+  late HttpClient baseController;
 
   @override
   void initState() {
     super.initState();
     app = context.read<AppModel>();
-    baseController = context.read<BaseController>();
+    baseController = context.read<HttpClient>();
   }
 
   @override

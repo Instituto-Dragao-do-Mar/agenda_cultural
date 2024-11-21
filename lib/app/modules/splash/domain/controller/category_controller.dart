@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:agendacultural/shared/constantes.dart';
-import 'package:agendacultural/controller/base_controller.dart';
+import 'package:agendacultural/app/core/htpp_client/http_client.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/category.dart';
 
-class CategoryController extends BaseController {
+class CategoryController extends HttpClient {
   Future<List<Category>> getCategories() async {
     List<Category> list = [];
 
@@ -23,10 +23,10 @@ class CategoryController extends BaseController {
           return Category.fromJson(e);
         }).toList();
       } else {
-        setError("Categoria ${response.body}");
+        setErrorMessage("Categoria ${response.body}");
       }
     } catch (_) {
-      setError("Categoria ${_.toString()}");
+      setErrorMessage("Categoria ${_.toString()}");
     }
 
     return list;

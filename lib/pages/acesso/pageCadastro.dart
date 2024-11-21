@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:agendacultural/app/modules/logged/presenter/page/logged_area_page.dart';
-import 'package:agendacultural/controller/base_controller.dart';
+import 'package:agendacultural/app/core/htpp_client/http_client.dart';
 import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/pages/acesso/pageEntrar.dart';
 import 'package:agendacultural/shared/themes.dart';
@@ -37,7 +37,7 @@ class _PageCadastroState extends State<PageCadastro> {
   bool obscureTextNovaSenha = true;
   AppModel? app;
   UserController? usuarioController;
-  BaseController? baseController;
+  HttpClient? baseController;
   int haveUpperCase = 0;
   int haveLowerCase = 0;
   int haveNumber = 0;
@@ -50,7 +50,7 @@ class _PageCadastroState extends State<PageCadastro> {
     super.initState();
     app = context.read<AppModel>();
     usuarioController = context.read<UserController>();
-    baseController = context.read<BaseController>();
+    baseController = context.read<HttpClient>();
   }
 
   @override

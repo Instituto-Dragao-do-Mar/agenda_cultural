@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:agendacultural/shared/constantes.dart';
-import 'package:agendacultural/controller/base_controller.dart';
+import 'package:agendacultural/app/core/htpp_client/http_client.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
 
-class SpaceController extends BaseController {
+class SpaceController extends HttpClient {
   Future<List<Space>> getSpaces() async {
     List<Space> list = [];
 
@@ -21,10 +21,10 @@ class SpaceController extends BaseController {
           return Space.fromJson(e);
         }).toList();
       } else {
-        setError("Espaco ${response.body}");
+        setErrorMessage("Espaco ${response.body}");
       }
     } catch (_) {
-      setError("Espaco ${_.toString()}");
+      setErrorMessage("Espaco ${_.toString()}");
     }
 
     return list;

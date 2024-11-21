@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
-import 'package:agendacultural/dados/dados.dart';
 import 'package:agendacultural/app/core/app_store/app_store.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
+import 'package:agendacultural/app/core/data_preferences/data_preferences.dart';
 import 'package:agendacultural/app/modules/logged/features/map/presenter/store/map_store.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/detail/event_detail.dart';
 

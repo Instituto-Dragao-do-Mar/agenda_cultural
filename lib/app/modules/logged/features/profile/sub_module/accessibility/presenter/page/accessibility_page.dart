@@ -4,13 +4,13 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/model/fonts.dart';
-import 'package:agendacultural/dados/dados.dart';
 import 'package:agendacultural/model/colors.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/button_default.dart';
 import 'package:agendacultural/app/common/router/router.dart';
 import 'package:agendacultural/shared/widgetbotaoswitch.dart';
 import 'package:agendacultural/shared/text_contrast_font.dart';
+import 'package:agendacultural/app/core/data_preferences/data_preferences.dart';
 import 'package:agendacultural/app/modules/logged/features/profile/sub_module/accessibility/presenter/handler/accessibility_state_handler.dart';
 
 class ProfileAccessibilityPage extends StatefulWidget {

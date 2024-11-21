@@ -1,5 +1,5 @@
-import 'package:agendacultural/dados/dados.dart';
 import 'package:intl/intl.dart';
+import 'package:agendacultural/app/core/data_preferences/data_preferences.dart';
 
 extension Dates on String {
   int compareDateInDays(String? endDate) {

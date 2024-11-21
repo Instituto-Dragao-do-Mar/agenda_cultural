@@ -3,9 +3,9 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:agendacultural/shared/constantes.dart';
 import 'package:agendacultural/model/notificacao_model.dart';
-import 'package:agendacultural/controller/base_controller.dart';
+import 'package:agendacultural/app/core/htpp_client/http_client.dart';
 
-class NotificacaoController extends BaseController {
+class NotificacaoController extends HttpClient {
   Future<ListaNotificacoes> NotificacaoGet({
     required String userguidid,
     required String token,
@@ -27,10 +27,10 @@ class NotificacaoController extends BaseController {
         var ret = jsonDecode(response.body);
         lista = ListaNotificacoes.fromJson(ret);
       } else {
-        setError(response.body);
+        setErrorMessage(response.body);
       }
     } catch (_) {
-      setError(_.toString());
+      setErrorMessage(_.toString());
     }
 
     return lista;
@@ -59,10 +59,10 @@ class NotificacaoController extends BaseController {
         body: parametros,
       );
       if (response.statusCode != 200) {
-        setError(response.body);
+        setErrorMessage(response.body);
       }
     } catch (_) {
-      setError(_.toString());
+      setErrorMessage(_.toString());
     }
 
     return;

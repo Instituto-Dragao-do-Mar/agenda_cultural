@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:agendacultural/shared/constantes.dart';
-import 'package:agendacultural/controller/base_controller.dart';
+import 'package:agendacultural/app/core/htpp_client/http_client.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/favorite.dart';
 
-class EventController extends BaseController {
+class EventController extends HttpClient {
   Future<List<Event>> getEvents() async {
     List<Event> list = [];
 
@@ -25,10 +25,10 @@ class EventController extends BaseController {
           return Event.fromJson(e);
         }).toList();
       } else {
-        setError("Evento ${response.body}");
+        setErrorMessage("Evento ${response.body}");
       }
     } catch (_) {
-      setError("Evento ${_.toString()}");
+      setErrorMessage("Evento ${_.toString()}");
     }
 
     return list;
@@ -55,10 +55,10 @@ class EventController extends BaseController {
           return Favorite.fromJson(e);
         }).toList();
       } else {
-        setError("Favoritos ${response.body}");
+        setErrorMessage("Favoritos ${response.body}");
       }
     } catch (_) {
-      setError("Favoritos ${_.toString()}");
+      setErrorMessage("Favoritos ${_.toString()}");
     }
 
     return list;
@@ -87,10 +87,10 @@ class EventController extends BaseController {
       if (response.statusCode == 200) {
         operationSucceed = true;
       } else {
-        setError(response.body);
+        setErrorMessage(response.body);
       }
     } catch (_) {
-      setError(_.toString());
+      setErrorMessage(_.toString());
     }
 
     return operationSucceed;

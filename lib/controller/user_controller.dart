@@ -6,10 +6,10 @@ import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/shared/constantes.dart';
 import 'package:agendacultural/model/acesso_model.dart';
 import 'package:agendacultural/model/usuario_model.dart';
-import 'package:agendacultural/controller/base_controller.dart';
 import 'package:agendacultural/shared/userSharedPreferences.dart';
+import 'package:agendacultural/app/core/htpp_client/http_client.dart';
 
-class UserController extends BaseController {
+class UserController extends HttpClient {
   var state = ControllerStates.idle;
   String errorMessage = "";
   TextEditingController emailController = TextEditingController();
@@ -206,12 +206,12 @@ class UserController extends BaseController {
         state = ControllerStates.success;
       } else {
         errorMessage = response.body;
-        setError(response.body);
+        setErrorMessage(response.body);
         state = ControllerStates.error;
       }
     } catch (e) {
       state = ControllerStates.error;
-      setError(e.toString());
+      setErrorMessage(e.toString());
     }
 
     return errorMessage;
@@ -266,12 +266,12 @@ class UserController extends BaseController {
         lista = ListaUsuarios.fromJson(ret);
         state = ControllerStates.success;
       } else {
-        setError(response.body);
+        setErrorMessage(response.body);
         state = ControllerStates.error;
       }
     } catch (e) {
       state = ControllerStates.error;
-      setError(e.toString());
+      setErrorMessage(e.toString());
     }
 
     return lista;
@@ -320,12 +320,12 @@ class UserController extends BaseController {
         state = ControllerStates.success;
       } else {
         errorMessage = response.body;
-        setError(response.body);
+        setErrorMessage(response.body);
         state = ControllerStates.error;
       }
     } catch (e) {
       state = ControllerStates.error;
-      setError(e.toString());
+      setErrorMessage(e.toString());
     }
 
     return errorMessage;
@@ -360,12 +360,12 @@ class UserController extends BaseController {
         emailController.clear();
       } else {
         errorMessage = response.body;
-        setError(response.body);
+        setErrorMessage(response.body);
         state = ControllerStates.error;
       }
     } catch (e) {
       state = ControllerStates.error;
-      setError(e.toString());
+      setErrorMessage(e.toString());
     }
 
     return errorMessage;

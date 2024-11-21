@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:agendacultural/controller/base_controller.dart';
+import 'package:agendacultural/app/core/htpp_client/http_client.dart';
 import 'package:agendacultural/app/modules/logged/features/home/sub_module/my_location/domain/adapters/geo_location.dart';
 
-class GeoLocationController extends BaseController {
+class GeoLocationController extends HttpClient {
   final String apiGeoLocation = ("https://api.bigdatacloud.net/data/reverse-geocode-client");
 
   Future<GeoLocation> getGeoLocation({
@@ -25,10 +25,10 @@ class GeoLocationController extends BaseController {
       if (response.statusCode == 200) {
         return retorno = GeoLocation.fromJson(ret);
       } else {
-        setError('Erro get geocode ${response.body}');
+        setErrorMessage('Erro get geocode ${response.body}');
       }
     } catch (_) {
-      setError('Erro get geocode ${_.toString()}');
+      setErrorMessage('Erro get geocode ${_.toString()}');
       return retorno;
     }
     return retorno;

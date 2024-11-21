@@ -1,6 +1,6 @@
 // ignore_for_file: file_names
 
-import 'package:agendacultural/controller/base_controller.dart';
+import 'package:agendacultural/app/core/htpp_client/http_client.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:flutter/material.dart';
@@ -24,7 +24,7 @@ class WidgetBottomNavigator extends StatefulWidget {
 class _WidgetBottomNavigatorState extends State<WidgetBottomNavigator> {
   @override
   Widget build(BuildContext context) {
-    BaseController baseController = Provider.of<BaseController>(context);
+    HttpClient baseController = Provider.of<HttpClient>(context);
 
     return BottomNavigationBar(
       onTap: (i) {
