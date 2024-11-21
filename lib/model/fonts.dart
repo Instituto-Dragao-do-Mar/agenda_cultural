@@ -32,6 +32,14 @@ class FontsApp {
         ),
       );
 
+  static TextStyle poppins14W400Black(int tamanho) => GoogleFonts.poppins(
+        textStyle: TextStyle(
+          fontSize: tamanho.toDouble() - 2,
+          fontWeight: FontWeight.w400,
+          color: !ColorsApp.contraste ? Colors.black : Colors.white,
+        ),
+      );
+
   static TextStyle poppins12W400Grey(int tamanho) => GoogleFonts.poppins(
         textStyle: TextStyle(
           fontSize: tamanho - 4,

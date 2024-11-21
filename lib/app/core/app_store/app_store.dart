@@ -1,9 +1,11 @@
 import 'package:mobx/mobx.dart';
+import 'package:flutter/material.dart';
 import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/category.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/favorite.dart';
+import 'package:agendacultural/app/modules/logged/features/home/presenter/page/home_page.dart';
 
 part 'app_store.g.dart';
 
@@ -20,6 +22,26 @@ abstract class AppStoreBase with Store {
 
   @action
   void setSignatureUser(String value) => userLogged.signature = value;
+
+  //Logged Area
+
+  @observable
+  int currentTab = 0;
+
+  @action
+  void setCurrentTab(int value) => currentTab = value;
+
+  @observable
+  Widget currentScreen = const HomePage();
+
+  @action
+  void setCurrentScreen(Widget value) => currentScreen = value;
+
+  @observable
+  List<Widget> screens = [];
+
+  @action
+  void setScreens(List<Widget> value) => screens = value;
 
   //Categories
 

@@ -44,6 +44,7 @@ class AreaSpacesWidget extends StatelessWidget {
             scrollDirection: showAllSpaces ? Axis.vertical : Axis.horizontal,
             controller: scrollControllerSpaces,
             child: Wrap(
+              alignment: WrapAlignment.center,
               children: spaces.map((space) {
                 return ItemSpaceWidget(
                   space: space,

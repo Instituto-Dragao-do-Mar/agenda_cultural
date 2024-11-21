@@ -65,10 +65,12 @@ class AreaEventsWidget extends StatelessWidget {
           duration: const Duration(milliseconds: 500),
           curve: Curves.easeInQuad,
           child: SizedBox(
+            width: double.infinity,
             height: showAllEvents ? 572 : 286 / FontsApp.tamanhoFonteBase16 * FontsApp.tamanhoBase,
             child: SingleChildScrollView(
               scrollDirection: showAllEvents ? Axis.vertical : Axis.horizontal,
               child: Wrap(
+                alignment: WrapAlignment.center,
                 children: events.map((event) {
                   var eventsDate = event.eventosdatas!.first;
                   Space spaceReal = spaces.firstWhere((element) => element.id == eventsDate.idespaco);

@@ -6,15 +6,20 @@ import 'package:agendacultural/app/modules/logged/presenter/store/logged_area_st
 import 'package:agendacultural/app/modules/logged/features/map/presenter/store/map_store.dart';
 import 'package:agendacultural/app/modules/logged/presenter/handler/logged_state_handler.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/store/home_store.dart';
+import 'package:agendacultural/app/modules/logged/features/profile/presenter/store/profile_store.dart';
 import 'package:agendacultural/app/modules/logged/features/schedule/presenter/store/schedule_store.dart';
 import 'package:agendacultural/app/modules/logged/features/map/presenter/handler/map_state_handler.dart';
 import 'package:agendacultural/app/modules/logged/features/favorites/presenter/store/favorite_store.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/handler/home_state_handler.dart';
+import 'package:agendacultural/app/modules/logged/features/profile/presenter/handler/profile_state_handler.dart';
 import 'package:agendacultural/app/modules/logged/features/schedule/presenter/handler/schedule_state_handler.dart';
 import 'package:agendacultural/app/modules/logged/features/favorites/presenter/handler/favorite_state_handler.dart';
 import 'package:agendacultural/app/modules/logged/features/home/sub_module/my_location/presenter/page/my_location_page.dart';
 import 'package:agendacultural/app/modules/logged/features/home/sub_module/my_location/presenter/store/my_location_store.dart';
+import 'package:agendacultural/app/modules/logged/features/profile/sub_module/accessibility/presenter/page/accessibility.dart';
+import 'package:agendacultural/app/modules/logged/features/profile/sub_module/accessibility/presenter/store/accessibility_store.dart';
 import 'package:agendacultural/app/modules/logged/features/home/sub_module/my_location/presenter/handler/my_location_state_handler.dart';
+import 'package:agendacultural/app/modules/logged/features/profile/sub_module/accessibility/presenter/handler/accessibility_state_handler.dart';
 
 class LoggedModule extends Module {
   @override
@@ -30,6 +35,9 @@ class LoggedModule extends Module {
     i.addLazySingleton(MyLocationPageStateHandler.new);
     i.addLazySingleton(MyLocationStore.new);
 
+    i.addLazySingleton(AccessibilityPageStateHandler.new);
+    i.addLazySingleton(AccessibilityStore.new);
+
     i.addLazySingleton(HomePageStateHandler.new);
     i.addLazySingleton(HomeStore.new);
 
@@ -41,6 +49,9 @@ class LoggedModule extends Module {
 
     i.addLazySingleton(FavoritePageStateHandler.new);
     i.addLazySingleton(FavoriteStore.new);
+
+    i.addLazySingleton(ProfilePageStateHandler.new);
+    i.addLazySingleton(ProfileStore.new);
   }
 
   @override
@@ -53,6 +64,11 @@ class LoggedModule extends Module {
     r.child(
       RouterApp.myLocation,
       child: (context) => const MyLocationPage(),
+      transition: TransitionType.noTransition,
+    );
+    r.child(
+      RouterApp.accessibility,
+      child: (context) => const ProfileAccessibility(),
       transition: TransitionType.noTransition,
     );
   }

@@ -3,7 +3,6 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/model/colors.dart';
-import 'package:agendacultural/shared/widgetespacoh.dart';
 
 // usada apenas na page de notificação
 void notifySuccessWidget({
@@ -54,32 +53,27 @@ void notifyPopUpWidget({
                 decoration: BoxDecoration(
                   color: !ColorsApp.contraste ? Colors.white : Colors.black,
                   borderRadius: BorderRadius.circular(25),
-                  border: Border.all(
-                    color: ColorsApp.contraste ? Colors.white : Colors.transparent,
-                  ),
+                  border: Border.all(color: ColorsApp.contraste ? Colors.white : Colors.transparent),
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    widgetEspacoH(altura: permitirFechar ? 0 : 42),
+                    SizedBox(height: permitirFechar ? 0 : 42),
                     Text(
                       textChamativo ?? AppLocalizations.of(context)!.notification_attention,
                       style: FontsApp.poppins16W500Black(FontsApp.tamanhoBase + 2),
                     ),
-                    const widgetEspacoH(altura: 10),
+                    const SizedBox(height: 10),
                     Text(
                       textDescritivo,
                       style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase - 2),
                       textAlign: TextAlign.center,
                     ),
-                    const widgetEspacoH(altura: 10),
+                    const SizedBox(height: 10),
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: funcaoBotao ??
-                            () {
-                              Navigator.pop(context);
-                            },
+                        onPressed: funcaoBotao ?? () => Navigator.pop(context),
                         child: Text(
                           textBotao ?? AppLocalizations.of(context)!.notification_ok,
                           style: TextStyle(
@@ -89,21 +83,15 @@ void notifyPopUpWidget({
                         ),
                       ),
                     ),
-                    if (permitirFechar) const widgetEspacoH(altura: 8),
+                    if (permitirFechar) const SizedBox(height: 10),
                     if (permitirFechar)
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
-                          onPressed: funcaoBotaoSecundario ??
-                              () {
-                                Navigator.pop(context);
-                              },
+                          onPressed: funcaoBotaoSecundario ?? () => Navigator.pop(context),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,
-                            side: const BorderSide(
-                              color: Colors.grey,
-                              width: 1,
-                            ),
+                            side: const BorderSide(color: Colors.grey, width: 1),
                           ),
                           child: Text(
                             textBotaoSecundario ?? AppLocalizations.of(context)!.notification_cancel,
@@ -126,11 +114,7 @@ void notifyPopUpWidget({
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       color: erro ? Colors.red : Colors.green,
-                      border: Border.all(
-                        color: Colors.white,
-                        style: BorderStyle.solid,
-                        width: 5,
-                      ),
+                      border: Border.all(color: Colors.white, style: BorderStyle.solid, width: 5),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(8),

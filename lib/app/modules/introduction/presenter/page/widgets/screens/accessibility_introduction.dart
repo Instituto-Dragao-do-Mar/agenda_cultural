@@ -41,7 +41,7 @@ class AccessibilityIntroductionScreen extends StatelessWidget {
               style: const TextStyle(color: Colors.white, fontSize: 16),
             ),
             Semantics(
-              label: statusAltoContraste ? "Desativar alto contraste" : "Ativar alto contraste",
+              label: statusAltoContraste ? 'Desativar alto contraste' : 'Ativar alto contraste',
               child: widgetBotaoSwitch(
                 value: statusAltoContraste,
                 function: (value) => setAltoContraste(value),
@@ -84,8 +84,8 @@ class AccessibilityIntroductionScreen extends StatelessWidget {
           children: [
             Semantics(
               label: fontSize > 16
-                  ? "Diminuir fonte para ${fontSize - 1} pixels"
-                  : "Fonte no tamanho mínimo, impossível diminuir",
+                  ? 'Diminuir fonte para ${fontSize - 1} pixels'
+                  : 'Fonte no tamanho mínimo, impossível diminuir',
               child: IconButton(
                 icon: const Icon(Icons.remove, size: 30, color: Colors.white),
                 style: ButtonStyle(
@@ -99,15 +99,15 @@ class AccessibilityIntroductionScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Text(
-                  "${AppLocalizations.of(context)!.int_font_size} $fontSize px",
+                  '${AppLocalizations.of(context)!.int_font_size} $fontSize px',
                   style: const TextStyle(color: Colors.white, fontSize: 14),
                 )
               ],
             ),
             Semantics(
               label: fontSize < 24
-                  ? "Aumentar fonte para ${fontSize + 1} pixels"
-                  : "Fonte no tamanho máximo, impossível aumentar",
+                  ? 'Aumentar fonte para ${fontSize + 1} pixels'
+                  : 'Fonte no tamanho máximo, impossível aumentar',
               child: IconButton(
                 icon: const Icon(Icons.add, size: 30, color: Colors.white),
                 style: ButtonStyle(

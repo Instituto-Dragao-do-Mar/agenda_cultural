@@ -25,6 +25,54 @@ mixin _$AppStore on AppStoreBase, Store {
     });
   }
 
+  late final _$currentTabAtom =
+      Atom(name: 'AppStoreBase.currentTab', context: context);
+
+  @override
+  int get currentTab {
+    _$currentTabAtom.reportRead();
+    return super.currentTab;
+  }
+
+  @override
+  set currentTab(int value) {
+    _$currentTabAtom.reportWrite(value, super.currentTab, () {
+      super.currentTab = value;
+    });
+  }
+
+  late final _$currentScreenAtom =
+      Atom(name: 'AppStoreBase.currentScreen', context: context);
+
+  @override
+  Widget get currentScreen {
+    _$currentScreenAtom.reportRead();
+    return super.currentScreen;
+  }
+
+  @override
+  set currentScreen(Widget value) {
+    _$currentScreenAtom.reportWrite(value, super.currentScreen, () {
+      super.currentScreen = value;
+    });
+  }
+
+  late final _$screensAtom =
+      Atom(name: 'AppStoreBase.screens', context: context);
+
+  @override
+  List<Widget> get screens {
+    _$screensAtom.reportRead();
+    return super.screens;
+  }
+
+  @override
+  set screens(List<Widget> value) {
+    _$screensAtom.reportWrite(value, super.screens, () {
+      super.screens = value;
+    });
+  }
+
   late final _$categoriesAtom =
       Atom(name: 'AppStoreBase.categories', context: context);
 
@@ -113,6 +161,39 @@ mixin _$AppStore on AppStoreBase, Store {
   }
 
   @override
+  void setCurrentTab(int value) {
+    final _$actionInfo = _$AppStoreBaseActionController.startAction(
+        name: 'AppStoreBase.setCurrentTab');
+    try {
+      return super.setCurrentTab(value);
+    } finally {
+      _$AppStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setCurrentScreen(Widget value) {
+    final _$actionInfo = _$AppStoreBaseActionController.startAction(
+        name: 'AppStoreBase.setCurrentScreen');
+    try {
+      return super.setCurrentScreen(value);
+    } finally {
+      _$AppStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setScreens(List<Widget> value) {
+    final _$actionInfo = _$AppStoreBaseActionController.startAction(
+        name: 'AppStoreBase.setScreens');
+    try {
+      return super.setScreens(value);
+    } finally {
+      _$AppStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void setCategories(List<Category> value) {
     final _$actionInfo = _$AppStoreBaseActionController.startAction(
         name: 'AppStoreBase.setCategories');
@@ -160,6 +241,9 @@ mixin _$AppStore on AppStoreBase, Store {
   String toString() {
     return '''
 userLogged: ${userLogged},
+currentTab: ${currentTab},
+currentScreen: ${currentScreen},
+screens: ${screens},
 categories: ${categories},
 events: ${events},
 spaces: ${spaces},
