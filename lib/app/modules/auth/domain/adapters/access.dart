@@ -1,4 +1,4 @@
-class Acesso {
+class Access {
   String? nome;
   String? datacadastro;
   String? dataalteracao;
@@ -8,7 +8,7 @@ class Acesso {
   String? expiration;
   String? dataUltimaSincronizacao;
 
-  Acesso({
+  Access({
     this.nome,
     this.datacadastro,
     this.dataalteracao,
@@ -19,7 +19,7 @@ class Acesso {
     this.dataUltimaSincronizacao,
   });
 
-  Acesso.fromJson(Map<String, dynamic> json) {
+  Access.fromJson(Map<String, dynamic> json) {
     nome = json['nome'];
     datacadastro = json['datacadastro'];
     dataalteracao = json['dataalteracao'];
@@ -31,15 +31,15 @@ class Acesso {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['nome'] = this.nome;
-    data['datacadastro'] = this.datacadastro;
-    data['dataalteracao'] = this.dataalteracao;
-    data['alterarsenhaproximologin'] = this.alterarsenhaproximologin;
-    data['email'] = this.email;
-    data['signature'] = this.signature;
-    data['expiration'] = this.expiration;
-    data['dataUltimaSincronizacao'] = this.dataUltimaSincronizacao;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['nome'] = nome;
+    data['datacadastro'] = datacadastro;
+    data['dataalteracao'] = dataalteracao;
+    data['alterarsenhaproximologin'] = alterarsenhaproximologin;
+    data['email'] = email;
+    data['signature'] = signature;
+    data['expiration'] = expiration;
+    data['dataUltimaSincronizacao'] = dataUltimaSincronizacao;
     return data;
   }
 }

@@ -1,13 +1,13 @@
 class ListaUsuarios {
-  List<Usuario>? usuarios;
+  List<User>? usuarios;
 
   ListaUsuarios({this.usuarios});
 
   ListaUsuarios.fromJson(Map<String, dynamic> json) {
     if (json['usuarios'] != null) {
-      usuarios = <Usuario>[];
+      usuarios = <User>[];
       json['usuarios'].forEach((v) {
-        usuarios!.add(Usuario.fromJson(v));
+        usuarios!.add(User.fromJson(v));
       });
     }
   }
@@ -21,7 +21,7 @@ class ListaUsuarios {
   }
 }
 
-class Usuario {
+class User {
   int? id;
   String? login;
   String? guidid;
@@ -45,7 +45,7 @@ class Usuario {
   String? signature;
   String? expiration;
 
-  Usuario({
+  User({
     this.id,
     this.login,
     this.guidid,
@@ -70,7 +70,7 @@ class Usuario {
     this.expiration,
   });
 
-  Usuario.fromJson(Map<String, dynamic> json) {
+  User.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     login = json['login'];
     guidid = json['guidid'];

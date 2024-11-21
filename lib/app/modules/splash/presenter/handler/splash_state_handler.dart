@@ -135,9 +135,9 @@ class SplashPageStateHandler {
 
     //Verifica se o usuário já está logado
     if (userPrefs != null) {
-      _appStore.setUser(await UserController().getUserbyPrefData(
-        userPrefs.signature!,
-        userPrefs.email!,
+      _appStore.setUser(await UserController().getUserByPrefData(
+        token: userPrefs.signature ?? '',
+        email: userPrefs.email ?? '',
       ));
       _appStore.setSignatureUser(userPrefs.signature ?? '');
 

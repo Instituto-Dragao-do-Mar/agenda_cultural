@@ -14,18 +14,18 @@ class AppModel extends ChangeNotifier {
   TextEditingController tedCategoria = TextEditingController();
   TextEditingController tedIngresso = TextEditingController();
 
-  Usuario? usuarioLogado;
+  User? usuarioLogado;
 
   bool isLog() => (usuarioLogado != null && usuarioLogado?.signature != "");
 
-  AppModel({Usuario? usr}) {
-    usuarioLogado = usr ?? Usuario();
+  AppModel({User? usr}) {
+    usuarioLogado = usr ?? User();
     filtro = Filtro(
       filtroDataSelecionado: FiltroData.estasemana,
     );
   }
 
-  setUser(Usuario usr) {
+  setUser(User usr) {
     usuarioLogado = usr;
     notifyListeners();
   }
@@ -39,7 +39,7 @@ class AppModel extends ChangeNotifier {
 
   Future<void> getdados() async {
     if (isLog()) {
-      listaNotificacoes = await NotificacaoController().NotificacaoGet(
+      listaNotificacoes = await NotificacaoController().getNotifications(
         userguidid: getGuidId(),
         token: getToken(),
       );

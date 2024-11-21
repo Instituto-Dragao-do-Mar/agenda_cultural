@@ -2,7 +2,7 @@
 
 import 'package:agendacultural/controller/user_controller.dart';
 import 'package:agendacultural/model/fonts.dart';
-import 'package:agendacultural/pages/acesso/pagelogin.dart';
+import 'package:agendacultural/app/modules/auth/presenter/page/auth_page.dart';
 import 'package:agendacultural/pages/home/general/widgettopocomum.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/notify_pop_up.dart';
@@ -370,7 +370,7 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => const pageLogin(),
+              builder: (context) => const AuthPage(),
             ),
           );
         });

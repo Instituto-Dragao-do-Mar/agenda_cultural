@@ -13,13 +13,13 @@ mixin _$AppStore on AppStoreBase, Store {
       Atom(name: 'AppStoreBase.userLogged', context: context);
 
   @override
-  Usuario get userLogged {
+  User get userLogged {
     _$userLoggedAtom.reportRead();
     return super.userLogged;
   }
 
   @override
-  set userLogged(Usuario value) {
+  set userLogged(User value) {
     _$userLoggedAtom.reportWrite(value, super.userLogged, () {
       super.userLogged = value;
     });
@@ -139,7 +139,7 @@ mixin _$AppStore on AppStoreBase, Store {
       ActionController(name: 'AppStoreBase', context: context);
 
   @override
-  void setUser(Usuario value) {
+  void setUser(User value) {
     final _$actionInfo = _$AppStoreBaseActionController.startAction(
         name: 'AppStoreBase.setUser');
     try {

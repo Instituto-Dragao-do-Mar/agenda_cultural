@@ -28,7 +28,7 @@ class EventDetail extends StatelessWidget {
   final Space spacePrincipal;
   final List<Category> categories;
   final List<Favorite> favorites;
-  final Usuario user;
+  final User user;
 
   const EventDetail({
     super.key,

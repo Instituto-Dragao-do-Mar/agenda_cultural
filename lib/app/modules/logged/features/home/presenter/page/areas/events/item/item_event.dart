@@ -15,7 +15,7 @@ class ItemEventWidget extends StatelessWidget {
   final Event event;
   final Space spacePrincipal;
   final List<Favorite> favorites;
-  final Usuario user;
+  final User user;
   final void Function() onTapEvent;
   final void Function()? onConcludeFavorite;
 

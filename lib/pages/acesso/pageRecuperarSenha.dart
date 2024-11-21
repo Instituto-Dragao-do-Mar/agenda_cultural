@@ -1,5 +1,5 @@
 import 'package:agendacultural/controller/user_controller.dart';
-import 'package:agendacultural/pages/acesso/pagelogin.dart';
+import 'package:agendacultural/app/modules/auth/presenter/page/auth_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -174,7 +174,7 @@ class _PageRecuperarSenhaState extends State<PageRecuperarSenha> {
           Navigator.pushReplacement(
             context,
             MaterialPageRoute(
-              builder: (context) => const pageLogin(),
+              builder: (context) => const AuthPage(),
             ),
           );
         });

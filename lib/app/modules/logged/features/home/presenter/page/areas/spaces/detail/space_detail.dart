@@ -21,7 +21,7 @@ import 'package:agendacultural/app/modules/logged/features/home/sub_module/progr
 
 class SpaceDetail extends StatelessWidget {
   final Space space;
-  final Usuario user;
+  final User user;
 
   const SpaceDetail({
     super.key,

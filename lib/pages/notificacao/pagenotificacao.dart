@@ -67,18 +67,14 @@ class _pageNotificacaoState extends State<pageNotificacao> {
                   onTap: () {
                     notifySuccessWidget(
                       context: context,
-                      text: app.listaNotificacoes.notificacoes![index].texto ??
-                          "",
+                      text: app.listaNotificacoes.notificacoes![index].texto ?? "",
                       funcaoSim: () async {
                         await NotificacaoController().NotificacaoMarcaLidaPost(
                           userguidid: app.getGuidId(),
-                          idnotificacao: app
-                              .listaNotificacoes.notificacoes![index].id
-                              .toString(),
+                          idnotificacao: app.listaNotificacoes.notificacoes![index].id.toString(),
                           token: app.getToken(),
                         );
-                        app.listaNotificacoes =
-                            await NotificacaoController().NotificacaoGet(
+                        app.listaNotificacoes = await NotificacaoController().getNotifications(
                           userguidid: app.getGuidId(),
                           token: app.getToken(),
                         );

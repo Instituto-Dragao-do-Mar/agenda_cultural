@@ -15,10 +15,10 @@ abstract class AppStoreBase with Store {
   //Login
 
   @observable
-  Usuario userLogged = Usuario();
+  User userLogged = User();
 
   @action
-  void setUser(Usuario value) => userLogged = value;
+  void setUser(User value) => userLogged = value;
 
   @action
   void setSignatureUser(String value) => userLogged.signature = value;

@@ -13,7 +13,7 @@ import 'package:agendacultural/app/modules/splash/domain/adapter/favorite.dart';
 
 class EventDetailDatesWidget extends StatelessWidget {
   final Event event;
-  final Usuario user;
+  final User user;
   final List<Favorite> favorites;
 
   const EventDetailDatesWidget({

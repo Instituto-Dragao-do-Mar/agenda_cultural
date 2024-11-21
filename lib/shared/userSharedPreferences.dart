@@ -1,10 +1,3 @@
-/*
-
-String USERGUIDID = "";
-String USERTOKEN = "";
-
- */
-
 import 'package:agendacultural/model/usuario_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -18,10 +11,10 @@ class UserSharedPreferences {
     return data ?? (data == '' ? null : data);
   }
 
-  static Future<Usuario?> getUserData() async {
+  static Future<User?> getUserData() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
-    var user = Usuario(
+    var user = User(
       guidid: _checkIsEmpty(prefs.getString('userguidid')),
       signature: _checkIsEmpty(prefs.getString('usertoken')),
       email: _checkIsEmpty(prefs.getString('useremail')),
@@ -52,9 +45,9 @@ class UserSharedPreferences {
 
   static Future<void> resetUser() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString('userguidid', "");
-    await prefs.setString('usertoken', "");
-    await prefs.setString('useremail', "");
-    await prefs.setString('username', "");
+    await prefs.setString('userguidid', '');
+    await prefs.setString('usertoken', '');
+    await prefs.setString('useremail', '');
+    await prefs.setString('username', '');
   }
 }

@@ -8,11 +8,11 @@ import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:agendacultural/shared/notify_pop_up.dart';
-import 'package:agendacultural/pages/acesso/pagelogin.dart';
 import 'package:agendacultural/shared/text_contrast_font.dart';
+import 'package:agendacultural/app/modules/auth/presenter/page/auth_page.dart';
 
 class SpaceDetailEvaluationWidget extends StatefulWidget {
-  final Usuario user;
+  final User user;
 
   const SpaceDetailEvaluationWidget({
     super.key,
@@ -114,7 +114,7 @@ class _SpaceDetailEvaluationWidgetState extends State<SpaceDetailEvaluationWidge
       funcaoBotao: () {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const pageLogin()),
+          MaterialPageRoute(builder: (context) => const AuthPage()),
         );
       },
     );

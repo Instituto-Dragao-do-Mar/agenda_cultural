@@ -4,9 +4,9 @@ import 'package:url_launcher/url_launcher_string.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/notify_pop_up.dart';
-import 'package:agendacultural/pages/acesso/pagelogin.dart';
 import 'package:agendacultural/app/common/router/router.dart';
 import 'package:agendacultural/shared/text_contrast_font.dart';
+import 'package:agendacultural/app/modules/auth/presenter/page/auth_page.dart';
 import 'package:agendacultural/app/modules/logged/features/profile/presenter/page/widgets/option_profile.dart';
 import 'package:agendacultural/app/modules/logged/features/profile/presenter/handler/profile_state_handler.dart';
 import 'package:agendacultural/app/modules/logged/features/profile/presenter/page/widgets/pages/profile_info.dart';
@@ -61,7 +61,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     funcaoBotao: () => Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const pageLogin(),
+                        builder: (context) => const AuthPage(),
                       ),
                     ),
                   );

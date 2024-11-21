@@ -3,7 +3,7 @@
 import 'package:agendacultural/app/modules/logged/presenter/page/logged_area_page.dart';
 import 'package:agendacultural/app/core/htpp_client/http_client.dart';
 import 'package:agendacultural/model/fonts.dart';
-import 'package:agendacultural/pages/acesso/pageEntrar.dart';
+import 'package:agendacultural/app/modules/auth/features/signin/presenter/page/signin_page.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/button_default.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
@@ -191,9 +191,7 @@ class _PageCadastroState extends State<PageCadastro> {
                   style: FontsApp.poppins16W400Grey(FontsApp.tamanhoBase),
                   onChanged: (value) {
                     setState(() {
-                      value.characters.length >= 6
-                          ? haveMinDigits = 1
-                          : haveMinDigits = 0;
+                      value.characters.length >= 6 ? haveMinDigits = 1 : haveMinDigits = 0;
                       value.contains(
                         RegExp(r'[0-9]'),
                       )
@@ -210,10 +208,7 @@ class _PageCadastroState extends State<PageCadastro> {
                           ? haveUpperCase = 1
                           : haveUpperCase = 0;
 
-                      rulesMatch = haveUpperCase +
-                          haveLowerCase +
-                          haveNumber +
-                          haveMinDigits;
+                      rulesMatch = haveUpperCase + haveLowerCase + haveNumber + haveMinDigits;
                       senhaInput = value;
                     });
                   },
@@ -223,18 +218,14 @@ class _PageCadastroState extends State<PageCadastro> {
                     contentPadding: const EdgeInsets.all(16),
                     suffixIcon: senhaInput != ''
                         ? Semantics(
-                            label: obscureTextSenha
-                                ? "Clique para mostrar a senha"
-                                : "Clique para ocultar a senha",
+                            label: obscureTextSenha ? "Clique para mostrar a senha" : "Clique para ocultar a senha",
                             child: IconButton(
                                 onPressed: () {
                                   setState(() {
                                     obscureTextSenha = !obscureTextSenha;
                                   });
                                 },
-                                icon: Icon(obscureTextSenha
-                                    ? Icons.visibility
-                                    : Icons.visibility_off)),
+                                icon: Icon(obscureTextSenha ? Icons.visibility : Icons.visibility_off)),
                           )
                         : null,
                     focusColor: Colors.black,
@@ -265,8 +256,7 @@ class _PageCadastroState extends State<PageCadastro> {
               Row(
                 children: [
                   TextContrastFont(
-                    text:
-                        AppLocalizations.of(context)!.register_confirm_password,
+                    text: AppLocalizations.of(context)!.register_confirm_password,
                     semantics: "Digite sua senha novamente",
                     style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
                   ),
@@ -310,9 +300,7 @@ class _PageCadastroState extends State<PageCadastro> {
                               });
                             },
                             icon: Icon(
-                              obscureTextNovaSenha
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
+                              obscureTextNovaSenha ? Icons.visibility : Icons.visibility_off,
                             ),
                           )
                         : null,
@@ -345,8 +333,7 @@ class _PageCadastroState extends State<PageCadastro> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         TextContrastFont(
-                          text: AppLocalizations.of(context)!
-                              .register_password_order,
+                          text: AppLocalizations.of(context)!.register_password_order,
                           style: FontsApp.roboto12W400Grey(FontsApp.tamanhoBase),
                           semantics: "Sua senha deve conter:",
                         ),
@@ -354,8 +341,7 @@ class _PageCadastroState extends State<PageCadastro> {
                           altura: 4,
                         ),
                         TextContrastFont(
-                          text: AppLocalizations.of(context)!
-                              .register_password_order_one,
+                          text: AppLocalizations.of(context)!.register_password_order_one,
                           style: haveMinDigits == 1
                               ? FontsApp.roboto12W300Green(FontsApp.tamanhoBase)
                               : FontsApp.roboto12W300Grey(FontsApp.tamanhoBase),
@@ -365,8 +351,7 @@ class _PageCadastroState extends State<PageCadastro> {
                           altura: 4,
                         ),
                         TextContrastFont(
-                          text: AppLocalizations.of(context)!
-                              .register_password_order_two,
+                          text: AppLocalizations.of(context)!.register_password_order_two,
                           style: haveUpperCase == 1
                               ? FontsApp.roboto12W300Green(FontsApp.tamanhoBase)
                               : FontsApp.roboto12W300Grey(FontsApp.tamanhoBase),
@@ -376,8 +361,7 @@ class _PageCadastroState extends State<PageCadastro> {
                           altura: 4,
                         ),
                         TextContrastFont(
-                          text: AppLocalizations.of(context)!
-                              .register_password_order_three,
+                          text: AppLocalizations.of(context)!.register_password_order_three,
                           style: haveLowerCase == 1
                               ? FontsApp.roboto12W300Green(FontsApp.tamanhoBase)
                               : FontsApp.roboto12W300Grey(FontsApp.tamanhoBase),
@@ -387,8 +371,7 @@ class _PageCadastroState extends State<PageCadastro> {
                           altura: 4,
                         ),
                         TextContrastFont(
-                          text: AppLocalizations.of(context)!
-                              .register_password_order_four,
+                          text: AppLocalizations.of(context)!.register_password_order_four,
                           style: haveNumber == 1
                               ? FontsApp.roboto12W300Green(FontsApp.tamanhoBase)
                               : FontsApp.roboto12W300Grey(FontsApp.tamanhoBase),
@@ -398,8 +381,7 @@ class _PageCadastroState extends State<PageCadastro> {
                           altura: 8,
                         ),
                         TextContrastFont(
-                          text: AppLocalizations.of(context)!
-                              .register_password_order_five,
+                          text: AppLocalizations.of(context)!.register_password_order_five,
                           style: FontsApp.roboto12W300Grey(FontsApp.tamanhoBase),
                           semantics: "Força da senha:",
                         ),
@@ -442,10 +424,8 @@ class _PageCadastroState extends State<PageCadastro> {
                             : "Caixa desmarcada, clique duas vezes para marcar",
                         child: Checkbox(
                           checkColor: Colors.white,
-                          fillColor:
-                              MaterialStateProperty.resolveWith((states) {
-                            const Set<MaterialState> interactiveStates =
-                                <MaterialState>{
+                          fillColor: MaterialStateProperty.resolveWith((states) {
+                            const Set<MaterialState> interactiveStates = <MaterialState>{
                               MaterialState.pressed,
                               MaterialState.hovered,
                               MaterialState.focused,
@@ -466,21 +446,18 @@ class _PageCadastroState extends State<PageCadastro> {
                       Padding(
                         padding: const EdgeInsets.only(left: 10),
                         child: TextContrastFont(
-                          text:
-                              AppLocalizations.of(context)!.register_terms_one,
+                          text: AppLocalizations.of(context)!.register_terms_one,
                           fontsize: FontsApp.tamanhoBase.toDouble(),
                           color: const Color(0xff999999),
                         ),
                       ),
                       InkWell(
                         onTap: () async {
-                          var uri = Uri.parse(
-                              "https://grupo-manual.gitbook.io/app-cultura.ce/termos-e-servicos");
+                          var uri = Uri.parse("https://grupo-manual.gitbook.io/app-cultura.ce/termos-e-servicos");
                           if (await canLaunchUrl(uri)) {
                             // await launchUrl(uri,
                             //     mode: LaunchMode.externalApplication);
-                            await launchUrl(uri,
-                                mode: LaunchMode.platformDefault);
+                            await launchUrl(uri, mode: LaunchMode.platformDefault);
                           } else {
                             throw 'Could not launch $uri';
                           }
@@ -491,16 +468,14 @@ class _PageCadastroState extends State<PageCadastro> {
                             right: 2,
                           ),
                           child: TextContrastFont(
-                            text: AppLocalizations.of(context)!
-                                .register_terms_two,
+                            text: AppLocalizations.of(context)!.register_terms_two,
                             color: corBackgroundLaranja,
                             fontsize: FontsApp.tamanhoBase.toDouble(),
                           ),
                         ),
                       ),
                       TextContrastFont(
-                        text:
-                            AppLocalizations.of(context)!.register_terms_three,
+                        text: AppLocalizations.of(context)!.register_terms_three,
                         fontsize: FontsApp.tamanhoBase.toDouble(),
                         color: const Color(0xff999999),
                       ),
@@ -511,8 +486,7 @@ class _PageCadastroState extends State<PageCadastro> {
                           if (await canLaunchUrl(uri)) {
                             // await launchUrl(uri,
                             //     mode: LaunchMode.externalApplication);
-                            await launchUrl(uri,
-                                mode: LaunchMode.platformDefault);
+                            await launchUrl(uri, mode: LaunchMode.platformDefault);
                           } else {
                             throw 'Could not launch $uri';
                           }
@@ -523,8 +497,7 @@ class _PageCadastroState extends State<PageCadastro> {
                             right: 2,
                           ),
                           child: TextContrastFont(
-                            text: AppLocalizations.of(context)!
-                                .register_terms_four,
+                            text: AppLocalizations.of(context)!.register_terms_four,
                             color: corBackgroundLaranja,
                             fontsize: FontsApp.tamanhoBase.toDouble(),
                           ),
@@ -548,9 +521,7 @@ class _PageCadastroState extends State<PageCadastro> {
                 child: ButtonDefault(
                   text: AppLocalizations.of(context)!.register_conclude,
                   function:
-                      (usuarioController!.state == ControllerStates.loading)
-                          ? null
-                          : () async => await saveCadastro(),
+                      (usuarioController!.state == ControllerStates.loading) ? null : () async => await saveCadastro(),
                 ),
               ),
             ],
@@ -561,18 +532,14 @@ class _PageCadastroState extends State<PageCadastro> {
   }
 
   Future<void> saveCadastro() async {
-    if (emailInput.characters.isEmpty ||
-        nomeInput.characters.isEmpty ||
-        senhaInput.characters.isEmpty) {
+    if (emailInput.characters.isEmpty || nomeInput.characters.isEmpty || senhaInput.characters.isEmpty) {
       notifyPopUpWidget(
         context: context,
         textDescritivo: AppLocalizations.of(context)!.login_notify_empty,
       );
       return;
     }
-    if (!RegExp(
-            r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-        .hasMatch(emailInput)) {
+    if (!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(emailInput)) {
       notifyPopUpWidget(
         context: context,
         textDescritivo: AppLocalizations.of(context)!.login_notify_invalid,
@@ -582,16 +549,14 @@ class _PageCadastroState extends State<PageCadastro> {
     if (rulesMatch != 4) {
       notifyPopUpWidget(
         context: context,
-        textDescritivo:
-            AppLocalizations.of(context)!.registern_notify_weak_password,
+        textDescritivo: AppLocalizations.of(context)!.registern_notify_weak_password,
       );
       return;
     }
     if (senhaInput != confirmarSenhaInput) {
       notifyPopUpWidget(
         context: context,
-        textDescritivo:
-            AppLocalizations.of(context)!.register_notify_different_passwords,
+        textDescritivo: AppLocalizations.of(context)!.register_notify_different_passwords,
       );
       return;
     }
@@ -599,8 +564,7 @@ class _PageCadastroState extends State<PageCadastro> {
     if (!isChecked) {
       notifyPopUpWidget(
         context: context,
-        textDescritivo:
-            AppLocalizations.of(context)!.register_notify_accept_terms,
+        textDescritivo: AppLocalizations.of(context)!.register_notify_accept_terms,
       );
       return;
     }
@@ -611,46 +575,44 @@ class _PageCadastroState extends State<PageCadastro> {
       senha: senhaInput,
     );
 
-    if (usuarioController != null && errorMessage != "") {
-      notifyPopUpWidget(
-          context: context, textDescritivo: errorMessage ?? '');
+    if (usuarioController != null && errorMessage != '') {
+      notifyPopUpWidget(context: context, textDescritivo: errorMessage ?? '');
       return;
     }
 
     notifyPopUpWidget(
-        context: context,
-        textChamativo:
-            AppLocalizations.of(context)!.register_notify_register_conclude,
-        textDescritivo: AppLocalizations.of(context)!
-            .register_notify_register_conclude_text,
-        textBotao: AppLocalizations.of(context)!.int_button_enter,
-        erro: false,
-        funcaoBotao: () async {
-          final user = await usuarioController?.login(
-            app: app,
-            email: emailInput,
-            senha: senhaInput,
-            alterarSenha: false,
-          );
-
-          app?.usuarioLogado ??= user;
-
-          if (user != null) {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const LoggedAreaPage(),
-              ),
-            );
-          } else {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const PageEntrar(),
-              ),
-            );
-          }
-        });
+      context: context,
+      textChamativo: AppLocalizations.of(context)!.register_notify_register_conclude,
+      textDescritivo: AppLocalizations.of(context)!.register_notify_register_conclude_text,
+      textBotao: AppLocalizations.of(context)!.int_button_enter,
+      erro: false,
+      funcaoBotao: () async {
+        // final user = await usuarioController?.login(
+        //   app: app,
+        //   email: emailInput,
+        //   senha: senhaInput,
+        //   alterarSenha: false,
+        // );
+        //
+        // app?.usuarioLogado ??= user;
+        //
+        // if (user != null) {
+        //   Navigator.pushReplacement(
+        //     context,
+        //     MaterialPageRoute(
+        //       builder: (context) => const LoggedAreaPage(),
+        //     ),
+        //   );
+        // } else {
+        //   Navigator.pushReplacement(
+        //     context,
+        //     MaterialPageRoute(
+        //       builder: (context) => const SignInPage(),
+        //     ),
+        //   );
+        // }
+      },
+    );
     return;
   }
 }

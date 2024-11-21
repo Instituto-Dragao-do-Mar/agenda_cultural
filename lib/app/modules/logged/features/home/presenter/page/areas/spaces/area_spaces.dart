@@ -11,7 +11,7 @@ class AreaSpacesWidget extends StatelessWidget {
   final ScrollController scrollControllerSpaces;
   final List<Space> spaces;
   final bool showAllSpaces;
-  final Usuario user;
+  final User user;
   final void Function() onTapExpandSpaces;
 
   const AreaSpacesWidget({

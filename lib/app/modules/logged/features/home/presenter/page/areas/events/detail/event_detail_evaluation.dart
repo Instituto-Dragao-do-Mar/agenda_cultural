@@ -9,16 +9,16 @@ import 'package:agendacultural/shared/widgetpopup.dart';
 import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:agendacultural/shared/notify_pop_up.dart';
-import 'package:agendacultural/pages/acesso/pagelogin.dart';
 import 'package:agendacultural/shared/text_contrast_font.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
+import 'package:agendacultural/app/modules/auth/presenter/page/auth_page.dart';
 import 'package:agendacultural/shared/extensions/ex_compare_date_strings_in_days.dart';
 import 'package:agendacultural/app/modules/logged/features/home/domain/adapter/user_evaluation.dart';
 import 'package:agendacultural/app/modules/logged/features/home/domain/controller/user_evaluation_controller.dart';
 
 class EventDetailEvaluationWidget extends StatefulWidget {
   final Event event;
-  final Usuario user;
+  final User user;
 
   const EventDetailEvaluationWidget({
     super.key,
@@ -174,7 +174,7 @@ class _EventDetailEvaluationWidgetState extends State<EventDetailEvaluationWidge
       funcaoBotao: () {
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => const pageLogin()),
+          MaterialPageRoute(builder: (context) => const AuthPage()),
         );
       },
     );

@@ -22,7 +22,7 @@ class AreaEventsWidget extends StatelessWidget {
   final List<Favorite> favorites;
   final FilterDate? filterDateSelected;
   final bool showAllEvents;
-  final Usuario user;
+  final User user;
   final void Function()? onTapExpandEvents;
   final void Function(String value)? onItemSelected;
 

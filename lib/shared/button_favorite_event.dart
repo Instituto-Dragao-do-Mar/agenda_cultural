@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/shared/notify_pop_up.dart';
-import 'package:agendacultural/pages/acesso/pagelogin.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
+import 'package:agendacultural/app/modules/auth/presenter/page/auth_page.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/favorite.dart';
 import 'package:agendacultural/app/modules/splash/domain/controller/event_controller.dart';
 
 class ButtonFavoriteWidget extends StatefulWidget {
   final Event event;
   final bool isCardEvent;
-  final Usuario user;
+  final User user;
   final List<Favorite> favorites;
   final void Function()? onConcludeFavorite;
 
@@ -55,7 +55,7 @@ class _ButtonFavoriteWidgetState extends State<ButtonFavoriteWidget> {
                 funcaoBotao: () => Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const pageLogin(),
+                    builder: (context) => const AuthPage(),
                   ),
                 ),
               );
