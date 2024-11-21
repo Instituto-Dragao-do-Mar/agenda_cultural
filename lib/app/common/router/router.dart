@@ -10,4 +10,5 @@ class RouterApp {
   static const String logged = '/logged';
   static const String myLocation = '/my-location';
   static const String accessibility = '/accessibility';
+  static const String language = '/language';
 }

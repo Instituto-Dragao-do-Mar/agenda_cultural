@@ -14,9 +14,12 @@ import 'package:agendacultural/app/modules/logged/features/home/presenter/handle
 import 'package:agendacultural/app/modules/logged/features/profile/presenter/handler/profile_state_handler.dart';
 import 'package:agendacultural/app/modules/logged/features/schedule/presenter/handler/schedule_state_handler.dart';
 import 'package:agendacultural/app/modules/logged/features/favorites/presenter/handler/favorite_state_handler.dart';
+import 'package:agendacultural/app/modules/logged/features/profile/sub_module/language/presenter/page/language_page.dart';
+import 'package:agendacultural/app/modules/logged/features/profile/sub_module/language/presenter/store/language_store.dart';
 import 'package:agendacultural/app/modules/logged/features/home/sub_module/my_location/presenter/page/my_location_page.dart';
 import 'package:agendacultural/app/modules/logged/features/home/sub_module/my_location/presenter/store/my_location_store.dart';
-import 'package:agendacultural/app/modules/logged/features/profile/sub_module/accessibility/presenter/page/accessibility.dart';
+import 'package:agendacultural/app/modules/logged/features/profile/sub_module/accessibility/presenter/page/accessibility_page.dart';
+import 'package:agendacultural/app/modules/logged/features/profile/sub_module/language/presenter/handler/language_state_handler.dart';
 import 'package:agendacultural/app/modules/logged/features/profile/sub_module/accessibility/presenter/store/accessibility_store.dart';
 import 'package:agendacultural/app/modules/logged/features/home/sub_module/my_location/presenter/handler/my_location_state_handler.dart';
 import 'package:agendacultural/app/modules/logged/features/profile/sub_module/accessibility/presenter/handler/accessibility_state_handler.dart';
@@ -37,6 +40,9 @@ class LoggedModule extends Module {
 
     i.addLazySingleton(AccessibilityPageStateHandler.new);
     i.addLazySingleton(AccessibilityStore.new);
+
+    i.addLazySingleton(LanguagePageStateHandler.new);
+    i.addLazySingleton(LanguageStore.new);
 
     i.addLazySingleton(HomePageStateHandler.new);
     i.addLazySingleton(HomeStore.new);
@@ -68,7 +74,12 @@ class LoggedModule extends Module {
     );
     r.child(
       RouterApp.accessibility,
-      child: (context) => const ProfileAccessibility(),
+      child: (context) => const ProfileAccessibilityPage(),
+      transition: TransitionType.noTransition,
+    );
+    r.child(
+      RouterApp.language,
+      child: (context) => const ProfileLanguagePage(),
       transition: TransitionType.noTransition,
     );
   }
