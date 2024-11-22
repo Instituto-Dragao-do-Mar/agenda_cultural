@@ -205,11 +205,12 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                   const SizedBox(height: 50),
                   Semantics(
-                    container: true,
-                    label: 'Botão Entrar',
+                    label: AppLocalizations.of(context)!.login_enter,
                     child: ButtonDefault(
-                      text: AppLocalizations.of(context)!.login_enter,
-                      function: () async => await _handler.sendLogin(context, mounted),
+                      text: _handler.store.isLoading ? '...' : AppLocalizations.of(context)!.login_enter,
+                      function: () async {
+                        _handler.store.isLoading ? () {} : await _handler.sendLogin(context, mounted);
+                      },
                     ),
                   )
                 ],

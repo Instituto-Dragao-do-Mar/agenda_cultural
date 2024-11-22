@@ -23,12 +23,14 @@ class SignupPageStateHandler {
 
   Future<void> saveCadastro(BuildContext context, bool mounted) async {
     UserController userController = UserController();
+    _store.setIsLoading(true);
 
     if (_store.email.characters.isEmpty || _store.name.characters.isEmpty || _store.password.characters.isEmpty) {
       notifyPopUpWidget(
         context: context,
         textDescritivo: AppLocalizations.of(context)!.login_notify_empty,
       );
+      _store.setIsLoading(false);
       return;
     }
 
@@ -37,6 +39,7 @@ class SignupPageStateHandler {
         context: context,
         textDescritivo: AppLocalizations.of(context)!.login_notify_invalid,
       );
+      _store.setIsLoading(false);
       return;
     }
 
@@ -45,6 +48,7 @@ class SignupPageStateHandler {
         context: context,
         textDescritivo: AppLocalizations.of(context)!.registern_notify_weak_password,
       );
+      _store.setIsLoading(false);
       return;
     }
 
@@ -53,6 +57,7 @@ class SignupPageStateHandler {
         context: context,
         textDescritivo: AppLocalizations.of(context)!.register_notify_different_passwords,
       );
+      _store.setIsLoading(false);
       return;
     }
 
@@ -61,6 +66,7 @@ class SignupPageStateHandler {
         context: context,
         textDescritivo: AppLocalizations.of(context)!.register_notify_accept_terms,
       );
+      _store.setIsLoading(false);
       return;
     }
 
@@ -73,6 +79,7 @@ class SignupPageStateHandler {
     if (errorMessage != '') {
       if (!mounted) return;
       notifyPopUpWidget(context: context, textDescritivo: errorMessage ?? '');
+      _store.setIsLoading(false);
       return;
     }
 
@@ -92,15 +99,18 @@ class SignupPageStateHandler {
         );
 
         if (user.guidid != null && user.guidid != '') {
+          _store.setIsLoading(false);
           _appStore.setUser(user);
           _appStore.setCurrentScreen(_appStore.screens[0]);
           _appStore.setCurrentTab(0);
           Modular.to.navigate(RouterApp.logged);
         } else {
+          _store.setIsLoading(false);
           Modular.to.navigate(RouterApp.auth + RouterApp.signin);
         }
       },
     );
+    _store.setIsLoading(false);
     return;
   }
 

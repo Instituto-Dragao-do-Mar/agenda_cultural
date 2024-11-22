@@ -23,6 +23,7 @@ class SigninPageStateHandler {
 
   Future<void> sendLogin(BuildContext context, bool mounted) async {
     UserController userController = UserController();
+    _store.setIsLoading(true);
 
     if (!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(_store.email)) {
       if (!mounted) return;
@@ -30,6 +31,7 @@ class SigninPageStateHandler {
         context: context,
         textDescritivo: AppLocalizations.of(context)!.login_notify_invalid,
       );
+      _store.setIsLoading(false);
       return;
     }
 
@@ -42,7 +44,7 @@ class SigninPageStateHandler {
       ),
     );
 
-    if (UserController.errorMessage == 'Alterar Senha') {
+    if (UserController.errorMessage == 'Alterar Senha' || userController.messageError == 'Alterar Senha') {
       if (!mounted) return;
       notifyPopUpWidget(
         context: context,
@@ -57,6 +59,7 @@ class SigninPageStateHandler {
           );
         },
       );
+      _store.setIsLoading(false);
       return;
     }
 
@@ -65,6 +68,7 @@ class SigninPageStateHandler {
       //   userguidid: app.getGuidId(),
       //   token: app.getToken(),
       // );
+      _store.setIsLoading(false);
       _appStore.setCurrentScreen(_appStore.screens[0]);
       _appStore.setCurrentTab(0);
       Modular.to.navigate(RouterApp.logged);
@@ -74,6 +78,7 @@ class SigninPageStateHandler {
         context: context,
         textDescritivo: AppLocalizations.of(context)!.login_notify_data_invalid,
       );
+      _store.setIsLoading(false);
     }
   }
 

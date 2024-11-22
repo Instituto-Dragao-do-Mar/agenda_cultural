@@ -6,6 +6,12 @@ class SignupStore = SignupStoreBase with _$SignupStore;
 
 abstract class SignupStoreBase with Store {
   @observable
+  bool isLoading = false;
+
+  @action
+  void setIsLoading(bool value) => isLoading = value;
+
+  @observable
   String name = '';
 
   @action

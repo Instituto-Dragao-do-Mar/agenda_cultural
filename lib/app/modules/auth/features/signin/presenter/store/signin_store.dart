@@ -6,6 +6,12 @@ class SigninStore = SigninStoreBase with _$SigninStore;
 
 abstract class SigninStoreBase with Store {
   @observable
+  bool isLoading = false;
+
+  @action
+  void setIsLoading(bool value) => isLoading = value;
+
+  @observable
   String email = '';
 
   @action

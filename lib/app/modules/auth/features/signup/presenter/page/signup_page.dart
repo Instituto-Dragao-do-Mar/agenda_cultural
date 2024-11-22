@@ -117,8 +117,10 @@ class _SignupPageState extends State<SignupPage> {
                     Semantics(
                       label: AppLocalizations.of(context)!.register_conclude,
                       child: ButtonDefault(
-                        text: AppLocalizations.of(context)!.register_conclude,
-                        function: () async => await _handler.saveCadastro(context, mounted),
+                        text: _handler.store.isLoading ? '...' : AppLocalizations.of(context)!.register_conclude,
+                        function: () async {
+                          _handler.store.isLoading ? () {} : await _handler.saveCadastro(context, mounted);
+                        },
                       ),
                     ),
                   ],
