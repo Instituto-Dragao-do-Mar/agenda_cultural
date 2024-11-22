@@ -66,8 +66,15 @@ class _HomePageState extends State<HomePage> {
                   applyFilterCategory: (categoria) {
                     if (_handler.store.selectedCategory == categoria) {
                       _handler.store.selectedCategory = null;
+                      _handler.filterEventsByDate(_handler.store.filterDate, _handler.store.setEventsDateFiltered);
+                      _handler.initEventsProminence();
                     } else {
                       _handler.store.selectedCategory = categoria;
+                      _handler.filterEventsByDate(_handler.store.filterDate, _handler.store.setEventsDateFiltered);
+                      _handler.filterEventsByDate(
+                        _handler.store.filterDate,
+                        _handler.store.setEventsProminenceFiltered,
+                      );
                     }
                   },
                 ),
@@ -106,7 +113,7 @@ class _HomePageState extends State<HomePage> {
                       _handler.store.setFilterDate(
                         FilterDate.values.firstWhere((element) => filterDateToString(context, element) == value),
                       );
-                      _handler.filterEventsByDate(_handler.store.filterDate);
+                      _handler.filterEventsByDate(_handler.store.filterDate, _handler.store.setEventsDateFiltered);
                     },
                     events: _handler.store.eventsDateFiltered,
                     spaces: _handler.appStore.spaces,

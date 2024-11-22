@@ -3,6 +3,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:agendacultural/app/common/utils/orders.dart';
 import 'package:agendacultural/shared/extensions/dates.dart';
 import 'package:agendacultural/app/core/app_store/app_store.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/event_categories.dart';
 import 'package:agendacultural/app/modules/splash/domain/controller/event_controller.dart';
 import 'package:agendacultural/app/modules/logged/features/home/domain/enum/filter_date.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/store/home_store.dart';
@@ -28,8 +30,8 @@ class HomePageStateHandler {
     }
 
     //Events
-    filterEventsByDate(_store.filterDate);
-    _initEventsProminence();
+    filterEventsByDate(_store.filterDate, _store.setEventsDateFiltered);
+    initEventsProminence();
 
     //Spaces
     _store.setSpacesFiltered(
@@ -39,7 +41,7 @@ class HomePageStateHandler {
     _store.setIsLoading(false);
   }
 
-  void filterEventsByDate(FilterDate filterDate) {
+  void filterEventsByDate(FilterDate filterDate, void Function(List<Event>) setEvents) {
     String d1 = '', d2 = '';
 
     // Define o intervalo de datas com base no filtro selecionado.
@@ -59,13 +61,34 @@ class HomePageStateHandler {
     DateTime dfim = DateTime.parse(d2);
 
     // Filtra os eventos com base no intervalo de datas e se estão aprovados.
-    _store.setEventsDateFiltered(
+    setEvents(
       _appStore.events.where((event) {
         bool dateInList = false;
 
         // Ignora eventos que não estão aprovados.
         if (event.aprovado != 1) {
           return false;
+        }
+
+        if (setEvents == _store.setEventsProminenceFiltered) {
+          // Verifica se o evento está em destaque.
+          if (event.destaque == 0) {
+            return false;
+          }
+        }
+
+        // Verifica as categorias do evento, 1 a 1.
+        if (store.selectedCategory != null) {
+          bool categoryMatches = false;
+          for (EventCategories category in event.eventoscategorias ?? []) {
+            if (category.idcategoria == _store.selectedCategory?.id) {
+              categoryMatches = true;
+              break; // Interrompe a verificação assim que encontra uma correspondência.
+            }
+          }
+          if (!categoryMatches) {
+            return false; // Retorna falso se nenhuma categoria corresponder.
+          }
         }
 
         // Verifica se a data de cada evento está no intervalo definido.
@@ -82,7 +105,7 @@ class HomePageStateHandler {
     );
   }
 
-  void _initEventsProminence() {
+  void initEventsProminence() {
     final eventsProminence = _appStore.events.where((event) {
       // Ignora eventos que não estão aprovados.
       if (event.aprovado != 1) {
