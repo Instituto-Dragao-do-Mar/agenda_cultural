@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:agendacultural/app/common/router/router.dart';
+import 'package:agendacultural/app/modules/auth/domain/adapters/user.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/favorite.dart';
 import 'package:agendacultural/app/modules/splash/domain/controller/event_controller.dart';

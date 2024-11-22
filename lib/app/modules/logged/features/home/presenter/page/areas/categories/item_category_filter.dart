@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:agendacultural/model/fonts.dart';
-import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:agendacultural/shared/text_contrast_font.dart';
 import 'package:agendacultural/shared/widgetimagemexterna.dart';
+import 'package:agendacultural/app/common/utils/theme/fonts.dart';
+import 'package:agendacultural/app/common/utils/theme/themes.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/category.dart';
 
 class ItemCategoryFilterWidget extends StatelessWidget {

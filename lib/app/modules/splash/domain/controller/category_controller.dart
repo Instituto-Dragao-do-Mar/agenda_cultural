@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:agendacultural/shared/constantes.dart';
+import 'package:agendacultural/app/core/constants/constants.dart';
 import 'package:agendacultural/app/core/htpp_client/http_client.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/category.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:agendacultural/shared/themes.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:agendacultural/app/common/utils/theme/themes.dart';
 
 enum EditPopupType { texto, data, drop, datahora, ligadesliga }
 

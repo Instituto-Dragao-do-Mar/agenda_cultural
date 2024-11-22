@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:agendacultural/shared/themes.dart';
+import 'package:agendacultural/app/common/utils/theme/themes.dart';
 
 class ColorsApp {
   static bool contraste = false;

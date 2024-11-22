@@ -1,6 +1,6 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/app/core/app_store/app_store.dart';
+import 'package:agendacultural/app/modules/auth/domain/adapters/user.dart';
 import 'package:agendacultural/app/modules/auth/presenter/store/auth_store.dart';
 
 class AuthPageStateHandler {

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/model/fonts.dart';
-import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/model/app_model.dart';
+import 'package:agendacultural/app/common/utils/theme/fonts.dart';
+import 'package:agendacultural/app/common/utils/theme/themes.dart';
 import 'package:agendacultural/pages/search_term_filter/store/search_filter_store.dart';
 import 'package:agendacultural/pages/search_term_filter/widgets/app_bar_search_filter.dart';
 

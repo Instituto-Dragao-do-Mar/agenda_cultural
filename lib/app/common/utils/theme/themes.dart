@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:agendacultural/model/colors.dart';
+import 'package:agendacultural/app/common/utils/theme/colors.dart';
 
 var themeDefault = ThemeData(
   brightness: Brightness.light,
@@ -17,6 +17,8 @@ var themeDefault = ThemeData(
     selectionHandleColor: Colors.grey,
   ),
 );
+
+const LinearGradient gradientPrincipal = LinearGradient(colors: [Color(0xffEA5B0C), Color(0xffE83C3B)]);
 
 var corBackgroundLaranja = const Color(0xFFEA5B0C);
 var corBackgroundNegative = Colors.white;

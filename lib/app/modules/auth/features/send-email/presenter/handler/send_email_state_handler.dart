@@ -3,8 +3,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:agendacultural/app/common/router/router.dart';
-import 'package:agendacultural/controller/user_controller.dart';
 import 'package:agendacultural/app/core/app_store/app_store.dart';
+import 'package:agendacultural/app/modules/auth/domain/controller/user_controller.dart';
 import 'package:agendacultural/app/modules/auth/features/send-email/presenter/store/send_email_store.dart';
 
 class SendEmailPageStateHandler {

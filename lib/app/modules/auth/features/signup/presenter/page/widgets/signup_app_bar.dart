@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/model/fonts.dart';
-import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/text_contrast_font.dart';
+import 'package:agendacultural/app/common/utils/theme/fonts.dart';
+import 'package:agendacultural/app/common/utils/theme/themes.dart';
 
 class SignupAppBar extends StatelessWidget implements PreferredSizeWidget {
   const SignupAppBar({super.key});

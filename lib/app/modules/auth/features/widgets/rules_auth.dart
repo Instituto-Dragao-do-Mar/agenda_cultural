@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
-import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/shared/text_contrast_font.dart';
+import 'package:agendacultural/app/common/utils/theme/fonts.dart';
 
 class RulesAuthWidget extends StatelessWidget {
   final int haveMinDigits;

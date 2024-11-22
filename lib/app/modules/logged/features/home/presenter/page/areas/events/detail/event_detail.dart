@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-import 'package:agendacultural/model/fonts.dart';
-import 'package:agendacultural/shared/themes.dart';
-import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:agendacultural/shared/text_contrast_font.dart';
+import 'package:agendacultural/app/common/utils/theme/fonts.dart';
+import 'package:agendacultural/app/common/utils/theme/themes.dart';
+import 'package:agendacultural/app/modules/auth/domain/adapters/user.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/favorite.dart';

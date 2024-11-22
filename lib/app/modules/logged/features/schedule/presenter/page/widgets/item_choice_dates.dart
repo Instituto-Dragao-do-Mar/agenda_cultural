@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:agendacultural/model/fonts.dart';
-import 'package:agendacultural/model/colors.dart';
-import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/extensions/dates.dart';
 import 'package:agendacultural/shared/text_contrast_font.dart';
+import 'package:agendacultural/app/common/utils/theme/fonts.dart';
+import 'package:agendacultural/app/common/utils/theme/colors.dart';
+import 'package:agendacultural/app/common/utils/theme/themes.dart';
 
 class InsertDateWidget extends StatelessWidget {
   final void Function() onTapDate;

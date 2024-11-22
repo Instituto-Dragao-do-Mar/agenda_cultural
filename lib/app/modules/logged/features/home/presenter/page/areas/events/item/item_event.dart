@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:agendacultural/model/fonts.dart';
-import 'package:agendacultural/model/colors.dart';
-import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/shared/extensions/dates.dart';
+import 'package:agendacultural/app/common/utils/theme/fonts.dart';
 import 'package:agendacultural/shared/button_favorite_event.dart';
 import 'package:agendacultural/shared/extensions/capitalize.dart';
+import 'package:agendacultural/app/common/utils/theme/colors.dart';
+import 'package:agendacultural/app/modules/auth/domain/adapters/user.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/favorite.dart';

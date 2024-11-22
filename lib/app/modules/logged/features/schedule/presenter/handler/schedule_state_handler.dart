@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/app/core/app_store/app_store.dart';
+import 'package:agendacultural/app/common/utils/theme/themes.dart';
 import 'package:agendacultural/app/modules/logged/features/schedule/presenter/store/schedule_store.dart';
 
 class SchedulePageStateHandler {

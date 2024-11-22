@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:agendacultural/shared/widgetimagemexterna.dart';
+import 'package:agendacultural/app/common/utils/theme/fonts.dart';
 
 class ItemEventImageWidget extends StatelessWidget {
   final String urlImage;

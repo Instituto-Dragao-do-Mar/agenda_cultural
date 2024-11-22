@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:agendacultural/model/fonts.dart';
-import 'package:agendacultural/model/colors.dart';
+import 'package:agendacultural/app/common/utils/theme/fonts.dart';
+import 'package:agendacultural/app/common/utils/theme/colors.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/spaces/item/item_space_info.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/spaces/item/item_space_image.dart';

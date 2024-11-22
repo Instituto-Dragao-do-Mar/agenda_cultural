@@ -1,14 +1,12 @@
-// ignore_for_file: camel_case_types
-
-import 'package:agendacultural/controller/notificacao_controller.dart';
-import 'package:agendacultural/model/app_model.dart';
-import 'package:agendacultural/pages/home/general/widgettopocomum.dart';
-import 'package:agendacultural/pages/notificacao/widgetnotificacaocard.dart';
-import 'package:agendacultural/shared/themes.dart';
-import 'package:agendacultural/shared/widgetBottomNavigator.dart';
-import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:agendacultural/model/app_model.dart';
+import 'package:agendacultural/shared/notify_pop_up.dart';
+import 'package:agendacultural/shared/widgetBottomNavigator.dart';
+import 'package:agendacultural/app/common/utils/theme/themes.dart';
+import 'package:agendacultural/pages/home/general/widgettopocomum.dart';
+import 'package:agendacultural/pages/notificacao/widgetnotificacaocard.dart';
+import 'package:agendacultural/app/modules/auth/domain/controller/notification_controller.dart';
 
 class pageNotificacao extends StatefulWidget {
   const pageNotificacao({
@@ -69,7 +67,7 @@ class _pageNotificacaoState extends State<pageNotificacao> {
                       context: context,
                       text: app.listaNotificacoes.notificacoes![index].texto ?? "",
                       funcaoSim: () async {
-                        await NotificacaoController().NotificacaoMarcaLidaPost(
+                        await NotificacaoController().postNotificationAsRead(
                           userguidid: app.getGuidId(),
                           idnotificacao: app.listaNotificacoes.notificacoes![index].id.toString(),
                           token: app.getToken(),

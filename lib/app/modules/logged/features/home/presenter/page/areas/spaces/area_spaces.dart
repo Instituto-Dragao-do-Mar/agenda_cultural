@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/model/fonts.dart';
-import 'package:agendacultural/model/usuario_model.dart';
+import 'package:agendacultural/app/common/utils/theme/fonts.dart';
+import 'package:agendacultural/app/modules/auth/domain/adapters/user.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/spaces/detail/space_detail.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/spaces/item/item_space.dart';

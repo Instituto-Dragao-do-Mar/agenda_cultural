@@ -1,6 +1,6 @@
 import 'package:mobx/mobx.dart';
 import 'package:flutter/material.dart';
-import 'package:agendacultural/model/usuario_model.dart';
+import 'package:agendacultural/app/modules/auth/domain/adapters/user.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/category.dart';

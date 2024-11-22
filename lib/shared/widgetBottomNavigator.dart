@@ -1,13 +1,9 @@
-// ignore_for_file: file_names
-
 import 'package:agendacultural/app/core/htpp_client/http_client.dart';
-import 'package:agendacultural/shared/themes.dart';
-import 'package:agendacultural/shared/widgetimagem.dart';
+import 'package:agendacultural/app/common/utils/theme/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import '../model/imagem_model.dart';
 
 class WidgetBottomNavigator extends StatefulWidget {
   const WidgetBottomNavigator({

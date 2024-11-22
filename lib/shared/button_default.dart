@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:agendacultural/shared/themes.dart';
-import 'package:agendacultural/shared/constantes.dart';
+import 'package:agendacultural/app/common/utils/theme/themes.dart';
 
 class ButtonDefault extends StatelessWidget {
   final double? width;

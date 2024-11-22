@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:agendacultural/model/colors.dart';
+import 'package:agendacultural/app/common/utils/theme/colors.dart';
 
 class FontsApp {
   static const int tamanhoFonteBase16 = 16;

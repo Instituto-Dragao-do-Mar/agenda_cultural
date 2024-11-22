@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:agendacultural/shared/themes.dart';
+import 'package:agendacultural/app/common/utils/theme/themes.dart';
 
 class AppWidget extends StatefulWidget {
   const AppWidget({super.key});

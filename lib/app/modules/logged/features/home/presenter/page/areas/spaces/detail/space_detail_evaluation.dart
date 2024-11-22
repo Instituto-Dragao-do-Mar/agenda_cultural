@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/model/colors.dart';
-import 'package:agendacultural/model/fonts.dart';
-import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/model/imagem_model.dart';
-import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:agendacultural/app/common/router/router.dart';
 import 'package:agendacultural/shared/text_contrast_font.dart';
+import 'package:agendacultural/app/common/utils/theme/fonts.dart';
+import 'package:agendacultural/app/common/utils/theme/colors.dart';
+import 'package:agendacultural/app/common/utils/theme/themes.dart';
+import 'package:agendacultural/app/modules/auth/domain/adapters/user.dart';
 
 class SpaceDetailEvaluationWidget extends StatefulWidget {
   final User user;

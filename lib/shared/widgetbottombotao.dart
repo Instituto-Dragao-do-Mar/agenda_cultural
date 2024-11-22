@@ -1,9 +1,6 @@
-// ignore_for_file: camel_case_types
-
-import 'package:agendacultural/shared/constantes.dart';
-import 'package:agendacultural/shared/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:agendacultural/app/common/utils/theme/themes.dart';
 
 class widgetBottomBotao extends StatelessWidget {
   const widgetBottomBotao({

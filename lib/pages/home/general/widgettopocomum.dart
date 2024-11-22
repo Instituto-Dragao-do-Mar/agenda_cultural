@@ -1,9 +1,7 @@
-// ignore_for_file: camel_case_types
+import 'package:flutter/material.dart';
 import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
-import 'package:flutter/material.dart';
-
-import '../../../model/fonts.dart';
+import '../../../app/common/utils/theme/fonts.dart';
 
 class widgetTopoComum extends StatelessWidget {
   const widgetTopoComum({

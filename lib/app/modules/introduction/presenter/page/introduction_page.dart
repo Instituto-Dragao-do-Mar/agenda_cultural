@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:agendacultural/model/fonts.dart';
-import 'package:agendacultural/model/colors.dart';
 import 'package:agendacultural/app/app_widget.dart';
 import 'package:agendacultural/app/common/router/router.dart';
+import 'package:agendacultural/app/common/utils/theme/fonts.dart';
+import 'package:agendacultural/app/common/utils/theme/colors.dart';
 import 'package:agendacultural/app/core/data_preferences/data_preferences.dart';
 import 'package:agendacultural/app/modules/introduction/presenter/page/widgets/step.dart';
 import 'package:agendacultural/app/modules/introduction/domain/entities/introducao_model.dart';

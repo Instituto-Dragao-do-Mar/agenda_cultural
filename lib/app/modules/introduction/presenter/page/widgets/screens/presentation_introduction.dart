@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/shared/widgetbottombotao.dart';
+import 'package:agendacultural/app/common/utils/theme/fonts.dart';
 
 class PresentationIntroductionScreen extends StatelessWidget {
   final void Function() onTapEnter;

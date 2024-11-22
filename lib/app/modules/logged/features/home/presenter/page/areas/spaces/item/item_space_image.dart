@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:agendacultural/model/fonts.dart';
+import 'package:agendacultural/app/common/utils/theme/fonts.dart';
 
 class ItemSpaceImageWidget extends StatelessWidget {
   final String? urlImage;

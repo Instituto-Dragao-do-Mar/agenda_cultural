@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/shared/text_contrast_font.dart';
 import 'package:agendacultural/shared/widgetemconstrucao.dart';
+import 'package:agendacultural/app/common/utils/theme/fonts.dart';
 
 class OptionProfileWidget extends StatelessWidget {
   final String subtitle;

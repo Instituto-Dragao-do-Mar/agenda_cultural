@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:agendacultural/app/common/router/router.dart';
-import 'package:agendacultural/controller/user_controller.dart';
 import 'package:agendacultural/app/core/app_store/app_store.dart';
+import 'package:agendacultural/app/modules/auth/domain/controller/user_controller.dart';
 import 'package:agendacultural/app/modules/auth/features/recover/presenter/store/recover_store.dart';
 
 class RecoverPageStateHandler {

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:agendacultural/model/filtro_model.dart';
-import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/model/notificacao_model.dart';
-import 'package:agendacultural/controller/notificacao_controller.dart';
+import 'package:agendacultural/app/modules/auth/domain/adapters/user.dart';
+import 'package:agendacultural/app/modules/auth/domain/controller/notification_controller.dart';
 
 class AppModel extends ChangeNotifier {
   late Filtro filtro;

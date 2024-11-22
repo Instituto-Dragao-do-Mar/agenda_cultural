@@ -1,7 +1,7 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:agendacultural/model/fonts.dart';
-import 'package:agendacultural/model/colors.dart';
 import 'package:agendacultural/app/core/app_store/app_store.dart';
+import 'package:agendacultural/app/common/utils/theme/fonts.dart';
+import 'package:agendacultural/app/common/utils/theme/colors.dart';
 import 'package:agendacultural/app/modules/logged/features/profile/sub_module/accessibility/presenter/store/accessibility_store.dart';
 
 class AccessibilityPageStateHandler {

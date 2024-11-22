@@ -2,12 +2,12 @@ import 'dart:convert';
 import 'package:uuid/uuid.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:agendacultural/shared/constantes.dart';
-import 'package:agendacultural/model/usuario_model.dart';
-import 'package:agendacultural/shared/userSharedPreferences.dart';
+import 'package:agendacultural/app/core/constants/constants.dart';
 import 'package:agendacultural/app/core/app_store/app_store.dart';
 import 'package:agendacultural/app/core/htpp_client/http_client.dart';
+import 'package:agendacultural/app/modules/auth/domain/adapters/user.dart';
 import 'package:agendacultural/app/modules/auth/domain/adapters/access.dart';
+import 'package:agendacultural/app/core/data_preferences/user_shared_preferences.dart';
 
 enum ControllerStates {
   idle,

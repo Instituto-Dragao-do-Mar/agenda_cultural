@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:agendacultural/shared/constantes.dart';
+import 'package:agendacultural/app/common/utils/theme/themes.dart';
 import 'package:agendacultural/app/modules/splash/presenter/handler/splash_state_handler.dart';
 
 class SplashPage extends StatefulWidget {
@@ -17,6 +17,12 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     _handler.initialize(mounted, context);
+  }
+
+  @override
+  void dispose() {
+    _handler.dispose();
+    super.dispose();
   }
 
   @override

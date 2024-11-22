@@ -1,11 +1,11 @@
-import 'package:agendacultural/model/usuario_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:agendacultural/app/modules/auth/domain/adapters/user.dart';
 
 class UserSharedPreferences {
-  static String userGuidId = "";
-  static String userToken = "";
-  static String userEmail = "";
-  static String userName = "";
+  static String userGuidId = '';
+  static String userToken = '';
+  static String userEmail = '';
+  static String userName = '';
 
   static String? _checkIsEmpty(String? data) {
     return data ?? (data == '' ? null : data);
@@ -33,14 +33,14 @@ class UserSharedPreferences {
   }) async {
     userGuidId = userguidid;
     userToken = usertoken;
-    userEmail = email ?? "";
-    userName = nome ?? "";
+    userEmail = email ?? '';
+    userName = nome ?? '';
 
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString('userguidid', userguidid);
     await prefs.setString('usertoken', usertoken);
-    await prefs.setString('useremail', email ?? "");
-    await prefs.setString('username', nome ?? "");
+    await prefs.setString('useremail', email ?? '');
+    await prefs.setString('username', nome ?? '');
   }
 
   static Future<void> resetUser() async {
