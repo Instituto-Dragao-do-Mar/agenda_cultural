@@ -22,7 +22,7 @@ class SigninPageStateHandler {
   void initialize() async {}
 
   Future<void> sendLogin(BuildContext context, bool mounted) async {
-    UserController usuarioController = UserController();
+    UserController userController = UserController();
 
     if (!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(_store.email)) {
       if (!mounted) return;
@@ -34,7 +34,7 @@ class SigninPageStateHandler {
     }
 
     _appStore.setUser(
-      await usuarioController.login(
+      await userController.login(
         email: _store.email,
         senha: _store.password,
         alterPassword: false,
@@ -60,21 +60,21 @@ class SigninPageStateHandler {
       return;
     }
 
-      if (_appStore.userLogged.guidid != null) {
-        // app.listaNotificacoes = await NotificacaoController().NotificacaoGet(
-        //   userguidid: app.getGuidId(),
-        //   token: app.getToken(),
-        // );
-        _appStore.setCurrentScreen(_appStore.screens[0]);
-        _appStore.setCurrentTab(0);
-        Modular.to.navigate(RouterApp.logged);
-      } else {
-        if (!mounted) return;
-        notifyPopUpWidget(
-          context: context,
-          textDescritivo: AppLocalizations.of(context)!.login_notify_data_invalid,
-        );
-      }
+    if (_appStore.userLogged.guidid != null) {
+      // app.listaNotificacoes = await NotificacaoController().NotificacaoGet(
+      //   userguidid: app.getGuidId(),
+      //   token: app.getToken(),
+      // );
+      _appStore.setCurrentScreen(_appStore.screens[0]);
+      _appStore.setCurrentTab(0);
+      Modular.to.navigate(RouterApp.logged);
+    } else {
+      if (!mounted) return;
+      notifyPopUpWidget(
+        context: context,
+        textDescritivo: AppLocalizations.of(context)!.login_notify_data_invalid,
+      );
+    }
   }
 
   void dispose() => _store.dispose();

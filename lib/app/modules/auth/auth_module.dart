@@ -4,8 +4,11 @@ import 'package:agendacultural/app/common/router/router.dart';
 import 'package:agendacultural/app/modules/auth/presenter/page/auth_page.dart';
 import 'package:agendacultural/app/modules/auth/presenter/store/auth_store.dart';
 import 'package:agendacultural/app/modules/auth/presenter/handler/auth_state_handler.dart';
+import 'package:agendacultural/app/modules/auth/features/signup/presenter/page/signup_page.dart';
 import 'package:agendacultural/app/modules/auth/features/signin/presenter/page/signin_page.dart';
+import 'package:agendacultural/app/modules/auth/features/signup/presenter/store/signup_store.dart';
 import 'package:agendacultural/app/modules/auth/features/signin/presenter/store/signin_store.dart';
+import 'package:agendacultural/app/modules/auth/features/signup/presenter/handler/signup_state_handler.dart';
 import 'package:agendacultural/app/modules/auth/features/signin/presenter/handler/signin_state_handler.dart';
 
 class AuthModule extends Module {
@@ -21,6 +24,9 @@ class AuthModule extends Module {
 
     i.addLazySingleton(SigninPageStateHandler.new);
     i.addLazySingleton(SigninStore.new);
+
+    i.addLazySingleton(SignupPageStateHandler.new);
+    i.addLazySingleton(SignupStore.new);
   }
 
   @override
@@ -33,6 +39,11 @@ class AuthModule extends Module {
     r.child(
       RouterApp.signin,
       child: (context) => const SignInPage(),
+      transition: TransitionType.noTransition,
+    );
+    r.child(
+      RouterApp.signup,
+      child: (context) => const SignupPage(),
       transition: TransitionType.noTransition,
     );
   }

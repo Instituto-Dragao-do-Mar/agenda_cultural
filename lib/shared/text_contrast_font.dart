@@ -36,7 +36,7 @@ class _TextContrastFontState extends State<TextContrastFont> {
   @override
   Widget build(BuildContext context) {
     return Text(
-      widget.text ?? "",
+      widget.text ?? '',
       style: widget.style ??
           TextStyle(
             color: widget.color ?? corTextAtual,

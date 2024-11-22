@@ -4,10 +4,10 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/model/colors.dart';
 import 'package:agendacultural/shared/themes.dart';
+import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/shared/button_default.dart';
 import 'package:agendacultural/app/common/router/router.dart';
 import 'package:agendacultural/shared/text_contrast_font.dart';
-import 'package:agendacultural/pages/acesso/pageCadastro.dart';
 import 'package:agendacultural/app/modules/auth/presenter/handler/auth_state_handler.dart';
 
 class AuthPage extends StatefulWidget {
@@ -84,17 +84,13 @@ class _AuthPageState extends State<AuthPage> {
                           margin: const EdgeInsets.symmetric(horizontal: 32),
                           text: AppLocalizations.of(context)!.register,
                           negative: true,
-                          function: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const PageCadastro(),
-                            ),
-                          ),
+                          function: () => Modular.to.pushNamed(RouterApp.auth + RouterApp.signup),
                         ),
                         GestureDetector(
                           onTap: () {
                             _handler.appStore.setCurrentScreen(_handler.appStore.screens[0]);
                             _handler.appStore.setCurrentTab(0);
+                            _handler.appStore.setUser(User());
                             Modular.to.navigate(RouterApp.logged);
                           },
                           child: Container(

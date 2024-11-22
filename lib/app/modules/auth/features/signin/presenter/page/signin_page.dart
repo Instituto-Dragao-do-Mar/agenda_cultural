@@ -7,7 +7,7 @@ import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/model/colors.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/button_default.dart';
-import 'package:agendacultural/pages/acesso/pageCadastro.dart';
+import 'package:agendacultural/app/common/router/router.dart';
 import 'package:agendacultural/shared/text_contrast_font.dart';
 import 'package:agendacultural/pages/acesso/pageRecuperarSenha.dart';
 import 'package:agendacultural/app/modules/auth/features/signin/presenter/page/widgets/signin_app_bar.dart';
@@ -73,24 +73,17 @@ class _SignInPageState extends State<SignInPage> {
                       TextContrastFont(
                         text: AppLocalizations.of(context)!.login_text,
                         semantics: 'Para entrar é necessário que você tenha se cadastrado no nosso aplicativo.',
-                        style: FontsApp.poppins12W400Grey((FontsApp.tamanhoBase)),
+                        style: FontsApp.poppins14W400Grey((FontsApp.tamanhoBase)),
                         maxlines: 3,
                       ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const PageCadastro(),
-                            ),
-                          );
-                        },
+                      GestureDetector(
+                        onTap: () => Modular.to.pushNamed(RouterApp.auth + RouterApp.signup),
                         child: TextContrastFont(
                           text: AppLocalizations.of(context)!.register,
                           semantics: 'Cadastre-se!',
                           style: TextStyle(
                             color: corBackgroundLaranja,
-                            fontSize: FontsApp.tamanhoBase.toDouble(),
+                            fontSize: FontsApp.tamanhoBase.toDouble() - 2,
                           ),
                         ),
                       ),
@@ -101,8 +94,8 @@ class _SignInPageState extends State<SignInPage> {
                     children: [
                       TextContrastFont(
                         text: AppLocalizations.of(context)!.login_email,
-                        style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
                         semantics: AppLocalizations.of(context)!.login_email,
+                        style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
                       ),
                       TextContrastFont(
                         text: ' *',
@@ -112,11 +105,13 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                   const SizedBox(height: 5),
                   Semantics(
-                    label: 'Campo para digitação de email',
+                    label: AppLocalizations.of(context)!.login_email,
                     child: TextFormField(
                       style: FontsApp.poppins16W400Grey(FontsApp.tamanhoBase),
                       onChanged: (value) => _handler.store.setEmail(value),
                       cursorColor: const Color(0xFF2E3132),
+                      textInputAction: TextInputAction.next,
+                      keyboardType: TextInputType.emailAddress,
                       decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
@@ -138,8 +133,8 @@ class _SignInPageState extends State<SignInPage> {
                     children: [
                       TextContrastFont(
                         text: AppLocalizations.of(context)!.login_password,
-                        style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
                         semantics: AppLocalizations.of(context)!.login_password,
+                        style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
                       ),
                       TextContrastFont(
                         text: ' *',
@@ -149,7 +144,7 @@ class _SignInPageState extends State<SignInPage> {
                   ),
                   const SizedBox(height: 5),
                   Semantics(
-                    label: 'Campo para digitação de senha',
+                    label: AppLocalizations.of(context)!.login_password,
                     child: TextField(
                       obscureText: _handler.store.obscureText,
                       style: FontsApp.poppins16W400Grey(FontsApp.tamanhoBase),
@@ -202,7 +197,7 @@ class _SignInPageState extends State<SignInPage> {
                           semantics: 'Esqueci minha senha',
                           style: TextStyle(
                             color: corBackgroundLaranja,
-                            fontSize: FontsApp.tamanhoBase.toDouble(),
+                            fontSize: FontsApp.tamanhoBase.toDouble() - 2,
                           ),
                         ),
                       ),

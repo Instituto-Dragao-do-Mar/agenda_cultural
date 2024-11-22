@@ -4,7 +4,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/model/colors.dart';
 
-// usada apenas na page de notificação
+//Usada apenas na page de notificação
 void notifySuccessWidget({
   required BuildContext context,
   required String text,

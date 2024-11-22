@@ -111,7 +111,7 @@ class _PageRecuperarSenhaState extends State<PageRecuperarSenha> {
                     emailInput = value;
                   });
                 },
-                decoration: textfieldDadosCadastro,
+                decoration: textFielData,
               ),
               const widgetEspacoH(
                 altura: 15,

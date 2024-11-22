@@ -125,7 +125,7 @@ class UserController extends HttpClient {
     return user;
   }
 
-  Future<String?> usuariosPost({
+  Future<String?> postUsers({
     String? nome,
     String? email,
     String? senha,
