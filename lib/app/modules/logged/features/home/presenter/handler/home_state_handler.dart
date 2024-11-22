@@ -1,7 +1,9 @@
 import 'package:dart_date/dart_date.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:agendacultural/app/common/utils/orders.dart';
 import 'package:agendacultural/shared/extensions/dates.dart';
 import 'package:agendacultural/app/core/app_store/app_store.dart';
+import 'package:agendacultural/app/modules/splash/domain/controller/event_controller.dart';
 import 'package:agendacultural/app/modules/logged/features/home/domain/enum/filter_date.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/store/home_store.dart';
 
@@ -19,6 +21,11 @@ class HomePageStateHandler {
   void initialize() async {
     _store.setIsLoading(true);
     await Future.delayed(const Duration(seconds: 1));
+
+    if (_appStore.events.isEmpty) {
+      _appStore.setEvents(await EventController().getEvents());
+      await sortEvents(_appStore.events);
+    }
 
     //Events
     filterEventsByDate(_store.filterDate);
@@ -92,6 +99,19 @@ class HomePageStateHandler {
           ? eventsProminence // Mostra todos os eventos destacados.
           : eventsProminence.take(10).toList(), // Limita a 10 eventos destacados.
     );
+  }
+
+  void uploadDataFavorites(bool isDetail) async {
+    if (isDetail) _store.setIsLoading(true);
+
+    _appStore.setFavorites(
+      await EventController().getFavorites(
+        userGuidId: _appStore.userLogged.guidid ?? '',
+        token: _appStore.userLogged.signature ?? '',
+      ),
+    );
+
+    if (isDetail) _store.setIsLoading(false);
   }
 
   void dispose() => _store.dispose();

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:google_maps_flutter_platform_interface/google_maps_flutter_platform_interface.dart';
+import 'package:agendacultural/app/common/utils/orders.dart';
 import 'package:agendacultural/app/core/app_store/app_store.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
 import 'package:agendacultural/app/core/data_preferences/data_preferences.dart';
+import 'package:agendacultural/app/modules/splash/domain/controller/event_controller.dart';
 import 'package:agendacultural/app/modules/logged/features/map/presenter/store/map_store.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/detail/event_detail.dart';
 
@@ -22,6 +24,11 @@ class MapPageStateHandler {
   void initialize(BuildContext context) async {
     _store.setIsLoading(true);
     await Future.delayed(const Duration(seconds: 1));
+
+    if (_appStore.events.isEmpty) {
+      _appStore.setEvents(await EventController().getEvents());
+      await sortEvents(_appStore.events);
+    }
 
     _store.setAddress(await Dados.getString('local_atual_descricao'));
 
@@ -91,6 +98,7 @@ class MapPageStateHandler {
                     categories: appStore.categories,
                     favorites: appStore.favorites,
                     user: appStore.userLogged,
+                    onConcludeFavorite: () => uploadDataFavorites(true),
                   ),
                 ),
               ),
@@ -101,6 +109,19 @@ class MapPageStateHandler {
     }
 
     _store.setIsLoading(false);
+  }
+
+  void uploadDataFavorites(bool isDetail) async {
+    if (isDetail) _store.setIsLoading(true);
+
+    _appStore.setFavorites(
+      await EventController().getFavorites(
+        userGuidId: _appStore.userLogged.guidid ?? '',
+        token: _appStore.userLogged.signature ?? '',
+      ),
+    );
+
+    if (isDetail) _store.setIsLoading(false);
   }
 
   void dispose() => _store.dispose();

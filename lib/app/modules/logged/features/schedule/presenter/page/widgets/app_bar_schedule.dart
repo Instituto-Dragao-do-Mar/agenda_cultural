@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:agendacultural/app/common/router/router.dart';
 import 'package:agendacultural/shared/text_contrast_font.dart';
 import 'package:agendacultural/app/common/utils/theme/fonts.dart';
 import 'package:agendacultural/app/common/utils/theme/themes.dart';
-import 'package:agendacultural/pages/search_term_filter/page/search_filter_page.dart';
 
 class AppBarScheduleWidget extends StatelessWidget {
   final void Function() onTapReturn;
@@ -40,12 +41,7 @@ class AppBarScheduleWidget extends StatelessWidget {
         Semantics(
           label: 'Ir para a tela de filtros',
           child: GestureDetector(
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const SearchFilterPage(),
-              ),
-            ),
+            onTap: () => Modular.to.navigate(RouterApp.logged + RouterApp.searchFilter),
             child: SvgPicture.asset('imagens/icon_favorite.svg'),
           ),
         ),

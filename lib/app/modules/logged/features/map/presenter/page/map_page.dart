@@ -76,6 +76,7 @@ class _MapPageState extends State<MapPage> {
               categories: _handler.appStore.categories,
               favorites: _handler.appStore.favorites,
               user: _handler.appStore.userLogged,
+              onConcludeFavorite: _handler.uploadDataFavorites,
             ),
           ],
         );

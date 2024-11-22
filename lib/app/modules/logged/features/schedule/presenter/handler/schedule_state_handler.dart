@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:agendacultural/app/common/utils/orders.dart';
 import 'package:agendacultural/app/core/app_store/app_store.dart';
 import 'package:agendacultural/app/common/utils/theme/themes.dart';
+import 'package:agendacultural/app/modules/splash/domain/controller/event_controller.dart';
 import 'package:agendacultural/app/modules/logged/features/schedule/presenter/store/schedule_store.dart';
 
 class SchedulePageStateHandler {
@@ -18,6 +20,11 @@ class SchedulePageStateHandler {
   void initialize(BuildContext context) async {
     _store.setIsLoading(true);
     await Future.delayed(const Duration(seconds: 1));
+
+    if (_appStore.events.isEmpty) {
+      _appStore.setEvents(await EventController().getEvents());
+      await sortEvents(_appStore.events);
+    }
 
     _store.setTextInitialController(DateTime.now().toIso8601String());
     _store.setTextFinalController(DateTime.now().add(const Duration(days: 30)).toIso8601String());
@@ -119,6 +126,19 @@ class SchedulePageStateHandler {
     );
 
     return pickedDate;
+  }
+
+  void uploadDataFavorites(bool isDetail) async {
+    if (isDetail) _store.setIsLoading(true);
+
+    _appStore.setFavorites(
+      await EventController().getFavorites(
+        userGuidId: _appStore.userLogged.guidid ?? '',
+        token: _appStore.userLogged.signature ?? '',
+      ),
+    );
+
+    if (isDetail) _store.setIsLoading(false);
   }
 
   void dispose() => _store.dispose();

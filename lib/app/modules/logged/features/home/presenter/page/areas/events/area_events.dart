@@ -25,6 +25,7 @@ class AreaEventsWidget extends StatelessWidget {
   final User user;
   final void Function()? onTapExpandEvents;
   final void Function(String value)? onItemSelected;
+  final void Function(bool isDetail) onConcludeFavorite;
 
   const AreaEventsWidget({
     super.key,
@@ -40,6 +41,7 @@ class AreaEventsWidget extends StatelessWidget {
     required this.user,
     this.onTapExpandEvents,
     this.onItemSelected,
+    required this.onConcludeFavorite,
   });
 
   @override
@@ -72,7 +74,7 @@ class AreaEventsWidget extends StatelessWidget {
               width: double.infinity,
               height: exhibitionEvent == ExhibitionEvent.prominence
                   ? showAllEvents
-                      ? 286
+                      ? 572
                       : 286 / FontsApp.tamanhoFonteBase16 * FontsApp.tamanhoBase
                   : null,
               child: SingleChildScrollView(
@@ -104,9 +106,11 @@ class AreaEventsWidget extends StatelessWidget {
                             categories: categories,
                             favorites: favorites,
                             user: user,
+                            onConcludeFavorite: () => onConcludeFavorite(true),
                           ),
                         ),
                       ),
+                      onConcludeFavorite: () => onConcludeFavorite(false),
                     );
                   }).toList(),
                 ),

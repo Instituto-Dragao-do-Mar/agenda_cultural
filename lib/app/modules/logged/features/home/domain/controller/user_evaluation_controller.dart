@@ -21,6 +21,7 @@ class UsuarioAvaliacaoController extends HttpClient {
       );
       if (response.statusCode == 200) {
         var ret = jsonDecode(response.body);
+        if (ret['usuariosavaliacao'] == null) return list;
         list = (ret['usuariosavaliacao'] as List).map((e) {
           return UserEvaluation.fromJson(e);
         }).toList();

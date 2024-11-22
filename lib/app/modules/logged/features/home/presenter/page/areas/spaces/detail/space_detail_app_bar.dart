@@ -11,29 +11,34 @@ class SpaceDetailAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: corBgAtual,
-      leadingWidth: 40,
-      leading: Semantics(
-        container: false,
-        label: "Voltar para tela anterior",
-        child: GestureDetector(
-          onTap: () => Navigator.pop(context),
-          child: Container(
-            margin: const EdgeInsets.only(left: 20),
-            child: SvgPicture.asset(
-              'imagens/icon_arrow_back.svg',
+      title: Row(
+        children: [
+          const SizedBox(width: 8),
+          Semantics(
+            label: 'Voltar para a tela anterior',
+            child: GestureDetector(
+              onTap: () => Navigator.pop(context),
+              child: SvgPicture.asset(
+                'imagens/icon_arrow_back.svg',
+              ),
             ),
           ),
-        ),
+          const SizedBox(width: 8),
+          TextContrastFont(
+            text: AppLocalizations.of(context)!.e_title_e,
+            style: TextStyle(
+              color: corTextAtual,
+              fontSize: FontsApp.tamanhoBase.toDouble(),
+            ),
+          ),
+          const Spacer(),
+        ],
       ),
-      centerTitle: false,
-      title: TextContrastFont(
-        text: AppLocalizations.of(context)!.e_title_e,
-        style: TextStyle(
-          color: corTextAtual,
-          fontSize: FontsApp.tamanhoBase.toDouble(),
-        ),
-      ),
+      backgroundColor: corBgAtual,
+      surfaceTintColor: corBgAtual,
+      elevation: 0,
+      titleSpacing: 0,
+      leadingWidth: 0,
       automaticallyImplyLeading: false,
     );
   }

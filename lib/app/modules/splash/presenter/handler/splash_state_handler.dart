@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:agendacultural/app/app_widget.dart';
+import 'package:agendacultural/app/common/utils/orders.dart';
 import 'package:agendacultural/app/common/router/router.dart';
 import 'package:agendacultural/app/common/utils/theme/fonts.dart';
 import 'package:agendacultural/app/core/app_store/app_store.dart';
@@ -69,7 +70,7 @@ class SplashPageStateHandler {
 
     //Events
     _appStore.setEvents(await EventController().getEvents());
-    await _sortEvents();
+    await sortEvents(_appStore.events);
 
     //Spaces
     _appStore.setSpaces(await SpaceController().getSpaces());
@@ -81,53 +82,6 @@ class SplashPageStateHandler {
         token: _appStore.userLogged.signature ?? '',
       ),
     );
-  }
-
-  Future<void> _sortEvents() async {
-    // Ordena os eventos na lista com base nas datas de início e fim.
-    _appStore.events.sort((a, b) {
-      // Obtém a data e hora inicial do primeiro evento de cada lista.
-      var dateTimeA = a.eventosdatas?.first.datahora;
-      var dateTimeB = b.eventosdatas?.first.datahora;
-
-      // Converte as strings para objetos DateTime locais.
-      var dateA = DateTime.parse(dateTimeA!).toLocal();
-      var dateB = DateTime.parse(dateTimeB!).toLocal();
-
-      // Compara as datas (ano, mês e dia) sem considerar horas.
-      var compareResultado = DateTime(dateA.year, dateA.month, dateA.day).compareTo(
-        DateTime(dateB.year, dateB.month, dateB.day),
-      );
-
-      // Se as datas forem diferentes, retorna o resultado da comparação.
-      if (compareResultado != 0) {
-        return compareResultado;
-      }
-
-      // Se as datas forem iguais, obtém a data de fim para desempate.
-      var dateFinishA = a.eventosdatas?.first.datafim ?? a.eventosdatas?.first.datainicio;
-      var dateFinishB = b.eventosdatas?.first.datafim ?? b.eventosdatas?.first.datainicio;
-
-      // Calcula os dias restantes até o fim para cada evento.
-      var diasParaFimA = _calculateDaysToFinish(dateFinishA, dateTimeA);
-      var diasParaFimB = _calculateDaysToFinish(dateFinishB, dateTimeB);
-
-      // Compara os dias restantes e retorna o resultado.
-      return diasParaFimA.compareTo(diasParaFimB);
-    });
-  }
-
-  int _calculateDaysToFinish(String? dataFim, String? dataInicio) {
-    // Se a data de fim for válida, calcula os dias restantes.
-    if (dataFim != null && dataInicio != null) {
-      var dateFinishDateTime = DateTime.parse(dataFim);
-      var dateInitialDateTime = DateTime.parse(dataInicio);
-      // Calcula a diferença em dias entre as datas.
-      var daysForFinish = dateFinishDateTime.difference(dateInitialDateTime).inDays;
-      return daysForFinish;
-    }
-    // Se as datas não forem válidas, retorna 0.
-    return 0;
   }
 
   void _verifyAuthenticated(bool mounted, BuildContext context) async {

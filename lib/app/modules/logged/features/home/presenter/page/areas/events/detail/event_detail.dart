@@ -29,6 +29,7 @@ class EventDetail extends StatelessWidget {
   final List<Category> categories;
   final List<Favorite> favorites;
   final User user;
+  final void Function() onConcludeFavorite;
 
   const EventDetail({
     super.key,
@@ -38,6 +39,7 @@ class EventDetail extends StatelessWidget {
     required this.categories,
     required this.favorites,
     required this.user,
+    required this.onConcludeFavorite,
   });
 
   @override
@@ -85,6 +87,7 @@ class EventDetail extends StatelessWidget {
                         event: event,
                         user: user,
                         favorites: favorites,
+                        onConcludeFavorite: onConcludeFavorite,
                       ),
                       if (event.eventosdatas!.length > 1) const SizedBox(height: 7),
                       EventDetailDescriptionWidget(

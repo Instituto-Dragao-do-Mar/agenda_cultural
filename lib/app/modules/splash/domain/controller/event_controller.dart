@@ -47,18 +47,19 @@ class EventController extends HttpClient {
     try {
       var response = await http.get(
         Uri.parse(url),
-        headers: {"Content-Type": "application/json", 'Authorization': 'Bearer $token'},
+        headers: {'Content-Type': 'application/json', 'Authorization': 'Bearer $token'},
       );
       if (response.statusCode == 200) {
         var ret = jsonDecode(response.body);
+        if (ret['favoritos'] == null || ret['favoritos'].isEmpty) return list;
         list = (ret['favoritos'] as List).map((e) {
           return Favorite.fromJson(e);
         }).toList();
       } else {
-        setErrorMessage("Favoritos ${response.body}");
+        setErrorMessage('Favoritos ${response.body}');
       }
     } catch (_) {
-      setErrorMessage("Favoritos ${_.toString()}");
+      setErrorMessage('Favoritos ${_.toString()}');
     }
 
     return list;

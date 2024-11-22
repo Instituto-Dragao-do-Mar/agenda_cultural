@@ -42,7 +42,7 @@ class _EventDetailEvaluationWidgetState extends State<EventDetailEvaluationWidge
     final size = MediaQuery.of(context).size;
     final font = FontsApp.tamanhoBase - (FontsApp.tamanhoFonteBase16 - 14);
 
-    if (!_isToday(widget.event.eventosdatas!.first.datahora!)) {
+    if (!_isToday(widget.event.eventosdatas?.first.datahora ?? '')) {
       return const SizedBox();
     }
 

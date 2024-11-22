@@ -21,8 +21,11 @@ import 'package:agendacultural/app/modules/logged/features/home/sub_module/my_lo
 import 'package:agendacultural/app/modules/logged/features/profile/sub_module/accessibility/presenter/page/accessibility_page.dart';
 import 'package:agendacultural/app/modules/logged/features/profile/sub_module/language/presenter/handler/language_state_handler.dart';
 import 'package:agendacultural/app/modules/logged/features/profile/sub_module/accessibility/presenter/store/accessibility_store.dart';
+import 'package:agendacultural/app/modules/logged/features/schedule/submodule/search_term_filter/presenter/page/search_filter_page.dart';
 import 'package:agendacultural/app/modules/logged/features/home/sub_module/my_location/presenter/handler/my_location_state_handler.dart';
+import 'package:agendacultural/app/modules/logged/features/schedule/submodule/search_term_filter/presenter/store/search_filter_store.dart';
 import 'package:agendacultural/app/modules/logged/features/profile/sub_module/accessibility/presenter/handler/accessibility_state_handler.dart';
+import 'package:agendacultural/app/modules/logged/features/schedule/submodule/search_term_filter/presenter/handler/search_filter_state_handler.dart';
 
 class LoggedModule extends Module {
   @override
@@ -38,11 +41,16 @@ class LoggedModule extends Module {
     i.addLazySingleton(MyLocationPageStateHandler.new);
     i.addLazySingleton(MyLocationStore.new);
 
+    i.addLazySingleton(SearchFilterPageStateHandler.new);
+    i.addLazySingleton(SearchFilterStore.new);
+
     i.addLazySingleton(AccessibilityPageStateHandler.new);
     i.addLazySingleton(AccessibilityStore.new);
 
     i.addLazySingleton(LanguagePageStateHandler.new);
     i.addLazySingleton(LanguageStore.new);
+
+    //Principals pages
 
     i.addLazySingleton(HomePageStateHandler.new);
     i.addLazySingleton(HomeStore.new);
@@ -70,6 +78,11 @@ class LoggedModule extends Module {
     r.child(
       RouterApp.myLocation,
       child: (context) => const MyLocationPage(),
+      transition: TransitionType.noTransition,
+    );
+    r.child(
+      RouterApp.searchFilter,
+      child: (context) => const SearchFilterPage(),
       transition: TransitionType.noTransition,
     );
     r.child(

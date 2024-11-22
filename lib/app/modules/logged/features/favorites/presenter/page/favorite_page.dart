@@ -39,43 +39,42 @@ class _FavoritePageState extends State<FavoritePage> {
           );
         }
         return SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.all(8),
-            child: Wrap(
-              children: _handler.store.eventsFavorite.map((event) {
-                var eventsDate = event.eventosdatas!.first;
-                Space spaceReal = _handler.appStore.spaces.firstWhere((element) => element.id == eventsDate.idespaco);
-                Space spacePrincipal;
-                if (spaceReal.idespacoprincipal == 0) {
-                  spacePrincipal = spaceReal;
-                } else {
-                  spacePrincipal = _handler.appStore.spaces.firstWhere((element) {
-                    return element.id == spaceReal.idespacoprincipal;
-                  });
-                }
+          child: Wrap(
+            alignment: WrapAlignment.center,
+            children: _handler.store.eventsFavorite.map((event) {
+              var eventsDate = event.eventosdatas!.first;
+              Space spaceReal = _handler.appStore.spaces.firstWhere((element) => element.id == eventsDate.idespaco);
+              Space spacePrincipal;
+              if (spaceReal.idespacoprincipal == 0) {
+                spacePrincipal = spaceReal;
+              } else {
+                spacePrincipal = _handler.appStore.spaces.firstWhere((element) {
+                  return element.id == spaceReal.idespacoprincipal;
+                });
+              }
 
-                return ItemEventWidget(
-                  event: event,
-                  spacePrincipal: spacePrincipal,
-                  user: _handler.appStore.userLogged,
-                  favorites: _handler.appStore.favorites,
-                  onTapEvent: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => EventDetail(
-                        event: event,
-                        spaceReal: spaceReal,
-                        spacePrincipal: spacePrincipal,
-                        categories: _handler.appStore.categories,
-                        favorites: _handler.appStore.favorites,
-                        user: _handler.appStore.userLogged,
-                      ),
+              return ItemEventWidget(
+                event: event,
+                spacePrincipal: spacePrincipal,
+                user: _handler.appStore.userLogged,
+                favorites: _handler.appStore.favorites,
+                onTapEvent: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => EventDetail(
+                      event: event,
+                      spaceReal: spaceReal,
+                      spacePrincipal: spacePrincipal,
+                      categories: _handler.appStore.categories,
+                      favorites: _handler.appStore.favorites,
+                      user: _handler.appStore.userLogged,
+                      onConcludeFavorite: _handler.uploadDataFavorites,
                     ),
                   ),
-                  onConcludeFavorite: _handler.uploadDataFavorites,
-                );
-              }).toList(),
-            ),
+                ),
+                onConcludeFavorite: _handler.uploadDataFavorites,
+              );
+            }).toList(),
           ),
         );
       },

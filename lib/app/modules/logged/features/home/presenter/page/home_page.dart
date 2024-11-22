@@ -95,6 +95,7 @@ class _HomePageState extends State<HomePage> {
                     categories: _handler.appStore.categories,
                     favorites: _handler.appStore.favorites,
                     user: _handler.appStore.userLogged,
+                    onConcludeFavorite: _handler.uploadDataFavorites,
                   ),
                 if (_handler.store.eventsDateFiltered.isNotEmpty)
                   AreaEventsWidget(
@@ -112,6 +113,7 @@ class _HomePageState extends State<HomePage> {
                     categories: _handler.appStore.categories,
                     favorites: _handler.appStore.favorites,
                     user: _handler.appStore.userLogged,
+                    onConcludeFavorite: _handler.uploadDataFavorites,
                   ),
                 AreaSpacesWidget(
                   scrollControllerSpaces: _handler.store.scrollControllerSpaces,

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/shared/notify_pop_up.dart';
+import 'package:agendacultural/app/common/utils/orders.dart';
 import 'package:agendacultural/app/common/router/router.dart';
 import 'package:agendacultural/app/core/app_store/app_store.dart';
 import 'package:agendacultural/app/modules/splash/domain/controller/event_controller.dart';
@@ -21,6 +22,11 @@ class FavoritePageStateHandler {
   void initialize(BuildContext context) async {
     _store.setIsLoading(true);
     await Future.delayed(const Duration(seconds: 1));
+
+    if (_appStore.events.isEmpty) {
+      _appStore.setEvents(await EventController().getEvents());
+      await sortEvents(_appStore.events);
+    }
 
     if (_appStore.userLogged.guidid == null) {
       Future.delayed(
@@ -54,7 +60,6 @@ class FavoritePageStateHandler {
   }
 
   void uploadDataFavorites() async {
-    _store.setIsLoading(true);
     _appStore.setFavorites(
       await EventController().getFavorites(
         userGuidId: _appStore.userLogged.guidid ?? '',
@@ -67,7 +72,6 @@ class FavoritePageStateHandler {
         return _appStore.favorites.map((e) => e.idevento).contains(evento.id) == true;
       }).toList(),
     );
-    _store.setIsLoading(false);
   }
 
   void dispose() => _store.dispose();

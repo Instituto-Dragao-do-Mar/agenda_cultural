@@ -8,6 +8,12 @@ class SearchFilterStore = SearchFilterStoreBase with _$SearchFilterStore;
 
 abstract class SearchFilterStoreBase with Store {
   @observable
+  bool isLoading = false;
+
+  @action
+  void setIsLoading(bool value) => isLoading = value;
+
+  @observable
   TextEditingController searchController = TextEditingController();
 
   @observable

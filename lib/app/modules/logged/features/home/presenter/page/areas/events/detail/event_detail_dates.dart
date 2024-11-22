@@ -15,12 +15,14 @@ class EventDetailDatesWidget extends StatelessWidget {
   final Event event;
   final User user;
   final List<Favorite> favorites;
+  final void Function() onConcludeFavorite;
 
   const EventDetailDatesWidget({
     super.key,
     required this.event,
     required this.user,
     required this.favorites,
+    required this.onConcludeFavorite,
   });
 
   @override
@@ -52,7 +54,12 @@ class EventDetailDatesWidget extends StatelessWidget {
           ),
           Semantics(
             label: 'Botão favorito',
-            child: ButtonFavoriteWidget(event: event, user: user, favorites: favorites),
+            child: ButtonFavoriteWidget(
+              event: event,
+              user: user,
+              favorites: favorites,
+              onConcludeFavorite: onConcludeFavorite,
+            ),
           ),
         ],
       );
@@ -110,7 +117,12 @@ class EventDetailDatesWidget extends StatelessWidget {
         ),
         Semantics(
           label: 'Botão favorito',
-          child: ButtonFavoriteWidget(event: event, user: user, favorites: favorites),
+          child: ButtonFavoriteWidget(
+            event: event,
+            user: user,
+            favorites: favorites,
+            onConcludeFavorite: onConcludeFavorite,
+          ),
         ),
       ],
     );

@@ -9,6 +9,22 @@ part of 'search_filter_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$SearchFilterStore on SearchFilterStoreBase, Store {
+  late final _$isLoadingAtom =
+      Atom(name: 'SearchFilterStoreBase.isLoading', context: context);
+
+  @override
+  bool get isLoading {
+    _$isLoadingAtom.reportRead();
+    return super.isLoading;
+  }
+
+  @override
+  set isLoading(bool value) {
+    _$isLoadingAtom.reportWrite(value, super.isLoading, () {
+      super.isLoading = value;
+    });
+  }
+
   late final _$searchControllerAtom =
       Atom(name: 'SearchFilterStoreBase.searchController', context: context);
 
@@ -45,6 +61,17 @@ mixin _$SearchFilterStore on SearchFilterStoreBase, Store {
       ActionController(name: 'SearchFilterStoreBase', context: context);
 
   @override
+  void setIsLoading(bool value) {
+    final _$actionInfo = _$SearchFilterStoreBaseActionController.startAction(
+        name: 'SearchFilterStoreBase.setIsLoading');
+    try {
+      return super.setIsLoading(value);
+    } finally {
+      _$SearchFilterStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void setEventsFilter(List<Event> value) {
     final _$actionInfo = _$SearchFilterStoreBaseActionController.startAction(
         name: 'SearchFilterStoreBase.setEventsFilter');
@@ -69,6 +96,7 @@ mixin _$SearchFilterStore on SearchFilterStoreBase, Store {
   @override
   String toString() {
     return '''
+isLoading: ${isLoading},
 searchController: ${searchController},
 eventsFilter: ${eventsFilter}
     ''';
