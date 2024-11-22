@@ -9,17 +9,17 @@ import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:agendacultural/shared/button_default.dart';
 import 'package:agendacultural/shared/text_contrast_font.dart';
 import 'package:agendacultural/controller/user_controller.dart';
-import 'package:agendacultural/app/modules/auth/features/signup/presenter/page/widgets/rules_signup.dart';
+import 'package:agendacultural/app/modules/auth/features/widgets/rules_auth.dart';
+import 'package:agendacultural/app/modules/auth/features/widgets/input_email_auth.dart';
+import 'package:agendacultural/app/modules/auth/features/widgets/input_password_auth.dart';
+import 'package:agendacultural/app/modules/auth/features/widgets/input_confirm_password_auth.dart';
 import 'package:agendacultural/app/modules/auth/features/signup/presenter/page/widgets/terms_signup.dart';
 import 'package:agendacultural/app/modules/auth/features/signup/presenter/page/widgets/signup_app_bar.dart';
 import 'package:agendacultural/app/modules/auth/features/signup/presenter/handler/signup_state_handler.dart';
 import 'package:agendacultural/app/modules/auth/features/signup/presenter/page/widgets/input_name_signup.dart';
-import 'package:agendacultural/app/modules/auth/features/signup/presenter/page/widgets/input_email_signup.dart';
-import 'package:agendacultural/app/modules/auth/features/signup/presenter/page/widgets/input_password_signup.dart';
-import 'package:agendacultural/app/modules/auth/features/signup/presenter/page/widgets/input_confirm_password_signup.dart';
 
 class SignupPage extends StatefulWidget {
-  const SignupPage({Key? key}) : super(key: key);
+  const SignupPage({super.key});
 
   @override
   State<SignupPage> createState() => _SignupPageState();
@@ -67,7 +67,7 @@ class _SignupPageState extends State<SignupPage> {
                       text: AppLocalizations.of(context)!.register_subtitle,
                       semantics: AppLocalizations.of(context)!.register_subtitle,
                       maxlines: 10,
-                      style: FontsApp.poppins12W400Grey((FontsApp.tamanhoBase)),
+                      style: FontsApp.poppins12W400Grey((FontsApp.tamanhoBase + 2)),
                     ),
                     const SizedBox(height: 20),
                     InputNameSignupWidget(
@@ -75,12 +75,12 @@ class _SignupPageState extends State<SignupPage> {
                       onChanged: (value) => _handler.store.setName(value),
                     ),
                     const SizedBox(height: 20),
-                    InputEmailSignupWidget(
+                    InputEmailAuthWidget(
                       label: AppLocalizations.of(context)!.register_email,
                       onChanged: (value) => _handler.store.setEmail(value),
                     ),
                     const SizedBox(height: 20),
-                    InputPasswordSignupWidget(
+                    InputPasswordAuthWidget(
                       label: AppLocalizations.of(context)!.register_password,
                       valuePassword: _handler.store.password,
                       obscureText: _handler.store.isPasswordVisible,
@@ -88,16 +88,16 @@ class _SignupPageState extends State<SignupPage> {
                       onSetObscureText: _handler.store.setIsPasswordVisible,
                     ),
                     const SizedBox(height: 20),
-                    InputConfirmPasswordSignupWidget(
+                    InputConfirmPasswordAuthWidget(
                       label: AppLocalizations.of(context)!.register_confirm_password,
                       valueConfirmPassword: _handler.store.confirmPassword,
                       obscureText: _handler.store.isConfirmPasswordVisible,
-                      onChanged: (value) => _handler.store.setConfirmPassword(value),
+                      onChanged: _handler.store.setConfirmPassword,
                       setObscureText: _handler.store.setIsConfirmPasswordVisible,
                     ),
                     const SizedBox(height: 20),
                     _handler.store.password != '' || _handler.store.confirmPassword != ''
-                        ? RulesSignupWidget(
+                        ? RulesAuthWidget(
                             haveMinDigits: _handler.store.haveMinDigits,
                             haveUpperCase: _handler.store.haveUpperCase,
                             haveLowerCase: _handler.store.haveLowerCase,

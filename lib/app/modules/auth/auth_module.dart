@@ -8,10 +8,13 @@ import 'package:agendacultural/app/modules/auth/features/signup/presenter/page/s
 import 'package:agendacultural/app/modules/auth/features/signin/presenter/page/signin_page.dart';
 import 'package:agendacultural/app/modules/auth/features/signup/presenter/store/signup_store.dart';
 import 'package:agendacultural/app/modules/auth/features/signin/presenter/store/signin_store.dart';
+import 'package:agendacultural/app/modules/auth/features/recover/presenter/page/recover_page.dart';
+import 'package:agendacultural/app/modules/auth/features/recover/presenter/store/recover_store.dart';
 import 'package:agendacultural/app/modules/auth/features/send-email/presenter/page/send_email_page.dart';
 import 'package:agendacultural/app/modules/auth/features/send-email/presenter/store/send_email_store.dart';
 import 'package:agendacultural/app/modules/auth/features/signup/presenter/handler/signup_state_handler.dart';
 import 'package:agendacultural/app/modules/auth/features/signin/presenter/handler/signin_state_handler.dart';
+import 'package:agendacultural/app/modules/auth/features/recover/presenter/handler/recover_state_handler.dart';
 import 'package:agendacultural/app/modules/auth/features/send-email/presenter/handler/send_email_state_handler.dart';
 
 class AuthModule extends Module {
@@ -33,6 +36,9 @@ class AuthModule extends Module {
 
     i.addLazySingleton(SendEmailPageStateHandler.new);
     i.addLazySingleton(SendEmailStore.new);
+
+    i.addLazySingleton(RecoverPageStateHandler.new);
+    i.addLazySingleton(RecoverStore.new);
   }
 
   @override
@@ -55,6 +61,11 @@ class AuthModule extends Module {
     r.child(
       RouterApp.sendEmail,
       child: (context) => const SendEmailPage(),
+      transition: TransitionType.noTransition,
+    );
+    r.child(
+      RouterApp.recover,
+      child: (context) => const RecoverPage(),
       transition: TransitionType.noTransition,
     );
   }

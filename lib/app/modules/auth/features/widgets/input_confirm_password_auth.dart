@@ -3,20 +3,22 @@ import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/text_contrast_font.dart';
 
-class InputPasswordSignupWidget extends StatelessWidget {
+class InputConfirmPasswordAuthWidget extends StatelessWidget {
   final String label;
-  final String valuePassword;
+  final String valueConfirmPassword;
   final bool obscureText;
   final void Function(String value) onChanged;
-  final void Function() onSetObscureText;
+  final void Function(String value)? onSubmitted;
+  final void Function() setObscureText;
 
-  const InputPasswordSignupWidget({
+  const InputConfirmPasswordAuthWidget({
     super.key,
     required this.label,
-    required this.valuePassword,
+    required this.valueConfirmPassword,
     required this.obscureText,
     required this.onChanged,
-    required this.onSetObscureText,
+    this.onSubmitted,
+    required this.setObscureText,
   });
 
   @override
@@ -32,7 +34,10 @@ class InputPasswordSignupWidget extends StatelessWidget {
             ),
             TextContrastFont(
               text: ' *',
-              style: TextStyle(color: corBackgroundLaranja, fontSize: FontsApp.tamanhoBase.toDouble()),
+              style: TextStyle(
+                color: corBackgroundLaranja,
+                fontSize: FontsApp.tamanhoBase.toDouble(),
+              ),
             ),
           ],
         ),
@@ -40,25 +45,23 @@ class InputPasswordSignupWidget extends StatelessWidget {
         Semantics(
           label: label,
           child: TextField(
+            autofocus: false,
             obscureText: obscureText,
             style: FontsApp.poppins16W400Grey(FontsApp.tamanhoBase),
             onChanged: onChanged,
-            textInputAction: TextInputAction.next,
+            onSubmitted: (_) => onSubmitted ?? FocusScope.of(context).unfocus(),
+            textInputAction: TextInputAction.done,
             keyboardType: TextInputType.text,
             decoration: InputDecoration(
               filled: true,
               fillColor: Colors.white,
               contentPadding: const EdgeInsets.symmetric(horizontal: 8),
-              suffixIcon: valuePassword != ''
-                  ? Semantics(
-                      label: obscureText ? 'Clique para mostrar a senha' : 'Clique para ocultar a senha',
-                      child: IconButton(
-                        onPressed: onSetObscureText,
-                        icon: Icon(obscureText ? Icons.visibility : Icons.visibility_off),
-                      ),
+              suffixIcon: valueConfirmPassword != ''
+                  ? IconButton(
+                      onPressed: setObscureText,
+                      icon: Icon(obscureText ? Icons.visibility : Icons.visibility_off),
                     )
                   : null,
-              focusColor: Colors.black,
               border: const OutlineInputBorder(
                 borderSide: BorderSide(width: 2, color: Color(0XFFD9D9D9)),
                 borderRadius: BorderRadius.all(Radius.circular(5)),

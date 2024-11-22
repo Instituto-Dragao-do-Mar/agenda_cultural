@@ -10,7 +10,7 @@ import 'package:agendacultural/app/modules/auth/features/send-email/presenter/pa
 import 'package:agendacultural/app/modules/auth/features/send-email/presenter/handler/send_email_state_handler.dart';
 
 class SendEmailPage extends StatefulWidget {
-  const SendEmailPage({Key? key}) : super(key: key);
+  const SendEmailPage({super.key});
 
   @override
   State<SendEmailPage> createState() => _SendEmailPageState();

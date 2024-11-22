@@ -9,11 +9,13 @@ import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/button_default.dart';
 import 'package:agendacultural/app/common/router/router.dart';
 import 'package:agendacultural/shared/text_contrast_font.dart';
+import 'package:agendacultural/app/modules/auth/features/widgets/input_email_auth.dart';
+import 'package:agendacultural/app/modules/auth/features/widgets/input_password_auth.dart';
 import 'package:agendacultural/app/modules/auth/features/signin/presenter/page/widgets/signin_app_bar.dart';
 import 'package:agendacultural/app/modules/auth/features/signin/presenter/handler/signin_state_handler.dart';
 
 class SignInPage extends StatefulWidget {
-  const SignInPage({Key? key}) : super(key: key);
+  const SignInPage({super.key});
 
   @override
   State<SignInPage> createState() => _SignInPageState();
@@ -86,94 +88,18 @@ class _SignInPageState extends State<SignInPage> {
                     ],
                   ),
                   const SizedBox(height: 20),
-                  Row(
-                    children: [
-                      TextContrastFont(
-                        text: AppLocalizations.of(context)!.login_email,
-                        semantics: AppLocalizations.of(context)!.login_email,
-                        style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
-                      ),
-                      TextContrastFont(
-                        text: ' *',
-                        style: TextStyle(color: corBackgroundLaranja, fontSize: FontsApp.tamanhoBase.toDouble()),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 5),
-                  Semantics(
+                  InputEmailAuthWidget(
                     label: AppLocalizations.of(context)!.login_email,
-                    child: TextFormField(
-                      style: FontsApp.poppins16W400Grey(FontsApp.tamanhoBase),
-                      onChanged: (value) => _handler.store.setEmail(value),
-                      cursorColor: const Color(0xFF2E3132),
-                      textInputAction: TextInputAction.next,
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white,
-                        contentPadding: const EdgeInsets.all(16),
-                        focusColor: Colors.black,
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(width: 2, color: corBackgroundLaranja),
-                          borderRadius: const BorderRadius.all(Radius.circular(5)),
-                        ),
-                        border: const OutlineInputBorder(
-                          borderSide: BorderSide(width: 2, color: Color(0XFFD9D9D9)),
-                          borderRadius: BorderRadius.all(Radius.circular(5)),
-                        ),
-                      ),
-                    ),
+                    onChanged: _handler.store.setEmail,
                   ),
                   const SizedBox(height: 20),
-                  Row(
-                    children: [
-                      TextContrastFont(
-                        text: AppLocalizations.of(context)!.login_password,
-                        semantics: AppLocalizations.of(context)!.login_password,
-                        style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
-                      ),
-                      TextContrastFont(
-                        text: ' *',
-                        style: TextStyle(color: corBackgroundLaranja, fontSize: FontsApp.tamanhoBase.toDouble()),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 5),
-                  Semantics(
+                  InputPasswordAuthWidget(
                     label: AppLocalizations.of(context)!.login_password,
-                    child: TextField(
-                      obscureText: _handler.store.obscureText,
-                      style: FontsApp.poppins16W400Grey(FontsApp.tamanhoBase),
-                      onChanged: (value) => _handler.store.setPassword(value),
-                      cursorColor: const Color(0xFF2E3132),
-                      decoration: InputDecoration(
-                        filled: true,
-                        fillColor: Colors.white,
-                        contentPadding: const EdgeInsets.all(16),
-                        suffixIcon: _handler.store.password != ''
-                            ? Semantics(
-                                label: _handler.store.obscureText
-                                    ? 'Clique para mostrar a senha'
-                                    : 'Clique para ocultar a senha',
-                                child: IconButton(
-                                  onPressed: () => _handler.store.setObscureText(!_handler.store.obscureText),
-                                  icon: Icon(
-                                    _handler.store.obscureText ? Icons.visibility : Icons.visibility_off,
-                                  ),
-                                ),
-                              )
-                            : null,
-                        focusColor: Colors.black,
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(width: 2, color: corBackgroundLaranja),
-                          borderRadius: const BorderRadius.all(Radius.circular(5)),
-                        ),
-                        border: const OutlineInputBorder(
-                          borderSide: BorderSide(width: 2, color: Color(0XFFD9D9D9)),
-                          borderRadius: BorderRadius.all(Radius.circular(5)),
-                        ),
-                      ),
-                    ),
+                    valuePassword: _handler.store.password,
+                    obscureText: _handler.store.obscureText,
+                    onChanged: _handler.store.setPassword,
+                    onSubmitted: (_) async => await _handler.sendLogin(context, mounted),
+                    onSetObscureText: () => _handler.store.setObscureText(!_handler.store.obscureText),
                   ),
                   const SizedBox(height: 5),
                   Row(

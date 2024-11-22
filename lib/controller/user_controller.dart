@@ -254,13 +254,13 @@ class UserController extends HttpClient {
     return errorMessage;
   }
 
-  Future<String?> usuariosNovaSenha({String? novaSenha = ''}) async {
-    String? errorMessage;
+  Future<String> recoverPassword({required String email, required String newPassword}) async {
+    String errorMessage = '';
 
     var body = jsonEncode(
       <String, dynamic>{
-        'email': emailController.text.trim(),
-        'novasenha': novaSenha,
+        'email': email,
+        'novasenha': newPassword,
       },
     );
 
@@ -274,7 +274,6 @@ class UserController extends HttpClient {
       if (response.statusCode == 200) {
         errorMessage = '';
         state = ControllerStates.success;
-        emailController.clear();
       } else {
         errorMessage = response.body;
         setErrorMessage(response.body);

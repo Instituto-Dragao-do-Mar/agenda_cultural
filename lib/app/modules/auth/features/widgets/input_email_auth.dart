@@ -3,11 +3,11 @@ import 'package:agendacultural/model/fonts.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/text_contrast_font.dart';
 
-class InputEmailSignupWidget extends StatelessWidget {
+class InputEmailAuthWidget extends StatelessWidget {
   final String label;
   final void Function(String value) onChanged;
 
-  const InputEmailSignupWidget({
+  const InputEmailAuthWidget({
     super.key,
     required this.label,
     required this.onChanged,
