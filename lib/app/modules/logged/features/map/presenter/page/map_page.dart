@@ -69,7 +69,7 @@ class _MapPageState extends State<MapPage> {
               ),
             ),
             AreaEventsWidget(
-              exhibitionEvent: ExhibitionEvent.event,
+              exhibitionEvent: ExhibitionEvent.eventMap,
               title: AppLocalizations.of(context)!.map_suggestion,
               events: _handler.appStore.events,
               spaces: _handler.appStore.spaces,

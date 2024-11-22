@@ -25,7 +25,9 @@ class HomePageStateHandler {
     _initEventsProminence();
 
     //Spaces
-    _store.setSpacesFiltered(_appStore.spaces.where((space) => space.aprovado == 1).toList().take(9).toList());
+    _store.setSpacesFiltered(
+      _appStore.spaces.where((space) => space.aprovado == 1).toList().take(10).toList(), // Limita a 10 espaços.
+    );
 
     _store.setIsLoading(false);
   }
@@ -88,7 +90,7 @@ class HomePageStateHandler {
     _store.setEventsProminenceFiltered(
       _store.allEventsProminence
           ? eventsProminence // Mostra todos os eventos destacados.
-          : eventsProminence.take(9).toList(), // Limita a 9 eventos destacados.
+          : eventsProminence.take(10).toList(), // Limita a 10 eventos destacados.
     );
   }
 

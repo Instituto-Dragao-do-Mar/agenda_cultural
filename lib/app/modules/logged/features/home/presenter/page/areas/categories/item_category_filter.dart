@@ -47,6 +47,7 @@ class ItemCategoryFilterWidget extends StatelessWidget {
           TextContrastFont(
             text: nameCategory,
             align: TextAlign.center,
+            maxlines: 3,
             fontsize: FontsApp.tamanhoBase - (FontsApp.tamanhoFonteBase16 - 10),
           ),
         ],

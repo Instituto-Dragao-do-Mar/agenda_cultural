@@ -39,7 +39,7 @@ class AreaSpacesWidget extends StatelessWidget {
         const SizedBox(height: 5),
         SizedBox(
           width: double.infinity,
-          height: showAllSpaces ? 572 : 286 / FontsApp.tamanhoFonteBase16 * FontsApp.tamanhoBase,
+          height: showAllSpaces ? 286 : 286 / FontsApp.tamanhoFonteBase16 * FontsApp.tamanhoBase,
           child: SingleChildScrollView(
             scrollDirection: showAllSpaces ? Axis.vertical : Axis.horizontal,
             controller: scrollControllerSpaces,

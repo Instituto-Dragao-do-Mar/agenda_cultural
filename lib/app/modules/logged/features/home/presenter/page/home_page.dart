@@ -83,7 +83,7 @@ class _HomePageState extends State<HomePage> {
                   AreaEventsWidget(
                     exhibitionEvent: ExhibitionEvent.prominence,
                     title: AppLocalizations.of(context)!.home_emphasis_title,
-                    subtitle: _handler.store.eventsProminenceFiltered.length > 9
+                    subtitle: _handler.store.eventsProminenceFiltered.length >= 10
                         ? _handler.store.allEventsProminence
                             ? AppLocalizations.of(context)!.home_emphasis_less
                             : AppLocalizations.of(context)!.home_emphasis_all
@@ -126,7 +126,7 @@ class _HomePageState extends State<HomePage> {
                       );
                     } else {
                       _handler.store.setSpacesFiltered(
-                        _handler.appStore.spaces.where((space) => space.aprovado == 1).toList().take(9).toList(),
+                        _handler.appStore.spaces.where((space) => space.aprovado == 1).toList().take(10).toList(),
                       );
                     }
                   },

@@ -53,7 +53,9 @@ class AreaEventsWidget extends StatelessWidget {
           title: title,
           subtitle: subtitle,
           onTap: onTapExpandEvents ?? () {},
-          secundaryComponent: exhibitionEvent == ExhibitionEvent.prominence || exhibitionEvent == ExhibitionEvent.event
+          secundaryComponent: exhibitionEvent == ExhibitionEvent.prominence ||
+                  exhibitionEvent == ExhibitionEvent.eventMap ||
+                  exhibitionEvent == ExhibitionEvent.eventSchedule
               ? null
               : FilterDateWidget(
                   filterDateSelected: filterDateSelected ?? FilterDate.thisWeek,
@@ -61,46 +63,53 @@ class AreaEventsWidget extends StatelessWidget {
                 ),
         ),
         const SizedBox(height: 5),
-        AnimatedSize(
-          duration: const Duration(milliseconds: 500),
-          curve: Curves.easeInQuad,
-          child: SizedBox(
-            width: double.infinity,
-            height: showAllEvents ? 572 : 286 / FontsApp.tamanhoFonteBase16 * FontsApp.tamanhoBase,
-            child: SingleChildScrollView(
-              scrollDirection: showAllEvents ? Axis.vertical : Axis.horizontal,
-              child: Wrap(
-                alignment: WrapAlignment.center,
-                children: events.map((event) {
-                  var eventsDate = event.eventosdatas!.first;
-                  Space spaceReal = spaces.firstWhere((element) => element.id == eventsDate.idespaco);
-                  Space spacePrincipal;
-                  if (spaceReal.idespacoprincipal == 0) {
-                    spacePrincipal = spaceReal;
-                  } else {
-                    spacePrincipal = spaces.firstWhere((element) => element.id == spaceReal.idespacoprincipal);
-                  }
+        Expanded(
+          flex: exhibitionEvent == ExhibitionEvent.eventSchedule ? 1 : 0,
+          child: AnimatedSize(
+            duration: const Duration(milliseconds: 500),
+            curve: Curves.easeInQuad,
+            child: SizedBox(
+              width: double.infinity,
+              height: exhibitionEvent == ExhibitionEvent.prominence
+                  ? showAllEvents
+                      ? 286
+                      : 286 / FontsApp.tamanhoFonteBase16 * FontsApp.tamanhoBase
+                  : null,
+              child: SingleChildScrollView(
+                scrollDirection: showAllEvents ? Axis.vertical : Axis.horizontal,
+                child: Wrap(
+                  alignment: WrapAlignment.center,
+                  children: events.map((event) {
+                    var eventsDate = event.eventosdatas!.first;
+                    Space spaceReal = spaces.firstWhere((element) => element.id == eventsDate.idespaco);
+                    Space spacePrincipal;
+                    if (spaceReal.idespacoprincipal == 0) {
+                      spacePrincipal = spaceReal;
+                    } else {
+                      spacePrincipal = spaces.firstWhere((element) => element.id == spaceReal.idespacoprincipal);
+                    }
 
-                  return ItemEventWidget(
-                    event: event,
-                    spacePrincipal: spacePrincipal,
-                    user: user,
-                    favorites: favorites,
-                    onTapEvent: () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => EventDetail(
-                          event: event,
-                          spaceReal: spaceReal,
-                          spacePrincipal: spacePrincipal,
-                          categories: categories,
-                          favorites: favorites,
-                          user: user,
+                    return ItemEventWidget(
+                      event: event,
+                      spacePrincipal: spacePrincipal,
+                      user: user,
+                      favorites: favorites,
+                      onTapEvent: () => Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => EventDetail(
+                            event: event,
+                            spaceReal: spaceReal,
+                            spacePrincipal: spacePrincipal,
+                            categories: categories,
+                            favorites: favorites,
+                            user: user,
+                          ),
                         ),
                       ),
-                    ),
-                  );
-                }).toList(),
+                    );
+                  }).toList(),
+                ),
               ),
             ),
           ),

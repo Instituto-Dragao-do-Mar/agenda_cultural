@@ -1,5 +1,6 @@
 enum ExhibitionEvent {
   prominence,
   date,
-  event,
+  eventMap,
+  eventSchedule,
 }

@@ -40,24 +40,24 @@ class _SchedulePageState extends State<SchedulePage> {
             child: CircularProgressIndicator(color: corBackgroundLaranja),
           );
         }
-        return SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              ChoiceDatesWidget(
-                onTapDate: _handler.onTapSelectDate,
-                initialController: _handler.store.initialController,
-                finalController: _handler.store.finalController,
-              ),
-              const SizedBox(height: 20),
-              ViewDaysWidget(
-                listDatesFilter: _handler.store.listDatesFilter,
-                dateSelected: _handler.store.dateSelected,
-                onTapDate: _handler.onTapFilterDate,
-              ),
-              AreaEventsWidget(
-                exhibitionEvent: ExhibitionEvent.event,
+        return Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ChoiceDatesWidget(
+              onTapDate: _handler.onTapSelectDate,
+              initialController: _handler.store.initialController,
+              finalController: _handler.store.finalController,
+            ),
+            const SizedBox(height: 20),
+            ViewDaysWidget(
+              listDatesFilter: _handler.store.listDatesFilter,
+              dateSelected: _handler.store.dateSelected,
+              onTapDate: _handler.onTapFilterDate,
+            ),
+            Expanded(
+              child: AreaEventsWidget(
+                exhibitionEvent: ExhibitionEvent.eventSchedule,
                 title: AppLocalizations.of(context)!.schedule_results,
                 showAllEvents: true,
                 events: _handler.store.eventsFilter,
@@ -66,8 +66,8 @@ class _SchedulePageState extends State<SchedulePage> {
                 favorites: _handler.appStore.favorites,
                 user: _handler.appStore.userLogged,
               ),
-            ],
-          ),
+            ),
+          ],
         );
       },
     );
