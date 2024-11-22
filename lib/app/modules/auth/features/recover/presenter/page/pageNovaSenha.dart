@@ -1,8 +1,8 @@
 // ignore_for_file: file_names, use_build_context_synchronously
 
+import 'package:agendacultural/app/common/router/router.dart';
 import 'package:agendacultural/controller/user_controller.dart';
 import 'package:agendacultural/model/fonts.dart';
-import 'package:agendacultural/app/modules/auth/presenter/page/auth_page.dart';
 import 'package:agendacultural/pages/home/general/widgettopocomum.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/notify_pop_up.dart';
@@ -10,7 +10,7 @@ import 'package:agendacultural/shared/text_contrast_font.dart';
 import 'package:agendacultural/shared/button_default.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:step_progress_indicator/step_progress_indicator.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
@@ -36,7 +36,6 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
   @override
   void initState() {
     super.initState();
-    usuarioController = context.read<UserController>();
   }
 
   @override
@@ -101,9 +100,7 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
                 style: FontsApp.poppins16W400Grey(FontsApp.tamanhoBase),
                 onChanged: (value) {
                   setState(() {
-                    value.characters.length >= 6
-                        ? haveMinDigits = 1
-                        : haveMinDigits = 0;
+                    value.characters.length >= 6 ? haveMinDigits = 1 : haveMinDigits = 0;
                     value.contains(
                       RegExp(r'[0-9]'),
                     )
@@ -120,10 +117,7 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
                         ? haveUpperCase = 1
                         : haveUpperCase = 0;
 
-                    rulesMatch = haveUpperCase +
-                        haveLowerCase +
-                        haveNumber +
-                        haveMinDigits;
+                    rulesMatch = haveUpperCase + haveLowerCase + haveNumber + haveMinDigits;
                     senhaInput = value;
                   });
                 },
@@ -138,9 +132,7 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
                               obscureTextSenha = !obscureTextSenha;
                             });
                           },
-                          icon: Icon(obscureTextSenha
-                              ? Icons.visibility
-                              : Icons.visibility_off))
+                          icon: Icon(obscureTextSenha ? Icons.visibility : Icons.visibility_off))
                       : null,
                   focusColor: Colors.black,
                   border: const OutlineInputBorder(
@@ -196,9 +188,7 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
                   contentPadding: const EdgeInsets.all(16),
                   suffixIcon: confirmarSenhaInput != ''
                       ? Semantics(
-                          label: obscureTextSenha
-                              ? "Clique para mostrar a senha"
-                              : "Clique para ocultar a senha",
+                          label: obscureTextSenha ? "Clique para mostrar a senha" : "Clique para ocultar a senha",
                           child: IconButton(
                             onPressed: () {
                               setState(() {
@@ -206,9 +196,7 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
                               });
                             },
                             icon: Icon(
-                              obscureTextNovaSenha
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
+                              obscureTextNovaSenha ? Icons.visibility : Icons.visibility_off,
                             ),
                           ),
                         )
@@ -239,15 +227,13 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         TextContrastFont(
-                          text: AppLocalizations.of(context)!
-                              .register_password_order,
+                          text: AppLocalizations.of(context)!.register_password_order,
                           style: FontsApp.roboto12W400Grey(FontsApp.tamanhoBase),
                           semantics: "Sua senha deve conter:",
                         ),
                         const widgetEspacoH(altura: 4),
                         TextContrastFont(
-                          text: AppLocalizations.of(context)!
-                              .register_password_order_one,
+                          text: AppLocalizations.of(context)!.register_password_order_one,
                           style: haveMinDigits == 1
                               ? FontsApp.roboto12W300Green(FontsApp.tamanhoBase)
                               : FontsApp.roboto12W300Grey(FontsApp.tamanhoBase),
@@ -255,8 +241,7 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
                         ),
                         const widgetEspacoH(altura: 4),
                         TextContrastFont(
-                          text: AppLocalizations.of(context)!
-                              .register_password_order_two,
+                          text: AppLocalizations.of(context)!.register_password_order_two,
                           style: haveUpperCase == 1
                               ? FontsApp.roboto12W300Green(FontsApp.tamanhoBase)
                               : FontsApp.roboto12W300Grey(FontsApp.tamanhoBase),
@@ -264,8 +249,7 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
                         ),
                         const widgetEspacoH(altura: 4),
                         TextContrastFont(
-                          text: AppLocalizations.of(context)!
-                              .register_password_order_three,
+                          text: AppLocalizations.of(context)!.register_password_order_three,
                           style: haveLowerCase == 1
                               ? FontsApp.roboto12W300Green(FontsApp.tamanhoBase)
                               : FontsApp.roboto12W300Grey(FontsApp.tamanhoBase),
@@ -273,8 +257,7 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
                         ),
                         const widgetEspacoH(altura: 4),
                         TextContrastFont(
-                          text: AppLocalizations.of(context)!
-                              .register_password_order_four,
+                          text: AppLocalizations.of(context)!.register_password_order_four,
                           style: haveNumber == 1
                               ? FontsApp.roboto12W300Green(FontsApp.tamanhoBase)
                               : FontsApp.roboto12W300Grey(FontsApp.tamanhoBase),
@@ -282,8 +265,7 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
                         ),
                         const widgetEspacoH(altura: 8),
                         TextContrastFont(
-                          text: AppLocalizations.of(context)!
-                              .register_password_order_five,
+                          text: AppLocalizations.of(context)!.register_password_order_five,
                           style: FontsApp.roboto12W300Grey(FontsApp.tamanhoBase),
                           semantics: "Força da senha:",
                         ),
@@ -311,8 +293,7 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
                 container: false,
                 label: "Botão Salvar",
                 child: ButtonDefault(
-                  text:
-                      AppLocalizations.of(context)!.profile_accessibility_save,
+                  text: AppLocalizations.of(context)!.profile_accessibility_save,
                   function: () async {
                     await alterarSenha();
                   },
@@ -361,19 +342,13 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
     }
 
     notifyPopUpWidget(
-        context: context,
-        textChamativo: 'Senha alterada!',
-        textDescritivo: 'Clique no botão abaixo para prosseguir para o login.',
-        textBotao: 'Entrar',
-        erro: false,
-        funcaoBotao: () async {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const AuthPage(),
-            ),
-          );
-        });
+      context: context,
+      textChamativo: 'Senha alterada!',
+      textDescritivo: 'Clique no botão abaixo para prosseguir para o login.',
+      textBotao: 'Entrar',
+      erro: false,
+      funcaoBotao: () => Modular.to.navigate(RouterApp.auth),
+    );
     return;
   }
 }

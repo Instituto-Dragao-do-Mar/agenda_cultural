@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/shared/notify_pop_up.dart';
+import 'package:agendacultural/app/common/router/router.dart';
 import 'package:agendacultural/app/core/app_store/app_store.dart';
-import 'package:agendacultural/app/modules/auth/presenter/page/auth_page.dart';
 import 'package:agendacultural/app/modules/splash/domain/controller/event_controller.dart';
 import 'package:agendacultural/app/modules/logged/features/favorites/presenter/store/favorite_store.dart';
 
@@ -30,12 +30,7 @@ class FavoritePageStateHandler {
           permitirFechar: true,
           textDescritivo: AppLocalizations.of(context)!.e_alert_favorite_page,
           textBotao: AppLocalizations.of(context)!.profile_general_alert_accept,
-          funcaoBotao: () => Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const AuthPage(),
-            ),
-          ),
+          funcaoBotao: () => Modular.to.navigate(RouterApp.auth),
         ),
       );
       _store.setIsLoading(false);

@@ -58,12 +58,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     permitirFechar: true,
                     textDescritivo: AppLocalizations.of(context)!.profile_account_data_alert,
                     textBotao: AppLocalizations.of(context)!.profile_account_data_alert_accept,
-                    funcaoBotao: () => Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const AuthPage(),
-                      ),
-                    ),
+                    funcaoBotao: () => Modular.to.navigate(RouterApp.auth),
                   );
                 } else {
                   Navigator.push(

@@ -4,9 +4,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:agendacultural/app/common/router/router.dart';
 import 'package:agendacultural/controller/user_controller.dart';
-import 'package:agendacultural/pages/acesso/pageNovaSenha.dart';
 import 'package:agendacultural/app/core/app_store/app_store.dart';
 import 'package:agendacultural/app/modules/auth/features/signin/presenter/store/signin_store.dart';
+import 'package:agendacultural/app/modules/auth/features/recover/presenter/page/pageNovaSenha.dart';
 
 class SigninPageStateHandler {
   final AppStore _appStore;

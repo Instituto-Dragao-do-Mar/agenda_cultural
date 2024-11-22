@@ -9,7 +9,6 @@ import 'package:agendacultural/shared/themes.dart';
 import 'package:agendacultural/shared/button_default.dart';
 import 'package:agendacultural/app/common/router/router.dart';
 import 'package:agendacultural/shared/text_contrast_font.dart';
-import 'package:agendacultural/pages/acesso/pageRecuperarSenha.dart';
 import 'package:agendacultural/app/modules/auth/features/signin/presenter/page/widgets/signin_app_bar.dart';
 import 'package:agendacultural/app/modules/auth/features/signin/presenter/handler/signin_state_handler.dart';
 
@@ -43,7 +42,7 @@ class _SignInPageState extends State<SignInPage> {
           backgroundColor: corBgAtual,
           appBar: const SigninAppBar(),
           body: Container(
-            padding: const EdgeInsets.all(8),
+            padding: const EdgeInsets.symmetric(horizontal: 8),
             child: SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -72,7 +71,7 @@ class _SignInPageState extends State<SignInPage> {
                     children: [
                       TextContrastFont(
                         text: AppLocalizations.of(context)!.login_text,
-                        semantics: 'Para entrar é necessário que você tenha se cadastrado no nosso aplicativo.',
+                        semantics: AppLocalizations.of(context)!.login_text,
                         style: FontsApp.poppins14W400Grey((FontsApp.tamanhoBase)),
                         maxlines: 3,
                       ),
@@ -80,11 +79,8 @@ class _SignInPageState extends State<SignInPage> {
                         onTap: () => Modular.to.pushNamed(RouterApp.auth + RouterApp.signup),
                         child: TextContrastFont(
                           text: AppLocalizations.of(context)!.register,
-                          semantics: 'Cadastre-se!',
-                          style: TextStyle(
-                            color: corBackgroundLaranja,
-                            fontSize: FontsApp.tamanhoBase.toDouble() - 2,
-                          ),
+                          semantics: AppLocalizations.of(context)!.register,
+                          style: TextStyle(color: corBackgroundLaranja, fontSize: FontsApp.tamanhoBase.toDouble() - 2),
                         ),
                       ),
                     ],
@@ -184,14 +180,7 @@ class _SignInPageState extends State<SignInPage> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       InkWell(
-                        onTap: () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const PageRecuperarSenha(),
-                            ),
-                          );
-                        },
+                        onTap: () => Modular.to.pushNamed(RouterApp.auth + RouterApp.sendEmail),
                         child: TextContrastFont(
                           text: AppLocalizations.of(context)!.login_reset_password,
                           semantics: 'Esqueci minha senha',

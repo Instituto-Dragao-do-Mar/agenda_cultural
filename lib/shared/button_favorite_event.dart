@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/model/usuario_model.dart';
 import 'package:agendacultural/shared/notify_pop_up.dart';
+import 'package:agendacultural/app/common/router/router.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
-import 'package:agendacultural/app/modules/auth/presenter/page/auth_page.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/favorite.dart';
 import 'package:agendacultural/app/modules/splash/domain/controller/event_controller.dart';
 
@@ -52,12 +53,7 @@ class _ButtonFavoriteWidgetState extends State<ButtonFavoriteWidget> {
                 permitirFechar: true,
                 textDescritivo: AppLocalizations.of(context)!.e_alert_favorite,
                 textBotao: AppLocalizations.of(context)!.profile_general_alert_accept,
-                funcaoBotao: () => Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const AuthPage(),
-                  ),
-                ),
+                funcaoBotao: () => Modular.to.navigate(RouterApp.auth),
               );
               return;
             }

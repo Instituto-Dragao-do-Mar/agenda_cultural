@@ -30,5 +30,10 @@ abstract class SigninStoreBase with Store {
   void setObscureText(bool value) => obscureText = value;
 
   @action
-  void dispose() {}
+  void dispose() {
+    setIsLoading(false);
+    setEmail('');
+    setPassword('');
+    setObscureText(true);
+  }
 }

@@ -58,7 +58,7 @@ class _SignupPageState extends State<SignupPage> {
             backgroundColor: corBgAtual,
             appBar: const SignupAppBar(),
             body: Container(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.symmetric(horizontal: 8),
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,

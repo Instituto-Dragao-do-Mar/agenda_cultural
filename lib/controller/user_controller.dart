@@ -9,6 +9,15 @@ import 'package:agendacultural/app/core/app_store/app_store.dart';
 import 'package:agendacultural/app/core/htpp_client/http_client.dart';
 import 'package:agendacultural/app/modules/auth/domain/adapters/access.dart';
 
+enum ControllerStates {
+  idle,
+  loading,
+  success,
+  error,
+  created,
+  unauthorized,
+}
+
 class UserController extends HttpClient {
   var state = ControllerStates.idle;
   static String errorMessage = '';
