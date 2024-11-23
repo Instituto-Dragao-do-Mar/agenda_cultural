@@ -29,17 +29,11 @@ class _FiltroCompletoPageState extends State<FiltroCompletoPage> {
 
   GroupButtonOptions options = GroupButtonOptions(
     selectedShadow: const [],
-    selectedTextStyle: const TextStyle(
-      fontSize: 12,
-      color: Colors.white,
-    ),
+    selectedTextStyle: const TextStyle(fontSize: 12, color: Colors.white),
     selectedColor: corBackgroundLaranja,
     unselectedShadow: const [],
     unselectedColor: corBackgroundNegative,
-    unselectedTextStyle: TextStyle(
-      fontSize: 12,
-      color: Colors.amber[900],
-    ),
+    unselectedTextStyle: TextStyle(fontSize: 12, color: Colors.amber[900]),
     selectedBorderColor: corBackgroundLaranja,
     unselectedBorderColor: corBackgroundLaranja,
     borderRadius: BorderRadius.circular(5),

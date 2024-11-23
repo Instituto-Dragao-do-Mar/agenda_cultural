@@ -34,8 +34,7 @@ class SearchProgramming extends StatefulWidget {
 }
 
 class _SearchProgrammingState extends State<SearchProgramming> {
-  TextEditingController tedBusca = TextEditingController();
-  String filtro = '';
+  TextEditingController searchProgrammingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -60,11 +59,8 @@ class _SearchProgrammingState extends State<SearchProgramming> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: TextFormField(
-              controller: tedBusca,
-              onChanged: (value) {
-                filtro = tedBusca.text;
-                setState(() {});
-              },
+              controller: searchProgrammingController,
+              onChanged: (value) => setState(() {}),
               decoration: InputDecoration(
                 hintText: AppLocalizations.of(context)!.schedule_filter_subtitle,
                 hintStyle: FontsApp.poppins14W400Grey(FontsApp.tamanhoBase),
@@ -93,7 +89,7 @@ class _SearchProgrammingState extends State<SearchProgramming> {
             child: SingleChildScrollView(
               child: Wrap(
                 children: widget.events.where((element) {
-                  return element.nome!.toUpperCase().contains(filtro.toUpperCase());
+                  return element.nome?.toUpperCase().contains(searchProgrammingController.text.toUpperCase()) ?? false;
                 }).map(
                   (event) {
                     var eventsDate = event.eventosdatas!.first;
@@ -104,7 +100,7 @@ class _SearchProgrammingState extends State<SearchProgramming> {
                     } else {
                       spacePrincipal = widget.spaces.firstWhere((element) => element.id == spaceReal.idespacoprincipal);
                     }
-              
+
                     return ItemEventWidget(
                       event: event,
                       spacePrincipal: spacePrincipal,
