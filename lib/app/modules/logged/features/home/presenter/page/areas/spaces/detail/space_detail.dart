@@ -8,25 +8,40 @@ import 'package:agendacultural/shared/text_contrast_font.dart';
 import 'package:agendacultural/app/common/utils/theme/fonts.dart';
 import 'package:agendacultural/app/common/utils/theme/themes.dart';
 import 'package:agendacultural/app/modules/auth/domain/adapters/user.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/favorite.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/category.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/spaces/detail/space_detail_map.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/spaces/detail/space_detail_image.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/spaces/detail/space_detail_app_bar.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/spaces/detail/space_detail_location.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/spaces/detail/space_detail_more_info.dart';
+import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/spaces/programming/programming_space.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/spaces/detail/space_detail_evaluation.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/spaces/detail/space_detail_description.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/spaces/detail/space_detail_accessibility.dart';
-import 'package:agendacultural/app/modules/logged/features/home/sub_module/programming_space/presenter/page/programming_space_page.dart';
 
 class SpaceDetail extends StatelessWidget {
   final Space space;
+  final List<Event> events;
+  final List<Space> spaces;
+  final List<Category> categories;
+  final List<Favorite> favorites;
   final User user;
+  final List<Event> eventsProgramming;
+  final void Function(bool isDetail) onConcludeFavorite;
 
   const SpaceDetail({
     super.key,
     required this.space,
+    required this.spaces,
+    required this.events,
+    required this.categories,
+    required this.favorites,
     required this.user,
+    required this.eventsProgramming,
+    required this.onConcludeFavorite,
   });
 
   @override
@@ -112,6 +127,12 @@ class SpaceDetail extends StatelessWidget {
                 MaterialPageRoute(
                   builder: (context) => ProgrammingSpace(
                     space: space,
+                    spaces: spaces,
+                    events: eventsProgramming,
+                    categories: categories,
+                    favorites: favorites,
+                    user: user,
+                    onConcludeFavorite: onConcludeFavorite,
                   ),
                 ),
               ),

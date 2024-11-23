@@ -124,7 +124,11 @@ class _HomePageState extends State<HomePage> {
                   ),
                 AreaSpacesWidget(
                   scrollControllerSpaces: _handler.store.scrollControllerSpaces,
-                  spaces: _handler.store.spacesFiltered,
+                  spacesFiltered: _handler.store.spacesFiltered,
+                  events: _handler.appStore.events,
+                  spaces: _handler.appStore.spaces,
+                  categories: _handler.appStore.categories,
+                  favorites: _handler.appStore.favorites,
                   showAllSpaces: _handler.store.allSpaces,
                   onTapExpandSpaces: () {
                     _handler.store.setAllSpaces(!_handler.store.allSpaces);
@@ -140,6 +144,7 @@ class _HomePageState extends State<HomePage> {
                     }
                   },
                   user: _handler.appStore.userLogged,
+                  onConcludeFavorite: _handler.uploadDataFavorites,
                 ),
               ],
             ),

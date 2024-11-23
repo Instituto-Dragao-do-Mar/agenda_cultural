@@ -91,6 +91,7 @@ void notifyPopUpWidget({
                           onPressed: funcaoBotaoSecundario ?? () => Navigator.pop(context),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,
+                            surfaceTintColor: Colors.white,
                             side: const BorderSide(color: Colors.grey, width: 1),
                           ),
                           child: Text(
