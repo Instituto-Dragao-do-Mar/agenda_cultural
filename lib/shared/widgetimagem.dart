@@ -1,10 +1,10 @@
 // ignore_for_file: camel_case_types
 
-import 'package:agendacultural/model/imagem_model.dart';
 import 'package:flutter/material.dart';
+import 'package:agendacultural/app/modules/logged/features/home/domain/enum/image_ent.dart';
 
 Image widgetImagemInterna({
-  required Imagem imagem,
+  required ImageEnt imagem,
   BoxFit? fit,
   double? height,
   double? width,
@@ -19,7 +19,7 @@ Image widgetImagemInterna({
 }
 
 widgetImagemInternaProvider({
-  required Imagem imagem,
+  required ImageEnt imagem,
   BoxFit? fit,
   double? height,
   double? width,

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
 import 'package:agendacultural/shared/text_contrast_font.dart';
 import 'package:agendacultural/shared/widgetimagemexterna.dart';
 import 'package:agendacultural/app/common/utils/theme/fonts.dart';
 import 'package:agendacultural/app/common/utils/theme/themes.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/category.dart';
+import 'package:agendacultural/app/modules/logged/features/home/domain/enum/image_ent.dart';
+import 'package:agendacultural/app/modules/logged/features/home/domain/enum/image_type.dart';
 
 class ItemCategoryFilterWidget extends StatelessWidget {
   final Category category;
@@ -58,7 +59,7 @@ class ItemCategoryFilterWidget extends StatelessWidget {
   ImageProvider _getCategoryImage() {
     if (category.imagens!.first.url!.contains('http')) {
       return widgetImagemExterna(
-        imagem: Imagem(
+        imagem: ImageEnt(
           base64: category.imagens!.first.base64,
           tipoimagem: category.imagens!.first.tipo! == 'U' ? TipoImagem.url : TipoImagem.base64,
           url: category.imagens!.first.url,
@@ -66,7 +67,7 @@ class ItemCategoryFilterWidget extends StatelessWidget {
       );
     } else {
       return widgetImagemInternaProvider(
-        imagem: Imagem(
+        imagem: ImageEnt(
           base64: category.imagens!.first.base64,
           tipoimagem: category.imagens!.first.tipo! == 'U' ? TipoImagem.url : TipoImagem.base64,
           url: category.imagens!.first.url,

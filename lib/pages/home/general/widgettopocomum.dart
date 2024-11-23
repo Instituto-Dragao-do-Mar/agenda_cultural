@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:agendacultural/model/imagem_model.dart';
 import 'package:agendacultural/shared/widgetimagem.dart';
+import 'package:agendacultural/app/modules/logged/features/home/domain/enum/image_ent.dart';
 import '../../../app/common/utils/theme/fonts.dart';
 
 class widgetTopoComum extends StatelessWidget {
@@ -42,7 +42,7 @@ class widgetTopoComum extends StatelessWidget {
             }
           },
           child: widgetImagemInterna(
-            imagem: Imagem(
+            imagem: ImageEnt(
               url: urlImagem1,
             ),
             width: 24,
@@ -66,7 +66,7 @@ class widgetTopoComum extends StatelessWidget {
               }
             },
             child: widgetImagemInterna(
-              imagem: Imagem(
+              imagem: ImageEnt(
                 url: urlImagem2,
               ),
               width: 24,

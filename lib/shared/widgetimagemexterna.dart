@@ -1,8 +1,8 @@
-import 'package:agendacultural/model/imagem_model.dart';
 import 'package:flutter/material.dart';
+import 'package:agendacultural/app/modules/logged/features/home/domain/enum/image_ent.dart';
 
 widgetImagemExterna({
-  required Imagem imagem,
+  required ImageEnt imagem,
   BoxFit? fit,
   double? height,
   double? width,
