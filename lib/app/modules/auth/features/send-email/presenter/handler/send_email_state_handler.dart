@@ -33,7 +33,7 @@ class SendEmailPageStateHandler {
       return;
     }
 
-    if (!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(_store.email)) {
+    if (!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(_store.email)) {
       notifyPopUpWidget(
         context: context,
         description: AppLocalizations.of(context)!.login_notify_invalid,
