@@ -2,11 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:group_button/group_button.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/model/app_model.dart';
-import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/app/common/utils/theme/fonts.dart';
 
-class widgetfiltroclassificacao extends StatefulWidget {
-  const widgetfiltroclassificacao({
+class FilterClassificationWidget extends StatefulWidget {
+  const FilterClassificationWidget({
     super.key,
     required this.app,
     required this.options,
@@ -18,11 +17,11 @@ class widgetfiltroclassificacao extends StatefulWidget {
   final TextEditingController tedClassificacao;
 
   @override
-  State<widgetfiltroclassificacao> createState() =>
-      _widgetfiltroclassificacaoState();
+  State<FilterClassificationWidget> createState() =>
+      _FilterClassificationWidgetState();
 }
 
-class _widgetfiltroclassificacaoState extends State<widgetfiltroclassificacao> {
+class _FilterClassificationWidgetState extends State<FilterClassificationWidget> {
   late List<String> opcoes;
   List<String> classifTrad = [];
   GroupButtonController controller = GroupButtonController();
@@ -66,12 +65,12 @@ class _widgetfiltroclassificacaoState extends State<widgetfiltroclassificacao> {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const widgetEspacoH(altura: 16),
+        const SizedBox(height: 16),
         Text(
           AppLocalizations.of(context)!.e_more_info_classif,
           style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
         ),
-        const widgetEspacoH(altura: 5),
+        const SizedBox(height: 5),
         GroupButton(
           options: widget.options,
           isRadio: true,

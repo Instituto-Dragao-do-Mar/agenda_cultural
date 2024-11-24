@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/shared/notify_pop_up.dart';
-import 'package:agendacultural/shared/button_default.dart';
-import 'package:agendacultural/shared/text_contrast_font.dart';
 import 'package:agendacultural/app/common/utils/theme/fonts.dart';
 import 'package:agendacultural/app/common/utils/theme/themes.dart';
+import 'package:agendacultural/app/common/widgets/notify_pop_up.dart';
+import 'package:agendacultural/app/common/widgets/button_default.dart';
+import 'package:agendacultural/app/common/widgets/text_contrast_font.dart';
 import 'package:agendacultural/app/modules/auth/domain/adapters/user.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
@@ -47,7 +47,7 @@ class SpaceDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     void openNotificationError() {
-      notifyPopUpWidget(context: context, textDescritivo: 'Erro ao abrir o link');
+      notifyPopUpWidget(context: context, description: 'Erro ao abrir o link');
     }
 
     return Scaffold(

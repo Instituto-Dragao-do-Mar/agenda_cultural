@@ -1,7 +1,7 @@
 import 'package:dart_date/dart_date.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:agendacultural/app/common/utils/orders.dart';
-import 'package:agendacultural/shared/extensions/dates.dart';
+import 'package:agendacultural/app/common/utils/dates.dart';
 import 'package:agendacultural/app/core/app_store/app_store.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/event_categories.dart';

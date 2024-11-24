@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:agendacultural/app/common/router/router.dart';
+import 'package:agendacultural/app/common/widgets/notify_pop_up.dart';
 import 'package:agendacultural/app/modules/auth/domain/adapters/user.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/favorite.dart';
@@ -50,10 +50,10 @@ class _ButtonFavoriteWidgetState extends State<ButtonFavoriteWidget> {
             if (widget.user.guidid == null) {
               notifyPopUpWidget(
                 context: context,
-                permitirFechar: true,
-                textDescritivo: AppLocalizations.of(context)!.e_alert_favorite,
-                textBotao: AppLocalizations.of(context)!.profile_general_alert_accept,
-                funcaoBotao: () => Modular.to.navigate(RouterApp.auth),
+                enablePop: true,
+                description: AppLocalizations.of(context)!.e_alert_favorite,
+                labelButton: AppLocalizations.of(context)!.profile_general_alert_accept,
+                functionButton: () => Modular.to.navigate(RouterApp.auth),
               );
               return;
             }

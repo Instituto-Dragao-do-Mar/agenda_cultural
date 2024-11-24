@@ -8,9 +8,9 @@ import 'package:agendacultural/app/common/utils/theme/colors.dart';
 void notifySuccessWidget({
   required BuildContext context,
   required String text,
-  VoidCallback? funcaoSim,
-  String buttonText = "Ok",
-  String title = "Atenção",
+  VoidCallback? functionYes,
+  String buttonText = 'Ok',
+  String title = 'Atenção',
 }) {
   AwesomeDialog(
     context: context,
@@ -18,7 +18,7 @@ void notifySuccessWidget({
     headerAnimationLoop: false,
     title: title,
     desc: text,
-    btnOkOnPress: funcaoSim ?? () {},
+    btnOkOnPress: functionYes ?? () {},
     btnOkText: buttonText,
     btnOkColor: const Color(0XFFEA5B0C),
   ).show();
@@ -26,14 +26,14 @@ void notifySuccessWidget({
 
 void notifyPopUpWidget({
   required BuildContext context,
-  required String textDescritivo,
-  String? textChamativo,
-  String? textBotao,
-  String? textBotaoSecundario,
-  bool erro = true,
-  bool permitirFechar = false,
-  VoidCallback? funcaoBotao,
-  VoidCallback? funcaoBotaoSecundario,
+  required String description,
+  String? labelPrincipal,
+  String? labelButton,
+  String? labelSecondButton,
+  bool error = true,
+  bool enablePop = false,
+  VoidCallback? functionButton,
+  VoidCallback? functionSecondButton,
 }) async {
   await showDialog(
     context: context,
@@ -58,14 +58,14 @@ void notifyPopUpWidget({
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    SizedBox(height: permitirFechar ? 0 : 42),
+                    SizedBox(height: enablePop ? 0 : 42),
                     Text(
-                      textChamativo ?? AppLocalizations.of(context)!.notification_attention,
+                      labelPrincipal ?? AppLocalizations.of(context)!.notification_attention,
                       style: FontsApp.poppins16W500Black(FontsApp.tamanhoBase + 2),
                     ),
                     const SizedBox(height: 10),
                     Text(
-                      textDescritivo,
+                      description,
                       style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase - 2),
                       textAlign: TextAlign.center,
                     ),
@@ -73,9 +73,9 @@ void notifyPopUpWidget({
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: funcaoBotao ?? () => Navigator.pop(context),
+                        onPressed: functionButton ?? () => Navigator.pop(context),
                         child: Text(
-                          textBotao ?? AppLocalizations.of(context)!.notification_ok,
+                          labelButton ?? AppLocalizations.of(context)!.notification_ok,
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: FontsApp.tamanhoBase.toDouble(),
@@ -83,19 +83,19 @@ void notifyPopUpWidget({
                         ),
                       ),
                     ),
-                    if (permitirFechar) const SizedBox(height: 10),
-                    if (permitirFechar)
+                    if (enablePop) const SizedBox(height: 10),
+                    if (enablePop)
                       SizedBox(
                         width: double.infinity,
                         child: ElevatedButton(
-                          onPressed: funcaoBotaoSecundario ?? () => Navigator.pop(context),
+                          onPressed: functionSecondButton ?? () => Navigator.pop(context),
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,
                             surfaceTintColor: Colors.white,
                             side: const BorderSide(color: Colors.grey, width: 1),
                           ),
                           child: Text(
-                            textBotaoSecundario ?? AppLocalizations.of(context)!.notification_cancel,
+                            labelSecondButton ?? AppLocalizations.of(context)!.notification_cancel,
                             style: TextStyle(
                               color: Colors.black,
                               fontSize: FontsApp.tamanhoBase.toDouble(),
@@ -107,20 +107,20 @@ void notifyPopUpWidget({
                 ),
               ),
             ),
-            if (!permitirFechar)
+            if (!enablePop)
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Container(
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
-                      color: erro ? Colors.red : Colors.green,
+                      color: error ? Colors.red : Colors.green,
                       border: Border.all(color: Colors.white, style: BorderStyle.solid, width: 5),
                     ),
                     child: Padding(
                       padding: const EdgeInsets.all(8),
                       child: Icon(
-                        erro ? Icons.close_rounded : Icons.check_rounded,
+                        error ? Icons.close_rounded : Icons.check_rounded,
                         color: Colors.white,
                         size: 72,
                       ),

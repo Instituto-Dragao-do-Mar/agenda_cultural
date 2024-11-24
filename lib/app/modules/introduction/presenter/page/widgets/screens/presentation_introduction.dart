@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/shared/widgetbottombotao.dart';
 import 'package:agendacultural/app/common/utils/theme/fonts.dart';
+import 'package:agendacultural/app/common/widgets/button_big.dart';
 
 class PresentationIntroductionScreen extends StatelessWidget {
   final void Function() onTapEnter;
@@ -28,7 +28,7 @@ class PresentationIntroductionScreen extends StatelessWidget {
           width: double.infinity,
           height: 60,
           padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: widgetBottomBotao(
+          child: ButtonBig(
             text: AppLocalizations.of(context)!.int_button_enter,
             borderRadius: const BorderRadius.all(Radius.circular(30)),
             function: onTapEnter,

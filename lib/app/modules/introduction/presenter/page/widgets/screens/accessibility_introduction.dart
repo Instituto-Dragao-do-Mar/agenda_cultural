@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/app/common/utils/theme/fonts.dart';
 import 'package:agendacultural/app/common/utils/theme/themes.dart';
-import 'package:agendacultural/shared/widgetbotaoswitch.dart';
+import 'package:agendacultural/app/common/widgets/button_switch.dart';
 
 class AccessibilityIntroductionScreen extends StatelessWidget {
   final bool statusAltoContraste;
@@ -42,9 +42,9 @@ class AccessibilityIntroductionScreen extends StatelessWidget {
             ),
             Semantics(
               label: statusAltoContraste ? 'Desativar alto contraste' : 'Ativar alto contraste',
-              child: widgetBotaoSwitch(
+              child: ButtonSwitch(
                 value: statusAltoContraste,
-                function: (value) => setAltoContraste(value),
+                onChanged: (value) => setAltoContraste(value),
               ),
             )
           ],

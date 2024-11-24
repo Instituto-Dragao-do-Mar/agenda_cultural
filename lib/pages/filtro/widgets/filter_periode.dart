@@ -2,26 +2,25 @@ import 'package:flutter/material.dart';
 import 'package:group_button/group_button.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/model/app_model.dart';
-import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/app/common/utils/theme/fonts.dart';
 
-class widgetfiltroingresso extends StatefulWidget {
-  const widgetfiltroingresso({
+class FilterPeriodeWidget extends StatefulWidget {
+  const FilterPeriodeWidget({
     super.key,
     required this.app,
     required this.options,
-    required this.tedIngresso,
+    required this.tedPeriodo,
   });
 
   final AppModel app;
   final GroupButtonOptions options;
-  final TextEditingController tedIngresso;
+  final TextEditingController tedPeriodo;
 
   @override
-  State<widgetfiltroingresso> createState() => _widgetfiltroingressoState();
+  State<FilterPeriodeWidget> createState() => _FilterPeriodeWidgetState();
 }
 
-class _widgetfiltroingressoState extends State<widgetfiltroingresso> {
+class _FilterPeriodeWidgetState extends State<FilterPeriodeWidget> {
   late List<String> opcoes;
   GroupButtonController controller = GroupButtonController();
 
@@ -41,12 +40,12 @@ class _widgetfiltroingressoState extends State<widgetfiltroingresso> {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const widgetEspacoH(altura: 16),
+        const SizedBox(height: 16),
         Text(
-          AppLocalizations.of(context)!.e_ticket,
+          AppLocalizations.of(context)!.filter_periode,
           style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
         ),
-        const widgetEspacoH(altura: 5),
+        const SizedBox(height: 5),
         GroupButton(
           options: widget.options,
           isRadio: true,
@@ -55,15 +54,17 @@ class _widgetfiltroingressoState extends State<widgetfiltroingresso> {
             index,
             isSelected,
           ) {
-            widget.tedIngresso.text = str;
+            widget.tedPeriodo.text = str;
             if (isSelected) {
               return index;
             }
           },
           buttons: [
-            AppLocalizations.of(context)!.filter_ticket_one,
-            AppLocalizations.of(context)!.filter_ticket_two,
-            AppLocalizations.of(context)!.filter_ticket_three,
+            AppLocalizations.of(context)!.filter_periode_one,
+            AppLocalizations.of(context)!.filter_periode_two,
+            AppLocalizations.of(context)!.filter_periode_three,
+            AppLocalizations.of(context)!.filter_periode_four,
+            AppLocalizations.of(context)!.filter_periode_five,
           ],
         ),
       ],

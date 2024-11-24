@@ -2,12 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:group_button/group_button.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/model/app_model.dart';
-import 'package:agendacultural/shared/widgetespacoh.dart';
-import 'package:agendacultural/shared/widgetdropdownsearch.dart';
 import 'package:agendacultural/app/common/utils/theme/fonts.dart';
+import 'package:agendacultural/app/common/widgets/dropdown_search.dart';
 
-class widgetfiltroespaco extends StatefulWidget {
-  const widgetfiltroespaco({
+class FilterSpaceWidget extends StatefulWidget {
+  const FilterSpaceWidget({
     super.key,
     required this.app,
     required this.options,
@@ -19,10 +18,10 @@ class widgetfiltroespaco extends StatefulWidget {
   final TextEditingController tedEspaco;
 
   @override
-  State<widgetfiltroespaco> createState() => _widgetfiltroespacoState();
+  State<FilterSpaceWidget> createState() => _FilterSpaceWidgetState();
 }
 
-class _widgetfiltroespacoState extends State<widgetfiltroespaco> {
+class _FilterSpaceWidgetState extends State<FilterSpaceWidget> {
   late List<String> opcoes;
   GroupButtonController controller = GroupButtonController();
 
@@ -53,13 +52,13 @@ class _widgetfiltroespacoState extends State<widgetfiltroespaco> {
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const widgetEspacoH(altura: 16),
+        const SizedBox(height: 16),
         Text(
           AppLocalizations.of(context)!.filter_spaces,
           style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
         ),
-        const widgetEspacoH(altura: 5),
-        widgetDropdownSearch(
+        const SizedBox(height: 5),
+        dropdownSearch(
           funcao: (s) {},
           valorInicial: AppLocalizations.of(context)!.filter_sel_space,
           itens: opcoes,

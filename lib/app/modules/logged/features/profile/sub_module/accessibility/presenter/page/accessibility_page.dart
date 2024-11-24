@@ -3,13 +3,13 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:agendacultural/app/common/router/router.dart';
 import 'package:agendacultural/app/common/utils/theme/fonts.dart';
 import 'package:agendacultural/app/common/utils/theme/colors.dart';
 import 'package:agendacultural/app/common/utils/theme/themes.dart';
-import 'package:agendacultural/shared/button_default.dart';
-import 'package:agendacultural/app/common/router/router.dart';
-import 'package:agendacultural/shared/widgetbotaoswitch.dart';
-import 'package:agendacultural/shared/text_contrast_font.dart';
+import 'package:agendacultural/app/common/widgets/button_switch.dart';
+import 'package:agendacultural/app/common/widgets/button_default.dart';
+import 'package:agendacultural/app/common/widgets/text_contrast_font.dart';
 import 'package:agendacultural/app/core/data_preferences/data_preferences.dart';
 import 'package:agendacultural/app/modules/logged/features/profile/sub_module/accessibility/presenter/handler/accessibility_state_handler.dart';
 
@@ -98,9 +98,9 @@ class _ProfileAccessibilityPageState extends State<ProfileAccessibilityPage> {
                       Semantics(
                         label:
                             _handler.store.statusAltoContraste ? 'Desativar alto contraste' : 'Ativar alto contraste',
-                        child: widgetBotaoSwitch(
+                        child: ButtonSwitch(
                           value: _handler.store.statusAltoContraste,
-                          function: (value) => _handler.store.setStatusAltoContraste(value),
+                          onChanged: (value) => _handler.store.setStatusAltoContraste(value),
                         ),
                       )
                     ],

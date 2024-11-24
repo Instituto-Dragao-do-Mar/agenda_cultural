@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:agendacultural/app/common/utils/orders.dart';
 import 'package:agendacultural/app/common/router/router.dart';
 import 'package:agendacultural/app/core/app_store/app_store.dart';
+import 'package:agendacultural/app/common/widgets/notify_pop_up.dart';
 import 'package:agendacultural/app/modules/splash/domain/controller/event_controller.dart';
 import 'package:agendacultural/app/modules/logged/features/favorites/presenter/store/favorite_store.dart';
 
@@ -33,10 +33,10 @@ class FavoritePageStateHandler {
         const Duration(seconds: 0),
         () async => notifyPopUpWidget(
           context: context,
-          permitirFechar: true,
-          textDescritivo: AppLocalizations.of(context)!.e_alert_favorite_page,
-          textBotao: AppLocalizations.of(context)!.profile_general_alert_accept,
-          funcaoBotao: () => Modular.to.navigate(RouterApp.auth),
+          enablePop: true,
+          description: AppLocalizations.of(context)!.e_alert_favorite_page,
+          labelButton: AppLocalizations.of(context)!.profile_general_alert_accept,
+          functionButton: () => Modular.to.navigate(RouterApp.auth),
         ),
       );
       _store.setIsLoading(false);

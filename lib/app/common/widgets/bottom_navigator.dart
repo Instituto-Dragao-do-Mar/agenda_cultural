@@ -1,23 +1,23 @@
-import 'package:agendacultural/app/core/htpp_client/http_client.dart';
-import 'package:agendacultural/app/common/utils/theme/themes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:agendacultural/app/common/utils/theme/themes.dart';
+import 'package:agendacultural/app/core/htpp_client/http_client.dart';
 
-class WidgetBottomNavigator extends StatefulWidget {
-  const WidgetBottomNavigator({
-    Key? key,
-    this.replacePage,
-  }) : super(key: key);
-
+class BottomNavigator extends StatefulWidget {
   final num? replacePage;
 
+  const BottomNavigator({
+    super.key,
+    this.replacePage,
+  });
+
   @override
-  State<WidgetBottomNavigator> createState() => _WidgetBottomNavigatorState();
+  State<BottomNavigator> createState() => _BottomNavigatorState();
 }
 
-class _WidgetBottomNavigatorState extends State<WidgetBottomNavigator> {
+class _BottomNavigatorState extends State<BottomNavigator> {
   @override
   Widget build(BuildContext context) {
     HttpClient baseController = Provider.of<HttpClient>(context);

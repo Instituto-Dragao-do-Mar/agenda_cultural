@@ -30,14 +30,10 @@ class ButtonDefault extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool negativo = negative ?? false;
+    bool negativeButton = negative ?? false;
 
     return GestureDetector(
-      onTap: () {
-        if (function != null) {
-          function!();
-        }
-      },
+      onTap: function,
       child: Semantics(
         container: true,
         child: Container(
@@ -46,18 +42,18 @@ class ButtonDefault extends StatelessWidget {
           margin: margin ?? const EdgeInsets.all(0),
           padding: padding ?? const EdgeInsets.all(0),
           decoration: BoxDecoration(
-            gradient: !negativo ? gradientPrincipal : null,
+            gradient: !negativeButton ? gradientPrincipal : null,
             borderRadius: BorderRadius.all(Radius.circular(border ?? 5)),
-            border: negativo ? Border.all(color: corBackgroundLaranja, width: 3) : null,
+            border: negativeButton ? Border.all(color: corBackgroundLaranja, width: 3) : null,
           ),
           child: Center(
             child: child ??
                 Text(
-                  semanticsLabel: 'Botão $text',
-                  text ?? '?',
+                  semanticsLabel: text,
+                  text ?? '',
                   style: GoogleFonts.roboto(
                     fontSize: 24,
-                    color: textColor ?? (negativo ? corBackgroundLaranja : corBg),
+                    color: textColor ?? (negativeButton ? corBackgroundLaranja : corBg),
                   ),
                 ),
           ),

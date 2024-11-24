@@ -1,4 +1,0 @@
-extension Format on String {
-
-
-}

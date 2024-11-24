@@ -2,71 +2,56 @@ import 'package:flutter/material.dart';
 import 'package:group_button/group_button.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/model/app_model.dart';
-import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:agendacultural/app/common/utils/tradutors.dart';
 import 'package:agendacultural/app/common/utils/theme/fonts.dart';
 
-class FiltroAcessibilidadeWidget extends StatefulWidget {
-  const FiltroAcessibilidadeWidget({
+class FilterCategoryWidget extends StatefulWidget {
+  const FilterCategoryWidget({
     super.key,
     required this.app,
     required this.options,
-    required this.tedAcessibilidade,
+    required this.tedCategoria,
   });
 
   final AppModel app;
   final GroupButtonOptions options;
-  final TextEditingController tedAcessibilidade;
+  final TextEditingController tedCategoria;
 
   @override
-  State<FiltroAcessibilidadeWidget> createState() =>
-      _FiltroAcessibilidadeWidgetState();
+  State<FilterCategoryWidget> createState() => _FilterCategoryWidgetState();
 }
 
-class _FiltroAcessibilidadeWidgetState
-    extends State<FiltroAcessibilidadeWidget> {
+class _FilterCategoryWidgetState extends State<FilterCategoryWidget> {
   late List<String> opcoes;
-  List<String> acessibTrad = [];
+  List<String> categTrad = [];
   bool jaInicializado = false;
-  bool expandido = false;
+  late bool expandido;
   GroupButtonController controller = GroupButtonController();
 
   @override
   void initState() {
     super.initState();
+    expandido = false;
     processaOpcoes();
   }
 
   void processaOpcoes() {
-    opcoes = [];
-    // if (widget.app.listaEspacos.espacos != null &&
-    //     widget.app.listaEspacos.espacos!.isNotEmpty) {
-    //   for (Espaco e in widget.app.listaEspacos.espacos!) {
-    //     if (e.acessibilidadeFisica != null &&
-    //         e.acessibilidadeFisica!.isNotEmpty) {
-    //       for (String s in e.acessibilidadeFisica!.split(';')) {
-    //         if (!opcoes.any((element) => element == s)) {
-    //           opcoes.add(s);
-    //         }
-    //       }
-    //     }
-    //   }
-    // }
+    // opcoes = widget.app.listaCategoria.categorias!.map((e) => e.nome!).toList();
   }
 
   void traduzOpcoes() {
-    for (String acessibilidade in opcoes) {
-      String acessTrad = getNomeAcessib(acessibilidade, context);
-      acessibTrad.add(acessTrad);
+    for (String categoria in opcoes) {
+      String categoriaTrad = getNomeCategoria(categoria, context);
+      categTrad.add(categoriaTrad);
     }
     if (!expandido) {
-      if (acessibTrad.length > 4) {
-        acessibTrad.removeRange(3, acessibTrad.length);
-        acessibTrad.add('Ver mais');
+      if (categTrad.length > 4) {
+        categTrad.removeRange(3, categTrad.length);
+        categTrad.add('Ver mais');
       }
     } else {
-      acessibTrad.removeRange(0, 4);
-      acessibTrad.add('Ver menos');
+      categTrad.removeRange(0, 4);
+      categTrad.add('Ver menos');
     }
   }
 
@@ -85,12 +70,12 @@ class _FiltroAcessibilidadeWidgetState
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const widgetEspacoH(altura: 16),
+        const SizedBox(height: 16),
         Text(
-          AppLocalizations.of(context)!.e_accessibility,
+          AppLocalizations.of(context)!.e_category,
           style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
         ),
-        const widgetEspacoH(altura: 5),
+        const SizedBox(height: 5),
         GroupButton(
           options: widget.options,
           isRadio: true,
@@ -101,7 +86,7 @@ class _FiltroAcessibilidadeWidgetState
               processaOpcoes();
               traduzOpcoes();
               controller.unselectAll();
-              setState(() {}); 
+              setState(() {});
             } else if (str == 'Ver menos') {
               expandido = false;
               processaOpcoes();
@@ -109,13 +94,13 @@ class _FiltroAcessibilidadeWidgetState
               controller.unselectAll();
               setState(() {});
             } else {
-              widget.tedAcessibilidade.text = str;
+              widget.tedCategoria.text = str;
             }
             if (isSelected) {
               return index;
             }
           },
-          buttons: acessibTrad,
+          buttons: categTrad,
         ),
       ],
     );

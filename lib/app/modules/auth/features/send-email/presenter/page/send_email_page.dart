@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/shared/button_default.dart';
-import 'package:agendacultural/shared/text_contrast_font.dart';
 import 'package:agendacultural/app/common/utils/theme/fonts.dart';
 import 'package:agendacultural/app/common/utils/theme/themes.dart';
+import 'package:agendacultural/app/common/widgets/button_default.dart';
+import 'package:agendacultural/app/common/widgets/text_contrast_font.dart';
 import 'package:agendacultural/app/modules/auth/features/send-email/presenter/page/widgets/send_email_app_bar.dart';
 import 'package:agendacultural/app/modules/auth/features/send-email/presenter/handler/send_email_state_handler.dart';
 

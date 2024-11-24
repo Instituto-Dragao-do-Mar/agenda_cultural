@@ -26,71 +26,17 @@ class EditPopup {
 
 typedef MyFunction = Future<bool> Function();
 
-Future<void> showPopupDialog({
-  BuildContext? context,
-  List<EditPopup>? edits,
-  MyFunction? funcaoBtnOk,
-  String? titulo,
-}) {
-  return showDialog<void>(
-    context: context!,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: Text(titulo ?? "Informe os parâmetros"),
-        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
-        content: SizedBox(
-          height: (edits!.length * 32) + 120.0,
-          width: 300,
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: edits.map(
-              (e) {
-                return Column(
-                  children: [
-                    Row(
-                      children: [
-                        Expanded(flex: 3, child: _getField(context, e)),
-                      ],
-                    ),
-                    const SizedBox(height: 8),
-                  ],
-                );
-              },
-            ).toList(),
-          ),
-        ),
-        actions: <Widget>[
-          TextButton(
-            child: const Text('OK'),
-            onPressed: () async {
-              if (funcaoBtnOk != null) {
-                bool retorno = await funcaoBtnOk();
-                if (retorno) {
-                  Navigator.of(context).pop();
-                }
-              } else {
-                Navigator.of(context).pop();
-              }
-            },
-          ),
-        ],
-      );
-    },
-  );
-}
-
 Future<void> showFuturePopupDialog({
   BuildContext? context,
   List<EditPopup>? edits,
-  MyFunction? funcaoBtnOk,
-  String? titulo,
+  MyFunction? functionButton,
+  String? label,
 }) async {
   await showDialog<void>(
     context: context!,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text(titulo ?? "Informe os parâmetros"),
+        title: Text(label ?? "Informe os parâmetros"),
         shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
         content: SizedBox(
           height: (edits!.length * 32) + 120.0,
@@ -116,8 +62,8 @@ Future<void> showFuturePopupDialog({
           TextButton(
             child: Text(AppLocalizations.of(context)!.e_alert_send),
             onPressed: () async {
-              if (funcaoBtnOk != null) {
-                bool retorno = await funcaoBtnOk();
+              if (functionButton != null) {
+                bool retorno = await functionButton();
                 if (retorno) {
                   Navigator.of(context).pop();
                 }

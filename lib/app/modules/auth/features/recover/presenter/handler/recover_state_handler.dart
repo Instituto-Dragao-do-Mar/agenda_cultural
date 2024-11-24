@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:agendacultural/app/common/router/router.dart';
 import 'package:agendacultural/app/core/app_store/app_store.dart';
+import 'package:agendacultural/app/common/widgets/notify_pop_up.dart';
 import 'package:agendacultural/app/modules/auth/domain/controller/user_controller.dart';
 import 'package:agendacultural/app/modules/auth/features/recover/presenter/store/recover_store.dart';
 
@@ -26,7 +26,7 @@ class RecoverPageStateHandler {
     if (_store.password.characters.isEmpty || _store.confirmPassword.characters.isEmpty) {
       notifyPopUpWidget(
         context: context,
-        textDescritivo: 'Os campos precisam ser preenchidos.',
+        description: 'Os campos precisam ser preenchidos.',
       );
       _store.setIsLoading(false);
       return;
@@ -35,7 +35,7 @@ class RecoverPageStateHandler {
     if (_store.rulesMatch != 4) {
       notifyPopUpWidget(
         context: context,
-        textDescritivo: 'Senha fraca.',
+        description: 'Senha fraca.',
       );
       _store.setIsLoading(false);
       return;
@@ -44,7 +44,7 @@ class RecoverPageStateHandler {
     if (_store.password != _store.confirmPassword) {
       notifyPopUpWidget(
         context: context,
-        textDescritivo: 'Senhas não coincidem.',
+        description: 'Senhas não coincidem.',
       );
       _store.setIsLoading(false);
       return;
@@ -57,7 +57,7 @@ class RecoverPageStateHandler {
 
     if (errorMessage != '') {
       if (!mounted) return;
-      notifyPopUpWidget(context: context, textDescritivo: errorMessage);
+      notifyPopUpWidget(context: context, description: errorMessage);
       _store.setIsLoading(false);
       return;
     }
@@ -65,11 +65,11 @@ class RecoverPageStateHandler {
     if (!mounted) return;
     notifyPopUpWidget(
       context: context,
-      textChamativo: 'Senha alterada!',
-      textDescritivo: 'Clique no botão abaixo para prosseguir para o login.',
-      textBotao: 'Entrar',
-      erro: false,
-      funcaoBotao: () => Modular.to.navigate(RouterApp.auth),
+      labelPrincipal: 'Senha alterada!',
+      description: 'Clique no botão abaixo para prosseguir para o login.',
+      labelButton: 'Entrar',
+      error: false,
+      functionButton: () => Modular.to.navigate(RouterApp.auth),
     );
     _store.setIsLoading(false);
     return;

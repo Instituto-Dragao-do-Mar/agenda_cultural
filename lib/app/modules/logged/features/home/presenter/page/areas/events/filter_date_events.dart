@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:menu_button/menu_button.dart';
-import 'package:agendacultural/shared/text_contrast_font.dart';
 import 'package:agendacultural/app/common/utils/theme/themes.dart';
+import 'package:agendacultural/app/common/widgets/text_contrast_font.dart';
 import 'package:agendacultural/app/modules/logged/features/home/domain/enum/filter_date.dart';
 
 class FilterDateWidget extends StatelessWidget {

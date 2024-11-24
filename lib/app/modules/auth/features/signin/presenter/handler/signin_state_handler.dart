@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:agendacultural/app/common/router/router.dart';
 import 'package:agendacultural/app/core/app_store/app_store.dart';
+import 'package:agendacultural/app/common/widgets/notify_pop_up.dart';
 import 'package:agendacultural/app/modules/auth/domain/adapters/user.dart';
 import 'package:agendacultural/app/modules/auth/domain/controller/user_controller.dart';
 import 'package:agendacultural/app/modules/auth/features/signin/presenter/store/signin_store.dart';
@@ -29,7 +29,7 @@ class SigninPageStateHandler {
       if (!mounted) return;
       notifyPopUpWidget(
         context: context,
-        textDescritivo: AppLocalizations.of(context)!.login_notify_invalid,
+        description: AppLocalizations.of(context)!.login_notify_invalid,
       );
       _store.setIsLoading(false);
       return;
@@ -48,9 +48,9 @@ class SigninPageStateHandler {
       if (!mounted) return;
       notifyPopUpWidget(
         context: context,
-        textDescritivo: AppLocalizations.of(context)!.login_notify_reset,
-        textBotao: AppLocalizations.of(context)!.login_notify_reset_button,
-        funcaoBotao: () => Modular.to.pushNamed(RouterApp.auth + RouterApp.recover),
+        description: AppLocalizations.of(context)!.login_notify_reset,
+        labelButton: AppLocalizations.of(context)!.login_notify_reset_button,
+        functionButton: () => Modular.to.pushNamed(RouterApp.auth + RouterApp.recover),
       );
       _appStore.setUser(User(email: _store.email));
       _store.setIsLoading(false);
@@ -70,7 +70,7 @@ class SigninPageStateHandler {
       if (!mounted) return;
       notifyPopUpWidget(
         context: context,
-        textDescritivo: AppLocalizations.of(context)!.login_notify_data_invalid,
+        description: AppLocalizations.of(context)!.login_notify_data_invalid,
       );
       _store.setIsLoading(false);
     }

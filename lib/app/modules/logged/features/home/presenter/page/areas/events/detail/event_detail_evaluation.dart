@@ -1,19 +1,17 @@
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/shared/widgetpopup.dart';
-import 'package:agendacultural/shared/widgetimagem.dart';
-import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:agendacultural/app/common/router/router.dart';
-import 'package:agendacultural/shared/text_contrast_font.dart';
 import 'package:agendacultural/app/common/utils/theme/fonts.dart';
+import 'package:agendacultural/app/common/widgets/edit_popup.dart';
 import 'package:agendacultural/app/common/utils/theme/colors.dart';
 import 'package:agendacultural/app/common/utils/theme/themes.dart';
+import 'package:agendacultural/app/common/widgets/notify_pop_up.dart';
+import 'package:agendacultural/app/common/widgets/text_contrast_font.dart';
 import 'package:agendacultural/app/modules/auth/domain/adapters/user.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
-import 'package:agendacultural/shared/extensions/ex_compare_date_strings_in_days.dart';
-import 'package:agendacultural/app/modules/logged/features/home/domain/enum/image_ent.dart';
 import 'package:agendacultural/app/modules/logged/features/home/domain/adapter/user_evaluation.dart';
 import 'package:agendacultural/app/modules/logged/features/home/domain/controller/user_evaluation_controller.dart';
 
@@ -110,9 +108,9 @@ class _EventDetailEvaluationWidgetState extends State<EventDetailEvaluationWidge
     );
   }
 
-  // Verifica se a data é hoje
+// Verifica se a data é hoje
   bool _isToday(String date) {
-    return date.formatDate(format: 'yyyy-MM-dd') == DateTime.now().toIso8601String().formatDate(format: 'yyyy-MM-dd');
+    return _formatDate('yyyy-MM-dd', date) == _formatDate('yyyy-MM-dd', DateTime.now().toIso8601String());
   }
 
   // Constrói uma opção de avaliação
@@ -123,8 +121,8 @@ class _EventDetailEvaluationWidgetState extends State<EventDetailEvaluationWidge
         onTap: () async => _confirmEvaluation(value),
         child: Column(
           children: [
-            widgetImagemInterna(
-              imagem: ImageEnt(url: _getIconUrl(value, iconName)),
+            Image.asset(
+              'imagens/${_getIconUrl(value, iconName)}',
               width: 50,
               height: 50,
               fit: BoxFit.contain,
@@ -169,10 +167,10 @@ class _EventDetailEvaluationWidgetState extends State<EventDetailEvaluationWidge
   void _showLoginAlert() {
     notifyPopUpWidget(
       context: context,
-      textDescritivo: AppLocalizations.of(context)!.e_alert_events,
-      textBotao: AppLocalizations.of(context)!.profile_general_alert_accept,
-      permitirFechar: true,
-      funcaoBotao: () => Modular.to.navigate(RouterApp.auth),
+      description: AppLocalizations.of(context)!.e_alert_events,
+      labelButton: AppLocalizations.of(context)!.profile_general_alert_accept,
+      enablePop: true,
+      functionButton: () => Modular.to.navigate(RouterApp.auth),
     );
   }
 
@@ -191,14 +189,14 @@ class _EventDetailEvaluationWidgetState extends State<EventDetailEvaluationWidge
           titulo: AppLocalizations.of(context)!.e_alert_coments_title,
         ),
       ],
-      funcaoBtnOk: () async {
+      functionButton: () async {
         if (controller.text.isNotEmpty) {
           comentario = controller.text;
           return true;
         }
         return false;
       },
-      titulo: AppLocalizations.of(context)!.e_alert_coments_title_two,
+      label: AppLocalizations.of(context)!.e_alert_coments_title_two,
     );
 
     return comentario;
@@ -239,5 +237,13 @@ class _EventDetailEvaluationWidgetState extends State<EventDetailEvaluationWidge
   /// Exibe um widget de erro
   Widget _buildErrorWidget() {
     return const Text('Erro ao carregar avaliação do evento!');
+  }
+
+  String _formatDate(String format, String date) {
+    if (format.isEmpty || date.isEmpty) return '';
+
+    final dateFormat = DateFormat(format, 'pt_BR');
+
+    return dateFormat.format(DateTime.parse(date));
   }
 }

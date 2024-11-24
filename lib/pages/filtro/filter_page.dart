@@ -3,26 +3,25 @@ import 'package:provider/provider.dart';
 import 'package:group_button/group_button.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/model/app_model.dart';
-import 'package:agendacultural/shared/widgetespacoh.dart';
-import 'package:agendacultural/shared/widgetbottombotao.dart';
+import 'package:agendacultural/pages/home/app_bar_common.dart';
 import 'package:agendacultural/app/common/utils/theme/fonts.dart';
 import 'package:agendacultural/app/common/utils/theme/themes.dart';
-import 'package:agendacultural/pages/home/general/widgettopocomum.dart';
-import 'package:agendacultural/pages/filtro/widgets/widgetfiltroperiodo.dart';
-import 'package:agendacultural/pages/filtro/widgets/widgetfiltroingresso.dart';
-import 'package:agendacultural/pages/filtro/widgets/widgetfiltrocategoria.dart';
-import 'package:agendacultural/pages/filtro/widgets/widgetfiltroacessibilidade.dart';
+import 'package:agendacultural/app/common/widgets/button_big.dart';
+import 'package:agendacultural/pages/filtro/widgets/filter_ticket.dart';
+import 'package:agendacultural/pages/filtro/widgets/filter_periode.dart';
+import 'package:agendacultural/pages/filtro/widgets/filter_category.dart';
+import 'package:agendacultural/pages/filtro/widgets/filter_accessibility.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/general/area_location.dart';
 import 'package:agendacultural/app/modules/logged/features/home/sub_module/my_location/presenter/page/my_location_page.dart';
 
-class FiltroCompletoPage extends StatefulWidget {
-  const FiltroCompletoPage({super.key});
+class FilterPage extends StatefulWidget {
+  const FilterPage({super.key});
 
   @override
-  State<FiltroCompletoPage> createState() => _FiltroCompletoPageState();
+  State<FilterPage> createState() => _FilterPageState();
 }
 
-class _FiltroCompletoPageState extends State<FiltroCompletoPage> {
+class _FilterPageState extends State<FilterPage> {
   late AppModel app;
   int? fonte;
   bool? contraste = false;
@@ -72,14 +71,14 @@ class _FiltroCompletoPageState extends State<FiltroCompletoPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            widgetTopoComum(
-              text: AppLocalizations.of(context)!.home_filter,
-              funcaoImagem1: () async {
+            AppBarCommonWidget(
+              labelGeneral: AppLocalizations.of(context)!.home_filter,
+              functionImage1: () async {
                 Navigator.pop(context);
               },
-              urlImagem1: 'seta.png',
+              urlImage1: 'seta.png',
             ),
-            const widgetEspacoH(altura: 16),
+            const SizedBox(height: 16),
             Expanded(
               child: Scrollbar(
                 controller: scrollController,
@@ -91,8 +90,8 @@ class _FiltroCompletoPageState extends State<FiltroCompletoPage> {
                 ),
               ),
             ),
-            const widgetEspacoH(altura: 16),
-            widgetBottomBotao(
+            const SizedBox(height: 16),
+            ButtonBig(
               function: () {},
               text: AppLocalizations.of(context)!.profile_accessibility_save,
             ),
@@ -117,19 +116,19 @@ class _FiltroCompletoPageState extends State<FiltroCompletoPage> {
             MaterialPageRoute(builder: (context) => const MyLocationPage()),
           ),
         ),
-        const widgetEspacoH(altura: 16),
+        const SizedBox(height: 16),
         // widgetfiltroespaco(
         //   app: app,
         //   options: options,
         //   tedEspaco: app.tedEspaco,
         // ),
         // const widgetEspacoH(altura: 16),
-        widgetfiltroperiodo(
+        FilterPeriodeWidget(
           app: app,
           options: options,
           tedPeriodo: app.tedPeriodo,
         ),
-        FiltroCategoriaWidget(
+        FilterCategoryWidget(
           app: app,
           options: options,
           tedCategoria: app.tedCategoria,
@@ -139,12 +138,12 @@ class _FiltroCompletoPageState extends State<FiltroCompletoPage> {
         //   options: options,
         //   tedClassificacao: app.tedClassificacao,
         // ),
-        FiltroAcessibilidadeWidget(
+        FilterAccessibilityWidget(
           app: app,
           options: options,
           tedAcessibilidade: app.tedAcessibilidade,
         ),
-        widgetfiltroingresso(
+        FilterTicketWidget(
           app: app,
           options: options,
           tedIngresso: app.tedIngresso,

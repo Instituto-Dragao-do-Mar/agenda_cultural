@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:agendacultural/pages/filtro/filter_page.dart';
 import 'package:agendacultural/app/common/router/router.dart';
 import 'package:agendacultural/app/common/utils/theme/themes.dart';
-import 'package:agendacultural/pages/filtro/pagefiltrocompleto.dart';
 import 'package:agendacultural/app/modules/logged/features/home/domain/enum/filter_date.dart';
 import 'package:agendacultural/app/modules/logged/features/home/domain/enum/exhibition_event.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/handler/home_state_handler.dart';
@@ -82,7 +82,7 @@ class _HomePageState extends State<HomePage> {
                   onTapNavigateFilter: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => const FiltroCompletoPage(),
+                      builder: (context) => const FilterPage(),
                     ),
                   ),
                 ),

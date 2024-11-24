@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:agendacultural/shared/extensions/dates.dart';
-import 'package:agendacultural/shared/text_contrast_font.dart';
+import 'package:agendacultural/app/common/utils/dates.dart';
+import 'package:agendacultural/app/common/utils/capitalize.dart';
 import 'package:agendacultural/app/common/utils/theme/fonts.dart';
-import 'package:agendacultural/shared/button_favorite_event.dart';
-import 'package:agendacultural/shared/extensions/capitalize.dart';
 import 'package:agendacultural/app/common/utils/theme/themes.dart';
+import 'package:agendacultural/app/common/widgets/text_contrast_font.dart';
 import 'package:agendacultural/app/modules/auth/domain/adapters/user.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
+import 'package:agendacultural/app/common/widgets/button_favorite_event.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/favorite.dart';
 
 class EventDetailDatesWidget extends StatelessWidget {

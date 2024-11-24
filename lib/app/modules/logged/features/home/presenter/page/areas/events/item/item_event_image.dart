@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:agendacultural/shared/widgetimagem.dart';
-import 'package:agendacultural/shared/widgetimagemexterna.dart';
 import 'package:agendacultural/app/common/utils/theme/fonts.dart';
-import 'package:agendacultural/app/modules/logged/features/home/domain/enum/image_ent.dart';
-import 'package:agendacultural/app/modules/logged/features/home/domain/enum/image_type.dart';
 
 class ItemEventImageWidget extends StatelessWidget {
   final String urlImage;
@@ -22,22 +18,17 @@ class ItemEventImageWidget extends StatelessWidget {
         borderRadius: BorderRadius.vertical(bottom: Radius.circular(0), top: Radius.circular(10)),
       ),
       child: urlImage.contains('https')
-          ? widgetImagemExterna(
-              imagem: ImageEnt(
-                tipoimagem: TipoImagem.url,
-                url: urlImage,
-              ),
+          ? Image.network(
+              urlImage,
               fit: BoxFit.cover,
             )
           : urlImage.contains('http')
               ? Image.network(
                   urlImage,
+                  fit: BoxFit.cover,
                 )
-              : widgetImagemInterna(
-                  imagem: ImageEnt(
-                    tipoimagem: TipoImagem.url,
-                    url: urlImage.replaceFirst('.png', 'padrao.png'),
-                  ),
+              : Image.asset(
+                  'imagens/${urlImage.replaceFirst('.png', 'padrao.png')}',
                   fit: BoxFit.cover,
                 ),
     );

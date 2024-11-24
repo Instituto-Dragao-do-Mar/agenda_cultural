@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/shared/text_contrast_font.dart';
 import 'package:agendacultural/app/common/utils/theme/fonts.dart';
 import 'package:agendacultural/app/common/utils/theme/themes.dart';
+import 'package:agendacultural/app/common/widgets/notify_pop_up.dart';
+import 'package:agendacultural/app/common/widgets/text_contrast_font.dart';
 
 class SpaceDetailMoreInfoWidget extends StatelessWidget {
   final void Function() onTap;
@@ -42,10 +42,10 @@ class SpaceDetailMoreInfoWidget extends StatelessWidget {
                 GestureDetector(
                   onTap: () => notifyPopUpWidget(
                     context: context,
-                    permitirFechar: true,
-                    textDescritivo: AppLocalizations.of(context)!.profile_general_alert,
-                    textBotao: AppLocalizations.of(context)!.profile_general_alert_accept,
-                    funcaoBotao: onTap,
+                    enablePop: true,
+                    description: AppLocalizations.of(context)!.profile_general_alert,
+                    labelButton: AppLocalizations.of(context)!.profile_general_alert_accept,
+                    functionButton: onTap,
                   ),
                   child: TextContrastFont(
                     text: AppLocalizations.of(context)!.e_more_info_scheduling,

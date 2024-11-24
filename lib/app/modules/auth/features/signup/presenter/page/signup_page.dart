@@ -3,11 +3,11 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/shared/notify_pop_up.dart';
-import 'package:agendacultural/shared/button_default.dart';
-import 'package:agendacultural/shared/text_contrast_font.dart';
 import 'package:agendacultural/app/common/utils/theme/fonts.dart';
 import 'package:agendacultural/app/common/utils/theme/themes.dart';
+import 'package:agendacultural/app/common/widgets/notify_pop_up.dart';
+import 'package:agendacultural/app/common/widgets/button_default.dart';
+import 'package:agendacultural/app/common/widgets/text_contrast_font.dart';
 import 'package:agendacultural/app/modules/auth/features/widgets/rules_auth.dart';
 import 'package:agendacultural/app/modules/auth/domain/controller/user_controller.dart';
 import 'package:agendacultural/app/modules/auth/features/widgets/input_email_auth.dart';
@@ -142,6 +142,6 @@ class _SignupPageState extends State<SignupPage> {
   }
 
   void _showNotificationError() {
-    notifyPopUpWidget(context: context, textDescritivo: 'Erro ao abrir o link');
+    notifyPopUpWidget(context: context, description: 'Erro ao abrir o link');
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/shared/text_contrast_font.dart';
+import 'package:agendacultural/app/common/widgets/text_contrast_font.dart';
 import 'package:agendacultural/app/modules/logged/features/schedule/presenter/page/widgets/item_view_days.dart';
 
 class ViewDaysWidget extends StatelessWidget {

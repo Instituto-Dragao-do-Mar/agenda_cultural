@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/shared/notify_pop_up.dart';
 import 'package:agendacultural/app/common/router/router.dart';
 import 'package:agendacultural/app/core/app_store/app_store.dart';
+import 'package:agendacultural/app/common/widgets/notify_pop_up.dart';
 import 'package:agendacultural/app/modules/auth/domain/adapters/user.dart';
 import 'package:agendacultural/app/modules/auth/domain/controller/user_controller.dart';
 import 'package:agendacultural/app/modules/auth/features/signup/presenter/store/signup_store.dart';
@@ -28,7 +28,7 @@ class SignupPageStateHandler {
     if (_store.email.characters.isEmpty || _store.name.characters.isEmpty || _store.password.characters.isEmpty) {
       notifyPopUpWidget(
         context: context,
-        textDescritivo: AppLocalizations.of(context)!.login_notify_empty,
+        description: AppLocalizations.of(context)!.login_notify_empty,
       );
       _store.setIsLoading(false);
       return;
@@ -37,7 +37,7 @@ class SignupPageStateHandler {
     if (!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(_store.email)) {
       notifyPopUpWidget(
         context: context,
-        textDescritivo: AppLocalizations.of(context)!.login_notify_invalid,
+        description: AppLocalizations.of(context)!.login_notify_invalid,
       );
       _store.setIsLoading(false);
       return;
@@ -46,7 +46,7 @@ class SignupPageStateHandler {
     if (_store.rulesMatch != 4) {
       notifyPopUpWidget(
         context: context,
-        textDescritivo: AppLocalizations.of(context)!.registern_notify_weak_password,
+        description: AppLocalizations.of(context)!.registern_notify_weak_password,
       );
       _store.setIsLoading(false);
       return;
@@ -55,7 +55,7 @@ class SignupPageStateHandler {
     if (_store.password != _store.confirmPassword) {
       notifyPopUpWidget(
         context: context,
-        textDescritivo: AppLocalizations.of(context)!.register_notify_different_passwords,
+        description: AppLocalizations.of(context)!.register_notify_different_passwords,
       );
       _store.setIsLoading(false);
       return;
@@ -64,7 +64,7 @@ class SignupPageStateHandler {
     if (!_store.isChecked) {
       notifyPopUpWidget(
         context: context,
-        textDescritivo: AppLocalizations.of(context)!.register_notify_accept_terms,
+        description: AppLocalizations.of(context)!.register_notify_accept_terms,
       );
       _store.setIsLoading(false);
       return;
@@ -78,7 +78,7 @@ class SignupPageStateHandler {
 
     if (errorMessage != '') {
       if (!mounted) return;
-      notifyPopUpWidget(context: context, textDescritivo: errorMessage ?? '');
+      notifyPopUpWidget(context: context, description: errorMessage ?? '');
       _store.setIsLoading(false);
       return;
     }
@@ -86,11 +86,11 @@ class SignupPageStateHandler {
     if (!mounted) return;
     notifyPopUpWidget(
       context: context,
-      textChamativo: AppLocalizations.of(context)!.register_notify_register_conclude,
-      textDescritivo: AppLocalizations.of(context)!.register_notify_register_conclude_text,
-      textBotao: AppLocalizations.of(context)!.int_button_enter,
-      erro: false,
-      funcaoBotao: () async {
+      labelPrincipal: AppLocalizations.of(context)!.register_notify_register_conclude,
+      description: AppLocalizations.of(context)!.register_notify_register_conclude_text,
+      labelButton: AppLocalizations.of(context)!.int_button_enter,
+      error: false,
+      functionButton: () async {
         User user = await userController.login(
           email: _store.email,
           senha: _store.password,
