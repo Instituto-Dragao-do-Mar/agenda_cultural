@@ -104,6 +104,22 @@ mixin _$AppStore on AppStoreBase, Store {
     });
   }
 
+  late final _$eventsFilteredAtom =
+      Atom(name: 'AppStoreBase.eventsFiltered', context: context);
+
+  @override
+  List<Event> get eventsFiltered {
+    _$eventsFilteredAtom.reportRead();
+    return super.eventsFiltered;
+  }
+
+  @override
+  set eventsFiltered(List<Event> value) {
+    _$eventsFilteredAtom.reportWrite(value, super.eventsFiltered, () {
+      super.eventsFiltered = value;
+    });
+  }
+
   late final _$spacesAtom = Atom(name: 'AppStoreBase.spaces', context: context);
 
   @override
@@ -132,6 +148,123 @@ mixin _$AppStore on AppStoreBase, Store {
   set favorites(List<Favorite> value) {
     _$favoritesAtom.reportWrite(value, super.favorites, () {
       super.favorites = value;
+    });
+  }
+
+  late final _$isFilterOpenAtom =
+      Atom(name: 'AppStoreBase.isFilterOpen', context: context);
+
+  @override
+  bool get isFilterOpen {
+    _$isFilterOpenAtom.reportRead();
+    return super.isFilterOpen;
+  }
+
+  @override
+  set isFilterOpen(bool value) {
+    _$isFilterOpenAtom.reportWrite(value, super.isFilterOpen, () {
+      super.isFilterOpen = value;
+    });
+  }
+
+  late final _$optionSelectedSpaceAtom =
+      Atom(name: 'AppStoreBase.optionSelectedSpace', context: context);
+
+  @override
+  String get optionSelectedSpace {
+    _$optionSelectedSpaceAtom.reportRead();
+    return super.optionSelectedSpace;
+  }
+
+  @override
+  set optionSelectedSpace(String value) {
+    _$optionSelectedSpaceAtom.reportWrite(value, super.optionSelectedSpace, () {
+      super.optionSelectedSpace = value;
+    });
+  }
+
+  late final _$optionSelectedPeriodeAtom =
+      Atom(name: 'AppStoreBase.optionSelectedPeriode', context: context);
+
+  @override
+  String get optionSelectedPeriode {
+    _$optionSelectedPeriodeAtom.reportRead();
+    return super.optionSelectedPeriode;
+  }
+
+  @override
+  set optionSelectedPeriode(String value) {
+    _$optionSelectedPeriodeAtom.reportWrite(value, super.optionSelectedPeriode,
+        () {
+      super.optionSelectedPeriode = value;
+    });
+  }
+
+  late final _$optionSelectedCategoryAtom =
+      Atom(name: 'AppStoreBase.optionSelectedCategory', context: context);
+
+  @override
+  String get optionSelectedCategory {
+    _$optionSelectedCategoryAtom.reportRead();
+    return super.optionSelectedCategory;
+  }
+
+  @override
+  set optionSelectedCategory(String value) {
+    _$optionSelectedCategoryAtom
+        .reportWrite(value, super.optionSelectedCategory, () {
+      super.optionSelectedCategory = value;
+    });
+  }
+
+  late final _$optionSelectedClassificationAtom =
+      Atom(name: 'AppStoreBase.optionSelectedClassification', context: context);
+
+  @override
+  String get optionSelectedClassification {
+    _$optionSelectedClassificationAtom.reportRead();
+    return super.optionSelectedClassification;
+  }
+
+  @override
+  set optionSelectedClassification(String value) {
+    _$optionSelectedClassificationAtom
+        .reportWrite(value, super.optionSelectedClassification, () {
+      super.optionSelectedClassification = value;
+    });
+  }
+
+  late final _$optionSelectedAccessibilityAtom =
+      Atom(name: 'AppStoreBase.optionSelectedAccessibility', context: context);
+
+  @override
+  String get optionSelectedAccessibility {
+    _$optionSelectedAccessibilityAtom.reportRead();
+    return super.optionSelectedAccessibility;
+  }
+
+  @override
+  set optionSelectedAccessibility(String value) {
+    _$optionSelectedAccessibilityAtom
+        .reportWrite(value, super.optionSelectedAccessibility, () {
+      super.optionSelectedAccessibility = value;
+    });
+  }
+
+  late final _$optionSelectedTicketAtom =
+      Atom(name: 'AppStoreBase.optionSelectedTicket', context: context);
+
+  @override
+  String get optionSelectedTicket {
+    _$optionSelectedTicketAtom.reportRead();
+    return super.optionSelectedTicket;
+  }
+
+  @override
+  set optionSelectedTicket(String value) {
+    _$optionSelectedTicketAtom.reportWrite(value, super.optionSelectedTicket,
+        () {
+      super.optionSelectedTicket = value;
     });
   }
 
@@ -216,6 +349,17 @@ mixin _$AppStore on AppStoreBase, Store {
   }
 
   @override
+  void setEventsFiltered(List<Event> value) {
+    final _$actionInfo = _$AppStoreBaseActionController.startAction(
+        name: 'AppStoreBase.setEventsFiltered');
+    try {
+      return super.setEventsFiltered(value);
+    } finally {
+      _$AppStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void setSpaces(List<Space> value) {
     final _$actionInfo = _$AppStoreBaseActionController.startAction(
         name: 'AppStoreBase.setSpaces');
@@ -238,6 +382,83 @@ mixin _$AppStore on AppStoreBase, Store {
   }
 
   @override
+  void setIsFilterOpen(bool value) {
+    final _$actionInfo = _$AppStoreBaseActionController.startAction(
+        name: 'AppStoreBase.setIsFilterOpen');
+    try {
+      return super.setIsFilterOpen(value);
+    } finally {
+      _$AppStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setOptionSelectedSpace(String value) {
+    final _$actionInfo = _$AppStoreBaseActionController.startAction(
+        name: 'AppStoreBase.setOptionSelectedSpace');
+    try {
+      return super.setOptionSelectedSpace(value);
+    } finally {
+      _$AppStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setOptionSelectedPeriode(String value) {
+    final _$actionInfo = _$AppStoreBaseActionController.startAction(
+        name: 'AppStoreBase.setOptionSelectedPeriode');
+    try {
+      return super.setOptionSelectedPeriode(value);
+    } finally {
+      _$AppStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setOptionSelectedCategory(String value) {
+    final _$actionInfo = _$AppStoreBaseActionController.startAction(
+        name: 'AppStoreBase.setOptionSelectedCategory');
+    try {
+      return super.setOptionSelectedCategory(value);
+    } finally {
+      _$AppStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setOptionSelectedClassification(String value) {
+    final _$actionInfo = _$AppStoreBaseActionController.startAction(
+        name: 'AppStoreBase.setOptionSelectedClassification');
+    try {
+      return super.setOptionSelectedClassification(value);
+    } finally {
+      _$AppStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setOptionSelectedAccessibility(String value) {
+    final _$actionInfo = _$AppStoreBaseActionController.startAction(
+        name: 'AppStoreBase.setOptionSelectedAccessibility');
+    try {
+      return super.setOptionSelectedAccessibility(value);
+    } finally {
+      _$AppStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setOptionSelectedTicket(String value) {
+    final _$actionInfo = _$AppStoreBaseActionController.startAction(
+        name: 'AppStoreBase.setOptionSelectedTicket');
+    try {
+      return super.setOptionSelectedTicket(value);
+    } finally {
+      _$AppStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 userLogged: ${userLogged},
@@ -246,8 +467,16 @@ currentScreen: ${currentScreen},
 screens: ${screens},
 categories: ${categories},
 events: ${events},
+eventsFiltered: ${eventsFiltered},
 spaces: ${spaces},
-favorites: ${favorites}
+favorites: ${favorites},
+isFilterOpen: ${isFilterOpen},
+optionSelectedSpace: ${optionSelectedSpace},
+optionSelectedPeriode: ${optionSelectedPeriode},
+optionSelectedCategory: ${optionSelectedCategory},
+optionSelectedClassification: ${optionSelectedClassification},
+optionSelectedAccessibility: ${optionSelectedAccessibility},
+optionSelectedTicket: ${optionSelectedTicket}
     ''';
   }
 }

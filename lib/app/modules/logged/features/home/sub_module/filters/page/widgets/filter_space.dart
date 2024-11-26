@@ -3,44 +3,16 @@ import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/app/common/utils/theme/fonts.dart';
 import 'package:agendacultural/app/common/utils/theme/themes.dart';
-import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
 
-class FilterSpaceWidget extends StatefulWidget {
+class FilterSpaceWidget extends StatelessWidget {
+  final List<String> options;
+  final void Function(String?) onChanged;
+
   const FilterSpaceWidget({
     super.key,
-    required this.tedEspaco,
-    required this.espacos,
+    required this.options,
+    required this.onChanged,
   });
-
-  final TextEditingController tedEspaco;
-  final List<Space> espacos;
-
-  @override
-  State<FilterSpaceWidget> createState() => _FilterSpaceWidgetState();
-}
-
-class _FilterSpaceWidgetState extends State<FilterSpaceWidget> {
-  late List<String> opcoes;
-
-  @override
-  void initState() {
-    super.initState();
-    processaOpcoes();
-  }
-
-  void processaOpcoes() {
-    opcoes = [];
-    for (Space e in widget.espacos) {
-      if (!opcoes.any((element) => element == e.nome)) {
-        opcoes.add(e.nome!);
-      }
-    }
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -100,8 +72,8 @@ class _FilterSpaceWidgetState extends State<FilterSpaceWidget> {
                 contentPadding: const EdgeInsets.all(8),
               ),
             ),
-            items: opcoes,
-            onChanged: (s) {},
+            items: options,
+            onChanged: onChanged,
           ),
         )
       ],

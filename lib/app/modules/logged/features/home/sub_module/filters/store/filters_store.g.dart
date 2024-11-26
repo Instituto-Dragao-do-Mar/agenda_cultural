@@ -41,6 +41,22 @@ mixin _$FiltersStore on FiltersStoreBase, Store {
     });
   }
 
+  late final _$optionsSpacesAtom =
+      Atom(name: 'FiltersStoreBase.optionsSpaces', context: context);
+
+  @override
+  List<String> get optionsSpaces {
+    _$optionsSpacesAtom.reportRead();
+    return super.optionsSpaces;
+  }
+
+  @override
+  set optionsSpaces(List<String> value) {
+    _$optionsSpacesAtom.reportWrite(value, super.optionsSpaces, () {
+      super.optionsSpaces = value;
+    });
+  }
+
   late final _$controllerGroupPeriodeAtom =
       Atom(name: 'FiltersStoreBase.controllerGroupPeriode', context: context);
 
@@ -55,23 +71,6 @@ mixin _$FiltersStore on FiltersStoreBase, Store {
     _$controllerGroupPeriodeAtom
         .reportWrite(value, super.controllerGroupPeriode, () {
       super.controllerGroupPeriode = value;
-    });
-  }
-
-  late final _$optionSelectedPeriodeAtom =
-      Atom(name: 'FiltersStoreBase.optionSelectedPeriode', context: context);
-
-  @override
-  String get optionSelectedPeriode {
-    _$optionSelectedPeriodeAtom.reportRead();
-    return super.optionSelectedPeriode;
-  }
-
-  @override
-  set optionSelectedPeriode(String value) {
-    _$optionSelectedPeriodeAtom.reportWrite(value, super.optionSelectedPeriode,
-        () {
-      super.optionSelectedPeriode = value;
     });
   }
 
@@ -124,23 +123,6 @@ mixin _$FiltersStore on FiltersStoreBase, Store {
     });
   }
 
-  late final _$optionSelectedCategoryAtom =
-      Atom(name: 'FiltersStoreBase.optionSelectedCategory', context: context);
-
-  @override
-  String get optionSelectedCategory {
-    _$optionSelectedCategoryAtom.reportRead();
-    return super.optionSelectedCategory;
-  }
-
-  @override
-  set optionSelectedCategory(String value) {
-    _$optionSelectedCategoryAtom
-        .reportWrite(value, super.optionSelectedCategory, () {
-      super.optionSelectedCategory = value;
-    });
-  }
-
   late final _$controllerGroupClassificationAtom = Atom(
       name: 'FiltersStoreBase.controllerGroupClassification', context: context);
 
@@ -172,23 +154,6 @@ mixin _$FiltersStore on FiltersStoreBase, Store {
     _$optionsClassificationAtom.reportWrite(value, super.optionsClassification,
         () {
       super.optionsClassification = value;
-    });
-  }
-
-  late final _$optionSelectedClassificationAtom = Atom(
-      name: 'FiltersStoreBase.optionSelectedClassification', context: context);
-
-  @override
-  String get optionSelectedClassification {
-    _$optionSelectedClassificationAtom.reportRead();
-    return super.optionSelectedClassification;
-  }
-
-  @override
-  set optionSelectedClassification(String value) {
-    _$optionSelectedClassificationAtom
-        .reportWrite(value, super.optionSelectedClassification, () {
-      super.optionSelectedClassification = value;
     });
   }
 
@@ -243,23 +208,6 @@ mixin _$FiltersStore on FiltersStoreBase, Store {
     });
   }
 
-  late final _$optionSelectedAccessibilityAtom = Atom(
-      name: 'FiltersStoreBase.optionSelectedAccessibility', context: context);
-
-  @override
-  String get optionSelectedAccessibility {
-    _$optionSelectedAccessibilityAtom.reportRead();
-    return super.optionSelectedAccessibility;
-  }
-
-  @override
-  set optionSelectedAccessibility(String value) {
-    _$optionSelectedAccessibilityAtom
-        .reportWrite(value, super.optionSelectedAccessibility, () {
-      super.optionSelectedAccessibility = value;
-    });
-  }
-
   late final _$controllerGroupTicketAtom =
       Atom(name: 'FiltersStoreBase.controllerGroupTicket', context: context);
 
@@ -274,23 +222,6 @@ mixin _$FiltersStore on FiltersStoreBase, Store {
     _$controllerGroupTicketAtom.reportWrite(value, super.controllerGroupTicket,
         () {
       super.controllerGroupTicket = value;
-    });
-  }
-
-  late final _$optionSelectedTicketAtom =
-      Atom(name: 'FiltersStoreBase.optionSelectedTicket', context: context);
-
-  @override
-  String get optionSelectedTicket {
-    _$optionSelectedTicketAtom.reportRead();
-    return super.optionSelectedTicket;
-  }
-
-  @override
-  set optionSelectedTicket(String value) {
-    _$optionSelectedTicketAtom.reportWrite(value, super.optionSelectedTicket,
-        () {
-      super.optionSelectedTicket = value;
     });
   }
 
@@ -309,11 +240,11 @@ mixin _$FiltersStore on FiltersStoreBase, Store {
   }
 
   @override
-  void setOptionSelectedPeriode(String value) {
+  void setOptionsSpaces(List<String> value) {
     final _$actionInfo = _$FiltersStoreBaseActionController.startAction(
-        name: 'FiltersStoreBase.setOptionSelectedPeriode');
+        name: 'FiltersStoreBase.setOptionsSpaces');
     try {
-      return super.setOptionSelectedPeriode(value);
+      return super.setOptionsSpaces(value);
     } finally {
       _$FiltersStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -342,33 +273,11 @@ mixin _$FiltersStore on FiltersStoreBase, Store {
   }
 
   @override
-  void setOptionSelectedCategory(String value) {
-    final _$actionInfo = _$FiltersStoreBaseActionController.startAction(
-        name: 'FiltersStoreBase.setOptionSelectedCategory');
-    try {
-      return super.setOptionSelectedCategory(value);
-    } finally {
-      _$FiltersStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   void setOptionsClassification(List<String> value) {
     final _$actionInfo = _$FiltersStoreBaseActionController.startAction(
         name: 'FiltersStoreBase.setOptionsClassification');
     try {
       return super.setOptionsClassification(value);
-    } finally {
-      _$FiltersStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void setOptionSelectedClassification(String value) {
-    final _$actionInfo = _$FiltersStoreBaseActionController.startAction(
-        name: 'FiltersStoreBase.setOptionSelectedClassification');
-    try {
-      return super.setOptionSelectedClassification(value);
     } finally {
       _$FiltersStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -397,28 +306,6 @@ mixin _$FiltersStore on FiltersStoreBase, Store {
   }
 
   @override
-  void setOptionSelectedAccessibility(String value) {
-    final _$actionInfo = _$FiltersStoreBaseActionController.startAction(
-        name: 'FiltersStoreBase.setOptionSelectedAccessibility');
-    try {
-      return super.setOptionSelectedAccessibility(value);
-    } finally {
-      _$FiltersStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void setOptionSelectedTicket(String value) {
-    final _$actionInfo = _$FiltersStoreBaseActionController.startAction(
-        name: 'FiltersStoreBase.setOptionSelectedTicket');
-    try {
-      return super.setOptionSelectedTicket(value);
-    } finally {
-      _$FiltersStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   void dispose() {
     final _$actionInfo = _$FiltersStoreBaseActionController.startAction(
         name: 'FiltersStoreBase.dispose');
@@ -434,21 +321,17 @@ mixin _$FiltersStore on FiltersStoreBase, Store {
     return '''
 isLoading: ${isLoading},
 scrollController: ${scrollController},
+optionsSpaces: ${optionsSpaces},
 controllerGroupPeriode: ${controllerGroupPeriode},
-optionSelectedPeriode: ${optionSelectedPeriode},
 controllerGroupCategory: ${controllerGroupCategory},
 isExpandedCategory: ${isExpandedCategory},
 optionsCategories: ${optionsCategories},
-optionSelectedCategory: ${optionSelectedCategory},
 controllerGroupClassification: ${controllerGroupClassification},
 optionsClassification: ${optionsClassification},
-optionSelectedClassification: ${optionSelectedClassification},
 controllerGroupAccessibility: ${controllerGroupAccessibility},
 isExpandedAccessibility: ${isExpandedAccessibility},
 optionsAccessibility: ${optionsAccessibility},
-optionSelectedAccessibility: ${optionSelectedAccessibility},
-controllerGroupTicket: ${controllerGroupTicket},
-optionSelectedTicket: ${optionSelectedTicket}
+controllerGroupTicket: ${controllerGroupTicket}
     ''';
   }
 }

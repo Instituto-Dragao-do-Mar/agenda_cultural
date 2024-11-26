@@ -1,6 +1,6 @@
+import 'package:mobx/mobx.dart';
 import 'package:flutter/material.dart';
 import 'package:group_button/group_button.dart';
-import 'package:mobx/mobx.dart';
 
 part 'filters_store.g.dart';
 
@@ -16,16 +16,18 @@ abstract class FiltersStoreBase with Store {
   @observable
   ScrollController scrollController = ScrollController();
 
+  //Spaces
+
+  @observable
+  List<String> optionsSpaces = [];
+
+  @action
+  void setOptionsSpaces(List<String> value) => optionsSpaces = value;
+
   //Periode
 
   @observable
   GroupButtonController controllerGroupPeriode = GroupButtonController();
-
-  @observable
-  String optionSelectedPeriode = '';
-
-  @action
-  void setOptionSelectedPeriode(String value) => optionSelectedPeriode = value;
 
   //Categories
 
@@ -44,12 +46,6 @@ abstract class FiltersStoreBase with Store {
   @action
   void setOptionsCategories(List<String> value) => optionsCategories = value;
 
-  @observable
-  String optionSelectedCategory = '';
-
-  @action
-  void setOptionSelectedCategory(String value) => optionSelectedCategory = value;
-
   //Classification
 
   @observable
@@ -60,12 +56,6 @@ abstract class FiltersStoreBase with Store {
 
   @action
   void setOptionsClassification(List<String> value) => optionsClassification = value;
-
-  @observable
-  String optionSelectedClassification = '';
-
-  @action
-  void setOptionSelectedClassification(String value) => optionSelectedClassification = value;
 
   //Accessibility
 
@@ -84,23 +74,23 @@ abstract class FiltersStoreBase with Store {
   @action
   void setOptionsAccessibility(List<String> value) => optionsAccessibility = value;
 
-  @observable
-  String optionSelectedAccessibility = '';
-
-  @action
-  void setOptionSelectedAccessibility(String value) => optionSelectedAccessibility = value;
-
   //Ticket
 
   @observable
   GroupButtonController controllerGroupTicket = GroupButtonController();
 
-  @observable
-  String optionSelectedTicket = '';
-
   @action
-  void setOptionSelectedTicket(String value) => optionSelectedTicket = value;
-
-  @action
-  void dispose() {}
+  void dispose() {
+    setOptionsSpaces([]);
+    controllerGroupPeriode.unselectAll();
+    controllerGroupCategory.unselectAll();
+    setIsExpandedCategory(false);
+    setOptionsCategories([]);
+    controllerGroupClassification.unselectAll();
+    setOptionsClassification([]);
+    controllerGroupAccessibility.unselectAll();
+    setIsExpandedAccessibility(false);
+    setOptionsAccessibility([]);
+    controllerGroupTicket.unselectAll();
+  }
 }

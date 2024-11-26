@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/app/modules/logged/features/home/sub_module/filters/page/filters_page.dart';
 import 'package:agendacultural/app/common/router/router.dart';
 import 'package:agendacultural/app/common/utils/theme/themes.dart';
 import 'package:agendacultural/app/modules/logged/features/home/domain/enum/filter_date.dart';
@@ -81,10 +80,45 @@ class _HomePageState extends State<HomePage> {
                     }
                   },
                 ),
-                ButtonFilterWidget(
-                  onTapNavigateFilter: () => Modular.to.pushNamed(RouterApp.logged + RouterApp.filters),
+                Container(
+                  margin: const EdgeInsets.only(left: 8),
+                  child: Row(
+                    children: [
+                      if (_handler.appStore.isFilterOpen)
+                        GestureDetector(
+                          onTap: () {
+                            _handler.appStore.setEventsFiltered([]);
+                            _handler.appStore.setIsFilterOpen(false);
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(4),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.1),
+                                  blurRadius: 5,
+                                  offset: const Offset(0, 0),
+                                ),
+                              ],
+                            ),
+                            child: Row(
+                              children: [
+                                Icon(Icons.close, color: corBackgroundLaranja),
+                                const Text('Limpar Filtros'),
+                              ],
+                            ),
+                          ),
+                        ),
+                      const Spacer(),
+                      ButtonFilterWidget(
+                        onTapNavigateFilter: () => Modular.to.pushNamed(RouterApp.logged + RouterApp.filters),
+                      ),
+                    ],
+                  ),
                 ),
-                if (_handler.store.eventsProminenceFiltered.isNotEmpty)
+                if (_handler.store.eventsProminenceFiltered.isNotEmpty && !_handler.appStore.isFilterOpen)
                   AreaEventsWidget(
                     exhibitionEvent: ExhibitionEvent.prominence,
                     title: AppLocalizations.of(context)!.home_emphasis_title,
@@ -102,7 +136,7 @@ class _HomePageState extends State<HomePage> {
                     user: _handler.appStore.userLogged,
                     onConcludeFavorite: _handler.uploadDataFavorites,
                   ),
-                if (_handler.store.eventsDateFiltered.isNotEmpty)
+                if (_handler.store.eventsDateFiltered.isNotEmpty && !_handler.appStore.isFilterOpen)
                   AreaEventsWidget(
                     exhibitionEvent: ExhibitionEvent.date,
                     title: filterDateToString(context, _handler.store.filterDate),
@@ -114,6 +148,17 @@ class _HomePageState extends State<HomePage> {
                       _handler.filterEventsByDate(_handler.store.filterDate, _handler.store.setEventsDateFiltered);
                     },
                     events: _handler.store.eventsDateFiltered,
+                    spaces: _handler.appStore.spaces,
+                    categories: _handler.appStore.categories,
+                    favorites: _handler.appStore.favorites,
+                    user: _handler.appStore.userLogged,
+                    onConcludeFavorite: _handler.uploadDataFavorites,
+                  ),
+                if (_handler.appStore.isFilterOpen)
+                  AreaEventsWidget(
+                    exhibitionEvent: ExhibitionEvent.eventMap,
+                    title: AppLocalizations.of(context)!.schedule_results,
+                    events: _handler.appStore.eventsFiltered,
                     spaces: _handler.appStore.spaces,
                     categories: _handler.appStore.categories,
                     favorites: _handler.appStore.favorites,

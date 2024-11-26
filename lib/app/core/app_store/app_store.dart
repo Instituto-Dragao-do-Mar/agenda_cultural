@@ -59,6 +59,12 @@ abstract class AppStoreBase with Store {
   @action
   void setEvents(List<Event> value) => events = value;
 
+  @observable
+  List<Event> eventsFiltered = [];
+
+  @action
+  void setEventsFiltered(List<Event> value) => eventsFiltered = value;
+
   //Spaces
 
   @observable
@@ -74,4 +80,48 @@ abstract class AppStoreBase with Store {
 
   @action
   void setFavorites(List<Favorite> value) => favorites = value;
+
+  //Filters
+
+  @observable
+  bool isFilterOpen = false;
+
+  @action
+  void setIsFilterOpen(bool value) => isFilterOpen = value;
+
+  @observable
+  String optionSelectedSpace = '';
+
+  @action
+  void setOptionSelectedSpace(String value) => optionSelectedSpace = value;
+
+  @observable
+  String optionSelectedPeriode = '';
+
+  @action
+  void setOptionSelectedPeriode(String value) => optionSelectedPeriode = value;
+
+  @observable
+  String optionSelectedCategory = '';
+
+  @action
+  void setOptionSelectedCategory(String value) => optionSelectedCategory = value;
+
+  @observable
+  String optionSelectedClassification = '';
+
+  @action
+  void setOptionSelectedClassification(String value) => optionSelectedClassification = value;
+
+  @observable
+  String optionSelectedAccessibility = '';
+
+  @action
+  void setOptionSelectedAccessibility(String value) => optionSelectedAccessibility = value;
+
+  @observable
+  String optionSelectedTicket = '';
+
+  @action
+  void setOptionSelectedTicket(String value) => optionSelectedTicket = value;
 }

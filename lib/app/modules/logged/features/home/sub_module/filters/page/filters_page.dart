@@ -1,4 +1,3 @@
-import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -8,7 +7,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/app/common/router/router.dart';
 import 'package:agendacultural/app/common/utils/theme/fonts.dart';
 import 'package:agendacultural/app/common/utils/theme/themes.dart';
-import 'package:agendacultural/app/common/widgets/button_big.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/general/area_location.dart';
 import 'package:agendacultural/app/modules/logged/features/home/sub_module/filters/page/widgets/filter_space.dart';
 import 'package:agendacultural/app/modules/logged/features/home/sub_module/filters/page/widgets/filters_ticket.dart';
@@ -70,8 +69,8 @@ class _FiltersPageState extends State<FiltersPage> {
                         ),
                         const SizedBox(height: 10),
                         FilterSpaceWidget(
-                          espacos: _handler.appStore.spaces,
-                          tedEspaco: TextEditingController(),
+                          options: _handler.store.optionsSpaces,
+                          onChanged: (value) => _handler.appStore.setOptionSelectedSpace(value ?? ''),
                         ),
                         const SizedBox(height: 10),
                         FiltersPeriodeWidget(
@@ -79,11 +78,11 @@ class _FiltersPageState extends State<FiltersPage> {
                           options: const ['Hoje', 'Amanhã', 'Essa Semana', 'Próxima Semana', 'Próximo Mês'],
                           controllerGroupPeriode: _handler.store.controllerGroupPeriode,
                           onSelected: (string, index, isSelected) {
-                            if (string == _handler.store.optionSelectedPeriode) {
-                              _handler.store.setOptionSelectedPeriode('');
+                            if (string == _handler.appStore.optionSelectedPeriode) {
+                              _handler.appStore.setOptionSelectedPeriode('');
                               _handler.store.controllerGroupPeriode.unselectAll();
                             } else {
-                              _handler.store.setOptionSelectedPeriode(string);
+                              _handler.appStore.setOptionSelectedPeriode(string);
                             }
                           },
                         ),
@@ -105,11 +104,11 @@ class _FiltersPageState extends State<FiltersPage> {
                                 [..._handler.appStore.categories.map((e) => e.nome ?? '').toList().take(4), 'Ver mais'],
                               );
                               _handler.store.controllerGroupCategory.unselectAll();
-                            } else if (string == _handler.store.optionSelectedCategory) {
-                              _handler.store.setOptionSelectedCategory('');
+                            } else if (string == _handler.appStore.optionSelectedCategory) {
+                              _handler.appStore.setOptionSelectedCategory('');
                               _handler.store.controllerGroupCategory.unselectAll();
                             } else {
-                              _handler.store.setOptionSelectedCategory(string);
+                              _handler.appStore.setOptionSelectedCategory(string);
                             }
                           },
                         ),
@@ -119,11 +118,11 @@ class _FiltersPageState extends State<FiltersPage> {
                           options: _handler.store.optionsClassification,
                           controllerGroupPeriode: _handler.store.controllerGroupClassification,
                           onSelected: (string, index, isSelected) {
-                            if (string == _handler.store.optionSelectedClassification) {
-                              _handler.store.setOptionSelectedClassification('');
+                            if (string == _handler.appStore.optionSelectedClassification) {
+                              _handler.appStore.setOptionSelectedClassification('');
                               _handler.store.controllerGroupClassification.unselectAll();
                             } else {
-                              _handler.store.setOptionSelectedClassification(string);
+                              _handler.appStore.setOptionSelectedClassification(string);
                             }
                           },
                         ),
@@ -148,11 +147,11 @@ class _FiltersPageState extends State<FiltersPage> {
                               _handler.store.setIsExpandedAccessibility(false);
                               _handler.store.setOptionsAccessibility([...allAccessibilityOptions.take(4), 'Ver mais']);
                               _handler.store.controllerGroupAccessibility.unselectAll();
-                            } else if (string == _handler.store.optionSelectedAccessibility) {
-                              _handler.store.setOptionSelectedAccessibility('');
+                            } else if (string == _handler.appStore.optionSelectedAccessibility) {
+                              _handler.appStore.setOptionSelectedAccessibility('');
                               _handler.store.controllerGroupAccessibility.unselectAll();
                             } else {
-                              _handler.store.setOptionSelectedAccessibility(string);
+                              _handler.appStore.setOptionSelectedAccessibility(string);
                             }
                           },
                         ),
@@ -162,11 +161,11 @@ class _FiltersPageState extends State<FiltersPage> {
                           controllerGroupTicket: _handler.store.controllerGroupTicket,
                           options: const ['Todos', 'Gratuito', 'Pago'],
                           onSelected: (string, index, isSelected) {
-                            if (string == _handler.store.optionSelectedTicket) {
-                              _handler.store.setOptionSelectedTicket('');
+                            if (string == _handler.appStore.optionSelectedTicket) {
+                              _handler.appStore.setOptionSelectedTicket('');
                               _handler.store.controllerGroupTicket.unselectAll();
                             } else {
-                              _handler.store.setOptionSelectedTicket(string);
+                              _handler.appStore.setOptionSelectedTicket(string);
                             }
                           },
                         ),
@@ -179,7 +178,7 @@ class _FiltersPageState extends State<FiltersPage> {
                   height: 65,
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: _handler.apllyFilter,
                     style: ElevatedButton.styleFrom(
                       backgroundColor: corBackgroundLaranja,
                       surfaceTintColor: corBackgroundLaranja,

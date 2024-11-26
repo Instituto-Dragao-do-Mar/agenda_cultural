@@ -57,7 +57,8 @@ class AreaEventsWidget extends StatelessWidget {
           onTap: onTapExpandEvents ?? () {},
           secundaryComponent: exhibitionEvent == ExhibitionEvent.prominence ||
                   exhibitionEvent == ExhibitionEvent.eventMap ||
-                  exhibitionEvent == ExhibitionEvent.eventSchedule
+                  exhibitionEvent == ExhibitionEvent.eventSchedule ||
+                  exhibitionEvent == ExhibitionEvent.eventHome
               ? null
               : FilterDateWidget(
                   filterDateSelected: filterDateSelected ?? FilterDate.thisWeek,
