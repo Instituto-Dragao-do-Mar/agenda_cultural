@@ -9,11 +9,14 @@ import 'package:agendacultural/app/modules/logged/features/home/presenter/store/
 import 'package:agendacultural/app/modules/logged/features/profile/presenter/store/profile_store.dart';
 import 'package:agendacultural/app/modules/logged/features/schedule/presenter/store/schedule_store.dart';
 import 'package:agendacultural/app/modules/logged/features/map/presenter/handler/map_state_handler.dart';
+import 'package:agendacultural/app/modules/logged/features/home/sub_module/filters/page/filters_page.dart';
 import 'package:agendacultural/app/modules/logged/features/favorites/presenter/store/favorite_store.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/handler/home_state_handler.dart';
+import 'package:agendacultural/app/modules/logged/features/home/sub_module/filters/store/filters_store.dart';
 import 'package:agendacultural/app/modules/logged/features/profile/presenter/handler/profile_state_handler.dart';
 import 'package:agendacultural/app/modules/logged/features/schedule/presenter/handler/schedule_state_handler.dart';
 import 'package:agendacultural/app/modules/logged/features/favorites/presenter/handler/favorite_state_handler.dart';
+import 'package:agendacultural/app/modules/logged/features/home/sub_module/filters/handler/filters_state_handler.dart';
 import 'package:agendacultural/app/modules/logged/features/profile/sub_module/language/presenter/page/language_page.dart';
 import 'package:agendacultural/app/modules/logged/features/profile/sub_module/language/presenter/store/language_store.dart';
 import 'package:agendacultural/app/modules/logged/features/home/sub_module/my_location/presenter/page/my_location_page.dart';
@@ -40,6 +43,9 @@ class LoggedModule extends Module {
 
     i.addLazySingleton(MyLocationPageStateHandler.new);
     i.addLazySingleton(MyLocationStore.new);
+
+    i.addLazySingleton(FiltersPageStateHandler.new);
+    i.addLazySingleton(FiltersStore.new);
 
     i.addLazySingleton(SearchFilterPageStateHandler.new);
     i.addLazySingleton(SearchFilterStore.new);
@@ -78,6 +84,11 @@ class LoggedModule extends Module {
     r.child(
       RouterApp.myLocation,
       child: (context) => const MyLocationPage(),
+      transition: TransitionType.noTransition,
+    );
+    r.child(
+      RouterApp.filters,
+      child: (context) => const FiltersPage(),
       transition: TransitionType.noTransition,
     );
     r.child(

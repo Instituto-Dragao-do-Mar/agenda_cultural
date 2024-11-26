@@ -27,18 +27,20 @@ class ItemCategoryFilterWidget extends StatelessWidget {
       child: Column(
         children: [
           Semantics(
-            label: "Categoria ${category.nome!}",
+            label: nameCategory,
             child: GestureDetector(
               onTap: applyFilterCategory,
-              child: CircleAvatar(
-                radius: 30,
-                backgroundColor: isSelected ? Colors.black : corBackgroundLaranja,
+              child: Container(
+                width: 65 / FontsApp.tamanhoFonteBase16 * FontsApp.tamanhoBase,
+                padding: EdgeInsets.all(isSelected ? 3 : 0),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: isSelected ? Colors.black : corBackgroundLaranja,
+                ),
                 child: Container(
                   clipBehavior: Clip.antiAlias,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(isSelected ? 26 : 30),
-                    color: Colors.white
-                  ),
+                  alignment: Alignment.center,
+                  decoration: const BoxDecoration(shape: BoxShape.circle, color: Colors.white),
                   child: _getCategoryImage(),
                 ),
               ),

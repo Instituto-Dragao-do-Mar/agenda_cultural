@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/app/common/utils/theme/fonts.dart';
 import 'package:agendacultural/app/common/utils/theme/colors.dart';
 import 'package:agendacultural/app/common/utils/theme/themes.dart';
-import 'package:agendacultural/app/common/widgets/text_contrast_font.dart';
+import 'package:agendacultural/app/modules/logged/features/home/sub_module/my_location/presenter/page/widgets/my_location_app_bar.dart';
 import 'package:agendacultural/app/modules/logged/features/home/sub_module/my_location/presenter/handler/my_location_state_handler.dart';
 
 class MyLocationPage extends StatefulWidget {
@@ -38,28 +37,7 @@ class _MyLocationPageState extends State<MyLocationPage> {
       onPopInvoked: (_) => Modular.to.pop(),
       child: Scaffold(
         backgroundColor: corBgAtual,
-        appBar: AppBar(
-          backgroundColor: corBgAtual,
-          automaticallyImplyLeading: false,
-          leadingWidth: 46,
-          leading: Semantics(
-            container: false,
-            label: 'Voltar para tela anterior',
-            child: GestureDetector(
-              onTap: () => Modular.to.pop(),
-              child: Container(
-                margin: const EdgeInsets.only(left: 16, right: 8),
-                child: SvgPicture.asset('imagens/icon_arrow_back.svg'),
-              ),
-            ),
-          ),
-          centerTitle: false,
-          titleSpacing: 0,
-          title: TextContrastFont(
-            text: AppLocalizations.of(context)!.location_title,
-            style: TextStyle(color: corTextAtual, fontSize: FontsApp.tamanhoBase.toDouble()),
-          ),
-        ),
+        appBar: const MyLocationAppBar(),
         body: Observer(
           builder: (context) {
             return SingleChildScrollView(

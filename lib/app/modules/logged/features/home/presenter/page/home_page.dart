@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-import 'package:agendacultural/pages/filtro/filter_page.dart';
+import 'package:agendacultural/app/modules/logged/features/home/sub_module/filters/page/filters_page.dart';
 import 'package:agendacultural/app/common/router/router.dart';
 import 'package:agendacultural/app/common/utils/theme/themes.dart';
 import 'package:agendacultural/app/modules/logged/features/home/domain/enum/filter_date.dart';
@@ -54,8 +54,11 @@ class _HomePageState extends State<HomePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
               children: [
-                AreaLocationWidget(
-                  onTapNavigateLocation: () => Modular.to.pushNamed(RouterApp.logged + RouterApp.myLocation),
+                Container(
+                  margin: const EdgeInsets.only(left: 8),
+                  child: AreaLocationWidget(
+                    onTapNavigateLocation: () => Modular.to.pushNamed(RouterApp.logged + RouterApp.myLocation),
+                  ),
                 ),
                 AreaCategoryWidget(
                   scrollControllerCategories: _handler.store.scrollControllerCategories,
@@ -79,12 +82,7 @@ class _HomePageState extends State<HomePage> {
                   },
                 ),
                 ButtonFilterWidget(
-                  onTapNavigateFilter: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const FilterPage(),
-                    ),
-                  ),
+                  onTapNavigateFilter: () => Modular.to.pushNamed(RouterApp.logged + RouterApp.filters),
                 ),
                 if (_handler.store.eventsProminenceFiltered.isNotEmpty)
                   AreaEventsWidget(

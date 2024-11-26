@@ -15,7 +15,7 @@ class AreaLocationWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.only(left: 8, top: 8),
+      margin: const EdgeInsets.only(top: 8),
       child: GestureDetector(
         onTap: onTapNavigateLocation,
         child: Row(
