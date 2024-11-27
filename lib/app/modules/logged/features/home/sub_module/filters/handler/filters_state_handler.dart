@@ -106,6 +106,7 @@ class FiltersPageStateHandler {
         }
       }
 
+      // Verifica se existe filtro por período selecionado
       if (_appStore.optionSelectedPeriode.isNotEmpty) {
         final now = DateTime.now();
         DateTime startDate;
@@ -141,8 +142,8 @@ class FiltersPageStateHandler {
             return false; // Período inválido ou não tratado
         }
 
-        // Verifica se qualquer data do evento está dentro do intervalo
-        return (event.eventosdatas ?? []).any((eventDate) {
+        // Retorna falso se nenhuma data do evento estiver dentro do intervalo
+        final isWithinPeriod = (event.eventosdatas ?? []).any((eventDate) {
           final date = DateTime.tryParse(eventDate.datahora ?? '');
           if (date == null) return false;
 
@@ -155,6 +156,10 @@ class FiltersPageStateHandler {
           return date.isAfter(startDate.subtract(const Duration(days: 1))) &&
               date.isBefore(endDate.add(const Duration(days: 1)));
         });
+
+        if (!isWithinPeriod) {
+          return false;
+        }
       }
 
       if (_appStore.optionSelectedCategory.isNotEmpty) {

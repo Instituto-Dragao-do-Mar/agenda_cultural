@@ -36,10 +36,20 @@ Future<void> showFuturePopupDialog({
     context: context!,
     builder: (BuildContext context) {
       return AlertDialog(
-        title: Text(label ?? "Informe os parâmetros"),
-        shape: const RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(10.0))),
+        title: Text(
+          label ?? 'Informe os parâmetros',
+          style: const TextStyle(
+            fontSize: 16,
+            color: Colors.black,
+          ),
+        ),
+        backgroundColor: Colors.white,
+        surfaceTintColor: Colors.white,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(10)),
+        ),
         content: SizedBox(
-          height: (edits!.length * 32) + 120.0,
+          height: (edits!.length * 32) + 120,
           width: 300,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -58,9 +68,9 @@ Future<void> showFuturePopupDialog({
             }).toList(),
           ),
         ),
-        actions: <Widget>[
+        actions: [
           TextButton(
-            child: Text(AppLocalizations.of(context)!.e_alert_send),
+            style: TextButton.styleFrom(backgroundColor: corBackgroundLaranja),
             onPressed: () async {
               if (functionButton != null) {
                 bool retorno = await functionButton();
@@ -71,6 +81,10 @@ Future<void> showFuturePopupDialog({
                 Navigator.of(context).pop();
               }
             },
+            child: Text(
+              AppLocalizations.of(context)!.e_alert_send,
+              style: const TextStyle(fontSize: 16, color: Colors.white),
+            ),
           ),
         ],
       );
@@ -86,7 +100,7 @@ Widget _getField(BuildContext context, EditPopup e) {
         child: TextFormField(
           decoration: InputDecoration(
             filled: true,
-            fillColor: const Color.fromRGBO(217, 217, 217, 8.2),
+            fillColor: Colors.black.withOpacity(.04),
             contentPadding: const EdgeInsets.all(16),
             focusColor: Colors.black,
             border: const OutlineInputBorder(
