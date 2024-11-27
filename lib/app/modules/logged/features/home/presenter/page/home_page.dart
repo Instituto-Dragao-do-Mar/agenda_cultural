@@ -88,6 +88,12 @@ class _HomePageState extends State<HomePage> {
                         GestureDetector(
                           onTap: () {
                             _handler.appStore.setEventsFiltered([]);
+                            _handler.appStore.setOptionSelectedSpace('');
+                            _handler.appStore.setOptionSelectedPeriode('');
+                            _handler.appStore.setOptionSelectedCategory('');
+                            _handler.appStore.setOptionSelectedClassification('');
+                            _handler.appStore.setOptionSelectedAccessibility('');
+                            _handler.appStore.setOptionSelectedTicket('');
                             _handler.appStore.setIsFilterOpen(false);
                           },
                           child: Container(
@@ -164,6 +170,11 @@ class _HomePageState extends State<HomePage> {
                     favorites: _handler.appStore.favorites,
                     user: _handler.appStore.userLogged,
                     onConcludeFavorite: _handler.uploadDataFavorites,
+                  ),
+                if (_handler.appStore.isFilterOpen && _handler.appStore.eventsFiltered.isEmpty)
+                  Container(
+                    margin: const EdgeInsets.only(left: 8),
+                    child: const Text('Nenhum evento encontrado com os filtros selecionados.'),
                   ),
                 AreaSpacesWidget(
                   scrollControllerSpaces: _handler.store.scrollControllerSpaces,

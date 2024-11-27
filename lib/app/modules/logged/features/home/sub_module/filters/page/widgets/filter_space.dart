@@ -6,11 +6,13 @@ import 'package:agendacultural/app/common/utils/theme/themes.dart';
 
 class FilterSpaceWidget extends StatelessWidget {
   final List<String> options;
+  final String? optionSelected;
   final void Function(String?) onChanged;
 
   const FilterSpaceWidget({
     super.key,
     required this.options,
+    required this.optionSelected,
     required this.onChanged,
   });
 
@@ -68,11 +70,12 @@ class FilterSpaceWidget extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                 ),
                 hintText: AppLocalizations.of(context)!.filter_sel_space,
-                hintStyle: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
+                hintStyle: FontsApp.poppins16W400Grey(FontsApp.tamanhoBase),
                 contentPadding: const EdgeInsets.all(8),
               ),
             ),
             items: options,
+            selectedItem: optionSelected,
             onChanged: onChanged,
           ),
         )

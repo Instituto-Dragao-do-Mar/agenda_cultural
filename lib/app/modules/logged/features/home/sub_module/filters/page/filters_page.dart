@@ -70,6 +70,9 @@ class _FiltersPageState extends State<FiltersPage> {
                         const SizedBox(height: 10),
                         FilterSpaceWidget(
                           options: _handler.store.optionsSpaces,
+                          optionSelected: _handler.appStore.optionSelectedSpace != ''
+                              ? _handler.appStore.optionSelectedSpace
+                              : null,
                           onChanged: (value) => _handler.appStore.setOptionSelectedSpace(value ?? ''),
                         ),
                         const SizedBox(height: 10),
