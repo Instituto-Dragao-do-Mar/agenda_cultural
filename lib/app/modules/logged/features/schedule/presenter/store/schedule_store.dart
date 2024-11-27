@@ -48,6 +48,7 @@ abstract class ScheduleStoreBase with Store {
     initialController.clear();
     finalController.clear();
     listDatesFilter.clear();
+    setDateSelected(DateTime.now());
     eventsFilter.clear();
   }
 }

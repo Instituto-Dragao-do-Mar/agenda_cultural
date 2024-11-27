@@ -158,9 +158,7 @@ class _EventDetailEvaluationWidgetState extends State<EventDetailEvaluationWidge
 
     final comentario = await _askForComment();
 
-    if (comentario != null) {
-      await _submitEvaluation(value, comentario);
-    }
+    await _submitEvaluation(value, comentario ?? '');
   }
 
   // Mostra o alerta de login
@@ -194,7 +192,7 @@ class _EventDetailEvaluationWidgetState extends State<EventDetailEvaluationWidge
           comentario = controller.text;
           return true;
         }
-        return false;
+        return true;
       },
       label: AppLocalizations.of(context)!.e_alert_coments_title_two,
     );
