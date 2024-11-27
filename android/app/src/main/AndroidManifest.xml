@@ -5,7 +5,7 @@
         android:enableOnBackInvokedCallback="true"
         android:icon="@mipmap/ic_launcher"
         android:roundIcon="@mipmap/round_launcher"
-        android:label="Cultura.CE">
+        android:label="br.com.culturace.app">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD6N1Bi7N9NkV8VtpbI4L5aB6wDwxm82vA" />
