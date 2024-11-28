@@ -49,10 +49,12 @@ class FilterSpaceWidget extends StatelessWidget {
                 ),
               ),
             ),
-            /*: const ClearButtonProps(
-              isVisible: true,
-              icon: Icon(Icons.clear, color: Colors.black),
-            ),*/
+            suffixProps: DropdownSuffixProps(
+              clearButtonProps: ClearButtonProps(
+                isVisible: true,
+                icon: Icon(Icons.clear, color: Colors.black),
+              ),
+            ),
             decoratorProps: DropDownDecoratorProps(
               baseStyle: const TextStyle(color: Colors.black),
               decoration: InputDecoration(
