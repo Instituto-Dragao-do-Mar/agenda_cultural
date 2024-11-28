@@ -23,7 +23,7 @@ class ItemCategoryFilterWidget extends StatelessWidget {
     return Container(
       color: corBgAtual,
       width: 70 / FontsApp.tamanhoFonteBase16 * FontsApp.tamanhoBase,
-      height: 110 / FontsApp.tamanhoFonteBase16 * FontsApp.tamanhoBase,
+      height: 112 / FontsApp.tamanhoFonteBase16 * FontsApp.tamanhoBase,
       child: Column(
         children: [
           Semantics(
