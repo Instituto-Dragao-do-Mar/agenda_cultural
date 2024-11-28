@@ -49,13 +49,13 @@ class FilterSpaceWidget extends StatelessWidget {
                 ),
               ),
             ),
-            clearButtonProps: const ClearButtonProps(
+            /*: const ClearButtonProps(
               isVisible: true,
               icon: Icon(Icons.clear, color: Colors.black),
-            ),
-            dropdownDecoratorProps: DropDownDecoratorProps(
+            ),*/
+            decoratorProps: DropDownDecoratorProps(
               baseStyle: const TextStyle(color: Colors.black),
-              dropdownSearchDecoration: InputDecoration(
+              decoration: InputDecoration(
                 border: InputBorder.none,
                 enabledBorder: OutlineInputBorder(
                   borderSide: BorderSide(color: corBackgroundLaranja),
@@ -74,7 +74,7 @@ class FilterSpaceWidget extends StatelessWidget {
                 contentPadding: const EdgeInsets.all(8),
               ),
             ),
-            items: options,
+            items: (c, v) => options,
             selectedItem: optionSelected,
             onChanged: onChanged,
           ),
