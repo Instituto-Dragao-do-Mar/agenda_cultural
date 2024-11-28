@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/app/common/utils/theme/fonts.dart';
 import 'package:agendacultural/app/common/utils/theme/themes.dart';
@@ -17,7 +18,7 @@ class MyLocationAppBar extends StatelessWidget implements PreferredSizeWidget {
           Semantics(
             label: 'Voltar para a tela anterior',
             child: GestureDetector(
-              onTap: () => Navigator.of(context).pop(),
+              onTap: () => Modular.to.pop(),
               child: SvgPicture.asset(
                 'imagens/icon_arrow_back.svg',
               ),

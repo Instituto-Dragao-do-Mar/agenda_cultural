@@ -45,86 +45,76 @@ class _SignupPageState extends State<SignupPage> {
   Widget build(BuildContext context) {
     return Observer(
       builder: (context) {
-        return PopScope(
-          canPop: false,
-          onPopInvoked: (_) {
-            if (FocusScope.of(context).hasPrimaryFocus) {
-              Navigator.pop(context);
-            } else {
-              Modular.to.pop();
-            }
-          },
-          child: Scaffold(
-            backgroundColor: corBgAtual,
-            appBar: const SignupAppBar(),
-            body: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 8),
-              child: SingleChildScrollView(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    TextContrastFont(
-                      text: AppLocalizations.of(context)!.register_subtitle,
-                      semantics: AppLocalizations.of(context)!.register_subtitle,
-                      maxlines: 10,
-                      style: FontsApp.poppins12W400Grey((FontsApp.tamanhoBase + 2)),
+        return Scaffold(
+          backgroundColor: corBgAtual,
+          appBar: const SignupAppBar(),
+          body: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TextContrastFont(
+                    text: AppLocalizations.of(context)!.register_subtitle,
+                    semantics: AppLocalizations.of(context)!.register_subtitle,
+                    maxlines: 10,
+                    style: FontsApp.poppins12W400Grey((FontsApp.tamanhoBase + 2)),
+                  ),
+                  const SizedBox(height: 20),
+                  InputNameSignupWidget(
+                    label: AppLocalizations.of(context)!.register_name,
+                    onChanged: (value) => _handler.store.setName(value),
+                  ),
+                  const SizedBox(height: 20),
+                  InputEmailAuthWidget(
+                    label: AppLocalizations.of(context)!.register_email,
+                    onChanged: (value) => _handler.store.setEmail(value),
+                  ),
+                  const SizedBox(height: 20),
+                  InputPasswordAuthWidget(
+                    label: AppLocalizations.of(context)!.register_password,
+                    valuePassword: _handler.store.password,
+                    obscureText: _handler.store.isPasswordVisible,
+                    onChanged: _handler.onChangedAndVerifyPassword,
+                    onSetObscureText: _handler.store.setIsPasswordVisible,
+                  ),
+                  const SizedBox(height: 20),
+                  InputConfirmPasswordAuthWidget(
+                    label: AppLocalizations.of(context)!.register_confirm_password,
+                    valueConfirmPassword: _handler.store.confirmPassword,
+                    obscureText: _handler.store.isConfirmPasswordVisible,
+                    onChanged: _handler.store.setConfirmPassword,
+                    setObscureText: _handler.store.setIsConfirmPasswordVisible,
+                  ),
+                  const SizedBox(height: 20),
+                  _handler.store.password != '' || _handler.store.confirmPassword != ''
+                      ? RulesAuthWidget(
+                          haveMinDigits: _handler.store.haveMinDigits,
+                          haveUpperCase: _handler.store.haveUpperCase,
+                          haveLowerCase: _handler.store.haveLowerCase,
+                          haveNumber: _handler.store.haveNumber,
+                          rulesMatch: _handler.store.rulesMatch,
+                        )
+                      : const Column(),
+                  TermsSignupWidget(
+                    isChecked: _handler.store.isChecked,
+                    setIsChecked: _handler.store.setIsChecked,
+                    onTapTerms: () => _openLink('https://grupo-manual.gitbook.io/app-cultura.ce/termos-e-servicos'),
+                    onTapPrivacy: () => _openLink(
+                      'https://grupo-manual.gitbook.io/app-cultura.ce/termos-e-servicos/politica-de-privacidade',
                     ),
-                    const SizedBox(height: 20),
-                    InputNameSignupWidget(
-                      label: AppLocalizations.of(context)!.register_name,
-                      onChanged: (value) => _handler.store.setName(value),
+                  ),
+                  const SizedBox(height: 50),
+                  Semantics(
+                    label: AppLocalizations.of(context)!.register_conclude,
+                    child: ButtonDefault(
+                      text: _handler.store.isLoading ? '...' : AppLocalizations.of(context)!.register_conclude,
+                      function: () async {
+                        _handler.store.isLoading ? () {} : await _handler.saveCadastro(context, mounted);
+                      },
                     ),
-                    const SizedBox(height: 20),
-                    InputEmailAuthWidget(
-                      label: AppLocalizations.of(context)!.register_email,
-                      onChanged: (value) => _handler.store.setEmail(value),
-                    ),
-                    const SizedBox(height: 20),
-                    InputPasswordAuthWidget(
-                      label: AppLocalizations.of(context)!.register_password,
-                      valuePassword: _handler.store.password,
-                      obscureText: _handler.store.isPasswordVisible,
-                      onChanged: _handler.onChangedAndVerifyPassword,
-                      onSetObscureText: _handler.store.setIsPasswordVisible,
-                    ),
-                    const SizedBox(height: 20),
-                    InputConfirmPasswordAuthWidget(
-                      label: AppLocalizations.of(context)!.register_confirm_password,
-                      valueConfirmPassword: _handler.store.confirmPassword,
-                      obscureText: _handler.store.isConfirmPasswordVisible,
-                      onChanged: _handler.store.setConfirmPassword,
-                      setObscureText: _handler.store.setIsConfirmPasswordVisible,
-                    ),
-                    const SizedBox(height: 20),
-                    _handler.store.password != '' || _handler.store.confirmPassword != ''
-                        ? RulesAuthWidget(
-                            haveMinDigits: _handler.store.haveMinDigits,
-                            haveUpperCase: _handler.store.haveUpperCase,
-                            haveLowerCase: _handler.store.haveLowerCase,
-                            haveNumber: _handler.store.haveNumber,
-                            rulesMatch: _handler.store.rulesMatch,
-                          )
-                        : const Column(),
-                    TermsSignupWidget(
-                      isChecked: _handler.store.isChecked,
-                      setIsChecked: _handler.store.setIsChecked,
-                      onTapTerms: () => _openLink('https://grupo-manual.gitbook.io/app-cultura.ce/termos-e-servicos'),
-                      onTapPrivacy: () => _openLink(
-                        'https://grupo-manual.gitbook.io/app-cultura.ce/termos-e-servicos/politica-de-privacidade',
-                      ),
-                    ),
-                    const SizedBox(height: 50),
-                    Semantics(
-                      label: AppLocalizations.of(context)!.register_conclude,
-                      child: ButtonDefault(
-                        text: _handler.store.isLoading ? '...' : AppLocalizations.of(context)!.register_conclude,
-                        function: () async {
-                          _handler.store.isLoading ? () {} : await _handler.saveCadastro(context, mounted);
-                        },
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
