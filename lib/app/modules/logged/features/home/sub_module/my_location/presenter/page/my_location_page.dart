@@ -90,7 +90,10 @@ class _MyLocationPageState extends State<MyLocationPage> {
                     onTap: () => _handler.onTapUseMyLocation(context, mounted),
                     child: Row(
                       children: [
-                        Icon(Icons.location_on, color: corBackgroundLaranja),
+                        Icon(
+                          Icons.location_on,
+                          color: corBackgroundLaranja,
+                        ),
                         const SizedBox(width: 10),
                         Expanded(
                           child: Text(

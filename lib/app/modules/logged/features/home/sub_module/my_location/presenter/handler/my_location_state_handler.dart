@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:geocoder2/geocoder2.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -73,7 +74,9 @@ class MyLocationPageStateHandler {
         await EasyLoading.dismiss();
         return;
       } else {
-        var position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+        var position = await Geolocator.getCurrentPosition(
+          locationSettings: LocationSettings(accuracy: LocationAccuracy.high),
+        );
 
         await selectLocation(position);
       }
@@ -86,7 +89,9 @@ class MyLocationPageStateHandler {
       await EasyLoading.dismiss();
       return;
     } else {
-      var position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+      var position = await Geolocator.getCurrentPosition(
+        locationSettings: LocationSettings(accuracy: LocationAccuracy.high),
+      );
 
       await selectLocation(position);
     }
@@ -95,33 +100,58 @@ class MyLocationPageStateHandler {
   }
 
   Future<void> selectLocation(Position? position) async {
-    final GeoData data;
-
     if (position != null) {
-      data = await Geocoder2.getDataFromCoordinates(
-        latitude: position.latitude,
-        longitude: position.longitude,
-        googleMapApiKey: 'AIzaSyD6N1Bi7N9NkV8VtpbI4L5aB6wDwxm82vA',
+      final List<Placemark> data;
+
+      data = await placemarkFromCoordinates(
+        position.latitude,
+        position.longitude,
       );
+
+      List<String> addressParts = [
+        data[0].street?.isNotEmpty == true ? '${data[0].street!}, ' : '',
+        data[0].name?.isNotEmpty == true ? '${data[0].name!} - ' : '',
+        data[0].subLocality?.isNotEmpty == true ? '${data[0].subLocality!}, ' : '',
+        data[0].subAdministrativeArea?.isNotEmpty == true ? '${data[0].subAdministrativeArea!} - ' : '',
+        data[0].administrativeArea?.isNotEmpty == true ? '${data[0].administrativeArea!}, ' : '',
+        data[0].postalCode?.isNotEmpty == true ? '${data[0].postalCode!}, ' : '',
+        data[0].country?.isNotEmpty == true ? data[0].country! : ''
+      ];
+
+      String address = addressParts.where((part) => part.isNotEmpty).join('');
+
+      GeoLocation.localAtualLatitude = position.latitude;
+      GeoLocation.localAtualLongitude = position.longitude;
+
+      await Dados.setDouble('local_atual_latitude', position.latitude);
+      await Dados.setDouble('local_atual_longitude', position.longitude);
+      await Dados.setString('local_atual_descricao', address);
+
+      _store.setSelected(true);
+      _store.setAddress(address);
+      _store.setLatitude(position.latitude);
+      _store.setLongitude(position.longitude);
     } else {
+      final GeoData data;
+
       data = await Geocoder2.getDataFromAddress(
         language: 'pt-BR',
         address: _store.addressController.text,
         googleMapApiKey: 'AIzaSyDPiOz0fCI1sfLT3W2fe--unju-f2n9jbY',
       );
+
+      GeoLocation.localAtualLatitude = data.latitude;
+      GeoLocation.localAtualLongitude = data.longitude;
+
+      await Dados.setDouble('local_atual_latitude', data.latitude);
+      await Dados.setDouble('local_atual_longitude', data.longitude);
+      await Dados.setString('local_atual_descricao', data.address);
+
+      _store.setSelected(true);
+      _store.setAddress(data.address);
+      _store.setLatitude(data.latitude);
+      _store.setLongitude(data.longitude);
     }
-
-    GeoLocation.localAtualLatitude = data.latitude;
-    GeoLocation.localAtualLongitude = data.longitude;
-
-    await Dados.setDouble('local_atual_latitude', data.latitude);
-    await Dados.setDouble('local_atual_longitude', data.longitude);
-    await Dados.setString('local_atual_descricao', data.address);
-
-    _store.setSelected(true);
-    _store.setAddress(data.address);
-    _store.setLatitude(data.latitude);
-    _store.setLongitude(data.longitude);
   }
 
   void dispose() async {
