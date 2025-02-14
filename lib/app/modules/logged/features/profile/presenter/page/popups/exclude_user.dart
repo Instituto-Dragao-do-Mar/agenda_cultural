@@ -1,10 +1,7 @@
-import 'package:agendacultural/app/common/router/router.dart';
 import 'package:agendacultural/app/common/utils/theme/fonts.dart';
-import 'package:agendacultural/app/common/widgets/notify_pop_up.dart';
 import 'package:agendacultural/app/modules/logged/features/profile/presenter/store/profile_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 
 class ExcludeUserPopUp extends StatefulWidget {
   final ProfileStore store;

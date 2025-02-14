@@ -103,7 +103,16 @@ class ProfileInfo extends StatelessWidget {
                 style: FontsApp.poppins16W400Grey(FontsApp.tamanhoBase),
                 enabled: false,
                 decoration: InputDecoration(
-                  hintText: emailUser,
+                  hintText: (() {
+                    final parts = emailUser.split('@');
+                    if (parts.isNotEmpty && parts[0].length > 2) {
+                      final first = parts[0][0];
+                      final last = parts[0][parts[0].length - 1];
+                      final hidden = '*' * (parts[0].length - 2);
+                      return '$first$hidden$last@${parts[1]}';
+                    }
+                    return emailUser;
+                  })(),
                   filled: true,
                   fillColor: Colors.white,
                   contentPadding: const EdgeInsets.symmetric(horizontal: 8),
@@ -120,13 +129,15 @@ class ProfileInfo extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
-                  onPressed: () => showDialog(
-                    context: context,
-                    builder: (context) => ExcludeUserPopUp(
-                      store: store,
-                      onTapConfirm: onTapConfirm,
-                    ),
-                  ),
+                  onPressed: () =>
+                      showDialog(
+                        context: context,
+                        builder: (context) =>
+                            ExcludeUserPopUp(
+                              store: store,
+                              onTapConfirm: onTapConfirm,
+                            ),
+                      ),
                   child: Text(
                     'Excluir conta',
                     semanticsLabel: 'Excluir conta',
