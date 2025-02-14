@@ -35,13 +35,13 @@ class _ExcludeUserPopUpState extends State<ExcludeUserPopUp> {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(25)),
           content: IntrinsicHeight(
             child: Column(
-              spacing: 20,
               children: [
                 Text(
                   'Digite seu e-mail para confirmar a exclusão da conta',
                   semanticsLabel: 'Digite seu e-mail para confirmar a exclusão da conta!',
                   style: FontsApp.poppins16W400Black(FontsApp.tamanhoBase),
                 ),
+                const SizedBox(height: 20),
                 Semantics(
                   label: 'Campo de e-mail',
                   child: TextField(
@@ -63,6 +63,7 @@ class _ExcludeUserPopUpState extends State<ExcludeUserPopUp> {
                     ),
                   ),
                 ),
+                const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
