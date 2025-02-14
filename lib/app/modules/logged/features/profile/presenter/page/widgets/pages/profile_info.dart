@@ -1,3 +1,5 @@
+import 'package:agendacultural/app/modules/logged/features/profile/presenter/page/popups/exclude_user.dart';
+import 'package:agendacultural/app/modules/logged/features/profile/presenter/store/profile_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -8,11 +10,15 @@ import 'package:agendacultural/app/common/widgets/text_contrast_font.dart';
 class ProfileInfo extends StatelessWidget {
   final String nameUser;
   final String emailUser;
+  final ProfileStore store;
+  final VoidCallback onTapConfirm;
 
   const ProfileInfo({
     super.key,
     required this.nameUser,
     required this.emailUser,
+    required this.store,
+    required this.onTapConfirm,
   });
 
   @override
@@ -52,6 +58,7 @@ class ProfileInfo extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Text(
               AppLocalizations.of(context)!.profile_account_data,
@@ -108,6 +115,30 @@ class ProfileInfo extends StatelessWidget {
                 ),
               ),
             ),
+            const Spacer(flex: 3),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () => showDialog(
+                    context: context,
+                    builder: (context) => ExcludeUserPopUp(
+                      store: store,
+                      onTapConfirm: onTapConfirm,
+                    ),
+                  ),
+                  child: Text(
+                    'Excluir conta',
+                    semanticsLabel: 'Excluir conta',
+                    style: TextStyle(
+                      fontSize: FontsApp.tamanhoBase.toDouble() - 2,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const Spacer(),
           ],
         ),
       ),

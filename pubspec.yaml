@@ -44,6 +44,7 @@ dependencies:
   flutter_mobx: ^2.2.1+1
   flutter_modular: ^6.0.4+1
   geocoding: ^3.0.0
+  rename: ^3.0.2
 
 dev_dependencies:
   flutter_test:

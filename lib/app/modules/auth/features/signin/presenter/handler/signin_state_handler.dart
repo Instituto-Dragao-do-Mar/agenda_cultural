@@ -44,6 +44,16 @@ class SigninPageStateHandler {
       ),
     );
 
+    if (UserController.errorMessage == 'Usuário inativado' || userController.messageError == 'Usuário inativado') {
+      if (!mounted) return;
+      notifyPopUpWidget(
+        context: context,
+        description: 'Usuário não encontrado!',
+      );
+      _store.setIsLoading(false);
+      return;
+    }
+
     if (UserController.errorMessage == 'Alterar Senha' || userController.messageError == 'Alterar Senha') {
       if (!mounted) return;
       notifyPopUpWidget(

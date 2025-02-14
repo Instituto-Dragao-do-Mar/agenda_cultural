@@ -1,3 +1,4 @@
+import 'package:agendacultural/app/modules/logged/features/profile/domain/controller/profile_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:url_launcher/url_launcher_string.dart';
@@ -66,6 +67,8 @@ class _ProfilePageState extends State<ProfilePage> {
                       builder: (context) => ProfileInfo(
                         nameUser: _handler.appStore.userLogged.nome ?? '',
                         emailUser: _handler.appStore.userLogged.email ?? '',
+                        store: _handler.store,
+                        onTapConfirm: () => _excludeUser(context),
                       ),
                     ),
                   );
@@ -173,5 +176,38 @@ class _ProfilePageState extends State<ProfilePage> {
         const SizedBox(height: 10),
       ],
     );
+  }
+
+  Future<void> _excludeUser(BuildContext context) async {
+    ProfileController profileController = ProfileController();
+    _handler.store.setIsLoading(true);
+
+    if (_handler.store.email != _handler.appStore.userLogged.email) {
+      notifyPopUpWidget(
+        context: context,
+        description: 'Email inválido!',
+      );
+      _handler.store.setIsLoading(false);
+      return;
+    }
+
+    var errorMessage = await profileController.recoverPassword(
+      email: _handler.store.email,
+    );
+
+    if (errorMessage != '') {
+      if (!mounted) return;
+      notifyPopUpWidget(
+        context: context,
+        description: errorMessage,
+      );
+      _handler.store.setIsLoading(false);
+      return;
+    }
+
+    if (!mounted) return;
+    Modular.to.navigate(RouterApp.auth);
+    _handler.store.setIsLoading(false);
+    return;
   }
 }

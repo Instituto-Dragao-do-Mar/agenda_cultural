@@ -1,18 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:agendacultural/model/filtro_model.dart';
 import 'package:agendacultural/model/notificacao_model.dart';
 import 'package:agendacultural/app/modules/auth/domain/adapters/user.dart';
 import 'package:agendacultural/app/modules/auth/domain/controller/notification_controller.dart';
 
 class AppModel extends ChangeNotifier {
-  late Filtro filtro;
   ListaNotificacoes listaNotificacoes = ListaNotificacoes(notificacoes: []);
-  TextEditingController tedEspaco = TextEditingController();
-  TextEditingController tedPeriodo = TextEditingController();
-  TextEditingController tedAcessibilidade = TextEditingController();
-  TextEditingController tedClassificacao = TextEditingController();
-  TextEditingController tedCategoria = TextEditingController();
-  TextEditingController tedIngresso = TextEditingController();
 
   User? usuarioLogado;
 
@@ -20,9 +12,6 @@ class AppModel extends ChangeNotifier {
 
   AppModel({User? usr}) {
     usuarioLogado = usr ?? User();
-    filtro = Filtro(
-      filtroDataSelecionado: FiltroData.estasemana,
-    );
   }
 
   setUser(User usr) {
@@ -48,66 +37,9 @@ class AppModel extends ChangeNotifier {
         notificacoes: [],
       );
     }
-
-    // Populo o filtro
-    filtro = Filtro(
-      acessibilidadeSelecionadas: [],
-      categoriasSelecionadas: [],
-      classificacoesSelecionadas: [],
-      dataInicial: DateTime.now(),
-      dataFinal: DateTime.now().add(const Duration(days: 30)),
-      espacosSelecionados: [],
-      ingressoSelecionados: [],
-    );
   }
 
-  void aplicatFiltro() {
-    // if (listaEventos.eventos != null && listaEventos.eventos!.isNotEmpty) {
-    //   for (Event e in listaEventos.eventos!) {
-    //     e.passoupelofiltro = true;
-    //
-    //     /////////////////////////////////////////////////////////////////
-    //     /// INGRESSOS
-    //     /////////////////////////////////////////////////////////////////
-    //
-    //     if (tedIngresso.text.isNotEmpty && tedIngresso.text != "Todos") {
-    //       for (EventDates ed in e.eventosdatas!) {
-    //         e.passoupelofiltro = ((tedIngresso.text == "Gratuito" && (ed.preco ?? '').toUpperCase() != "PAGO") ||
-    //             (tedIngresso.text == "Pago" && (ed.preco ?? '').toUpperCase() == "PAGO"));
-    //         if (!e.passoupelofiltro!) {
-    //           break;
-    //         }
-    //       }
-    //     }
-    //
-    //     /////////////////////////////////////////////////////////////////
-    //     /// ESPACOS
-    //     /////////////////////////////////////////////////////////////////
-    //
-    //     if (e.passoupelofiltro!) {
-    //       if (tedEspaco.text.isNotEmpty) {
-    //         e.passoupelofiltro = false;
-    //         for (EventDates ed in e.eventosdatas!) {
-    //           if (ed.idespaco.toString() == tedEspaco.text) {
-    //             e.passoupelofiltro = true;
-    //           }
-    //           if (e.passoupelofiltro!) {
-    //             break;
-    //           }
-    //         }
-    //       }
-    //     }
-    //
-    //     /////////////////////////////////////////////////////////////////
-    //     /// CATEGORIA
-    //     /////////////////////////////////////////////////////////////////
-    //
-    //     if (e.passoupelofiltro!) {}
-    //   }
-    // }
-  }
+  String getGuidId() => usuarioLogado?.guidid ?? '';
 
-  String getGuidId() => usuarioLogado?.guidid ?? "";
-
-  String getToken() => usuarioLogado?.signature ?? "";
+  String getToken() => usuarioLogado?.signature ?? '';
 }
