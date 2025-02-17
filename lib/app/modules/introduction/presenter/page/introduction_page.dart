@@ -9,7 +9,6 @@ import 'package:agendacultural/app/core/data_preferences/data_preferences.dart';
 import 'package:agendacultural/app/modules/introduction/presenter/page/widgets/step.dart';
 import 'package:agendacultural/app/modules/introduction/domain/entities/introducao_model.dart';
 import 'package:agendacultural/app/modules/introduction/presenter/handler/introduction_state_handler.dart';
-import 'package:agendacultural/app/modules/introduction/presenter/page/widgets/dialog_accept_cookies.dart';
 import 'package:agendacultural/app/modules/introduction/presenter/page/widgets/screens/language_introduction.dart';
 import 'package:agendacultural/app/modules/introduction/presenter/page/widgets/screens/presentation_introduction.dart';
 import 'package:agendacultural/app/modules/introduction/presenter/page/widgets/screens/accessibility_introduction.dart';
@@ -118,7 +117,7 @@ class _IntroductionPageState extends State<IntroductionPage> {
                                       },
                                     )
                                   : PresentationIntroductionScreen(
-                                      onTapEnter: () => _openDialogAcceptCookies(context),
+                                      onTapEnter: () => _handleCookiesChoice(context, true),
                                     ),
                         );
                       },
@@ -142,17 +141,17 @@ class _IntroductionPageState extends State<IntroductionPage> {
     );
   }
 
-  void _openDialogAcceptCookies(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) {
-        return DialogAcceptCookies(
-          onAccept: () => _handleCookiesChoice(context, true),
-          onRecuse: () => _handleCookiesChoice(context, false),
-        );
-      },
-    );
-  }
+  // void _openDialogAcceptCookies(BuildContext context) {
+  //   showModalBottomSheet(
+  //     context: context,
+  //     builder: (context) {
+  //       return DialogAcceptCookies(
+  //         onAccept: () => _handleCookiesChoice(context, true),
+  //         onRecuse: () => _handleCookiesChoice(context, false),
+  //       );
+  //     },
+  //   );
+  // }
 
   void _handleCookiesChoice(BuildContext context, bool accepted) {
     Dados.setBool('cookies', accepted);
