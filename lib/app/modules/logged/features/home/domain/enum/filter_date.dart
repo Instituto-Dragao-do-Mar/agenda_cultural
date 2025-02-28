@@ -15,7 +15,5 @@ String filterDateToString(BuildContext context, FilterDate filterDate) {
       return AppLocalizations.of(context)!.home_events_next_weeek;
     case FilterDate.nextMonth:
       return AppLocalizations.of(context)!.home_events_next_month;
-    default:
-      return '';
   }
 }

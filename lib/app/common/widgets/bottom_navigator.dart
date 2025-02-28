@@ -20,7 +20,7 @@ class BottomNavigator extends StatefulWidget {
 class _BottomNavigatorState extends State<BottomNavigator> {
   @override
   Widget build(BuildContext context) {
-    HttpClient baseController = Provider.of<HttpClient>(context);
+    Provider.of<HttpClient>(context);
 
     return BottomNavigationBar(
       onTap: (i) {
