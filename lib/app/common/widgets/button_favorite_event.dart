@@ -1,3 +1,4 @@
+import 'package:agendacultural/app/core/domain/controller/log_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -47,6 +48,9 @@ class _ButtonFavoriteWidgetState extends State<ButtonFavoriteWidget> {
         margin: const EdgeInsets.only(right: 4),
         child: GestureDetector(
           onTap: () async {
+            EventController eventController = EventController();
+            LogController logController = LogController();
+
             if (widget.user.guidid == null) {
               notifyPopUpWidget(
                 context: context,
@@ -58,11 +62,18 @@ class _ButtonFavoriteWidgetState extends State<ButtonFavoriteWidget> {
               return;
             }
 
-            var isFavorited = await EventController().postFavorited(
+            var isFavorited = await eventController.postFavorited(
               userGuidId: widget.user.guidid ?? '',
               token: widget.user.signature ?? '',
               idEvent: widget.event.id ?? 0,
               active: isFavorite,
+            );
+
+            await logController.postLog(
+              idLogTipo: 1,
+              guidUsuario: widget.user.guidid ?? '',
+              observacao: 'Evento ${widget.event.id} ${isFavorite == 1 ? 'removido dos ' : 'adicionado aos '}'
+                  'favoritos do usuário ${widget.user.nome}',
             );
 
             if (isFavorited) {

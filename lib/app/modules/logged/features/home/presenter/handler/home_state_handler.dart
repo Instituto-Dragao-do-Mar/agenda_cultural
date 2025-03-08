@@ -125,10 +125,12 @@ class HomePageStateHandler {
   }
 
   void uploadDataFavorites(bool isDetail) async {
+    EventController eventController = EventController();
+
     if (isDetail) _store.setIsLoading(true);
 
     _appStore.setFavorites(
-      await EventController().getFavorites(
+      await eventController.getFavorites(
         userGuidId: _appStore.userLogged.guidid ?? '',
         token: _appStore.userLogged.signature ?? '',
       ),

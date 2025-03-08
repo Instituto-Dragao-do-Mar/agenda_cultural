@@ -1,3 +1,4 @@
+import 'package:agendacultural/app/core/domain/controller/log_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:geocoder2/geocoder2.dart';
 import 'package:geocoding/geocoding.dart';
@@ -100,6 +101,8 @@ class MyLocationPageStateHandler {
   }
 
   Future<void> selectLocation(Position? position) async {
+    LogController logController = LogController();
+
     if (position != null) {
       final List<Placemark> data;
 
@@ -127,6 +130,14 @@ class MyLocationPageStateHandler {
       await Dados.setDouble('local_atual_longitude', position.longitude);
       await Dados.setString('local_atual_descricao', address);
 
+      await logController.postLog(
+        idLogTipo: 4,
+        latitude: position.latitude,
+        longitude: position.longitude,
+        guidUsuario: _appStore.userLogged.guidid ?? '',
+        observacao: 'Usuário ${_appStore.userLogged.guidid} ativou a localização atual',
+      );
+
       _store.setSelected(true);
       _store.setAddress(address);
       _store.setLatitude(position.latitude);
@@ -146,6 +157,14 @@ class MyLocationPageStateHandler {
       await Dados.setDouble('local_atual_latitude', data.latitude);
       await Dados.setDouble('local_atual_longitude', data.longitude);
       await Dados.setString('local_atual_descricao', data.address);
+
+      await logController.postLog(
+        idLogTipo: 4,
+        latitude: data.latitude,
+        longitude: data.longitude,
+        guidUsuario: _appStore.userLogged.guidid ?? '',
+        observacao: 'Usuário ${_appStore.userLogged.guidid} pesquisou uma localização',
+      );
 
       _store.setSelected(true);
       _store.setAddress(data.address);
