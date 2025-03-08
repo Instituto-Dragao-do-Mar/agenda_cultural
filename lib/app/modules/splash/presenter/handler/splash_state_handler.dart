@@ -1,3 +1,4 @@
+import 'package:agendacultural/app/core/domain/controller/log_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:agendacultural/app/app_widget.dart';
@@ -43,7 +44,7 @@ class SplashPageStateHandler {
         const SchedulePage(),
         const MapPage(),
         const FavoritePage(),
-        const ProfilePage()
+        const ProfilePage(),
       ],
     );
     _appStore.setCurrentScreen(_appStore.screens[0]);
@@ -85,14 +86,18 @@ class SplashPageStateHandler {
   }
 
   void _verifyAuthenticated(bool mounted, BuildContext context) async {
+    UserController userController = UserController();
+    LogController logController = LogController();
     var userPrefs = await UserSharedPreferences.getUserData();
 
     //Verifica se o usuário já está logado
     if (userPrefs != null) {
-      _appStore.setUser(await UserController().getUserByPrefData(
-        token: userPrefs.signature ?? '',
-        email: userPrefs.email ?? '',
-      ));
+      _appStore.setUser(
+        await userController.getUserByPrefData(
+          token: userPrefs.signature ?? '',
+          email: userPrefs.email ?? '',
+        ),
+      );
       _appStore.setSignatureUser(userPrefs.signature ?? '');
 
       await UserSharedPreferences.setUser(
@@ -100,6 +105,20 @@ class SplashPageStateHandler {
         usertoken: _appStore.userLogged.signature ?? '',
         email: _appStore.userLogged.email ?? '',
         nome: _appStore.userLogged.nome ?? '',
+      );
+
+      if (_appStore.userLogged.guidid != null && _appStore.userLogged.guidid?.isNotEmpty == true) {
+        await logController.postLog(
+          idLogTipo: 1,
+          guidUsuario: _appStore.userLogged.guidid ?? '',
+          observacao: 'Usuário ${_appStore.userLogged.nome} realizou login',
+        );
+      }
+    } else {
+      await logController.postLog(
+        idLogTipo: 1,
+        guidUsuario: '',
+        observacao: 'Usuário não identificado realizou login como visitante',
       );
     }
 

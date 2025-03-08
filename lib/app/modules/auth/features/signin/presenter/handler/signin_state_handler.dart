@@ -1,3 +1,4 @@
+import 'package:agendacultural/app/core/domain/controller/log_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -23,6 +24,7 @@ class SigninPageStateHandler {
 
   Future<void> sendLogin(BuildContext context, bool mounted) async {
     UserController userController = UserController();
+    LogController logController = LogController();
     _store.setIsLoading(true);
 
     if (!RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(_store.email)) {
@@ -65,6 +67,14 @@ class SigninPageStateHandler {
       _appStore.setUser(User(email: _store.email));
       _store.setIsLoading(false);
       return;
+    }
+
+    if (_appStore.userLogged.guidid != null) {
+      await logController.postLog(
+        idLogTipo: 1,
+        guidUsuario: _appStore.userLogged.guidid ?? '',
+        observacao: 'Usuário ${_appStore.userLogged.nome} realizou login',
+      );
     }
 
     if (_appStore.userLogged.guidid != null) {

@@ -1,3 +1,4 @@
+import 'package:agendacultural/app/core/domain/controller/log_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -87,7 +88,14 @@ class _AuthPageState extends State<AuthPage> {
                           function: () => Modular.to.pushNamed(RouterApp.auth + RouterApp.signup),
                         ),
                         GestureDetector(
-                          onTap: () {
+                          onTap: () async {
+                            LogController logController = LogController();
+
+                            await logController.postLog(
+                              idLogTipo: 1,
+                              guidUsuario: '',
+                              observacao: 'Usuário não identificado realizou login como visitante',
+                            );
                             _handler.appStore.setCurrentScreen(_handler.appStore.screens[0]);
                             _handler.appStore.setCurrentTab(0);
                             _handler.appStore.setUser(User());
