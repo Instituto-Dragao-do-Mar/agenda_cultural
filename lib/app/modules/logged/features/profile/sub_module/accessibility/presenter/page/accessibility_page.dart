@@ -1,3 +1,5 @@
+import 'package:agendacultural/app/core/domain/controller/log_controller.dart';
+import 'package:agendacultural/app/modules/auth/domain/adapters/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -153,8 +155,8 @@ class _ProfileAccessibilityPageState extends State<ProfileAccessibilityPage> {
                         child: IconButton(
                           icon: const Icon(Icons.remove, size: 30, color: Colors.white),
                           style: ButtonStyle(
-                            backgroundColor: MaterialStatePropertyAll(corBackgroundLaranja),
-                            padding: const MaterialStatePropertyAll(EdgeInsets.all(2)),
+                            backgroundColor: WidgetStatePropertyAll(corBackgroundLaranja),
+                            padding: const WidgetStatePropertyAll(EdgeInsets.all(2)),
                           ),
                           onPressed: () => onTapAlterFont(false),
                         ),
@@ -178,8 +180,8 @@ class _ProfileAccessibilityPageState extends State<ProfileAccessibilityPage> {
                         child: IconButton(
                           icon: const Icon(Icons.add, size: 30, color: Colors.white),
                           style: ButtonStyle(
-                            backgroundColor: MaterialStatePropertyAll(corBackgroundLaranja),
-                            padding: const MaterialStatePropertyAll(EdgeInsets.all(2)),
+                            backgroundColor: WidgetStatePropertyAll(corBackgroundLaranja),
+                            padding: const WidgetStatePropertyAll(EdgeInsets.all(2)),
                           ),
                           onPressed: () => onTapAlterFont(true),
                         ),
@@ -189,12 +191,25 @@ class _ProfileAccessibilityPageState extends State<ProfileAccessibilityPage> {
                   const Spacer(),
                   Semantics(
                     container: false,
-                    label: "Botão Salvar",
+                    label: 'Botão Salvar',
                     child: ButtonDefault(
                       text: AppLocalizations.of(context)!.profile_accessibility_save,
-                      function: () {
+                      function: () async {
+                        LogController logController = LogController();
+                        User usuario = _handler.appStore.userLogged;
+
                         setFontSize(_handler.store.fontSize);
                         setAltoContraste(_handler.store.statusAltoContraste);
+
+                        await logController.postLog(
+                          idLogTipo: 7,
+                          guidUsuario: _handler.appStore.userLogged.guidid ?? '',
+                          observacao: 'Usuário '
+                              '${usuario.guidid != null ? '${usuario.nome}' : 'não identificado'} '
+                              'alterou configurações de acessibilidade (fonte: ${_handler.store.fontSize}px, '
+                              'contraste: ${_handler.store.statusAltoContraste})',
+                        );
+
                         Modular.to.navigate(RouterApp.logged);
                       },
                     ),

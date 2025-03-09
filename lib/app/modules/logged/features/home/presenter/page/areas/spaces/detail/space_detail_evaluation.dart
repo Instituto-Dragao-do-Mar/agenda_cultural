@@ -111,14 +111,14 @@ class _SpaceDetailEvaluationWidgetState extends State<SpaceDetailEvaluationWidge
 
     if (selected != 0) {
       logController.postLog(
-        idLogTipo: 1,
+        idLogTipo: 5,
         guidUsuario: widget.user.guidid ?? '',
         observacao: 'Usuário ${widget.user.guidid != null ? '${widget.user.nome}' : 'não identificado'} '
             'avaliou o espaço ${widget.space.id}',
       );
     } else {
       logController.postLog(
-        idLogTipo: 1,
+        idLogTipo: 5,
         guidUsuario: widget.user.guidid ?? '',
         observacao: 'Usuário ${widget.user.guidid != null ? '${widget.user.nome}' : 'não identificado'} '
             'cancelou a avaliação do espaço ${widget.space.id}',

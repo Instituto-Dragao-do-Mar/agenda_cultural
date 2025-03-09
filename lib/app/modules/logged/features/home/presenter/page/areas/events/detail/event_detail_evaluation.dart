@@ -217,14 +217,14 @@ class _EventDetailEvaluationWidgetState extends State<EventDetailEvaluationWidge
 
     if (value != 0) {
       logController.postLog(
-        idLogTipo: 1,
+        idLogTipo: 5,
         guidUsuario: widget.user.guidid ?? '',
         observacao: 'Usuário ${widget.user.guidid != null ? '${widget.user.nome}' : 'não identificado'} '
             'avaliou o evento ${widget.event.id}',
       );
     } else {
       logController.postLog(
-        idLogTipo: 1,
+        idLogTipo: 5,
         guidUsuario: widget.user.guidid ?? '',
         observacao: 'Usuário ${widget.user.guidid != null ? '${widget.user.nome}' : 'não identificado'} '
             'cancelou a avaliação do evento ${widget.event.id}',
@@ -233,7 +233,7 @@ class _EventDetailEvaluationWidgetState extends State<EventDetailEvaluationWidge
 
     if (comentario.isNotEmpty) {
       logController.postLog(
-        idLogTipo: 1,
+        idLogTipo: 11,
         guidUsuario: widget.user.guidid ?? '',
         observacao: 'Usuário ${widget.user.guidid != null ? '${widget.user.nome}' : 'não identificado'} '
             'comentou o evento ${widget.event.id}',
