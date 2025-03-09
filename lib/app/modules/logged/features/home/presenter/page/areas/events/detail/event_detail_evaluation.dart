@@ -1,3 +1,4 @@
+import 'package:agendacultural/app/core/domain/controller/log_controller.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -108,7 +109,7 @@ class _EventDetailEvaluationWidgetState extends State<EventDetailEvaluationWidge
     );
   }
 
-// Verifica se a data é hoje
+  // Verifica se a data é hoje
   bool _isToday(String date) {
     return _formatDate('yyyy-MM-dd', date) == _formatDate('yyyy-MM-dd', DateTime.now().toIso8601String());
   }
@@ -200,10 +201,12 @@ class _EventDetailEvaluationWidgetState extends State<EventDetailEvaluationWidge
     return comentario;
   }
 
-  /// Envia a avaliação
+  // Envia a avaliação
   Future<void> _submitEvaluation(int value, String comentario) async {
-    final controller = UsuarioAvaliacaoController();
-    await controller.postUserEvaluation(
+    UsuarioAvaliacaoController usuarioAvaliacaoController = UsuarioAvaliacaoController();
+    LogController logController = LogController();
+
+    await usuarioAvaliacaoController.postUserEvaluation(
       userGuidId: widget.user.guidid ?? '',
       evaluation: value.toString(),
       eventGuidId: widget.event.guidid ?? '',
@@ -211,12 +214,38 @@ class _EventDetailEvaluationWidgetState extends State<EventDetailEvaluationWidge
       token: widget.user.signature ?? '',
       coment: comentario,
     );
+
+    if (value != 0) {
+      logController.postLog(
+        idLogTipo: 1,
+        guidUsuario: widget.user.guidid ?? '',
+        observacao: 'Usuário ${widget.user.guidid != null ? '${widget.user.nome}' : 'não identificado'} '
+            'avaliou o evento ${widget.event.id}',
+      );
+    } else {
+      logController.postLog(
+        idLogTipo: 1,
+        guidUsuario: widget.user.guidid ?? '',
+        observacao: 'Usuário ${widget.user.guidid != null ? '${widget.user.nome}' : 'não identificado'} '
+            'cancelou a avaliação do evento ${widget.event.id}',
+      );
+    }
+
+    if (comentario.isNotEmpty) {
+      logController.postLog(
+        idLogTipo: 1,
+        guidUsuario: widget.user.guidid ?? '',
+        observacao: 'Usuário ${widget.user.guidid != null ? '${widget.user.nome}' : 'não identificado'} '
+            'comentou o evento ${widget.event.id}',
+      );
+    }
+
     setState(() {
       selected = value;
     });
   }
 
-  /// Obtém os dados de avaliação
+  // Obtém os dados de avaliação
   Future<List<UserEvaluation>> _getDataEvaluation() async {
     await Future.delayed(const Duration(seconds: 1));
 
@@ -232,7 +261,7 @@ class _EventDetailEvaluationWidgetState extends State<EventDetailEvaluationWidge
     }
   }
 
-  /// Exibe um widget de erro
+  // Exibe um widget de erro
   Widget _buildErrorWidget() {
     return const Text('Erro ao carregar avaliação do evento!');
   }

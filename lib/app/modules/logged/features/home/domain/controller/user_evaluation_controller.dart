@@ -12,12 +12,15 @@ class UsuarioAvaliacaoController extends HttpClient {
   }) async {
     List<UserEvaluation> list = [];
 
-    String url = "${baseUrlApi}avaliacao?p=$userGuidId&e=$eventGuidId";
+    String url = '${baseUrlApi}avaliacao?p=$userGuidId&e=$eventGuidId';
 
     try {
       var response = await http.get(
         Uri.parse(url),
-        headers: {"Content-Type": "application/json", 'Authorization': 'Bearer $token'},
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
       );
       if (response.statusCode == 200) {
         var ret = jsonDecode(response.body);
@@ -43,7 +46,7 @@ class UsuarioAvaliacaoController extends HttpClient {
     required String coment,
     required String token,
   }) async {
-    String url = "${baseUrlApi}avaliacao";
+    String url = '${baseUrlApi}avaliacao';
 
     try {
       var parametros = jsonEncode(
@@ -57,7 +60,10 @@ class UsuarioAvaliacaoController extends HttpClient {
       );
       var response = await http.post(
         Uri.parse(url),
-        headers: {"Content-Type": "application/json", 'Authorization': 'Bearer $token'},
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer $token',
+        },
         body: parametros,
       );
       if (response.statusCode != 200) {

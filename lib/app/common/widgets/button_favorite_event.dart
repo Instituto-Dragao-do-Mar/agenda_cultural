@@ -70,10 +70,11 @@ class _ButtonFavoriteWidgetState extends State<ButtonFavoriteWidget> {
             );
 
             await logController.postLog(
-              idLogTipo: 1,
+              idLogTipo: 6,
               guidUsuario: widget.user.guidid ?? '',
               observacao: 'Evento ${widget.event.id} ${isFavorite == 1 ? 'removido dos ' : 'adicionado aos '}'
-                  'favoritos do usuário ${widget.user.nome}',
+                  'favoritos ${widget.user.guidid != null ? 'do usuário ${widget.user.nome}' : 'de usuário não '
+                      'autenticado'}',
             );
 
             if (isFavorited) {

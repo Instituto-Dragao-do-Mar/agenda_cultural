@@ -1,3 +1,5 @@
+import 'package:agendacultural/app/core/domain/controller/log_controller.dart';
+import 'package:agendacultural/app/modules/splash/domain/adapter/space.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -12,10 +14,12 @@ import 'package:agendacultural/app/modules/auth/domain/adapters/user.dart';
 
 class SpaceDetailEvaluationWidget extends StatefulWidget {
   final User user;
+  final Space space;
 
   const SpaceDetailEvaluationWidget({
     super.key,
     required this.user,
+    required this.space,
   });
 
   @override
@@ -94,13 +98,32 @@ class _SpaceDetailEvaluationWidgetState extends State<SpaceDetailEvaluationWidge
     return !ColorsApp.contraste ? '${iconName}_black.png' : '${iconName}_white.png';
   }
 
+  // Confirma a avaliação
   void _confirmEvaluation(int value) {
+    LogController logController = LogController();
+
     if (widget.user.guidid == null) {
       _showLoginAlert();
       return;
     }
 
     setState(() => selected = (value != 0 && selected != value) ? value : 0);
+
+    if (selected != 0) {
+      logController.postLog(
+        idLogTipo: 1,
+        guidUsuario: widget.user.guidid ?? '',
+        observacao: 'Usuário ${widget.user.guidid != null ? '${widget.user.nome}' : 'não identificado'} '
+            'avaliou o espaço ${widget.space.id}',
+      );
+    } else {
+      logController.postLog(
+        idLogTipo: 1,
+        guidUsuario: widget.user.guidid ?? '',
+        observacao: 'Usuário ${widget.user.guidid != null ? '${widget.user.nome}' : 'não identificado'} '
+            'cancelou a avaliação do espaço ${widget.space.id}',
+      );
+    }
   }
 
   // Mostra o alerta de login

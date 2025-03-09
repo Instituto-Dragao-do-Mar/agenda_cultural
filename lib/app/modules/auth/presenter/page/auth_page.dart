@@ -96,6 +96,7 @@ class _AuthPageState extends State<AuthPage> {
                               guidUsuario: '',
                               observacao: 'Usuário não identificado realizou login como visitante',
                             );
+
                             _handler.appStore.setCurrentScreen(_handler.appStore.screens[0]);
                             _handler.appStore.setCurrentTab(0);
                             _handler.appStore.setUser(User());
