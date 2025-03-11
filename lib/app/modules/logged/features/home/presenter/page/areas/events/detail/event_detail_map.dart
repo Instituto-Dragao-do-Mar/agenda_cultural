@@ -53,10 +53,11 @@ class EventDetailMapWidget extends StatelessWidget {
 
                   await logController.postLog(
                     idLogTipo: 2,
+                    latitude: spaceReal.latitude ?? 0,
+                    longitude: spaceReal.longitude ?? 0,
                     guidUsuario: user.guidid ?? '',
                     observacao: 'Usuário ${user.guidid != null ? '${user.nome}' : 'não identificado'} '
-                        'visualizou o mapa do evento ${event.id} '
-                        '(latitude: ${spaceReal.latitude}, longitude: ${spaceReal.longitude})',
+                        'visualizou o mapa do evento ${event.id}',
                   );
                 },
               ),

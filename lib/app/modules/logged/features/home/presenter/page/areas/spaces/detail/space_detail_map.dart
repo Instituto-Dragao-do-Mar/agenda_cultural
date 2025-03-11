@@ -50,10 +50,11 @@ class SpaceDetailMapWidget extends StatelessWidget {
 
                   await logController.postLog(
                     idLogTipo: 3,
+                    latitude: space.latitude ?? 0,
+                    longitude: space.longitude ?? 0,
                     guidUsuario: user.guidid ?? '',
                     observacao: 'Usuário ${user.guidid != null ? '${user.nome}' : 'não identificado'} '
-                        'visualizou o mapa do espaço ${space.id} '
-                        '(latitude: ${space.latitude}, longitude: ${space.longitude})',
+                        'visualizou o mapa do espaço ${space.id}',
                   );
                 },
               ),
