@@ -114,7 +114,8 @@ class _SpaceDetailEvaluationWidgetState extends State<SpaceDetailEvaluationWidge
         idLogTipo: 5,
         guidUsuario: widget.user.guidid ?? '',
         observacao: 'Usuário ${widget.user.guidid != null ? '${widget.user.nome}' : 'não identificado'} '
-            'avaliou o espaço ${widget.space.id}',
+            'avaliou o espaço ${widget.space.id} '
+            '(${selected == 1 ? 'gostou' : selected == 2 ? 'não gostou' : 'indiferente'})',
       );
     } else {
       logController.postLog(

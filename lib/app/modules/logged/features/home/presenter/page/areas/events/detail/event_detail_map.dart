@@ -1,3 +1,5 @@
+import 'package:agendacultural/app/core/domain/controller/log_controller.dart';
+import 'package:agendacultural/app/modules/auth/domain/adapters/user.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
@@ -8,11 +10,13 @@ import 'package:agendacultural/app/modules/splash/domain/adapter/event.dart';
 class EventDetailMapWidget extends StatelessWidget {
   final Space spaceReal;
   final Event event;
+  final User user;
 
   const EventDetailMapWidget({
     super.key,
     required this.spaceReal,
     required this.event,
+    required this.user,
   });
 
   @override
@@ -43,6 +47,17 @@ class EventDetailMapWidget extends StatelessWidget {
                 },
                 gestureRecognizers: {
                   Factory<OneSequenceGestureRecognizer>(() => EagerGestureRecognizer()),
+                },
+                onMapCreated: (_) async {
+                  LogController logController = LogController();
+
+                  await logController.postLog(
+                    idLogTipo: 2,
+                    guidUsuario: user.guidid ?? '',
+                    observacao: 'Usuário ${user.guidid != null ? '${user.nome}' : 'não identificado'} '
+                        'visualizou o mapa do evento ${event.id} '
+                        '(latitude: ${spaceReal.latitude}, longitude: ${spaceReal.longitude})',
+                  );
                 },
               ),
             ),

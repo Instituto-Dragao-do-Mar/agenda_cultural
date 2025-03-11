@@ -220,7 +220,8 @@ class _EventDetailEvaluationWidgetState extends State<EventDetailEvaluationWidge
         idLogTipo: 5,
         guidUsuario: widget.user.guidid ?? '',
         observacao: 'Usuário ${widget.user.guidid != null ? '${widget.user.nome}' : 'não identificado'} '
-            'avaliou o evento ${widget.event.id}',
+            'avaliou o evento ${widget.event.id} '
+            '(${value == 1 ? 'gostou' : value == 2 ? 'não gostou' : 'indiferente'})',
       );
     } else {
       logController.postLog(

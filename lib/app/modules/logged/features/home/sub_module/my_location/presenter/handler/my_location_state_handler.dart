@@ -136,7 +136,7 @@ class MyLocationPageStateHandler {
         longitude: position.longitude,
         guidUsuario: _appStore.userLogged.guidid ?? '',
         observacao: 'Usuário '
-            '${_appStore.userLogged.guidid != null ? 'não autenticado' : '${_appStore.userLogged.nome}'}'
+            '${_appStore.userLogged.guidid != null ? '${_appStore.userLogged.nome}' : 'não identificado'}'
             ' ativou a localização atual',
       );
 
@@ -166,7 +166,7 @@ class MyLocationPageStateHandler {
         longitude: data.longitude,
         guidUsuario: _appStore.userLogged.guidid ?? '',
         observacao: 'Usuário '
-            '${_appStore.userLogged.guidid != null ? 'não autenticado' : '${_appStore.userLogged.nome}'}'
+            '${_appStore.userLogged.guidid != null ? '${_appStore.userLogged.nome}' : 'não identificado'}'
             ' pesquisou uma localização',
       );
 

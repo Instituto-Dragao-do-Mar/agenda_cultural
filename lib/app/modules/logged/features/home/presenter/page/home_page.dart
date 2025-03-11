@@ -1,3 +1,5 @@
+import 'package:agendacultural/app/core/domain/controller/log_controller.dart';
+import 'package:agendacultural/app/modules/auth/domain/adapters/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -66,11 +68,22 @@ class _HomePageState extends State<HomePage> {
                   selectedCategory: _handler.store.selectedCategory,
                   onTapExpandCategories: () => _handler.store.setAllCategories(!_handler.store.allCategories),
                   applyFilterCategory: (categoria) {
+                    LogController logController = LogController();
+
                     if (_handler.store.selectedCategory == categoria) {
                       _handler.store.selectedCategory = null;
                       _handler.filterEventsByDate(_handler.store.filterDate, _handler.store.setEventsDateFiltered);
                       _handler.initEventsProminence();
                     } else {
+                      User user = _handler.appStore.userLogged;
+
+                      logController.postLog(
+                        idLogTipo: 8,
+                        guidUsuario: user.guidid ?? '',
+                        observacao: 'Usuário ${user.guidid != null ? '${user.nome}' : 'não identificado'} '
+                            'selecionou a categoria ${categoria.nome} para filtro de eventos.',
+                      );
+
                       _handler.store.selectedCategory = categoria;
                       _handler.filterEventsByDate(_handler.store.filterDate, _handler.store.setEventsDateFiltered);
                       _handler.filterEventsByDate(
@@ -103,7 +116,7 @@ class _HomePageState extends State<HomePage> {
                               borderRadius: BorderRadius.circular(4),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.black.withOpacity(0.1),
+                                  color: Colors.black.withValues(alpha: .1),
                                   blurRadius: 5,
                                   offset: const Offset(0, 0),
                                 ),

@@ -1,3 +1,4 @@
+import 'package:agendacultural/app/core/domain/controller/log_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
@@ -91,6 +92,8 @@ class SignupPageStateHandler {
       labelButton: AppLocalizations.of(context)!.int_button_enter,
       error: false,
       functionButton: () async {
+        LogController logController = LogController();
+
         User user = await userController.login(
           email: _store.email,
           senha: _store.password,
@@ -99,6 +102,12 @@ class SignupPageStateHandler {
         );
 
         if (user.guidid != null && user.guidid != '') {
+          await logController.postLog(
+            idLogTipo: 1,
+            guidUsuario: user.guidid ?? '',
+            observacao: 'Usuário ${user.nome} realizou login',
+          );
+
           _store.setIsLoading(false);
           _appStore.setUser(user);
           _appStore.setCurrentScreen(_appStore.screens[0]);

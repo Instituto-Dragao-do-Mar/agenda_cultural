@@ -89,6 +89,7 @@ class SpaceDetail extends StatelessWidget {
                       const SizedBox(height: 10),
                       SpaceDetailMapWidget(
                         space: space,
+                        user: user,
                       ),
                       const SizedBox(height: 10),
                       SpaceDetailAccessibilityWidget(

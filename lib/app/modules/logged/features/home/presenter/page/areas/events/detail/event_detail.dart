@@ -101,6 +101,7 @@ class EventDetail extends StatelessWidget {
                       EventDetailMapWidget(
                         spaceReal: spaceReal,
                         event: event,
+                        user: user,
                       ),
                       const SizedBox(height: 10),
                       EventDetailAccessibilityWidget(
