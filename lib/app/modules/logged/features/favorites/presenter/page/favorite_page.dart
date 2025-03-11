@@ -1,3 +1,5 @@
+import 'package:agendacultural/app/core/domain/controller/log_controller.dart';
+import 'package:agendacultural/app/modules/auth/domain/adapters/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -8,7 +10,7 @@ import 'package:agendacultural/app/modules/logged/features/favorites/presenter/h
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/events/detail/event_detail.dart';
 
 class FavoritePage extends StatefulWidget {
-  const FavoritePage({Key? key}) : super(key: key);
+  const FavoritePage({super.key});
 
   @override
   State<FavoritePage> createState() => _FavoritePageState();
@@ -58,20 +60,34 @@ class _FavoritePageState extends State<FavoritePage> {
                 spacePrincipal: spacePrincipal,
                 user: _handler.appStore.userLogged,
                 favorites: _handler.appStore.favorites,
-                onTapEvent: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => EventDetail(
-                      event: event,
-                      spaceReal: spaceReal,
-                      spacePrincipal: spacePrincipal,
-                      categories: _handler.appStore.categories,
-                      favorites: _handler.appStore.favorites,
-                      user: _handler.appStore.userLogged,
-                      onConcludeFavorite: _handler.uploadDataFavorites,
-                    ),
-                  ),
-                ),
+                onTapEvent: () {
+                  try {
+                    LogController logController = LogController();
+                    User user = _handler.appStore.userLogged;
+
+                    logController.postLog(
+                      idLogTipo: 9,
+                      guidUsuario: user.guidid ?? '',
+                      observacao: 'Usuário ${user.guidid != null ? '${user.nome}' : 'não identificado'} '
+                          'acessou o evento ${event.id}',
+                    );
+                  } finally {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => EventDetail(
+                          event: event,
+                          spaceReal: spaceReal,
+                          spacePrincipal: spacePrincipal,
+                          categories: _handler.appStore.categories,
+                          favorites: _handler.appStore.favorites,
+                          user: _handler.appStore.userLogged,
+                          onConcludeFavorite: _handler.uploadDataFavorites,
+                        ),
+                      ),
+                    );
+                  }
+                },
                 onConcludeFavorite: _handler.uploadDataFavorites,
               );
             }).toList(),

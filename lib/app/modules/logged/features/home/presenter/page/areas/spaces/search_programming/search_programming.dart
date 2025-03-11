@@ -1,3 +1,4 @@
+import 'package:agendacultural/app/core/domain/controller/log_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/app/common/utils/theme/fonts.dart';
@@ -106,20 +107,34 @@ class _SearchProgrammingState extends State<SearchProgramming> {
                       spacePrincipal: spacePrincipal,
                       user: widget.user,
                       favorites: widget.favorites,
-                      onTapEvent: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => EventDetail(
-                            event: event,
-                            spaceReal: spaceReal,
-                            spacePrincipal: spacePrincipal,
-                            categories: widget.categories,
-                            favorites: widget.favorites,
-                            user: widget.user,
-                            onConcludeFavorite: () => widget.onConcludeFavorite(true),
-                          ),
-                        ),
-                      ),
+                      onTapEvent: () {
+                        try {
+                          LogController logController = LogController();
+
+                          logController.postLog(
+                            idLogTipo: 9,
+                            guidUsuario: widget.user.guidid ?? '',
+                            observacao: 'Usuário '
+                                '${widget.user.guidid != null ? '${widget.user.nome}' : 'não identificado'} '
+                                'acessou o evento ${event.id}',
+                          );
+                        } finally {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => EventDetail(
+                                event: event,
+                                spaceReal: spaceReal,
+                                spacePrincipal: spacePrincipal,
+                                categories: widget.categories,
+                                favorites: widget.favorites,
+                                user: widget.user,
+                                onConcludeFavorite: () => widget.onConcludeFavorite(true),
+                              ),
+                            ),
+                          );
+                        }
+                      },
                       onConcludeFavorite: () => widget.onConcludeFavorite(false),
                     );
                   },

@@ -1,3 +1,4 @@
+import 'package:agendacultural/app/core/domain/controller/log_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:agendacultural/app/common/utils/theme/fonts.dart';
 import 'package:agendacultural/app/modules/auth/domain/adapters/user.dart';
@@ -97,20 +98,33 @@ class AreaEventsWidget extends StatelessWidget {
                       spacePrincipal: spacePrincipal,
                       user: user,
                       favorites: favorites,
-                      onTapEvent: () => Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => EventDetail(
-                            event: event,
-                            spaceReal: spaceReal,
-                            spacePrincipal: spacePrincipal,
-                            categories: categories,
-                            favorites: favorites,
-                            user: user,
-                            onConcludeFavorite: () => onConcludeFavorite(true),
-                          ),
-                        ),
-                      ),
+                      onTapEvent: () {
+                        try {
+                          LogController logController = LogController();
+
+                          logController.postLog(
+                            idLogTipo: 9,
+                            guidUsuario: user.guidid ?? '',
+                            observacao: 'Usuário ${user.guidid != null ? '${user.nome}' : 'não identificado'} '
+                                'acessou o evento ${event.id}',
+                          );
+                        } finally {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => EventDetail(
+                                event: event,
+                                spaceReal: spaceReal,
+                                spacePrincipal: spacePrincipal,
+                                categories: categories,
+                                favorites: favorites,
+                                user: user,
+                                onConcludeFavorite: () => onConcludeFavorite(true),
+                              ),
+                            ),
+                          );
+                        }
+                      },
                       onConcludeFavorite: () => onConcludeFavorite(false),
                     );
                   }).toList(),

@@ -1,3 +1,4 @@
+import 'package:agendacultural/app/core/domain/controller/log_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/app/common/utils/theme/fonts.dart';
@@ -79,21 +80,34 @@ class AreaSpacesWidget extends StatelessWidget {
 
                 return ItemSpaceWidget(
                   space: space,
-                  onTapSpace: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => SpaceDetail(
-                        space: space,
-                        events: events,
-                        spaces: spaces,
-                        categories: categories,
-                        favorites: favorites,
-                        user: user,
-                        eventsProgramming: eventsProgramming,
-                        onConcludeFavorite: onConcludeFavorite,
-                      ),
-                    ),
-                  ),
+                  onTapSpace: () {
+                    try {
+                      LogController logController = LogController();
+
+                      logController.postLog(
+                        idLogTipo: 10,
+                        guidUsuario: user.guidid ?? '',
+                        observacao: 'Usuário ${user.guidid != null ? '${user.nome}' : 'não identificado'} '
+                            'acessou o espaço ${space.id}',
+                      );
+                    } finally {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => SpaceDetail(
+                            space: space,
+                            events: events,
+                            spaces: spaces,
+                            categories: categories,
+                            favorites: favorites,
+                            user: user,
+                            eventsProgramming: eventsProgramming,
+                            onConcludeFavorite: onConcludeFavorite,
+                          ),
+                        ),
+                      );
+                    }
+                  },
                 );
               }).toList(),
             ),
