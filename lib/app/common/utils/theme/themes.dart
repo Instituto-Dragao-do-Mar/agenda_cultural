@@ -5,7 +5,7 @@ import 'package:agendacultural/app/common/utils/theme/colors.dart';
 var themeDefault = ThemeData(
   brightness: Brightness.light,
   primaryColor: const Color(0xFFE83C3B),
-  colorScheme: ColorScheme.light(background: corBackgroundLaranja),
+  colorScheme: ColorScheme.light(surface: corBackgroundLaranja),
   textTheme: GoogleFonts.poppinsTextTheme(),
   appBarTheme: AppBarTheme(backgroundColor: corBgAtual),
   elevatedButtonTheme: ElevatedButtonThemeData(
@@ -21,16 +21,11 @@ var themeDefault = ThemeData(
 const LinearGradient gradientPrincipal = LinearGradient(colors: [Color(0xffEA5B0C), Color(0xffE83C3B)]);
 
 var corBackgroundLaranja = const Color(0xFFEA5B0C);
-var corBackgroundNegative = Colors.white;
 
 const corBg = Colors.white;
-const corBgAltoContraste = Colors.black;
 var corBgAtual = !ColorsApp.contraste ? Colors.white : Colors.black;
 
-const corAppBar = Colors.white;
-const corAppBarAltoContraste = Colors.black;
 var corAppBarAtual = !ColorsApp.contraste ? Colors.white : Colors.black;
 
 const corText = Colors.black;
-const corTextAltoContraste = Colors.white;
 var corTextAtual = !ColorsApp.contraste ? Colors.black : Colors.white;

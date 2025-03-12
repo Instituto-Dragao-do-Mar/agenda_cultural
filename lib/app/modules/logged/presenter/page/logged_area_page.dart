@@ -1,8 +1,8 @@
+import 'package:agendacultural/app/common/utils/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/app/common/utils/theme/themes.dart';
 import 'package:agendacultural/app/modules/logged/presenter/handler/logged_state_handler.dart';
 import 'package:agendacultural/app/modules/logged/features/map/presenter/page/widgets/app_bar_map.dart';

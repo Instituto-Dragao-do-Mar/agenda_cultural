@@ -1,9 +1,9 @@
+import 'package:agendacultural/app/common/utils/l10n/app_localizations.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:agendacultural/app/common/utils/theme/themes.dart';
 import 'package:agendacultural/app/modules/logged/features/home/domain/enum/exhibition_event.dart';

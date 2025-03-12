@@ -1,9 +1,9 @@
+import 'package:agendacultural/app/common/utils/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:group_button/group_button.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/app/common/router/router.dart';
 import 'package:agendacultural/app/common/utils/theme/fonts.dart';
 import 'package:agendacultural/app/common/utils/theme/themes.dart';

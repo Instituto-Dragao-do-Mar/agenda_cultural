@@ -1,10 +1,9 @@
+import 'package:agendacultural/app/common/utils/l10n/app_localizations.dart';
 import 'package:agendacultural/app/core/domain/controller/log_controller.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:geocoder2/geocoder2.dart';
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:agendacultural/app/core/app_store/app_store.dart';
 import 'package:agendacultural/app/common/widgets/notify_pop_up.dart';
@@ -145,25 +144,40 @@ class MyLocationPageStateHandler {
       _store.setLatitude(position.latitude);
       _store.setLongitude(position.longitude);
     } else {
-      final GeoData data;
+      final List<Location> location;
 
-      data = await Geocoder2.getDataFromAddress(
-        language: 'pt-BR',
-        address: _store.addressController.text,
-        googleMapApiKey: 'AIzaSyDPiOz0fCI1sfLT3W2fe--unju-f2n9jbY',
+      location = await locationFromAddress(_store.addressController.text);
+
+      final List<Placemark> data;
+
+      data = await placemarkFromCoordinates(
+        location.first.latitude,
+        location.first.longitude,
       );
 
-      GeoLocation.localAtualLatitude = data.latitude;
-      GeoLocation.localAtualLongitude = data.longitude;
+      List<String> addressParts = [
+        data[0].street?.isNotEmpty == true ? '${data[0].street!}, ' : '',
+        data[0].name?.isNotEmpty == true ? '${data[0].name!} - ' : '',
+        data[0].subLocality?.isNotEmpty == true ? '${data[0].subLocality!}, ' : '',
+        data[0].subAdministrativeArea?.isNotEmpty == true ? '${data[0].subAdministrativeArea!} - ' : '',
+        data[0].administrativeArea?.isNotEmpty == true ? '${data[0].administrativeArea!}, ' : '',
+        data[0].postalCode?.isNotEmpty == true ? '${data[0].postalCode!}, ' : '',
+        data[0].country?.isNotEmpty == true ? data[0].country! : ''
+      ];
 
-      await Dados.setDouble('local_atual_latitude', data.latitude);
-      await Dados.setDouble('local_atual_longitude', data.longitude);
-      await Dados.setString('local_atual_descricao', data.address);
+      String address = addressParts.where((part) => part.isNotEmpty).join('');
+
+      GeoLocation.localAtualLatitude = location.first.latitude;
+      GeoLocation.localAtualLongitude = location.first.longitude;
+
+      await Dados.setDouble('local_atual_latitude', location.first.latitude);
+      await Dados.setDouble('local_atual_longitude', location.first.longitude);
+      await Dados.setString('local_atual_descricao', address);
 
       await logController.postLog(
         idLogTipo: 4,
-        latitude: data.latitude,
-        longitude: data.longitude,
+        latitude: location.first.latitude,
+        longitude: location.first.longitude,
         guidUsuario: _appStore.userLogged.guidid ?? '',
         observacao: 'Usuário '
             '${_appStore.userLogged.guidid != null ? '${_appStore.userLogged.nome}' : 'não identificado'}'
@@ -171,9 +185,9 @@ class MyLocationPageStateHandler {
       );
 
       _store.setSelected(true);
-      _store.setAddress(data.address);
-      _store.setLatitude(data.latitude);
-      _store.setLongitude(data.longitude);
+      _store.setAddress(address);
+      _store.setLatitude(location.first.latitude);
+      _store.setLongitude(location.first.longitude);
     }
   }
 

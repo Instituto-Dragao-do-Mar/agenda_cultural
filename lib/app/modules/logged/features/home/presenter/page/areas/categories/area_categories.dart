@@ -1,5 +1,5 @@
+import 'package:agendacultural/app/common/utils/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/app/common/utils/tradutors.dart';
 import 'package:agendacultural/app/modules/splash/domain/adapter/category.dart';
 import 'package:agendacultural/app/modules/logged/features/home/presenter/page/areas/general/header_areas_home.dart';

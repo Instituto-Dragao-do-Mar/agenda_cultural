@@ -1,8 +1,8 @@
+import 'package:agendacultural/app/common/utils/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:url_launcher/url_launcher_string.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/app/common/utils/theme/fonts.dart';
 import 'package:agendacultural/app/common/utils/theme/themes.dart';
 import 'package:agendacultural/app/common/widgets/notify_pop_up.dart';

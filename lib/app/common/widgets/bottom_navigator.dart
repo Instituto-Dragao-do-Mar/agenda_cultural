@@ -1,7 +1,7 @@
+import 'package:agendacultural/app/common/utils/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/app/common/utils/theme/themes.dart';
 import 'package:agendacultural/app/core/htpp_client/http_client.dart';
 

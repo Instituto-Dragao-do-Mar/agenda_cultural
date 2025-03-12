@@ -1,9 +1,9 @@
+import 'package:agendacultural/app/common/utils/l10n/app_localizations.dart';
 import 'package:agendacultural/app/core/domain/controller/log_controller.dart';
 import 'package:agendacultural/app/modules/auth/domain/adapters/user.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/app/common/router/router.dart';
 import 'package:agendacultural/app/common/utils/theme/themes.dart';
 import 'package:agendacultural/app/modules/logged/features/home/domain/enum/filter_date.dart';

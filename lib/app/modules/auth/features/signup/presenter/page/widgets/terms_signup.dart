@@ -1,7 +1,7 @@
+import 'package:agendacultural/app/common/utils/l10n/app_localizations.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/app/common/utils/theme/fonts.dart';
 import 'package:agendacultural/app/common/utils/theme/themes.dart';
 
@@ -31,12 +31,12 @@ class TermsSignupWidget extends StatelessWidget {
               : 'Caixa desmarcada, clique duas vezes para marcar',
           child: Checkbox(
             checkColor: Colors.white,
-            fillColor: MaterialStateProperty.resolveWith(
+            fillColor: WidgetStateProperty.resolveWith(
               (states) {
-                const Set<MaterialState> interactiveStates = <MaterialState>{
-                  MaterialState.pressed,
-                  MaterialState.hovered,
-                  MaterialState.focused,
+                const Set<WidgetState> interactiveStates = <WidgetState>{
+                  WidgetState.pressed,
+                  WidgetState.hovered,
+                  WidgetState.focused,
                 };
                 if (states.any(interactiveStates.contains)) {
                   return Colors.grey;

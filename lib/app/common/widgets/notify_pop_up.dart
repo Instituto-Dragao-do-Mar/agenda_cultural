@@ -1,6 +1,6 @@
+import 'package:agendacultural/app/common/utils/l10n/app_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:agendacultural/app/common/utils/theme/fonts.dart';
 import 'package:agendacultural/app/common/utils/theme/colors.dart';
 
