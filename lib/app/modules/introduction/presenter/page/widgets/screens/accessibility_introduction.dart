@@ -89,8 +89,8 @@ class AccessibilityIntroductionScreen extends StatelessWidget {
               child: IconButton(
                 icon: const Icon(Icons.remove, size: 30, color: Colors.white),
                 style: ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll(corBackgroundLaranja),
-                  padding: const MaterialStatePropertyAll(EdgeInsets.all(2)),
+                  backgroundColor: WidgetStatePropertyAll(corBackgroundLaranja),
+                  padding: const WidgetStatePropertyAll(EdgeInsets.all(2)),
                 ),
                 onPressed: () => setFontSize(false),
               ),
@@ -111,8 +111,8 @@ class AccessibilityIntroductionScreen extends StatelessWidget {
               child: IconButton(
                 icon: const Icon(Icons.add, size: 30, color: Colors.white),
                 style: ButtonStyle(
-                  backgroundColor: MaterialStatePropertyAll(corBackgroundLaranja),
-                  padding: const MaterialStatePropertyAll(EdgeInsets.all(2)),
+                  backgroundColor: WidgetStatePropertyAll(corBackgroundLaranja),
+                  padding: const WidgetStatePropertyAll(EdgeInsets.all(2)),
                 ),
                 onPressed: () => setFontSize(true),
               ),

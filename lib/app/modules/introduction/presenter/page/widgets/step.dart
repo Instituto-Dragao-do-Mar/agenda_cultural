@@ -31,7 +31,7 @@ class StepWidget extends StatelessWidget {
             Semantics(
               label: "Página $currentStep de 3",
               child: Container(
-                decoration: BoxDecoration(color: Colors.black.withOpacity(0.8)),
+                decoration: BoxDecoration(color: Colors.black.withValues(alpha: 0.8)),
                 child: Padding(
                   padding: const EdgeInsets.all(5),
                   child: RichText(

@@ -54,7 +54,7 @@ class _MapPageState extends State<MapPage> {
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: [
-                    BoxShadow(color: Colors.black.withOpacity(.2), blurRadius: 3, offset: const Offset(0, 0)),
+                    BoxShadow(color: Colors.black.withValues(alpha: .2), blurRadius: 3, offset: const Offset(0, 0)),
                   ],
                 ),
                 child: _handler.store.isLoading

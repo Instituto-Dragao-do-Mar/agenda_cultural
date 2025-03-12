@@ -100,7 +100,7 @@ Widget _getField(BuildContext context, EditPopup e) {
         child: TextFormField(
           decoration: InputDecoration(
             filled: true,
-            fillColor: Colors.black.withOpacity(.04),
+            fillColor: Colors.black.withValues(alpha: .04),
             contentPadding: const EdgeInsets.all(16),
             focusColor: Colors.black,
             border: const OutlineInputBorder(
