@@ -809,6 +809,12 @@ abstract class AppLocalizations {
   /// **'Entrar como visitante'**
   String get visitor;
 
+  /// No description provided for @accessible.
+  ///
+  /// In pt, this message translates to:
+  /// **'Acessar site acessível'**
+  String get accessible;
+
   /// No description provided for @e_title.
   ///
   /// In pt, this message translates to:

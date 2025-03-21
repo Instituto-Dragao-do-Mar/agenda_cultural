@@ -47,7 +47,7 @@ mixin _$ProfileStore on ProfileStoreBase, Store {
   @override
   void setIsLoading(bool value) {
     final _$actionInfo = _$ProfileStoreBaseActionController.startAction(
-        name: 'ProfileStoreBase.setLoading');
+        name: 'ProfileStoreBase.setIsLoading');
     try {
       return super.setIsLoading(value);
     } finally {

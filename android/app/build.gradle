@@ -34,7 +34,7 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = 4
         versionName = "1.0.3"
-    }''
+    }
 
     signingConfigs {
         release {

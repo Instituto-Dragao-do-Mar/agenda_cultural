@@ -1,4 +1,5 @@
 import 'package:agendacultural/app/common/utils/l10n/app_localizations.dart';
+import 'package:agendacultural/app/common/widgets/notify_pop_up.dart';
 import 'package:agendacultural/app/core/domain/controller/log_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,6 +11,7 @@ import 'package:agendacultural/app/common/widgets/button_default.dart';
 import 'package:agendacultural/app/modules/auth/domain/adapters/user.dart';
 import 'package:agendacultural/app/common/widgets/text_contrast_font.dart';
 import 'package:agendacultural/app/modules/auth/presenter/handler/auth_state_handler.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -124,11 +126,35 @@ class _AuthPageState extends State<AuthPage> {
                   !ColorsApp.contraste ? 'imagens/management_idm.png' : 'imagens/management_idm_contrast.png',
                   height: 50,
                 ),
+                GestureDetector(
+                  onTap: () async {
+                    try {
+                      await launchUrlString('https://acessibilidadeidm.redeinova.com.br/');
+                    } catch (e) {
+                      _showNotificationError();
+                    }
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.only(top: 8),
+                    width: double.infinity,
+                    child: Center(
+                      child: TextContrastFont(
+                        text: AppLocalizations.of(context)!.accessible,
+                        semantics: AppLocalizations.of(context)!.accessible,
+                        style: GoogleFonts.roboto(fontSize: 16, color: corBackgroundLaranja),
+                      ),
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  void _showNotificationError() {
+    notifyPopUpWidget(context: context, description: 'Erro ao abrir o link');
   }
 }

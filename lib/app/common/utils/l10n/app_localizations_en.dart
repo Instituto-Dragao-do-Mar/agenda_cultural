@@ -363,6 +363,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get visitor => 'Enter as guest';
 
   @override
+  String get accessible => 'Access accessible website';
+
+  @override
   String get e_title => 'Event';
 
   @override
