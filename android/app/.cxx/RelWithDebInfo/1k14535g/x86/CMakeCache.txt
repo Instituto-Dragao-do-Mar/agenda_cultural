@@ -127,7 +127,7 @@ CMAKE_LIBRARY_OUTPUT_DIRECTORY:UNINITIALIZED=C:\Users\tiago\StudioProjects\agend
 CMAKE_LINKER:FILEPATH=C:/Users/tiago/AppData/Local/Android/Sdk/ndk/27.0.12077973/toolchains/llvm/prebuilt/windows-x86_64/bin/ld.lld.exe
 
 //No help, variable specified on the command line.
-CMAKE_MAKE_PROGRAM:UNINITIALIZED=C:\Users\tiago\AppData\Local\Android\Sdk\cmake\3.22.1\bin\ninja.exe
+CMAKE_MAKE_PROGRAM:UNINITIALIZED=C:\Users\tiago\AppData\Local\Android\sdk\cmake\3.22.1\bin\ninja.exe
 
 //Flags used by the linker during the creation of modules.
 CMAKE_MODULE_LINKER_FLAGS:STRING=

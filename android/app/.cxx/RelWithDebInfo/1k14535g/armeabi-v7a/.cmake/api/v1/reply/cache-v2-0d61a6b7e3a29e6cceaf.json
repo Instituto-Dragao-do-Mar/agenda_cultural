@@ -11,7 +11,7 @@
 				}
 			],
 			"type" : "UNINITIALIZED",
-			"value" : "x86"
+			"value" : "armeabi-v7a"
 		},
 		{
 			"name" : "ANDROID_NDK",
@@ -63,7 +63,7 @@
 				}
 			],
 			"type" : "UNINITIALIZED",
-			"value" : "x86"
+			"value" : "armeabi-v7a"
 		},
 		{
 			"name" : "CMAKE_ANDROID_NDK",
@@ -151,7 +151,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "c:/Users/tiago/StudioProjects/agendacultural_app/android/app/.cxx/RelWithDebInfo/1k14535g/x86"
+			"value" : "c:/Users/tiago/StudioProjects/agendacultural_app/android/app/.cxx/RelWithDebInfo/1k14535g/armeabi-v7a"
 		},
 		{
 			"name" : "CMAKE_CACHE_MAJOR_VERSION",
@@ -751,7 +751,7 @@
 				}
 			],
 			"type" : "UNINITIALIZED",
-			"value" : "C:\\Users\\tiago\\StudioProjects\\agendacultural_app\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\1k14535g\\obj\\x86"
+			"value" : "C:\\Users\\tiago\\StudioProjects\\agendacultural_app\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\1k14535g\\obj\\armeabi-v7a"
 		},
 		{
 			"name" : "CMAKE_LINKER",
@@ -779,7 +779,7 @@
 				}
 			],
 			"type" : "UNINITIALIZED",
-			"value" : "C:\\Users\\tiago\\AppData\\Local\\Android\\Sdk\\cmake\\3.22.1\\bin\\ninja.exe"
+			"value" : "C:\\Users\\tiago\\AppData\\Local\\Android\\sdk\\cmake\\3.22.1\\bin\\ninja.exe"
 		},
 		{
 			"name" : "CMAKE_MODULE_LINKER_FLAGS",
@@ -1023,7 +1023,7 @@
 				}
 			],
 			"type" : "UNINITIALIZED",
-			"value" : "C:\\Users\\tiago\\StudioProjects\\agendacultural_app\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\1k14535g\\obj\\x86"
+			"value" : "C:\\Users\\tiago\\StudioProjects\\agendacultural_app\\build\\app\\intermediates\\cxx\\RelWithDebInfo\\1k14535g\\obj\\armeabi-v7a"
 		},
 		{
 			"name" : "CMAKE_SHARED_LINKER_FLAGS",
@@ -1331,7 +1331,7 @@
 				}
 			],
 			"type" : "STATIC",
-			"value" : "C:/Users/tiago/StudioProjects/agendacultural_app/android/app/.cxx/RelWithDebInfo/1k14535g/x86"
+			"value" : "C:/Users/tiago/StudioProjects/agendacultural_app/android/app/.cxx/RelWithDebInfo/1k14535g/armeabi-v7a"
 		},
 		{
 			"name" : "Project_IS_TOP_LEVEL",
