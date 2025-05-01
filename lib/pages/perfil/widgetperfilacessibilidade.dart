@@ -18,7 +18,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../../shared/widgetbotao.dart';
 
 class widgetPerfilAcessibilidade extends StatefulWidget {
-  const widgetPerfilAcessibilidade({Key? key}) : super(key: key);
+  const widgetPerfilAcessibilidade({super.key});
 
   @override
   State<widgetPerfilAcessibilidade> createState() =>
@@ -196,7 +196,7 @@ class _widgetPerfilAcessibilidadeState
                   Expanded(
                     child: Text(
                       "Mas a terra de Oz nunca foi civilizada, porque vivemos separados do resto do mundo.",
-                      semanticsLabel: "Mas a terra de Oz nunca foi civilizada, porque vivemos separados do resto do mundo." + "Fonte atual: " + fontSize.toString() + " pixels",
+                      semanticsLabel: "Mas a terra de Oz nunca foi civilizada, porque vivemos separados do resto do mundo." "Fonte atual: " + fontSize.toString() + " pixels",
                       style: Fontes.roboto14W400Black(Fontes.tamanhoBase),
                       textAlign: TextAlign.center,
                     ),
@@ -211,9 +211,7 @@ class _widgetPerfilAcessibilidadeState
                 children: [
                   Semantics(
                     label: fontSize > 16
-                        ? "Diminuir fonte para " +
-                            (fontSize - 1).toString() +
-                            " pixels"
+                        ? "Diminuir fonte para ${fontSize - 1} pixels"
                         : "Fonte no tamanho mínimo, impossível diminuir",
                     child: IconButton(
                       iconSize: 40,
@@ -254,9 +252,7 @@ class _widgetPerfilAcessibilidadeState
                   ),
                   Semantics(
                     label: fontSize < 24
-                        ? "Aumentar fonte para " +
-                            (fontSize + 1).toString() +
-                            " pixels"
+                        ? "Aumentar fonte para ${fontSize + 1} pixels"
                         : "Fonte no tamanho máximo, impossível aumentar",
                     child: IconButton(
                       iconSize: 40,

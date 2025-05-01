@@ -1,4 +1,5 @@
-import 'dart:html';
+// import 'package:web';
+// import 'dart:js_interop';
 
 import 'package:agendacultural/dados/dados.dart';
 import 'package:agendacultural/model/geolocalizacao_model.dart';
@@ -15,7 +16,7 @@ import 'package:geocoder2/geocoder2.dart';
 import '../../model/fontes.dart';
 
 class WidgetInserirLocalizacao extends StatefulWidget {
-  const WidgetInserirLocalizacao({Key? key}) : super(key: key);
+  const WidgetInserirLocalizacao({super.key});
 
   @override
   State<WidgetInserirLocalizacao> createState() =>

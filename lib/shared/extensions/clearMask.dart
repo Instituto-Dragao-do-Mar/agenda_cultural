@@ -1,7 +1,6 @@
 extension ClearMask on String {
   String clearMask() {
-    return this
-        .replaceAll('-', '')
+    return replaceAll('-', '')
         .replaceAll("/", "")
         .replaceAll("(", "")
         .replaceAll(")", "")
@@ -11,8 +10,7 @@ extension ClearMask on String {
         .replaceAll(" ", "");
   }
   String clearMaskWithSpaces() {
-    return this
-        .replaceAll('-', '')
+    return replaceAll('-', '')
         .replaceAll("/", "")
         .replaceAll("(", "")
         .replaceAll(")", "")
@@ -24,7 +22,7 @@ extension ClearMask on String {
 
   double? textToDouble()
   {
-    var ret = double.tryParse(  this.replaceAll(",", "."));
+    var ret = double.tryParse(  replaceAll(",", "."));
     return ret;
   }
 

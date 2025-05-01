@@ -16,7 +16,7 @@ import '../../../model/cores.dart';
 import '../../../model/fontes.dart';
 
 class widgetAcessibilidade extends StatefulWidget {
-  const widgetAcessibilidade({Key? key}) : super(key: key);
+  const widgetAcessibilidade({super.key});
 
   @override
   State<widgetAcessibilidade> createState() => _widgetAcessibilidadeState();
@@ -133,7 +133,7 @@ class _widgetAcessibilidadeState extends State<widgetAcessibilidade> {
                 children: [
                   Text(
                     "Mas a terra de Oz nunca foi civilizada, porque vivemos separados do resto do mundo.",
-                    semanticsLabel: "Mas a terra de Oz nunca foi civilizada, porque vivemos separados do resto do mundo." + "Fonte atual: " + fontSize.toString() + " pixels",
+                    semanticsLabel: "Mas a terra de Oz nunca foi civilizada, porque vivemos separados do resto do mundo." "Fonte atual: " + fontSize.toString() + " pixels",
                     style: Fontes.roboto14W400Black(Fontes.tamanhoBase),
                     textAlign: TextAlign.center,
                   ),
@@ -146,7 +146,7 @@ class _widgetAcessibilidadeState extends State<widgetAcessibilidade> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Semantics(
-                    label: fontSize > 16 ? "Diminuir fonte para " + (fontSize - 1).toString() + " pixels" : "Fonte no tamanho mínimo, impossível diminuir",
+                    label: fontSize > 16 ? "Diminuir fonte para ${fontSize - 1} pixels" : "Fonte no tamanho mínimo, impossível diminuir",
                     child: IconButton(
                       iconSize: 40,
                       icon: widgetImagemInterna(
@@ -187,7 +187,7 @@ class _widgetAcessibilidadeState extends State<widgetAcessibilidade> {
                     ],
                   ),
                   Semantics(
-                    label: fontSize < 24 ? "Aumentar fonte para " + (fontSize + 1).toString() + " pixels" : "Fonte no tamanho máximo, impossível aumentar",
+                    label: fontSize < 24 ? "Aumentar fonte para ${fontSize + 1} pixels" : "Fonte no tamanho máximo, impossível aumentar",
                     child: IconButton(
                       iconSize: 40,
                       icon: widgetImagemInterna(

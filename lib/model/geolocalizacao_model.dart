@@ -41,9 +41,9 @@ class GeoLocalizacao {
   String getEndereco() {
     String retorno = "";
 
-    retorno += "" + (locality ?? "");
-    retorno += ", " + (city ?? "");
-    retorno += "- " + (principalSubdivision ?? "");
+    retorno += "${locality ?? ""}";
+    retorno += ", ${city ?? ""}";
+    retorno += "- ${principalSubdivision ?? ""}";
 
     //print(this.toJson());
 
@@ -66,12 +66,12 @@ class GeoLocalizacao {
     locality = json['locality'];
     postcode = json['postcode'];
     localityInfo = json['localityInfo'] != null
-        ? new LocalityInfo.fromJson(json['localityInfo'])
+        ? LocalityInfo.fromJson(json['localityInfo'])
         : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['latitude'] = latitude;
     data['longitude'] = longitude;
     data['lookupSource'] = lookupSource;
@@ -103,19 +103,19 @@ class LocalityInfo {
     if (json['administrative'] != null) {
       administrative = [];
       json['administrative'].forEach((v) {
-        administrative!.add(new Administrative.fromJson(v));
+        administrative!.add(Administrative.fromJson(v));
       });
     }
     if (json['informative'] != null) {
       informative = [];
       json['informative'].forEach((v) {
-        informative!.add(new Informative.fromJson(v));
+        informative!.add(Informative.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (administrative != null) {
       data['administrative'] = administrative!.map((v) => v.toJson()).toList();
     }
@@ -158,7 +158,7 @@ class Administrative {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['order'] = order;
     data['adminLevel'] = adminLevel;
     data['name'] = name;
@@ -197,7 +197,7 @@ class Informative {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['order'] = order;
     data['name'] = name;
     data['description'] = description;

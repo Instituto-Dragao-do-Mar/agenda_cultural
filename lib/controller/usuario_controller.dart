@@ -37,8 +37,8 @@ class UsuarioController extends BaseController {
       } else {
         setError(response.body);
       }
-    } catch (_) {
-      setError(_.toString());
+    } catch (e) {
+      setError(e.toString());
     }
 
     return lista;

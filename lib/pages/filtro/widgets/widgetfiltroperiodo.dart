@@ -1,7 +1,6 @@
 // ignore_for_file: camel_case_types
 
 import 'package:agendacultural/model/app_model.dart';
-import 'package:agendacultural/model/evento_model.dart';
 import 'package:agendacultural/model/fontes.dart';
 import 'package:agendacultural/shared/widgetespacoh.dart';
 import 'package:flutter/material.dart';

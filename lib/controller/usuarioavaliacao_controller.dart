@@ -31,8 +31,8 @@ class UsuarioAvaliacaoController extends BaseController {
       } else {
         setError(response.body);
       }
-    } catch (_) {
-      setError(_.toString());
+    } catch (e) {
+      setError(e.toString());
     }
 
     return lista;
@@ -80,8 +80,8 @@ class UsuarioAvaliacaoController extends BaseController {
       if (response.statusCode != 200) {
         setError(response.body);
       }
-    } catch (_) {
-      setError(_.toString());
+    } catch (e) {
+      setError(e.toString());
     }
 
     return;

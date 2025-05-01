@@ -2,38 +2,39 @@ import 'package:intl/intl.dart';
 
 extension Dates on String {
   int compareDateInDays(String? endDate) {
-    DateTime _startDate;
-    DateTime _endDate;
+    DateTime startDate;
+    DateTime endDate0;
 
-    _startDate = DateTime.parse(this);
-    _endDate = DateTime.parse(endDate!);
+    startDate = DateTime.parse(this);
+    endDate0 = DateTime.parse(endDate!);
 
-    Duration _duration = _startDate.difference(_endDate);
+    Duration duration = startDate.difference(endDate0);
 
-    return _duration.inDays;
+    return duration.inDays;
   }
 
   int compareDateInSeconds(String? endDate) {
-    DateTime _startDate;
-    DateTime _endDate;
+    DateTime startDate;
+    DateTime endDate0;
 
-    _startDate = DateTime.parse(this);
-    _endDate = DateTime.parse(endDate!);
+    startDate = DateTime.parse(this);
+    endDate0 = DateTime.parse(endDate!);
 
-    Duration _duration = _startDate.difference(_endDate);
+    Duration duration = startDate.difference(endDate0);
 
-    return _duration.inSeconds;
+    return duration.inSeconds;
   }
 
 
   String formatDate({String? format}) {
-    String _defaultFormat = "dd/MM/yyyy";
-    String _format = format == null ? _defaultFormat : format;
+    String defaultFormat = "dd/MM/yyyy";
+    String format0 = format == null ? defaultFormat : format;
 
-    if(this.isEmpty)
+    if(isEmpty) {
       return "";
+    }
 
-    final df = new DateFormat(_format,"pt_BR");
+    final df = DateFormat(format0,"pt_BR");
 
     return df.format(DateTime.parse(this));
   }

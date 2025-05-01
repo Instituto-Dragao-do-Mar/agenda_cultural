@@ -1,6 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
-import 'dart:html';
+// import 'dart:html';
 
 import 'package:agendacultural/controller/geolocalizacao_controller.dart';
 import 'package:agendacultural/dados/dados.dart';
@@ -24,7 +24,7 @@ import 'package:location/location.dart';
 import '../../model/fontes.dart';
 
 class Widgetlocalizacao extends StatelessWidget {
-  const Widgetlocalizacao({Key? key}) : super(key: key);
+  const Widgetlocalizacao({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -71,12 +71,12 @@ class Widgetlocalizacao extends StatelessWidget {
             widgetBotao(
               text: "Ativar agora",
               function: () async {
-                Location _location = Location();
+                Location location0 = Location();
 
-                PermissionStatus _temPermissao =
-                    await _location.hasPermission();
+                PermissionStatus temPermissao =
+                    await location0.hasPermission();
 
-                if (_temPermissao == PermissionStatus.granted) {
+                if (temPermissao == PermissionStatus.granted) {
                   await Dados.setBool('localizacao', true);
                   // ignore: use_build_context_synchronously
                   Navigator.pushReplacement(
@@ -86,9 +86,9 @@ class Widgetlocalizacao extends StatelessWidget {
                     ),
                   );
                 } else {
-                  _temPermissao = await _location.requestPermission();
+                  temPermissao = await location0.requestPermission();
 
-                  if (_temPermissao == PermissionStatus.denied) {
+                  if (temPermissao == PermissionStatus.denied) {
                     widgetMensagem(
                       context: context,
                       text: "É necessário da a permissão ao app de "
@@ -101,26 +101,26 @@ class Widgetlocalizacao extends StatelessWidget {
                       mensagem: 'Obtendo localização ...',
                     );
                     Location location = Location();
-                    LocationData _locationData;
+                    LocationData locationData;
 
-                    _locationData = await location.getLocation();
+                    locationData = await location.getLocation();
 
                     GeoLocalizacaoController geoController =
                         GeoLocalizacaoController();
 
                     GeoLocalizacao geo = await geoController.GeoLocalizacaoGet(
-                      latitude: _locationData.latitude!,
-                      logitude: _locationData.longitude!,
+                      latitude: locationData.latitude!,
+                      logitude: locationData.longitude!,
                     );
 
                     await Dados.setDouble(
                       'local_atual_latitude',
-                      _locationData.latitude!,
+                      locationData.latitude!,
                     );
 
                     await Dados.setDouble(
                       'local_atual_longitude',
-                      _locationData.longitude!,
+                      locationData.longitude!,
                     );
 
                     await Dados.setString(

@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import '../model/fontes.dart';
 
 class Widgetalertdialog extends StatefulWidget {
-  const Widgetalertdialog({Key? key}) : super(key: key);
+  const Widgetalertdialog({super.key});
 
   @override
   State<Widgetalertdialog> createState() => _WidgetalertdialogState();
@@ -22,7 +22,7 @@ class _WidgetalertdialogState extends State<Widgetalertdialog> {
     return aceitei
         ? const SizedBox.shrink()
         : Scaffold(
-            backgroundColor: const Color.fromRGBO(217, 217, 217, 0.4),
+            // scaffoldBackgroundColor: Theme.of(context).colorScheme.background,
             body: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [

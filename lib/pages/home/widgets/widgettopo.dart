@@ -12,7 +12,7 @@ class widgetTopo extends StatelessWidget {
   Function? notify;
   bool? notificacao;
 
-  widgetTopo({Key? key, this.notify, this.notificacao}) : super(key: key);
+  widgetTopo({super.key, this.notify, this.notificacao});
 
   @override
   Widget build(BuildContext context) {

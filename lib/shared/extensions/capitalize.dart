@@ -1,17 +1,19 @@
 extension StringExtension on String {
   String capitalize() {
-    if (!this.contains(" ")) if (this.length > 1) {
-      return this.substring(0, 1).toUpperCase() +
-          this.substring(1).toLowerCase();
+    if (!contains(" ")) if (length > 1) {
+      return substring(0, 1).toUpperCase() +
+          substring(1).toLowerCase();
     } else {
       return this;
     }
-    else
-      return this.toLowerCase().split(" ").map((word) {
-        if (word.length >= 1)
+    else {
+      return toLowerCase().split(" ").map((word) {
+        if (word.isNotEmpty) {
           return word[0].toUpperCase() + word.substring(1, word.length);
-        else
+        } else {
           return word;
+        }
       }).join(" ");
+    }
   }
 }

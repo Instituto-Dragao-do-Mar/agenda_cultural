@@ -17,7 +17,7 @@ import '../../shared/widgetespacoh.dart';
 import '../home/widgets/widgettopocomum.dart';
 
 class PageRecuperarSenha extends StatefulWidget {
-  const PageRecuperarSenha({Key? key}) : super(key: key);
+  const PageRecuperarSenha({super.key});
 
   @override
   State<PageRecuperarSenha> createState() => _PageRecuperarSenhaState();
@@ -134,7 +134,7 @@ class _PageRecuperarSenhaState extends State<PageRecuperarSenha> {
   }
 
   Future<void> sendEmail() async {
-    if (emailInput.characters.length == 0) {
+    if (emailInput.characters.isEmpty) {
       return widgetMensagem(
         context: context,
         text: "Os campos precisam ser preenchidos.",

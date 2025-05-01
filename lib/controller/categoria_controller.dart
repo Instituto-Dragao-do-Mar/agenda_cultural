@@ -27,8 +27,8 @@ class CategoriaController extends BaseController {
       } else {
         setError("Categoria ${response.body}");
       }
-    } catch (_) {
-      setError("Categoria ${_.toString()}");
+    } catch (e) {
+      setError("Categoria ${e.toString()}");
       
     }
 

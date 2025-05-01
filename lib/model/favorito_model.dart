@@ -7,15 +7,15 @@ class ListaFavoritos {
     if (json['favoritos'] != null) {
       favoritos = <Favorito>[];
       json['favoritos'].forEach((v) {
-        favoritos!.add(new Favorito.fromJson(v));
+        favoritos!.add(Favorito.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.favoritos != null) {
-      data['favoritos'] = this.favoritos!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    if (favoritos != null) {
+      data['favoritos'] = favoritos!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -35,10 +35,10 @@ class Favorito {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['idusuario'] = this.idusuario;
-    data['idevento'] = this.idevento;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['idusuario'] = idusuario;
+    data['idevento'] = idevento;
     return data;
   }
 }

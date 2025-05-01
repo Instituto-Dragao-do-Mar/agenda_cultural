@@ -10,7 +10,7 @@ import '../acesso/pagelogin.dart';
 import '../evento/widgethomeeventoscontainer.dart';
 
 class WidgetFavoritos extends StatefulWidget {
-  const WidgetFavoritos({Key? key}) : super(key: key);
+  const WidgetFavoritos({super.key});
 
   @override
   State<WidgetFavoritos> createState() => _WidgetFavoritosState();

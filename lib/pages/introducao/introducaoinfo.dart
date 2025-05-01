@@ -7,9 +7,9 @@ import '../../model/fontes.dart';
 
 class Introducaoinfo extends StatefulWidget {
   const Introducaoinfo({
-    Key? key,
+    super.key,
     required this.destino,
-  }) : super(key: key);
+  });
   final StatefulWidget destino;
 
   @override

@@ -20,7 +20,7 @@ enum ExibicaoEspaco {
 }
 
 class widgetHomeEspacos extends StatefulWidget {
-  widgetHomeEspacos({
+  const widgetHomeEspacos({
     required this.exibicaoEspaco,
     super.key,
   });
@@ -114,13 +114,11 @@ class _widgetHomeEspacosState extends State<widgetHomeEspacos> {
                       if (widget.exibicaoEspaco == ExibicaoEspaco.Destaque && e.aprovado == 0) {
                         return const SizedBox.shrink();
                       }
-                      if (e != null) {
-                        contadorDisplay++;
-                        return widgetHomeEspacosContainer(
-                          espaco: e,
-                        );
-                      }
-                      return const SizedBox.shrink();
+                      contadorDisplay++;
+                      return widgetHomeEspacosContainer(
+                        espaco: e,
+                      );
+                                          return const SizedBox.shrink();
                 },
               ).toList(),
             ),

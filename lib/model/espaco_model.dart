@@ -7,13 +7,13 @@ class ListaEspacos {
     if (json['espacos'] != null) {
       espacos = <Espaco>[];
       json['espacos'].forEach((v) {
-        espacos!.add(new Espaco.fromJson(v));
+        espacos!.add(Espaco.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (espacos != null) {
       data['espacos'] = espacos!.map((v) => v.toJson()).toList();
     }
@@ -128,13 +128,13 @@ class Espaco {
     if (json['espacosimagens'] != null) {
       espacosimagens = <Espacoimagens>[];
       json['espacosimagens'].forEach((v) {
-        espacosimagens!.add(new Espacoimagens.fromJson(v));
+        espacosimagens!.add(Espacoimagens.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['guidid'] = guidid;
     data['nome'] = nome;
@@ -189,13 +189,13 @@ class Espacoimagens {
     if (json['imagens'] != null) {
       imagens = <ImagemEspaco>[];
       json['imagens'].forEach((v) {
-        imagens!.add(new ImagemEspaco.fromJson(v));
+        imagens!.add(ImagemEspaco.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['idespaco'] = idespaco;
     data['idimagem'] = idimagem;
@@ -222,7 +222,7 @@ class ImagemEspaco {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['base64'] = base64;
     data['url'] = url;

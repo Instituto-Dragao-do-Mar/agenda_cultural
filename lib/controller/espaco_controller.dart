@@ -27,8 +27,8 @@ class EspacoController extends BaseController {
       } else {
         setError("Espaco ${response.body}");
       }
-    } catch (_) {
-      setError("Espaco ${_.toString()}");
+    } catch (e) {
+      setError("Espaco ${e.toString()}");
     }
 
     return lista;

@@ -39,8 +39,8 @@ class GeoLocalizacaoController extends BaseController {
       } else {
         setError('Erro get geocode ${response.body}');
       }
-    } catch (_) {
-      setError('Erro get geocode ${_.toString()}');
+    } catch (e) {
+      setError('Erro get geocode ${e.toString()}');
       return retorno;
     }
     return retorno;

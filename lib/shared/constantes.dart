@@ -1,7 +1,6 @@
 
 import 'package:agendacultural/shared/themes.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 // const urlApiIDM = "https://apiagendacultural.redeinova.com.br/api/";
 const urlApiIDM = "https://api.agenda.cultura.ce.gov.br/api/";

@@ -6,7 +6,7 @@ import 'package:flutter_switch/flutter_switch.dart';
 import 'constantes.dart';
 
 class widgetBotaoSwitch extends StatefulWidget {
-  widgetBotaoSwitch({Key? key, required this.value, this.function}) : super(key: key);
+  widgetBotaoSwitch({super.key, required this.value, this.function});
   bool value = false;
   Function(bool)? function;
 

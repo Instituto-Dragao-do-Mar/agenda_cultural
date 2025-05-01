@@ -8,8 +8,8 @@ void widgetErro({
 }) {
   AwesomeDialog(
       context: context,
-      dialogType: DialogType.NO_HEADER,
-      animType: AnimType.SCALE,
+      dialogType: DialogType.noHeader,
+      animType: AnimType.scale,
       headerAnimationLoop: false,
       title: titulo,
       desc: descricao,

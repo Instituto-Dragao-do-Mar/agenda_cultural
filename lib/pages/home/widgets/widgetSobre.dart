@@ -6,7 +6,7 @@ import '../../../model/fontes.dart';
 import '../../../shared/themes.dart';
 
 class WidgetSobre extends StatefulWidget {
-  const WidgetSobre({Key? key}) : super(key: key);
+  const WidgetSobre({super.key});
 
   @override
   State<WidgetSobre> createState() => _WidgetSobreState();

@@ -165,11 +165,9 @@ class _pageEventoDetalheState extends State<pageEventoDetalhe> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Semantics(
-                      label: "Categoria: " +
-                          app.GetCategoriasEvento(widget.evento),
+                      label: "Categoria: ${app.GetCategoriasEvento(widget.evento)}",
                       child: TextContrasteFonte(
-                        text: "Categoria: " +
-                            app.GetCategoriasEvento(widget.evento),
+                        text: "Categoria: ${app.GetCategoriasEvento(widget.evento)}",
                         style: GoogleFonts.inter(
                           fontSize: Fontes.tamanhoBase -
                               (Fontes.tamanhoFonteBase16 - 14),

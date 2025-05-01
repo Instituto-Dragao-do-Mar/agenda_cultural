@@ -5,7 +5,6 @@ import 'package:agendacultural/shared/extensions/dates.dart';
 import 'package:agendacultural/shared/themes.dart';
 import 'package:flutter/material.dart';
 
-import '../../model/cores.dart';
 import '../../shared/constantes.dart';
 import '../../shared/widgetTextFonteContraste.dart';
 

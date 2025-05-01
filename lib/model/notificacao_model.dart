@@ -9,13 +9,13 @@ class ListaNotificacoes {
     if (json['notificacoes'] != null) {
       notificacoes = <Notificacao>[];
       json['notificacoes'].forEach((v) {
-        notificacoes!.add(new Notificacao.fromJson(v));
+        notificacoes!.add(Notificacao.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (notificacoes != null) {
       data['notificacoes'] = notificacoes!.map((v) => v.toJson()).toList();
     }
@@ -65,7 +65,7 @@ class Notificacao {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['datarecebimento'] = datarecebimento;
     data['usuarioguidid'] = usuarioguidid;

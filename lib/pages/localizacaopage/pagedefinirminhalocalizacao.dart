@@ -175,49 +175,49 @@ class _pageDefinirMinhaLocalizacaoState
 
                 Location location = Location();
 
-                bool _serviceEnabled;
-                PermissionStatus _permissionGranted;
-                LocationData _locationData;
+                bool serviceEnabled;
+                PermissionStatus permissionGranted;
+                LocationData locationData;
 
-                _serviceEnabled = await location.serviceEnabled();
-                if (!_serviceEnabled) {
+                serviceEnabled = await location.serviceEnabled();
+                if (!serviceEnabled) {
                   
-                  _serviceEnabled = await location.requestService();
-                  if (!_serviceEnabled) {
+                  serviceEnabled = await location.requestService();
+                  if (!serviceEnabled) {
                     await widgetProcessamento();
                     return;
                   }
                 }
 
-                _permissionGranted = await location.hasPermission();
-                if (_permissionGranted == PermissionStatus.denied) {
+                permissionGranted = await location.hasPermission();
+                if (permissionGranted == PermissionStatus.denied) {
                   await widgetProcessamento();
-                  _permissionGranted = await location.requestPermission();
-                  if (_permissionGranted != PermissionStatus.granted) {
+                  permissionGranted = await location.requestPermission();
+                  if (permissionGranted != PermissionStatus.granted) {
                     return;
                   }
                 }
 
-                _locationData = await location.getLocation();
+                locationData = await location.getLocation();
 
                 GeoLocalizacaoController geoController =
                     GeoLocalizacaoController();
 
                 GeoLocalizacao geo = await geoController.GeoLocalizacaoGet(
-                  latitude: _locationData.latitude!,
-                  logitude: _locationData.longitude!,
+                  latitude: locationData.latitude!,
+                  logitude: locationData.longitude!,
                 );
 
                 await widgetProcessamento();                
 
                 await Dados.setDouble(
                   'local_atual_latitude',
-                  _locationData.latitude!,
+                  locationData.latitude!,
                 );
 
                 await Dados.setDouble(
                   'local_atual_longitude',
-                  _locationData.longitude!,
+                  locationData.longitude!,
                 );
 
                 await Dados.setString(

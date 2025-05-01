@@ -13,7 +13,7 @@ Image widgetImagemInterna({
 }) {
   //print("//////////// ${imagem.url} //////////}");
   return Image.asset(
-    'imagens/' + imagem.url!,
+    'imagens/${imagem.url!}',
     width: width,
     height: height,
     fit: fit,
@@ -29,7 +29,7 @@ widgetImagemInternaProvider({
 }) {
   //print("//////////// ${imagem.url} //////////}");
   return Image.asset(
-    'imagens/' + imagem.url!,
+    'imagens/${imagem.url!}',
     width: width,
     height: height,
     fit: fit,

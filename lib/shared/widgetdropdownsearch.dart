@@ -9,7 +9,7 @@ Widget widgetDropdownSearch({
   String? valorInicial,
   Color? borderColor,
   width = double.infinity,
-  mode = Mode.MENU,
+  mode = Mode.custom,
   enable = true,
   String? Function(String?)? validator,
 }) {
@@ -37,8 +37,8 @@ Widget widgetDropdownSearch({
       validator: validator,
       enabled: enable,
 
-      dropdownDecoratorProps: DropDownDecoratorProps(
-        dropdownSearchDecoration: InputDecoration(
+      decoratorProps: DropDownDecoratorProps(
+        decoration: InputDecoration(
           label: hint == null ? null : Text(
             hint,
             /* style: TextStyle(
@@ -73,7 +73,7 @@ Widget widgetDropdownSearch({
       //showSearchBox: enableSearch,
 
       //hint: "Selecione",
-      items: itens!,
+      // items: itens!,
       selectedItem: valorInicial,
       onChanged: funcao,
     ),

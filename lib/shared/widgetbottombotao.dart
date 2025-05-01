@@ -31,7 +31,7 @@ class widgetBottomBotao extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool _negative = negative ?? false;
+    bool negative = false;
 
     return GestureDetector(
       onTap: () {
@@ -45,8 +45,8 @@ class widgetBottomBotao extends StatelessWidget {
         margin: margin ?? const EdgeInsets.all(0),
         padding: padding ?? const EdgeInsets.all(0),
         decoration: BoxDecoration(
-          gradient: !_negative ? gradientPrincipal: null,
-          border: _negative ? Border.all(color: corBackgroundLaranja, width: 3) : null,
+          gradient: !negative ? gradientPrincipal: null,
+          border: negative ? Border.all(color: corBackgroundLaranja, width: 3) : null,
         ),
         child: Center(
           child: Text(
@@ -55,7 +55,7 @@ class widgetBottomBotao extends StatelessWidget {
             style: GoogleFonts.roboto(
               fontSize: 24,
               color: textColor ??
-                  (_negative ? corBackgroundLaranja : corBg),
+                  (negative ? corBackgroundLaranja : corBg),
             ),
           ),
         ),

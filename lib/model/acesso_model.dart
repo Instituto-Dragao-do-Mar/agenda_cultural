@@ -31,15 +31,15 @@ class Acesso {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['nome'] = this.nome;
-    data['datacadastro'] = this.datacadastro;
-    data['dataalteracao'] = this.dataalteracao;
-    data['alterarsenhaproximologin'] = this.alterarsenhaproximologin;
-    data['email'] = this.email;
-    data['signature'] = this.signature;
-    data['expiration'] = this.expiration;
-    data['dataUltimaSincronizacao'] = this.dataUltimaSincronizacao;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['nome'] = nome;
+    data['datacadastro'] = datacadastro;
+    data['dataalteracao'] = dataalteracao;
+    data['alterarsenhaproximologin'] = alterarsenhaproximologin;
+    data['email'] = email;
+    data['signature'] = signature;
+    data['expiration'] = expiration;
+    data['dataUltimaSincronizacao'] = dataUltimaSincronizacao;
     return data;
   }
 }

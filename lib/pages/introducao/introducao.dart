@@ -135,8 +135,8 @@ class _pageIntroducaoState extends State<pageIntroducao> {
                     borderRadius: BorderRadius.all(Radius.circular(25.0)),
                   ),
                 ),
-                isBottomSafeArea: true,
-                isTopSafeArea: true,
+                // isBottomSafeArea: true,
+                // isTopSafeArea: true,
                 globalFooter: SizedBox(
                   width: double.infinity,
                   height: 60,

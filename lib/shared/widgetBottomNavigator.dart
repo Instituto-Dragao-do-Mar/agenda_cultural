@@ -6,7 +6,7 @@ import '../model/imagem_model.dart';
 
 class WidgetBottomNavigator extends StatefulWidget {
   int? opcaoSelecionada;
-  WidgetBottomNavigator({Key? key, this.opcaoSelecionada}) : super(key: key);
+  WidgetBottomNavigator({super.key, this.opcaoSelecionada});
 
   @override
   State<WidgetBottomNavigator> createState() => _WidgetBottomNavigatorState();

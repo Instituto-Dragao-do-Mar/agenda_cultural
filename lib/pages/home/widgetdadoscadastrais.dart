@@ -15,7 +15,7 @@ import '../../shared/widgetemdesenvolvimento.dart';
 import 'widgethome.dart';
 
 class widgetDadosCadastrais extends StatefulWidget {
-  const widgetDadosCadastrais({Key? key}) : super(key: key);
+  const widgetDadosCadastrais({super.key});
 
   @override
   _widgetDadosCadastraisState createState() => _widgetDadosCadastraisState();

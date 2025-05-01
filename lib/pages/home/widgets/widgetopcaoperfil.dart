@@ -9,11 +9,10 @@ import '../../../shared/widgetTextFonteContraste.dart';
 
 class widgetopacaoperfil extends StatelessWidget {
   widgetopacaoperfil(
-      {Key? key,
+      {super.key,
       required this.subtitulo,
         this.paginaDestino,
-      this.funcao})
-      : super(key: key);
+      this.funcao});
 
   final String subtitulo;
   Widget? paginaDestino;

@@ -224,18 +224,18 @@ class _pageAgendaState extends State<pageAgenda> {
           initialDate: DateTime.tryParse(ted.text)!,
           firstDate: DateTime.now(),
           lastDate: DateTime.now().add(const Duration(days: 180)),
-          builder: (context, child) {
-            return Theme(
-              data: Theme.of(context).copyWith(
-                colorScheme: const ColorScheme.light(
-                  primary: Color(0xFFE83C3B),
-                  onPrimary: Colors.white,
-                  onSurface: Colors.black,
-                ),
-              ),
-              child: child!,
-            );
-          },
+          // builder: (context, child) {
+          //   return Theme(
+          //     data: Theme.of(context).copyWith(
+          //       colorScheme: const ColorScheme.light(
+          //         primary: Color(0xFFE83C3B),
+          //         onPrimary: Colors.white,
+          //         onSurface: Colors.black,
+          //       ),
+          //     ),
+          //     child: child!,
+          //   );
+          // },
         );
         if (pickedDate != null) {
           ted.text = pickedDate.toIso8601String();

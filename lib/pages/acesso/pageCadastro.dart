@@ -21,7 +21,7 @@ import '../../shared/widgetemdesenvolvimento.dart';
 import '../home/widgets/widgettopocomum.dart';
 
 class PageCadastro extends StatefulWidget {
-  const PageCadastro({Key? key}) : super(key: key);
+  const PageCadastro({super.key});
 
   @override
   State<PageCadastro> createState() => _PageCadastroState();
@@ -435,12 +435,12 @@ class _PageCadastroState extends State<PageCadastro> {
                         label: isChecked ? "Caixa marcada, clique duas vezes para desmarcar" : "Caixa desmarcada, clique duas vezes para marcar",
                         child: Checkbox(
                           checkColor: Colors.white,
-                          fillColor: MaterialStateProperty.resolveWith((states) {
-                            const Set<MaterialState> interactiveStates =
-                                <MaterialState>{
-                              MaterialState.pressed,
-                              MaterialState.hovered,
-                              MaterialState.focused,
+                          fillColor: WidgetStateProperty.resolveWith((states) {
+                            const Set<WidgetState> interactiveStates =
+                                <WidgetState>{
+                              WidgetState.pressed,
+                              WidgetState.hovered,
+                              WidgetState.focused,
                             };
                             if (states.any(interactiveStates.contains)) {
                               return Colors.grey;

@@ -10,7 +10,7 @@ import '../model/favorito_model.dart';
 
 class WidgetBotaoFavorito extends StatefulWidget {
   Evento evento;
-  WidgetBotaoFavorito({Key? key, required this.evento}) : super(key: key);
+  WidgetBotaoFavorito({super.key, required this.evento});
 
   @override
   State<WidgetBotaoFavorito> createState() => _WidgetBotaoFavoritoState();
@@ -51,7 +51,7 @@ class _WidgetBotaoFavoritoState extends State<WidgetBotaoFavorito> {
             top: 1,
           ),
           child: Semantics(
-            label: favorito == 1 ? ("Remover " + widget.evento.nome.toString() + " dos favoritos") : "Adicionar " + widget.evento.nome.toString() + " aos favoritos",
+            label: favorito == 1 ? ("Remover ${widget.evento.nome} dos favoritos") : "Adicionar ${widget.evento.nome} aos favoritos",
             child: IconButton(
               iconSize: 26,
               onPressed: () async {

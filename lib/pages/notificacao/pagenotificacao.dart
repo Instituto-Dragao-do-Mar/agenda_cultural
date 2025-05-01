@@ -2,7 +2,6 @@
 
 import 'package:agendacultural/controller/notificacao_controller.dart';
 import 'package:agendacultural/model/app_model.dart';
-import 'package:agendacultural/pages/home/widgets/widgettopo.dart';
 import 'package:agendacultural/pages/home/widgets/widgettopocomum.dart';
 import 'package:agendacultural/pages/notificacao/widgetnotificacaocard.dart';
 import 'package:agendacultural/shared/themes.dart';

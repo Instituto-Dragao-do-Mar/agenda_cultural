@@ -7,13 +7,13 @@ class ListaUsuarioAvaliacao {
     if (json['usuariosavaliacao'] != null) {
       usuariosavaliacoes = <UsuariosAvaliacao>[];
       json['usuariosavaliacao'].forEach((v) {
-        usuariosavaliacoes!.add(new UsuariosAvaliacao.fromJson(v));
+        usuariosavaliacoes!.add(UsuariosAvaliacao.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     if (usuariosavaliacoes != null) {
       data['usuariosavaliacao'] =
           usuariosavaliacoes!.map((v) => v.toJson()).toList();
@@ -51,7 +51,7 @@ class UsuariosAvaliacao {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
     data['datahora'] = datahora;
     data['idevento'] = idevento;

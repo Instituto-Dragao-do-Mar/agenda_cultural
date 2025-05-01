@@ -21,7 +21,7 @@ import '../home/widgets/widgettopocomum.dart';
 import '../principal/home.dart';
 
 class PageEntrar extends StatefulWidget {
-  const PageEntrar({Key? key}) : super(key: key);
+  const PageEntrar({super.key});
 
   @override
   State<PageEntrar> createState() => _PageEntrarState();
@@ -34,6 +34,7 @@ class _PageEntrarState extends State<PageEntrar> {
   late final AppModel app;
   late final UsuarioController usuarioController;
 
+  @override
   void initState() {
     super.initState();
     app = context.read<AppModel>();
@@ -317,10 +318,11 @@ class _PageEntrarState extends State<PageEntrar> {
           builder: (context) => const pagePrincipal(),
         ),
       );
-    } else
+    } else {
       widgetMensagem(
         context: context,
         text: "Dados incorretos, verifique o email e senha e tente novamente.",
       );
+    }
   }
 }

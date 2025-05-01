@@ -28,8 +28,8 @@ class EventoController extends BaseController {
       } else {
         setError("Evento ${response.body}");
       }
-    } catch (_) {
-      setError("Evento ${_.toString()}");
+    } catch (e) {
+      setError("Evento ${e.toString()}");
     }
 
     // lista.eventos = lista.eventos?.sort((a, b) {
@@ -65,8 +65,8 @@ class EventoController extends BaseController {
       } else {
         setError("Favoritos ${response.body}");
       }
-    } catch (_) {
-      setError("Favoritos ${_.toString()}");
+    } catch (e) {
+      setError("Favoritos ${e.toString()}");
     }
 
     return lista;
@@ -110,8 +110,8 @@ class EventoController extends BaseController {
       } else {
         setError(response.body);
       }
-    } catch (_) {
-      setError(_.toString());
+    } catch (e) {
+      setError(e.toString());
     }
 
     return operationSucceed;

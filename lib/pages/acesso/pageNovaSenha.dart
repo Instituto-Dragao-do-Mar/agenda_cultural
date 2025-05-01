@@ -14,7 +14,7 @@ import '../../shared/widgetespacoh.dart';
 import '../home/widgets/widgettopocomum.dart';
 
 class PageNovaSenha extends StatefulWidget {
-  const PageNovaSenha({Key? key}) : super(key: key);
+  const PageNovaSenha({super.key});
 
   @override
   State<PageNovaSenha> createState() => _PageNovaSenhaState();
@@ -351,7 +351,7 @@ class _PageNovaSenhaState extends State<PageNovaSenha> {
   }
 
   Future<void> alterarSenha() async {
-    if (senhaInput.characters.length == 0) {
+    if (senhaInput.characters.isEmpty) {
       return widgetMensagem(
         context: context,
         text: "Os campos precisam ser preenchidos.",

@@ -1,6 +1,6 @@
 // ignore_for_file: missing_return
 
-import 'dart:html';
+// import 'dart:html';
 
 import 'package:agendacultural/shared/themes.dart';
 import 'package:flutter/material.dart';
@@ -48,7 +48,7 @@ Future<void> showPopupDialog({
         title: Text(titulo ?? "Informe os parâmetros"),
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(10.0))),
-        content: Container(
+        content: SizedBox(
           height: (edits!.length * 32) + 120.0,
           width: 300,
           child: Column(
@@ -59,7 +59,7 @@ Future<void> showPopupDialog({
                 children: [
                   Row(
                     children: [
-                      Expanded(child: _getField(context, e), flex: 3),
+                      Expanded(flex: 3, child: _getField(context, e)),
                     ],
                   ),
                   SizedBox(height: 8),
@@ -112,7 +112,7 @@ Future<void> showFuturePopupDialog({
                 children: [
                   Row(
                     children: [
-                      Expanded(child: _getField(context, e), flex: 3),
+                      Expanded(flex: 3, child: _getField(context, e)),
                     ],
                   ),
                   SizedBox(height: 8),

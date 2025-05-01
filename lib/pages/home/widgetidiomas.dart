@@ -15,7 +15,7 @@ import 'package:flutter/material.dart';
 import '../../model/fontes.dart';
 
 class widgetIdiomas extends StatefulWidget {
-  const widgetIdiomas({Key? key}) : super(key: key);
+  const widgetIdiomas({super.key});
 
   @override
   _widgetIdiomasState createState() => _widgetIdiomasState();

@@ -15,7 +15,7 @@ import '../../shared/widgetbotaoswitch.dart';
 
 
 class widgetNotificacoes extends StatefulWidget {
-  const widgetNotificacoes({Key? key}) : super(key: key);
+  const widgetNotificacoes({super.key});
 
   @override
   _widgetNotificacoesState createState() => _widgetNotificacoesState();

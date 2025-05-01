@@ -56,7 +56,7 @@ class _widgetHomeState extends State<widgetHome> {
 }
 
 class widgetBtnFiltro extends StatelessWidget {
-  const widgetBtnFiltro({Key? key}) : super(key: key);
+  const widgetBtnFiltro({super.key});
 
   @override
   Widget build(BuildContext context) {

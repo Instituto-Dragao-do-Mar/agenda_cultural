@@ -1,6 +1,5 @@
 // ignore_for_file: constant_identifier_names, camel_case_types
 
-import 'package:agendacultural/controller/evento_controller.dart';
 import 'package:agendacultural/dados/dados.dart';
 import 'package:agendacultural/model/app_model.dart';
 import 'package:agendacultural/model/evento_model.dart';
@@ -93,7 +92,9 @@ class _widgetHomeEventosState extends State<widgetHomeEventos> {
       ];
       subtitulo = "";
       wdata = MenuButton<String>(
-        decoration: null,
+        decoration: BoxDecoration(
+          color: Theme.of(context).colorScheme.surface,
+        ),
         items: keys,
         itemBuilder: (String value) => Container(
           height: 40,
@@ -102,11 +103,8 @@ class _widgetHomeEventosState extends State<widgetHomeEventos> {
           child: Text(value),
         ),
         onItemSelected: (String value) {
-          // setState(() {
           app.filtro.filtroDataSelecionado = FiltroData.values
               .firstWhere((element) => element.filtrodatatostring == value);
-          //print(app.filtro.filtroDataSelecionado!.filtrodatatostring);
-          // });
           app.notify();
         },
         child: SizedBox(
@@ -120,15 +118,10 @@ class _widgetHomeEventosState extends State<widgetHomeEventos> {
                 Flexible(
                   child: TextContrasteFonte(
                     text: app.filtro.filtroDataSelecionado!.filtrodatatostring,
-                    color: corBackgroundLaranja,
                     weight: FontWeight.w600,
                     semantics:
                         app.filtro.filtroDataSelecionado!.filtrodatatostring,
                   ),
-                  /* Text(
-                    app.filtro.filtroDataSelecionado!.filtrodatatostring,
-                    overflow: TextOverflow.ellipsis,
-                  ) */
                 ),
                 const SizedBox(
                   width: 12,

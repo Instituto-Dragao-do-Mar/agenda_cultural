@@ -15,7 +15,7 @@ class TextContrasteFonte extends StatefulWidget {
   final int? maxlines;
 
   const TextContrasteFonte({
-    Key? key,
+    super.key,
     this.color,
     this.text,
     this.style,
@@ -24,7 +24,7 @@ class TextContrasteFonte extends StatefulWidget {
     this.align,
     this.fontsize,
     this.maxlines,
-  }) : super(key: key);
+  });
 
   @override
   State<TextContrasteFonte> createState() => _TextContrasteFonteState();

@@ -98,14 +98,11 @@ class _pagePrincipalState extends State<pagePrincipal> {
   @override
   Widget build(BuildContext context) {
     Cores.reloadColors();
-    // corBgAtual = !contraste! ? Colors.white : Colors.black;
-    // corAppBarAtual = !contraste! ? Colors.white : Colors.black;
-    // corTextAtual = !contraste! ? Colors.black : Colors.white;
 
     return Scaffold(
-      backgroundColor: corBgAtual,
+      // backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        backgroundColor: corBgAtual,
+        // backgroundColor: Theme.of(context).colorScheme.background,
         elevation: 0,
         leadingWidth: 0,
         title: getAppBarWidget(),
@@ -141,7 +138,7 @@ class _pagePrincipalState extends State<pagePrincipal> {
           },
         );
       },
-      backgroundColor: corBgAtual,
+      // backgroundColor: Theme.of(context).colorScheme.background,
       elevation: 0,
       showUnselectedLabels: true,
       unselectedFontSize: 12,
@@ -151,7 +148,7 @@ class _pagePrincipalState extends State<pagePrincipal> {
       currentIndex: opcaoSelecionada,
       items: [
         BottomNavigationBarItem(
-          backgroundColor: corBgAtual,
+          // backgroundColor: Theme.of(context).colorScheme.background,
           icon: widgetImagemInterna(
               imagem: Imagem(
             url: 'fhome.png',
@@ -160,7 +157,7 @@ class _pagePrincipalState extends State<pagePrincipal> {
           label: "Início",
         ),
         BottomNavigationBarItem(
-          backgroundColor: corBgAtual,
+          // backgroundColor: Theme.of(context).colorScheme.background,
           icon: widgetImagemInterna(
               imagem: Imagem(
             url: 'fagenda.png',
@@ -169,7 +166,7 @@ class _pagePrincipalState extends State<pagePrincipal> {
           label: "Agenda",
         ),
         BottomNavigationBarItem(
-          backgroundColor: corBgAtual,
+          // scaffoldBackgroundColor: Theme.of(context).colorScheme.background,
           icon: widgetImagemInterna(
               imagem: Imagem(
             url: 'fmapa.png',
@@ -178,7 +175,7 @@ class _pagePrincipalState extends State<pagePrincipal> {
           label: "Mapa",
         ),
         BottomNavigationBarItem(
-          backgroundColor: corBgAtual,
+          // backgroundColor: Theme.of(context).colorScheme.background,
           icon: widgetImagemInterna(
               imagem: Imagem(
             url: 'ffavorito.png',
@@ -187,7 +184,7 @@ class _pagePrincipalState extends State<pagePrincipal> {
           label: "Favoritos",
         ),
         BottomNavigationBarItem(
-          backgroundColor: corBgAtual,
+          // backgroundColor: Theme.of(context).colorScheme.background,
           icon: widgetImagemInterna(
               imagem: Imagem(
             url: 'fperfil.png',

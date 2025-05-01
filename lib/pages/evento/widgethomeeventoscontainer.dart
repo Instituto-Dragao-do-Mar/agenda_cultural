@@ -26,6 +26,7 @@ class widgetHomeCategoriasEventosContainer extends StatefulWidget {
 
   final Evento evento;
 
+  @override
   State<widgetHomeCategoriasEventosContainer> createState() =>
       _widgetHomeCategoriasEventosContainerState();
 }

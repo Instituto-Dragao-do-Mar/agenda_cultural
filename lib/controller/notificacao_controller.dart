@@ -32,8 +32,8 @@ class NotificacaoController extends BaseController {
       } else {
         setError(response.body);
       }
-    } catch (_) {
-      setError(_.toString());
+    } catch (e) {
+      setError(e.toString());
     }
 
     return lista;
@@ -70,8 +70,8 @@ class NotificacaoController extends BaseController {
       if (response.statusCode != 200) {
         setError(response.body);
       }
-    } catch (_) {
-      setError(_.toString());
+    } catch (e) {
+      setError(e.toString());
     }
 
     return;
