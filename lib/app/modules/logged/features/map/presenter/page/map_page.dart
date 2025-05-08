@@ -45,6 +45,7 @@ class _MapPageState extends State<MapPage> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const SizedBox(height: 8),
             Expanded(
               child: Container(
                 width: double.infinity,
@@ -68,16 +69,19 @@ class _MapPageState extends State<MapPage> {
                       ),
               ),
             ),
-            AreaEventsWidget(
-              exhibitionEvent: ExhibitionEvent.eventMap,
-              title: AppLocalizations.of(context)!.map_suggestion,
-              events: _handler.appStore.events,
-              spaces: _handler.appStore.spaces,
-              categories: _handler.appStore.categories,
-              favorites: _handler.appStore.favorites,
-              user: _handler.appStore.userLogged,
-              onConcludeFavorite: _handler.uploadDataFavorites,
-            ),
+            if (_handler.appStore.events.isNotEmpty)
+              AreaEventsWidget(
+                exhibitionEvent: ExhibitionEvent.eventMap,
+                title: AppLocalizations.of(context)!.map_suggestion,
+                events: _handler.appStore.events,
+                spaces: _handler.appStore.spaces,
+                categories: _handler.appStore.categories,
+                favorites: _handler.appStore.favorites,
+                user: _handler.appStore.userLogged,
+                onConcludeFavorite: _handler.uploadDataFavorites,
+              )
+            else
+              const SizedBox(height: 8),
           ],
         );
       },
