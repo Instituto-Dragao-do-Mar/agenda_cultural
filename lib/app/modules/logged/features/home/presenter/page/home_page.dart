@@ -155,7 +155,7 @@ class _HomePageState extends State<HomePage> {
                     user: _handler.appStore.userLogged,
                     onConcludeFavorite: _handler.uploadDataFavorites,
                   ),
-                if (_handler.store.eventsDateFiltered.isNotEmpty && !_handler.appStore.isFilterOpen)
+                if (!_handler.appStore.isFilterOpen)
                   AreaEventsWidget(
                     exhibitionEvent: ExhibitionEvent.date,
                     title: filterDateToString(context, _handler.store.filterDate),
@@ -172,8 +172,8 @@ class _HomePageState extends State<HomePage> {
                     favorites: _handler.appStore.favorites,
                     user: _handler.appStore.userLogged,
                     onConcludeFavorite: _handler.uploadDataFavorites,
-                  ),
-                if (_handler.appStore.isFilterOpen)
+                  )
+                else
                   AreaEventsWidget(
                     exhibitionEvent: ExhibitionEvent.eventMap,
                     title: AppLocalizations.of(context)!.schedule_results,
