@@ -42,6 +42,7 @@ class FilterDateWidget extends StatelessWidget {
             color: corBackgroundLaranja,
             fontWeight: FontWeight.w600,
           ),
+          dropdownColor: Colors.white,
           items: items.map((String value) {
             return DropdownMenuItem<String>(
               value: value,

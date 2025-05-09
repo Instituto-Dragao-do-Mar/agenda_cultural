@@ -363,6 +363,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get visitor => 'Entra come ospite';
 
   @override
+  String get accessible => 'Accesso al sito web accessibile';
+
+  @override
   String get e_title => 'Evento';
 
   @override
